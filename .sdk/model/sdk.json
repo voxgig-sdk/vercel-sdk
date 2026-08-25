@@ -1,6 +1,15 @@
 {
+  "NAME": "VERCEL",
+  "Name": "Vercel",
   "def": "vercel-project-only.json",
   "main": {
+    "api": {
+      "entity": {},
+      "guide": {}
+    },
+    "custom": {
+      "plurals": {}
+    },
     "def": {
       "desc": ""
     },
@@ -2096,5 +2105,8 @@
     }
   },
   "name": "vercel",
+  "name-": "vercel",
+  "name_": "vercel",
+  "name__orig": "vercel",
   "origin": "voxgig-sdk"
 }
