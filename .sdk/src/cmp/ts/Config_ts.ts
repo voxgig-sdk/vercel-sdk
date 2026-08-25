@@ -81,7 +81,7 @@ const Config = cmp(async function Config(props: any) {
   // literal and the data that replaces it above the threshold are the same
   // config by construction. The JSON is what the threshold is measured on -
   // emitted source size varies by language, the model does not.
-  const { json: configJson } = configDefinition(model)
+  const { def: configDef, json: configJson } = configDefinition(model, target.name)
   const asData = isConfigData(configJson, configReprSetting(model))
 
   File({ name: 'Config.' + target.ext }, () => {
@@ -128,14 +128,25 @@ const Config = cmp(async function Config(props: any) {
             `'./feature/${f.name}/${nom(f, 'Name')}Feature'`)
         }),
 
+        // Values from configDefinition's def, not re-derived here, so the
+        // literal rep and the data rep cannot disagree on identity.
+        '// #MainMeta': () => {
+          Line(`    slug: ${JSON.stringify(configDef.main.slug)},`)
+          Line(`    version: ${JSON.stringify(configDef.main.version)},`)
+          Line(`    target: ${JSON.stringify(configDef.main.target)},`)
+        },
+
         '// #FeatureClasses': () => each(feature, (f: any) => {
           // Trailing comma: the map has one entry per feature, so entries
           // must be comma-separated (a single feature hid this until now).
           Line(` ${f.name}: ${nom(f, 'Name')}Feature,`)
         }),
 
+        // Rendered from configDefinition's def, not from f.config, so the
+        // literal carries the feature's `transport` role (station design
+        // §8.4) beside its options and cannot drift from the data rep.
         '// #FeatureConfigs': () => each(feature, (f: any) => {
-          Line(` ${f.name}: ${formatJson(f.config, { margin: 4 })},`)
+          Line(` ${f.name}: ${formatJson(configDef.feature[f.name], { margin: 4 })},`)
         }),
 
 

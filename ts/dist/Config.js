@@ -12,14 +12,24 @@ class Config {
         // TODO: errors etc
         return fi;
     }
+    // False for a feature added at runtime via options.extend (station's
+    // adopt path) - the constructor uses this to skip makeFeature for names
+    // no generated class backs.
+    hasFeature(fn) {
+        return null != FEATURE_CLASS[fn];
+    }
     main = {
         name: 'Vercel',
+        slug: "vercel",
+        version: "0.0.1",
+        target: "ts",
     };
     feature = {
         test: {
             "options": {
                 "active": false
-            }
+            },
+            "transport": "base"
         },
     };
     options = {
