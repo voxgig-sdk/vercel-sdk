@@ -68,7 +68,7 @@ func main() {
     fmt.Println(created)
 
     // Update a project.
-    updated, err := client.Project(nil).Update(map[string]any{"id": "example_id", "abuse": map[string]any{}, "accountId": "example_accountId"}, nil)
+    updated, err := client.Project(nil).Update(map[string]any{"id": "example_id", "slug": "example_slug", "team_id": "example_team_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -569,6 +569,29 @@ if err != nil {
 }
 fmt.Println(result)
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Open types

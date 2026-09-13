@@ -1,4 +1,5 @@
 import { BaseFeature } from './feature/base/BaseFeature';
+declare const FEATURE_PLUGINS: Record<string, any[]>;
 declare class Config {
     makeFeature(this: any, fn: string): BaseFeature;
     hasFeature(this: any, fn: string): boolean;
@@ -41,6 +42,7 @@ declare class Config {
                 };
                 short?: undefined;
                 op?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 req: boolean;
@@ -48,6 +50,7 @@ declare class Config {
                 union?: undefined;
                 short?: undefined;
                 op?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 type: string;
@@ -55,6 +58,7 @@ declare class Config {
                 union?: undefined;
                 short?: undefined;
                 op?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 short: string;
@@ -62,6 +66,7 @@ declare class Config {
                 req?: undefined;
                 union?: undefined;
                 op?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 short: string;
@@ -73,6 +78,7 @@ declare class Config {
                 };
                 req?: undefined;
                 op?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 type: string;
@@ -84,6 +90,7 @@ declare class Config {
                 req?: undefined;
                 short?: undefined;
                 op?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 req: boolean;
@@ -91,6 +98,7 @@ declare class Config {
                 type: string;
                 union?: undefined;
                 op?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 op: {
@@ -104,6 +112,7 @@ declare class Config {
                 type: string;
                 union?: undefined;
                 short?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 op: {
@@ -117,6 +126,7 @@ declare class Config {
                 short: string;
                 type: string;
                 union?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 op: {
@@ -130,6 +140,15 @@ declare class Config {
                 type: string;
                 req?: undefined;
                 union?: undefined;
+                deprecated?: undefined;
+            } | {
+                deprecated: boolean;
+                name: string;
+                short: string;
+                type: string;
+                req?: undefined;
+                union?: undefined;
+                op?: undefined;
             } | {
                 name: string;
                 op: {
@@ -145,6 +164,7 @@ declare class Config {
                 short: string;
                 type: string;
                 union?: undefined;
+                deprecated?: undefined;
             } | {
                 name: string;
                 op: {
@@ -162,7 +182,12 @@ declare class Config {
                     depth: number;
                 };
                 req?: undefined;
+                deprecated?: undefined;
             })[];
+            id: {
+                field: string;
+                name: string;
+            };
             name: string;
             op: {
                 create: {
@@ -181,7 +206,9 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        parts: string[];
+                        segments: {
+                            lit: string;
+                        }[];
                         select: {
                             exist: string[];
                         };
@@ -212,6 +239,7 @@ declare class Config {
                             };
                             res: string;
                         };
+                        parts: string[];
                     }[];
                 };
                 load: {
@@ -237,7 +265,9 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        parts: string[];
+                        segments: {
+                            lit: string;
+                        }[];
                         select: {
                             exist: string[];
                         };
@@ -245,6 +275,7 @@ declare class Config {
                             req: string;
                             res: string;
                         };
+                        parts: string[];
                         rename?: undefined;
                     } | {
                         args: {
@@ -267,12 +298,18 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        parts: string[];
                         rename: {
                             param: {
                                 idOrName: string;
                             };
                         };
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
                         select: {
                             exist: string[];
                         };
@@ -280,6 +317,7 @@ declare class Config {
                             req: string;
                             res: string;
                         };
+                        parts: string[];
                     })[];
                 };
                 remove: {
@@ -306,12 +344,18 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        parts: string[];
                         rename: {
                             param: {
                                 idOrName: string;
                             };
                         };
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
                         select: {
                             exist: string[];
                         };
@@ -319,6 +363,7 @@ declare class Config {
                             req: string;
                             res: string;
                         };
+                        parts: string[];
                     }[];
                 };
                 update: {
@@ -345,12 +390,18 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        parts: string[];
                         rename: {
                             param: {
                                 idOrName: string;
                             };
                         };
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
                         select: {
                             exist: string[];
                         };
@@ -403,6 +454,7 @@ declare class Config {
                             };
                             res: string;
                         };
+                        parts: string[];
                     }[];
                 };
             };
@@ -413,4 +465,4 @@ declare class Config {
     };
 }
 declare const config: Config;
-export { config };
+export { config, FEATURE_PLUGINS, };

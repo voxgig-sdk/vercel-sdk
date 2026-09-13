@@ -114,8 +114,12 @@
 
 ---@class ProjectLoadMatch
 ---@field id string
+---@field slug? string
+---@field team_id? string
 
 ---@class ProjectCreateData
+---@field slug? string
+---@field team_id? string
 ---@field abuse table
 ---@field accountId string
 ---@field alias table
@@ -223,6 +227,8 @@
 
 ---@class ProjectUpdateData
 ---@field id string
+---@field slug? string
+---@field team_id? string
 ---@field abuse? table
 ---@field accountId? string
 ---@field alias? table
@@ -329,6 +335,8 @@
 
 ---@class ProjectRemoveMatch
 ---@field id string
+---@field slug? string
+---@field team_id? string
 
 local M = {}
 

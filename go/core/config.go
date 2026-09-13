@@ -462,6 +462,7 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "publicSource",
 						"short": "Deprecated.",
 						"type": "`$BOOLEAN`",
@@ -540,6 +541,7 @@ func MakeConfig() map[string]any {
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "skipGitConnectDuringLink",
 						"short": "Opts-out of the message prompting a CLI user to connect a Git repository in `vercel link`.",
 						"type": "`$BOOLEAN`",
@@ -649,6 +651,10 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "project",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -677,9 +683,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/v11/projects",
-								"parts": []any{
-									"v11",
-									"projects",
+								"segments": []any{
+									map[string]any{
+										"lit": "v11",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -713,6 +723,10 @@ func MakeConfig() map[string]any {
 										"ssoProtection": "`reqdata.sso_protection`",
 									},
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v11",
+									"projects",
 								},
 							},
 						},
@@ -839,9 +853,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v10/projects",
-								"parts": []any{
-									"v10",
-									"projects",
+								"segments": []any{
+									map[string]any{
+										"lit": "v10",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -867,6 +885,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v10",
+									"projects",
 								},
 							},
 							map[string]any{
@@ -901,14 +923,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v9/projects/{idOrName}",
-								"parts": []any{
-									"v9",
-									"projects",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"idOrName": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "v9",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -921,6 +949,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v9",
+									"projects",
+									"{id}",
 								},
 							},
 						},
@@ -961,14 +994,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/v9/projects/{idOrName}",
-								"parts": []any{
-									"v9",
-									"projects",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"idOrName": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "v9",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -981,6 +1020,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v9",
+									"projects",
+									"{id}",
 								},
 							},
 						},
@@ -1021,14 +1065,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/v9/projects/{idOrName}",
-								"parts": []any{
-									"v9",
-									"projects",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"idOrName": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "v9",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -1087,6 +1137,11 @@ func MakeConfig() map[string]any {
 									},
 									"res": "`body`",
 								},
+								"parts": []any{
+									"v9",
+									"projects",
+									"{id}",
+								},
 							},
 						},
 					},
@@ -1097,6 +1152,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

@@ -115,7 +115,7 @@ def _project_basic_setup(extra):
         "VERCEL_TEST_PROJECT_ENTID": idmap,
         "VERCEL_TEST_LIVE": "FALSE",
         "VERCEL_TEST_EXPLAIN": "FALSE",
-        "VERCEL_APIKEY": "NONE",
+        "VERCEL_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -125,6 +125,10 @@ def _project_basic_setup(extra):
 
     if env.get("VERCEL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("VERCEL_APIKEY"),
             },

@@ -2,7 +2,7 @@
 const envlocal = __dirname + '/../../../.env.local'
 require('dotenv').config({ quiet: true, path: [envlocal] })
 
-const { test, describe } = require('node:test')
+const { test, describe, afterEach } = require('node:test')
 const assert = require('node:assert')
 
 
@@ -10,10 +10,16 @@ const { VercelSDK } = require('../../..')
 
 const {
   envOverride,
+  liveClientOptions,
+  liveDelay,
 } = require('../../utility')
 
 
 describe('ProjectDirect', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when VERCEL_TEST_LIVE=TRUE.
+  afterEach(liveDelay('VERCEL_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new VercelSDK({
@@ -64,15 +70,18 @@ function directSetup(mockres) {
   const env = envOverride({
     'VERCEL_TEST_PROJECT_ENTID': {},
     'VERCEL_TEST_LIVE': 'FALSE',
-    'VERCEL_APIKEY': 'NONE',
+    'VERCEL_APIKEY': '',
   })
 
   const live = 'TRUE' === env.VERCEL_TEST_LIVE
 
   if (live) {
-    const client = new VercelSDK({
+    // Merged so the generated fields win: sdk-test-control.json's
+    // test.client.options adds to the live client, it does not redirect it.
+    const client = new VercelSDK(
+      Object.assign({}, liveClientOptions(), {
       apikey: env.VERCEL_APIKEY,
-    })
+      }))
 
     let idmap = env['VERCEL_TEST_PROJECT_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {

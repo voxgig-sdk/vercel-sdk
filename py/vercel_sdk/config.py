@@ -1,6 +1,14 @@
 # Vercel SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -479,6 +487,7 @@ def make_config():
             "type": "`$OBJECT`",
           },
           {
+            "deprecated": True,
             "name": "publicSource",
             "short": "Deprecated.",
             "type": "`$BOOLEAN`",
@@ -557,6 +566,7 @@ def make_config():
             "type": "`$NUMBER`",
           },
           {
+            "deprecated": True,
             "name": "skipGitConnectDuringLink",
             "short": "Opts-out of the message prompting a CLI user to connect a Git repository in `vercel link`.",
             "type": "`$BOOLEAN`",
@@ -666,6 +676,10 @@ def make_config():
             "type": "`$OBJECT`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "project",
         "op": {
           "create": {
@@ -694,9 +708,13 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/v11/projects",
-                "parts": [
-                  "v11",
-                  "projects",
+                "segments": [
+                  {
+                    "lit": "v11",
+                  },
+                  {
+                    "lit": "projects",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -731,6 +749,10 @@ def make_config():
                   },
                   "res": "`body`",
                 },
+                "parts": [
+                  "v11",
+                  "projects",
+                ],
               },
             ],
           },
@@ -856,9 +878,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v10/projects",
-                "parts": [
-                  "v10",
-                  "projects",
+                "segments": [
+                  {
+                    "lit": "v10",
+                  },
+                  {
+                    "lit": "projects",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -885,6 +911,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v10",
+                  "projects",
+                ],
               },
               {
                 "args": {
@@ -918,16 +948,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v9/projects/{idOrName}",
-                "parts": [
-                  "v9",
-                  "projects",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "idOrName": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "v9",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -939,6 +975,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v9",
+                  "projects",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -978,16 +1019,22 @@ def make_config():
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/v9/projects/{idOrName}",
-                "parts": [
-                  "v9",
-                  "projects",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "idOrName": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "v9",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -999,6 +1046,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v9",
+                  "projects",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -1038,16 +1090,22 @@ def make_config():
                 "kind": "http",
                 "method": "PATCH",
                 "orig": "/v9/projects/{idOrName}",
-                "parts": [
-                  "v9",
-                  "projects",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "idOrName": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "v9",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -1104,6 +1162,11 @@ def make_config():
                   },
                   "res": "`body`",
                 },
+                "parts": [
+                  "v9",
+                  "projects",
+                  "{id}",
+                ],
               },
             ],
           },

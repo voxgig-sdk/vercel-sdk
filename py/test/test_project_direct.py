@@ -58,15 +58,18 @@ def _project_direct_setup(mockres):
     env = runner.env_override({
         "VERCEL_TEST_PROJECT_ENTID": {},
         "VERCEL_TEST_LIVE": "FALSE",
-        "VERCEL_APIKEY": "NONE",
+        "VERCEL_APIKEY": "",
     })
 
     live = env.get("VERCEL_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("VERCEL_APIKEY"),
-        }
+        })
         client = VercelSDK(merged_opts)
         return {
             "client": client,

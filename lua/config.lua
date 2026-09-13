@@ -458,6 +458,7 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["deprecated"] = true,
             ["name"] = "publicSource",
             ["short"] = "Deprecated.",
             ["type"] = "`$BOOLEAN`",
@@ -536,6 +537,7 @@ local function make_config()
             ["type"] = "`$NUMBER`",
           },
           {
+            ["deprecated"] = true,
             ["name"] = "skipGitConnectDuringLink",
             ["short"] = "Opts-out of the message prompting a CLI user to connect a Git repository in `vercel link`.",
             ["type"] = "`$BOOLEAN`",
@@ -645,6 +647,10 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "project",
         ["op"] = {
           ["create"] = {
@@ -673,9 +679,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/v11/projects",
-                ["parts"] = {
-                  "v11",
-                  "projects",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v11",
+                  },
+                  {
+                    ["lit"] = "projects",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -709,6 +719,10 @@ local function make_config()
                     ["ssoProtection"] = "`reqdata.sso_protection`",
                   },
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v11",
+                  "projects",
                 },
               },
             },
@@ -835,9 +849,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v10/projects",
-                ["parts"] = {
-                  "v10",
-                  "projects",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v10",
+                  },
+                  {
+                    ["lit"] = "projects",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -863,6 +881,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v10",
+                  "projects",
                 },
               },
               {
@@ -897,14 +919,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v9/projects/{idOrName}",
-                ["parts"] = {
-                  "v9",
-                  "projects",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["idOrName"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "v9",
+                  },
+                  {
+                    ["lit"] = "projects",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -917,6 +945,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v9",
+                  "projects",
+                  "{id}",
                 },
               },
             },
@@ -957,14 +990,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/v9/projects/{idOrName}",
-                ["parts"] = {
-                  "v9",
-                  "projects",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["idOrName"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "v9",
+                  },
+                  {
+                    ["lit"] = "projects",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -977,6 +1016,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v9",
+                  "projects",
+                  "{id}",
                 },
               },
             },
@@ -1017,14 +1061,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "PATCH",
                 ["orig"] = "/v9/projects/{idOrName}",
-                ["parts"] = {
-                  "v9",
-                  "projects",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["idOrName"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "v9",
+                  },
+                  {
+                    ["lit"] = "projects",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1082,6 +1132,11 @@ local function make_config()
                     ["trustedSources"] = "`reqdata.trusted_source`",
                   },
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v9",
+                  "projects",
+                  "{id}",
                 },
               },
             },

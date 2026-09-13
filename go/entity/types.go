@@ -123,10 +123,14 @@ type Project struct {
 // ProjectLoadMatch is the typed request payload for Project.LoadTyped.
 type ProjectLoadMatch struct {
 	Id string `json:"id"`
+	Slug *string `json:"slug,omitempty"`
+	TeamId *string `json:"team_id,omitempty"`
 }
 
 // ProjectCreateData is the typed request payload for Project.CreateTyped.
 type ProjectCreateData struct {
+	Slug *string `json:"slug,omitempty"`
+	TeamId *string `json:"team_id,omitempty"`
 	Abuse map[string]any `json:"abuse"`
 	AccountId string `json:"accountId"`
 	Alias []any `json:"alias"`
@@ -236,6 +240,8 @@ type ProjectCreateData struct {
 // ProjectUpdateData is the typed request payload for Project.UpdateTyped.
 type ProjectUpdateData struct {
 	Id string `json:"id"`
+	Slug *string `json:"slug,omitempty"`
+	TeamId *string `json:"team_id,omitempty"`
 	Abuse *map[string]any `json:"abuse,omitempty"`
 	AccountId *string `json:"accountId,omitempty"`
 	Alias *[]any `json:"alias,omitempty"`
@@ -344,6 +350,8 @@ type ProjectUpdateData struct {
 // ProjectRemoveMatch is the typed request payload for Project.RemoveTyped.
 type ProjectRemoveMatch struct {
 	Id string `json:"id"`
+	Slug *string `json:"slug,omitempty"`
+	TeamId *string `json:"team_id,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

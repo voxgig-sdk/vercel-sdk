@@ -114,9 +114,13 @@ export interface Project {
 
 export interface ProjectLoadMatch {
   id: string
+  slug?: string
+  team_id?: string
 }
 
 export interface ProjectCreateData {
+  slug?: string
+  team_id?: string
   abuse: Record<string, any>
   accountId: string
   alias: any[]
@@ -225,6 +229,8 @@ export interface ProjectCreateData {
 
 export interface ProjectUpdateData {
   id: string
+  slug?: string
+  team_id?: string
   abuse?: Record<string, any>
   accountId?: string
   alias?: any[]
@@ -332,5 +338,7 @@ export interface ProjectUpdateData {
 
 export interface ProjectRemoveMatch {
   id: string
+  slug?: string
+  team_id?: string
 }
 

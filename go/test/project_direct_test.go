@@ -100,14 +100,22 @@ func projectDirectSetup(mockres any) *projectDirectSetupResult {
 	env := envOverride(map[string]any{
 		"VERCEL_TEST_PROJECT_ENTID": map[string]any{},
 		"VERCEL_TEST_LIVE":    "FALSE",
-		"VERCEL_APIKEY":       "NONE",
+		"VERCEL_APIKEY":       "",
 	})
 
 	live := env["VERCEL_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["VERCEL_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewVercelSDK(mergedOpts)
 

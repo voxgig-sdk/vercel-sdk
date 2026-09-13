@@ -484,6 +484,7 @@ class VercelConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'deprecated' => true,
               'name' => 'publicSource',
               'short' => 'Deprecated.',
               'type' => '`$BOOLEAN`',
@@ -562,6 +563,7 @@ class VercelConfig
               'type' => '`$NUMBER`',
             ],
             [
+              'deprecated' => true,
               'name' => 'skipGitConnectDuringLink',
               'short' => 'Opts-out of the message prompting a CLI user to connect a Git repository in `vercel link`.',
               'type' => '`$BOOLEAN`',
@@ -671,6 +673,10 @@ class VercelConfig
               'type' => '`$OBJECT`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'project',
           'op' => [
             'create' => [
@@ -699,9 +705,13 @@ class VercelConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/v11/projects',
-                  'parts' => [
-                    'v11',
-                    'projects',
+                  'segments' => [
+                    [
+                      'lit' => 'v11',
+                    ],
+                    [
+                      'lit' => 'projects',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -735,6 +745,10 @@ class VercelConfig
                       'ssoProtection' => '`reqdata.sso_protection`',
                     ],
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v11',
+                    'projects',
                   ],
                 ],
               ],
@@ -861,9 +875,13 @@ class VercelConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v10/projects',
-                  'parts' => [
-                    'v10',
-                    'projects',
+                  'segments' => [
+                    [
+                      'lit' => 'v10',
+                    ],
+                    [
+                      'lit' => 'projects',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -889,6 +907,10 @@ class VercelConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v10',
+                    'projects',
                   ],
                 ],
                 [
@@ -923,14 +945,20 @@ class VercelConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v9/projects/{idOrName}',
-                  'parts' => [
-                    'v9',
-                    'projects',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'idOrName' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'v9',
+                    ],
+                    [
+                      'lit' => 'projects',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -943,6 +971,11 @@ class VercelConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v9',
+                    'projects',
+                    '{id}',
                   ],
                 ],
               ],
@@ -983,14 +1016,20 @@ class VercelConfig
                   'kind' => 'http',
                   'method' => 'DELETE',
                   'orig' => '/v9/projects/{idOrName}',
-                  'parts' => [
-                    'v9',
-                    'projects',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'idOrName' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'v9',
+                    ],
+                    [
+                      'lit' => 'projects',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -1003,6 +1042,11 @@ class VercelConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v9',
+                    'projects',
+                    '{id}',
                   ],
                 ],
               ],
@@ -1043,14 +1087,20 @@ class VercelConfig
                   'kind' => 'http',
                   'method' => 'PATCH',
                   'orig' => '/v9/projects/{idOrName}',
-                  'parts' => [
-                    'v9',
-                    'projects',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'idOrName' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'v9',
+                    ],
+                    [
+                      'lit' => 'projects',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -1108,6 +1158,11 @@ class VercelConfig
                       'trustedSources' => '`reqdata.trusted_source`',
                     ],
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v9',
+                    'projects',
+                    '{id}',
                   ],
                 ],
               ],

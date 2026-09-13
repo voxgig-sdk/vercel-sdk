@@ -51,7 +51,7 @@ local created, err = client:Project():create({ abuse = {}, accountId = "example_
 if err then error(err) end
 
 -- Update
-client:Project():update({ id = created:data_get()["id"], abuse = {}, accountId = "example_accountId" })
+client:Project():update({ id = created:data_get()["id"], slug = "example_slug", team_id = "example_team_id" })
 
 -- Remove
 client:Project():remove({ id = created:data_get()["id"] })
@@ -520,6 +520,29 @@ local project, err = client:Project():create({
   webAnalytics = {}, -- table
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Open types

@@ -117,10 +117,14 @@
 /**
  * @typedef {Object} ProjectLoadMatch
  * @property {string} id
+ * @property {string} [slug]
+ * @property {string} [team_id]
  */
 
 /**
  * @typedef {Object} ProjectCreateData
+ * @property {string} [slug]
+ * @property {string} [team_id]
  * @property {Object} abuse
  * @property {string} accountId
  * @property {Array} alias
@@ -230,6 +234,8 @@
 /**
  * @typedef {Object} ProjectUpdateData
  * @property {string} id
+ * @property {string} [slug]
+ * @property {string} [team_id]
  * @property {Object} [abuse]
  * @property {string} [accountId]
  * @property {Array} [alias]
@@ -338,5 +344,7 @@
 /**
  * @typedef {Object} ProjectRemoveMatch
  * @property {string} id
+ * @property {string} [slug]
+ * @property {string} [team_id]
  */
 

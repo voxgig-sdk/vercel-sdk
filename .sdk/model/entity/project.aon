@@ -486,6 +486,7 @@ main: kit: entity: project: {
       type: "`$OBJECT`"
     }
     {
+      deprecated: true
       name: "publicSource"
       req: false
       short: "Deprecated."
@@ -576,6 +577,7 @@ main: kit: entity: project: {
       type: "`$NUMBER`"
     }
     {
+      deprecated: true
       name: "skipGitConnectDuringLink"
       req: false
       short: "Opts-out of the message prompting a CLI user to connect a Git repository in `vercel link`."
@@ -733,9 +735,13 @@ main: kit: entity: project: {
           }
           method: "POST"
           orig: "/v11/projects"
-          parts: [
-            "v11"
-            "projects"
+          segments: [
+            {
+              lit: "v11"
+            }
+            {
+              lit: "projects"
+            }
           ]
           select: {
             exist: [
@@ -910,9 +916,13 @@ main: kit: entity: project: {
           }
           method: "GET"
           orig: "/v10/projects"
-          parts: [
-            "v10"
-            "projects"
+          segments: [
+            {
+              lit: "v10"
+            }
+            {
+              lit: "projects"
+            }
           ]
           select: {
             exist: [
@@ -973,16 +983,22 @@ main: kit: entity: project: {
           }
           method: "GET"
           orig: "/v9/projects/{idOrName}"
-          parts: [
-            "v9"
-            "projects"
-            "{id}"
-          ]
           rename: {
             param: {
               idOrName: "id"
             }
           }
+          segments: [
+            {
+              lit: "v9"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -1033,16 +1049,22 @@ main: kit: entity: project: {
           }
           method: "DELETE"
           orig: "/v9/projects/{idOrName}"
-          parts: [
-            "v9"
-            "projects"
-            "{id}"
-          ]
           rename: {
             param: {
               idOrName: "id"
             }
           }
+          segments: [
+            {
+              lit: "v9"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -1093,16 +1115,22 @@ main: kit: entity: project: {
           }
           method: "PATCH"
           orig: "/v9/projects/{idOrName}"
-          parts: [
-            "v9"
-            "projects"
-            "{id}"
-          ]
           rename: {
             param: {
               idOrName: "id"
             }
           }
+          segments: [
+            {
+              lit: "v9"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

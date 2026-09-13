@@ -125,11 +125,15 @@ class Project
 class ProjectLoadMatch
 {
     public string $id;
+    public ?string $slug = null;
+    public ?string $team_id = null;
 }
 
 /** Request payload for Project#create. */
 class ProjectCreateData
 {
+    public ?string $slug = null;
+    public ?string $team_id = null;
     public array $abuse;
     public string $accountId;
     public array $alias;
@@ -240,6 +244,8 @@ class ProjectCreateData
 class ProjectUpdateData
 {
     public string $id;
+    public ?string $slug = null;
+    public ?string $team_id = null;
     public ?array $abuse = null;
     public ?string $accountId = null;
     public ?array $alias = null;
@@ -349,5 +355,7 @@ class ProjectUpdateData
 class ProjectRemoveMatch
 {
     public string $id;
+    public ?string $slug = null;
+    public ?string $team_id = null;
 }
 

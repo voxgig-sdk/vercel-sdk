@@ -126,8 +126,13 @@ class Project(ProjectRequired, total=False):
     v0Created: bool
 
 
-class ProjectLoadMatch(TypedDict):
+class ProjectLoadMatchRequired(TypedDict):
     id: str
+
+
+class ProjectLoadMatch(ProjectLoadMatchRequired, total=False):
+    slug: str
+    team_id: str
 
 
 class ProjectCreateDataRequired(TypedDict):
@@ -160,6 +165,8 @@ class ProjectCreateDataRequired(TypedDict):
 
 
 class ProjectCreateData(ProjectCreateDataRequired, total=False):
+    slug: str
+    team_id: str
     appliedCve55182Migration: bool
     autoAssignCustomDomains: bool
     autoAssignCustomDomainsUpdatedBy: str
@@ -245,6 +252,8 @@ class ProjectUpdateDataRequired(TypedDict):
 
 
 class ProjectUpdateData(ProjectUpdateDataRequired, total=False):
+    slug: str
+    team_id: str
     abuse: dict
     accountId: str
     alias: list
@@ -350,5 +359,10 @@ class ProjectUpdateData(ProjectUpdateDataRequired, total=False):
     webAnalytics: dict
 
 
-class ProjectRemoveMatch(TypedDict):
+class ProjectRemoveMatchRequired(TypedDict):
     id: str
+
+
+class ProjectRemoveMatch(ProjectRemoveMatchRequired, total=False):
+    slug: str
+    team_id: str
