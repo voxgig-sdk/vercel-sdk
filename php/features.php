@@ -4,7 +4,14 @@ declare(strict_types=1);
 // Vercel SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/DebugFeature.php';
+require_once __DIR__ . '/feature/IdempotencyFeature.php';
+require_once __DIR__ . '/feature/MetricsFeature.php';
+require_once __DIR__ . '/feature/PagingFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class VercelFeatures
@@ -14,8 +21,22 @@ class VercelFeatures
         switch ($name) {
             case "base":
                 return new VercelBaseFeature();
+            case "debug":
+                return new VercelDebugFeature();
+            case "idempotency":
+                return new VercelIdempotencyFeature();
+            case "metrics":
+                return new VercelMetricsFeature();
+            case "paging":
+                return new VercelPagingFeature();
+            case "ratelimit":
+                return new VercelRatelimitFeature();
+            case "retry":
+                return new VercelRetryFeature();
             case "test":
                 return new VercelTestFeature();
+            case "timeout":
+                return new VercelTimeoutFeature();
             default:
                 return new VercelBaseFeature();
         }
@@ -31,7 +52,14 @@ class VercelFeatures
     {
         switch ($name) {
             case "base":
+            case "debug":
+            case "idempotency":
+            case "metrics":
+            case "paging":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
