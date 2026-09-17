@@ -1,0 +1,1056 @@
+{
+  "existing": {
+    "network": {
+      "NETWORK00": {
+        "awsAccountId": "s96",
+        "awsAvailabilityZoneIds": [],
+        "awsRegion": "s98",
+        "cidr": "s99",
+        "createdAt": 154,
+        "egressIpAddresses": [],
+        "hostedZones": {},
+        "id": "NETWORK00",
+        "name": "s9e",
+        "peeringConnections": {},
+        "projects": {},
+        "region": "sa1",
+        "status": "sa2",
+        "teamId": "sa3",
+        "vpcId": "sa4"
+      },
+      "NETWORK01": {
+        "awsAccountId": "s12c",
+        "awsAvailabilityZoneIds": [],
+        "awsRegion": "s12e",
+        "cidr": "s12f",
+        "createdAt": 304,
+        "egressIpAddresses": [],
+        "hostedZones": {},
+        "id": "NETWORK01",
+        "name": "s134",
+        "peeringConnections": {},
+        "projects": {},
+        "region": "s137",
+        "status": "s138",
+        "teamId": "s139",
+        "vpcId": "s13a"
+      },
+      "NETWORK02": {
+        "awsAccountId": "s1c2",
+        "awsAvailabilityZoneIds": [],
+        "awsRegion": "s1c4",
+        "cidr": "s1c5",
+        "createdAt": 454,
+        "egressIpAddresses": [],
+        "hostedZones": {},
+        "id": "NETWORK02",
+        "name": "s1ca",
+        "peeringConnections": {},
+        "projects": {},
+        "region": "s1cd",
+        "status": "s1ce",
+        "teamId": "s1cf",
+        "vpcId": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "network": {
+      "network_ref01": {
+        "awsAccountId": "s258",
+        "awsAvailabilityZoneIds": [],
+        "awsRegion": "s25a",
+        "cidr": "s25b",
+        "createdAt": 604,
+        "egressIpAddresses": [],
+        "hostedZones": {},
+        "name": "s260",
+        "peeringConnections": {},
+        "projects": {},
+        "region": "s263",
+        "status": "s264",
+        "teamId": "s265",
+        "vpcId": "s266"
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/connect/networks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createNetwork",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "awsAvailabilityZoneIds": {
+                    "items": {
+                      "description": "An AWS Availability Zone ID to use for the network",
+                      "example": "use1-az1",
+                      "type": "string"
+                    },
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "type": "array"
+                  },
+                  "cidr": {
+                    "description": "The CIDR block of the network",
+                    "example": "192.168.0.0/16",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The name of the network",
+                    "maxLength": 255,
+                    "type": "string"
+                  },
+                  "region": {
+                    "description": "The region where the network will be created",
+                    "example": "iad1",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "cidr",
+                  "name",
+                  "region"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "awsAccountId": {
+                      "description": "The ID of the AWS Account in which the network exists.",
+                      "type": "string"
+                    },
+                    "awsAvailabilityZoneIds": {
+                      "description": "The IDs of the AWS Availability Zones in which the network exists, if specified during creation.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "awsRegion": {
+                      "description": "The AWS Region in which the network exists.",
+                      "type": "string"
+                    },
+                    "cidr": {
+                      "description": "The CIDR range of the Network.",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "description": "The date at which the Network was created, represented as a UNIX timestamp since EPOCH.",
+                      "type": "number"
+                    },
+                    "egressIpAddresses": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "hostedZones": {
+                      "description": "Metadata about any AWS Route53 Hosted Zones associated with the Network.",
+                      "properties": {
+                        "count": {
+                          "description": "The number of AWS Route53 Hosted Zones associated with the Network.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "count"
+                      ],
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "The unique identifier of the Network.",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the network.",
+                      "type": "string"
+                    },
+                    "peeringConnections": {
+                      "description": "Metadata about any AWS Route53 Hosted Zones associated with the Network.",
+                      "properties": {
+                        "count": {
+                          "description": "The number of AWS Route53 Hosted Zones associated with the Network.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "count"
+                      ],
+                      "type": "object"
+                    },
+                    "projects": {
+                      "description": "Metadata about any projects associated with the Network.",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "ids": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "count",
+                        "ids"
+                      ],
+                      "type": "object"
+                    },
+                    "region": {
+                      "description": "The Vercel region in which the Network exists.",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "The status of the Network.",
+                      "enum": [
+                        "create_in_progress",
+                        "delete_in_progress",
+                        "error",
+                        "ready"
+                      ],
+                      "type": "string"
+                    },
+                    "teamId": {
+                      "description": "The unique identifier of the Team that owns the Network.",
+                      "type": "string"
+                    },
+                    "vpcId": {
+                      "description": "The ID of the VPC which hosts the network.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "awsAccountId",
+                    "awsRegion",
+                    "cidr",
+                    "createdAt",
+                    "id",
+                    "name",
+                    "status",
+                    "teamId"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/connect/networks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listNetworks",
+        "parameters": [
+          {
+            "description": "Whether to include Hosted Zones in the response",
+            "in": "query",
+            "name": "includeHostedZones",
+            "schema": {
+              "default": true,
+              "description": "Whether to include Hosted Zones in the response",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Whether to include VPC Peering connections in the response",
+            "in": "query",
+            "name": "includePeeringConnections",
+            "schema": {
+              "default": true,
+              "description": "Whether to include VPC Peering connections in the response",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Whether to include projects in the response",
+            "in": "query",
+            "name": "includeProjects",
+            "schema": {
+              "default": true,
+              "description": "Whether to include projects in the response",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "The query to use as a filter for returned networks",
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "description": "The query to use as a filter for returned networks",
+              "maxLength": 255,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "awsAccountId": {
+                        "description": "The ID of the AWS Account in which the network exists.",
+                        "type": "string"
+                      },
+                      "awsAvailabilityZoneIds": {
+                        "description": "The IDs of the AWS Availability Zones in which the network exists, if specified during creation.",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "awsRegion": {
+                        "description": "The AWS Region in which the network exists.",
+                        "type": "string"
+                      },
+                      "cidr": {
+                        "description": "The CIDR range of the Network.",
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "description": "The date at which the Network was created, represented as a UNIX timestamp since EPOCH.",
+                        "type": "number"
+                      },
+                      "egressIpAddresses": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "hostedZones": {
+                        "description": "Metadata about any AWS Route53 Hosted Zones associated with the Network.",
+                        "properties": {
+                          "count": {
+                            "description": "The number of AWS Route53 Hosted Zones associated with the Network.",
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "count"
+                        ],
+                        "type": "object"
+                      },
+                      "id": {
+                        "description": "The unique identifier of the Network.",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "The name of the network.",
+                        "type": "string"
+                      },
+                      "peeringConnections": {
+                        "description": "Metadata about any AWS Route53 Hosted Zones associated with the Network.",
+                        "properties": {
+                          "count": {
+                            "description": "The number of AWS Route53 Hosted Zones associated with the Network.",
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "count"
+                        ],
+                        "type": "object"
+                      },
+                      "projects": {
+                        "description": "Metadata about any projects associated with the Network.",
+                        "properties": {
+                          "count": {
+                            "type": "number"
+                          },
+                          "ids": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "required": [
+                          "count",
+                          "ids"
+                        ],
+                        "type": "object"
+                      },
+                      "region": {
+                        "description": "The Vercel region in which the Network exists.",
+                        "type": "string"
+                      },
+                      "status": {
+                        "description": "The status of the Network.",
+                        "enum": [
+                          "create_in_progress",
+                          "delete_in_progress",
+                          "error",
+                          "ready"
+                        ],
+                        "type": "string"
+                      },
+                      "teamId": {
+                        "description": "The unique identifier of the Team that owns the Network.",
+                        "type": "string"
+                      },
+                      "vpcId": {
+                        "description": "The ID of the VPC which hosts the network.",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "awsAccountId",
+                      "awsRegion",
+                      "cidr",
+                      "createdAt",
+                      "id",
+                      "name",
+                      "status",
+                      "teamId"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/connect/networks/{networkId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "readNetwork",
+        "parameters": [
+          {
+            "description": "The unique identifier of the Secure Compute network",
+            "in": "path",
+            "name": "networkId",
+            "required": true,
+            "schema": {
+              "description": "The unique identifier of the Secure Compute network",
+              "example": "uzrmorq7bn05z-fz",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "awsAccountId": {
+                      "description": "The ID of the AWS Account in which the network exists.",
+                      "type": "string"
+                    },
+                    "awsAvailabilityZoneIds": {
+                      "description": "The IDs of the AWS Availability Zones in which the network exists, if specified during creation.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "awsRegion": {
+                      "description": "The AWS Region in which the network exists.",
+                      "type": "string"
+                    },
+                    "cidr": {
+                      "description": "The CIDR range of the Network.",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "description": "The date at which the Network was created, represented as a UNIX timestamp since EPOCH.",
+                      "type": "number"
+                    },
+                    "egressIpAddresses": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "hostedZones": {
+                      "description": "Metadata about any AWS Route53 Hosted Zones associated with the Network.",
+                      "properties": {
+                        "count": {
+                          "description": "The number of AWS Route53 Hosted Zones associated with the Network.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "count"
+                      ],
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "The unique identifier of the Network.",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the network.",
+                      "type": "string"
+                    },
+                    "peeringConnections": {
+                      "description": "Metadata about any AWS Route53 Hosted Zones associated with the Network.",
+                      "properties": {
+                        "count": {
+                          "description": "The number of AWS Route53 Hosted Zones associated with the Network.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "count"
+                      ],
+                      "type": "object"
+                    },
+                    "projects": {
+                      "description": "Metadata about any projects associated with the Network.",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "ids": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "count",
+                        "ids"
+                      ],
+                      "type": "object"
+                    },
+                    "region": {
+                      "description": "The Vercel region in which the Network exists.",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "The status of the Network.",
+                      "enum": [
+                        "create_in_progress",
+                        "delete_in_progress",
+                        "error",
+                        "ready"
+                      ],
+                      "type": "string"
+                    },
+                    "teamId": {
+                      "description": "The unique identifier of the Team that owns the Network.",
+                      "type": "string"
+                    },
+                    "vpcId": {
+                      "description": "The ID of the VPC which hosts the network.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "awsAccountId",
+                    "awsRegion",
+                    "cidr",
+                    "createdAt",
+                    "id",
+                    "name",
+                    "status",
+                    "teamId"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/connect/networks/{networkId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteNetwork",
+        "parameters": [
+          {
+            "description": "The ID of the network to delete",
+            "in": "path",
+            "name": "networkId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the network to delete",
+              "example": "uzrmorq7bn05z-fz",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": ""
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/connect/networks/{networkId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateNetwork",
+        "parameters": [
+          {
+            "description": "The unique identifier of the Secure Compute network",
+            "in": "path",
+            "name": "networkId",
+            "required": true,
+            "schema": {
+              "description": "The unique identifier of the Secure Compute network",
+              "example": "uzrmorq7bn05z-fz",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "description": "The name of the Secure Compute network",
+                    "maxLength": 255,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "awsAccountId": {
+                      "description": "The ID of the AWS Account in which the network exists.",
+                      "type": "string"
+                    },
+                    "awsAvailabilityZoneIds": {
+                      "description": "The IDs of the AWS Availability Zones in which the network exists, if specified during creation.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "awsRegion": {
+                      "description": "The AWS Region in which the network exists.",
+                      "type": "string"
+                    },
+                    "cidr": {
+                      "description": "The CIDR range of the Network.",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "description": "The date at which the Network was created, represented as a UNIX timestamp since EPOCH.",
+                      "type": "number"
+                    },
+                    "egressIpAddresses": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "hostedZones": {
+                      "description": "Metadata about any AWS Route53 Hosted Zones associated with the Network.",
+                      "properties": {
+                        "count": {
+                          "description": "The number of AWS Route53 Hosted Zones associated with the Network.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "count"
+                      ],
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "The unique identifier of the Network.",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the network.",
+                      "type": "string"
+                    },
+                    "peeringConnections": {
+                      "description": "Metadata about any AWS Route53 Hosted Zones associated with the Network.",
+                      "properties": {
+                        "count": {
+                          "description": "The number of AWS Route53 Hosted Zones associated with the Network.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "count"
+                      ],
+                      "type": "object"
+                    },
+                    "projects": {
+                      "description": "Metadata about any projects associated with the Network.",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "ids": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "count",
+                        "ids"
+                      ],
+                      "type": "object"
+                    },
+                    "region": {
+                      "description": "The Vercel region in which the Network exists.",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "The status of the Network.",
+                      "enum": [
+                        "create_in_progress",
+                        "delete_in_progress",
+                        "error",
+                        "ready"
+                      ],
+                      "type": "string"
+                    },
+                    "teamId": {
+                      "description": "The unique identifier of the Team that owns the Network.",
+                      "type": "string"
+                    },
+                    "vpcId": {
+                      "description": "The ID of the VPC which hosts the network.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "awsAccountId",
+                    "awsRegion",
+                    "cidr",
+                    "createdAt",
+                    "id",
+                    "name",
+                    "status",
+                    "teamId"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

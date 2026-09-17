@@ -1,0 +1,63 @@
+# BasicArtifactFlow
+
+main: kit: flow: BasicArtifactFlow:
+{
+  entity: "artifact",
+  kind: "basic",
+  name: "BasicArtifactFlow",
+  step: [
+    {
+      input: {
+        ref: "artifact_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "artifact_ref01",
+        srcdatavar: "artifact_ref01_data",
+        suffix: "_up0"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-artifact_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "artifact_ref01",
+        srcdatavar: "artifact_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-artifact_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "artifact_ref01",
+        suffix: "_rm0"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicArtifactFlow"
+}

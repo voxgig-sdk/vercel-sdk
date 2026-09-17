@@ -1,0 +1,18 @@
+# BasicQueryFlow
+
+main: kit: flow: BasicQueryFlow:
+{
+  entity: "query",
+  kind: "basic",
+  name: "BasicQueryFlow",
+  step: [
+    {
+      input: {
+        ref: "query_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicQueryFlow"
+}

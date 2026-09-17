@@ -1,0 +1,190 @@
+{
+  "existing": {
+    "record": {
+      "RECORD00": {
+        "comment": "s64",
+        "createdAt": 101,
+        "creator": "s66",
+        "domain": "s67",
+        "id": "RECORD00",
+        "name": "s69",
+        "recordType": "s6a",
+        "ttl": 107,
+        "type": "s6c",
+        "value": "s6d"
+      },
+      "RECORD01": {
+        "comment": "sc8",
+        "createdAt": 201,
+        "creator": "sca",
+        "domain": "scb",
+        "id": "RECORD01",
+        "name": "scd",
+        "recordType": "sce",
+        "ttl": 207,
+        "type": "sd0",
+        "value": "sd1"
+      },
+      "RECORD02": {
+        "comment": "s12c",
+        "createdAt": 301,
+        "creator": "s12e",
+        "domain": "s12f",
+        "id": "RECORD02",
+        "name": "s131",
+        "recordType": "s132",
+        "ttl": 307,
+        "type": "s134",
+        "value": "s135"
+      }
+    }
+  },
+  "new": {
+    "record": {
+      "record_ref01": {
+        "comment": "s190",
+        "createdAt": 401,
+        "creator": "s192",
+        "domain": "s193",
+        "name": "s195",
+        "recordType": "s196",
+        "ttl": 407,
+        "type": "s198",
+        "value": "s199"
+      }
+    }
+  },
+  "requests": {
+    "GET /domains/records/{recordId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getDomainsRecordsByRecordId",
+        "parameters": [
+          {
+            "description": "The unique ID of the DNS record",
+            "in": "path",
+            "name": "recordId",
+            "required": true,
+            "schema": {
+              "description": "The unique ID of the DNS record",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "comment": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "creator": {
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "recordType": {
+                      "enum": [
+                        "A",
+                        "AAAA",
+                        "ALIAS",
+                        "CAA",
+                        "CNAME",
+                        "HTTPS",
+                        "MX",
+                        "NS",
+                        "SRV",
+                        "TXT"
+                      ],
+                      "type": "string"
+                    },
+                    "ttl": {
+                      "type": "number"
+                    },
+                    "type": {
+                      "enum": [
+                        "A",
+                        "AAAA",
+                        "ALIAS",
+                        "CAA",
+                        "CNAME",
+                        "HTTPS",
+                        "MX",
+                        "NS",
+                        "SRV",
+                        "TXT"
+                      ],
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "creator",
+                    "domain",
+                    "id",
+                    "name",
+                    "recordType",
+                    "type",
+                    "value"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

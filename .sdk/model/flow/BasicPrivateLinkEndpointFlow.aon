@@ -1,0 +1,71 @@
+# BasicPrivateLinkEndpointFlow
+
+main: kit: flow: BasicPrivateLinkEndpointFlow:
+{
+  entity: "private_link_endpoint",
+  kind: "basic",
+  name: "BasicPrivateLinkEndpointFlow",
+  step: [
+    {
+      input: {
+        ref: "private_link_endpoint_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "private_link_endpoint_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "private_link_endpoint_ref01",
+        srcdatavar: "private_link_endpoint_ref01_data",
+        suffix: "_up0",
+        textfield: "awsServiceName"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-private_link_endpoint_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "private_link_endpoint_ref01",
+        srcdatavar: "private_link_endpoint_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "private_link_endpoint01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-private_link_endpoint_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPrivateLinkEndpointFlow"
+}

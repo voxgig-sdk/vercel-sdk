@@ -1,0 +1,1572 @@
+{
+  "existing": {
+    "environment": {
+      "ENVIRONMENT00": {
+        "branchMatcher": {},
+        "copyEnvVarsFrom": "s65",
+        "createdAt": 102,
+        "currentDeploymentAliases": [],
+        "description": "s68",
+        "domains": [],
+        "id": "ENVIRONMENT00",
+        "slug": "s6b",
+        "type": "s6c",
+        "updatedAt": 109,
+        "id_or_name": "ID_OR_NAME01",
+        "environment_slug_or_id": "ENVIRONMENT_SLUG_OR01",
+        "project_id": "PROJECT01",
+        "env_id": "ENV01"
+      },
+      "ENVIRONMENT01": {
+        "branchMatcher": {},
+        "copyEnvVarsFrom": "sc9",
+        "createdAt": 202,
+        "currentDeploymentAliases": [],
+        "description": "scc",
+        "domains": [],
+        "id": "ENVIRONMENT01",
+        "slug": "scf",
+        "type": "sd0",
+        "updatedAt": 209,
+        "id_or_name": "ID_OR_NAME01",
+        "environment_slug_or_id": "ENVIRONMENT_SLUG_OR01",
+        "project_id": "PROJECT01",
+        "env_id": "ENV01"
+      },
+      "ENVIRONMENT02": {
+        "branchMatcher": {},
+        "copyEnvVarsFrom": "s12d",
+        "createdAt": 302,
+        "currentDeploymentAliases": [],
+        "description": "s130",
+        "domains": [],
+        "id": "ENVIRONMENT02",
+        "slug": "s133",
+        "type": "s134",
+        "updatedAt": 309,
+        "id_or_name": "ID_OR_NAME01",
+        "environment_slug_or_id": "ENVIRONMENT_SLUG_OR01",
+        "project_id": "PROJECT01",
+        "env_id": "ENV01"
+      }
+    }
+  },
+  "new": {
+    "environment": {
+      "environment_ref01": {
+        "branchMatcher": {},
+        "copyEnvVarsFrom": "s191",
+        "createdAt": 402,
+        "currentDeploymentAliases": [],
+        "description": "s194",
+        "domains": [],
+        "slug": "s197",
+        "type": "s198",
+        "updatedAt": 409
+      }
+    }
+  },
+  "requests": {
+    "POST /v9/projects/{idOrName}/custom-environments": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createCustomEnvironment",
+        "parameters": [
+          {
+            "description": "The unique project identifier or the project name",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "The unique project identifier or the project name",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "branchMatcher": {
+                    "description": "How we want to determine a matching branch. This is optional.",
+                    "properties": {
+                      "pattern": {
+                        "description": "Git branch name or portion thereof.",
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "Type of matcher. One of \"equals\", \"startsWith\", or \"endsWith\".",
+                        "enum": [
+                          "equals",
+                          "startsWith",
+                          "endsWith"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "pattern"
+                    ],
+                    "type": "object"
+                  },
+                  "copyEnvVarsFrom": {
+                    "description": "Where to copy environment variables from. This is optional.",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Description of the custom environment. This is optional.",
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "slug": {
+                    "description": "The slug of the custom environment to create.",
+                    "maxLength": 32,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Internal representation of a custom environment with all required properties",
+                  "properties": {
+                    "branchMatcher": {
+                      "description": "Configuration for matching git branches to this environment",
+                      "properties": {
+                        "pattern": {
+                          "description": "The pattern to match against branch names",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "The type of matching to perform",
+                          "enum": [
+                            "endsWith",
+                            "equals",
+                            "startsWith"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "pattern",
+                        "type"
+                      ],
+                      "type": "object"
+                    },
+                    "createdAt": {
+                      "description": "Timestamp when the environment was created",
+                      "type": "number"
+                    },
+                    "currentDeploymentAliases": {
+                      "description": "List of aliases for the current deployment",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "description": {
+                      "description": "Optional description of the environment's purpose",
+                      "type": "string"
+                    },
+                    "domains": {
+                      "description": "List of domains associated with this environment",
+                      "items": {
+                        "description": "List of domains associated with this environment",
+                        "properties": {
+                          "apexName": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "number"
+                          },
+                          "customEnvironmentId": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "gitBranch": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": "string"
+                          },
+                          "redirect": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "redirectStatusCode": {
+                            "enum": [
+                              301,
+                              302,
+                              307,
+                              308,
+                              null
+                            ],
+                            "nullable": true,
+                            "type": "number"
+                          },
+                          "updatedAt": {
+                            "type": "number"
+                          },
+                          "verification": {
+                            "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                            "items": {
+                              "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                              "properties": {
+                                "domain": {
+                                  "type": "string"
+                                },
+                                "reason": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "domain",
+                                "reason",
+                                "type",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "verified": {
+                            "description": "`true` if the domain is verified for use with the project. If `false` it will not be used as an alias on this project until the challenge in `verification` is completed.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "apexName",
+                          "name",
+                          "projectId",
+                          "verified"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the custom environment (format: env_*)",
+                      "type": "string"
+                    },
+                    "slug": {
+                      "description": "URL-friendly name of the environment",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of environment (production, preview, or development)",
+                      "enum": [
+                        "development",
+                        "preview",
+                        "production"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "Timestamp when the environment was last updated",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "id",
+                    "slug",
+                    "type",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v9/projects/{idOrName}/custom-environments": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getProjectsByIdOrNameCustomEnvironments",
+        "parameters": [
+          {
+            "description": "The unique project identifier or the project name",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "The unique project identifier or the project name",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Fetch custom environments for a specific git branch",
+            "in": "query",
+            "name": "gitBranch",
+            "required": false,
+            "schema": {
+              "description": "Fetch custom environments for a specific git branch",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "accountLimit": {
+                      "description": "The maximum number of custom environments allowed either by the team's plan type or a custom override.",
+                      "properties": {
+                        "total": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "total"
+                      ],
+                      "type": "object"
+                    },
+                    "environments": {
+                      "items": {
+                        "properties": {
+                          "branchMatcher": {
+                            "description": "Configuration for matching git branches to this environment",
+                            "properties": {
+                              "pattern": {
+                                "description": "The pattern to match against branch names",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "The type of matching to perform",
+                                "enum": [
+                                  "endsWith",
+                                  "equals",
+                                  "startsWith"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "pattern",
+                              "type"
+                            ],
+                            "type": "object"
+                          },
+                          "createdAt": {
+                            "description": "Timestamp when the environment was created",
+                            "type": "number"
+                          },
+                          "currentDeploymentAliases": {
+                            "description": "List of aliases for the current deployment",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "description": {
+                            "description": "Optional description of the environment's purpose",
+                            "type": "string"
+                          },
+                          "domains": {
+                            "description": "List of domains associated with this environment",
+                            "items": {
+                              "description": "List of domains associated with this environment",
+                              "properties": {
+                                "apexName": {
+                                  "type": "string"
+                                },
+                                "createdAt": {
+                                  "type": "number"
+                                },
+                                "customEnvironmentId": {
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "gitBranch": {
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "projectId": {
+                                  "type": "string"
+                                },
+                                "redirect": {
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "redirectStatusCode": {
+                                  "enum": [
+                                    301,
+                                    302,
+                                    307,
+                                    308,
+                                    null
+                                  ],
+                                  "nullable": true,
+                                  "type": "number"
+                                },
+                                "updatedAt": {
+                                  "type": "number"
+                                },
+                                "verification": {
+                                  "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                                  "items": {
+                                    "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                                    "properties": {
+                                      "domain": {
+                                        "type": "string"
+                                      },
+                                      "reason": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "domain",
+                                      "reason",
+                                      "type",
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "verified": {
+                                  "description": "`true` if the domain is verified for use with the project. If `false` it will not be used as an alias on this project until the challenge in `verification` is completed.",
+                                  "enum": [
+                                    false,
+                                    true
+                                  ],
+                                  "type": "boolean"
+                                }
+                              },
+                              "required": [
+                                "apexName",
+                                "name",
+                                "projectId",
+                                "verified"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the custom environment (format: env_*)",
+                            "type": "string"
+                          },
+                          "slug": {
+                            "description": "URL-friendly name of the environment",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The type of environment (production, preview, or development)",
+                            "enum": [
+                              "development",
+                              "preview",
+                              "production"
+                            ],
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "description": "Timestamp when the environment was last updated",
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "createdAt",
+                          "id",
+                          "slug",
+                          "type",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "accountLimit",
+                    "environments"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCustomEnvironment",
+        "parameters": [
+          {
+            "description": "The unique project identifier or the project name",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "The unique project identifier or the project name",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique custom environment identifier within the project",
+            "in": "path",
+            "name": "environmentSlugOrId",
+            "required": true,
+            "schema": {
+              "description": "The unique custom environment identifier within the project",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Internal representation of a custom environment with all required properties",
+                  "properties": {
+                    "branchMatcher": {
+                      "description": "Configuration for matching git branches to this environment",
+                      "properties": {
+                        "pattern": {
+                          "description": "The pattern to match against branch names",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "The type of matching to perform",
+                          "enum": [
+                            "endsWith",
+                            "equals",
+                            "startsWith"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "pattern",
+                        "type"
+                      ],
+                      "type": "object"
+                    },
+                    "createdAt": {
+                      "description": "Timestamp when the environment was created",
+                      "type": "number"
+                    },
+                    "currentDeploymentAliases": {
+                      "description": "List of aliases for the current deployment",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "description": {
+                      "description": "Optional description of the environment's purpose",
+                      "type": "string"
+                    },
+                    "domains": {
+                      "description": "List of domains associated with this environment",
+                      "items": {
+                        "description": "List of domains associated with this environment",
+                        "properties": {
+                          "apexName": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "number"
+                          },
+                          "customEnvironmentId": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "gitBranch": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": "string"
+                          },
+                          "redirect": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "redirectStatusCode": {
+                            "enum": [
+                              301,
+                              302,
+                              307,
+                              308,
+                              null
+                            ],
+                            "nullable": true,
+                            "type": "number"
+                          },
+                          "updatedAt": {
+                            "type": "number"
+                          },
+                          "verification": {
+                            "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                            "items": {
+                              "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                              "properties": {
+                                "domain": {
+                                  "type": "string"
+                                },
+                                "reason": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "domain",
+                                "reason",
+                                "type",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "verified": {
+                            "description": "`true` if the domain is verified for use with the project. If `false` it will not be used as an alias on this project until the challenge in `verification` is completed.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "apexName",
+                          "name",
+                          "projectId",
+                          "verified"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the custom environment (format: env_*)",
+                      "type": "string"
+                    },
+                    "slug": {
+                      "description": "URL-friendly name of the environment",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of environment (production, preview, or development)",
+                      "enum": [
+                        "development",
+                        "preview",
+                        "production"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "Timestamp when the environment was last updated",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "id",
+                    "slug",
+                    "type",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "removeCustomEnvironment",
+        "parameters": [
+          {
+            "description": "The unique project identifier or the project name",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "The unique project identifier or the project name",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique custom environment identifier within the project",
+            "in": "path",
+            "name": "environmentSlugOrId",
+            "required": true,
+            "schema": {
+              "description": "The unique custom environment identifier within the project",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "deleteUnassignedEnvironmentVariables": {
+                    "description": "Delete Environment Variables that are not assigned to any environments.",
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Internal representation of a custom environment with all required properties",
+                  "properties": {
+                    "branchMatcher": {
+                      "description": "Configuration for matching git branches to this environment",
+                      "properties": {
+                        "pattern": {
+                          "description": "The pattern to match against branch names",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "The type of matching to perform",
+                          "enum": [
+                            "endsWith",
+                            "equals",
+                            "startsWith"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "pattern",
+                        "type"
+                      ],
+                      "type": "object"
+                    },
+                    "createdAt": {
+                      "description": "Timestamp when the environment was created",
+                      "type": "number"
+                    },
+                    "currentDeploymentAliases": {
+                      "description": "List of aliases for the current deployment",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "description": {
+                      "description": "Optional description of the environment's purpose",
+                      "type": "string"
+                    },
+                    "domains": {
+                      "description": "List of domains associated with this environment",
+                      "items": {
+                        "description": "List of domains associated with this environment",
+                        "properties": {
+                          "apexName": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "number"
+                          },
+                          "customEnvironmentId": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "gitBranch": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": "string"
+                          },
+                          "redirect": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "redirectStatusCode": {
+                            "enum": [
+                              301,
+                              302,
+                              307,
+                              308,
+                              null
+                            ],
+                            "nullable": true,
+                            "type": "number"
+                          },
+                          "updatedAt": {
+                            "type": "number"
+                          },
+                          "verification": {
+                            "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                            "items": {
+                              "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                              "properties": {
+                                "domain": {
+                                  "type": "string"
+                                },
+                                "reason": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "domain",
+                                "reason",
+                                "type",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "verified": {
+                            "description": "`true` if the domain is verified for use with the project. If `false` it will not be used as an alias on this project until the challenge in `verification` is completed.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "apexName",
+                          "name",
+                          "projectId",
+                          "verified"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the custom environment (format: env_*)",
+                      "type": "string"
+                    },
+                    "slug": {
+                      "description": "URL-friendly name of the environment",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of environment (production, preview, or development)",
+                      "enum": [
+                        "development",
+                        "preview",
+                        "production"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "Timestamp when the environment was last updated",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "id",
+                    "slug",
+                    "type",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/env/{id}/unlink/{projectId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "unlinkSharedEnvVariable",
+        "parameters": [
+          {
+            "description": "The unique ID for the Shared Environment Variable to unlink from the project.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "description": "The unique ID for the Shared Environment Variable to unlink from the project.",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateCustomEnvironment",
+        "parameters": [
+          {
+            "description": "The unique project identifier or the project name",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "The unique project identifier or the project name",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique custom environment identifier within the project",
+            "in": "path",
+            "name": "environmentSlugOrId",
+            "required": true,
+            "schema": {
+              "description": "The unique custom environment identifier within the project",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "branchMatcher": {
+                    "description": "How we want to determine a matching branch. This is optional.",
+                    "nullable": true,
+                    "properties": {
+                      "pattern": {
+                        "description": "Git branch name or portion thereof.",
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "Type of matcher. One of \"equals\", \"startsWith\", or \"endsWith\".",
+                        "enum": [
+                          "equals",
+                          "startsWith",
+                          "endsWith"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "pattern"
+                    ],
+                    "type": "object"
+                  },
+                  "description": {
+                    "description": "Description of the custom environment. This is optional.",
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "slug": {
+                    "description": "The slug of the custom environment.",
+                    "maxLength": 32,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Internal representation of a custom environment with all required properties",
+                  "properties": {
+                    "branchMatcher": {
+                      "description": "Configuration for matching git branches to this environment",
+                      "properties": {
+                        "pattern": {
+                          "description": "The pattern to match against branch names",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "The type of matching to perform",
+                          "enum": [
+                            "endsWith",
+                            "equals",
+                            "startsWith"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "pattern",
+                        "type"
+                      ],
+                      "type": "object"
+                    },
+                    "createdAt": {
+                      "description": "Timestamp when the environment was created",
+                      "type": "number"
+                    },
+                    "currentDeploymentAliases": {
+                      "description": "List of aliases for the current deployment",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "description": {
+                      "description": "Optional description of the environment's purpose",
+                      "type": "string"
+                    },
+                    "domains": {
+                      "description": "List of domains associated with this environment",
+                      "items": {
+                        "description": "List of domains associated with this environment",
+                        "properties": {
+                          "apexName": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "number"
+                          },
+                          "customEnvironmentId": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "gitBranch": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": "string"
+                          },
+                          "redirect": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "redirectStatusCode": {
+                            "enum": [
+                              301,
+                              302,
+                              307,
+                              308,
+                              null
+                            ],
+                            "nullable": true,
+                            "type": "number"
+                          },
+                          "updatedAt": {
+                            "type": "number"
+                          },
+                          "verification": {
+                            "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                            "items": {
+                              "description": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.",
+                              "properties": {
+                                "domain": {
+                                  "type": "string"
+                                },
+                                "reason": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "domain",
+                                "reason",
+                                "type",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "verified": {
+                            "description": "`true` if the domain is verified for use with the project. If `false` it will not be used as an alias on this project until the challenge in `verification` is completed.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "apexName",
+                          "name",
+                          "projectId",
+                          "verified"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the custom environment (format: env_*)",
+                      "type": "string"
+                    },
+                    "slug": {
+                      "description": "URL-friendly name of the environment",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of environment (production, preview, or development)",
+                      "enum": [
+                        "development",
+                        "preview",
+                        "production"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "Timestamp when the environment was last updated",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "id",
+                    "slug",
+                    "type",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

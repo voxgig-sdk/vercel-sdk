@@ -1,0 +1,247 @@
+# Entity: storage
+
+main: kit: entity: storage: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "access"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "count"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "isTokenExpired"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "kind"
+      req: false
+      short: "A project-default store is a private blob store that is lazily created per-project, uses OIDC auth instead of read-write tokens, and cannot be modified through standard store mutation APIs."
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "projectFilter"
+      req: false
+      type: "`$OBJECT`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 4
+      }
+    }
+    {
+      name: "projectId"
+      req: false
+      short: "The project this store is scoped to."
+      type: "`$STRING`"
+    }
+    {
+      name: "projectsMetadata"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "region"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "size"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "status"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "totalConnectedProjects"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "usageQuotaExceeded"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "storage"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          contract: {
+            id: "POST /storage/stores/blob"
+            json: "{\"operationId\":\"createStorageStoresBlob\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"access\":{\"default\":\"public\",\"enum\":[\"public\",\"private\"],\"type\":\"string\"},\"name\":{\"maxLength\":70,\"type\":\"string\"},\"projectId\":{\"maxLength\":50,\"type\":\"string\"},\"region\":{\"enum\":[\"arn1\",\"bom1\",\"cdg1\",\"cle1\",\"cpt1\",\"dub1\",\"dxb1\",\"fra1\",\"gru1\",\"hkg1\",\"hnd1\",\"iad1\",\"icn1\",\"kix1\",\"lhr1\",\"pdx1\",\"sfo1\",\"sin1\",\"syd1\",\"yul1\"],\"type\":\"string\"}},\"required\":[\"name\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"store\":{\"nullable\":true,\"properties\":{\"access\":{\"enum\":[\"private\",\"public\"],\"type\":\"string\"},\"count\":{\"type\":\"number\"},\"isTokenExpired\":{\"enum\":[false,true],\"type\":\"boolean\"},\"kind\":{\"description\":\"A project-default store is a private blob store that is lazily created per-project, uses OIDC auth instead of read-write tokens, and cannot be modified through standard store mutation APIs. Undefined for legacy stores.\",\"enum\":[\"project-default\",\"user-created\"],\"type\":\"string\"},\"projectFilter\":{\"properties\":{\"git\":{\"properties\":{\"owners\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"providers\":{\"oneOf\":[{\"items\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"},\"type\":\"array\"},{\"enum\":[\"*\"],\"type\":\"string\"}]},\"repos\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"providers\"],\"type\":\"object\"}},\"type\":\"object\"},\"projectId\":{\"description\":\"The project this store is scoped to. Set for project-default stores and user-created stores with enforced project association.\",\"type\":\"string\"},\"projectsMetadata\":{\"items\":{\"properties\":{\"deployments\":{\"properties\":{\"actions\":{\"items\":{\"properties\":{\"environments\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"slug\":{\"type\":\"string\"}},\"required\":[\"environments\",\"slug\"],\"type\":\"object\"},\"type\":\"array\"},\"required\":{\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"actions\",\"required\"],\"type\":\"object\"},\"envVarPrefix\":{\"nullable\":true,\"type\":\"string\"},\"environmentVariables\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"environments\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"framework\":{\"enum\":[\"actix-web\",\"angular\",\"ash\",\"astro\",\"axum\",\"blitzjs\",\"brunch\",\"bun\",\"container\",\"create-react-app\",\"django\",\"docusaurus\",\"docusaurus-2\",\"dojo\",\"eleventy\",\"elysia\",\"ember\",\"eve\",\"express\",\"factory-eve\",\"fastapi\",\"fasthtml\",\"fastify\",\"flask\",\"gatsby\",\"go\",\"gridsome\",\"h3\",\"hexo\",\"hono\",\"hugo\",\"hydrogen\",\"ionic-angular\",\"ionic-react\",\"jekyll\",\"koa\",\"mastra\",\"middleman\",\"nestjs\",\"nextjs\",\"nitro\",\"node\",\"nuxtjs\",\"parcel\",\"polymer\",\"preact\",\"python\",\"react-router\",\"redwoodjs\",\"remix\",\"ruby\",\"rust\",\"saber\",\"sanity\",\"sanity-v2\",\"sapper\",\"scully\",\"services\",\"solidstart\",\"solidstart-1\",\"stencil\",\"storybook\",\"svelte\",\"sveltekit\",\"sveltekit-1\",\"tanstack-start\",\"tanstack-start-lovable\",\"umijs\",\"vite\",\"vitepress\",\"vue\",\"vuepress\",\"xmcp\",\"zola\",null],\"nullable\":true,\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"latestDeployment\":{\"type\":\"string\"},\"makeEnvVarsSensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"}},\"required\":[\"envVarPrefix\",\"environmentVariables\",\"environments\",\"id\",\"name\",\"projectId\"],\"type\":\"object\"},\"type\":\"array\"},\"region\":{\"enum\":[\"arn1\",\"bom1\",\"cdg1\",\"cle1\",\"cpt1\",\"dub1\",\"dxb1\",\"fra1\",\"gru1\",\"hkg1\",\"hnd1\",\"iad1\",\"icn1\",\"kix1\",\"lhr1\",\"pdx1\",\"sfo1\",\"sin1\",\"syd1\",\"yul1\"],\"type\":\"string\"},\"size\":{\"type\":\"number\"},\"status\":{\"enum\":[\"available\",\"error\",\"initializing\",\"limits-exceeded-suspended\",\"limits-exceeded-suspended-store-count\",\"onboarding\",\"suspended\",\"uninstalled\",null],\"nullable\":true,\"type\":\"string\"},\"totalConnectedProjects\":{\"type\":\"number\"},\"usageQuotaExceeded\":{\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"count\",\"isTokenExpired\",\"projectsMetadata\",\"region\",\"size\",\"status\",\"usageQuotaExceeded\"],\"type\":\"object\"}},\"required\":[\"store\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"429\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/storage/stores/blob"
+          segments: [
+            {
+              lit: "storage"
+            }
+            {
+              lit: "stores"
+            }
+            {
+              lit: "blob"
+            }
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.store`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "include_guide"
+                orig: "include_guide"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "skip_metadata"
+                orig: "skip_metadata"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /storage/stores/{id}"
+            json: "{\"operationId\":\"getStorageStoresById\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"skip-metadata\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"in\":\"query\",\"name\":\"include-guides\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"store\":{\"properties\":{\"projectFilter\":{\"properties\":{\"git\":{\"properties\":{\"owners\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"providers\":{\"oneOf\":[{\"items\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"},\"type\":\"array\"},{\"enum\":[\"*\"],\"type\":\"string\"}]},\"repos\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"providers\"],\"type\":\"object\"}},\"type\":\"object\"},\"projectsMetadata\":{\"items\":{\"properties\":{\"deployments\":{\"properties\":{\"actions\":{\"items\":{\"properties\":{\"environments\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"slug\":{\"type\":\"string\"}},\"required\":[\"environments\",\"slug\"],\"type\":\"object\"},\"type\":\"array\"},\"required\":{\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"actions\",\"required\"],\"type\":\"object\"},\"envVarPrefix\":{\"nullable\":true,\"type\":\"string\"},\"environmentVariables\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"environments\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"framework\":{\"enum\":[\"actix-web\",\"angular\",\"ash\",\"astro\",\"axum\",\"blitzjs\",\"brunch\",\"bun\",\"container\",\"create-react-app\",\"django\",\"docusaurus\",\"docusaurus-2\",\"dojo\",\"eleventy\",\"elysia\",\"ember\",\"eve\",\"express\",\"factory-eve\",\"fastapi\",\"fasthtml\",\"fastify\",\"flask\",\"gatsby\",\"go\",\"gridsome\",\"h3\",\"hexo\",\"hono\",\"hugo\",\"hydrogen\",\"ionic-angular\",\"ionic-react\",\"jekyll\",\"koa\",\"mastra\",\"middleman\",\"nestjs\",\"nextjs\",\"nitro\",\"node\",\"nuxtjs\",\"parcel\",\"polymer\",\"preact\",\"python\",\"react-router\",\"redwoodjs\",\"remix\",\"ruby\",\"rust\",\"saber\",\"sanity\",\"sanity-v2\",\"sapper\",\"scully\",\"services\",\"solidstart\",\"solidstart-1\",\"stencil\",\"storybook\",\"svelte\",\"sveltekit\",\"sveltekit-1\",\"tanstack-start\",\"tanstack-start-lovable\",\"umijs\",\"vite\",\"vitepress\",\"vue\",\"vuepress\",\"xmcp\",\"zola\",null],\"nullable\":true,\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"latestDeployment\":{\"type\":\"string\"},\"makeEnvVarsSensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"}},\"required\":[\"envVarPrefix\",\"environmentVariables\",\"environments\",\"id\",\"name\",\"projectId\"],\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"enum\":[\"available\",\"error\",\"initializing\",\"limits-exceeded-suspended\",\"limits-exceeded-suspended-store-count\",\"onboarding\",\"suspended\",\"uninstalled\",null],\"nullable\":true,\"type\":\"string\"},\"totalConnectedProjects\":{\"type\":\"number\"},\"usageQuotaExceeded\":{\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"projectsMetadata\",\"status\",\"usageQuotaExceeded\"],\"type\":\"object\"}},\"required\":[\"store\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/storage/stores/{id}"
+          segments: [
+            {
+              lit: "storage"
+            }
+            {
+              lit: "stores"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "include_guide"
+              "skip_metadata"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.store`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /storage/stores/blob/{id}"
+            json: "{\"operationId\":\"deleteStorageStoresBlobById\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"type\":\"string\"}},\"required\":[\"id\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/storage/stores/blob/{id}"
+          segments: [
+            {
+              lit: "storage"
+            }
+            {
+              lit: "stores"
+            }
+            {
+              lit: "blob"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

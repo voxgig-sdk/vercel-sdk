@@ -1,0 +1,77 @@
+# BasicDnsFlow
+
+main: kit: flow: BasicDnsFlow:
+{
+  entity: "dns",
+  kind: "basic",
+  name: "BasicDnsFlow",
+  step: [
+    {
+      input: {
+        ref: "dns_ref01"
+      }
+
+      match: {
+        domain_id: "domain01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "dns_ref01",
+        srcdatavar: "dns_ref01_data",
+        suffix: "_up0",
+        textfield: "comment"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-dns_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "dns_ref01",
+        srcdatavar: "dns_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "dns01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-dns_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "dns_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        domain_id: "domain01",
+        id: "dns01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicDnsFlow"
+}

@@ -1,0 +1,28 @@
+# BasicWebAnalyticsFlow
+
+main: kit: flow: BasicWebAnalyticsFlow:
+{
+  entity: "web_analytics",
+  kind: "basic",
+  name: "BasicWebAnalyticsFlow",
+  step: [
+    {
+      input: {
+        ref: "web_analytics_ref01",
+        srcdatavar: "web_analytics_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-web_analytics_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWebAnalyticsFlow"
+}

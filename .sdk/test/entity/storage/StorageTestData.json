@@ -1,0 +1,918 @@
+{
+  "existing": {
+    "storage": {
+      "STORAGE00": {
+        "access": "s8c",
+        "count": 141,
+        "id": "STORAGE00",
+        "isTokenExpired": false,
+        "kind": "s90",
+        "name": "s91",
+        "projectFilter": {},
+        "projectId": "s93",
+        "projectsMetadata": [],
+        "region": "s95",
+        "size": 150,
+        "status": "s97",
+        "totalConnectedProjects": 152,
+        "usageQuotaExceeded": false
+      },
+      "STORAGE01": {
+        "access": "s118",
+        "count": 281,
+        "id": "STORAGE01",
+        "isTokenExpired": false,
+        "kind": "s11c",
+        "name": "s11d",
+        "projectFilter": {},
+        "projectId": "s11f",
+        "projectsMetadata": [],
+        "region": "s121",
+        "size": 290,
+        "status": "s123",
+        "totalConnectedProjects": 292,
+        "usageQuotaExceeded": false
+      },
+      "STORAGE02": {
+        "access": "s1a4",
+        "count": 421,
+        "id": "STORAGE02",
+        "isTokenExpired": false,
+        "kind": "s1a8",
+        "name": "s1a9",
+        "projectFilter": {},
+        "projectId": "s1ab",
+        "projectsMetadata": [],
+        "region": "s1ad",
+        "size": 430,
+        "status": "s1af",
+        "totalConnectedProjects": 432,
+        "usageQuotaExceeded": false
+      }
+    }
+  },
+  "new": {
+    "storage": {
+      "storage_ref01": {
+        "access": "s230",
+        "count": 561,
+        "isTokenExpired": false,
+        "kind": "s234",
+        "name": "s235",
+        "projectFilter": {},
+        "projectId": "s237",
+        "projectsMetadata": [],
+        "region": "s239",
+        "size": 570,
+        "status": "s23b",
+        "totalConnectedProjects": 572,
+        "usageQuotaExceeded": false
+      }
+    }
+  },
+  "requests": {
+    "POST /storage/stores/blob": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createStorageStoresBlob",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "access": {
+                    "default": "public",
+                    "enum": [
+                      "public",
+                      "private"
+                    ],
+                    "type": "string"
+                  },
+                  "name": {
+                    "maxLength": 70,
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "maxLength": 50,
+                    "type": "string"
+                  },
+                  "region": {
+                    "enum": [
+                      "arn1",
+                      "bom1",
+                      "cdg1",
+                      "cle1",
+                      "cpt1",
+                      "dub1",
+                      "dxb1",
+                      "fra1",
+                      "gru1",
+                      "hkg1",
+                      "hnd1",
+                      "iad1",
+                      "icn1",
+                      "kix1",
+                      "lhr1",
+                      "pdx1",
+                      "sfo1",
+                      "sin1",
+                      "syd1",
+                      "yul1"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "store": {
+                      "nullable": true,
+                      "properties": {
+                        "access": {
+                          "enum": [
+                            "private",
+                            "public"
+                          ],
+                          "type": "string"
+                        },
+                        "count": {
+                          "type": "number"
+                        },
+                        "isTokenExpired": {
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "kind": {
+                          "description": "A project-default store is a private blob store that is lazily created per-project, uses OIDC auth instead of read-write tokens, and cannot be modified through standard store mutation APIs. Undefined for legacy stores.",
+                          "enum": [
+                            "project-default",
+                            "user-created"
+                          ],
+                          "type": "string"
+                        },
+                        "projectFilter": {
+                          "properties": {
+                            "git": {
+                              "properties": {
+                                "owners": {
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                },
+                                "providers": {
+                                  "oneOf": [
+                                    {
+                                      "items": {
+                                        "enum": [
+                                          "bitbucket",
+                                          "github",
+                                          "gitlab"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    {
+                                      "enum": [
+                                        "*"
+                                      ],
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "repos": {
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "required": [
+                                "providers"
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "projectId": {
+                          "description": "The project this store is scoped to. Set for project-default stores and user-created stores with enforced project association.",
+                          "type": "string"
+                        },
+                        "projectsMetadata": {
+                          "items": {
+                            "properties": {
+                              "deployments": {
+                                "properties": {
+                                  "actions": {
+                                    "items": {
+                                      "properties": {
+                                        "environments": {
+                                          "items": {
+                                            "type": "string"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "slug": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "environments",
+                                        "slug"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "required": {
+                                    "enum": [
+                                      false,
+                                      true
+                                    ],
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "actions",
+                                  "required"
+                                ],
+                                "type": "object"
+                              },
+                              "envVarPrefix": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "environmentVariables": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "environments": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "framework": {
+                                "enum": [
+                                  "actix-web",
+                                  "angular",
+                                  "ash",
+                                  "astro",
+                                  "axum",
+                                  "blitzjs",
+                                  "brunch",
+                                  "bun",
+                                  "container",
+                                  "create-react-app",
+                                  "django",
+                                  "docusaurus",
+                                  "docusaurus-2",
+                                  "dojo",
+                                  "eleventy",
+                                  "elysia",
+                                  "ember",
+                                  "eve",
+                                  "express",
+                                  "factory-eve",
+                                  "fastapi",
+                                  "fasthtml",
+                                  "fastify",
+                                  "flask",
+                                  "gatsby",
+                                  "go",
+                                  "gridsome",
+                                  "h3",
+                                  "hexo",
+                                  "hono",
+                                  "hugo",
+                                  "hydrogen",
+                                  "ionic-angular",
+                                  "ionic-react",
+                                  "jekyll",
+                                  "koa",
+                                  "mastra",
+                                  "middleman",
+                                  "nestjs",
+                                  "nextjs",
+                                  "nitro",
+                                  "node",
+                                  "nuxtjs",
+                                  "parcel",
+                                  "polymer",
+                                  "preact",
+                                  "python",
+                                  "react-router",
+                                  "redwoodjs",
+                                  "remix",
+                                  "ruby",
+                                  "rust",
+                                  "saber",
+                                  "sanity",
+                                  "sanity-v2",
+                                  "sapper",
+                                  "scully",
+                                  "services",
+                                  "solidstart",
+                                  "solidstart-1",
+                                  "stencil",
+                                  "storybook",
+                                  "svelte",
+                                  "sveltekit",
+                                  "sveltekit-1",
+                                  "tanstack-start",
+                                  "tanstack-start-lovable",
+                                  "umijs",
+                                  "vite",
+                                  "vitepress",
+                                  "vue",
+                                  "vuepress",
+                                  "xmcp",
+                                  "zola",
+                                  null
+                                ],
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "latestDeployment": {
+                                "type": "string"
+                              },
+                              "makeEnvVarsSensitive": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "projectId": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "envVarPrefix",
+                              "environmentVariables",
+                              "environments",
+                              "id",
+                              "name",
+                              "projectId"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "region": {
+                          "enum": [
+                            "arn1",
+                            "bom1",
+                            "cdg1",
+                            "cle1",
+                            "cpt1",
+                            "dub1",
+                            "dxb1",
+                            "fra1",
+                            "gru1",
+                            "hkg1",
+                            "hnd1",
+                            "iad1",
+                            "icn1",
+                            "kix1",
+                            "lhr1",
+                            "pdx1",
+                            "sfo1",
+                            "sin1",
+                            "syd1",
+                            "yul1"
+                          ],
+                          "type": "string"
+                        },
+                        "size": {
+                          "type": "number"
+                        },
+                        "status": {
+                          "enum": [
+                            "available",
+                            "error",
+                            "initializing",
+                            "limits-exceeded-suspended",
+                            "limits-exceeded-suspended-store-count",
+                            "onboarding",
+                            "suspended",
+                            "uninstalled",
+                            null
+                          ],
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "totalConnectedProjects": {
+                          "type": "number"
+                        },
+                        "usageQuotaExceeded": {
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "count",
+                        "isTokenExpired",
+                        "projectsMetadata",
+                        "region",
+                        "size",
+                        "status",
+                        "usageQuotaExceeded"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "store"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "429": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /storage/stores/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getStorageStoresById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "skip-metadata",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include-guides",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "store": {
+                      "properties": {
+                        "projectFilter": {
+                          "properties": {
+                            "git": {
+                              "properties": {
+                                "owners": {
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                },
+                                "providers": {
+                                  "oneOf": [
+                                    {
+                                      "items": {
+                                        "enum": [
+                                          "bitbucket",
+                                          "github",
+                                          "gitlab"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    {
+                                      "enum": [
+                                        "*"
+                                      ],
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "repos": {
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "required": [
+                                "providers"
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "projectsMetadata": {
+                          "items": {
+                            "properties": {
+                              "deployments": {
+                                "properties": {
+                                  "actions": {
+                                    "items": {
+                                      "properties": {
+                                        "environments": {
+                                          "items": {
+                                            "type": "string"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "slug": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "environments",
+                                        "slug"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "required": {
+                                    "enum": [
+                                      false,
+                                      true
+                                    ],
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "actions",
+                                  "required"
+                                ],
+                                "type": "object"
+                              },
+                              "envVarPrefix": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "environmentVariables": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "environments": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "framework": {
+                                "enum": [
+                                  "actix-web",
+                                  "angular",
+                                  "ash",
+                                  "astro",
+                                  "axum",
+                                  "blitzjs",
+                                  "brunch",
+                                  "bun",
+                                  "container",
+                                  "create-react-app",
+                                  "django",
+                                  "docusaurus",
+                                  "docusaurus-2",
+                                  "dojo",
+                                  "eleventy",
+                                  "elysia",
+                                  "ember",
+                                  "eve",
+                                  "express",
+                                  "factory-eve",
+                                  "fastapi",
+                                  "fasthtml",
+                                  "fastify",
+                                  "flask",
+                                  "gatsby",
+                                  "go",
+                                  "gridsome",
+                                  "h3",
+                                  "hexo",
+                                  "hono",
+                                  "hugo",
+                                  "hydrogen",
+                                  "ionic-angular",
+                                  "ionic-react",
+                                  "jekyll",
+                                  "koa",
+                                  "mastra",
+                                  "middleman",
+                                  "nestjs",
+                                  "nextjs",
+                                  "nitro",
+                                  "node",
+                                  "nuxtjs",
+                                  "parcel",
+                                  "polymer",
+                                  "preact",
+                                  "python",
+                                  "react-router",
+                                  "redwoodjs",
+                                  "remix",
+                                  "ruby",
+                                  "rust",
+                                  "saber",
+                                  "sanity",
+                                  "sanity-v2",
+                                  "sapper",
+                                  "scully",
+                                  "services",
+                                  "solidstart",
+                                  "solidstart-1",
+                                  "stencil",
+                                  "storybook",
+                                  "svelte",
+                                  "sveltekit",
+                                  "sveltekit-1",
+                                  "tanstack-start",
+                                  "tanstack-start-lovable",
+                                  "umijs",
+                                  "vite",
+                                  "vitepress",
+                                  "vue",
+                                  "vuepress",
+                                  "xmcp",
+                                  "zola",
+                                  null
+                                ],
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "latestDeployment": {
+                                "type": "string"
+                              },
+                              "makeEnvVarsSensitive": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "projectId": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "envVarPrefix",
+                              "environmentVariables",
+                              "environments",
+                              "id",
+                              "name",
+                              "projectId"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "status": {
+                          "enum": [
+                            "available",
+                            "error",
+                            "initializing",
+                            "limits-exceeded-suspended",
+                            "limits-exceeded-suspended-store-count",
+                            "onboarding",
+                            "suspended",
+                            "uninstalled",
+                            null
+                          ],
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "totalConnectedProjects": {
+                          "type": "number"
+                        },
+                        "usageQuotaExceeded": {
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "projectsMetadata",
+                        "status",
+                        "usageQuotaExceeded"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "store"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /storage/stores/blob/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteStorageStoresBlobById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

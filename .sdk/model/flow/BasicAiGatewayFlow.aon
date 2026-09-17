@@ -1,0 +1,9 @@
+# BasicAiGatewayFlow
+
+main: kit: flow: BasicAiGatewayFlow:
+{
+  entity: "ai_gateway",
+  kind: "basic",
+  name: "BasicAiGatewayFlow",
+  "key$": "BasicAiGatewayFlow"
+}

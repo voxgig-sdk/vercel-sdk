@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alias | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a aria-current="page" href="../api/alias.html">Alias</a><div class="nav-sections"><a class="nav-section" href="#post-v2deploymentsidaliases">POST /v2/deployments/{id}/aliases</a>
+<a class="nav-section" href="#get-v4aliases">GET /v4/aliases</a>
+<a class="nav-section" href="#get-v2deploymentsidaliases">GET /v2/deployments/{id}/aliases</a>
+<a class="nav-section" href="#get-v4aliasesidoralias">GET /v4/aliases/{idOrAlias}</a>
+<a class="nav-section" href="#delete-v2aliasesaliasid">DELETE /v2/aliases/{aliasId}</a>
+<a class="nav-section" href="#patch-aliasesidprotection-bypass">PATCH /aliases/{id}/protection-bypass</a></div>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="alias">Alias</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v2deploymentsidaliases"><code>/v2/deployments/{id}/aliases</code></a></td>
+<td><code>create</code></td>
+<td>The alias was successfully assigned to the deployment</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v4aliases"><code>/v4/aliases</code></a></td>
+<td><code>list</code></td>
+<td>The paginated list of aliases</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2deploymentsidaliases"><code>/v2/deployments/{id}/aliases</code></a></td>
+<td><code>list</code></td>
+<td>The list of aliases assigned to the deployment</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v4aliasesidoralias"><code>/v4/aliases/{idOrAlias}</code></a></td>
+<td><code>load</code></td>
+<td>The alias information</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v2aliasesaliasid"><code>/v2/aliases/{aliasId}</code></a></td>
+<td><code>remove</code></td>
+<td>The alias was successfully removed</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-aliasesidprotection-bypass"><code>/aliases/{id}/protection-bypass</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alias</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alias name, it could be a <code>.vercel.app</code> subdomain or a custom domain</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The date when the alias was created</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The date when the alias was created in milliseconds since the UNIX epoch</td>
+</tr>
+<tr>
+<td><code>creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Information of the user who created the alias</td>
+</tr>
+<tr>
+<td><code>deletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The date when the alias was deleted in milliseconds since the UNIX epoch</td>
+</tr>
+<tr>
+<td><code>deployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A map with the deployment ID, URL and metadata</td>
+</tr>
+<tr>
+<td><code>deploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The deployment ID</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>microfrontends</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The microfrontends for the alias including the routing configuration</td>
+</tr>
+<tr>
+<td><code>oldDeploymentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier of the previously aliased deployment, only received when the alias was used before</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the project</td>
+</tr>
+<tr>
+<td><code>protectionBypass</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The protection bypass for the alias</td>
+</tr>
+<tr>
+<td><code>redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Target destination domain for redirect when the alias is a redirect</td>
+</tr>
+<tr>
+<td><code>redirectStatusCode</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Status code to be used on redirect</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the alias</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The date when the alias was updated in milliseconds since the UNIX epoch</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v2deploymentsidaliases" class="operation" data-method="post"><code>POST</code> /v2/deployments/{id}/aliases</h3>
+<p>Operation ID: <code>assignAlias</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The deployment or alias ID or URL to assign from |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alias</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The alias we want to assign to the deployment defined in the URL</td>
+</tr>
+<tr>
+<td><code>redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The redirect property will take precedence over the deployment id from the URL and consists of a hostname (like test.com) to which the alias should redirect using status code 307</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-the-alias-was-successfully-assigned-to-the-deployment" class="status" data-status="2xx">200: The alias was successfully assigned to the deployment</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alias</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The assigned alias name</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td>The date when the alias was created</td>
+</tr>
+<tr>
+<td><code>oldDeploymentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier of the previously aliased deployment, only received when the alias was used before</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the alias</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-the-cert-for-the-provided-alias-is-not-ready-the-deployment-is-not-ready-and-can-not-be-aliased-the-supplied-alias-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid. The cert for the provided alias is not ready The deployment is not READY and can not be aliased The supplied alias is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-if-no-vercelapp-alias-exists-then-we-fail-nothing-to-mirror" class="status" data-status="4xx">403: You do not have permission to access this resource. If no .vercel.app alias exists then we fail (nothing to mirror)</h5>
+<h5 id="404-the-domain-used-for-the-alias-was-not-found-the-deployment-was-not-found" class="status" data-status="4xx">404: The domain used for the alias was not found The deployment was not found</h5>
+<h5 id="409-the-provided-alias-is-already-assigned-to-the-given-deployment-the-domain-is-not-allowed-to-be-used" class="status" data-status="4xx">409: The provided alias is already assigned to the given deployment The domain is not allowed to be used</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v4aliases" class="operation" data-method="get"><code>GET</code> /v4/aliases</h3>
+<p>Operation ID: <code>listAliases</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>query</code> | <code>array of string or string</code> | No | Get only aliases of the given domain name |
+| <code>from</code> | <code>query</code> | <code>number</code> | No | Get only aliases created after the provided timestamp |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No | Maximum number of aliases to list from a request |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | No | Filter aliases from the given <code>projectId</code> |
+| <code>since</code> | <code>query</code> | <code>number</code> | No | Get aliases created after this JavaScript timestamp |
+| <code>until</code> | <code>query</code> | <code>number</code> | No | Get aliases created before this JavaScript timestamp |
+| <code>rollbackDeploymentId</code> | <code>query</code> | <code>string</code> | No | Get aliases that would be rolled back for the given deployment |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-the-paginated-list-of-aliases" class="status" data-status="2xx">200: The paginated list of aliases</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aliases</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliases[].alias</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alias name, it could be a <code>.vercel.app</code> subdomain or a custom domain</td>
+</tr>
+<tr>
+<td><code>aliases[].created</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td>The date when the alias was created</td>
+</tr>
+<tr>
+<td><code>aliases[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The date when the alias was created in milliseconds since the UNIX epoch</td>
+</tr>
+<tr>
+<td><code>aliases[].creator</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information of the user who created the alias</td>
+</tr>
+<tr>
+<td><code>aliases[].creator.email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Email of the user who created the alias</td>
+</tr>
+<tr>
+<td><code>aliases[].creator.uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ID of the user who created the alias</td>
+</tr>
+<tr>
+<td><code>aliases[].creator.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Username of the user who created the alias</td>
+</tr>
+<tr>
+<td><code>aliases[].deletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The date when the alias was deleted in milliseconds since the UNIX epoch</td>
+</tr>
+<tr>
+<td><code>aliases[].deployment</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A map with the deployment ID, URL and metadata</td>
+</tr>
+<tr>
+<td><code>aliases[].deployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The deployment unique identifier</td>
+</tr>
+<tr>
+<td><code>aliases[].deployment.meta</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The deployment metadata</td>
+</tr>
+<tr>
+<td><code>aliases[].deployment.url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The deployment unique URL</td>
+</tr>
+<tr>
+<td><code>aliases[].deploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The deployment ID</td>
+</tr>
+<tr>
+<td><code>aliases[].microfrontends</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The microfrontends for the alias including the routing configuration</td>
+</tr>
+<tr>
+<td><code>aliases[].microfrontends.applications</code></td>
+<td><code>array of object or array of object or array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliases[].microfrontends.defaultApp</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliases[].microfrontends.defaultApp.projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliases[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the project</td>
+</tr>
+<tr>
+<td><code>aliases[].protectionBypass</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The protection bypass for the alias</td>
+</tr>
+<tr>
+<td><code>aliases[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Target destination domain for redirect when the alias is a redirect</td>
+</tr>
+<tr>
+<td><code>aliases[].redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td>Status code to be used on redirect</td>
+</tr>
+<tr>
+<td><code>aliases[].uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the alias</td>
+</tr>
+<tr>
+<td><code>aliases[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The date when the alias was updated in milliseconds since the UNIX epoch</td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.</td>
+</tr>
+<tr>
+<td><code>pagination.count</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Amount of items in the current page.</td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the next page.</td>
+</tr>
+<tr>
+<td><code>pagination.prev</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the previous page.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h3 id="get-v2deploymentsidaliases" class="operation" data-method="get"><code>GET</code> /v2/deployments/{id}/aliases</h3>
+<p>Operation ID: <code>listDeploymentAliases</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the deployment the aliases should be listed for |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-the-list-of-aliases-assigned-to-the-deployment" class="status" data-status="2xx">200: The list of aliases assigned to the deployment</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aliases</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>A list of the aliases assigned to the deployment</td>
+</tr>
+<tr>
+<td><code>aliases[].alias</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alias name, it could be a <code>.vercel.app</code> subdomain or a custom domain</td>
+</tr>
+<tr>
+<td><code>aliases[].created</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td>The date when the alias was created</td>
+</tr>
+<tr>
+<td><code>aliases[].protectionBypass</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The protection bypass for the alias</td>
+</tr>
+<tr>
+<td><code>aliases[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Target destination domain for redirect when the alias is a redirect</td>
+</tr>
+<tr>
+<td><code>aliases[].uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the alias</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-deployment-was-not-found" class="status" data-status="4xx">404: The deployment was not found</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v4aliasesidoralias" class="operation" data-method="get"><code>GET</code> /v4/aliases/{idOrAlias}</h3>
+<p>Operation ID: <code>getAlias</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>from</code> | <code>query</code> | <code>number</code> | No | Get the alias only if it was created after the provided timestamp |
+| <code>idOrAlias</code> | <code>path</code> | <code>string</code> | Yes | The alias or alias ID to be retrieved |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | No | Get the alias only if it is assigned to the provided project ID |
+| <code>since</code> | <code>query</code> | <code>number</code> | No | Get the alias only if it was created after this JavaScript timestamp |
+| <code>until</code> | <code>query</code> | <code>number</code> | No | Get the alias only if it was created before this JavaScript timestamp |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-the-alias-information" class="status" data-status="2xx">200: The alias information</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alias</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alias name, it could be a <code>.vercel.app</code> subdomain or a custom domain</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td>The date when the alias was created</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The date when the alias was created in milliseconds since the UNIX epoch</td>
+</tr>
+<tr>
+<td><code>creator</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information of the user who created the alias</td>
+</tr>
+<tr>
+<td><code>creator.email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Email of the user who created the alias</td>
+</tr>
+<tr>
+<td><code>creator.uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ID of the user who created the alias</td>
+</tr>
+<tr>
+<td><code>creator.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Username of the user who created the alias</td>
+</tr>
+<tr>
+<td><code>deletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The date when the alias was deleted in milliseconds since the UNIX epoch</td>
+</tr>
+<tr>
+<td><code>deployment</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A map with the deployment ID, URL and metadata</td>
+</tr>
+<tr>
+<td><code>deployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The deployment unique identifier</td>
+</tr>
+<tr>
+<td><code>deployment.meta</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The deployment metadata</td>
+</tr>
+<tr>
+<td><code>deployment.url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The deployment unique URL</td>
+</tr>
+<tr>
+<td><code>deploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The deployment ID</td>
+</tr>
+<tr>
+<td><code>microfrontends</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The microfrontends for the alias including the routing configuration</td>
+</tr>
+<tr>
+<td><code>microfrontends.applications</code></td>
+<td><code>array of object or array of object or array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>microfrontends.defaultApp</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>microfrontends.defaultApp.projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the project</td>
+</tr>
+<tr>
+<td><code>protectionBypass</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The protection bypass for the alias</td>
+</tr>
+<tr>
+<td><code>redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Target destination domain for redirect when the alias is a redirect</td>
+</tr>
+<tr>
+<td><code>redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td>Status code to be used on redirect</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the alias</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The date when the alias was updated in milliseconds since the UNIX epoch</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-alias-was-not-found" class="status" data-status="4xx">404: The alias was not found</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v2aliasesaliasid" class="operation" data-method="delete"><code>DELETE</code> /v2/aliases/{aliasId}</h3>
+<p>Operation ID: <code>deleteAlias</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>aliasId</code> | <code>path</code> | <code>string</code> | Yes | The ID or alias that will be removed |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-the-alias-was-successfully-removed" class="status" data-status="2xx">200: The alias was successfully removed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: SUCCESS</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-alias-was-not-found-1" class="status" data-status="4xx">404: The alias was not found</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="patch-aliasesidprotection-bypass" class="operation" data-method="patch"><code>PATCH</code> /aliases/{id}/protection-bypass</h3>
+<p>Operation ID: <code>patchUrlProtectionBypass</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The alias or deployment ID |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object</code>.</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h5 id="428" class="status" data-status="4xx">428</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

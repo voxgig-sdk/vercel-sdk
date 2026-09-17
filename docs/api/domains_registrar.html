@@ -1,0 +1,4895 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>DomainsRegistrar | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a aria-current="page" href="../api/domains_registrar.html">DomainsRegistrar</a><div class="nav-sections"><a class="nav-section" href="#post-v1registrardomainsdomainbuy">POST /v1/registrar/domains/{domain}/buy</a>
+<a class="nav-section" href="#post-v1registrardomainsdomainrenew">POST /v1/registrar/domains/{domain}/renew</a>
+<a class="nav-section" href="#post-v1registrardomainsdomaintransfer">POST /v1/registrar/domains/{domain}/transfer</a>
+<a class="nav-section" href="#post-v1registrardomainsavailability">POST /v1/registrar/domains/availability</a>
+<a class="nav-section" href="#post-v1registrardomainsbuy">POST /v1/registrar/domains/buy</a>
+<a class="nav-section" href="#post-v1registrardomainsprice">POST /v1/registrar/domains/price</a>
+<a class="nav-section" href="#post-v1registrardomainssearch">POST /v1/registrar/domains/search</a>
+<a class="nav-section" href="#get-v1registrardomainsdomainprice">GET /v1/registrar/domains/{domain}/price</a>
+<a class="nav-section" href="#get-v1registrartldstldprice">GET /v1/registrar/tlds/{tld}/price</a>
+<a class="nav-section" href="#get-v1registrardomainsdomainauth-code">GET /v1/registrar/domains/{domain}/auth-code</a>
+<a class="nav-section" href="#get-v1registrardomainsdomainavailability">GET /v1/registrar/domains/{domain}/availability</a>
+<a class="nav-section" href="#get-v1registrardomainsdomaincontact-infoschema">GET /v1/registrar/domains/{domain}/contact-info/schema</a>
+<a class="nav-section" href="#get-v1registrardomainsdomaincontact-verification">GET /v1/registrar/domains/{domain}/contact-verification</a>
+<a class="nav-section" href="#get-v1registrardomainsdomaintransfer">GET /v1/registrar/domains/{domain}/transfer</a>
+<a class="nav-section" href="#get-v1registrarordersorderid">GET /v1/registrar/orders/{orderId}</a>
+<a class="nav-section" href="#get-v1registrartldstld">GET /v1/registrar/tlds/{tld}</a>
+<a class="nav-section" href="#patch-v1registrardomainsdomainauto-renew">PATCH /v1/registrar/domains/{domain}/auto-renew</a>
+<a class="nav-section" href="#patch-v1registrardomainsdomainnameservers">PATCH /v1/registrar/domains/{domain}/nameservers</a></div>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="domainsregistrar">DomainsRegistrar</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1registrardomainsdomainbuy"><code>/v1/registrar/domains/{domain}/buy</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1registrardomainsdomainrenew"><code>/v1/registrar/domains/{domain}/renew</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1registrardomainsdomaintransfer"><code>/v1/registrar/domains/{domain}/transfer</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1registrardomainsavailability"><code>/v1/registrar/domains/availability</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1registrardomainsbuy"><code>/v1/registrar/domains/buy</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1registrardomainsprice"><code>/v1/registrar/domains/price</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1registrardomainssearch"><code>/v1/registrar/domains/search</code></a></td>
+<td><code>create</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1registrardomainsdomainprice"><code>/v1/registrar/domains/{domain}/price</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1registrartldstldprice"><code>/v1/registrar/tlds/{tld}/price</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1registrardomainsdomainauth-code"><code>/v1/registrar/domains/{domain}/auth-code</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1registrardomainsdomainavailability"><code>/v1/registrar/domains/{domain}/availability</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1registrardomainsdomaincontact-infoschema"><code>/v1/registrar/domains/{domain}/contact-info/schema</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1registrardomainsdomaincontact-verification"><code>/v1/registrar/domains/{domain}/contact-verification</code></a></td>
+<td><code>load</code></td>
+<td>The registrant contact has been verified</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1registrardomainsdomaintransfer"><code>/v1/registrar/domains/{domain}/transfer</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1registrarordersorderid"><code>/v1/registrar/orders/{orderId}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1registrartldstld"><code>/v1/registrar/tlds/{tld}</code></a></td>
+<td><code>load</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1registrardomainsdomainauto-renew"><code>/v1/registrar/domains/{domain}/auto-renew</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1registrardomainsdomainnameservers"><code>/v1/registrar/domains/{domain}/nameservers</code></a></td>
+<td><code>update</code></td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>authCode</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The auth code for the domain.</td>
+</tr>
+<tr>
+<td><code>autoRenew</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether the domain should be auto-renewed before it expires.</td>
+</tr>
+<tr>
+<td><code>available</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>contactInformation</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The contact information for the domain.</td>
+</tr>
+<tr>
+<td><code>domains</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>an array of at most 50 item(s)</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>expectedPrice</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>languageCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language code for the domain.</td>
+</tr>
+<tr>
+<td><code>nameservers</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid order ID</td>
+</tr>
+<tr>
+<td><code>purchasePrice</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>renewalPrice</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>results</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>transferPrice</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>years</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The number of years the returned price is for.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1registrardomainsdomainbuy" class="operation" data-method="post"><code>POST</code> /v1/registrar/domains/{domain}/buy</h3>
+<p>Operation ID: <code>buySingleDomain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>autoRenew</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether the domain should be auto-renewed before it expires. This can be configured later through the Vercel Dashboard or the <a href="https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/update-auto-renew-for-a-domain">Update auto-renew for a domain</a> endpoint.</td>
+</tr>
+<tr>
+<td><code>contactInformation</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The contact information for the domain. Some TLDs require additional contact information. Use the <a href="https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-contact-info-schema">Get contact info schema</a> endpoint to retrieve the required fields.</td>
+</tr>
+<tr>
+<td><code>contactInformation.additional</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>contactInformation.address1</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.address2</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.city</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.companyName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.country</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid ISO 3166-1 alpha-2 country code</td>
+</tr>
+<tr>
+<td><code>contactInformation.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid RFC 5322 email address</td>
+</tr>
+<tr>
+<td><code>contactInformation.fax</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A valid E.164 phone number</td>
+</tr>
+<tr>
+<td><code>contactInformation.firstName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.lastName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.phone</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid E.164 phone number</td>
+</tr>
+<tr>
+<td><code>contactInformation.state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.zip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>expectedPrice</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>languageCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language code for the domain. For punycode domains, this must be provided. The list of supported language codes for a TLD can be retrieved from the <a href="https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-tld">Get TLD</a> endpoint.</td>
+</tr>
+<tr>
+<td><code>years</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The number of years to purchase the domain for.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-success" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_links</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid order ID</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object or object or object or object or object or object or object</code>.</p>
+<h5 id="401-unauthorized" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="429-toomanyrequests" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1registrardomainsdomainrenew" class="operation" data-method="post"><code>POST</code> /v1/registrar/domains/{domain}/renew</h3>
+<p>Operation ID: <code>renewDomain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contactInformation</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>contactInformation.address1</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.address2</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.city</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.companyName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.country</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid ISO 3166-1 alpha-2 country code</td>
+</tr>
+<tr>
+<td><code>contactInformation.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid RFC 5322 email address</td>
+</tr>
+<tr>
+<td><code>contactInformation.fax</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A valid E.164 phone number</td>
+</tr>
+<tr>
+<td><code>contactInformation.firstName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.lastName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.phone</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid E.164 phone number</td>
+</tr>
+<tr>
+<td><code>contactInformation.state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.zip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>expectedPrice</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>years</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The number of years to renew the domain for.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-success-1" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_links</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid order ID</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-1" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object or object or object or object</code>.</p>
+<h5 id="401-unauthorized-1" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-1" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="404-the-domain-was-not-found-in-our-system" class="status" data-status="4xx">404: The domain was not found in our system</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: domain_not_found</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 404</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-1" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-1" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1registrardomainsdomaintransfer" class="operation" data-method="post"><code>POST</code> /v1/registrar/domains/{domain}/transfer</h3>
+<p>Operation ID: <code>transferInDomain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>authCode</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The auth code for the domain. You must obtain this code from the losing registrar.</td>
+</tr>
+<tr>
+<td><code>autoRenew</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether the domain should be auto-renewed before it expires. This can be configured later through the Vercel Dashboard or the <a href="https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/update-auto-renew-for-a-domain">Update auto-renew for a domain</a> endpoint.</td>
+</tr>
+<tr>
+<td><code>contactInformation</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>contactInformation.address1</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.address2</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.city</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.companyName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.country</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid ISO 3166-1 alpha-2 country code</td>
+</tr>
+<tr>
+<td><code>contactInformation.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid RFC 5322 email address</td>
+</tr>
+<tr>
+<td><code>contactInformation.fax</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A valid E.164 phone number</td>
+</tr>
+<tr>
+<td><code>contactInformation.firstName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.lastName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.phone</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid E.164 phone number</td>
+</tr>
+<tr>
+<td><code>contactInformation.state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.zip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>expectedPrice</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>years</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The number of years to renew the domain for once it is transferred in. This must be a valid number of transfer years for the TLD.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-success-2" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_links</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid order ID</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-2" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object or object or object or object or object</code>.</p>
+<h5 id="401-unauthorized-2" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-2" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="429-toomanyrequests-2" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-2" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1registrardomainsavailability" class="operation" data-method="post"><code>POST</code> /v1/registrar/domains/availability</h3>
+<p>Operation ID: <code>getBulkAvailability</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>an array of at most 50 item(s)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-success-3" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>results</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>results[].available</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>results[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid domain name</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-3" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issues</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issues[].message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A descriptive message explaining the issue</td>
+</tr>
+<tr>
+<td><code>issues[].path</code></td>
+<td><code>array of string or number or object</code></td>
+<td>Yes</td>
+<td>The path to the property where the issue occurred</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-3" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-notauthorizedforscope" class="status" data-status="4xx">403: NotAuthorizedForScope</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_authorized_for_scope</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 403</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-3" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-3" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1registrardomainsbuy" class="operation" data-method="post"><code>POST</code> /v1/registrar/domains/buy</h3>
+<p>Operation ID: <code>buyDomains</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="request-body-4">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contactInformation</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The contact information for the domain. Some TLDs require additional contact information. Use the <a href="https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-contact-info-schema">Get contact info schema</a> endpoint to retrieve the required fields.</td>
+</tr>
+<tr>
+<td><code>contactInformation.additional</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>contactInformation.address1</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.address2</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.city</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.companyName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.country</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid ISO 3166-1 alpha-2 country code</td>
+</tr>
+<tr>
+<td><code>contactInformation.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid RFC 5322 email address</td>
+</tr>
+<tr>
+<td><code>contactInformation.fax</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A valid E.164 phone number</td>
+</tr>
+<tr>
+<td><code>contactInformation.firstName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.lastName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.phone</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid E.164 phone number</td>
+</tr>
+<tr>
+<td><code>contactInformation.state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>contactInformation.zip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>a non empty string</td>
+</tr>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].autoRenew</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether the domain should be auto-renewed before it expires. This can be configured later through the Vercel Dashboard or the <a href="https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/update-auto-renew-for-a-domain">Update auto-renew for a domain</a> endpoint.</td>
+</tr>
+<tr>
+<td><code>domains[].domainName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid domain name</td>
+</tr>
+<tr>
+<td><code>domains[].expectedPrice</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].languageCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language code for the domain. For punycode domains, this must be provided. The list of supported language codes for a TLD can be retrieved from the <a href="https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-tld">Get TLD</a> endpoint.</td>
+</tr>
+<tr>
+<td><code>domains[].years</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The number of years to purchase the domain for.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-success-4" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_links</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid order ID</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-4" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object or object or object or object or object or object or object or object or object</code>.</p>
+<h5 id="401-unauthorized-4" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-3" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="429-toomanyrequests-4" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-4" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1registrardomainsprice" class="operation" data-method="post"><code>POST</code> /v1/registrar/domains/price</h3>
+<p>Operation ID: <code>getBulkPrice</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="request-body-5">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>an array of at most 50 item(s)</td>
+</tr>
+<tr>
+<td><code>years</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The number of years to get the price for. If not provided, the minimum number of years for the TLD will be used.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-success-5" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>results</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>results[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid domain name</td>
+</tr>
+<tr>
+<td><code>results[].purchasePrice</code></td>
+<td><code>number or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>results[].renewalPrice</code></td>
+<td><code>number or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>results[].transferPrice</code></td>
+<td><code>number or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>results[].years</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-5" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object</code>.</p>
+<h5 id="401-unauthorized-5" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-notauthorizedforscope-1" class="status" data-status="4xx">403: NotAuthorizedForScope</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_authorized_for_scope</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 403</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-5" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-5" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1registrardomainssearch" class="operation" data-method="post"><code>POST</code> /v1/registrar/domains/search</h3>
+<p>Operation ID: <code>searchDomains</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="request-body-6">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>an array of at most 200 item(s)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-success-6" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>results</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-6" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issues</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issues[].message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A descriptive message explaining the issue</td>
+</tr>
+<tr>
+<td><code>issues[].path</code></td>
+<td><code>array of string or number or object</code></td>
+<td>Yes</td>
+<td>The path to the property where the issue occurred</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-6" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-notauthorizedforscope-2" class="status" data-status="4xx">403: NotAuthorizedForScope</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_authorized_for_scope</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 403</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-6" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-6" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-v1registrardomainsdomainprice" class="operation" data-method="get"><code>GET</code> /v1/registrar/domains/{domain}/price</h3>
+<p>Operation ID: <code>getDomainPrice</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>years</code> | <code>query</code> | <code>string</code> | No | The number of years to get the price for. If not provided, the minimum number of years for the TLD will be used. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-success-7" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>purchasePrice</code></td>
+<td><code>number or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>renewalPrice</code></td>
+<td><code>number or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>transferPrice</code></td>
+<td><code>number or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>years</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-7" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object</code>.</p>
+<h5 id="401-unauthorized-7" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-notauthorizedforscope-3" class="status" data-status="4xx">403: NotAuthorizedForScope</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_authorized_for_scope</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 403</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-7" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-7" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-v1registrartldstldprice" class="operation" data-method="get"><code>GET</code> /v1/registrar/tlds/{tld}/price</h3>
+<p>Operation ID: <code>getTldPrice</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>tld</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>years</code> | <code>query</code> | <code>string</code> | No | The number of years to get the price for. If not provided, the minimum number of years for the TLD will be used. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-success-8" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>purchasePrice</code></td>
+<td><code>number or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>renewalPrice</code></td>
+<td><code>number or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>transferPrice</code></td>
+<td><code>number or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>years</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The number of years the returned price is for.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-8" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="401-unauthorized-8" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-notauthorizedforscope-4" class="status" data-status="4xx">403: NotAuthorizedForScope</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_authorized_for_scope</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 403</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-8" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-8" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-v1registrardomainsdomainauth-code" class="operation" data-method="get"><code>GET</code> /v1/registrar/domains/{domain}/auth-code</h3>
+<p>Operation ID: <code>getDomainAuthCode</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-success-9" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>authCode</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-9" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="401-unauthorized-9" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-4" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="404-the-domain-was-not-found-in-our-system-1" class="status" data-status="4xx">404: The domain was not found in our system</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: domain_not_found</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 404</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="409-the-domain-cannot-be-transfered-out-until-the-specified-date" class="status" data-status="4xx">409: The domain cannot be transfered out until the specified date</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: domain_cannot_be_transfered_out_until</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 409</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-9" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-9" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-v1registrardomainsdomainavailability" class="operation" data-method="get"><code>GET</code> /v1/registrar/domains/{domain}/availability</h3>
+<p>Operation ID: <code>getDomainAvailability</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-success-10" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>available</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-10" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issues</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issues[].message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A descriptive message explaining the issue</td>
+</tr>
+<tr>
+<td><code>issues[].path</code></td>
+<td><code>array of string or number or object</code></td>
+<td>Yes</td>
+<td>The path to the property where the issue occurred</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-10" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-notauthorizedforscope-5" class="status" data-status="4xx">403: NotAuthorizedForScope</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_authorized_for_scope</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 403</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-notfound" class="status" data-status="4xx">404: NotFound</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_found</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 404</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-10" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-10" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-v1registrardomainsdomaincontact-infoschema" class="operation" data-method="get"><code>GET</code> /v1/registrar/domains/{domain}/contact-info/schema</h3>
+<p>Operation ID: <code>getContactInfoSchema</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-success-11" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h5 id="400-there-was-something-wrong-with-the-request-11" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="401-unauthorized-11" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-notauthorizedforscope-6" class="status" data-status="4xx">403: NotAuthorizedForScope</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_authorized_for_scope</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 403</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-11" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-11" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-v1registrardomainsdomaincontact-verification" class="operation" data-method="get"><code>GET</code> /v1/registrar/domains/{domain}/contact-verification</h3>
+<p>Operation ID: <code>getDomainContactVerification</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-the-registrant-contact-has-been-verified" class="status" data-status="2xx">200: The registrant contact has been verified</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-there-was-something-wrong-with-the-request-12" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object</code>.</p>
+<h5 id="401-unauthorized-12" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-5" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="404-the-domain-was-not-found-in-our-system-2" class="status" data-status="4xx">404: The domain was not found in our system</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: domain_not_found</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 404</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-12" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-12" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-v1registrardomainsdomaintransfer" class="operation" data-method="get"><code>GET</code> /v1/registrar/domains/{domain}/transfer</h3>
+<p>Operation ID: <code>getDomainTransferIn</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-13">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-13">Responses</h4>
+<h5 id="200-success-12" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: canceled, canceled_pending_refund, completed, created, failed, pending, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-13" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issues</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issues[].message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A descriptive message explaining the issue</td>
+</tr>
+<tr>
+<td><code>issues[].path</code></td>
+<td><code>array of string or number or object</code></td>
+<td>Yes</td>
+<td>The path to the property where the issue occurred</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-13" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-6" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="404-notfound-1" class="status" data-status="4xx">404: NotFound</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_found</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 404</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-13" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-13" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-v1registrarordersorderid" class="operation" data-method="get"><code>GET</code> /v1/registrar/orders/{orderId}</h3>
+<p>Operation ID: <code>getOrder</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-14">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>orderId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-14">Responses</h4>
+<h5 id="200-success-13" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of object or object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>object or object or object or object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A valid order ID</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: draft, purchasing, completed, failed</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-14" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issues</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issues[].message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A descriptive message explaining the issue</td>
+</tr>
+<tr>
+<td><code>issues[].path</code></td>
+<td><code>array of string or number or object</code></td>
+<td>Yes</td>
+<td>The path to the property where the issue occurred</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-14" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-notauthorizedforscope-7" class="status" data-status="4xx">403: NotAuthorizedForScope</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="404-notfound-2" class="status" data-status="4xx">404: NotFound</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_found</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 404</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-14" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-14" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-v1registrartldstld" class="operation" data-method="get"><code>GET</code> /v1/registrar/tlds/{tld}</h3>
+<p>Operation ID: <code>getTld</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-15">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>tld</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="responses-15">Responses</h4>
+<h5 id="200-success-14" class="status" data-status="2xx">200: Success</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>supportedLanguageCodes</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The language codes that are supported for the TLD. The key is the language code, and the value is the name of the language.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-there-was-something-wrong-with-the-request-15" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="401-unauthorized-15" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-notauthorizedforscope-8" class="status" data-status="4xx">403: NotAuthorizedForScope</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: not_authorized_for_scope</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 403</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-15" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-15" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="update">update</h2>
+<h3 id="patch-v1registrardomainsdomainauto-renew" class="operation" data-method="patch"><code>PATCH</code> /v1/registrar/domains/{domain}/auto-renew</h3>
+<p>Operation ID: <code>updateDomainAutoRenew</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-16">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="request-body-7">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>autoRenew</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-16">Responses</h4>
+<h5 id="204-success" class="status" data-status="2xx">204: Success</h5>
+<h5 id="400-there-was-something-wrong-with-the-request-16" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object</code>.</p>
+<h5 id="401-unauthorized-16" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-7" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="404-the-domain-was-not-found-in-our-system-3" class="status" data-status="4xx">404: The domain was not found in our system</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: domain_not_found</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 404</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-16" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-16" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="patch-v1registrardomainsdomainnameservers" class="operation" data-method="patch"><code>PATCH</code> /v1/registrar/domains/{domain}/nameservers</h3>
+<p>Operation ID: <code>updateDomainNameservers</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-17">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No |  |</p>
+<h4 id="request-body-8">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nameservers</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-17">Responses</h4>
+<h5 id="204-success-1" class="status" data-status="2xx">204: Success</h5>
+<h5 id="400-there-was-something-wrong-with-the-request-17" class="status" data-status="4xx">400: There was something wrong with the request</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="401-unauthorized-17" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: unauthorized</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 401</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-8" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="404-the-domain-was-not-found-in-our-system-4" class="status" data-status="4xx">404: The domain was not found in our system</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: domain_not_found</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 404</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-toomanyrequests-17" class="status" data-status="4xx">429: TooManyRequests</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: too_many_requests</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.remaining</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.reset</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.str</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>retryAfter.value</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 429</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internalservererror-17" class="status" data-status="5xx">500: InternalServerError</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>enum: internal_server_error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: 500</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

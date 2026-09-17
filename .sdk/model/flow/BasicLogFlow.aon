@@ -1,0 +1,33 @@
+# BasicLogFlow
+
+main: kit: flow: BasicLogFlow:
+{
+  entity: "log",
+  kind: "basic",
+  name: "BasicLogFlow",
+  step: [
+    {
+      input: {
+        ref: "log_ref01",
+        srcdatavar: "log_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "log01",
+        project_id: "project01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-log_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLogFlow"
+}

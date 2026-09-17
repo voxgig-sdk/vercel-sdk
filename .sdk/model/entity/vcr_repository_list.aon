@@ -1,0 +1,137 @@
+# Entity: vcr_repository_list
+
+main: kit: entity: vcr_repository_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "createdAt"
+      req: true
+      short: "ISO 8601 timestamp of when the repository was created."
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      short: "Unique identifier of the repository."
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      short: "Name of the repository."
+      type: "`$STRING`"
+    }
+    {
+      name: "projectId"
+      req: true
+      short: "Identifier of the project the repository belongs to."
+      type: "`$STRING`"
+    }
+    {
+      name: "public"
+      req: true
+      short: "Whether the repository is public."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "updatedAt"
+      req: true
+      short: "ISO 8601 timestamp of when the repository was last updated."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "vcr_repository_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "cursor"
+                orig: "cursor"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/vcr/repository"
+            json: "{\"operationId\":\"listRepositories\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Opaque pagination cursor returned by a previous list response.\",\"in\":\"query\",\"name\":\"cursor\",\"required\":false,\"schema\":{\"description\":\"Opaque pagination cursor returned by a previous list response.\",\"maxLength\":1024,\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A paginated list of Vercel Container Registry repositories.\",\"properties\":{\"nextCursor\":{\"description\":\"Cursor to fetch the next page of results, when more are available.\",\"type\":\"string\"},\"repositories\":{\"items\":{\"description\":\"A Vercel Container Registry repository.\",\"properties\":{\"createdAt\":{\"description\":\"ISO 8601 timestamp of when the repository was created.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier of the repository.\",\"example\":\"repo_a1b2c3d4e5f6\",\"type\":\"string\"},\"name\":{\"description\":\"Name of the repository.\",\"example\":\"my-app\",\"type\":\"string\"},\"projectId\":{\"description\":\"Identifier of the project the repository belongs to.\",\"example\":\"prj_a1b2c3d4e5f6\",\"type\":\"string\"},\"public\":{\"description\":\"Whether the repository is public. Images in public repositories can be pulled by anyone. Defaults to `false` (private).\",\"enum\":[false,true],\"example\":false,\"type\":\"boolean\"},\"updatedAt\":{\"description\":\"ISO 8601 timestamp of when the repository was last updated.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"}},\"required\":[\"createdAt\",\"id\",\"name\",\"projectId\",\"public\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"repositories\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/vcr/repository"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+          ]
+          select: {
+            exist: [
+              "cursor"
+              "limit"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.repositories`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

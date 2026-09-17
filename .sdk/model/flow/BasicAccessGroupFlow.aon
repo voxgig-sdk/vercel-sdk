@@ -1,0 +1,117 @@
+# BasicAccessGroupFlow
+
+main: kit: flow: BasicAccessGroupFlow:
+{
+  entity: "access_group",
+  kind: "basic",
+  name: "BasicAccessGroupFlow",
+  step: [
+    {
+      input: {
+        ref: "access_group_ref01"
+      }
+
+      match: {
+        access_group_id: "access_group01",
+        id_or_name: "id_or_name01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        id_or_name: "id_or_name01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "access_group_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      data: {
+        access_group_id: "access_group01"
+      }
+
+      input: {
+        ref: "access_group_ref01",
+        srcdatavar: "access_group_ref01_data",
+        suffix: "_up0",
+        textfield: "accessGroupId"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-access_group_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "access_group_ref01",
+        srcdatavar: "access_group_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "access_group01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-access_group_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "access_group_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "access_group01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        id_or_name: "id_or_name01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "access_group_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAccessGroupFlow"
+}

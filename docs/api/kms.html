@@ -1,0 +1,2274 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Kms | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a aria-current="page" href="../api/kms.html">Kms</a><div class="nav-sections"><a class="nav-section" href="#post-v1kmsissuersissueridkeyskeyidactivate">POST /v1/kms/issuers/{issuerId}/keys/{keyId}/activate</a>
+<a class="nav-section" href="#post-v1kmsissuersissueridkeyskeyidrevoke">POST /v1/kms/issuers/{issuerId}/keys/{keyId}/revoke</a>
+<a class="nav-section" href="#post-v1kmsissuersissueridkeys">POST /v1/kms/issuers/{issuerId}/keys</a>
+<a class="nav-section" href="#post-v1kmsissuersissueridpolicies">POST /v1/kms/issuers/{issuerId}/policies</a>
+<a class="nav-section" href="#post-v1kmsissuers">POST /v1/kms/issuers</a>
+<a class="nav-section" href="#post-v1kmsissuersissueridsignmessage">POST /v1/kms/issuers/{issuerId}/sign/message</a>
+<a class="nav-section" href="#post-v1kmsissuersissueridsigntoken">POST /v1/kms/issuers/{issuerId}/sign/token</a>
+<a class="nav-section" href="#get-v1kmsissuers">GET /v1/kms/issuers</a>
+<a class="nav-section" href="#get-v1kmsissuersissuerid">GET /v1/kms/issuers/{issuerId}</a>
+<a class="nav-section" href="#delete-v1kmsissuersissueridpolicieskindpolicykey">DELETE /v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}</a>
+<a class="nav-section" href="#delete-v1kmsissuersissuerid">DELETE /v1/kms/issuers/{issuerId}</a>
+<a class="nav-section" href="#patch-v1kmsissuersissueridpolicieskindpolicykey">PATCH /v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}</a>
+<a class="nav-section" href="#patch-v1kmsissuersissuerid">PATCH /v1/kms/issuers/{issuerId}</a></div>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="kms">Kms</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1kmsissuersissueridkeyskeyidactivate"><code>/v1/kms/issuers/{issuerId}/keys/{keyId}/activate</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1kmsissuersissueridkeyskeyidrevoke"><code>/v1/kms/issuers/{issuerId}/keys/{keyId}/revoke</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1kmsissuersissueridkeys"><code>/v1/kms/issuers/{issuerId}/keys</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1kmsissuersissueridpolicies"><code>/v1/kms/issuers/{issuerId}/policies</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1kmsissuers"><code>/v1/kms/issuers</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1kmsissuersissueridsignmessage"><code>/v1/kms/issuers/{issuerId}/sign/message</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1kmsissuersissueridsigntoken"><code>/v1/kms/issuers/{issuerId}/sign/token</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1kmsissuers"><code>/v1/kms/issuers</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1kmsissuersissuerid"><code>/v1/kms/issuers/{issuerId}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1kmsissuersissueridpolicieskindpolicykey"><code>/v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1kmsissuersissuerid"><code>/v1/kms/issuers/{issuerId}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1kmsissuersissueridpolicieskindpolicykey"><code>/v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1kmsissuersissuerid"><code>/v1/kms/issuers/{issuerId}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>activation</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Whether the new key is activated automatically after its public key has propagated, or manually via the activate endpoint.</td>
+</tr>
+<tr>
+<td><code>alg</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>algorithm</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Algorithm of the signing key.</td>
+</tr>
+<tr>
+<td><code>claims</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The claims to include in the token.</td>
+</tr>
+<tr>
+<td><code>claimsSchema</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A JSON Schema used to validate the resolved token claims when signing tokens for this issuer.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>The environments for the project grant policy.</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Additional headers to include in the token.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>importKey</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The PEM-encoded private key to use for the issuer.</td>
+</tr>
+<tr>
+<td><code>importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The key id to use as the imported key's JWT/JWKS <code>kid</code>.</td>
+</tr>
+<tr>
+<td><code>keyId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Key id of the signing key.</td>
+</tr>
+<tr>
+<td><code>key_ops</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>kid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>kty</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Base64-encoded message to be signed.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the issuer.</td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>policies</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The project ID for the project grant policy.</td>
+</tr>
+<tr>
+<td><code>revokePreviousAfterHours</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>How many hours after activation the previously-active key should stop being used.</td>
+</tr>
+<tr>
+<td><code>revokePreviousAt</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td>Deprecated.</td>
+</tr>
+<tr>
+<td><code>signature</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Standard-base64 encoding of the raw signature over the decoded message bytes.</td>
+</tr>
+<tr>
+<td><code>signingKeys</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>token</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tokenClaims</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The claims that KMS should include in signed JWTs for this policy.</td>
+</tr>
+<tr>
+<td><code>ttl</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The time-to-live for the token, in seconds.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>use</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>x5c</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The X.509 certificate chain (RFC 7517 §4.7).</td>
+</tr>
+<tr>
+<td><code>x5tS256</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The base64url SHA-256 thumbprint of the DER certificate in <code>x5c[0]</code> (RFC 7517 §4.9).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1kmsissuersissueridkeyskeyidactivate" class="operation" data-method="post"><code>POST</code> /v1/kms/issuers/{issuerId}/keys/{keyId}/activate</h3>
+<p>Operation ID: <code>activateKmsSigningKey</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |
+| <code>keyId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the pending signing key to activate. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>revokePreviousAfterHours</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>How many hours after activation the previously-active key should stop being used. Defaults to a 1 hour grace period so already-issued tokens keep verifying.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>activateAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).</td>
+</tr>
+<tr>
+<td><code>algorithm</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>certificatePem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The stored X.509 certificate (from <code>publicKey.x5c[0]</code>) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The caller-supplied key id (imported keys only), used as the JWT/JWKS <code>kid</code>. Not unique across an issuer's keys; omitted for generated keys.</td>
+</tr>
+<tr>
+<td><code>issuerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>keyId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.</td>
+</tr>
+<tr>
+<td><code>publicKey</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.alg</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.key_ops</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.kid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.kty</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.use</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.x5c</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as <code>[x5c]</code>.</td>
+</tr>
+<tr>
+<td><code>publicKey.x5t#S256</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The base64url SHA-256 thumbprint of the DER certificate in <code>x5c[0]</code> (RFC 7517 §4.9).</td>
+</tr>
+<tr>
+<td><code>publicKeyFingerprint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKeyPem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from <code>publicKey</code>; the embedded certificate members (<code>x5c</code>/<code>x5t#S256</code>) do not affect it.</td>
+</tr>
+<tr>
+<td><code>revokeAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: active, pending, revoking</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1kmsissuersissueridkeyskeyidrevoke" class="operation" data-method="post"><code>POST</code> /v1/kms/issuers/{issuerId}/keys/{keyId}/revoke</h3>
+<p>Operation ID: <code>revokeKmsSigningKey</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |
+| <code>keyId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the signing key to revoke immediately. The key must already be scheduled for revocation. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>algorithm</code></td>
+<td><code>enum: ES256, ES384, ES512, PS256, PS384, PS512, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>claimsSchema</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td><code>enum: external, vercel</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>policies</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].activateAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].activatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).</td>
+</tr>
+<tr>
+<td><code>signingKeys[].algorithm</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].certificatePem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The stored X.509 certificate (from <code>publicKey.x5c[0]</code>) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The caller-supplied key id (imported keys only), used as the JWT/JWKS <code>kid</code>. Not unique across an issuer's keys; omitted for generated keys.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].issuerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].keyId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.alg</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.key_ops</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.kid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.kty</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.use</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.x5c</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as <code>[x5c]</code>.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.x5t#S256</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The base64url SHA-256 thumbprint of the DER certificate in <code>x5c[0]</code> (RFC 7517 §4.9).</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKeyFingerprint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKeyPem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from <code>publicKey</code>; the embedded certificate members (<code>x5c</code>/<code>x5t#S256</code>) do not affect it.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].revokeAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].status</code></td>
+<td><code>enum: active, pending, revoking</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="409-1" class="status" data-status="4xx">409</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1kmsissuersissueridkeys" class="operation" data-method="post"><code>POST</code> /v1/kms/issuers/{issuerId}/keys</h3>
+<p>Operation ID: <code>createKmsSigningKey</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>activation</code></td>
+<td><code>enum: automatic, manual</code></td>
+<td>No</td>
+<td>Whether the new key is activated automatically after its public key has propagated, or manually via the activate endpoint. Defaults to <code>automatic</code>.</td>
+</tr>
+<tr>
+<td><code>importKey</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The PEM-encoded private key to use for the issuer.</td>
+</tr>
+<tr>
+<td><code>importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The key id to use as the imported key's JWT/JWKS <code>kid</code>. Only allowed when <code>importKey</code> is provided. Not required to be unique; the addressable key id is the server-minted <code>keyId</code> returned in the response.</td>
+</tr>
+<tr>
+<td><code>revokePreviousAfterHours</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>For automatic activation, how many hours after activation the previous signing key should stop being used. Defaults to a 1 hour grace period so already-issued tokens keep verifying.</td>
+</tr>
+<tr>
+<td><code>revokePreviousAt</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td>Deprecated. The ISO date string or timestamp when the previous signing key should stop being used. Converted to a relative grace and applied at activation, not creation. Prefer revokePreviousAfterHours.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>activateAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).</td>
+</tr>
+<tr>
+<td><code>algorithm</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>certificatePem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The stored X.509 certificate (from <code>publicKey.x5c[0]</code>) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The caller-supplied key id (imported keys only), used as the JWT/JWKS <code>kid</code>. Not unique across an issuer's keys; omitted for generated keys.</td>
+</tr>
+<tr>
+<td><code>issuerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>keyId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.</td>
+</tr>
+<tr>
+<td><code>publicKey</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.alg</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.key_ops</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.kid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.kty</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.use</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKey.x5c</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as <code>[x5c]</code>.</td>
+</tr>
+<tr>
+<td><code>publicKey.x5t#S256</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The base64url SHA-256 thumbprint of the DER certificate in <code>x5c[0]</code> (RFC 7517 §4.9).</td>
+</tr>
+<tr>
+<td><code>publicKeyFingerprint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>publicKeyPem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from <code>publicKey</code>; the embedded certificate members (<code>x5c</code>/<code>x5t#S256</code>) do not affect it.</td>
+</tr>
+<tr>
+<td><code>revokeAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: active, pending, revoking</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="409-2" class="status" data-status="4xx">409</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1kmsissuersissueridpolicies" class="operation" data-method="post"><code>POST</code> /v1/kms/issuers/{issuerId}/policies</h3>
+<p>Operation ID: <code>createKmsIssuerPolicy</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...).</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>enum: project-grant</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The project ID for the project grant policy.</td>
+</tr>
+<tr>
+<td><code>tokenClaims</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The claims that KMS should include in signed JWTs for this policy.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="201" class="status" data-status="2xx">201</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1kmsissuers" class="operation" data-method="post"><code>POST</code> /v1/kms/issuers</h3>
+<p>Operation ID: <code>createKmsIssuer</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>algorithm</code></td>
+<td><code>enum: RS256, RS384, RS512, PS256, PS384, PS512, ...</code></td>
+<td>No</td>
+<td>The signing algorithm to use for the issuer.</td>
+</tr>
+<tr>
+<td><code>claimsSchema</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A JSON Schema used to validate the resolved token claims when signing tokens for this issuer.</td>
+</tr>
+<tr>
+<td><code>importKey</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The PEM-encoded private key to use for the issuer.</td>
+</tr>
+<tr>
+<td><code>importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The key id to use as the imported key's JWT/JWKS <code>kid</code>. Only allowed when <code>importKey</code> is provided. Not required to be unique; the addressable key id is the server-minted <code>keyId</code> returned in the response.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the issuer.</td>
+</tr>
+<tr>
+<td><code>policy</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-4">Responses</h4>
+<h5 id="201-1" class="status" data-status="2xx">201</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>algorithm</code></td>
+<td><code>enum: ES256, ES384, ES512, PS256, PS384, PS512, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>claimsSchema</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td><code>enum: external, vercel</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>policies</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].activateAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].activatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).</td>
+</tr>
+<tr>
+<td><code>signingKeys[].algorithm</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].certificatePem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The stored X.509 certificate (from <code>publicKey.x5c[0]</code>) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The caller-supplied key id (imported keys only), used as the JWT/JWKS <code>kid</code>. Not unique across an issuer's keys; omitted for generated keys.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].issuerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].keyId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.alg</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.key_ops</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.kid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.kty</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.use</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.x5c</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as <code>[x5c]</code>.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.x5t#S256</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The base64url SHA-256 thumbprint of the DER certificate in <code>x5c[0]</code> (RFC 7517 §4.9).</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKeyFingerprint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKeyPem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from <code>publicKey</code>; the embedded certificate members (<code>x5c</code>/<code>x5t#S256</code>) do not affect it.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].revokeAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].status</code></td>
+<td><code>enum: active, pending, revoking</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-4" class="status" data-status="4xx">404</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1kmsissuersissueridsignmessage" class="operation" data-method="post"><code>POST</code> /v1/kms/issuers/{issuerId}/sign/message</h3>
+<p>Operation ID: <code>signKmsMessage</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |</p>
+<h4 id="request-body-4">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Base64-encoded message to be signed.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>algorithm</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Algorithm of the signing key.</td>
+</tr>
+<tr>
+<td><code>keyId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Key id of the signing key. Matches the JWKS <code>kid</code> so verifiers can select the key after rotation without trial-verifying every published key.</td>
+</tr>
+<tr>
+<td><code>signature</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Standard-base64 encoding of the raw signature over the decoded message bytes.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401" class="status" data-status="4xx">401</h5>
+<h5 id="403" class="status" data-status="4xx">403</h5>
+<h5 id="404-5" class="status" data-status="4xx">404</h5>
+<h5 id="429" class="status" data-status="4xx">429</h5>
+<h3 id="post-v1kmsissuersissueridsigntoken" class="operation" data-method="post"><code>POST</code> /v1/kms/issuers/{issuerId}/sign/token</h3>
+<p>Operation ID: <code>signKmsToken</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |</p>
+<h4 id="request-body-5">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>claims</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The claims to include in the token.</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Additional headers to include in the token.</td>
+</tr>
+<tr>
+<td><code>ttl</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The time-to-live for the token, in seconds.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>token</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-1" class="status" data-status="4xx">401</h5>
+<h5 id="403-1" class="status" data-status="4xx">403</h5>
+<h5 id="404-6" class="status" data-status="4xx">404</h5>
+<h5 id="429-1" class="status" data-status="4xx">429</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v1kmsissuers" class="operation" data-method="get"><code>GET</code> /v1/kms/issuers</h3>
+<p>Operation ID: <code>listKmsIssuers</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | Maximum number of issuers to return. |
+| <code>next</code> | <code>query</code> | <code>string</code> | No | Continuation cursor to retrieve the next page of results. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-5" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issuers</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].algorithm</code></td>
+<td><code>enum: ES256, ES384, ES512, PS256, PS384, PS512, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].claimsSchema</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].managedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].origin</code></td>
+<td><code>enum: external, vercel</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].policies</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].activateAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].activatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).</td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].algorithm</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].certificatePem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The stored X.509 certificate (from <code>publicKey.x5c[0]</code>) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.</td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The caller-supplied key id (imported keys only), used as the JWT/JWKS <code>kid</code>. Not unique across an issuer's keys; omitted for generated keys.</td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].issuerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].keyId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.</td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKey</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKey.alg</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKey.key_ops</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKey.kid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKey.kty</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKey.use</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKey.x5c</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as <code>[x5c]</code>.</td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKey.x5t#S256</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The base64url SHA-256 thumbprint of the DER certificate in <code>x5c[0]</code> (RFC 7517 §4.9).</td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKeyFingerprint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].publicKeyPem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from <code>publicKey</code>; the embedded certificate members (<code>x5c</code>/<code>x5t#S256</code>) do not affect it.</td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].revokeAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].status</code></td>
+<td><code>enum: active, pending, revoking</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].signingKeys[].updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>issuers[].updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.count</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1kmsissuersissuerid" class="operation" data-method="get"><code>GET</code> /v1/kms/issuers/{issuerId}</h3>
+<p>Operation ID: <code>getKmsIssuer</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-6" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>algorithm</code></td>
+<td><code>enum: ES256, ES384, ES512, PS256, PS384, PS512, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>claimsSchema</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td><code>enum: external, vercel</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>policies</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].activateAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].activatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).</td>
+</tr>
+<tr>
+<td><code>signingKeys[].algorithm</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].certificatePem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The stored X.509 certificate (from <code>publicKey.x5c[0]</code>) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The caller-supplied key id (imported keys only), used as the JWT/JWKS <code>kid</code>. Not unique across an issuer's keys; omitted for generated keys.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].issuerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].keyId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.alg</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.key_ops</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.kid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.kty</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.use</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.x5c</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as <code>[x5c]</code>.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.x5t#S256</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The base64url SHA-256 thumbprint of the DER certificate in <code>x5c[0]</code> (RFC 7517 §4.9).</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKeyFingerprint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKeyPem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from <code>publicKey</code>; the embedded certificate members (<code>x5c</code>/<code>x5t#S256</code>) do not affect it.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].revokeAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].status</code></td>
+<td><code>enum: active, pending, revoking</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-7" class="status" data-status="4xx">404</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1kmsissuersissueridpolicieskindpolicykey" class="operation" data-method="delete"><code>DELETE</code> /v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}</h3>
+<p>Operation ID: <code>deleteKmsIssuerPolicy</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |
+| <code>kind</code> | <code>path</code> | <code>enum: project-grant, connex-grant</code> | Yes | The issuer policy kind. |
+| <code>policyKey</code> | <code>path</code> | <code>string</code> | Yes | The policy identifier. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="204" class="status" data-status="2xx">204</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-8" class="status" data-status="4xx">404</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v1kmsissuersissuerid" class="operation" data-method="delete"><code>DELETE</code> /v1/kms/issuers/{issuerId}</h3>
+<p>Operation ID: <code>deleteKmsIssuer</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-10">Responses</h4>
+<h5 id="204-1" class="status" data-status="2xx">204</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-8" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-8" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-9" class="status" data-status="4xx">404</h5>
+<h5 id="410-8" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="patch-v1kmsissuersissueridpolicieskindpolicykey" class="operation" data-method="patch"><code>PATCH</code> /v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}</h3>
+<p>Operation ID: <code>updateKmsIssuerPolicy</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |
+| <code>kind</code> | <code>path</code> | <code>enum: project-grant</code> | Yes | The issuer policy kind. |
+| <code>policyKey</code> | <code>path</code> | <code>string</code> | Yes | The policy identifier. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-6">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...).</td>
+</tr>
+<tr>
+<td><code>tokenClaims</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The claims that KMS should include in signed JWTs for this policy. Pass null to remove them.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-7" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-9" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-9" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-10" class="status" data-status="4xx">404</h5>
+<h5 id="410-9" class="status" data-status="4xx">410</h5>
+<h3 id="patch-v1kmsissuersissuerid" class="operation" data-method="patch"><code>PATCH</code> /v1/kms/issuers/{issuerId}</h3>
+<p>Operation ID: <code>updateKmsIssuer</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>issuerId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the issuer. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-7">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>claimsSchema</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A JSON Schema used to validate the resolved token claims when signing tokens for this issuer. Pass null to remove it.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the issuer.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-8" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>algorithm</code></td>
+<td><code>enum: ES256, ES384, ES512, PS256, PS384, PS512, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>claimsSchema</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td><code>enum: external, vercel</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>policies</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].activateAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].activatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).</td>
+</tr>
+<tr>
+<td><code>signingKeys[].algorithm</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].certificatePem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The stored X.509 certificate (from <code>publicKey.x5c[0]</code>) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].importKeyId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The caller-supplied key id (imported keys only), used as the JWT/JWKS <code>kid</code>. Not unique across an issuer's keys; omitted for generated keys.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].issuerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].keyId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.alg</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.key_ops</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.kid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.kty</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.use</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.x5c</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as <code>[x5c]</code>.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKey.x5t#S256</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The base64url SHA-256 thumbprint of the DER certificate in <code>x5c[0]</code> (RFC 7517 §4.9).</td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKeyFingerprint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].publicKeyPem</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from <code>publicKey</code>; the embedded certificate members (<code>x5c</code>/<code>x5t#S256</code>) do not affect it.</td>
+</tr>
+<tr>
+<td><code>signingKeys[].revokeAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].status</code></td>
+<td><code>enum: active, pending, revoking</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>signingKeys[].updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-6" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-10" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-10" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-11" class="status" data-status="4xx">404</h5>
+<h5 id="410-10" class="status" data-status="4xx">410</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

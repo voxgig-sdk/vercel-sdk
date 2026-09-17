@@ -1,0 +1,41 @@
+# BasicObservabilityFlow
+
+main: kit: flow: BasicObservabilityFlow:
+{
+  entity: "observability",
+  kind: "basic",
+  name: "BasicObservabilityFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "observability_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "observability_ref01",
+        srcdatavar: "observability_ref01_data",
+        suffix: "_up0",
+        textfield: "name"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-observability_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicObservabilityFlow"
+}

@@ -1,0 +1,1244 @@
+# Entity: kms
+
+main: kit: entity: kms: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "activation"
+      req: false
+      short: "Whether the new key is activated automatically after its public key has propagated, or manually via the activate endpoint."
+      type: "`$STRING`"
+    }
+    {
+      name: "alg"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "algorithm"
+      req: true
+      short: "Algorithm of the signing key."
+      type: "`$STRING`"
+    }
+    {
+      name: "claims"
+      req: false
+      short: "The claims to include in the token."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "claimsSchema"
+      req: false
+      short: "A JSON Schema used to validate the resolved token claims when signing tokens for this issuer."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "createdAt"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "environments"
+      op: {
+        update: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      req: true
+      short: "The environments for the project grant policy."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "headers"
+      req: false
+      short: "Additional headers to include in the token."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "importKey"
+      req: false
+      short: "The PEM-encoded private key to use for the issuer."
+      type: "`$STRING`"
+    }
+    {
+      name: "importKeyId"
+      req: false
+      short: "The key id to use as the imported key's JWT/JWKS `kid`."
+      type: "`$STRING`"
+    }
+    {
+      name: "keyId"
+      req: true
+      short: "Key id of the signing key."
+      type: "`$STRING`"
+    }
+    {
+      name: "key_ops"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "kid"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "kind"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "kty"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "managedBy"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "message"
+      req: true
+      short: "Base64-encoded message to be signed."
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      short: "The name of the issuer."
+      type: "`$STRING`"
+    }
+    {
+      name: "origin"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "ownerId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "policies"
+      req: true
+      type: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
+    }
+    {
+      name: "projectId"
+      req: true
+      short: "The project ID for the project grant policy."
+      type: "`$STRING`"
+    }
+    {
+      name: "revokePreviousAfterHours"
+      req: false
+      short: "How many hours after activation the previously-active key should stop being used."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "revokePreviousAt"
+      req: false
+      short: "Deprecated."
+      type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "signature"
+      req: true
+      short: "Standard-base64 encoding of the raw signature over the decoded message bytes."
+      type: "`$STRING`"
+    }
+    {
+      name: "signingKeys"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "token"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "tokenClaims"
+      req: false
+      short: "The claims that KMS should include in signed JWTs for this policy."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "ttl"
+      req: false
+      short: "The time-to-live for the token, in seconds."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "updatedAt"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "use"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "x5c"
+      req: false
+      short: "The X.509 certificate chain (RFC 7517 §4.7)."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "x5tS256"
+      req: false
+      short: "The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9)."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "kms"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "key_id"
+                orig: "key_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/kms/issuers/{issuerId}/keys/{keyId}/activate"
+            json: "{\"operationId\":\"activateKmsSigningKey\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}},{\"description\":\"The ID of the pending signing key to activate.\",\"in\":\"path\",\"name\":\"keyId\",\"required\":true,\"schema\":{\"description\":\"The ID of the pending signing key to activate.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"revokePreviousAfterHours\":{\"description\":\"How many hours after activation the previously-active key should stop being used. Defaults to a 1 hour grace period so already-issued tokens keep verifying.\",\"minimum\":0,\"type\":\"number\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"activateAt\":{\"type\":\"string\"},\"activatedAt\":{\"description\":\"When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).\",\"type\":\"string\"},\"algorithm\":{\"type\":\"string\"},\"certificatePem\":{\"description\":\"The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.\",\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"importKeyId\":{\"description\":\"The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.\",\"type\":\"string\"},\"issuerId\":{\"type\":\"string\"},\"keyId\":{\"description\":\"The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.\",\"type\":\"string\"},\"publicKey\":{\"properties\":{\"alg\":{\"type\":\"string\"},\"key_ops\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kid\":{\"type\":\"string\"},\"kty\":{\"type\":\"string\"},\"use\":{\"type\":\"string\"},\"x5c\":{\"description\":\"The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"x5t#S256\":{\"description\":\"The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).\",\"type\":\"string\"}},\"type\":\"object\"},\"publicKeyFingerprint\":{\"type\":\"string\"},\"publicKeyPem\":{\"description\":\"The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.\",\"type\":\"string\"},\"revokeAt\":{\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"pending\",\"revoking\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"issuerId\",\"keyId\",\"status\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/kms/issuers/{issuerId}/keys/{keyId}/activate"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+              keyId: "key_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+            {
+              lit: "keys"
+            }
+            {
+              var: "key_id"
+            }
+            {
+              lit: "activate"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+              "key_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              revokePreviousAfterHours: "`reqdata.revoke_previous_after_hour`"
+            }
+            res: "`body.publicKey`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "key_id"
+                orig: "key_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/kms/issuers/{issuerId}/keys/{keyId}/revoke"
+            json: "{\"operationId\":\"revokeKmsSigningKey\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}},{\"description\":\"The ID of the signing key to revoke immediately. The key must already be scheduled for revocation.\",\"in\":\"path\",\"name\":\"keyId\",\"required\":true,\"schema\":{\"description\":\"The ID of the signing key to revoke immediately. The key must already be scheduled for revocation.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"enum\":[\"ES256\",\"ES384\",\"ES512\",\"PS256\",\"PS384\",\"PS512\",\"RS256\",\"RS384\",\"RS512\"],\"type\":\"string\"},\"claimsSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"managedBy\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"external\",\"vercel\"],\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"policies\":{\"items\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"string\"},\"environments\":{\"description\":\"Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kind\":{\"enum\":[\"project-grant\"],\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"environments\",\"kind\",\"projectId\",\"teamId\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"clientId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"connex-grant\"],\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"clientId\",\"createdAt\",\"kind\",\"updatedAt\"],\"type\":\"object\"}]},\"type\":\"array\"},\"signingKeys\":{\"items\":{\"properties\":{\"activateAt\":{\"type\":\"string\"},\"activatedAt\":{\"description\":\"When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).\",\"type\":\"string\"},\"algorithm\":{\"type\":\"string\"},\"certificatePem\":{\"description\":\"The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.\",\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"importKeyId\":{\"description\":\"The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.\",\"type\":\"string\"},\"issuerId\":{\"type\":\"string\"},\"keyId\":{\"description\":\"The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.\",\"type\":\"string\"},\"publicKey\":{\"properties\":{\"alg\":{\"type\":\"string\"},\"key_ops\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kid\":{\"type\":\"string\"},\"kty\":{\"type\":\"string\"},\"use\":{\"type\":\"string\"},\"x5c\":{\"description\":\"The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"x5t#S256\":{\"description\":\"The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).\",\"type\":\"string\"}},\"type\":\"object\"},\"publicKeyFingerprint\":{\"type\":\"string\"},\"publicKeyPem\":{\"description\":\"The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.\",\"type\":\"string\"},\"revokeAt\":{\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"pending\",\"revoking\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"issuerId\",\"keyId\",\"status\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"id\",\"name\",\"origin\",\"ownerId\",\"policies\",\"signingKeys\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/kms/issuers/{issuerId}/keys/{keyId}/revoke"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+              keyId: "key_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+            {
+              lit: "keys"
+            }
+            {
+              var: "key_id"
+            }
+            {
+              lit: "revoke"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+              "key_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/kms/issuers/{issuerId}/keys"
+            json: "{\"operationId\":\"createKmsSigningKey\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"activation\":{\"description\":\"Whether the new key is activated automatically after its public key has propagated, or manually via the activate endpoint. Defaults to `automatic`.\",\"enum\":[\"automatic\",\"manual\"],\"type\":\"string\"},\"importKey\":{\"description\":\"The PEM-encoded private key to use for the issuer.\",\"type\":\"string\"},\"importKeyId\":{\"description\":\"The key id to use as the imported key's JWT/JWKS `kid`. Only allowed when `importKey` is provided. Not required to be unique; the addressable key id is the server-minted `keyId` returned in the response.\",\"maxLength\":128,\"pattern\":\"^[A-Za-z0-9._-]+$\",\"type\":\"string\"},\"revokePreviousAfterHours\":{\"description\":\"For automatic activation, how many hours after activation the previous signing key should stop being used. Defaults to a 1 hour grace period so already-issued tokens keep verifying.\",\"minimum\":0,\"type\":\"number\"},\"revokePreviousAt\":{\"description\":\"Deprecated. The ISO date string or timestamp when the previous signing key should stop being used. Converted to a relative grace and applied at activation, not creation. Prefer revokePreviousAfterHours.\",\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"activateAt\":{\"type\":\"string\"},\"activatedAt\":{\"description\":\"When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).\",\"type\":\"string\"},\"algorithm\":{\"type\":\"string\"},\"certificatePem\":{\"description\":\"The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.\",\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"importKeyId\":{\"description\":\"The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.\",\"type\":\"string\"},\"issuerId\":{\"type\":\"string\"},\"keyId\":{\"description\":\"The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.\",\"type\":\"string\"},\"publicKey\":{\"properties\":{\"alg\":{\"type\":\"string\"},\"key_ops\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kid\":{\"type\":\"string\"},\"kty\":{\"type\":\"string\"},\"use\":{\"type\":\"string\"},\"x5c\":{\"description\":\"The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"x5t#S256\":{\"description\":\"The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).\",\"type\":\"string\"}},\"type\":\"object\"},\"publicKeyFingerprint\":{\"type\":\"string\"},\"publicKeyPem\":{\"description\":\"The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.\",\"type\":\"string\"},\"revokeAt\":{\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"pending\",\"revoking\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"issuerId\",\"keyId\",\"status\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/kms/issuers/{issuerId}/keys"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+            {
+              lit: "keys"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              activation: "`reqdata.activation`"
+              importKey: "`reqdata.import_key`"
+              importKeyId: "`reqdata.import_key_id`"
+              revokePreviousAfterHours: "`reqdata.revoke_previous_after_hour`"
+              revokePreviousAt: "`reqdata.revoke_previous_at`"
+            }
+            res: "`body.publicKey`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/kms/issuers/{issuerId}/policies"
+            json: "{\"operationId\":\"createKmsIssuerPolicy\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"environments\":{\"description\":\"The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...).\",\"items\":{\"pattern\":\"^(?:production|preview|development|env_.+)$\",\"type\":\"string\"},\"minItems\":1,\"type\":\"array\",\"uniqueItems\":true},\"kind\":{\"enum\":[\"project-grant\"],\"type\":\"string\"},\"projectId\":{\"description\":\"The project ID for the project grant policy.\",\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"description\":\"The claims that KMS should include in signed JWTs for this policy.\",\"type\":\"object\"}},\"required\":[\"kind\",\"projectId\",\"environments\"],\"type\":\"object\"}}}},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"string\"},\"environments\":{\"description\":\"Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kind\":{\"enum\":[\"project-grant\"],\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"environments\",\"kind\",\"projectId\",\"teamId\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"clientId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"connex-grant\"],\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"clientId\",\"createdAt\",\"kind\",\"updatedAt\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/kms/issuers/{issuerId}/policies"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+            {
+              lit: "policies"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              environments: "`reqdata.environment`"
+              kind: "`reqdata.kind`"
+              projectId: "`reqdata.project_id`"
+              tokenClaims: "`reqdata.token_claim`"
+            }
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/kms/issuers"
+            json: "{\"operationId\":\"createKmsIssuer\",\"parameters\":[{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"algorithm\":{\"default\":\"RS512\",\"description\":\"The signing algorithm to use for the issuer.\",\"enum\":[\"RS256\",\"RS384\",\"RS512\",\"PS256\",\"PS384\",\"PS512\",\"ES256\",\"ES384\",\"ES512\"],\"type\":\"string\"},\"claimsSchema\":{\"additionalProperties\":true,\"description\":\"A JSON Schema used to validate the resolved token claims when signing tokens for this issuer.\",\"type\":\"object\"},\"importKey\":{\"description\":\"The PEM-encoded private key to use for the issuer.\",\"type\":\"string\"},\"importKeyId\":{\"description\":\"The key id to use as the imported key's JWT/JWKS `kid`. Only allowed when `importKey` is provided. Not required to be unique; the addressable key id is the server-minted `keyId` returned in the response.\",\"maxLength\":128,\"pattern\":\"^[A-Za-z0-9._-]+$\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the issuer.\",\"type\":\"string\"},\"policy\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"environments\":{\"description\":\"The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...).\",\"items\":{\"pattern\":\"^(?:production|preview|development|env_.+)$\",\"type\":\"string\"},\"minItems\":1,\"type\":\"array\",\"uniqueItems\":true},\"kind\":{\"enum\":[\"project-grant\"],\"type\":\"string\"},\"projectId\":{\"description\":\"The project ID for the project grant policy.\",\"type\":\"string\"},\"teamId\":{\"description\":\"The team ID for the project grant policy.\",\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"description\":\"The claims that KMS should include in signed JWTs for this policy.\",\"type\":\"object\"}},\"required\":[\"kind\",\"teamId\",\"projectId\",\"environments\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"clientId\":{\"description\":\"The Connex client ID for the Connex grant policy.\",\"type\":\"string\"},\"kind\":{\"enum\":[\"connex-grant\"],\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"description\":\"The claims that KMS should include in signed JWTs for this policy.\",\"type\":\"object\"}},\"required\":[\"kind\",\"clientId\"],\"type\":\"object\"}]}},\"required\":[\"name\"],\"type\":\"object\"}}}},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"enum\":[\"ES256\",\"ES384\",\"ES512\",\"PS256\",\"PS384\",\"PS512\",\"RS256\",\"RS384\",\"RS512\"],\"type\":\"string\"},\"claimsSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"managedBy\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"external\",\"vercel\"],\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"policies\":{\"items\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"string\"},\"environments\":{\"description\":\"Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kind\":{\"enum\":[\"project-grant\"],\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"environments\",\"kind\",\"projectId\",\"teamId\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"clientId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"connex-grant\"],\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"clientId\",\"createdAt\",\"kind\",\"updatedAt\"],\"type\":\"object\"}]},\"type\":\"array\"},\"signingKeys\":{\"items\":{\"properties\":{\"activateAt\":{\"type\":\"string\"},\"activatedAt\":{\"description\":\"When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).\",\"type\":\"string\"},\"algorithm\":{\"type\":\"string\"},\"certificatePem\":{\"description\":\"The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.\",\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"importKeyId\":{\"description\":\"The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.\",\"type\":\"string\"},\"issuerId\":{\"type\":\"string\"},\"keyId\":{\"description\":\"The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.\",\"type\":\"string\"},\"publicKey\":{\"properties\":{\"alg\":{\"type\":\"string\"},\"key_ops\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kid\":{\"type\":\"string\"},\"kty\":{\"type\":\"string\"},\"use\":{\"type\":\"string\"},\"x5c\":{\"description\":\"The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"x5t#S256\":{\"description\":\"The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).\",\"type\":\"string\"}},\"type\":\"object\"},\"publicKeyFingerprint\":{\"type\":\"string\"},\"publicKeyPem\":{\"description\":\"The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.\",\"type\":\"string\"},\"revokeAt\":{\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"pending\",\"revoking\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"issuerId\",\"keyId\",\"status\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"id\",\"name\",\"origin\",\"ownerId\",\"policies\",\"signingKeys\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/kms/issuers"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+          ]
+          select: {
+            "$action": "issuer"
+            exist: [
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              algorithm: "`reqdata.algorithm`"
+              claimsSchema: "`reqdata.claims_schema`"
+              importKey: "`reqdata.import_key`"
+              importKeyId: "`reqdata.import_key_id`"
+              name: "`reqdata.name`"
+              policy: "`reqdata.policy`"
+            }
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/kms/issuers/{issuerId}/sign/message"
+            json: "{\"operationId\":\"signKmsMessage\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"description\":\"Base64-encoded message to be signed.\",\"maxLength\":44000,\"pattern\":\"^[A-Za-z0-9+/]*={0,2}$\",\"type\":\"string\"}},\"required\":[\"message\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"description\":\"Algorithm of the signing key.\",\"type\":\"string\"},\"keyId\":{\"description\":\"Key id of the signing key. Matches the JWKS `kid` so verifiers can select the key after rotation without trial-verifying every published key.\",\"type\":\"string\"},\"signature\":{\"description\":\"Standard-base64 encoding of the raw signature over the decoded message bytes.\",\"type\":\"string\"}},\"required\":[\"algorithm\",\"keyId\",\"signature\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"\"},\"403\":{\"description\":\"\"},\"404\":{\"description\":\"\"},\"429\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/kms/issuers/{issuerId}/sign/message"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+            {
+              lit: "sign"
+            }
+            {
+              lit: "message"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/kms/issuers/{issuerId}/sign/token"
+            json: "{\"operationId\":\"signKmsToken\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"claims\":{\"description\":\"The claims to include in the token.\",\"maxProperties\":128,\"type\":\"object\"},\"headers\":{\"description\":\"Additional headers to include in the token.\",\"maxProperties\":64,\"type\":\"object\"},\"ttl\":{\"default\":300,\"description\":\"The time-to-live for the token, in seconds.\",\"nullable\":true,\"type\":\"number\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"\"},\"403\":{\"description\":\"\"},\"404\":{\"description\":\"\"},\"429\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/kms/issuers/{issuerId}/sign/token"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+            {
+              lit: "sign"
+            }
+            {
+              lit: "token"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "next"
+                orig: "next"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/kms/issuers"
+            json: "{\"operationId\":\"listKmsIssuers\",\"parameters\":[{\"description\":\"Maximum number of issuers to return.\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"description\":\"Maximum number of issuers to return.\",\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Continuation cursor to retrieve the next page of results.\",\"in\":\"query\",\"name\":\"next\",\"schema\":{\"description\":\"Continuation cursor to retrieve the next page of results.\",\"maxLength\":1024,\"pattern\":\"^[A-Za-z0-9_-]+$\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"issuers\":{\"items\":{\"properties\":{\"algorithm\":{\"enum\":[\"ES256\",\"ES384\",\"ES512\",\"PS256\",\"PS384\",\"PS512\",\"RS256\",\"RS384\",\"RS512\"],\"type\":\"string\"},\"claimsSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"managedBy\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"external\",\"vercel\"],\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"policies\":{\"items\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"string\"},\"environments\":{\"description\":\"Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kind\":{\"enum\":[\"project-grant\"],\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"environments\",\"kind\",\"projectId\",\"teamId\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"clientId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"connex-grant\"],\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"clientId\",\"createdAt\",\"kind\",\"updatedAt\"],\"type\":\"object\"}]},\"type\":\"array\"},\"signingKeys\":{\"items\":{\"properties\":{\"activateAt\":{\"type\":\"string\"},\"activatedAt\":{\"description\":\"When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).\",\"type\":\"string\"},\"algorithm\":{\"type\":\"string\"},\"certificatePem\":{\"description\":\"The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.\",\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"importKeyId\":{\"description\":\"The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.\",\"type\":\"string\"},\"issuerId\":{\"type\":\"string\"},\"keyId\":{\"description\":\"The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.\",\"type\":\"string\"},\"publicKey\":{\"properties\":{\"alg\":{\"type\":\"string\"},\"key_ops\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kid\":{\"type\":\"string\"},\"kty\":{\"type\":\"string\"},\"use\":{\"type\":\"string\"},\"x5c\":{\"description\":\"The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"x5t#S256\":{\"description\":\"The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).\",\"type\":\"string\"}},\"type\":\"object\"},\"publicKeyFingerprint\":{\"type\":\"string\"},\"publicKeyPem\":{\"description\":\"The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.\",\"type\":\"string\"},\"revokeAt\":{\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"pending\",\"revoking\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"issuerId\",\"keyId\",\"status\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"id\",\"name\",\"origin\",\"ownerId\",\"policies\",\"signingKeys\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"},\"pagination\":{\"properties\":{\"count\":{\"type\":\"number\"},\"next\":{\"nullable\":true,\"type\":\"string\"}},\"required\":[\"count\",\"next\"],\"type\":\"object\"}},\"required\":[\"issuers\",\"pagination\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/kms/issuers"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+          ]
+          select: {
+            "$action": "issuer"
+            exist: [
+              "limit"
+              "next"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/kms/issuers/{issuerId}"
+            json: "{\"operationId\":\"getKmsIssuer\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"enum\":[\"ES256\",\"ES384\",\"ES512\",\"PS256\",\"PS384\",\"PS512\",\"RS256\",\"RS384\",\"RS512\"],\"type\":\"string\"},\"claimsSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"managedBy\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"external\",\"vercel\"],\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"policies\":{\"items\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"string\"},\"environments\":{\"description\":\"Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kind\":{\"enum\":[\"project-grant\"],\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"environments\",\"kind\",\"projectId\",\"teamId\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"clientId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"connex-grant\"],\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"clientId\",\"createdAt\",\"kind\",\"updatedAt\"],\"type\":\"object\"}]},\"type\":\"array\"},\"signingKeys\":{\"items\":{\"properties\":{\"activateAt\":{\"type\":\"string\"},\"activatedAt\":{\"description\":\"When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).\",\"type\":\"string\"},\"algorithm\":{\"type\":\"string\"},\"certificatePem\":{\"description\":\"The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.\",\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"importKeyId\":{\"description\":\"The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.\",\"type\":\"string\"},\"issuerId\":{\"type\":\"string\"},\"keyId\":{\"description\":\"The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.\",\"type\":\"string\"},\"publicKey\":{\"properties\":{\"alg\":{\"type\":\"string\"},\"key_ops\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kid\":{\"type\":\"string\"},\"kty\":{\"type\":\"string\"},\"use\":{\"type\":\"string\"},\"x5c\":{\"description\":\"The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"x5t#S256\":{\"description\":\"The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).\",\"type\":\"string\"}},\"type\":\"object\"},\"publicKeyFingerprint\":{\"type\":\"string\"},\"publicKeyPem\":{\"description\":\"The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.\",\"type\":\"string\"},\"revokeAt\":{\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"pending\",\"revoking\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"issuerId\",\"keyId\",\"status\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"id\",\"name\",\"origin\",\"ownerId\",\"policies\",\"signingKeys\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/kms/issuers/{issuerId}"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "kind"
+                orig: "kind"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "policy_key"
+                orig: "policy_key"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}"
+            json: "{\"operationId\":\"deleteKmsIssuerPolicy\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}},{\"description\":\"The issuer policy kind.\",\"in\":\"path\",\"name\":\"kind\",\"required\":true,\"schema\":{\"description\":\"The issuer policy kind.\",\"enum\":[\"project-grant\",\"connex-grant\"],\"type\":\"string\"}},{\"description\":\"The policy identifier.\",\"in\":\"path\",\"name\":\"policyKey\",\"required\":true,\"schema\":{\"description\":\"The policy identifier.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+              policyKey: "policy_key"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+            {
+              lit: "policies"
+            }
+            {
+              var: "kind"
+            }
+            {
+              var: "policy_key"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+              "kind"
+              "policy_key"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/kms/issuers/{issuerId}"
+            json: "{\"operationId\":\"deleteKmsIssuer\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/kms/issuers/{issuerId}"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "kind"
+                orig: "kind"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "policy_key"
+                orig: "policy_key"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}"
+            json: "{\"operationId\":\"updateKmsIssuerPolicy\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}},{\"description\":\"The issuer policy kind.\",\"in\":\"path\",\"name\":\"kind\",\"required\":true,\"schema\":{\"description\":\"The issuer policy kind.\",\"enum\":[\"project-grant\"],\"type\":\"string\"}},{\"description\":\"The policy identifier.\",\"in\":\"path\",\"name\":\"policyKey\",\"required\":true,\"schema\":{\"description\":\"The policy identifier.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"environments\":{\"description\":\"The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...).\",\"items\":{\"pattern\":\"^(?:production|preview|development|env_.+)$\",\"type\":\"string\"},\"minItems\":1,\"type\":\"array\",\"uniqueItems\":true},\"tokenClaims\":{\"additionalProperties\":true,\"description\":\"The claims that KMS should include in signed JWTs for this policy. Pass null to remove them.\",\"nullable\":true,\"type\":\"object\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"string\"},\"environments\":{\"description\":\"Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kind\":{\"enum\":[\"project-grant\"],\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"environments\",\"kind\",\"projectId\",\"teamId\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"clientId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"connex-grant\"],\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"clientId\",\"createdAt\",\"kind\",\"updatedAt\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+              policyKey: "policy_key"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+            {
+              lit: "policies"
+            }
+            {
+              var: "kind"
+            }
+            {
+              var: "policy_key"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+              "kind"
+              "policy_key"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              environments: "`reqdata.environment`"
+              tokenClaims: "`reqdata.token_claim`"
+            }
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "issuer_id"
+                orig: "issuer_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v1/kms/issuers/{issuerId}"
+            json: "{\"operationId\":\"updateKmsIssuer\",\"parameters\":[{\"description\":\"The ID of the issuer.\",\"in\":\"path\",\"name\":\"issuerId\",\"required\":true,\"schema\":{\"description\":\"The ID of the issuer.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"minProperties\":1,\"properties\":{\"claimsSchema\":{\"additionalProperties\":true,\"description\":\"A JSON Schema used to validate the resolved token claims when signing tokens for this issuer. Pass null to remove it.\",\"nullable\":true,\"type\":\"object\"},\"name\":{\"description\":\"The name of the issuer.\",\"type\":\"string\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"enum\":[\"ES256\",\"ES384\",\"ES512\",\"PS256\",\"PS384\",\"PS512\",\"RS256\",\"RS384\",\"RS512\"],\"type\":\"string\"},\"claimsSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"managedBy\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"external\",\"vercel\"],\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"policies\":{\"items\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"string\"},\"environments\":{\"description\":\"Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kind\":{\"enum\":[\"project-grant\"],\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"environments\",\"kind\",\"projectId\",\"teamId\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"clientId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"connex-grant\"],\"type\":\"string\"},\"tokenClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"clientId\",\"createdAt\",\"kind\",\"updatedAt\"],\"type\":\"object\"}]},\"type\":\"array\"},\"signingKeys\":{\"items\":{\"properties\":{\"activateAt\":{\"type\":\"string\"},\"activatedAt\":{\"description\":\"When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).\",\"type\":\"string\"},\"algorithm\":{\"type\":\"string\"},\"certificatePem\":{\"description\":\"The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.\",\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"importKeyId\":{\"description\":\"The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.\",\"type\":\"string\"},\"issuerId\":{\"type\":\"string\"},\"keyId\":{\"description\":\"The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.\",\"type\":\"string\"},\"publicKey\":{\"properties\":{\"alg\":{\"type\":\"string\"},\"key_ops\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"kid\":{\"type\":\"string\"},\"kty\":{\"type\":\"string\"},\"use\":{\"type\":\"string\"},\"x5c\":{\"description\":\"The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"x5t#S256\":{\"description\":\"The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).\",\"type\":\"string\"}},\"type\":\"object\"},\"publicKeyFingerprint\":{\"type\":\"string\"},\"publicKeyPem\":{\"description\":\"The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.\",\"type\":\"string\"},\"revokeAt\":{\"type\":\"string\"},\"status\":{\"enum\":[\"active\",\"pending\",\"revoking\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"issuerId\",\"keyId\",\"status\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"algorithm\",\"createdAt\",\"id\",\"name\",\"origin\",\"ownerId\",\"policies\",\"signingKeys\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v1/kms/issuers/{issuerId}"
+          rename: {
+            param: {
+              issuerId: "issuer_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "kms"
+            }
+            {
+              lit: "issuers"
+            }
+            {
+              var: "issuer_id"
+            }
+          ]
+          select: {
+            exist: [
+              "issuer_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              claimsSchema: "`reqdata.claims_schema`"
+              name: "`reqdata.name`"
+            }
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "issuer"
+      ]
+      [
+        "issuer"
+        "key"
+      ]
+      [
+        "issuer"
+        "policy"
+      ]
+    ]
+  }
+
+
+
+}

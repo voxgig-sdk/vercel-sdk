@@ -1,0 +1,651 @@
+# Entity: alias
+
+main: kit: entity: alias: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alias"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      short: "The alias name, it could be a `.vercel.app` subdomain or a custom domain"
+      type: "`$STRING`"
+    }
+    {
+      format: "date-time"
+      name: "created"
+      req: true
+      short: "The date when the alias was created"
+      type: "`$STRING`"
+    }
+    {
+      name: "createdAt"
+      req: false
+      short: "The date when the alias was created in milliseconds since the UNIX epoch"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "creator"
+      req: true
+      short: "Information of the user who created the alias"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "deletedAt"
+      req: false
+      short: "The date when the alias was deleted in milliseconds since the UNIX epoch"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "deployment"
+      req: true
+      short: "A map with the deployment ID, URL and metadata"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "deploymentId"
+      req: true
+      short: "The deployment ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "microfrontends"
+      req: true
+      short: "The microfrontends for the alias including the routing configuration"
+      type: "`$OBJECT`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 2
+      }
+    }
+    {
+      name: "oldDeploymentId"
+      req: false
+      short: "The unique identifier of the previously aliased deployment, only received when the alias was used before"
+      type: "`$STRING`"
+    }
+    {
+      name: "projectId"
+      req: true
+      short: "The unique identifier of the project"
+      type: "`$STRING`"
+    }
+    {
+      name: "protectionBypass"
+      req: false
+      short: "The protection bypass for the alias"
+      type: "`$OBJECT`"
+      union: {
+        branches: 4
+        count: 1
+        depth: 1
+      }
+    }
+    {
+      name: "redirect"
+      req: false
+      short: "Target destination domain for redirect when the alias is a redirect"
+      type: "`$STRING`"
+    }
+    {
+      name: "redirectStatusCode"
+      req: false
+      short: "Status code to be used on redirect"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "uid"
+      req: true
+      short: "The unique identifier of the alias"
+      type: "`$STRING`"
+    }
+    {
+      name: "updatedAt"
+      req: false
+      short: "The date when the alias was updated in milliseconds since the UNIX epoch"
+      type: "`$NUMBER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "alias"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "dpl_FjvFJncQHQcZMznrUm9EoB8sFuPa"
+                kind: "param"
+                name: "deployment_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v2/deployments/{id}/aliases"
+            json: "{\"operationId\":\"assignAlias\",\"parameters\":[{\"description\":\"The deployment or alias ID or URL to assign from\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"description\":\"The deployment or alias ID or URL to assign from\",\"example\":\"dpl_FjvFJncQHQcZMznrUm9EoB8sFuPa\",\"oneOf\":[{\"type\":\"string\"}]}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"alias\":{\"description\":\"The alias we want to assign to the deployment defined in the URL\",\"example\":\"my-alias.vercel.app\",\"type\":\"string\"},\"redirect\":{\"description\":\"The redirect property will take precedence over the deployment id from the URL and consists of a hostname (like test.com) to which the alias should redirect using status code 307\",\"example\":null,\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"alias\":{\"description\":\"The assigned alias name\",\"example\":\"my-alias.vercel.app\",\"type\":\"string\"},\"created\":{\"description\":\"The date when the alias was created\",\"example\":\"2017-04-26T23:00:34.232Z\",\"format\":\"date-time\",\"type\":\"string\"},\"oldDeploymentId\":{\"description\":\"The unique identifier of the previously aliased deployment, only received when the alias was used before\",\"example\":\"dpl_FjvFJncQHQcZMznrUm9EoB8sFuPa\",\"nullable\":true,\"type\":\"string\"},\"uid\":{\"description\":\"The unique identifier of the alias\",\"example\":\"2WjyKQmM8ZnGcJsPWMrHRHrE\",\"type\":\"string\"}},\"required\":[\"alias\",\"created\",\"uid\"],\"type\":\"object\"}}},\"description\":\"The alias was successfully assigned to the deployment\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\\nThe cert for the provided alias is not ready\\nThe deployment is not READY and can not be aliased\\nThe supplied alias is invalid\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\\nIf no .vercel.app alias exists then we fail (nothing to mirror)\"},\"404\":{\"description\":\"The domain used for the alias was not found\\nThe deployment was not found\"},\"409\":{\"description\":\"The provided alias is already assigned to the given deployment\\nThe domain is not allowed to be used\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v2/deployments/{id}/aliases"
+          rename: {
+            param: {
+              id: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "aliases"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              alias: "`reqdata`"
+            }
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "my-test-domain.com"
+                kind: "query"
+                name: "domain"
+                orig: "domain"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                example: 1540095775951
+                kind: "query"
+                name: "from"
+                orig: "from"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: 10
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: "prj_12HKQaOmR5t5Uy6vdcQsNIiZgHGB"
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "dpl_XXX"
+                kind: "query"
+                name: "rollback_deployment_id"
+                orig: "rollback_deployment_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1540095775941
+                kind: "query"
+                name: "since"
+                orig: "since"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1540095775951
+                kind: "query"
+                name: "until"
+                orig: "until"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v4/aliases"
+            json: "{\"operationId\":\"listAliases\",\"parameters\":[{\"description\":\"Get only aliases of the given domain name\",\"in\":\"query\",\"name\":\"domain\",\"schema\":{\"description\":\"Get only aliases of the given domain name\",\"example\":\"my-test-domain.com\",\"maxItems\":20,\"oneOf\":[{\"items\":{\"type\":\"string\"},\"type\":\"array\"},{\"type\":\"string\"}]}},{\"description\":\"Get only aliases created after the provided timestamp\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"deprecated\":true,\"description\":\"Get only aliases created after the provided timestamp\",\"example\":1540095775951,\"type\":\"number\"}},{\"description\":\"Maximum number of aliases to list from a request\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"description\":\"Maximum number of aliases to list from a request\",\"example\":10,\"type\":\"number\"}},{\"description\":\"Filter aliases from the given `projectId`\",\"in\":\"query\",\"name\":\"projectId\",\"schema\":{\"description\":\"Filter aliases from the given `projectId`\",\"example\":\"prj_12HKQaOmR5t5Uy6vdcQsNIiZgHGB\",\"type\":\"string\"}},{\"description\":\"Get aliases created after this JavaScript timestamp\",\"in\":\"query\",\"name\":\"since\",\"schema\":{\"description\":\"Get aliases created after this JavaScript timestamp\",\"example\":1540095775941,\"type\":\"number\"}},{\"description\":\"Get aliases created before this JavaScript timestamp\",\"in\":\"query\",\"name\":\"until\",\"schema\":{\"description\":\"Get aliases created before this JavaScript timestamp\",\"example\":1540095775951,\"type\":\"number\"}},{\"description\":\"Get aliases that would be rolled back for the given deployment\",\"in\":\"query\",\"name\":\"rollbackDeploymentId\",\"schema\":{\"description\":\"Get aliases that would be rolled back for the given deployment\",\"example\":\"dpl_XXX\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"aliases\":{\"items\":{\"properties\":{\"alias\":{\"description\":\"The alias name, it could be a `.vercel.app` subdomain or a custom domain\",\"example\":\"my-alias.vercel.app\",\"type\":\"string\"},\"created\":{\"description\":\"The date when the alias was created\",\"example\":\"2017-04-26T23:00:34.232Z\",\"format\":\"date-time\",\"type\":\"string\"},\"createdAt\":{\"description\":\"The date when the alias was created in milliseconds since the UNIX epoch\",\"example\":1540095775941,\"type\":\"number\"},\"creator\":{\"description\":\"Information of the user who created the alias\",\"properties\":{\"email\":{\"description\":\"Email of the user who created the alias\",\"example\":\"john-doe@gmail.com\",\"type\":\"string\"},\"uid\":{\"description\":\"ID of the user who created the alias\",\"example\":\"96SnxkFiMyVKsK3pnoHfx3Hz\",\"type\":\"string\"},\"username\":{\"description\":\"Username of the user who created the alias\",\"example\":\"john-doe\",\"type\":\"string\"}},\"required\":[\"uid\"],\"type\":\"object\"},\"deletedAt\":{\"description\":\"The date when the alias was deleted in milliseconds since the UNIX epoch\",\"example\":1540095775941,\"nullable\":true,\"type\":\"number\"},\"deployment\":{\"description\":\"A map with the deployment ID, URL and metadata\",\"properties\":{\"id\":{\"description\":\"The deployment unique identifier\",\"example\":\"dpl_5m8CQaRBm3FnWRW1od3wKTpaECPx\",\"type\":\"string\"},\"meta\":{\"description\":\"The deployment metadata\",\"example\":{},\"type\":\"string\"},\"url\":{\"description\":\"The deployment unique URL\",\"example\":\"my-instant-deployment-3ij3cxz9qr.now.sh\",\"type\":\"string\"}},\"required\":[\"id\"],\"type\":\"object\"},\"deploymentId\":{\"description\":\"The deployment ID\",\"example\":\"dpl_5m8CQaRBm3FnWRW1od3wKTpaECPx\",\"nullable\":true,\"type\":\"string\"},\"microfrontends\":{\"description\":\"The microfrontends for the alias including the routing configuration\",\"properties\":{\"applications\":{\"oneOf\":[{\"description\":\"A list of the deployment routing information for each project.\",\"items\":{\"description\":\"A list of the deployment routing information for each project.\",\"properties\":{\"fallbackHost\":{\"description\":\"This is always set. In production it is used as a pointer to each apps production deployment. For pre-production, it's used as the fallback if there is no deployment for the branch.\",\"type\":\"string\"},\"projectId\":{\"description\":\"The project ID of the microfrontends application.\",\"type\":\"string\"}},\"required\":[\"fallbackHost\",\"projectId\"],\"type\":\"object\"},\"type\":\"array\"},{\"description\":\"A list of the deployment routing information for each project.\",\"items\":{\"description\":\"A list of the deployment routing information for each project.\",\"properties\":{\"branchAlias\":{\"description\":\"Could point to a branch without a deployment if the project was never deployed. The proxy will fallback to the fallbackHost if there is no deployment.\",\"type\":\"string\"},\"fallbackHost\":{\"description\":\"This is always set. For branch aliases, it's used as the fallback if there is no deployment for the branch.\",\"type\":\"string\"},\"projectId\":{\"description\":\"The project ID of the microfrontends application.\",\"type\":\"string\"}},\"required\":[\"branchAlias\",\"fallbackHost\",\"projectId\"],\"type\":\"object\"},\"type\":\"array\"},{\"description\":\"A list of the deployment routing information for each project.\",\"items\":{\"description\":\"A list of the deployment routing information for each project.\",\"properties\":{\"branchAlias\":{\"type\":\"string\"},\"branchDeploymentId\":{\"description\":\"This is the latest non-cancelled deployment of the branch alias at the time the commit alias was created. It is possible there is no deployment for the branch, or this was set before the deployment was canceled, in which case this will point to a cancelled deployment, in either case the proxy will fallback to the fallbackDeploymentId.\",\"type\":\"string\"},\"deploymentId\":{\"description\":\"This is the deployment for the same commit, it could be a cancelled deployment. The proxy will fallback to the branchDeploymentId and then the fallbackDeploymentId.\",\"type\":\"string\"},\"fallbackDeploymentId\":{\"description\":\"This is the deployment of the fallback host at the time the commit alias was created. It is possible for this to be a deleted deployment, in which case the proxy will show that the deployment is deleted. It will not use the fallbackHost, as a future deployment on the fallback host could be invalid for this deployment, and it could lead to confusion / incorrect behavior for the commit alias.\",\"type\":\"string\"},\"fallbackHost\":{\"description\":\"Temporary for backwards compatibility. Can remove when metadata change is released\",\"type\":\"string\"},\"projectId\":{\"description\":\"The project ID of the microfrontends application.\",\"type\":\"string\"}},\"required\":[\"projectId\"],\"type\":\"object\"},\"type\":\"array\"}]},\"defaultApp\":{\"properties\":{\"projectId\":{\"type\":\"string\"}},\"required\":[\"projectId\"],\"type\":\"object\"}},\"required\":[\"applications\",\"defaultApp\"],\"type\":\"object\"},\"projectId\":{\"description\":\"The unique identifier of the project\",\"example\":\"prj_12HKQaOmR5t5Uy6vdcQsNIiZgHGB\",\"nullable\":true,\"type\":\"string\"},\"protectionBypass\":{\"additionalProperties\":{\"oneOf\":[{\"description\":\"The protection bypass for the alias\",\"properties\":{\"createdAt\":{\"type\":\"number\"},\"createdBy\":{\"type\":\"string\"},\"expires\":{\"type\":\"number\"},\"scope\":{\"enum\":[\"shareable-link\"],\"type\":\"string\"}},\"required\":[\"createdAt\",\"createdBy\",\"scope\"],\"type\":\"object\"},{\"description\":\"The protection bypass for the alias\",\"properties\":{\"access\":{\"enum\":[\"granted\",\"requested\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"lastUpdatedAt\":{\"type\":\"number\"},\"lastUpdatedBy\":{\"type\":\"string\"},\"scope\":{\"enum\":[\"user\"],\"type\":\"string\"}},\"required\":[\"access\",\"createdAt\",\"lastUpdatedAt\",\"lastUpdatedBy\",\"scope\"],\"type\":\"object\"},{\"description\":\"The protection bypass for the alias\",\"properties\":{\"createdAt\":{\"type\":\"number\"},\"createdBy\":{\"type\":\"string\"},\"scope\":{\"enum\":[\"alias-protection-override\"],\"type\":\"string\"}},\"required\":[\"createdAt\",\"createdBy\",\"scope\"],\"type\":\"object\"},{\"description\":\"The protection bypass for the alias\",\"properties\":{\"createdAt\":{\"type\":\"number\"},\"lastUpdatedAt\":{\"type\":\"number\"},\"lastUpdatedBy\":{\"type\":\"string\"},\"scope\":{\"enum\":[\"email_invite\"],\"type\":\"string\"}},\"required\":[\"createdAt\",\"lastUpdatedAt\",\"lastUpdatedBy\",\"scope\"],\"type\":\"object\"}]},\"description\":\"The protection bypass for the alias\",\"type\":\"object\"},\"redirect\":{\"description\":\"Target destination domain for redirect when the alias is a redirect\",\"nullable\":true,\"type\":\"string\"},\"redirectStatusCode\":{\"description\":\"Status code to be used on redirect\",\"enum\":[301,302,307,308,null],\"nullable\":true,\"type\":\"number\"},\"uid\":{\"description\":\"The unique identifier of the alias\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"The date when the alias was updated in milliseconds since the UNIX epoch\",\"example\":1540095775941,\"type\":\"number\"}},\"required\":[\"alias\",\"created\",\"deploymentId\",\"projectId\",\"uid\"],\"type\":\"object\"},\"type\":\"array\"},\"pagination\":{\"description\":\"This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.\",\"properties\":{\"count\":{\"description\":\"Amount of items in the current page.\",\"example\":20,\"type\":\"number\"},\"next\":{\"description\":\"Timestamp that must be used to request the next page.\",\"example\":1540095775951,\"nullable\":true,\"type\":\"number\"},\"prev\":{\"description\":\"Timestamp that must be used to request the previous page.\",\"example\":1540095775951,\"nullable\":true,\"type\":\"number\"}},\"required\":[\"count\",\"next\",\"prev\"],\"type\":\"object\"}},\"required\":[\"aliases\",\"pagination\"],\"type\":\"object\"}}},\"description\":\"The paginated list of aliases\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v4/aliases"
+          segments: [
+            {
+              lit: "v4"
+            }
+            {
+              lit: "aliases"
+            }
+          ]
+          select: {
+            exist: [
+              "domain"
+              "from"
+              "limit"
+              "project_id"
+              "rollback_deployment_id"
+              "since"
+              "slug"
+              "team_id"
+              "until"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "dpl_FjvFJncQHQcZMznrUm9EoB8sFuPa"
+                kind: "param"
+                name: "deployment_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/deployments/{id}/aliases"
+            json: "{\"operationId\":\"listDeploymentAliases\",\"parameters\":[{\"description\":\"The ID of the deployment the aliases should be listed for\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"description\":\"The ID of the deployment the aliases should be listed for\",\"example\":\"dpl_FjvFJncQHQcZMznrUm9EoB8sFuPa\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"aliases\":{\"description\":\"A list of the aliases assigned to the deployment\",\"items\":{\"description\":\"A list of the aliases assigned to the deployment\",\"properties\":{\"alias\":{\"description\":\"The alias name, it could be a `.vercel.app` subdomain or a custom domain\",\"example\":\"my-alias.vercel.app\",\"type\":\"string\"},\"created\":{\"description\":\"The date when the alias was created\",\"example\":\"2017-04-26T23:00:34.232Z\",\"format\":\"date-time\",\"type\":\"string\"},\"protectionBypass\":{\"additionalProperties\":{\"oneOf\":[{\"description\":\"The protection bypass for the alias\",\"properties\":{\"createdAt\":{\"type\":\"number\"},\"createdBy\":{\"type\":\"string\"},\"expires\":{\"type\":\"number\"},\"scope\":{\"enum\":[\"shareable-link\"],\"type\":\"string\"}},\"required\":[\"createdAt\",\"createdBy\",\"scope\"],\"type\":\"object\"},{\"description\":\"The protection bypass for the alias\",\"properties\":{\"access\":{\"enum\":[\"granted\",\"requested\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"lastUpdatedAt\":{\"type\":\"number\"},\"lastUpdatedBy\":{\"type\":\"string\"},\"scope\":{\"enum\":[\"user\"],\"type\":\"string\"}},\"required\":[\"access\",\"createdAt\",\"lastUpdatedAt\",\"lastUpdatedBy\",\"scope\"],\"type\":\"object\"},{\"description\":\"The protection bypass for the alias\",\"properties\":{\"createdAt\":{\"type\":\"number\"},\"createdBy\":{\"type\":\"string\"},\"scope\":{\"enum\":[\"alias-protection-override\"],\"type\":\"string\"}},\"required\":[\"createdAt\",\"createdBy\",\"scope\"],\"type\":\"object\"},{\"description\":\"The protection bypass for the alias\",\"properties\":{\"createdAt\":{\"type\":\"number\"},\"lastUpdatedAt\":{\"type\":\"number\"},\"lastUpdatedBy\":{\"type\":\"string\"},\"scope\":{\"enum\":[\"email_invite\"],\"type\":\"string\"}},\"required\":[\"createdAt\",\"lastUpdatedAt\",\"lastUpdatedBy\",\"scope\"],\"type\":\"object\"}]},\"description\":\"The protection bypass for the alias\",\"type\":\"object\"},\"redirect\":{\"description\":\"Target destination domain for redirect when the alias is a redirect\",\"nullable\":true,\"type\":\"string\"},\"uid\":{\"description\":\"The unique identifier of the alias\",\"example\":\"2WjyKQmM8ZnGcJsPWMrHRHrE\",\"type\":\"string\"}},\"required\":[\"alias\",\"created\",\"uid\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"aliases\"],\"type\":\"object\"}}},\"description\":\"The list of aliases assigned to the deployment\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"The deployment was not found\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/deployments/{id}/aliases"
+          rename: {
+            param: {
+              id: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "aliases"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.aliases`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "example.vercel.app"
+                kind: "param"
+                name: "id"
+                orig: "id_or_alia"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 1540095775951
+                kind: "query"
+                name: "from"
+                orig: "from"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: "prj_12HKQaOmR5t5Uy6vdcQsNIiZgHGB"
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1540095775941
+                kind: "query"
+                name: "since"
+                orig: "since"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1540095775951
+                kind: "query"
+                name: "until"
+                orig: "until"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v4/aliases/{idOrAlias}"
+            json: "{\"operationId\":\"getAlias\",\"parameters\":[{\"description\":\"Get the alias only if it was created after the provided timestamp\",\"in\":\"query\",\"name\":\"from\",\"required\":false,\"schema\":{\"deprecated\":true,\"description\":\"Get the alias only if it was created after the provided timestamp\",\"example\":1540095775951,\"type\":\"number\"}},{\"description\":\"The alias or alias ID to be retrieved\",\"in\":\"path\",\"name\":\"idOrAlias\",\"required\":true,\"schema\":{\"description\":\"The alias or alias ID to be retrieved\",\"example\":\"example.vercel.app\",\"type\":\"string\"}},{\"description\":\"Get the alias only if it is assigned to the provided project ID\",\"in\":\"query\",\"name\":\"projectId\",\"required\":false,\"schema\":{\"description\":\"Get the alias only if it is assigned to the provided project ID\",\"example\":\"prj_12HKQaOmR5t5Uy6vdcQsNIiZgHGB\",\"type\":\"string\"}},{\"description\":\"Get the alias only if it was created after this JavaScript timestamp\",\"in\":\"query\",\"name\":\"since\",\"required\":false,\"schema\":{\"description\":\"Get the alias only if it was created after this JavaScript timestamp\",\"example\":1540095775941,\"type\":\"number\"}},{\"description\":\"Get the alias only if it was created before this JavaScript timestamp\",\"in\":\"query\",\"name\":\"until\",\"required\":false,\"schema\":{\"description\":\"Get the alias only if it was created before this JavaScript timestamp\",\"example\":1540095775951,\"type\":\"number\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"alias\":{\"description\":\"The alias name, it could be a `.vercel.app` subdomain or a custom domain\",\"example\":\"my-alias.vercel.app\",\"type\":\"string\"},\"created\":{\"description\":\"The date when the alias was created\",\"example\":\"2017-04-26T23:00:34.232Z\",\"format\":\"date-time\",\"type\":\"string\"},\"createdAt\":{\"description\":\"The date when the alias was created in milliseconds since the UNIX epoch\",\"example\":1540095775941,\"nullable\":true,\"type\":\"number\"},\"creator\":{\"description\":\"Information of the user who created the alias\",\"properties\":{\"email\":{\"description\":\"Email of the user who created the alias\",\"example\":\"john-doe@gmail.com\",\"type\":\"string\"},\"uid\":{\"description\":\"ID of the user who created the alias\",\"example\":\"96SnxkFiMyVKsK3pnoHfx3Hz\",\"type\":\"string\"},\"username\":{\"description\":\"Username of the user who created the alias\",\"example\":\"john-doe\",\"type\":\"string\"}},\"required\":[\"uid\"],\"type\":\"object\"},\"deletedAt\":{\"description\":\"The date when the alias was deleted in milliseconds since the UNIX epoch\",\"example\":1540095775941,\"nullable\":true,\"type\":\"number\"},\"deployment\":{\"description\":\"A map with the deployment ID, URL and metadata\",\"properties\":{\"id\":{\"description\":\"The deployment unique identifier\",\"example\":\"dpl_5m8CQaRBm3FnWRW1od3wKTpaECPx\",\"type\":\"string\"},\"meta\":{\"description\":\"The deployment metadata\",\"example\":{},\"type\":\"string\"},\"url\":{\"description\":\"The deployment unique URL\",\"example\":\"my-instant-deployment-3ij3cxz9qr.now.sh\",\"type\":\"string\"}},\"required\":[\"id\"],\"type\":\"object\"},\"deploymentId\":{\"description\":\"The deployment ID\",\"example\":\"dpl_5m8CQaRBm3FnWRW1od3wKTpaECPx\",\"nullable\":true,\"type\":\"string\"},\"microfrontends\":{\"description\":\"The microfrontends for the alias including the routing configuration\",\"properties\":{\"applications\":{\"oneOf\":[{\"description\":\"A list of the deployment routing information for each project.\",\"items\":{\"description\":\"A list of the deployment routing information for each project.\",\"properties\":{\"fallbackHost\":{\"description\":\"This is always set. In production it is used as a pointer to each apps production deployment. For pre-production, it's used as the fallback if there is no deployment for the branch.\",\"type\":\"string\"},\"projectId\":{\"description\":\"The project ID of the microfrontends application.\",\"type\":\"string\"}},\"required\":[\"fallbackHost\",\"projectId\"],\"type\":\"object\"},\"type\":\"array\"},{\"description\":\"A list of the deployment routing information for each project.\",\"items\":{\"description\":\"A list of the deployment routing information for each project.\",\"properties\":{\"branchAlias\":{\"description\":\"Could point to a branch without a deployment if the project was never deployed. The proxy will fallback to the fallbackHost if there is no deployment.\",\"type\":\"string\"},\"fallbackHost\":{\"description\":\"This is always set. For branch aliases, it's used as the fallback if there is no deployment for the branch.\",\"type\":\"string\"},\"projectId\":{\"description\":\"The project ID of the microfrontends application.\",\"type\":\"string\"}},\"required\":[\"branchAlias\",\"fallbackHost\",\"projectId\"],\"type\":\"object\"},\"type\":\"array\"},{\"description\":\"A list of the deployment routing information for each project.\",\"items\":{\"description\":\"A list of the deployment routing information for each project.\",\"properties\":{\"branchAlias\":{\"type\":\"string\"},\"branchDeploymentId\":{\"description\":\"This is the latest non-cancelled deployment of the branch alias at the time the commit alias was created. It is possible there is no deployment for the branch, or this was set before the deployment was canceled, in which case this will point to a cancelled deployment, in either case the proxy will fallback to the fallbackDeploymentId.\",\"type\":\"string\"},\"deploymentId\":{\"description\":\"This is the deployment for the same commit, it could be a cancelled deployment. The proxy will fallback to the branchDeploymentId and then the fallbackDeploymentId.\",\"type\":\"string\"},\"fallbackDeploymentId\":{\"description\":\"This is the deployment of the fallback host at the time the commit alias was created. It is possible for this to be a deleted deployment, in which case the proxy will show that the deployment is deleted. It will not use the fallbackHost, as a future deployment on the fallback host could be invalid for this deployment, and it could lead to confusion / incorrect behavior for the commit alias.\",\"type\":\"string\"},\"fallbackHost\":{\"description\":\"Temporary for backwards compatibility. Can remove when metadata change is released\",\"type\":\"string\"},\"projectId\":{\"description\":\"The project ID of the microfrontends application.\",\"type\":\"string\"}},\"required\":[\"projectId\"],\"type\":\"object\"},\"type\":\"array\"}]},\"defaultApp\":{\"properties\":{\"projectId\":{\"type\":\"string\"}},\"required\":[\"projectId\"],\"type\":\"object\"}},\"required\":[\"applications\",\"defaultApp\"],\"type\":\"object\"},\"projectId\":{\"description\":\"The unique identifier of the project\",\"example\":\"prj_12HKQaOmR5t5Uy6vdcQsNIiZgHGB\",\"nullable\":true,\"type\":\"string\"},\"protectionBypass\":{\"additionalProperties\":{\"oneOf\":[{\"description\":\"The protection bypass for the alias\",\"properties\":{\"createdAt\":{\"type\":\"number\"},\"createdBy\":{\"type\":\"string\"},\"expires\":{\"type\":\"number\"},\"scope\":{\"enum\":[\"shareable-link\"],\"type\":\"string\"}},\"required\":[\"createdAt\",\"createdBy\",\"scope\"],\"type\":\"object\"},{\"description\":\"The protection bypass for the alias\",\"properties\":{\"access\":{\"enum\":[\"granted\",\"requested\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"lastUpdatedAt\":{\"type\":\"number\"},\"lastUpdatedBy\":{\"type\":\"string\"},\"scope\":{\"enum\":[\"user\"],\"type\":\"string\"}},\"required\":[\"access\",\"createdAt\",\"lastUpdatedAt\",\"lastUpdatedBy\",\"scope\"],\"type\":\"object\"},{\"description\":\"The protection bypass for the alias\",\"properties\":{\"createdAt\":{\"type\":\"number\"},\"createdBy\":{\"type\":\"string\"},\"scope\":{\"enum\":[\"alias-protection-override\"],\"type\":\"string\"}},\"required\":[\"createdAt\",\"createdBy\",\"scope\"],\"type\":\"object\"},{\"description\":\"The protection bypass for the alias\",\"properties\":{\"createdAt\":{\"type\":\"number\"},\"lastUpdatedAt\":{\"type\":\"number\"},\"lastUpdatedBy\":{\"type\":\"string\"},\"scope\":{\"enum\":[\"email_invite\"],\"type\":\"string\"}},\"required\":[\"createdAt\",\"lastUpdatedAt\",\"lastUpdatedBy\",\"scope\"],\"type\":\"object\"}]},\"description\":\"The protection bypass for the alias\",\"type\":\"object\"},\"redirect\":{\"description\":\"Target destination domain for redirect when the alias is a redirect\",\"nullable\":true,\"type\":\"string\"},\"redirectStatusCode\":{\"description\":\"Status code to be used on redirect\",\"enum\":[301,302,307,308,null],\"nullable\":true,\"type\":\"number\"},\"uid\":{\"description\":\"The unique identifier of the alias\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"The date when the alias was updated in milliseconds since the UNIX epoch\",\"example\":1540095775941,\"nullable\":true,\"type\":\"number\"}},\"required\":[\"alias\",\"created\",\"deploymentId\",\"projectId\",\"uid\"],\"type\":\"object\"}}},\"description\":\"The alias information\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"The alias was not found\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v4/aliases/{idOrAlias}"
+          rename: {
+            param: {
+              idOrAlias: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v4"
+            }
+            {
+              lit: "aliases"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "from"
+              "id"
+              "project_id"
+              "since"
+              "slug"
+              "team_id"
+              "until"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "2WjyKQmM8ZnGcJsPWMrHRHrE"
+                kind: "param"
+                name: "id"
+                orig: "alias_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v2/aliases/{aliasId}"
+            json: "{\"operationId\":\"deleteAlias\",\"parameters\":[{\"description\":\"The ID or alias that will be removed\",\"in\":\"path\",\"name\":\"aliasId\",\"required\":true,\"schema\":{\"description\":\"The ID or alias that will be removed\",\"example\":\"2WjyKQmM8ZnGcJsPWMrHRHrE\",\"oneOf\":[{\"type\":\"string\"}]}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"status\":{\"enum\":[\"SUCCESS\"],\"type\":\"string\"}},\"required\":[\"status\"],\"type\":\"object\"}}},\"description\":\"The alias was successfully removed\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"The alias was not found\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v2/aliases/{aliasId}"
+          rename: {
+            param: {
+              aliasId: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "aliases"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /aliases/{id}/protection-bypass"
+            json: "{\"operationId\":\"patchUrlProtectionBypass\",\"parameters\":[{\"description\":\"The alias or deployment ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"description\":\"The alias or deployment ID\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"revoke\":{\"description\":\"Optional instructions for revoking and regenerating a shareable link\",\"properties\":{\"regenerate\":{\"description\":\"Whether or not a new shareable link should be created after the provided secret is revoked\",\"type\":\"boolean\"},\"secret\":{\"description\":\"Sharebale link to revoked\",\"type\":\"string\"}},\"required\":[\"secret\",\"regenerate\"],\"type\":\"object\"},\"ttl\":{\"description\":\"Optional time the shareable link is valid for in seconds. If not provided, the shareable link will never expire.\",\"maximum\":63072000,\"type\":\"number\"}},\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"scope\":{\"allOf\":[{\"anyOf\":[{\"required\":[\"userId\"]},{\"required\":[\"email\"]}]},{\"required\":[\"access\"]}],\"description\":\"Instructions for creating a user scoped protection bypass\",\"properties\":{\"access\":{\"description\":\"Invitation status for the user scoped bypass.\",\"enum\":[\"denied\",\"granted\"]},\"email\":{\"description\":\"Specified email for the scoped bypass.\",\"format\":\"email\",\"type\":\"string\"},\"userId\":{\"description\":\"Specified user id for the scoped bypass.\",\"type\":\"string\"}},\"type\":\"object\"}},\"required\":[\"scope\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"override\":{\"properties\":{\"action\":{\"enum\":[\"create\",\"revoke\"]},\"scope\":{\"enum\":[\"alias-protection-override\"]}},\"required\":[\"scope\",\"action\"],\"type\":\"object\"}},\"required\":[\"override\"],\"type\":\"object\"}]}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":true,\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"428\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/aliases/{id}/protection-bypass"
+          segments: [
+            {
+              lit: "aliases"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "protection-bypass"
+            }
+          ]
+          select: {
+            "$action": "protection_bypass"
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "deployment"
+      ]
+    ]
+  }
+
+
+
+}

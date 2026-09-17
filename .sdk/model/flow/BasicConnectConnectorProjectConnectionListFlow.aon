@@ -1,0 +1,26 @@
+# BasicConnectConnectorProjectConnectionListFlow
+
+main: kit: flow: BasicConnectConnectorProjectConnectionListFlow:
+{
+  entity: "connect_connector_project_connection_list",
+  kind: "basic",
+  name: "BasicConnectConnectorProjectConnectionListFlow",
+  step: [
+    {
+      match: {
+        connector_id: "connector01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "connect_connector_project_connection_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicConnectConnectorProjectConnectionListFlow"
+}

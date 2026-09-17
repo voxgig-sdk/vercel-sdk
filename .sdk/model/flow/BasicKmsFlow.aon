@@ -1,0 +1,105 @@
+# BasicKmsFlow
+
+main: kit: flow: BasicKmsFlow:
+{
+  entity: "kms",
+  kind: "basic",
+  name: "BasicKmsFlow",
+  step: [
+    {
+      input: {
+        ref: "kms_ref01"
+      }
+
+      match: {
+        issuer_id: "issuer01",
+        kind: "kind01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "kms_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "kms_ref01",
+        srcdatavar: "kms_ref01_data",
+        suffix: "_up0",
+        textfield: "activation"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-kms_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "kms_ref01",
+        srcdatavar: "kms_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "kms01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-kms_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "kms_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "kms01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "kms_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicKmsFlow"
+}

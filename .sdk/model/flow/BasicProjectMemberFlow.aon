@@ -1,0 +1,59 @@
+# BasicProjectMemberFlow
+
+main: kit: flow: BasicProjectMemberFlow:
+{
+  entity: "project_member",
+  kind: "basic",
+  name: "BasicProjectMemberFlow",
+  step: [
+    {
+      input: {
+        ref: "project_member_ref01"
+      }
+
+      match: {
+        id_or_name: "id_or_name01",
+        project_id: "project01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "project_member_ref01",
+        srcdatavar: "project_member_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "project_member01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-project_member_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "project_member_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "project_member01",
+        project_id: "project01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicProjectMemberFlow"
+}

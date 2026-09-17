@@ -1,13 +1,1404 @@
 # Guide
 
 guide: {
-  metrics: count: entity: 1
-  metrics: count: path: 3
-  metrics: count: method: 5
+  metrics: count: entity: 69
+  metrics: count: path: 299
+  metrics: count: method: 419
+
+  entity: access_group: {
+    path: "/v1/access-groups": {
+      op: create: method: *POST
+      op: create: transform: req: "membersToAdd": *("`reqdata.members_to_add`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "projects": *("`reqdata.project`")|top
+      op: load: method: *GET
+    }
+    path: "/v1/access-groups/{accessGroupIdOrName}/projects": {
+      action: "project": {}
+      rename: param: "accessGroupIdOrName": *"access_group_id_or_name"
+      op: create: method: *POST
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+      op: create: transform: req: "role": *("`reqdata.role`")|top
+    }
+    path: "/v1/access-groups/{accessGroupIdOrName}/projects/{projectId}": {
+      rename: param: "accessGroupIdOrName": *"access_group_id"
+      rename: param: "projectId": *"project_id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "role": *("`reqdata.role`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/access-groups/{idOrName}": {
+      rename: param: "idOrName": *"id"
+      op: create: method: *POST
+      op: create: transform: req: "membersToAdd": *("`reqdata.members_to_add`")|top
+      op: create: transform: req: "membersToRemove": *("`reqdata.members_to_remove`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "projects": *("`reqdata.project`")|top
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/v1/access-groups/{idOrName}/members": {
+      action: "member": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: list: method: *GET
+    }
+    path: "/v1/access-groups/{idOrName}/projects": {
+      action: "project": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: list: method: *GET
+    }
+  }
+
+  entity: ai_gateway: {
+    path: "/v1/ai-gateway/rules": {
+      action: "rule": {}
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: ai_gateway_rule: {
+    path: "/v1/ai-gateway/rules": {
+      op: create: method: *POST
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: ai_gateway_rule_list: {
+    path: "/v1/ai-gateway/rules": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.rules`")|top
+    }
+  }
+
+  entity: ai_gateway_virtual_model_config: {
+    path: "/v1/ai-gateway/virtual-model-configs": {
+      op: create: method: *POST
+      op: patch: method: *PATCH
+    }
+    path: "/v1/ai-gateway/virtual-model-configs/{vmcSlug}": {
+      rename: param: "vmcSlug": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: ai_gateway_virtual_model_config_list: {
+    path: "/v1/ai-gateway/virtual-model-configs/list": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.virtualModelConfigs`")|top
+    }
+  }
+
+  entity: alias: {
+    path: "/aliases/{id}/protection-bypass": {
+      action: "protection_bypass": {}
+      op: patch: method: *PATCH
+    }
+    path: "/v2/aliases/{aliasId}": {
+      rename: param: "aliasId": *"id"
+      op: remove: method: *DELETE
+    }
+    path: "/v2/deployments/{id}/aliases": {
+      rename: param: "id": *"deployment_id"
+      op: create: method: *POST
+      op: create: transform: req: "alias": *("`reqdata`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.aliases`")|top
+    }
+    path: "/v4/aliases": {
+      op: list: method: *GET
+    }
+    path: "/v4/aliases/{idOrAlias}": {
+      rename: param: "idOrAlias": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: api_ai_gateway: {
+    path: "/v1/ai-gateway/virtual-model-configs": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/v1/ai-gateway/virtual-model-configs/{vmcSlug}": {
+      rename: param: "vmcSlug": *"vmc_slug"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: api_key: {
+    path: "/api-keys": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.apiKey`")|top
+    }
+  }
+
+  entity: artifact: {
+    path: "/v8/artifacts": {
+      op: create: method: *POST
+      op: remove: method: *DELETE
+    }
+    path: "/v8/artifacts/events": {
+      action: "event": {}
+      op: create: method: *POST
+    }
+    path: "/v8/artifacts/status": {
+      action: "status": {}
+      op: load: method: *GET
+    }
+    path: "/v8/artifacts/{hash}": {
+      rename: param: "hash": *"id"
+      op: head: method: *HEAD
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: authentication: {
+    path: "/v1/integrations/sso/token": {
+      op: create: method: *POST
+    }
+    path: "/v3/user/tokens": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.token`")|top
+      op: create: transform: req: "expiresAt": *("`reqdata.expires_at`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+    }
+    path: "/v3/user/tokens/{tokenId}": {
+      rename: param: "tokenId": *"token_id"
+      op: remove: method: *DELETE
+    }
+    path: "/v5/user/tokens/{tokenId}": {
+      rename: param: "tokenId": *"token_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.token`")|top
+    }
+    path: "/v6/user/tokens": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: billing: {
+    path: "/v1/billing/buy": {
+      action: "buy": {}
+      op: create: method: *POST
+    }
+    path: "/v1/billing/charges": {
+      action: "charge": {}
+      op: load: method: *GET
+    }
+    path: "/v1/billing/contract-commitments": {
+      action: "contract_commitment": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: bulk_redirect: {
+    path: "/v1/bulk-redirects": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.version`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.version`")|top
+    }
+    path: "/v1/bulk-redirects/restore": {
+      action: "restore": {}
+      op: create: method: *POST
+    }
+    path: "/v1/bulk-redirects/versions": {
+      action: "version": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.version`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.versions`")|top
+    }
+  }
+
+  entity: cert: {
+    path: "/v8/certs": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: update: method: *PUT
+      op: update: transform: req: "cert": *("`reqdata`")|top
+    }
+    path: "/v8/certs/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: check: {
+    path: "/v1/deployments/{deploymentId}/checks": {
+      rename: param: "deploymentId": *"deployment_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.output`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.checks`")|top
+    }
+    path: "/v1/deployments/{deploymentId}/checks/{checkId}": {
+      rename: param: "checkId": *"id"
+      rename: param: "deploymentId": *"deployment_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.output`")|top
+      op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.output`")|top
+    }
+    path: "/v1/deployments/{deploymentId}/checks/{checkId}/rerequest": {
+      action: "rerequest": {}
+      rename: param: "checkId": *"id"
+      rename: param: "deploymentId": *"deployment_id"
+      op: create: method: *POST
+    }
+    path: "/v2/projects/{projectIdOrName}/checks": {
+      rename: param: "projectIdOrName": *"project_id_or_name"
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.checks`")|top
+    }
+    path: "/v2/projects/{projectIdOrName}/checks/{checkId}": {
+      rename: param: "checkId": *"id"
+      rename: param: "projectIdOrName": *"project_id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: checks_v2: {
+    path: "/v2/deployments/{deploymentId}/check-runs": {
+      rename: param: "deploymentId": *"deployment_id"
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.runs`")|top
+    }
+    path: "/v2/deployments/{deploymentId}/check-runs/{checkRunId}": {
+      rename: param: "checkRunId": *"check_run_id"
+      rename: param: "deploymentId": *"deployment_id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "completedAt": *("`reqdata.completed_at`")|top
+      op: patch: transform: req: "conclusion": *("`reqdata.conclusion`")|top
+      op: patch: transform: req: "conclusionText": *("`reqdata.conclusion_text`")|top
+      op: patch: transform: req: "externalId": *("`reqdata.external_id`")|top
+      op: patch: transform: req: "externalUrl": *("`reqdata.external_url`")|top
+      op: patch: transform: req: "output": *("`reqdata.output`")|top
+      op: patch: transform: req: "status": *("`reqdata.status`")|top
+    }
+    path: "/v2/projects/{projectIdOrName}/checks/{checkId}/runs": {
+      rename: param: "checkId": *"check_id"
+      rename: param: "projectIdOrName": *"project_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.runs`")|top
+    }
+  }
+
+  entity: connect: {
+    path: "/v1/connect/authorize/{connector}": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.connector`")|top
+    }
+    path: "/v1/connect/connectors/{connector}": {
+      op: remove: method: *DELETE
+    }
+    path: "/v1/connect/connectors/{connector}/projects/{projectId}": {
+      rename: param: "connector": *"connector_id"
+      rename: param: "projectId": *"project_id"
+      op: remove: method: *DELETE
+    }
+    path: "/v1/connect/token/{connector}": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: connect_connector: {
+    path: "/v1/connect/connectors": {
+      op: create: method: *POST
+    }
+    path: "/v1/connect/connectors/{connector}": {
+      rename: param: "connector": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/connect/connectors/{connector}/trigger-destinations": {
+      rename: param: "connector": *"connector_id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "destinations": *("`reqdata.destination`")|top
+    }
+    path: "/v2/connect/connectors/{connector}": {
+      rename: param: "connector": *"id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "accentColor": *("`reqdata.accent_color`")|top
+      op: patch: transform: req: "backgroundColor": *("`reqdata.background_color`")|top
+      op: patch: transform: req: "data": *("`reqdata.data`")|top
+      op: patch: transform: req: "events": *("`reqdata.event`")|top
+      op: patch: transform: req: "icon": *("`reqdata.icon`")|top
+      op: patch: transform: req: "name": *("`reqdata.name`")|top
+      op: patch: transform: req: "triggers": *("`reqdata.trigger`")|top
+      op: patch: transform: req: "uid": *("`reqdata.uid`")|top
+    }
+  }
+
+  entity: connect_connector_list: {
+    path: "/v2/connect/connectors": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: connect_connector_project_connection_list: {
+    path: "/v2/connect/connectors/{connector}/projects": {
+      rename: param: "connector": *"connector_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: connect_project_connection: {
+    path: "/v1/connect/connectors/{connector}/projects/{projectId}": {
+      rename: param: "connector": *"connector_id"
+      rename: param: "projectId": *"project_id"
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+  entity: connect_project_connector_connection_list: {
+    path: "/v2/connect/projects/{projectId}/connectors": {
+      rename: param: "projectId": *"project_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: deployment: {
+    path: "/v1/deployments/{deploymentId}/integrations/{integrationConfigurationId}/resources/{resourceId}/actions/{action}": {
+      rename: param: "deploymentId": *"id"
+      rename: param: "integrationConfigurationId": *"integration_id"
+      rename: param: "resourceId": *"resource_id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "outcomes": *("`reqdata.outcome`")|top
+      op: patch: transform: req: "status": *("`reqdata.status`")|top
+      op: patch: transform: req: "statusText": *("`reqdata.status_text`")|top
+      op: patch: transform: req: "statusUrl": *("`reqdata.status_url`")|top
+    }
+    path: "/v12/deployments/{id}/cancel": {
+      action: "cancel": {}
+      op: patch: method: *PATCH
+    }
+    path: "/v13/deployments": {
+      op: create: method: *POST
+      op: create: transform: req: "buildMachine": *("`reqdata.build_machine`")|top
+      op: create: transform: req: "customEnvironmentSlugOrId": *("`reqdata.custom_environment_slug_or_id`")|top
+      op: create: transform: req: "deploymentId": *("`reqdata.deployment_id`")|top
+      op: create: transform: req: "files": *("`reqdata.file`")|top
+      op: create: transform: req: "gitAccessToken": *("`reqdata.git_access_token`")|top
+      op: create: transform: req: "gitMetadata": *("`reqdata.git_metadata`")|top
+      op: create: transform: req: "gitSource": *("`reqdata.git_source`")|top
+      op: create: transform: req: "meta": *("`reqdata.meta`")|top
+      op: create: transform: req: "monorepoManager": *("`reqdata.monorepo_manager`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "project": *("`reqdata.project`")|top
+      op: create: transform: req: "projectSettings": *("`reqdata.project_setting`")|top
+      op: create: transform: req: "target": *("`reqdata.target`")|top
+      op: create: transform: req: "withLatestCommit": *("`reqdata.with_latest_commit`")|top
+    }
+    path: "/v13/deployments/{idOrUrl}": {
+      rename: param: "idOrUrl": *"id"
+      op: load: method: *GET
+    }
+    path: "/v13/deployments/{id}": {
+      op: remove: method: *DELETE
+    }
+    path: "/v2/files": {
+      op: create: method: *POST
+    }
+    path: "/v3/deployments/{idOrUrl}/events": {
+      action: "event": {}
+      rename: param: "idOrUrl": *"id_or_url"
+      op: list: method: *GET
+    }
+    path: "/v7/deployments": {
+      op: list: method: *GET
+    }
+    path: "/v8/deployments/{id}/files/{fileId}": {
+      rename: param: "fileId": *"file_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: dns: {
+    path: "/v1/domains/records/{recordId}": {
+      rename: param: "recordId": *"record_id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "comment": *("`reqdata.comment`")|top
+      op: patch: transform: req: "https": *("`reqdata.http`")|top
+      op: patch: transform: req: "mxPriority": *("`reqdata.mx_priority`")|top
+      op: patch: transform: req: "name": *("`reqdata.name`")|top
+      op: patch: transform: req: "srv": *("`reqdata.srv`")|top
+      op: patch: transform: req: "ttl": *("`reqdata.ttl`")|top
+      op: patch: transform: req: "type": *("`reqdata.type`")|top
+      op: patch: transform: req: "value": *("`reqdata.value`")|top
+    }
+    path: "/v2/domains/{domain}/records": {
+      rename: param: "domain": *"domain_id"
+      op: create: method: *POST
+    }
+    path: "/v2/domains/{domain}/records/{recordId}": {
+      rename: param: "domain": *"domain_id"
+      rename: param: "recordId": *"record_id"
+      op: remove: method: *DELETE
+    }
+    path: "/v5/domains/{domain}/records": {
+      rename: param: "domain": *"domain_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: domain: {
+    path: "/domains/{domain}/records": {
+      action: "record": {}
+      rename: param: "domain": *"id"
+      op: update: method: *PUT
+    }
+    path: "/v1/domains/{domain}/project-domains": {
+      action: "project_domain": {}
+      rename: param: "domain": *"id"
+      op: list: method: *GET
+    }
+    path: "/v3/domains/{domain}": {
+      rename: param: "domain": *"id"
+      op: patch: method: *PATCH
+    }
+    path: "/v5/domains": {
+      op: list: method: *GET
+    }
+    path: "/v5/domains/{domain}": {
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.domain`")|top
+    }
+    path: "/v6/domains/{domain}": {
+      rename: param: "domain": *"id"
+      op: remove: method: *DELETE
+    }
+    path: "/v6/domains/{domain}/config": {
+      action: "config": {}
+      rename: param: "domain": *"id"
+      op: list: method: *GET
+    }
+    path: "/v7/domains": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.domain`")|top
+    }
+    path: "/v9/domains/{domain}/claim": {
+      action: "claim": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.domain`")|top
+    }
+    path: "/v9/domains/{domain}/verification": {
+      action: "verification": {}
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: domains_registrar: {
+    path: "/v1/registrar/domains/availability": {
+      op: create: method: *POST
+      op: create: transform: req: "domains": *("`reqdata.domain`")|top
+    }
+    path: "/v1/registrar/domains/buy": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body._links`")|top
+      op: create: transform: req: "contactInformation": *("`reqdata.contact_information`")|top
+      op: create: transform: req: "domains": *("`reqdata.domain`")|top
+    }
+    path: "/v1/registrar/domains/price": {
+      op: create: method: *POST
+      op: create: transform: req: "domains": *("`reqdata.domain`")|top
+      op: create: transform: req: "years": *("`reqdata.year`")|top
+    }
+    path: "/v1/registrar/domains/search": {
+      op: create: method: *POST
+      op: create: transform: req: "domains": *("`reqdata.domain`")|top
+    }
+    path: "/v1/registrar/domains/{domain}/auth-code": {
+      rename: param: "domain": *"domain_id"
+      op: load: method: *GET
+    }
+    path: "/v1/registrar/domains/{domain}/auto-renew": {
+      rename: param: "domain": *"domain_id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "autoRenew": *("`reqdata.auto_renew`")|top
+    }
+    path: "/v1/registrar/domains/{domain}/availability": {
+      rename: param: "domain": *"domain_id"
+      op: load: method: *GET
+    }
+    path: "/v1/registrar/domains/{domain}/buy": {
+      rename: param: "domain": *"domain_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body._links`")|top
+      op: create: transform: req: "autoRenew": *("`reqdata.auto_renew`")|top
+      op: create: transform: req: "contactInformation": *("`reqdata.contact_information`")|top
+      op: create: transform: req: "expectedPrice": *("`reqdata.expected_price`")|top
+      op: create: transform: req: "languageCode": *("`reqdata.language_code`")|top
+      op: create: transform: req: "years": *("`reqdata.year`")|top
+    }
+    path: "/v1/registrar/domains/{domain}/contact-info/schema": {
+      rename: param: "domain": *"domain_id"
+      op: load: method: *GET
+    }
+    path: "/v1/registrar/domains/{domain}/contact-verification": {
+      rename: param: "domain": *"domain_id"
+      op: load: method: *GET
+    }
+    path: "/v1/registrar/domains/{domain}/nameservers": {
+      rename: param: "domain": *"domain_id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "nameservers": *("`reqdata.nameserver`")|top
+    }
+    path: "/v1/registrar/domains/{domain}/price": {
+      rename: param: "domain": *"domain_id"
+      op: load: method: *GET
+    }
+    path: "/v1/registrar/domains/{domain}/renew": {
+      rename: param: "domain": *"domain_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body._links`")|top
+      op: create: transform: req: "contactInformation": *("`reqdata.contact_information`")|top
+      op: create: transform: req: "expectedPrice": *("`reqdata.expected_price`")|top
+      op: create: transform: req: "years": *("`reqdata.year`")|top
+    }
+    path: "/v1/registrar/domains/{domain}/transfer": {
+      rename: param: "domain": *"domain_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body._links`")|top
+      op: create: transform: req: "authCode": *("`reqdata.auth_code`")|top
+      op: create: transform: req: "autoRenew": *("`reqdata.auto_renew`")|top
+      op: create: transform: req: "contactInformation": *("`reqdata.contact_information`")|top
+      op: create: transform: req: "expectedPrice": *("`reqdata.expected_price`")|top
+      op: create: transform: req: "years": *("`reqdata.year`")|top
+      op: load: method: *GET
+    }
+    path: "/v1/registrar/orders/{orderId}": {
+      rename: param: "orderId": *"order_id"
+      op: load: method: *GET
+    }
+    path: "/v1/registrar/tlds/{tld}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.supportedLanguageCodes`")|top
+    }
+    path: "/v1/registrar/tlds/{tld}/price": {
+      rename: param: "tld": *"tld_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: drain: {
+    path: "/v1/drains": {
+      op: create: method: *POST
+      op: create: transform: req: "delivery": *("`reqdata.delivery`")|top
+      op: create: transform: req: "filter": *("`reqdata.filter`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "projectIds": *("`reqdata.project_id`")|top
+      op: create: transform: req: "projects": *("`reqdata.project`")|top
+      op: create: transform: req: "sampling": *("`reqdata.sampling`")|top
+      op: create: transform: req: "schemas": *("`reqdata.schema`")|top
+      op: create: transform: req: "source": *("`reqdata.source`")|top
+      op: create: transform: req: "transforms": *("`reqdata.transform`")|top
+      op: load: method: *GET
+    }
+    path: "/v1/drains/test": {
+      action: "test": {}
+      op: create: method: *POST
+      op: create: transform: req: "delivery": *("`reqdata.delivery`")|top
+      op: create: transform: req: "schemas": *("`reqdata.schema`")|top
+    }
+    path: "/v1/drains/{id}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "delivery": *("`reqdata.delivery`")|top
+      op: patch: transform: req: "filter": *("`reqdata.filter`")|top
+      op: patch: transform: req: "name": *("`reqdata.name`")|top
+      op: patch: transform: req: "projectIds": *("`reqdata.project_id`")|top
+      op: patch: transform: req: "projects": *("`reqdata.project`")|top
+      op: patch: transform: req: "sampling": *("`reqdata.sampling`")|top
+      op: patch: transform: req: "schemas": *("`reqdata.schema`")|top
+      op: patch: transform: req: "source": *("`reqdata.source`")|top
+      op: patch: transform: req: "status": *("`reqdata.status`")|top
+      op: patch: transform: req: "transforms": *("`reqdata.transform`")|top
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: edge_cache: {
+    path: "/v1/edge-cache/dangerously-delete-by-src-images": {
+      action: "dangerously_delete_by_src_image": {}
+      op: create: method: *POST
+      op: create: transform: req: "revalidationDeadlineSeconds": *("`reqdata.revalidation_deadline_second`")|top
+      op: create: transform: req: "srcImages": *("`reqdata.src_image`")|top
+    }
+    path: "/v1/edge-cache/dangerously-delete-by-tags": {
+      action: "dangerously_delete_by_tag": {}
+      op: create: method: *POST
+      op: create: transform: req: "revalidationDeadlineSeconds": *("`reqdata.revalidation_deadline_second`")|top
+      op: create: transform: req: "tags": *("`reqdata.tag`")|top
+      op: create: transform: req: "target": *("`reqdata.target`")|top
+    }
+    path: "/v1/edge-cache/invalidate-by-src-images": {
+      action: "invalidate_by_src_image": {}
+      op: create: method: *POST
+      op: create: transform: req: "srcImages": *("`reqdata.src_image`")|top
+    }
+    path: "/v1/edge-cache/invalidate-by-tags": {
+      action: "invalidate_by_tag": {}
+      op: create: method: *POST
+      op: create: transform: req: "tags": *("`reqdata.tag`")|top
+      op: create: transform: req: "target": *("`reqdata.target`")|top
+    }
+  }
+
+  entity: env: {
+    path: "/v1/env": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "updates": *("`reqdata.update`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/env/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: environment: {
+    path: "/v1/env/{id}/unlink/{projectId}": {
+      rename: param: "id": *"env_id"
+      rename: param: "projectId": *"project_id"
+      op: patch: method: *PATCH
+    }
+    path: "/v9/projects/{idOrName}/custom-environments": {
+      rename: param: "idOrName": *"id_or_name"
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}": {
+      rename: param: "environmentSlugOrId": *"environment_slug_or_id"
+      rename: param: "idOrName": *"project_id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: feature_flag: {
+    path: "/v1/deployments/{deploymentId}/feature-flags": {
+      rename: param: "deploymentId": *"deployment_id"
+      op: list: method: *GET
+    }
+    path: "/v1/projects/{projectIdOrName}/feature-flags/flags": {
+      rename: param: "projectIdOrName": *"project_id"
+      op: list: method: *GET
+      op: update: method: *PUT
+      op: update: transform: req: "description": *("`reqdata.description`")|top
+      op: update: transform: req: "environments": *("`reqdata.environment`")|top
+      op: update: transform: req: "kind": *("`reqdata.kind`")|top
+      op: update: transform: req: "maintainerIds": *("`reqdata.maintainer_id`")|top
+      op: update: transform: req: "permanent": *("`reqdata.permanent`")|top
+      op: update: transform: req: "seed": *("`reqdata.seed`")|top
+      op: update: transform: req: "slug": *("`reqdata.slug`")|top
+      op: update: transform: req: "state": *("`reqdata.state`")|top
+      op: update: transform: req: "tags": *("`reqdata.tag`")|top
+      op: update: transform: req: "variants": *("`reqdata.variant`")|top
+    }
+    path: "/v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}": {
+      rename: param: "flagIdOrSlug": *"id"
+      rename: param: "projectIdOrName": *"project_id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "createdBy": *("`reqdata.created_by`")|top
+      op: patch: transform: req: "description": *("`reqdata.description`")|top
+      op: patch: transform: req: "environments": *("`reqdata.environment`")|top
+      op: patch: transform: req: "maintainerIds": *("`reqdata.maintainer_id`")|top
+      op: patch: transform: req: "message": *("`reqdata.message`")|top
+      op: patch: transform: req: "permanent": *("`reqdata.permanent`")|top
+      op: patch: transform: req: "seed": *("`reqdata.seed`")|top
+      op: patch: transform: req: "state": *("`reqdata.state`")|top
+      op: patch: transform: req: "tags": *("`reqdata.tag`")|top
+      op: patch: transform: req: "variants": *("`reqdata.variant`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}/versions": {
+      rename: param: "flagIdOrSlug": *"flag_id_or_slug"
+      rename: param: "projectIdOrName": *"project_id"
+      op: list: method: *GET
+    }
+    path: "/v1/projects/{projectIdOrName}/feature-flags/sdk-keys": {
+      action: "sdk_key": {}
+      rename: param: "projectIdOrName": *"project_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/v1/projects/{projectIdOrName}/feature-flags/sdk-keys/{hashKey}": {
+      rename: param: "hashKey": *"hash_key"
+      rename: param: "projectIdOrName": *"project_id"
+      op: remove: method: *DELETE
+    }
+    path: "/v1/projects/{projectIdOrName}/feature-flags/segments": {
+      action: "segment": {}
+      rename: param: "projectIdOrName": *"project_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+      op: update: method: *PUT
+      op: update: transform: req: "createdBy": *("`reqdata.created_by`")|top
+      op: update: transform: req: "data": *("`reqdata.data`")|top
+      op: update: transform: req: "description": *("`reqdata.description`")|top
+      op: update: transform: req: "hint": *("`reqdata.hint`")|top
+      op: update: transform: req: "label": *("`reqdata.label`")|top
+      op: update: transform: req: "slug": *("`reqdata.slug`")|top
+    }
+    path: "/v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}": {
+      rename: param: "projectIdOrName": *"project_id"
+      rename: param: "segmentIdOrSlug": *"segment_id_or_slug"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "data": *("`reqdata.data`")|top
+      op: patch: transform: req: "description": *("`reqdata.description`")|top
+      op: patch: transform: req: "hint": *("`reqdata.hint`")|top
+      op: patch: transform: req: "label": *("`reqdata.label`")|top
+      op: patch: transform: req: "operations": *("`reqdata.operation`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/projects/{projectIdOrName}/feature-flags/settings": {
+      action: "setting": {}
+      rename: param: "projectIdOrName": *"project_id"
+      op: list: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "enabled": *("`reqdata.enabled`")|top
+      op: patch: transform: req: "entities": *("`reqdata.entity`")|top
+      op: patch: transform: req: "environments": *("`reqdata.environment`")|top
+    }
+    path: "/v1/teams/{teamId}/feature-flags/flags": {
+      rename: param: "teamId": *"team_id"
+      op: list: method: *GET
+    }
+    path: "/v1/teams/{teamId}/feature-flags/settings": {
+      action: "setting": {}
+      rename: param: "teamId": *"team_id"
+      op: load: method: *GET
+    }
+    path: "/v2/projects/{projectIdOrName}/feature-flags/flags": {
+      rename: param: "projectIdOrName": *"project_id"
+      op: list: method: *GET
+    }
+    path: "/v2/teams/{teamId}/feature-flags/flags": {
+      rename: param: "teamId": *"team_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: file: {
+    path: "/v6/deployments/{id}/files": {
+      rename: param: "id": *"deployment_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: flag: {
+    path: "/v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}": {
+      rename: param: "flagIdOrSlug": *"id"
+      rename: param: "projectIdOrName": *"project_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: flags_sdk_key_with_secret: {
+    path: "/v1/projects/{projectIdOrName}/feature-flags/sdk-keys": {
+      rename: param: "projectIdOrName": *"project_id"
+      op: update: method: *PUT
+      op: update: transform: req: "environment": *("`reqdata.environment`")|top
+      op: update: transform: req: "label": *("`reqdata.label`")|top
+      op: update: transform: req: "sdkKeyType": *("`reqdata.sdk_key_type`")|top
+    }
+  }
+
+  entity: global_config: {
+    path: "/v1/global-config": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/v1/global-config/{edgeConfigId}": {
+      rename: param: "edgeConfigId": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/v1/global-config/{edgeConfigId}/backups": {
+      action: "backup": {}
+      rename: param: "edgeConfigId": *"id"
+      op: list: method: *GET
+    }
+    path: "/v1/global-config/{edgeConfigId}/backups/{edgeConfigBackupVersionId}": {
+      rename: param: "edgeConfigBackupVersionId": *"edge_config_backup_version_id"
+      rename: param: "edgeConfigId": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/global-config/{edgeConfigId}/backups/{edgeConfigBackupVersionId}/restore": {
+      action: "restore": {}
+      rename: param: "edgeConfigBackupVersionId": *"backup_id"
+      rename: param: "edgeConfigId": *"id"
+      op: create: method: *POST
+    }
+    path: "/v1/global-config/{edgeConfigId}/items": {
+      action: "item": {}
+      rename: param: "edgeConfigId": *"id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "items": *("`reqdata.item`")|top
+    }
+    path: "/v1/global-config/{edgeConfigId}/schema": {
+      action: "schema": {}
+      rename: param: "edgeConfigId": *"id"
+      op: create: method: *POST
+      op: create: transform: req: "definition": *("`reqdata.definition`")|top
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/v1/global-config/{edgeConfigId}/token": {
+      action: "token": {}
+      rename: param: "edgeConfigId": *"id"
+      op: create: method: *POST
+      op: create: transform: req: "label": *("`reqdata.label`")|top
+    }
+    path: "/v1/global-config/{edgeConfigId}/tokens": {
+      action: "token": {}
+      rename: param: "edgeConfigId": *"id"
+      op: remove: method: *DELETE
+      op: remove: transform: req: "ids": *("`reqdata.ids`")|top
+      op: remove: transform: req: "tokens": *("`reqdata.token`")|top
+    }
+  }
+
+  entity: global_config_item: {
+    path: "/v1/global-config/{edgeConfigId}/item/{edgeConfigItemKey}": {
+      rename: param: "edgeConfigId": *"global_config_id"
+      rename: param: "edgeConfigItemKey": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/global-config/{edgeConfigId}/items": {
+      rename: param: "edgeConfigId": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: global_config_token: {
+    path: "/v1/global-config/{edgeConfigId}/token/{token}": {
+      rename: param: "edgeConfigId": *"global_config_id"
+      rename: param: "token": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/global-config/{edgeConfigId}/tokens": {
+      rename: param: "edgeConfigId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: integration: {
+    path: "/v1/integrations/configuration/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/v1/integrations/configuration/{id}/products": {
+      rename: param: "id": *"configuration_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.integration`")|top
+    }
+    path: "/v1/integrations/configurations": {
+      action: "configuration": {}
+      op: load: method: *GET
+    }
+    path: "/v1/integrations/git-namespaces": {
+      action: "git_namespace": {}
+      op: list: method: *GET
+    }
+    path: "/v1/integrations/installations/{integrationConfigurationId}/resources/{resourceId}/connections": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "resourceId": *"resource_id"
+      op: create: method: *POST
+    }
+    path: "/v1/integrations/integration/{integrationIdOrSlug}/products/{productIdOrSlug}/plans": {
+      rename: param: "integrationIdOrSlug": *"integration_id"
+      rename: param: "productIdOrSlug": *"product_id_or_slug"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.plans`")|top
+    }
+    path: "/v1/integrations/search-repo": {
+      action: "search_repo": {}
+      op: load: method: *GET
+    }
+    path: "/v1/storage/stores/integration/direct": {
+      action: "direct": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.store`")|top
+    }
+  }
+
+  entity: kms: {
+    path: "/v1/kms/issuers": {
+      action: "issuer": {}
+      op: create: method: *POST
+      op: create: transform: req: "algorithm": *("`reqdata.algorithm`")|top
+      op: create: transform: req: "claimsSchema": *("`reqdata.claims_schema`")|top
+      op: create: transform: req: "importKey": *("`reqdata.import_key`")|top
+      op: create: transform: req: "importKeyId": *("`reqdata.import_key_id`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "policy": *("`reqdata.policy`")|top
+      op: list: method: *GET
+    }
+    path: "/v1/kms/issuers/{issuerId}": {
+      rename: param: "issuerId": *"issuer_id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "claimsSchema": *("`reqdata.claims_schema`")|top
+      op: patch: transform: req: "name": *("`reqdata.name`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/kms/issuers/{issuerId}/keys": {
+      rename: param: "issuerId": *"issuer_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.publicKey`")|top
+      op: create: transform: req: "activation": *("`reqdata.activation`")|top
+      op: create: transform: req: "importKey": *("`reqdata.import_key`")|top
+      op: create: transform: req: "importKeyId": *("`reqdata.import_key_id`")|top
+      op: create: transform: req: "revokePreviousAfterHours": *("`reqdata.revoke_previous_after_hour`")|top
+      op: create: transform: req: "revokePreviousAt": *("`reqdata.revoke_previous_at`")|top
+    }
+    path: "/v1/kms/issuers/{issuerId}/keys/{keyId}/activate": {
+      rename: param: "issuerId": *"issuer_id"
+      rename: param: "keyId": *"key_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.publicKey`")|top
+      op: create: transform: req: "revokePreviousAfterHours": *("`reqdata.revoke_previous_after_hour`")|top
+    }
+    path: "/v1/kms/issuers/{issuerId}/keys/{keyId}/revoke": {
+      rename: param: "issuerId": *"issuer_id"
+      rename: param: "keyId": *"key_id"
+      op: create: method: *POST
+    }
+    path: "/v1/kms/issuers/{issuerId}/policies": {
+      rename: param: "issuerId": *"issuer_id"
+      op: create: method: *POST
+      op: create: transform: req: "environments": *("`reqdata.environment`")|top
+      op: create: transform: req: "kind": *("`reqdata.kind`")|top
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+      op: create: transform: req: "tokenClaims": *("`reqdata.token_claim`")|top
+    }
+    path: "/v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}": {
+      rename: param: "issuerId": *"issuer_id"
+      rename: param: "policyKey": *"policy_key"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "environments": *("`reqdata.environment`")|top
+      op: patch: transform: req: "tokenClaims": *("`reqdata.token_claim`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/kms/issuers/{issuerId}/sign/message": {
+      rename: param: "issuerId": *"issuer_id"
+      op: create: method: *POST
+    }
+    path: "/v1/kms/issuers/{issuerId}/sign/token": {
+      rename: param: "issuerId": *"issuer_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: list_event_type: {
+    path: "/v1/events/types": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: log: {
+    path: "/v1/projects/{projectId}/deployments/{deploymentId}/runtime-logs": {
+      rename: param: "deploymentId": *"deployment_id"
+      rename: param: "projectId": *"project_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: log_drain: {
+    path: "/v1/integrations/log-drains/{id}": {
+      op: remove: method: *DELETE
+    }
+    path: "/v1/log-drains": {
+      op: create: method: *POST
+      op: create: transform: req: "deliveryFormat": *("`reqdata.delivery_format`")|top
+      op: create: transform: req: "environments": *("`reqdata.environment`")|top
+      op: create: transform: req: "headers": *("`reqdata.header`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "projectIds": *("`reqdata.project_id`")|top
+      op: create: transform: req: "samplingRate": *("`reqdata.sampling_rate`")|top
+      op: create: transform: req: "secret": *("`reqdata.secret`")|top
+      op: create: transform: req: "sources": *("`reqdata.source`")|top
+      op: create: transform: req: "url": *("`reqdata.url`")|top
+      op: load: method: *GET
+    }
+    path: "/v1/log-drains/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/v2/integrations/log-drains": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+  }
+
+  entity: marketplace: {
+    path: "/v1/installations/{integrationConfigurationId}": {
+      rename: param: "integrationConfigurationId": *"integration_configuration_id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "billingPlan": *("`reqdata.billing_plan`")|top
+      op: patch: transform: req: "externalId": *("`reqdata.external_id`")|top
+      op: patch: transform: req: "notification": *("`reqdata.notification`")|top
+      op: patch: transform: req: "status": *("`reqdata.status`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/account": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.contact`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/billing": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      op: create: method: *POST
+      op: create: transform: req: "billing": *("`reqdata.billing`")|top
+      op: create: transform: req: "eod": *("`reqdata.eod`")|top
+      op: create: transform: req: "period": *("`reqdata.period`")|top
+      op: create: transform: req: "timestamp": *("`reqdata.timestamp`")|top
+      op: create: transform: req: "usage": *("`reqdata.usage`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/billing/balance": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      op: create: method: *POST
+      op: create: transform: req: "balances": *("`reqdata.balance`")|top
+      op: create: transform: req: "timestamp": *("`reqdata.timestamp`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/billing/finalize": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      op: create: method: *POST
+    }
+    path: "/v1/installations/{integrationConfigurationId}/billing/invoices": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      op: create: method: *POST
+      op: create: transform: req: "discounts": *("`reqdata.discount`")|top
+      op: create: transform: req: "externalId": *("`reqdata.external_id`")|top
+      op: create: transform: req: "final": *("`reqdata.final`")|top
+      op: create: transform: req: "invoiceDate": *("`reqdata.invoice_date`")|top
+      op: create: transform: req: "items": *("`reqdata.item`")|top
+      op: create: transform: req: "memo": *("`reqdata.memo`")|top
+      op: create: transform: req: "period": *("`reqdata.period`")|top
+      op: create: transform: req: "test": *("`reqdata.test`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "invoiceId": *"invoice_id"
+      op: load: method: *GET
+    }
+    path: "/v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}/actions": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "invoiceId": *"invoice_id"
+      op: create: method: *POST
+    }
+    path: "/v1/installations/{integrationConfigurationId}/credentials/revoke": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      op: create: method: *POST
+      op: create: transform: req: "client_id": *("`reqdata.client_id`")|top
+      op: create: transform: req: "client_secret": *("`reqdata.client_secret`")|top
+      op: create: transform: req: "token": *("`reqdata.token`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/credentials/rotate": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      op: create: method: *POST
+      op: create: transform: req: "client_id": *("`reqdata.client_id`")|top
+      op: create: transform: req: "client_secret": *("`reqdata.client_secret`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/events": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      op: create: method: *POST
+      op: create: transform: req: "event": *("`reqdata.event`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/member/{memberId}": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "memberId": *"member_id"
+      op: load: method: *GET
+    }
+    path: "/v1/installations/{integrationConfigurationId}/products/{integrationProductIdOrSlug}/resources/{resourceId}/secrets": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "integrationProductIdOrSlug": *"product_id"
+      rename: param: "resourceId": *"resource_id"
+      op: update: method: *PUT
+      op: update: transform: req: "partial": *("`reqdata.partial`")|top
+      op: update: transform: req: "secrets": *("`reqdata.secret`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/resources": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.resources`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/resources/{resourceId}": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "resourceId": *"resource_id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "billingPlan": *("`reqdata.billing_plan`")|top
+      op: patch: transform: req: "extras": *("`reqdata.extra`")|top
+      op: patch: transform: req: "metadata": *("`reqdata.metadata`")|top
+      op: patch: transform: req: "name": *("`reqdata.name`")|top
+      op: patch: transform: req: "notification": *("`reqdata.notification`")|top
+      op: patch: transform: req: "ownership": *("`reqdata.ownership`")|top
+      op: patch: transform: req: "secrets": *("`reqdata.secret`")|top
+      op: patch: transform: req: "status": *("`reqdata.status`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+      op: update: transform: req: "billingPlan": *("`reqdata.billing_plan`")|top
+      op: update: transform: req: "extras": *("`reqdata.extra`")|top
+      op: update: transform: req: "metadata": *("`reqdata.metadata`")|top
+      op: update: transform: req: "name": *("`reqdata.name`")|top
+      op: update: transform: req: "notification": *("`reqdata.notification`")|top
+      op: update: transform: req: "ownership": *("`reqdata.ownership`")|top
+      op: update: transform: req: "productId": *("`reqdata.product_id`")|top
+      op: update: transform: req: "secrets": *("`reqdata.secret`")|top
+      op: update: transform: req: "status": *("`reqdata.status`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "resourceId": *"resource_id"
+      op: head: method: *HEAD
+      op: head: transform: res: *("`body.items`")|top
+      op: load: method: *GET
+      op: load: transform: res: *("`body.items`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.items`")|top
+      op: update: transform: req: "data": *("`reqdata.data`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "resourceId": *"resource_id"
+      op: create: method: *POST
+      op: create: transform: req: "items": *("`reqdata.item`")|top
+    }
+    path: "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "itemId": *"item_id"
+      rename: param: "resourceId": *"resource_id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "category": *("`reqdata.category`")|top
+      op: patch: transform: req: "createdAt": *("`reqdata.created_at`")|top
+      op: patch: transform: req: "description": *("`reqdata.description`")|top
+      op: patch: transform: req: "isArchived": *("`reqdata.is_archived`")|top
+      op: patch: transform: req: "name": *("`reqdata.name`")|top
+      op: patch: transform: req: "origin": *("`reqdata.origin`")|top
+      op: patch: transform: req: "slug": *("`reqdata.slug`")|top
+      op: patch: transform: req: "updatedAt": *("`reqdata.updated_at`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/secrets": {
+      rename: param: "integrationConfigurationId": *"installation_id"
+      rename: param: "resourceId": *"resource_id"
+      op: update: method: *PUT
+      op: update: transform: req: "partial": *("`reqdata.partial`")|top
+      op: update: transform: req: "secrets": *("`reqdata.secret`")|top
+    }
+  }
+
+  entity: microfrontend: {
+    path: "/v1/microfrontends/group": {
+      action: "group": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.newMicrofrontendsGroup`")|top
+    }
+    path: "/v1/microfrontends/groups": {
+      action: "group": {}
+      op: load: method: *GET
+    }
+    path: "/v1/microfrontends/groups/{groupId}/projects": {
+      rename: param: "groupId": *"group_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.projects`")|top
+    }
+    path: "/v1/microfrontends/projects/{projectIdOrName}/production-mfe-config": {
+      rename: param: "projectIdOrName": *"project_id_or_name"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.config`")|top
+    }
+    path: "/v1/microfrontends/{deploymentId}/config": {
+      action: "config": {}
+      rename: param: "deploymentId": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.config`")|top
+    }
+  }
+
+  entity: network: {
+    path: "/v1/connect/networks": {
+      op: create: method: *POST
+      op: create: transform: req: "awsAvailabilityZoneIds": *("`reqdata.aws_availability_zone_id`")|top
+      op: create: transform: req: "cidr": *("`reqdata.cidr`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "region": *("`reqdata.region`")|top
+      op: list: method: *GET
+    }
+    path: "/v1/connect/networks/{networkId}": {
+      rename: param: "networkId": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "name": *("`reqdata.name`")|top
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: networking: {
+    path: "/v1/networking/privatelink/endpoints/{endpointId}": {
+      rename: param: "endpointId": *"endpoint_id"
+      op: remove: method: *DELETE
+    }
+    path: "/v1/projects/{idOrName}/shared-connect-links": {
+      rename: param: "idOrName": *"id_or_name"
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: observability: {
+    path: "/v1/observability/manage/configuration/projects": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.disabledProjects`")|top
+    }
+    path: "/v1/observability/manage/configuration/projects/{projectIdOrName}": {
+      rename: param: "projectIdOrName": *"project_id_or_name"
+      op: update: method: *PUT
+      op: update: transform: req: "disabled": *("`reqdata.disabled`")|top
+    }
+  }
+
+  entity: private_link_endpoint: {
+    path: "/v1/networking/privatelink/endpoints": {
+      op: create: method: *POST
+      op: create: transform: req: "awsServiceName": *("`reqdata.aws_service_name`")|top
+      op: create: transform: req: "enablePrivateDns": *("`reqdata.enable_private_dn`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+      op: create: transform: req: "vercelRegion": *("`reqdata.vercel_region`")|top
+      op: list: method: *GET
+    }
+    path: "/v1/networking/privatelink/endpoints/{endpointId}": {
+      rename: param: "endpointId": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "enablePrivateDns": *("`reqdata.enable_private_dn`")|top
+      op: patch: transform: req: "name": *("`reqdata.name`")|top
+    }
+  }
 
   entity: project: {
+    path: "/projects/transfer-request/{code}": {
+      op: update: method: *PUT
+      op: update: transform: req: "acceptedPolicies": *("`reqdata.accepted_policy`")|top
+      op: update: transform: req: "newProjectName": *("`reqdata.new_project_name`")|top
+      op: update: transform: req: "paidFeatures": *("`reqdata.paid_feature`")|top
+    }
+    path: "/projects/{idOrName}/transfer-request": {
+      action: "transfer_request": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: create: method: *POST
+    }
+    path: "/v1/projects/traces": {
+      action: "trace": {}
+      op: load: method: *GET
+      op: load: transform: res: *("`body.trace`")|top
+    }
+    path: "/v1/projects/traces/session": {
+      op: create: method: *POST
+      op: create: transform: req: "hostname": *("`reqdata.hostname`")|top
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+    }
+    path: "/v1/projects/{idOrName}/avatar": {
+      action: "avatar": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: create: method: *POST
+    }
+    path: "/v1/projects/{idOrName}/domains/{domain}/move": {
+      rename: param: "domain": *"domain_id"
+      rename: param: "idOrName": *"project_id"
+      op: create: method: *POST
+    }
+    path: "/v1/projects/{idOrName}/env": {
+      action: "env": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: remove: method: *DELETE
+      op: remove: transform: req: "ids": *("`reqdata.ids`")|top
+    }
+    path: "/v1/projects/{idOrName}/env/{id}": {
+      rename: param: "idOrName": *"project_id"
+      op: load: method: *GET
+    }
+    path: "/v1/projects/{idOrName}/protection-bypass": {
+      action: "protection_bypass": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.protectionBypass`")|top
+      op: patch: transform: req: "generate": *("`reqdata.generate`")|top
+      op: patch: transform: req: "revoke": *("`reqdata.revoke`")|top
+      op: patch: transform: req: "update": *("`reqdata.update`")|top
+    }
+    path: "/v1/projects/{idOrName}/token": {
+      action: "token": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: create: method: *POST
+    }
+    path: "/v1/projects/{projectId}/microfrontends": {
+      action: "microfrontend": {}
+      rename: param: "projectId": *"id"
+      op: patch: method: *PATCH
+    }
+    path: "/v1/projects/{projectId}/pause": {
+      action: "pause": {}
+      rename: param: "projectId": *"id"
+      op: create: method: *POST
+    }
+    path: "/v1/projects/{projectId}/promote/aliases": {
+      action: "promote_alias": {}
+      rename: param: "projectId": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/projects/{projectId}/rollback/{deploymentId}": {
+      rename: param: "deploymentId": *"deployment_id"
+      rename: param: "projectId": *"id"
+      op: create: method: *POST
+    }
+    path: "/v1/projects/{projectId}/rollback/{deploymentId}/update-description": {
+      action: "update_description": {}
+      rename: param: "deploymentId": *"rollback_id"
+      rename: param: "projectId": *"id"
+      op: patch: method: *PATCH
+    }
+    path: "/v1/projects/{projectId}/unpause": {
+      action: "unpause": {}
+      rename: param: "projectId": *"id"
+      op: create: method: *POST
+    }
     path: "/v10/projects": {
       op: load: method: *GET
+    }
+    path: "/v10/projects/{idOrName}/domains": {
+      action: "domain": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: create: method: *POST
+    }
+    path: "/v10/projects/{idOrName}/env": {
+      action: "env": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/v10/projects/{projectId}/promote/{deploymentId}": {
+      rename: param: "deploymentId": *"deployment_id"
+      rename: param: "projectId": *"id"
+      op: create: method: *POST
     }
     path: "/v11/projects": {
       op: create: method: *POST
@@ -29,6 +1420,7 @@ guide: {
       op: create: transform: req: "publicSource": *("`reqdata.public_source`")|top
       op: create: transform: req: "resourceConfig": *("`reqdata.resource_config`")|top
       op: create: transform: req: "rootDirectory": *("`reqdata.root_directory`")|top
+      op: create: transform: req: "sandbox": *("`reqdata.sandbox`")|top
       op: create: transform: req: "serverlessFunctionRegion": *("`reqdata.serverless_function_region`")|top
       op: create: transform: req: "serverlessFunctionZeroConfigFailover": *("`reqdata.serverless_function_zero_config_failover`")|top
       op: create: transform: req: "skipGitConnectDuringLink": *("`reqdata.skip_git_connect_during_link`")|top
@@ -70,6 +1462,7 @@ guide: {
       op: patch: transform: req: "publicSource": *("`reqdata.public_source`")|top
       op: patch: transform: req: "resourceConfig": *("`reqdata.resource_config`")|top
       op: patch: transform: req: "rootDirectory": *("`reqdata.root_directory`")|top
+      op: patch: transform: req: "sandbox": *("`reqdata.sandbox`")|top
       op: patch: transform: req: "serverlessFunctionRegion": *("`reqdata.serverless_function_region`")|top
       op: patch: transform: req: "serverlessFunctionZeroConfigFailover": *("`reqdata.serverless_function_zero_config_failover`")|top
       op: patch: transform: req: "skewProtectionAllowedDomains": *("`reqdata.skew_protection_allowed_domain`")|top
@@ -82,6 +1475,742 @@ guide: {
       op: patch: transform: req: "tracing": *("`reqdata.tracing`")|top
       op: patch: transform: req: "trustedIps": *("`reqdata.trusted_ip`")|top
       op: patch: transform: req: "trustedSources": *("`reqdata.trusted_source`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v9/projects/{idOrName}/domains": {
+      action: "domain": {}
+      rename: param: "idOrName": *"id_or_name"
+      op: load: method: *GET
+    }
+    path: "/v9/projects/{idOrName}/domains/{domain}": {
+      rename: param: "idOrName": *"project_id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/v9/projects/{idOrName}/domains/{domain}/verify": {
+      action: "verify": {}
+      rename: param: "domain": *"domain_id"
+      rename: param: "idOrName": *"project_id"
+      op: create: method: *POST
+    }
+    path: "/v9/projects/{idOrName}/env/{id}": {
+      rename: param: "idOrName": *"project_id"
+      op: patch: method: *PATCH
+      op: patch: transform: req: "comment": *("`reqdata.comment`")|top
+      op: patch: transform: req: "customEnvironmentIds": *("`reqdata.custom_environment_id`")|top
+      op: patch: transform: req: "gitBranch": *("`reqdata.git_branch`")|top
+      op: patch: transform: req: "key": *("`reqdata.key`")|top
+      op: patch: transform: req: "target": *("`reqdata.target`")|top
+      op: patch: transform: req: "type": *("`reqdata.type`")|top
+      op: patch: transform: req: "value": *("`reqdata.value`")|top
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: project_member: {
+    path: "/v1/projects/{idOrName}/members": {
+      rename: param: "idOrName": *"id_or_name"
+      op: create: method: *POST
+      op: create: transform: req: "email": *("`reqdata.email`")|top
+      op: create: transform: req: "role": *("`reqdata.role`")|top
+      op: create: transform: req: "uid": *("`reqdata.uid`")|top
+      op: create: transform: req: "username": *("`reqdata.username`")|top
+      op: load: method: *GET
+    }
+    path: "/v1/projects/{idOrName}/members/{uid}": {
+      rename: param: "idOrName": *"project_id"
+      rename: param: "uid": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: project_route: {
+    path: "/v1/projects/{projectId}/routes": {
+      rename: param: "projectId": *"id"
+      op: create: method: *POST
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.version`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.version`")|top
+    }
+    path: "/v1/projects/{projectId}/routes/generate": {
+      rename: param: "projectId": *"project_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.route`")|top
+    }
+    path: "/v1/projects/{projectId}/routes/versions": {
+      rename: param: "projectId": *"project_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.version`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.versions`")|top
+    }
+    path: "/v1/projects/{projectId}/routes/{routeId}": {
+      rename: param: "projectId": *"project_id"
+      rename: param: "routeId": *"id"
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: query: {
+    path: "/v2/observability/query": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: record: {
+    path: "/domains/records/{recordId}": {
+      rename: param: "recordId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: rolling_release: {
+    path: "/v1/projects/{idOrName}/rolling-release": {
+      rename: param: "idOrName": *"id_or_name"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.rollingRelease`")|top
+    }
+    path: "/v1/projects/{idOrName}/rolling-release/approve-stage": {
+      action: "approve_stage": {}
+      rename: param: "idOrName": *"project_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.rollingRelease`")|top
+    }
+    path: "/v1/projects/{idOrName}/rolling-release/billing": {
+      action: "billing": {}
+      rename: param: "idOrName": *"project_id"
+      op: load: method: *GET
+    }
+    path: "/v1/projects/{idOrName}/rolling-release/complete": {
+      action: "complete": {}
+      rename: param: "idOrName": *"project_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.rollingRelease`")|top
+    }
+    path: "/v1/projects/{idOrName}/rolling-release/config": {
+      action: "config": {}
+      rename: param: "idOrName": *"project_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.rollingRelease`")|top
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/v1/projects/{idOrName}/rolling-release/start": {
+      action: "start": {}
+      rename: param: "idOrName": *"project_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.rollingRelease`")|top
+    }
+  }
+
+  entity: sandbox: {
+    path: "/v2/sandboxes": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.sandbox`")|top
+      op: create: transform: req: "env": *("`reqdata.env`")|top
+      op: create: transform: req: "failoverRegions": *("`reqdata.failover_region`")|top
+      op: create: transform: req: "image": *("`reqdata.image`")|top
+      op: create: transform: req: "keepLastSnapshots": *("`reqdata.keep_last_snapshot`")|top
+      op: create: transform: req: "mounts": *("`reqdata.mount`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "networkId": *("`reqdata.network_id`")|top
+      op: create: transform: req: "networkPolicy": *("`reqdata.network_policy`")|top
+      op: create: transform: req: "persistent": *("`reqdata.persistent`")|top
+      op: create: transform: req: "ports": *("`reqdata.port`")|top
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+      op: create: transform: req: "region": *("`reqdata.region`")|top
+      op: create: transform: req: "resources": *("`reqdata.resource`")|top
+      op: create: transform: req: "runtime": *("`reqdata.runtime`")|top
+      op: create: transform: req: "snapshotExpiration": *("`reqdata.snapshot_expiration`")|top
+      op: create: transform: req: "source": *("`reqdata.source`")|top
+      op: create: transform: req: "tags": *("`reqdata.tag`")|top
+      op: create: transform: req: "timeout": *("`reqdata.timeout`")|top
+      op: list: method: *GET
+    }
+    path: "/v2/sandboxes/drives": {
+      action: "drif": {}
+      op: list: method: *GET
+    }
+    path: "/v2/sandboxes/drives/{name}": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.drive`")|top
+      op: create: transform: req: "maxSizeBytes": *("`reqdata.max_size_byte`")|top
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+      op: create: transform: req: "region": *("`reqdata.region`")|top
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.drive`")|top
+    }
+    path: "/v2/sandboxes/sessions": {
+      action: "session": {}
+      op: load: method: *GET
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}": {
+      rename: param: "sessionId": *"session_id"
+      op: load: method: *GET
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/cmd": {
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.command`")|top
+      op: create: transform: req: "args": *("`reqdata.arg`")|top
+      op: create: transform: req: "command": *("`reqdata.command`")|top
+      op: create: transform: req: "cwd": *("`reqdata.cwd`")|top
+      op: create: transform: req: "env": *("`reqdata.env`")|top
+      op: create: transform: req: "logs": *("`reqdata.log`")|top
+      op: create: transform: req: "sudo": *("`reqdata.sudo`")|top
+      op: create: transform: req: "timeout": *("`reqdata.timeout`")|top
+      op: create: transform: req: "wait": *("`reqdata.wait`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.commands`")|top
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/cmd/{cmdId}": {
+      rename: param: "cmdId": *"cmd_id"
+      rename: param: "sessionId": *"session_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.command`")|top
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/cmd/{cmdId}/kill": {
+      action: "kill": {}
+      rename: param: "cmdId": *"cmd_id"
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.command`")|top
+      op: create: transform: req: "signal": *("`reqdata.signal`")|top
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/cmd/{cmdId}/logs": {
+      rename: param: "cmdId": *"cmd_id"
+      rename: param: "sessionId": *"session_id"
+      op: load: method: *GET
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/extend-timeout": {
+      action: "extend_timeout": {}
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.session`")|top
+      op: create: transform: req: "duration": *("`reqdata.duration`")|top
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/fs/mkdir": {
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+      op: create: transform: req: "cwd": *("`reqdata.cwd`")|top
+      op: create: transform: req: "path": *("`reqdata.path`")|top
+      op: create: transform: req: "recursive": *("`reqdata.recursive`")|top
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/fs/read": {
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+      op: create: transform: req: "cwd": *("`reqdata.cwd`")|top
+      op: create: transform: req: "path": *("`reqdata.path`")|top
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/fs/write": {
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/network-policy": {
+      action: "network_policy": {}
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.session`")|top
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/snapshot": {
+      action: "snapshot": {}
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+      op: create: transform: req: "expiration": *("`reqdata.expiration`")|top
+    }
+    path: "/v2/sandboxes/sessions/{sessionId}/stop": {
+      action: "stop": {}
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+    }
+    path: "/v2/sandboxes/snapshots": {
+      action: "snapshot": {}
+      op: load: method: *GET
+    }
+    path: "/v2/sandboxes/snapshots/{snapshotId}": {
+      rename: param: "snapshotId": *"snapshot_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.snapshot`")|top
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.snapshot`")|top
+    }
+    path: "/v2/sandboxes/{name}": {
+      rename: param: "name": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.sandbox`")|top
+      op: patch: method: *PATCH
+      op: patch: transform: req: "currentSnapshotId": *("`reqdata.current_snapshot_id`")|top
+      op: patch: transform: req: "env": *("`reqdata.env`")|top
+      op: patch: transform: req: "failoverRegions": *("`reqdata.failover_region`")|top
+      op: patch: transform: req: "keepLastSnapshots": *("`reqdata.keep_last_snapshot`")|top
+      op: patch: transform: req: "mounts": *("`reqdata.mount`")|top
+      op: patch: transform: req: "networkId": *("`reqdata.network_id`")|top
+      op: patch: transform: req: "networkPolicy": *("`reqdata.network_policy`")|top
+      op: patch: transform: req: "persistent": *("`reqdata.persistent`")|top
+      op: patch: transform: req: "ports": *("`reqdata.port`")|top
+      op: patch: transform: req: "region": *("`reqdata.region`")|top
+      op: patch: transform: req: "resources": *("`reqdata.resource`")|top
+      op: patch: transform: req: "runtime": *("`reqdata.runtime`")|top
+      op: patch: transform: req: "snapshotExpiration": *("`reqdata.snapshot_expiration`")|top
+      op: patch: transform: req: "tags": *("`reqdata.tag`")|top
+      op: patch: transform: req: "timeout": *("`reqdata.timeout`")|top
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.sandbox`")|top
+    }
+    path: "/v2/sandboxes/{name}/fork": {
+      action: "fork": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.sandbox`")|top
+      op: create: transform: req: "env": *("`reqdata.env`")|top
+      op: create: transform: req: "failoverRegions": *("`reqdata.failover_region`")|top
+      op: create: transform: req: "image": *("`reqdata.image`")|top
+      op: create: transform: req: "keepLastSnapshots": *("`reqdata.keep_last_snapshot`")|top
+      op: create: transform: req: "mounts": *("`reqdata.mount`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "networkId": *("`reqdata.network_id`")|top
+      op: create: transform: req: "networkPolicy": *("`reqdata.network_policy`")|top
+      op: create: transform: req: "persistent": *("`reqdata.persistent`")|top
+      op: create: transform: req: "ports": *("`reqdata.port`")|top
+      op: create: transform: req: "region": *("`reqdata.region`")|top
+      op: create: transform: req: "resources": *("`reqdata.resource`")|top
+      op: create: transform: req: "snapshotExpiration": *("`reqdata.snapshot_expiration`")|top
+      op: create: transform: req: "tags": *("`reqdata.tag`")|top
+      op: create: transform: req: "timeout": *("`reqdata.timeout`")|top
+    }
+    path: "/v3/sandboxes": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.sandbox`")|top
+      op: create: transform: req: "env": *("`reqdata.env`")|top
+      op: create: transform: req: "failoverRegions": *("`reqdata.failover_region`")|top
+      op: create: transform: req: "image": *("`reqdata.image`")|top
+      op: create: transform: req: "keepLastSnapshots": *("`reqdata.keep_last_snapshot`")|top
+      op: create: transform: req: "mounts": *("`reqdata.mount`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "networkId": *("`reqdata.network_id`")|top
+      op: create: transform: req: "networkPolicy": *("`reqdata.network_policy`")|top
+      op: create: transform: req: "persistent": *("`reqdata.persistent`")|top
+      op: create: transform: req: "ports": *("`reqdata.port`")|top
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+      op: create: transform: req: "region": *("`reqdata.region`")|top
+      op: create: transform: req: "resources": *("`reqdata.resource`")|top
+      op: create: transform: req: "snapshotExpiration": *("`reqdata.snapshot_expiration`")|top
+      op: create: transform: req: "source": *("`reqdata.source`")|top
+      op: create: transform: req: "tags": *("`reqdata.tag`")|top
+      op: create: transform: req: "timeout": *("`reqdata.timeout`")|top
+    }
+    path: "/v3/sandboxes/sessions/{sessionId}/snapshot": {
+      rename: param: "sessionId": *"session_id"
+      op: create: method: *POST
+      op: create: transform: req: "expiration": *("`reqdata.expiration`")|top
+    }
+    path: "/v3/sandboxes/{name}/fork": {
+      action: "fork": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.sandbox`")|top
+      op: create: transform: req: "env": *("`reqdata.env`")|top
+      op: create: transform: req: "failoverRegions": *("`reqdata.failover_region`")|top
+      op: create: transform: req: "image": *("`reqdata.image`")|top
+      op: create: transform: req: "keepLastSnapshots": *("`reqdata.keep_last_snapshot`")|top
+      op: create: transform: req: "mounts": *("`reqdata.mount`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "networkId": *("`reqdata.network_id`")|top
+      op: create: transform: req: "networkPolicy": *("`reqdata.network_policy`")|top
+      op: create: transform: req: "persistent": *("`reqdata.persistent`")|top
+      op: create: transform: req: "ports": *("`reqdata.port`")|top
+      op: create: transform: req: "region": *("`reqdata.region`")|top
+      op: create: transform: req: "resources": *("`reqdata.resource`")|top
+      op: create: transform: req: "snapshotExpiration": *("`reqdata.snapshot_expiration`")|top
+      op: create: transform: req: "tags": *("`reqdata.tag`")|top
+      op: create: transform: req: "timeout": *("`reqdata.timeout`")|top
+    }
+    path: "/v4/sandboxes": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.sandbox`")|top
+      op: create: transform: req: "env": *("`reqdata.env`")|top
+      op: create: transform: req: "failoverRegions": *("`reqdata.failover_region`")|top
+      op: create: transform: req: "image": *("`reqdata.image`")|top
+      op: create: transform: req: "keepLastSnapshots": *("`reqdata.keep_last_snapshot`")|top
+      op: create: transform: req: "mounts": *("`reqdata.mount`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "networkId": *("`reqdata.network_id`")|top
+      op: create: transform: req: "networkPolicy": *("`reqdata.network_policy`")|top
+      op: create: transform: req: "persistent": *("`reqdata.persistent`")|top
+      op: create: transform: req: "ports": *("`reqdata.port`")|top
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+      op: create: transform: req: "region": *("`reqdata.region`")|top
+      op: create: transform: req: "resources": *("`reqdata.resource`")|top
+      op: create: transform: req: "snapshotExpiration": *("`reqdata.snapshot_expiration`")|top
+      op: create: transform: req: "source": *("`reqdata.source`")|top
+      op: create: transform: req: "tags": *("`reqdata.tag`")|top
+      op: create: transform: req: "timeout": *("`reqdata.timeout`")|top
+    }
+  }
+
+  entity: schema: {
+    path: "/v2/observability/schema": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.metrics`")|top
+    }
+    path: "/v2/observability/schema/{metricId}": {
+      rename: param: "metricId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: security: {
+    path: "/v1/security/attack-mode": {
+      action: "attack_mode": {}
+      op: create: method: *POST
+    }
+    path: "/v1/security/firewall/attack-status": {
+      op: load: method: *GET
+    }
+    path: "/v1/security/firewall/bypass": {
+      op: create: method: *POST
+      op: create: transform: req: "allSources": *("`reqdata.all_source`")|top
+      op: create: transform: req: "domain": *("`reqdata.domain`")|top
+      op: create: transform: req: "note": *("`reqdata.note`")|top
+      op: create: transform: req: "projectScope": *("`reqdata.project_scope`")|top
+      op: create: transform: req: "sourceIp": *("`reqdata.source_ip`")|top
+      op: create: transform: req: "ttl": *("`reqdata.ttl`")|top
+      op: list: method: *GET
+      op: remove: method: *DELETE
+      op: remove: transform: req: "allSources": *("`reqdata.all_source`")|top
+      op: remove: transform: req: "domain": *("`reqdata.domain`")|top
+      op: remove: transform: req: "note": *("`reqdata.note`")|top
+      op: remove: transform: req: "projectScope": *("`reqdata.project_scope`")|top
+      op: remove: transform: req: "sourceIp": *("`reqdata.source_ip`")|top
+    }
+    path: "/v1/security/firewall/config": {
+      op: list: method: *GET
+      op: patch: method: *PATCH
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.active`")|top
+      op: update: transform: req: "botIdEnabled": *("`reqdata.bot_id_enabled`")|top
+      op: update: transform: req: "crs": *("`reqdata.crs`")|top
+      op: update: transform: req: "firewallEnabled": *("`reqdata.firewall_enabled`")|top
+      op: update: transform: req: "ips": *("`reqdata.ips`")|top
+      op: update: transform: req: "logHeaders": *("`reqdata.log_header`")|top
+      op: update: transform: req: "managedRules": *("`reqdata.managed_rule`")|top
+      op: update: transform: req: "rules": *("`reqdata.rule`")|top
+      op: update: transform: req: "rulesets": *("`reqdata.ruleset`")|top
+    }
+    path: "/v1/security/firewall/config/generate-rule": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.rule`")|top
+    }
+    path: "/v1/security/firewall/config/{configVersion}": {
+      rename: param: "configVersion": *"config_version"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/v1/security/firewall/config/{configVersion}/activate": {
+      action: "activate": {}
+      rename: param: "configVersion": *"config_version"
+      op: create: method: *POST
+    }
+    path: "/v1/security/firewall/events": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.actions`")|top
+    }
+  }
+
+  entity: segment: {
+    path: "/v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}": {
+      rename: param: "projectIdOrName": *"project_id"
+      rename: param: "segmentIdOrSlug": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: storage: {
+    path: "/storage/stores/blob": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.store`")|top
+    }
+    path: "/storage/stores/blob/{id}": {
+      op: remove: method: *DELETE
+    }
+    path: "/storage/stores/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.store`")|top
+    }
+  }
+
+  entity: team: {
+    path: "/v1/teams": {
+      op: create: method: *POST
+      op: create: transform: req: "attribution": *("`reqdata.attribution`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "slug": *("`reqdata.slug`")|top
+    }
+    path: "/v1/teams/{teamId}": {
+      rename: param: "teamId": *"id"
+      op: remove: method: *DELETE
+      op: remove: transform: req: "reasons": *("`reqdata.reason`")|top
+    }
+    path: "/v1/teams/{teamId}/dsync-roles": {
+      action: "dsync_role": {}
+      rename: param: "teamId": *"id"
+      op: create: method: *POST
+      op: create: transform: req: "roles": *("`reqdata.role`")|top
+    }
+    path: "/v1/teams/{teamId}/invites/{inviteId}": {
+      rename: param: "inviteId": *"invite_id"
+      rename: param: "teamId": *"id"
+      op: remove: method: *DELETE
+    }
+    path: "/v1/teams/{teamId}/members/teams/join": {
+      action: "join": {}
+      rename: param: "teamId": *"id"
+      op: create: method: *POST
+    }
+    path: "/v1/teams/{teamId}/members/{uid}": {
+      rename: param: "teamId": *"id"
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/v1/teams/{teamId}/microfrontends/{groupId}": {
+      rename: param: "groupId": *"group_id"
+      rename: param: "teamId": *"id"
+      op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.updatedMicrofrontendsGroup`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/teams/{teamId}/request": {
+      action: "request": {}
+      rename: param: "teamId": *"id"
+      op: create: method: *POST
+      op: create: transform: req: "joinedFrom": *("`reqdata.joined_from`")|top
+    }
+    path: "/v1/teams/{teamId}/request/{userId}": {
+      rename: param: "teamId": *"id"
+      rename: param: "userId": *"user_id"
+      op: load: method: *GET
+    }
+    path: "/v2/teams": {
+      op: list: method: *GET
+    }
+    path: "/v2/teams/{teamId}": {
+      rename: param: "teamId": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: patch: transform: req: "avatar": *("`reqdata.avatar`")|top
+      op: patch: transform: req: "defaultDeploymentProtection": *("`reqdata.default_deployment_protection`")|top
+      op: patch: transform: req: "defaultExpirationSettings": *("`reqdata.default_expiration_setting`")|top
+      op: patch: transform: req: "defaultPassport": *("`reqdata.default_passport`")|top
+      op: patch: transform: req: "defaultProjectJobs": *("`reqdata.default_project_job`")|top
+      op: patch: transform: req: "deploymentPolicy": *("`reqdata.deployment_policy`")|top
+      op: patch: transform: req: "description": *("`reqdata.description`")|top
+      op: patch: transform: req: "disableRepositoryDispatchEvents": *("`reqdata.disable_repository_dispatch_event`")|top
+      op: patch: transform: req: "disjunctiveProductionSecretPolicy": *("`reqdata.disjunctive_production_secret_policy`")|top
+      op: patch: transform: req: "dpAccessRequestsMode": *("`reqdata.dp_access_requests_mode`")|top
+      op: patch: transform: req: "emailDomain": *("`reqdata.email_domain`")|top
+      op: patch: transform: req: "enablePreviewFeedback": *("`reqdata.enable_preview_feedback`")|top
+      op: patch: transform: req: "enableProductionFeedback": *("`reqdata.enable_production_feedback`")|top
+      op: patch: transform: req: "hideIpAddresses": *("`reqdata.hide_ip_address`")|top
+      op: patch: transform: req: "hideIpAddressesInLogDrains": *("`reqdata.hide_ip_addresses_in_log_drain`")|top
+      op: patch: transform: req: "name": *("`reqdata.name`")|top
+      op: patch: transform: req: "nsnbConfig": *("`reqdata.nsnb_config`")|top
+      op: patch: transform: req: "previewDeploymentSuffix": *("`reqdata.preview_deployment_suffix`")|top
+      op: patch: transform: req: "regenerateInviteCode": *("`reqdata.regenerate_invite_code`")|top
+      op: patch: transform: req: "remoteCaching": *("`reqdata.remote_caching`")|top
+      op: patch: transform: req: "requireVerifiedCommits": *("`reqdata.require_verified_commit`")|top
+      op: patch: transform: req: "resourceConfig": *("`reqdata.resource_config`")|top
+      op: patch: transform: req: "saml": *("`reqdata.saml`")|top
+      op: patch: transform: req: "sensitiveEnvironmentVariablePolicy": *("`reqdata.sensitive_environment_variable_policy`")|top
+      op: patch: transform: req: "slug": *("`reqdata.slug`")|top
+      op: patch: transform: req: "strictConnectors": *("`reqdata.strict_connector`")|top
+      op: patch: transform: req: "strictDeploymentProtectionSettings": *("`reqdata.strict_deployment_protection_setting`")|top
+      op: patch: transform: req: "strictPasswordProtectionSettings": *("`reqdata.strict_password_protection_setting`")|top
+      op: patch: transform: req: "strictShareableLinks": *("`reqdata.strict_shareable_link`")|top
+    }
+    path: "/v2/teams/{teamId}/members": {
+      action: "member": {}
+      rename: param: "teamId": *"id"
+      op: create: method: *POST
+    }
+    path: "/v3/teams/{teamId}/members": {
+      action: "member": {}
+      rename: param: "teamId": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: tld_name: {
+    path: "/v1/registrar/tlds/supported": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: toggle: {
+    path: "/speed-insights/toggle": {
+      op: create: method: *POST
+    }
+    path: "/web/insights/toggle": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: user: {
+    path: "/v1/user": {
+      op: remove: method: *DELETE
+      op: remove: transform: req: "reasons": *("`reqdata.reason`")|top
+    }
+    path: "/v2/user": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.user`")|top
+    }
+    path: "/v3/events": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.events`")|top
+    }
+  }
+
+  entity: vcr: {
+    path: "/v1/vcr/repository": {
+      action: "repository": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.repository`")|top
+      op: create: transform: req: "name": *("`reqdata.name`")|top
+      op: create: transform: req: "projectId": *("`reqdata.project_id`")|top
+    }
+    path: "/v1/vcr/repository/{idOrName}": {
+      rename: param: "idOrName": *"id_or_name"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.repository`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/vcr/repository/{idOrName}/images/{imageIdOrDigest}": {
+      rename: param: "idOrName": *"repository_id"
+      rename: param: "imageIdOrDigest": *"image_id_or_digest"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.image`")|top
+    }
+    path: "/v1/vcr/repository/{idOrName}/images/{imageId}": {
+      rename: param: "idOrName": *"repository_id"
+      rename: param: "imageId": *"image_id"
+      op: remove: method: *DELETE
+    }
+    path: "/v1/vcr/repository/{idOrName}/permissions": {
+      rename: param: "idOrName": *"id_or_name"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.permission`")|top
+      op: create: transform: req: "teamId": *("`reqdata.team_id`")|top
+      op: create: transform: req: "teamSlug": *("`reqdata.team_slug`")|top
+      op: remove: method: *DELETE
+      op: remove: transform: req: "teamId": *("`reqdata.team_id`")|top
+      op: remove: transform: req: "teamSlug": *("`reqdata.team_slug`")|top
+    }
+    path: "/v1/vcr/repository/{idOrName}/permissions/all": {
+      rename: param: "idOrName": *"repository_id"
+      op: remove: method: *DELETE
+    }
+    path: "/v1/vcr/repository/{idOrName}/tags": {
+      rename: param: "idOrName": *"id_or_name"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.tags`")|top
+    }
+    path: "/v1/vcr/repository/{idOrName}/tags/{tag}": {
+      rename: param: "idOrName": *"repository_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.tag`")|top
+    }
+    path: "/v2/": {
+      op: load: method: *GET
+    }
+    path: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/": {
+      rename: param: "projectSlug": *"project_slug"
+      rename: param: "repositoryName": *"repository_name"
+      rename: param: "teamSlug": *"team_slug"
+      op: create: method: *POST
+    }
+    path: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}": {
+      rename: param: "projectSlug": *"project_slug"
+      rename: param: "repositoryName": *"repository_name"
+      rename: param: "teamSlug": *"team_slug"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}": {
+      rename: param: "projectSlug": *"project_slug"
+      rename: param: "repositoryName": *"repository_name"
+      rename: param: "teamSlug": *"team_slug"
+      op: head: method: *HEAD
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}": {
+      rename: param: "projectSlug": *"project_slug"
+      rename: param: "repositoryName": *"repository_name"
+      rename: param: "teamSlug": *"team_slug"
+      op: head: method: *HEAD
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/tags/list": {
+      rename: param: "projectSlug": *"project_slug"
+      rename: param: "repositoryName": *"repository_name"
+      rename: param: "teamSlug": *"team_slug"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.tags`")|top
+    }
+  }
+
+  entity: vcr_image_list: {
+    path: "/v1/vcr/repository/{idOrName}/images": {
+      rename: param: "idOrName": *"id_or_name"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.images`")|top
+    }
+  }
+
+  entity: vcr_repository_list: {
+    path: "/v1/vcr/repository": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.repositories`")|top
+    }
+  }
+
+  entity: vcr_repository_permission_list: {
+    path: "/v1/vcr/repository/{idOrName}/permissions": {
+      rename: param: "idOrName": *"id_or_name"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.permissions`")|top
+    }
+  }
+
+  entity: web_analytics: {
+    path: "/v1/query/web-analytics/events/aggregate": {
+      op: load: method: *GET
+    }
+    path: "/v1/query/web-analytics/events/count": {
+      op: load: method: *GET
+    }
+    path: "/v1/query/web-analytics/visits/aggregate": {
+      op: load: method: *GET
+    }
+    path: "/v1/query/web-analytics/visits/count": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: webhook: {
+    path: "/v1/webhooks": {
+      op: create: method: *POST
+      op: create: transform: req: "events": *("`reqdata.event`")|top
+      op: create: transform: req: "projectIds": *("`reqdata.project_id`")|top
+      op: create: transform: req: "url": *("`reqdata.url`")|top
+      op: load: method: *GET
+    }
+    path: "/v1/webhooks/{id}": {
+      op: load: method: *GET
       op: remove: method: *DELETE
     }
   }

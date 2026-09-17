@@ -1,0 +1,59 @@
+# BasicAiGatewayVirtualModelConfigFlow
+
+main: kit: flow: BasicAiGatewayVirtualModelConfigFlow:
+{
+  entity: "ai_gateway_virtual_model_config",
+  kind: "basic",
+  name: "BasicAiGatewayVirtualModelConfigFlow",
+  step: [
+    {
+      input: {
+        ref: "ai_gateway_virtual_model_config_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "ai_gateway_virtual_model_config_ref01",
+        srcdatavar: "ai_gateway_virtual_model_config_ref01_data",
+        suffix: "_up0",
+        textfield: "baseUrl"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ai_gateway_virtual_model_config_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "ai_gateway_virtual_model_config_ref01",
+        srcdatavar: "ai_gateway_virtual_model_config_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "ai_gateway_virtual_model_config01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ai_gateway_virtual_model_config_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAiGatewayVirtualModelConfigFlow"
+}

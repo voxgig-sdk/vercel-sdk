@@ -1,0 +1,56 @@
+# BasicMicrofrontendFlow
+
+main: kit: flow: BasicMicrofrontendFlow:
+{
+  entity: "microfrontend",
+  kind: "basic",
+  name: "BasicMicrofrontendFlow",
+  step: [
+    {
+      input: {
+        ref: "microfrontend_ref01"
+      }
+
+      match: {
+        group_id: "group01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        group_id: "group01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "microfrontend_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "microfrontend_ref01",
+        srcdatavar: "microfrontend_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-microfrontend_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMicrofrontendFlow"
+}

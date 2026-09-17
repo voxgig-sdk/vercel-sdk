@@ -1,0 +1,104 @@
+# BasicGlobalConfigFlow
+
+main: kit: flow: BasicGlobalConfigFlow:
+{
+  entity: "global_config",
+  kind: "basic",
+  name: "BasicGlobalConfigFlow",
+  step: [
+    {
+      input: {
+        ref: "global_config_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        edge_config_id: "edge_config01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "global_config_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "global_config_ref01",
+        srcdatavar: "global_config_ref01_data",
+        suffix: "_up0",
+        textfield: "createdBy"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-global_config_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "global_config_ref01",
+        srcdatavar: "global_config_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-global_config_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "global_config_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "global_config01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        edge_config_id: "edge_config01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "global_config_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGlobalConfigFlow"
+}

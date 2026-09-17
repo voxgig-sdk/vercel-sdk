@@ -1,0 +1,1032 @@
+# Entity: access_group
+
+main: kit: entity: access_group: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "accessGroupId"
+      req: true
+      short: "ID of the access group."
+      type: "`$STRING`"
+    }
+    {
+      name: "createdAt"
+      req: true
+      short: "Timestamp in milliseconds when the access group was created."
+      type: "`$STRING`"
+    }
+    {
+      name: "entitlements"
+      op: {
+        create: {
+          req: true
+          type: "`$ARRAY`"
+        }
+      }
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "isDsyncManaged"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "membersCount"
+      req: true
+      short: "Number of members in the access group."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "membersToAdd"
+      req: false
+      short: "List of members to add to the access group."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "membersToRemove"
+      req: false
+      short: "List of members to remove from the access group."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "name"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      short: "The name of this access group."
+      type: "`$STRING`"
+    }
+    {
+      name: "projectId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "projects"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "projectsCount"
+      req: true
+      short: "Number of projects in the access group."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "role"
+      req: true
+      short: "The project role that will be added to this Access Group."
+      type: "`$STRING`"
+    }
+    {
+      name: "teamId"
+      req: true
+      short: "ID of the team that this access group belongs to."
+      type: "`$STRING`"
+    }
+    {
+      name: "teamPermissions"
+      req: false
+      short: "Permissions that the team has in the access group."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "teamRoles"
+      req: false
+      short: "Roles that the team has in the access group."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "updatedAt"
+      req: true
+      short: "Timestamp in milliseconds when the access group was last updated."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "access_group"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "access_group_id_or_name"
+                orig: "access_group_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/access-groups/{accessGroupIdOrName}/projects"
+            json: "{\"operationId\":\"createAccessGroupProject\",\"parameters\":[{\"in\":\"path\",\"name\":\"accessGroupIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"projectId\":{\"description\":\"The ID of the project.\",\"example\":\"prj_ndlgr43fadlPyCtREAqxxdyFK\",\"maxLength\":256,\"type\":\"string\"},\"role\":{\"description\":\"The project role that will be added to this Access Group.\",\"enum\":[\"ADMIN\",\"PROJECT_VIEWER\",\"PROJECT_DEVELOPER\"],\"example\":\"ADMIN\",\"type\":\"string\"}},\"required\":[\"role\",\"projectId\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"accessGroupId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"role\":{\"enum\":[\"ADMIN\",\"PROJECT_DEVELOPER\",\"PROJECT_GUEST\",\"PROJECT_VIEWER\"],\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"accessGroupId\",\"createdAt\",\"projectId\",\"role\",\"teamId\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/access-groups/{accessGroupIdOrName}/projects"
+          rename: {
+            param: {
+              accessGroupIdOrName: "access_group_id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+            {
+              var: "access_group_id_or_name"
+            }
+            {
+              lit: "projects"
+            }
+          ]
+          select: {
+            "$action": "project"
+            exist: [
+              "access_group_id_or_name"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              projectId: "`reqdata.project_id`"
+              role: "`reqdata.role`"
+            }
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/access-groups/{idOrName}"
+            json: "{\"operationId\":\"updateAccessGroup\",\"parameters\":[{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"membersToAdd\":{\"description\":\"List of members to add to the access group.\",\"example\":[\"usr_1a2b3c4d5e6f7g8h9i0j\",\"usr_2b3c4d5e6f7g8h9i0j1k\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"membersToRemove\":{\"description\":\"List of members to remove from the access group.\",\"example\":[\"usr_1a2b3c4d5e6f7g8h9i0j\",\"usr_2b3c4d5e6f7g8h9i0j1k\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the access group\",\"example\":\"My access group\",\"maxLength\":50,\"pattern\":\"^[A-z0-9_ -]+$\",\"type\":\"string\"},\"projects\":{\"items\":{\"additionalProperties\":false,\"properties\":{\"projectId\":{\"description\":\"The ID of the project.\",\"example\":\"prj_ndlgr43fadlPyCtREAqxxdyFK\",\"maxLength\":256,\"type\":\"string\"},\"role\":{\"description\":\"The project role that will be added to this Access Group. \\\"null\\\" will remove this project level role.\",\"enum\":[\"ADMIN\",\"PROJECT_VIEWER\",\"PROJECT_DEVELOPER\",null],\"example\":\"ADMIN\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"role\",\"projectId\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"accessGroupId\":{\"description\":\"ID of the access group.\",\"example\":\"ag_123a6c5209bc3778245d011443644c8d27dc2c50\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds when the access group was created.\",\"example\":1588720733602,\"type\":\"string\"},\"entitlements\":{\"items\":{\"enum\":[\"v0\"],\"type\":\"string\"},\"type\":\"array\"},\"membersCount\":{\"description\":\"Number of members in the access group.\",\"example\":5,\"type\":\"number\"},\"name\":{\"description\":\"The name of this access group.\",\"example\":\"my-access-group\",\"type\":\"string\"},\"projectsCount\":{\"description\":\"Number of projects in the access group.\",\"example\":2,\"type\":\"number\"},\"teamId\":{\"description\":\"ID of the team that this access group belongs to.\",\"example\":\"team_123a6c5209bc3778245d011443644c8d27dc2c50\",\"type\":\"string\"},\"teamPermissions\":{\"description\":\"Permissions that the team has in the access group.\",\"example\":[\"CreateProject\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"teamRoles\":{\"description\":\"Roles that the team has in the access group.\",\"example\":[\"DEVELOPER\",\"BILLING\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"updatedAt\":{\"description\":\"Timestamp in milliseconds when the access group was last updated.\",\"example\":1588720733602,\"type\":\"string\"}},\"required\":[\"accessGroupId\",\"createdAt\",\"entitlements\",\"membersCount\",\"name\",\"projectsCount\",\"teamId\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/access-groups/{idOrName}"
+          rename: {
+            param: {
+              idOrName: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              membersToAdd: "`reqdata.members_to_add`"
+              membersToRemove: "`reqdata.members_to_remove`"
+              name: "`reqdata.name`"
+              projects: "`reqdata.project`"
+            }
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/access-groups"
+            json: "{\"operationId\":\"createAccessGroup\",\"parameters\":[{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"membersToAdd\":{\"description\":\"List of members to add to the access group.\",\"example\":[\"usr_1a2b3c4d5e6f7g8h9i0j\",\"usr_2b3c4d5e6f7g8h9i0j1k\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the access group\",\"example\":\"My access group\",\"maxLength\":50,\"pattern\":\"^[A-z0-9_ -]+$\",\"type\":\"string\"},\"projects\":{\"items\":{\"additionalProperties\":false,\"properties\":{\"projectId\":{\"description\":\"The ID of the project.\",\"example\":\"prj_ndlgr43fadlPyCtREAqxxdyFK\",\"maxLength\":256,\"type\":\"string\"},\"role\":{\"description\":\"The project role that will be added to this Access Group. \\\"null\\\" will remove this project level role.\",\"enum\":[\"ADMIN\",\"PROJECT_VIEWER\",\"PROJECT_DEVELOPER\",null],\"example\":\"ADMIN\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"role\",\"projectId\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"name\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"accessGroupId\":{\"description\":\"ID of the access group.\",\"example\":\"ag_123a6c5209bc3778245d011443644c8d27dc2c50\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds when the access group was created.\",\"example\":1588720733602,\"type\":\"string\"},\"entitlements\":{\"items\":{\"enum\":[\"v0\"],\"type\":\"string\"},\"type\":\"array\"},\"membersCount\":{\"type\":\"number\"},\"name\":{\"description\":\"The name of this access group.\",\"example\":\"my-access-group\",\"type\":\"string\"},\"projectsCount\":{\"type\":\"number\"},\"teamId\":{\"description\":\"ID of the team that this access group belongs to.\",\"example\":\"team_123a6c5209bc3778245d011443644c8d27dc2c50\",\"type\":\"string\"},\"teamPermissions\":{\"description\":\"Permissions that the team has in the access group.\",\"example\":[\"CreateProject\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"teamRoles\":{\"description\":\"Roles that the team has in the access group.\",\"example\":[\"DEVELOPER\",\"BILLING\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"updatedAt\":{\"description\":\"Timestamp in milliseconds when the access group was last updated.\",\"example\":1588720733602,\"type\":\"string\"}},\"required\":[\"accessGroupId\",\"createdAt\",\"entitlements\",\"membersCount\",\"name\",\"projectsCount\",\"teamId\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/access-groups"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+          ]
+          select: {
+            exist: [
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              membersToAdd: "`reqdata.members_to_add`"
+              name: "`reqdata.name`"
+              projects: "`reqdata.project`"
+            }
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "ag_pavWOn1iLObbXLRiwVvzmPrTWyTf"
+                kind: "param"
+                name: "id_or_name"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "next"
+                orig: "next"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "search"
+                orig: "search"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/access-groups/{idOrName}/members"
+            json: "{\"operationId\":\"listAccessGroupMembers\",\"parameters\":[{\"description\":\"The ID or name of the Access Group.\",\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"description\":\"The ID or name of the Access Group.\",\"example\":\"ag_pavWOn1iLObbXLRiwVvzmPrTWyTf\",\"type\":\"string\"}},{\"description\":\"Limit how many access group members should be returned.\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"description\":\"Limit how many access group members should be returned.\",\"example\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Continuation cursor to retrieve the next page of results.\",\"in\":\"query\",\"name\":\"next\",\"required\":false,\"schema\":{\"description\":\"Continuation cursor to retrieve the next page of results.\",\"type\":\"string\"}},{\"description\":\"Search project members by their name, username, and email.\",\"in\":\"query\",\"name\":\"search\",\"required\":false,\"schema\":{\"description\":\"Search project members by their name, username, and email.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"members\":{\"items\":{\"properties\":{\"avatar\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"teamRole\":{\"enum\":[\"BILLING\",\"CONTRIBUTOR\",\"DEVELOPER\",\"MEMBER\",\"OWNER\",\"SECURITY\",\"VIEWER\",\"VIEWER_FOR_PLUS\"],\"type\":\"string\"},\"uid\":{\"type\":\"string\"},\"username\":{\"type\":\"string\"}},\"required\":[\"email\",\"teamRole\",\"uid\",\"username\"],\"type\":\"object\"},\"type\":\"array\"},\"pagination\":{\"properties\":{\"count\":{\"type\":\"number\"},\"next\":{\"nullable\":true,\"type\":\"string\"}},\"required\":[\"count\",\"next\"],\"type\":\"object\"}},\"required\":[\"members\",\"pagination\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/access-groups/{idOrName}/members"
+          rename: {
+            param: {
+              idOrName: "id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+            {
+              var: "id_or_name"
+            }
+            {
+              lit: "members"
+            }
+          ]
+          select: {
+            "$action": "member"
+            exist: [
+              "id_or_name"
+              "limit"
+              "next"
+              "search"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "ag_pavWOn1iLObbXLRiwVvzmPrTWyTf"
+                kind: "param"
+                name: "id_or_name"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "next"
+                orig: "next"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/access-groups/{idOrName}/projects"
+            json: "{\"operationId\":\"listAccessGroupProjects\",\"parameters\":[{\"description\":\"The ID or name of the Access Group.\",\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"description\":\"The ID or name of the Access Group.\",\"example\":\"ag_pavWOn1iLObbXLRiwVvzmPrTWyTf\",\"type\":\"string\"}},{\"description\":\"Limit how many access group projects should be returned.\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"description\":\"Limit how many access group projects should be returned.\",\"example\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Continuation cursor to retrieve the next page of results.\",\"in\":\"query\",\"name\":\"next\",\"required\":false,\"schema\":{\"description\":\"Continuation cursor to retrieve the next page of results.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"pagination\":{\"properties\":{\"count\":{\"type\":\"number\"},\"next\":{\"nullable\":true,\"type\":\"string\"}},\"required\":[\"count\",\"next\"],\"type\":\"object\"},\"projects\":{\"items\":{\"properties\":{\"createdAt\":{\"type\":\"string\"},\"project\":{\"properties\":{\"framework\":{\"nullable\":true,\"type\":\"string\"},\"latestDeploymentId\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"type\":\"object\"},\"projectId\":{\"type\":\"string\"},\"role\":{\"enum\":[\"ADMIN\",\"PROJECT_DEVELOPER\",\"PROJECT_GUEST\",\"PROJECT_VIEWER\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"project\",\"projectId\",\"role\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"pagination\",\"projects\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/access-groups/{idOrName}/projects"
+          rename: {
+            param: {
+              idOrName: "id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+            {
+              var: "id_or_name"
+            }
+            {
+              lit: "projects"
+            }
+          ]
+          select: {
+            "$action": "project"
+            exist: [
+              "id_or_name"
+              "limit"
+              "next"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "members_limit"
+                orig: "members_limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "next"
+                orig: "next"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "prj_pavWOn1iLObbx3RowVvzmPrTWyTf"
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "projects_limit"
+                orig: "projects_limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "example"
+                kind: "query"
+                name: "search"
+                orig: "search"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/access-groups"
+            json: "{\"operationId\":\"listAccessGroups\",\"parameters\":[{\"description\":\"Filter access groups by project.\",\"in\":\"query\",\"name\":\"projectId\",\"schema\":{\"description\":\"Filter access groups by project.\",\"example\":\"prj_pavWOn1iLObbx3RowVvzmPrTWyTf\",\"type\":\"string\"}},{\"description\":\"Search for access groups by name.\",\"in\":\"query\",\"name\":\"search\",\"schema\":{\"description\":\"Search for access groups by name.\",\"example\":\"example\",\"type\":\"string\"}},{\"description\":\"Number of members to include in the response.\",\"in\":\"query\",\"name\":\"membersLimit\",\"schema\":{\"description\":\"Number of members to include in the response.\",\"example\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of projects to include in the response.\",\"in\":\"query\",\"name\":\"projectsLimit\",\"schema\":{\"description\":\"Number of projects to include in the response.\",\"example\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Limit how many access group should be returned.\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"description\":\"Limit how many access group should be returned.\",\"example\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Continuation cursor to retrieve the next page of results.\",\"in\":\"query\",\"name\":\"next\",\"schema\":{\"description\":\"Continuation cursor to retrieve the next page of results.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"type\":\"object\"},{\"properties\":{\"accessGroups\":{\"items\":{\"properties\":{\"accessGroupId\":{\"description\":\"ID of the access group.\",\"example\":\"ag_123a6c5209bc3778245d011443644c8d27dc2c50\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds when the access group was created.\",\"example\":1588720733602,\"type\":\"string\"},\"entitlements\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"isDsyncManaged\":{\"enum\":[false,true],\"type\":\"boolean\"},\"members\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"membersCount\":{\"description\":\"Number of members in the access group.\",\"example\":5,\"type\":\"number\"},\"name\":{\"description\":\"The name of this access group.\",\"example\":\"my-access-group\",\"type\":\"string\"},\"projects\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"projectsCount\":{\"description\":\"Number of projects in the access group.\",\"example\":2,\"type\":\"number\"},\"teamId\":{\"description\":\"ID of the team that this access group belongs to.\",\"example\":\"team_123a6c5209bc3778245d011443644c8d27dc2c50\",\"type\":\"string\"},\"teamPermissions\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"teamRoles\":{\"description\":\"Roles that the team has in the access group.\",\"example\":[\"DEVELOPER\",\"BILLING\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"updatedAt\":{\"description\":\"Timestamp in milliseconds when the access group was last updated.\",\"example\":1588720733602,\"type\":\"string\"}},\"required\":[\"accessGroupId\",\"createdAt\",\"isDsyncManaged\",\"membersCount\",\"name\",\"projectsCount\",\"teamId\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"},\"pagination\":{\"properties\":{\"count\":{\"type\":\"number\"},\"next\":{\"nullable\":true,\"type\":\"string\"}},\"required\":[\"count\",\"next\"],\"type\":\"object\"}},\"required\":[\"accessGroups\",\"pagination\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/access-groups"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+          ]
+          select: {
+            exist: [
+              "limit"
+              "members_limit"
+              "next"
+              "project_id"
+              "projects_limit"
+              "search"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "ag_1a2b3c4d5e6f7g8h9i0j"
+                kind: "param"
+                name: "access_group_id"
+                orig: "access_group_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "prj_ndlgr43fadlPyCtREAqxxdyFK"
+                kind: "param"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/access-groups/{accessGroupIdOrName}/projects/{projectId}"
+            json: "{\"operationId\":\"readAccessGroupProject\",\"parameters\":[{\"examples\":{\"id\":{\"summary\":\"Access group ID\",\"value\":\"ag_1a2b3c4d5e6f7g8h9i0j\"},\"name\":{\"summary\":\"Access group name\",\"value\":\"My Access Group\"}},\"in\":\"path\",\"name\":\"accessGroupIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"example\":\"prj_ndlgr43fadlPyCtREAqxxdyFK\",\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"accessGroupId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"role\":{\"enum\":[\"ADMIN\",\"PROJECT_DEVELOPER\",\"PROJECT_GUEST\",\"PROJECT_VIEWER\"],\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"accessGroupId\",\"createdAt\",\"projectId\",\"role\",\"teamId\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/access-groups/{accessGroupIdOrName}/projects/{projectId}"
+          rename: {
+            param: {
+              accessGroupIdOrName: "access_group_id"
+              projectId: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+            {
+              var: "access_group_id"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+          ]
+          select: {
+            exist: [
+              "access_group_id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "ag_1a2b3c4d5e6f7g8h9i0j"
+                kind: "param"
+                name: "id"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/access-groups/{idOrName}"
+            json: "{\"operationId\":\"readAccessGroup\",\"parameters\":[{\"examples\":{\"id\":{\"summary\":\"Access group ID\",\"value\":\"ag_1a2b3c4d5e6f7g8h9i0j\"},\"name\":{\"summary\":\"Access group name\",\"value\":\"My Access Group\"}},\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"accessGroupId\":{\"description\":\"ID of the access group.\",\"example\":\"ag_123a6c5209bc3778245d011443644c8d27dc2c50\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds when the access group was created.\",\"example\":1588720733602,\"type\":\"string\"},\"entitlements\":{\"items\":{\"enum\":[\"v0\"],\"type\":\"string\"},\"type\":\"array\"},\"isDsyncManaged\":{\"enum\":[false,true],\"type\":\"boolean\"},\"membersCount\":{\"description\":\"Number of members in the access group.\",\"example\":5,\"type\":\"number\"},\"name\":{\"description\":\"The name of this access group.\",\"example\":\"my-access-group\",\"type\":\"string\"},\"projectsCount\":{\"description\":\"Number of projects in the access group.\",\"example\":2,\"type\":\"number\"},\"teamId\":{\"description\":\"ID of the team that this access group belongs to.\",\"example\":\"team_123a6c5209bc3778245d011443644c8d27dc2c50\",\"type\":\"string\"},\"teamPermissions\":{\"items\":{\"enum\":[\"AiGatewayBudgetManager\",\"AiGatewayCredits\",\"AiGatewaySettings\",\"AiGatewayTranscriptsManager\",\"AiGatewayTranscriptsViewer\",\"AiGatewayUser\",\"ConnectorManager\",\"CreateProject\",\"EnvVariableManager\",\"EnvironmentManager\",\"FullProductionDeployment\",\"IntegrationManager\",\"OrgAdmin\",\"OrgViewer\",\"UsageViewer\",\"V0Builder\",\"V0Chatter\",\"V0Viewer\",\"WorkflowDecryptor\"],\"type\":\"string\"},\"type\":\"array\"},\"teamRoles\":{\"description\":\"Roles that the team has in the access group.\",\"example\":[\"DEVELOPER\",\"BILLING\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"updatedAt\":{\"description\":\"Timestamp in milliseconds when the access group was last updated.\",\"example\":1588720733602,\"type\":\"string\"}},\"required\":[\"accessGroupId\",\"createdAt\",\"isDsyncManaged\",\"membersCount\",\"name\",\"projectsCount\",\"teamId\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/access-groups/{idOrName}"
+          rename: {
+            param: {
+              idOrName: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "ag_1a2b3c4d5e6f7g8h9i0j"
+                kind: "param"
+                name: "access_group_id"
+                orig: "access_group_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "prj_ndlgr43fadlPyCtREAqxxdyFK"
+                kind: "param"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/access-groups/{accessGroupIdOrName}/projects/{projectId}"
+            json: "{\"operationId\":\"deleteAccessGroupProject\",\"parameters\":[{\"examples\":{\"id\":{\"summary\":\"Access group ID\",\"value\":\"ag_1a2b3c4d5e6f7g8h9i0j\"},\"name\":{\"summary\":\"Access group name\",\"value\":\"My Access Group\"}},\"in\":\"path\",\"name\":\"accessGroupIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"example\":\"prj_ndlgr43fadlPyCtREAqxxdyFK\",\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/access-groups/{accessGroupIdOrName}/projects/{projectId}"
+          rename: {
+            param: {
+              accessGroupIdOrName: "access_group_id"
+              projectId: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+            {
+              var: "access_group_id"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+          ]
+          select: {
+            exist: [
+              "access_group_id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/access-groups/{idOrName}"
+            json: "{\"operationId\":\"deleteAccessGroup\",\"parameters\":[{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/access-groups/{idOrName}"
+          rename: {
+            param: {
+              idOrName: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "ag_1a2b3c4d5e6f7g8h9i0j"
+                kind: "param"
+                name: "access_group_id"
+                orig: "access_group_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "prj_ndlgr43fadlPyCtREAqxxdyFK"
+                kind: "param"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v1/access-groups/{accessGroupIdOrName}/projects/{projectId}"
+            json: "{\"operationId\":\"updateAccessGroupProject\",\"parameters\":[{\"examples\":{\"id\":{\"summary\":\"Access group ID\",\"value\":\"ag_1a2b3c4d5e6f7g8h9i0j\"},\"name\":{\"summary\":\"Access group name\",\"value\":\"My Access Group\"}},\"in\":\"path\",\"name\":\"accessGroupIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"example\":\"prj_ndlgr43fadlPyCtREAqxxdyFK\",\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"role\":{\"description\":\"The project role that will be added to this Access Group.\",\"enum\":[\"ADMIN\",\"PROJECT_VIEWER\",\"PROJECT_DEVELOPER\",null],\"example\":\"ADMIN\",\"type\":\"string\"}},\"required\":[\"role\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"accessGroupId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"role\":{\"enum\":[\"ADMIN\",\"PROJECT_DEVELOPER\",\"PROJECT_GUEST\",\"PROJECT_VIEWER\"],\"type\":\"string\"},\"teamId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"accessGroupId\",\"createdAt\",\"projectId\",\"role\",\"teamId\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v1/access-groups/{accessGroupIdOrName}/projects/{projectId}"
+          rename: {
+            param: {
+              accessGroupIdOrName: "access_group_id"
+              projectId: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "access-groups"
+            }
+            {
+              var: "access_group_id"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+          ]
+          select: {
+            exist: [
+              "access_group_id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              role: "`reqdata.role`"
+            }
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "access_group"
+      ]
+      [
+        "access_group"
+        "project"
+      ]
+    ]
+  }
+
+
+
+}

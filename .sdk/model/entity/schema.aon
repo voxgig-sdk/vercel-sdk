@@ -1,0 +1,135 @@
+# Entity: schema
+
+main: kit: entity: schema: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "aggregations"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "defaultAggregation"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "dimensions"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "unit"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "schema"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          contract: {
+            id: "GET /v2/observability/schema"
+            json: "{\"operationId\":\"getObservabilitySchema\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"metrics\":{\"items\":{\"properties\":{\"description\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"}},\"required\":[\"description\",\"id\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"metrics\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/observability/schema"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "observability"
+            }
+            {
+              lit: "schema"
+            }
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.metrics`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "metric_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/observability/schema/{metricId}"
+            json: "{\"operationId\":\"getObservabilitySchemaByMetricId\",\"parameters\":[{\"in\":\"path\",\"name\":\"metricId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"aggregations\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"defaultAggregation\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"dimensions\":{\"items\":{\"properties\":{\"description\":{\"type\":\"string\"},\"label\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"label\",\"name\"],\"type\":\"object\"},\"type\":\"array\"},\"id\":{\"type\":\"string\"},\"unit\":{\"type\":\"string\"}},\"required\":[\"aggregations\",\"defaultAggregation\",\"description\",\"dimensions\",\"id\",\"unit\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/observability/schema/{metricId}"
+          rename: {
+            param: {
+              metricId: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "observability"
+            }
+            {
+              lit: "schema"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

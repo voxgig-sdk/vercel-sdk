@@ -1,0 +1,37 @@
+# BasicAiGatewayRuleFlow
+
+main: kit: flow: BasicAiGatewayRuleFlow:
+{
+  entity: "ai_gateway_rule",
+  kind: "basic",
+  name: "BasicAiGatewayRuleFlow",
+  step: [
+    {
+      input: {
+        ref: "ai_gateway_rule_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "ai_gateway_rule_ref01",
+        srcdatavar: "ai_gateway_rule_ref01_data",
+        suffix: "_up0",
+        textfield: "createdBy"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ai_gateway_rule_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAiGatewayRuleFlow"
+}

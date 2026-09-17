@@ -1,0 +1,316 @@
+{
+  "existing": {
+    "tld_name": {
+      "TLD_NAME00": {},
+      "TLD_NAME01": {},
+      "TLD_NAME02": {}
+    }
+  },
+  "new": {
+    "tld_name": {
+      "tld_name_ref01": {}
+    }
+  },
+  "requests": {
+    "GET /v1/registrar/tlds/supported": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSupportedTlds",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "teamId",
+            "required": false,
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A list of the TLDs supported by Vercel.",
+                  "items": {
+                    "description": "A valid TLD name",
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "A list of the TLDs supported by Vercel."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "The request did not match the expected schema",
+                  "properties": {
+                    "issues": {
+                      "items": {
+                        "additionalProperties": false,
+                        "description": "Represents an error encountered while parsing a value to match the schema",
+                        "properties": {
+                          "message": {
+                            "description": "A descriptive message explaining the issue",
+                            "type": "string"
+                          },
+                          "path": {
+                            "description": "The path to the property where the issue occurred",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "additionalProperties": false,
+                                  "description": "an object to be decoded into a globally shared symbol",
+                                  "properties": {
+                                    "_tag": {
+                                      "enum": [
+                                        "symbol"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "_tag",
+                                    "key"
+                                  ],
+                                  "type": "object"
+                                }
+                              ]
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "required": [
+                          "path",
+                          "message"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "issues",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "There was something wrong with the request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "unauthorized"
+                      ],
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        401
+                      ],
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "not_authorized_for_scope"
+                      ],
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        403
+                      ],
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "NotAuthorizedForScope"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "too_many_requests"
+                      ],
+                      "type": "string"
+                    },
+                    "limit": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "remaining": {
+                          "type": "number"
+                        },
+                        "reset": {
+                          "type": "number"
+                        },
+                        "total": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "total",
+                        "remaining",
+                        "reset"
+                      ],
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "retryAfter": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "str": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "value",
+                        "str"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "enum": [
+                        429
+                      ],
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "code",
+                    "message",
+                    "retryAfter",
+                    "limit"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "TooManyRequests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "enum": [
+                        "internal_server_error"
+                      ],
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        500
+                      ],
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "InternalServerError"
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

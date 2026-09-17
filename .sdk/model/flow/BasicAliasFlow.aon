@@ -1,0 +1,112 @@
+# BasicAliasFlow
+
+main: kit: flow: BasicAliasFlow:
+{
+  entity: "alias",
+  kind: "basic",
+  name: "BasicAliasFlow",
+  step: [
+    {
+      input: {
+        ref: "alias_ref01"
+      }
+
+      match: {
+        deployment_id: "deployment01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        deployment_id: "deployment01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "alias_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "alias_ref01",
+        srcdatavar: "alias_ref01_data",
+        suffix: "_up0",
+        textfield: "alias"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-alias_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "alias_ref01",
+        srcdatavar: "alias_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "alias01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-alias_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "alias_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "alias01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        deployment_id: "deployment01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "alias_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAliasFlow"
+}

@@ -1,0 +1,229 @@
+{
+  "existing": {
+    "schema": {
+      "SCHEMA00": {
+        "aggregations": [],
+        "defaultAggregation": "s3d",
+        "description": "s3e",
+        "dimensions": [],
+        "id": "SCHEMA00",
+        "unit": "s41"
+      },
+      "SCHEMA01": {
+        "aggregations": [],
+        "defaultAggregation": "s79",
+        "description": "s7a",
+        "dimensions": [],
+        "id": "SCHEMA01",
+        "unit": "s7d"
+      },
+      "SCHEMA02": {
+        "aggregations": [],
+        "defaultAggregation": "sb5",
+        "description": "sb6",
+        "dimensions": [],
+        "id": "SCHEMA02",
+        "unit": "sb9"
+      }
+    }
+  },
+  "new": {
+    "schema": {
+      "schema_ref01": {
+        "aggregations": [],
+        "defaultAggregation": "sf1",
+        "description": "sf2",
+        "dimensions": [],
+        "unit": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /v2/observability/schema": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getObservabilitySchema",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "metrics": {
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "description",
+                          "id"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "metrics"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": ""
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/observability/schema/{metricId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getObservabilitySchemaByMetricId",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "metricId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "aggregations": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "defaultAggregation": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "dimensions": {
+                        "items": {
+                          "properties": {
+                            "description": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "label",
+                            "name"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "unit": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "aggregations",
+                      "defaultAggregation",
+                      "description",
+                      "dimensions",
+                      "id",
+                      "unit"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

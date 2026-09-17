@@ -1,0 +1,59 @@
+# BasicDomainsRegistrarFlow
+
+main: kit: flow: BasicDomainsRegistrarFlow:
+{
+  entity: "domains_registrar",
+  kind: "basic",
+  name: "BasicDomainsRegistrarFlow",
+  step: [
+    {
+      input: {
+        ref: "domains_registrar_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "domains_registrar_ref01",
+        srcdatavar: "domains_registrar_ref01_data",
+        suffix: "_up0",
+        textfield: "authCode"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domains_registrar_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "domains_registrar_ref01",
+        srcdatavar: "domains_registrar_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "domains_registrar01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domains_registrar_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainsRegistrarFlow"
+}

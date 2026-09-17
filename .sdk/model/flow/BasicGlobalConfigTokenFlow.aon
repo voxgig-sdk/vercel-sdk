@@ -1,0 +1,32 @@
+# BasicGlobalConfigTokenFlow
+
+main: kit: flow: BasicGlobalConfigTokenFlow:
+{
+  entity: "global_config_token",
+  kind: "basic",
+  name: "BasicGlobalConfigTokenFlow",
+  step: [
+    {
+      input: {
+        ref: "global_config_token_ref01",
+        srcdatavar: "global_config_token_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "global_config_token01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-global_config_token_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGlobalConfigTokenFlow"
+}

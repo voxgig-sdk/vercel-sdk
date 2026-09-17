@@ -1,0 +1,72 @@
+# BasicDrainFlow
+
+main: kit: flow: BasicDrainFlow:
+{
+  entity: "drain",
+  kind: "basic",
+  name: "BasicDrainFlow",
+  step: [
+    {
+      input: {
+        ref: "drain_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "drain_ref01",
+        srcdatavar: "drain_ref01_data",
+        suffix: "_up0",
+        textfield: "name"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-drain_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "drain_ref01",
+        srcdatavar: "drain_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "drain01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-drain_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "drain_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "drain01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicDrainFlow"
+}

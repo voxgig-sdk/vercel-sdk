@@ -54,6 +54,7 @@ func TestProjectEntity(t *testing.T) {
 		projectRef01Ent := client.Project(nil)
 		projectRef01Data := core.ToMapAny(vs.GetProp(
 			vs.GetPath(setup.data, []any{"new", "project"}), "project_ref01"))
+		projectRef01Data["project_id"] = setup.idmap["project01"]
 
 		projectRef01DataResult, err := projectRef01Ent.Create(projectRef01Data, nil)
 		if err != nil {
@@ -144,7 +145,7 @@ func projectBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"project01", "project02", "project03"},
+		[]any{"project01", "project02", "project03", "transfer_request01", "transfer_request02", "transfer_request03", "rollback01", "rollback02", "rollback03", "promote01", "promote02", "promote03", "domain01", "domain02", "domain03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

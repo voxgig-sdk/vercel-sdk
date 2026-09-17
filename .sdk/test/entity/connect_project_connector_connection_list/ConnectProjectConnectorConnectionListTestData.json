@@ -1,0 +1,354 @@
+{
+  "existing": {
+    "connect_project_connector_connection_list": {
+      "CONNECT_PROJECT_CONNECTOR_CONNECTION_LIST00": {
+        "connectorId": "s32",
+        "createdAt": 51,
+        "enabledEnvironments": [],
+        "project": {},
+        "updatedAt": 54,
+        "project_id": "PROJECT01"
+      },
+      "CONNECT_PROJECT_CONNECTOR_CONNECTION_LIST01": {
+        "connectorId": "s64",
+        "createdAt": 101,
+        "enabledEnvironments": [],
+        "project": {},
+        "updatedAt": 104,
+        "project_id": "PROJECT01"
+      },
+      "CONNECT_PROJECT_CONNECTOR_CONNECTION_LIST02": {
+        "connectorId": "s96",
+        "createdAt": 151,
+        "enabledEnvironments": [],
+        "project": {},
+        "updatedAt": 154,
+        "project_id": "PROJECT01"
+      }
+    }
+  },
+  "new": {
+    "connect_project_connector_connection_list": {
+      "connect_project_connector_connection_list_ref01": {
+        "connectorId": "sc8",
+        "createdAt": 201,
+        "enabledEnvironments": [],
+        "project": {},
+        "updatedAt": 204
+      }
+    }
+  },
+  "requests": {
+    "GET /v2/connect/projects/{projectId}/connectors": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listProjectConnectorConnections",
+        "parameters": [
+          {
+            "description": "Vercel project ID.",
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "description": "Vercel project ID.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of connector connections to return. Defaults to 50.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "description": "Maximum number of connector connections to return. Defaults to 50.",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Cursor from `pagination.next` on the previous response.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "description": "Cursor from `pagination.next` on the previous response.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Page of connectors connected to a project.",
+                  "properties": {
+                    "connectors": {
+                      "description": "Connector connections in this page.",
+                      "items": {
+                        "description": "A connection between a connector and a Vercel project, including the environments where the connector is enabled.",
+                        "properties": {
+                          "connectorId": {
+                            "description": "Stable `scl_` connector ID, even when the request used a UID.",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "description": "Time when the project connection was created, in epoch milliseconds.",
+                            "type": "number"
+                          },
+                          "enabledEnvironments": {
+                            "description": "Environments where the connector is enabled for the project.",
+                            "items": {
+                              "oneOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "enum": [
+                                    "development",
+                                    "preview",
+                                    "production"
+                                  ],
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "type": "array"
+                          },
+                          "project": {
+                            "description": "Vercel project connected to the connector.",
+                            "properties": {
+                              "customEnvironments": {
+                                "description": "Custom environments available on the project. This list can include environments where the connector is not enabled.",
+                                "items": {
+                                  "description": "Custom environments available on the project. This list can include environments where the connector is not enabled.",
+                                  "properties": {
+                                    "id": {
+                                      "description": "Stable custom environment ID.",
+                                      "type": "string"
+                                    },
+                                    "slug": {
+                                      "description": "Current human-readable custom environment slug.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "slug"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "id": {
+                                "description": "Same Vercel project ID as the connection's top-level `projectId`.",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Current Vercel project name.",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name"
+                            ],
+                            "type": "object"
+                          },
+                          "updatedAt": {
+                            "description": "Time when the project connection was last updated, in epoch milliseconds.",
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "connectorId",
+                          "createdAt",
+                          "enabledEnvironments",
+                          "project",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pagination": {
+                      "description": "Cursor for the next page.",
+                      "properties": {
+                        "next": {
+                          "description": "Opaque value to pass as `cursor` on the next request.",
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "next"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "connectors",
+                    "pagination"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A page of connector connections for the project."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "error": {
+                      "additionalProperties": true,
+                      "description": "Error details.",
+                      "properties": {
+                        "code": {
+                          "description": "Stable machine-readable error code.",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Human-readable error message.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The requested resource was not found."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The requested resource is no longer available."
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

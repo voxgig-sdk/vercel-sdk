@@ -1,0 +1,1067 @@
+# Entity: check
+
+main: kit: entity: check: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "blocking"
+      req: true
+      short: "Whether the check should block a deployment from succeeding"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "blocks"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "completedAt"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "conclusion"
+      req: false
+      short: "The result of the check being run"
+      type: "`$ANY`"
+    }
+    {
+      name: "createdAt"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "deletedAt"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "detailsUrl"
+      req: false
+      short: "URL to display for further details"
+      type: "`$STRING`"
+    }
+    {
+      name: "externalId"
+      req: false
+      short: "An identifier that can be used as an external reference"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "integrationId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "isRerequestable"
+      op: {
+        create: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+        update: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "metrics"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      short: "The name of the check being created"
+      type: "`$STRING`"
+    }
+    {
+      name: "output"
+      req: false
+      short: "The results of the check Run"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "ownerId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "path"
+      req: false
+      short: "Path of the page that is being checked"
+      type: "`$STRING`"
+    }
+    {
+      name: "projectId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "requires"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "rerequestable"
+      op: {
+        list: {
+          req: true
+          type: "`$BOOLEAN`"
+        }
+      }
+      req: false
+      short: "Whether a user should be able to request for the check to be rerun if it fails"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "source"
+      op: {
+        create: {
+          req: false
+          type: "`$OBJECT`"
+        }
+      }
+      req: true
+      type: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "sourceIntegrationConfigurationId"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "sourceKind"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "startedAt"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "status"
+      op: {
+        list: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      short: "The current status of the check"
+      type: "`$ANY`"
+    }
+    {
+      name: "targets"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+        update: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "timeout"
+      op: {
+        create: {
+          req: false
+          type: "`$NUMBER`"
+        }
+        update: {
+          req: false
+          type: "`$NUMBER`"
+        }
+      }
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "updatedAt"
+      req: true
+      type: "`$NUMBER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "check"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6"
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "check_2qn7PZrx89yxY34vEZPD31Y9XVj6"
+                kind: "param"
+                name: "id"
+                orig: "check_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "auto_update"
+                orig: "auto_update"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/deployments/{deploymentId}/checks/{checkId}/rerequest"
+            json: "{\"operationId\":\"rerequestCheck\",\"parameters\":[{\"description\":\"The deployment to rerun the check for.\",\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"description\":\"The deployment to rerun the check for.\",\"example\":\"dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6\",\"type\":\"string\"}},{\"description\":\"The check to rerun\",\"in\":\"path\",\"name\":\"checkId\",\"required\":true,\"schema\":{\"description\":\"The check to rerun\",\"example\":\"check_2qn7PZrx89yxY34vEZPD31Y9XVj6\",\"type\":\"string\"}},{\"description\":\"Mark the check as running\",\"in\":\"query\",\"name\":\"autoUpdate\",\"required\":false,\"schema\":{\"description\":\"Mark the check as running\",\"type\":\"boolean\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"The deployment was not found\\nCheck was not found\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/deployments/{deploymentId}/checks/{checkId}/rerequest"
+          rename: {
+            param: {
+              checkId: "id"
+              deploymentId: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "checks"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "rerequest"
+            }
+          ]
+          select: {
+            "$action": "rerequest"
+            exist: [
+              "auto_update"
+              "deployment_id"
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6"
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/deployments/{deploymentId}/checks"
+            json: "{\"operationId\":\"createCheck\",\"parameters\":[{\"description\":\"The deployment to create the check for.\",\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"description\":\"The deployment to create the check for.\",\"example\":\"dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"blocking\":{\"description\":\"Whether the check should block a deployment from succeeding\",\"example\":true,\"type\":\"boolean\"},\"detailsUrl\":{\"description\":\"URL to display for further details\",\"example\":\"http://example.com\",\"type\":\"string\"},\"externalId\":{\"description\":\"An identifier that can be used as an external reference\",\"example\":\"1234abc\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the check being created\",\"example\":\"Performance Check\",\"maxLength\":100,\"type\":\"string\"},\"path\":{\"description\":\"Path of the page that is being checked\",\"example\":\"/\",\"maxLength\":255,\"type\":\"string\"},\"rerequestable\":{\"description\":\"Whether a user should be able to request for the check to be rerun if it fails\",\"example\":true,\"type\":\"boolean\"}},\"required\":[\"name\",\"blocking\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"blocking\":{\"enum\":[false,true],\"type\":\"boolean\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"stale\",\"succeeded\"],\"example\":\"succeeded\",\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"detailsUrl\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"id\":{\"example\":\"chk_1a2b3c4d5e6f7g8h9i0j\",\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"name\":{\"example\":\"Performance Check\",\"type\":\"string\"},\"output\":{\"properties\":{\"metrics\":{\"properties\":{\"CLS\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"FCP\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"LCP\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"TBT\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"virtualExperienceScore\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"}},\"required\":[\"CLS\",\"FCP\",\"LCP\",\"TBT\"],\"type\":\"object\"}},\"type\":\"object\"},\"path\":{\"example\":\"/api/users\",\"type\":\"string\"},\"rerequestable\":{\"enum\":[false,true],\"type\":\"boolean\"},\"startedAt\":{\"type\":\"number\"},\"status\":{\"enum\":[\"completed\",\"registered\",\"running\"],\"example\":\"completed\",\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"blocking\",\"createdAt\",\"deploymentId\",\"id\",\"integrationId\",\"name\",\"status\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\\nCannot create check for finished deployment\\nThe provided token is not from an OAuth2 Client\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"The deployment was not found\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/deployments/{deploymentId}/checks"
+          rename: {
+            param: {
+              deploymentId: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "checks"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.output`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "project_id_or_name"
+                orig: "project_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v2/projects/{projectIdOrName}/checks"
+            json: "{\"operationId\":\"createProjectCheck\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"blocks\":{\"default\":\"deployment-alias\",\"enum\":[\"build-start\",\"deployment-start\",\"deployment-alias\",\"deployment-promotion\",\"none\"],\"type\":\"string\"},\"isRerequestable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"requires\":{\"default\":\"deployment-url\",\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"kind\":{\"default\":\"integration\",\"type\":\"string\"}}},{\"properties\":{\"kind\":{\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"]},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"type\":\"string\"},\"provider\":{\"enum\":[\"github\"],\"type\":\"string\"}},\"required\":[\"kind\",\"externalCheckName\",\"provider\"]}],\"type\":\"object\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\",\"uniqueItems\":true},\"timeout\":{\"default\":300,\"type\":\"number\"}},\"required\":[\"name\",\"requires\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deletedAt\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"isRerequestable\":{\"enum\":[false,true],\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"kind\":{\"enum\":[\"webhook\"],\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"git-provider\"],\"type\":\"string\"},\"provider\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"}},\"required\":[\"externalCheckName\",\"kind\",\"provider\"],\"type\":\"object\"}]},\"sourceIntegrationConfigurationId\":{\"type\":\"string\"},\"sourceKind\":{\"enum\":[\"git-provider\",\"integration\",\"vercel\",\"webhook\",\"integration\",\"webhook\",\"git-provider\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"blocks\",\"createdAt\",\"id\",\"isRerequestable\",\"name\",\"ownerId\",\"projectId\",\"requires\",\"source\",\"sourceKind\",\"targets\",\"timeout\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v2/projects/{projectIdOrName}/checks"
+          rename: {
+            param: {
+              projectIdOrName: "project_id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id_or_name"
+            }
+            {
+              lit: "checks"
+            }
+          ]
+          select: {
+            exist: [
+              "project_id_or_name"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "project_id_or_name"
+                orig: "project_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "block"
+                orig: "block"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/projects/{projectIdOrName}/checks"
+            json: "{\"operationId\":\"listProjectChecks\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"blocks\",\"required\":false,\"schema\":{\"enum\":[\"build-start\",\"deployment-start\",\"deployment-alias\",\"deployment-promotion\",\"none\"],\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"checks\":{\"items\":{\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deletedAt\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"isRerequestable\":{\"enum\":[false,true],\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"kind\":{\"enum\":[\"webhook\"],\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"git-provider\"],\"type\":\"string\"},\"provider\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"}},\"required\":[\"externalCheckName\",\"kind\",\"provider\"],\"type\":\"object\"}]},\"sourceIntegrationConfigurationId\":{\"type\":\"string\"},\"sourceKind\":{\"enum\":[\"git-provider\",\"integration\",\"vercel\",\"webhook\",\"integration\",\"webhook\",\"git-provider\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"blocks\",\"createdAt\",\"id\",\"isRerequestable\",\"name\",\"ownerId\",\"projectId\",\"requires\",\"source\",\"sourceKind\",\"targets\",\"timeout\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"checks\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/projects/{projectIdOrName}/checks"
+          rename: {
+            param: {
+              projectIdOrName: "project_id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id_or_name"
+            }
+            {
+              lit: "checks"
+            }
+          ]
+          select: {
+            exist: [
+              "block"
+              "project_id_or_name"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.checks`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6"
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/deployments/{deploymentId}/checks"
+            json: "{\"operationId\":\"getAllChecks\",\"parameters\":[{\"description\":\"The deployment to get all checks for\",\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"description\":\"The deployment to get all checks for\",\"example\":\"dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"checks\":{\"items\":{\"properties\":{\"blocking\":{\"enum\":[false,true],\"type\":\"boolean\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"stale\",\"succeeded\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"detailsUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"properties\":{\"metrics\":{\"properties\":{\"CLS\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"FCP\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"LCP\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"TBT\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"virtualExperienceScore\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"}},\"required\":[\"CLS\",\"FCP\",\"LCP\",\"TBT\"],\"type\":\"object\"}},\"type\":\"object\"},\"path\":{\"type\":\"string\"},\"rerequestable\":{\"enum\":[false,true],\"type\":\"boolean\"},\"startedAt\":{\"type\":\"number\"},\"status\":{\"enum\":[\"completed\",\"registered\",\"running\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"blocking\",\"createdAt\",\"id\",\"integrationId\",\"name\",\"rerequestable\",\"status\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"checks\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"The deployment was not found\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/deployments/{deploymentId}/checks"
+          rename: {
+            param: {
+              deploymentId: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "checks"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.checks`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6"
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "check_2qn7PZrx89yxY34vEZPD31Y9XVj6"
+                kind: "param"
+                name: "id"
+                orig: "check_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/deployments/{deploymentId}/checks/{checkId}"
+            json: "{\"operationId\":\"getCheck\",\"parameters\":[{\"description\":\"The deployment to get the check for.\",\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"description\":\"The deployment to get the check for.\",\"example\":\"dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6\",\"type\":\"string\"}},{\"description\":\"The check to fetch\",\"in\":\"path\",\"name\":\"checkId\",\"required\":true,\"schema\":{\"description\":\"The check to fetch\",\"example\":\"check_2qn7PZrx89yxY34vEZPD31Y9XVj6\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"blocking\":{\"enum\":[false,true],\"type\":\"boolean\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"stale\",\"succeeded\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"detailsUrl\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"properties\":{\"metrics\":{\"properties\":{\"CLS\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"FCP\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"LCP\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"TBT\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"virtualExperienceScore\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"}},\"required\":[\"CLS\",\"FCP\",\"LCP\",\"TBT\"],\"type\":\"object\"}},\"type\":\"object\"},\"path\":{\"type\":\"string\"},\"rerequestable\":{\"enum\":[false,true],\"type\":\"boolean\"},\"startedAt\":{\"type\":\"number\"},\"status\":{\"enum\":[\"completed\",\"registered\",\"running\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"blocking\",\"createdAt\",\"deploymentId\",\"id\",\"integrationId\",\"name\",\"status\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\\nThe provided token is not from an OAuth2 Client that created the Check\"},\"404\":{\"description\":\"Check was not found\\nThe deployment was not found\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/deployments/{deploymentId}/checks/{checkId}"
+          rename: {
+            param: {
+              checkId: "id"
+              deploymentId: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "checks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.output`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "stf_89ha9sdhh9a9"
+                kind: "param"
+                name: "id"
+                orig: "check_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/projects/{projectIdOrName}/checks/{checkId}"
+            json: "{\"operationId\":\"getProjectCheck\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The ID of the resource that will be updated.\",\"in\":\"path\",\"name\":\"checkId\",\"required\":true,\"schema\":{\"description\":\"The ID of the resource that will be updated.\",\"example\":\"stf_89ha9sdhh9a9\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deletedAt\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"isRerequestable\":{\"enum\":[false,true],\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"kind\":{\"enum\":[\"webhook\"],\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"git-provider\"],\"type\":\"string\"},\"provider\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"}},\"required\":[\"externalCheckName\",\"kind\",\"provider\"],\"type\":\"object\"}]},\"sourceIntegrationConfigurationId\":{\"type\":\"string\"},\"sourceKind\":{\"enum\":[\"git-provider\",\"integration\",\"vercel\",\"webhook\",\"integration\",\"webhook\",\"git-provider\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"blocks\",\"createdAt\",\"id\",\"isRerequestable\",\"name\",\"ownerId\",\"projectId\",\"requires\",\"source\",\"sourceKind\",\"targets\",\"timeout\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/projects/{projectIdOrName}/checks/{checkId}"
+          rename: {
+            param: {
+              checkId: "id"
+              projectIdOrName: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "checks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "check_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v2/projects/{projectIdOrName}/checks/{checkId}"
+            json: "{\"operationId\":\"deleteProjectCheck\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"checkId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"success\":{\"enum\":[true],\"type\":\"boolean\"}},\"required\":[\"success\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v2/projects/{projectIdOrName}/checks/{checkId}"
+          rename: {
+            param: {
+              checkId: "id"
+              projectIdOrName: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "checks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6"
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "check_2qn7PZrx89yxY34vEZPD31Y9XVj6"
+                kind: "param"
+                name: "id"
+                orig: "check_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v1/deployments/{deploymentId}/checks/{checkId}"
+            json: "{\"operationId\":\"updateCheck\",\"parameters\":[{\"description\":\"The deployment to update the check for.\",\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"description\":\"The deployment to update the check for.\",\"example\":\"dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6\",\"type\":\"string\"}},{\"description\":\"The check being updated\",\"in\":\"path\",\"name\":\"checkId\",\"required\":true,\"schema\":{\"description\":\"The check being updated\",\"example\":\"check_2qn7PZrx89yxY34vEZPD31Y9XVj6\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"conclusion\":{\"description\":\"The result of the check being run\",\"enum\":[\"canceled\",\"failed\",\"neutral\",\"succeeded\",\"skipped\"]},\"detailsUrl\":{\"description\":\"A URL a user may visit to see more information about the check\",\"example\":\"https://example.com/check/run/1234abc\",\"type\":\"string\"},\"externalId\":{\"description\":\"An identifier that can be used as an external reference\",\"example\":\"1234abc\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the check being created\",\"example\":\"Performance Check\",\"maxLength\":100,\"type\":\"string\"},\"output\":{\"description\":\"The results of the check Run\",\"properties\":{\"metrics\":{\"additionalProperties\":false,\"description\":\"Metrics about the page\",\"properties\":{\"CLS\":{\"properties\":{\"previousValue\":{\"description\":\"Previous Cumulative Layout Shift value to display a delta\",\"example\":2,\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"description\":\"Cumulative Layout Shift value\",\"example\":4,\"nullable\":true,\"type\":\"number\"}},\"required\":[\"value\",\"source\"],\"type\":\"object\"},\"FCP\":{\"properties\":{\"previousValue\":{\"description\":\"Previous First Contentful Paint value to display a delta\",\"example\":900,\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"description\":\"First Contentful Paint value\",\"example\":1200,\"nullable\":true,\"type\":\"number\"}},\"required\":[\"value\",\"source\"],\"type\":\"object\"},\"LCP\":{\"properties\":{\"previousValue\":{\"description\":\"Previous Largest Contentful Paint value to display a delta\",\"example\":1000,\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"description\":\"Largest Contentful Paint value\",\"example\":1200,\"nullable\":true,\"type\":\"number\"}},\"required\":[\"value\",\"source\"],\"type\":\"object\"},\"TBT\":{\"properties\":{\"previousValue\":{\"description\":\"Previous Total Blocking Time value to display a delta\",\"example\":3500,\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"]},\"value\":{\"description\":\"Total Blocking Time value\",\"example\":3000,\"nullable\":true,\"type\":\"number\"}},\"required\":[\"value\",\"source\"],\"type\":\"object\"},\"virtualExperienceScore\":{\"properties\":{\"previousValue\":{\"description\":\"A previous Virtual Experience Score value to display a delta, between 0 and 100\",\"example\":35,\"maximum\":100,\"minimum\":0,\"type\":\"integer\"},\"source\":{\"enum\":[\"web-vitals\"]},\"value\":{\"description\":\"The calculated Virtual Experience Score value, between 0 and 100\",\"example\":30,\"maximum\":100,\"minimum\":0,\"nullable\":true,\"type\":\"integer\"}},\"required\":[\"value\",\"source\"],\"type\":\"object\"}},\"required\":[\"FCP\",\"LCP\",\"CLS\",\"TBT\"],\"type\":\"object\"}},\"type\":\"object\"},\"path\":{\"description\":\"Path of the page that is being checked\",\"example\":\"/\",\"maxLength\":255,\"type\":\"string\"},\"status\":{\"description\":\"The current status of the check\",\"enum\":[\"running\",\"completed\"]}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"blocking\":{\"enum\":[false,true],\"type\":\"boolean\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"stale\",\"succeeded\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"detailsUrl\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"properties\":{\"metrics\":{\"properties\":{\"CLS\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"FCP\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"LCP\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"TBT\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"},\"virtualExperienceScore\":{\"properties\":{\"previousValue\":{\"type\":\"number\"},\"source\":{\"enum\":[\"web-vitals\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"number\"}},\"required\":[\"source\",\"value\"],\"type\":\"object\"}},\"required\":[\"CLS\",\"FCP\",\"LCP\",\"TBT\"],\"type\":\"object\"}},\"type\":\"object\"},\"path\":{\"type\":\"string\"},\"rerequestable\":{\"enum\":[false,true],\"type\":\"boolean\"},\"startedAt\":{\"type\":\"number\"},\"status\":{\"enum\":[\"completed\",\"registered\",\"running\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"blocking\",\"createdAt\",\"deploymentId\",\"id\",\"integrationId\",\"name\",\"status\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\\nThe provided token is not from an OAuth2 Client\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"Check was not found\\nThe deployment was not found\"},\"410\":{\"description\":\"\"},\"413\":{\"description\":\"The output provided is too large\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v1/deployments/{deploymentId}/checks/{checkId}"
+          rename: {
+            param: {
+              checkId: "id"
+              deploymentId: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "checks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.output`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "check_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v2/projects/{projectIdOrName}/checks/{checkId}"
+            json: "{\"operationId\":\"updateProjectCheck\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"checkId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"blocks\":{\"default\":\"deployment-alias\",\"enum\":[\"build-start\",\"deployment-start\",\"deployment-alias\",\"deployment-promotion\",\"none\"],\"type\":\"string\"},\"isRerequestable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"requires\":{\"default\":\"deployment-url\",\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"default\":300,\"type\":\"number\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deletedAt\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"isRerequestable\":{\"enum\":[false,true],\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"kind\":{\"enum\":[\"webhook\"],\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"git-provider\"],\"type\":\"string\"},\"provider\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"}},\"required\":[\"externalCheckName\",\"kind\",\"provider\"],\"type\":\"object\"}]},\"sourceIntegrationConfigurationId\":{\"type\":\"string\"},\"sourceKind\":{\"enum\":[\"git-provider\",\"integration\",\"vercel\",\"webhook\",\"integration\",\"webhook\",\"git-provider\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"blocks\",\"createdAt\",\"id\",\"isRerequestable\",\"name\",\"ownerId\",\"projectId\",\"requires\",\"source\",\"sourceKind\",\"targets\",\"timeout\",\"updatedAt\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v2/projects/{projectIdOrName}/checks/{checkId}"
+          rename: {
+            param: {
+              checkId: "id"
+              projectIdOrName: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "checks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "deployment"
+      ]
+      [
+        "project"
+      ]
+    ]
+  }
+
+
+
+}

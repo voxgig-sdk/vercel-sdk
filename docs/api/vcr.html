@@ -1,0 +1,1343 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Vcr | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a aria-current="page" href="../api/vcr.html">Vcr</a><div class="nav-sections"><a class="nav-section" href="#post-v2teamslugprojectslugrepositorynameblobsuploads">POST /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/</a>
+<a class="nav-section" href="#post-v1vcrrepositoryidornamepermissions">POST /v1/vcr/repository/{idOrName}/permissions</a>
+<a class="nav-section" href="#post-v1vcrrepository">POST /v1/vcr/repository</a>
+<a class="nav-section" href="#get-v1vcrrepositoryidornametags">GET /v1/vcr/repository/{idOrName}/tags</a>
+<a class="nav-section" href="#get-v2teamslugprojectslugrepositorynametagslist">GET /v2/{teamSlug}/{projectSlug}/{repositoryName}/tags/list</a>
+<a class="nav-section" href="#get-v1vcrrepositoryidornameimagesimageidordigest">GET /v1/vcr/repository/{idOrName}/images/{imageIdOrDigest}</a>
+<a class="nav-section" href="#get-v1vcrrepositoryidornametagstag">GET /v1/vcr/repository/{idOrName}/tags/{tag}</a>
+<a class="nav-section" href="#get-v2teamslugprojectslugrepositorynameblobsdigest">GET /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}</a>
+<a class="nav-section" href="#get-v1vcrrepositoryidorname">GET /v1/vcr/repository/{idOrName}</a>
+<a class="nav-section" href="#get-v2teamslugprojectslugrepositorynamemanifestsreference">GET /v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}</a>
+<a class="nav-section" href="#get-v2teamslugprojectslugrepositorynameblobsuploadsuuid">GET /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</a>
+<a class="nav-section" href="#get-v2">GET /v2/</a>
+<a class="nav-section" href="#patch-v2teamslugprojectslugrepositorynameblobsuploadsuuid">PATCH /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</a>
+<a class="nav-section" href="#delete-v1vcrrepositoryidornameimagesimageid">DELETE /v1/vcr/repository/{idOrName}/images/{imageId}</a>
+<a class="nav-section" href="#delete-v2teamslugprojectslugrepositorynameblobsdigest">DELETE /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}</a>
+<a class="nav-section" href="#delete-v1vcrrepositoryidorname">DELETE /v1/vcr/repository/{idOrName}</a>
+<a class="nav-section" href="#delete-v1vcrrepositoryidornamepermissions">DELETE /v1/vcr/repository/{idOrName}/permissions</a>
+<a class="nav-section" href="#delete-v1vcrrepositoryidornamepermissionsall">DELETE /v1/vcr/repository/{idOrName}/permissions/all</a>
+<a class="nav-section" href="#delete-v2teamslugprojectslugrepositorynamemanifestsreference">DELETE /v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}</a>
+<a class="nav-section" href="#delete-v2teamslugprojectslugrepositorynameblobsuploadsuuid">DELETE /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</a>
+<a class="nav-section" href="#put-v2teamslugprojectslugrepositorynameblobsuploadsuuid">PUT /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</a>
+<a class="nav-section" href="#put-v2teamslugprojectslugrepositorynamemanifestsreference">PUT /v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}</a></div>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="vcr">Vcr</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v2teamslugprojectslugrepositorynameblobsuploads"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1vcrrepositoryidornamepermissions"><code>/v1/vcr/repository/{idOrName}/permissions</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1vcrrepository"><code>/v1/vcr/repository</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1vcrrepositoryidornametags"><code>/v1/vcr/repository/{idOrName}/tags</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2teamslugprojectslugrepositorynametagslist"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/tags/list</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1vcrrepositoryidornameimagesimageidordigest"><code>/v1/vcr/repository/{idOrName}/images/{imageIdOrDigest}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1vcrrepositoryidornametagstag"><code>/v1/vcr/repository/{idOrName}/tags/{tag}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2teamslugprojectslugrepositorynameblobsdigest"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1vcrrepositoryidorname"><code>/v1/vcr/repository/{idOrName}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2teamslugprojectslugrepositorynamemanifestsreference"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2teamslugprojectslugrepositorynameblobsuploadsuuid"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2"><code>/v2/</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v2teamslugprojectslugrepositorynameblobsuploadsuuid"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</code></a></td>
+<td><code>patch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1vcrrepositoryidornameimagesimageid"><code>/v1/vcr/repository/{idOrName}/images/{imageId}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v2teamslugprojectslugrepositorynameblobsdigest"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1vcrrepositoryidorname"><code>/v1/vcr/repository/{idOrName}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1vcrrepositoryidornamepermissions"><code>/v1/vcr/repository/{idOrName}/permissions</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1vcrrepositoryidornamepermissionsall"><code>/v1/vcr/repository/{idOrName}/permissions/all</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v2teamslugprojectslugrepositorynamemanifestsreference"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v2teamslugprojectslugrepositorynameblobsuploadsuuid"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v2teamslugprojectslugrepositorynameblobsuploadsuuid"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v2teamslugprojectslugrepositorynamemanifestsreference"><code>/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>CPU architecture the manifest targets.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the image was created.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Internal identifier of the image.</td>
+</tr>
+<tr>
+<td><code>imageId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Internal identifier of the image the tag points at.</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation.</td>
+</tr>
+<tr>
+<td><code>layers</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>manifestDigest</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>SHA-256 digest of the image manifest.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name of the repository.</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Operating system the manifest targets.</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Identifier of the project the repository belongs to.</td>
+</tr>
+<tr>
+<td><code>public</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether the repository is public.</td>
+</tr>
+<tr>
+<td><code>pushedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Identifier of the actor that pushed the image.</td>
+</tr>
+<tr>
+<td><code>repositoryId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Identifier of the repository the image belongs to.</td>
+</tr>
+<tr>
+<td><code>sizeInBytes</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Total size in bytes of the image's resources (manifest, config and layer blobs) stored by the registry.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>VHS-readiness status, or <code>null</code> for a multi-platform index.</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The tag name.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Tags pointing at this image's manifest.</td>
+</tr>
+<tr>
+<td><code>teamId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Identifier of the team that is granted access to the repository.</td>
+</tr>
+<tr>
+<td><code>teamSlug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Slug of the team that is granted access to the repository.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the tag was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v2teamslugprojectslugrepositorynameblobsuploads" class="operation" data-method="post"><code>POST</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/</h3>
+<p>Operation ID: <code>createByTeamSlugByProjectSlugByRepositoryNameBlobsUploads</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>mount</code> | <code>query</code> | <code>string</code> | No | Digest of the blob to mount from another repository. |
+| <code>from</code> | <code>query</code> | <code>string</code> | No | Source repository to mount the blob from. |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="202" class="status" data-status="2xx">202</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1vcrrepositoryidornamepermissions" class="operation" data-method="post"><code>POST</code> /v1/vcr/repository/{idOrName}/permissions</h3>
+<p>Operation ID: <code>addRepositoryPermission</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes | Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400. |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>teamId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>ID of a team that is granted access to a repository.</td>
+</tr>
+<tr>
+<td><code>teamSlug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Slug of a team that is granted access to a repository.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>permission</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A team's access grant to a Vercel Container Registry repository.</td>
+</tr>
+<tr>
+<td><code>permission.createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the permission was created.</td>
+</tr>
+<tr>
+<td><code>permission.repositoryId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Identifier of the repository the permission grants access to.</td>
+</tr>
+<tr>
+<td><code>permission.teamId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Identifier of the team that is granted access to the repository.</td>
+</tr>
+<tr>
+<td><code>permission.teamSlug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Slug of the team that is granted access to the repository.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1vcrrepository" class="operation" data-method="post"><code>POST</code> /v1/vcr/repository</h3>
+<p>Operation ID: <code>createRepository</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Single Docker repository name component.</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>repository</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A Vercel Container Registry repository.</td>
+</tr>
+<tr>
+<td><code>repository.createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the repository was created.</td>
+</tr>
+<tr>
+<td><code>repository.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier of the repository.</td>
+</tr>
+<tr>
+<td><code>repository.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name of the repository.</td>
+</tr>
+<tr>
+<td><code>repository.projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Identifier of the project the repository belongs to.</td>
+</tr>
+<tr>
+<td><code>repository.public</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the repository is public. Images in public repositories can be pulled by anyone. Defaults to <code>false</code> (private).</td>
+</tr>
+<tr>
+<td><code>repository.updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the repository was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-1" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v1vcrrepositoryidornametags" class="operation" data-method="get"><code>GET</code> /v1/vcr/repository/{idOrName}/tags</h3>
+<p>Operation ID: <code>listRepositoryTags</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes | Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400. |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No |  |
+| <code>cursor</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>sortBy</code> | <code>query</code> | <code>enum: updatedAt, tag</code> | No | Field to sort the non-pinned tags by. |
+| <code>sortOrder</code> | <code>query</code> | <code>enum: asc, desc</code> | No | Sort direction. Defaults to desc. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nextCursor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].arch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].imageId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].kind</code></td>
+<td><code>enum: attestation, index, manifest</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].manifestDigest</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].platform</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].pushedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].sizeInBytes</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].status</code></td>
+<td><code>enum: preparing, ready, unoptimized, null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].tag</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags[].updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h3 id="get-v2teamslugprojectslugrepositorynametagslist" class="operation" data-method="get"><code>GET</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/tags/list</h3>
+<p>Operation ID: <code>getByTeamSlugByProjectSlugByRepositoryNameTagsList</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>n</code> | <code>query</code> | <code>integer</code> | No |  |
+| <code>last</code> | <code>query</code> | <code>string</code> | No | Opaque pagination cursor returned by a previous list response. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-2" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-4" class="status" data-status="4xx">404</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1vcrrepositoryidornameimagesimageidordigest" class="operation" data-method="get"><code>GET</code> /v1/vcr/repository/{idOrName}/images/{imageIdOrDigest}</h3>
+<p>Operation ID: <code>getRepositoryImage</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes | Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400. |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>imageIdOrDigest</code> | <code>path</code> | <code>string</code> | Yes | The internal image id (<code>image_...</code>) or the image manifest digest (<code>sha256:...</code>). |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>image</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A single image with its tags, status and resolved Dockerfile layer history.</td>
+</tr>
+<tr>
+<td><code>image.arch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>CPU architecture the manifest targets. Only present for single-platform manifests.</td>
+</tr>
+<tr>
+<td><code>image.createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the image was created.</td>
+</tr>
+<tr>
+<td><code>image.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Internal identifier of the image.</td>
+</tr>
+<tr>
+<td><code>image.kind</code></td>
+<td><code>enum: attestation, index, manifest</code></td>
+<td>Yes</td>
+<td>Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation.</td>
+</tr>
+<tr>
+<td><code>image.layers</code></td>
+<td><code>array of object or object or object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>image.manifestDigest</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>SHA-256 digest of the image manifest.</td>
+</tr>
+<tr>
+<td><code>image.platform</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Operating system the manifest targets. Only present for single-platform manifests.</td>
+</tr>
+<tr>
+<td><code>image.pushedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Identifier of the actor that pushed the image.</td>
+</tr>
+<tr>
+<td><code>image.repositoryId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Identifier of the repository the image belongs to.</td>
+</tr>
+<tr>
+<td><code>image.sizeInBytes</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Total size in bytes of the image's resources (manifest, config and layer blobs) stored by the registry.</td>
+</tr>
+<tr>
+<td><code>image.status</code></td>
+<td><code>enum: preparing, ready, unoptimized, null</code></td>
+<td>Yes</td>
+<td>VHS-readiness status, or <code>null</code> for a multi-platform index.</td>
+</tr>
+<tr>
+<td><code>image.tags</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Tags pointing at this image's manifest.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-5" class="status" data-status="4xx">404</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1vcrrepositoryidornametagstag" class="operation" data-method="get"><code>GET</code> /v1/vcr/repository/{idOrName}/tags/{tag}</h3>
+<p>Operation ID: <code>getRepositoryTag</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes | Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400. |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>tag</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-5" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tag</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A tag pointing at an image in a Vercel Container Registry repository, enriched with the backing image's metadata and VHS-readiness status.</td>
+</tr>
+<tr>
+<td><code>tag.arch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>CPU architecture the manifest targets. Only present for single-platform manifests.</td>
+</tr>
+<tr>
+<td><code>tag.createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the tag was created.</td>
+</tr>
+<tr>
+<td><code>tag.imageId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Internal identifier of the image the tag points at.</td>
+</tr>
+<tr>
+<td><code>tag.kind</code></td>
+<td><code>enum: attestation, index, manifest</code></td>
+<td>Yes</td>
+<td>Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation.</td>
+</tr>
+<tr>
+<td><code>tag.manifestDigest</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>SHA-256 digest of the image manifest the tag points at.</td>
+</tr>
+<tr>
+<td><code>tag.platform</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Operating system the manifest targets. Only present for single-platform manifests.</td>
+</tr>
+<tr>
+<td><code>tag.pushedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Identifier of the actor that pushed the image.</td>
+</tr>
+<tr>
+<td><code>tag.sizeInBytes</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Total size in bytes of the image's resources (manifest, config and layer blobs) stored by the registry.</td>
+</tr>
+<tr>
+<td><code>tag.status</code></td>
+<td><code>enum: preparing, ready, unoptimized, null</code></td>
+<td>Yes</td>
+<td>VHS-readiness status, or <code>null</code> for a multi-platform index.</td>
+</tr>
+<tr>
+<td><code>tag.tag</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The tag name.</td>
+</tr>
+<tr>
+<td><code>tag.updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the tag was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-6" class="status" data-status="4xx">404</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h3 id="get-v2teamslugprojectslugrepositorynameblobsdigest" class="operation" data-method="get"><code>GET</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}</h3>
+<p>Operation ID: <code>getByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>digest</code> | <code>path</code> | <code>string</code> | Yes | Content-addressable digest (algorithm:hex). |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-3" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-7" class="status" data-status="4xx">404</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+<h5 id="416" class="status" data-status="4xx">416</h5>
+<h3 id="get-v1vcrrepositoryidorname" class="operation" data-method="get"><code>GET</code> /v1/vcr/repository/{idOrName}</h3>
+<p>Operation ID: <code>getRepository</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes | Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400. |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-6" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>repository</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A Vercel Container Registry repository.</td>
+</tr>
+<tr>
+<td><code>repository.createdAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the repository was created.</td>
+</tr>
+<tr>
+<td><code>repository.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier of the repository.</td>
+</tr>
+<tr>
+<td><code>repository.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name of the repository.</td>
+</tr>
+<tr>
+<td><code>repository.projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Identifier of the project the repository belongs to.</td>
+</tr>
+<tr>
+<td><code>repository.public</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the repository is public. Images in public repositories can be pulled by anyone. Defaults to <code>false</code> (private).</td>
+</tr>
+<tr>
+<td><code>repository.updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ISO 8601 timestamp of when the repository was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-6" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-8" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-8" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-8" class="status" data-status="4xx">404</h5>
+<h5 id="410-8" class="status" data-status="4xx">410</h5>
+<h3 id="get-v2teamslugprojectslugrepositorynamemanifestsreference" class="operation" data-method="get"><code>GET</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}</h3>
+<p>Operation ID: <code>getByTeamSlugByProjectSlugByRepositoryNameManifestsByReference</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>reference</code> | <code>path</code> | <code>string</code> | Yes | Manifest reference: a tag or digest. |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-7" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-9" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-4" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-9" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-9" class="status" data-status="4xx">404</h5>
+<h5 id="410-9" class="status" data-status="4xx">410</h5>
+<h3 id="get-v2teamslugprojectslugrepositorynameblobsuploadsuuid" class="operation" data-method="get"><code>GET</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</h3>
+<p>Operation ID: <code>getByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>uuid</code> | <code>path</code> | <code>string</code> | Yes | Blob upload session identifier. |</p>
+<h4 id="responses-10">Responses</h4>
+<h5 id="204" class="status" data-status="2xx">204</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-8" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-10" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-5" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-10" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-10" class="status" data-status="4xx">404</h5>
+<h5 id="410-10" class="status" data-status="4xx">410</h5>
+<h3 id="get-v2" class="operation" data-method="get"><code>GET</code> /v2/</h3>
+<p>Operation ID: <code>getRoot</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-7" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h5 id="400" class="status" data-status="4xx">400</h5>
+<h5 id="401-the-request-is-not-authorized-11" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-6" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-11" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-11" class="status" data-status="4xx">404</h5>
+<h5 id="410-11" class="status" data-status="4xx">410</h5>
+<h2 id="patch">patch</h2>
+<h3 id="patch-v2teamslugprojectslugrepositorynameblobsuploadsuuid" class="operation" data-method="patch"><code>PATCH</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</h3>
+<p>Operation ID: <code>updateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>uuid</code> | <code>path</code> | <code>string</code> | Yes | Blob upload session identifier. |</p>
+<h4 id="responses-12">Responses</h4>
+<h5 id="202-1" class="status" data-status="2xx">202</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-9" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-12" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-7" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-12" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-12" class="status" data-status="4xx">404</h5>
+<h5 id="410-12" class="status" data-status="4xx">410</h5>
+<h5 id="413" class="status" data-status="4xx">413</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1vcrrepositoryidornameimagesimageid" class="operation" data-method="delete"><code>DELETE</code> /v1/vcr/repository/{idOrName}/images/{imageId}</h3>
+<p>Operation ID: <code>deleteRepositoryImage</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes | Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400. |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>imageId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-13">Responses</h4>
+<h5 id="202-2" class="status" data-status="2xx">202</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-10" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-13" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-13" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-13" class="status" data-status="4xx">404</h5>
+<h5 id="410-13" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v2teamslugprojectslugrepositorynameblobsdigest" class="operation" data-method="delete"><code>DELETE</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}</h3>
+<p>Operation ID: <code>deleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-13">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>digest</code> | <code>path</code> | <code>string</code> | Yes | Content-addressable digest (algorithm:hex). |</p>
+<h4 id="responses-14">Responses</h4>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-11" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-14" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-8" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-14" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-14" class="status" data-status="4xx">404</h5>
+<h5 id="405" class="status" data-status="4xx">405</h5>
+<h5 id="410-14" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v1vcrrepositoryidorname" class="operation" data-method="delete"><code>DELETE</code> /v1/vcr/repository/{idOrName}</h3>
+<p>Operation ID: <code>deleteRepository</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-14">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes | Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400. |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-15">Responses</h4>
+<h5 id="202-3" class="status" data-status="2xx">202</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-12" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-15" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-15" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-15" class="status" data-status="4xx">404</h5>
+<h5 id="410-15" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v1vcrrepositoryidornamepermissions" class="operation" data-method="delete"><code>DELETE</code> /v1/vcr/repository/{idOrName}/permissions</h3>
+<p>Operation ID: <code>removeRepositoryPermission</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-15">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes | Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400. |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>teamId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>ID of a team that is granted access to a repository.</td>
+</tr>
+<tr>
+<td><code>teamSlug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Slug of a team that is granted access to a repository.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-16">Responses</h4>
+<h5 id="204-1" class="status" data-status="2xx">204</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-16" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-16" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-16" class="status" data-status="4xx">404</h5>
+<h5 id="410-16" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v1vcrrepositoryidornamepermissionsall" class="operation" data-method="delete"><code>DELETE</code> /v1/vcr/repository/{idOrName}/permissions/all</h3>
+<p>Operation ID: <code>clearRepositoryPermissions</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-16">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes | Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400. |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-17">Responses</h4>
+<h5 id="204-2" class="status" data-status="2xx">204</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-13" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-17" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-17" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-17" class="status" data-status="4xx">404</h5>
+<h5 id="410-17" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v2teamslugprojectslugrepositorynamemanifestsreference" class="operation" data-method="delete"><code>DELETE</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}</h3>
+<p>Operation ID: <code>deleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReference</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-17">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>reference</code> | <code>path</code> | <code>string</code> | Yes | Content-addressable digest (algorithm:hex). |</p>
+<h4 id="responses-18">Responses</h4>
+<h5 id="202-4" class="status" data-status="2xx">202</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-14" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-18" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-9" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-18" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-18" class="status" data-status="4xx">404</h5>
+<h5 id="410-18" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v2teamslugprojectslugrepositorynameblobsuploadsuuid" class="operation" data-method="delete"><code>DELETE</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</h3>
+<p>Operation ID: <code>deleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-18">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>uuid</code> | <code>path</code> | <code>string</code> | Yes | Blob upload session identifier. |</p>
+<h4 id="responses-19">Responses</h4>
+<h5 id="204-3" class="status" data-status="2xx">204</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-15" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-19" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-10" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-19" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-19" class="status" data-status="4xx">404</h5>
+<h5 id="410-19" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="put-v2teamslugprojectslugrepositorynameblobsuploadsuuid" class="operation" data-method="put"><code>PUT</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}</h3>
+<p>Operation ID: <code>replaceByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-19">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>uuid</code> | <code>path</code> | <code>string</code> | Yes | Blob upload session identifier. |
+| <code>digest</code> | <code>query</code> | <code>string</code> | Yes | Content-addressable digest (algorithm:hex). |</p>
+<h4 id="responses-20">Responses</h4>
+<h5 id="201" class="status" data-status="2xx">201</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-16" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-20" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-11" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-20" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-20" class="status" data-status="4xx">404</h5>
+<h5 id="410-20" class="status" data-status="4xx">410</h5>
+<h5 id="413-1" class="status" data-status="4xx">413</h5>
+<h3 id="put-v2teamslugprojectslugrepositorynamemanifestsreference" class="operation" data-method="put"><code>PUT</code> /v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}</h3>
+<p>Operation ID: <code>replaceByTeamSlugByProjectSlugByRepositoryNameManifestsByReference</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-20">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository team slug component. |
+| <code>projectSlug</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository project slug component. |
+| <code>repositoryName</code> | <code>path</code> | <code>string</code> | Yes | Single Docker repository name component. |
+| <code>reference</code> | <code>path</code> | <code>string</code> | Yes | Manifest reference: a tag or digest. |</p>
+<h4 id="responses-21">Responses</h4>
+<h5 id="201-1" class="status" data-status="2xx">201</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>any</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-17" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-21" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-12" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-21" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-21" class="status" data-status="4xx">404</h5>
+<h5 id="410-21" class="status" data-status="4xx">410</h5>
+<h5 id="413-2" class="status" data-status="4xx">413</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

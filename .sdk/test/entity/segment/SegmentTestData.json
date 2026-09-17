@@ -1,0 +1,581 @@
+{
+  "existing": {
+    "segment": {
+      "SEGMENT00": {
+        "createdAt": 140,
+        "createdBy": "s8d",
+        "data": {},
+        "description": "s8f",
+        "hint": "s90",
+        "id": "SEGMENT00",
+        "label": "s92",
+        "metadata": {},
+        "projectId": "s94",
+        "slug": "s95",
+        "typeName": "s96",
+        "updatedAt": 151,
+        "usedByFlags": [],
+        "usedBySegments": [],
+        "project_id": "PROJECT01"
+      },
+      "SEGMENT01": {
+        "createdAt": 280,
+        "createdBy": "s119",
+        "data": {},
+        "description": "s11b",
+        "hint": "s11c",
+        "id": "SEGMENT01",
+        "label": "s11e",
+        "metadata": {},
+        "projectId": "s120",
+        "slug": "s121",
+        "typeName": "s122",
+        "updatedAt": 291,
+        "usedByFlags": [],
+        "usedBySegments": [],
+        "project_id": "PROJECT01"
+      },
+      "SEGMENT02": {
+        "createdAt": 420,
+        "createdBy": "s1a5",
+        "data": {},
+        "description": "s1a7",
+        "hint": "s1a8",
+        "id": "SEGMENT02",
+        "label": "s1aa",
+        "metadata": {},
+        "projectId": "s1ac",
+        "slug": "s1ad",
+        "typeName": "s1ae",
+        "updatedAt": 431,
+        "usedByFlags": [],
+        "usedBySegments": [],
+        "project_id": "PROJECT01"
+      }
+    }
+  },
+  "new": {
+    "segment": {
+      "segment_ref01": {
+        "createdAt": 560,
+        "createdBy": "s231",
+        "data": {},
+        "description": "s233",
+        "hint": "s234",
+        "label": "s236",
+        "metadata": {},
+        "projectId": "s238",
+        "slug": "s239",
+        "typeName": "s23a",
+        "updatedAt": 571,
+        "usedByFlags": [],
+        "usedBySegments": []
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getFlagSegment",
+        "parameters": [
+          {
+            "description": "The project id or name",
+            "in": "path",
+            "name": "projectIdOrName",
+            "required": true,
+            "schema": {
+              "description": "The project id or name",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The segment slug",
+            "in": "path",
+            "name": "segmentIdOrSlug",
+            "required": true,
+            "schema": {
+              "description": "The segment slug",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to include metadata",
+            "in": "query",
+            "name": "withMetadata",
+            "required": false,
+            "schema": {
+              "default": false,
+              "description": "Whether to include metadata",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "createdBy": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "properties": {
+                        "exclude": {
+                          "additionalProperties": {
+                            "additionalProperties": {
+                              "items": {
+                                "properties": {
+                                  "note": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "type": "object"
+                          },
+                          "type": "object"
+                        },
+                        "include": {
+                          "additionalProperties": {
+                            "additionalProperties": {
+                              "items": {
+                                "properties": {
+                                  "note": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "type": "object"
+                          },
+                          "type": "object"
+                        },
+                        "rules": {
+                          "items": {
+                            "properties": {
+                              "conditions": {
+                                "items": {
+                                  "properties": {
+                                    "cmp": {
+                                      "enum": [
+                                        "!contains",
+                                        "!endsWith",
+                                        "!eq",
+                                        "!ex",
+                                        "!oneOf",
+                                        "!regex",
+                                        "!startsWith",
+                                        "after",
+                                        "before",
+                                        "contains",
+                                        "containsAllOf",
+                                        "containsAnyOf",
+                                        "containsNoneOf",
+                                        "endsWith",
+                                        "eq",
+                                        "ex",
+                                        "gt",
+                                        "gte",
+                                        "lt",
+                                        "lte",
+                                        "oneOf",
+                                        "regex",
+                                        "startsWith"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "cmpOptions": {
+                                      "properties": {
+                                        "ignoreCase": {
+                                          "enum": [
+                                            false,
+                                            true
+                                          ],
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "lhs": {
+                                      "oneOf": [
+                                        {
+                                          "properties": {
+                                            "type": {
+                                              "enum": [
+                                                "segment"
+                                              ],
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "type"
+                                          ],
+                                          "type": "object"
+                                        },
+                                        {
+                                          "properties": {
+                                            "attribute": {
+                                              "type": "string"
+                                            },
+                                            "kind": {
+                                              "type": "string"
+                                            },
+                                            "type": {
+                                              "enum": [
+                                                "entity"
+                                              ],
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "attribute",
+                                            "kind",
+                                            "type"
+                                          ],
+                                          "type": "object"
+                                        }
+                                      ]
+                                    },
+                                    "rhs": {
+                                      "oneOf": [
+                                        {
+                                          "type": "string"
+                                        },
+                                        {
+                                          "type": "number"
+                                        },
+                                        {
+                                          "properties": {
+                                            "items": {
+                                              "items": {
+                                                "oneOf": [
+                                                  {
+                                                    "properties": {
+                                                      "label": {
+                                                        "type": "string"
+                                                      },
+                                                      "note": {
+                                                        "type": "string"
+                                                      },
+                                                      "value": {
+                                                        "type": "number"
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "value"
+                                                    ],
+                                                    "type": "object"
+                                                  },
+                                                  {
+                                                    "properties": {
+                                                      "label": {
+                                                        "type": "string"
+                                                      },
+                                                      "note": {
+                                                        "type": "string"
+                                                      },
+                                                      "value": {
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "value"
+                                                    ],
+                                                    "type": "object"
+                                                  }
+                                                ]
+                                              },
+                                              "type": "array"
+                                            },
+                                            "type": {
+                                              "enum": [
+                                                "list",
+                                                "list/inline"
+                                              ],
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "items",
+                                            "type"
+                                          ],
+                                          "type": "object"
+                                        },
+                                        {
+                                          "properties": {
+                                            "flags": {
+                                              "type": "string"
+                                            },
+                                            "pattern": {
+                                              "type": "string"
+                                            },
+                                            "type": {
+                                              "enum": [
+                                                "regex"
+                                              ],
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "flags",
+                                            "pattern",
+                                            "type"
+                                          ],
+                                          "type": "object"
+                                        },
+                                        {
+                                          "enum": [
+                                            false,
+                                            true
+                                          ],
+                                          "type": "boolean"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "cmp",
+                                    "lhs"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "outcome": {
+                                "oneOf": [
+                                  {
+                                    "properties": {
+                                      "type": {
+                                        "enum": [
+                                          "all"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "properties": {
+                                      "base": {
+                                        "properties": {
+                                          "attribute": {
+                                            "type": "string"
+                                          },
+                                          "kind": {
+                                            "type": "string"
+                                          },
+                                          "type": {
+                                            "enum": [
+                                              "entity"
+                                            ],
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "attribute",
+                                          "kind",
+                                          "type"
+                                        ],
+                                        "type": "object"
+                                      },
+                                      "passPromille": {
+                                        "type": "number"
+                                      },
+                                      "type": {
+                                        "enum": [
+                                          "split"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "base",
+                                      "passPromille",
+                                      "type"
+                                    ],
+                                    "type": "object"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "conditions",
+                              "id",
+                              "outcome"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "hint": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "properties": {
+                        "creator": {
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "projectId": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "typeName": {
+                      "enum": [
+                        "segment"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    },
+                    "usedByFlags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "usedBySegments": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "data",
+                    "hint",
+                    "id",
+                    "label",
+                    "projectId",
+                    "slug",
+                    "typeName",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

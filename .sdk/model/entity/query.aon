@@ -1,0 +1,118 @@
+# Entity: query
+
+main: kit: entity: query: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "aggregation"
+      req: false
+      short: "Aggregation function to apply."
+      type: "`$STRING`"
+    }
+    {
+      name: "bucketTimezone"
+      req: false
+      short: "IANA timezone (e.g."
+      type: "`$STRING`"
+    }
+    {
+      name: "endTime"
+      req: false
+      short: "End timestamp"
+      type: "`$STRING`"
+    }
+    {
+      name: "filter"
+      req: false
+      short: "Filter to apply to the query."
+      type: "`$STRING`"
+    }
+    {
+      name: "granularity"
+      req: false
+      short: "Time bucket size"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "groupBy"
+      req: false
+      short: "Dimensions to group results by."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "limit"
+      req: false
+      short: "Maximum number of results"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "metric"
+      req: true
+      short: "Metric id"
+      type: "`$STRING`"
+    }
+    {
+      name: "orderBy"
+      req: false
+      short: "Rollup column to order grouped results by."
+      type: "`$STRING`"
+    }
+    {
+      name: "orderDirection"
+      req: false
+      short: "Direction to order grouped results by."
+      type: "`$STRING`"
+    }
+    {
+      name: "scope"
+      req: true
+      short: "Owner or project scope for the query"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "startTime"
+      req: false
+      short: "Start timestamp"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "query"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          contract: {
+            id: "POST /v2/observability/query"
+            json: "{\"operationId\":\"createObservabilityQuery\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":true,\"properties\":{\"aggregation\":{\"description\":\"Aggregation function to apply. Some aggregations require a dimension: use <agg>/<dimension>, for example unique/visitor_id.\",\"type\":\"string\"},\"bucketTimezone\":{\"description\":\"IANA timezone (e.g. Europe/Paris) used only to align calendar buckets (1d/1mo) to that zone's day/month boundaries. startTime/endTime and all output timestamps are always UTC. No effect on sub-day granularities.\",\"type\":\"string\"},\"endTime\":{\"description\":\"End timestamp\",\"type\":\"string\"},\"filter\":{\"description\":\"Filter to apply to the query. JSON dimensions support nested refs, for example event_data/checkout_step eq 'payment'. Nested keys containing characters that OData cannot parse as an identifier, such as '-', spaces, quotes, or '/', must be wrapped in single quotes (escape embedded single quotes by doubling them), for example flags/'enable-comments-view' eq true or event_data/'some property''s/value' eq true.\",\"type\":\"string\"},\"granularity\":{\"description\":\"Time bucket size\",\"type\":\"object\"},\"groupBy\":{\"description\":\"Dimensions to group results by. JSON dimensions support nested refs, for example event_data/checkout_step. Nested keys containing characters that OData cannot parse as an identifier, such as '-', spaces, quotes, or '/', must be wrapped in single quotes (escape embedded single quotes by doubling them), for example flags/'enable-comments-view' or event_data/'some property''s/value'.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"limit\":{\"description\":\"Maximum number of results\",\"type\":\"number\"},\"metric\":{\"description\":\"Metric id\",\"type\":\"string\"},\"orderBy\":{\"description\":\"Rollup column to order grouped results by. Use the generated rollup key for the requested metric and aggregation. Defaults to the query engine count rollup.\",\"type\":\"string\"},\"orderDirection\":{\"description\":\"Direction to order grouped results by. Defaults to desc.\",\"enum\":[\"asc\",\"desc\"],\"type\":\"string\"},\"scope\":{\"description\":\"Owner or project scope for the query\",\"type\":\"object\"},\"startTime\":{\"description\":\"Start timestamp\",\"type\":\"string\"}},\"required\":[\"metric\",\"scope\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"408\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"413\":{\"description\":\"\"},\"422\":{\"description\":\"\"},\"500\":{\"description\":\"\"},\"503\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v2/observability/query"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "observability"
+            }
+            {
+              lit: "query"
+            }
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

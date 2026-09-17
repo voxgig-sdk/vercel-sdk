@@ -1,0 +1,517 @@
+# Entity: drain
+
+main: kit: entity: drain: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "delivery"
+      req: false
+      type: "`$OBJECT`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "drains"
+      req: true
+      type: "`$ANY`"
+      union: {
+        branches: 5
+        count: 12
+        depth: 9
+      }
+    }
+    {
+      name: "filter"
+      op: {
+        update: {
+          req: false
+          type: "`$ANY`"
+        }
+      }
+      req: true
+      type: "`$OBJECT`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 2
+      }
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "projectIds"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "projects"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "sampling"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "schemas"
+      op: {
+        update: {
+          req: false
+          type: "`$OBJECT`"
+        }
+      }
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "source"
+      req: false
+      type: "`$OBJECT`"
+      union: {
+        branches: 3
+        count: 2
+        depth: 2
+      }
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "transforms"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "drain"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/drains"
+            json: "{\"operationId\":\"createDrain\",\"parameters\":[{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"delivery\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"endpoint\",\"encoding\",\"headers\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"encoding\":{\"enum\":[\"proto\",\"json\"],\"type\":\"string\"},\"endpoint\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"}]},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"endpoint\",\"encoding\",\"headers\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"private\",\"bucket-owner-read\",\"bucket-owner-full-control\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"default\":\"AES256\",\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"endpoint\",\"encoding\",\"compression\",\"fileStructure\",\"roleArn\",\"region\"],\"type\":\"object\"}],\"type\":\"object\"},\"filter\":{\"additionalProperties\":false,\"properties\":{\"filter\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"deployment\":{\"additionalProperties\":false,\"properties\":{\"environments\":{\"items\":{\"enum\":[\"production\",\"preview\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"additionalProperties\":false,\"properties\":{\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"lambda\",\"static\",\"external\",\"firewall\",\"redirect\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"additionalProperties\":false,\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"text\"],\"type\":\"object\"}]},\"version\":{\"type\":\"string\"}},\"required\":[\"version\",\"filter\"],\"type\":\"object\"},\"name\":{\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"projects\":{\"enum\":[\"some\",\"all\"],\"type\":\"string\"},\"sampling\":{\"items\":{\"additionalProperties\":false,\"properties\":{\"env\":{\"description\":\"Environment to apply sampling to\",\"enum\":[\"production\",\"preview\"],\"type\":\"string\"},\"rate\":{\"description\":\"Sampling rate from 0 to 1 (e.g., 0.1 for 10%)\",\"maximum\":1,\"minimum\":0,\"type\":\"number\"},\"requestPath\":{\"description\":\"Request path prefix to apply the sampling rule to\",\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"rate\"],\"type\":\"object\"},\"maxItems\":10,\"type\":\"array\"},\"schemas\":{\"additionalProperties\":{\"properties\":{\"version\":{\"type\":\"string\"}},\"required\":[\"version\"],\"type\":\"object\"},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"kind\":{\"default\":\"integration\",\"type\":\"string\"}},\"required\":[\"externalResourceId\"]},{\"additionalProperties\":false,\"properties\":{\"kind\":{\"default\":\"integration\",\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"resourceId\"]},{\"additionalProperties\":false,\"properties\":{\"kind\":{\"default\":\"integration\",\"type\":\"string\"}},\"required\":[\"kind\"]}]},{\"additionalProperties\":false,\"properties\":{\"kind\":{\"default\":\"self-served\",\"type\":\"string\"}},\"required\":[\"kind\"]}],\"type\":\"object\"},\"transforms\":{\"items\":{\"properties\":{\"id\":{\"type\":\"string\"}},\"required\":[\"id\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"name\",\"projects\",\"schemas\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"number\"},\"delivery\":{\"oneOf\":[{\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"http\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"encoding\":{\"enum\":[\"json\",\"proto\"],\"type\":\"string\"},\"endpoint\":{\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"otlphttp\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"endpoint\":{\"type\":\"string\"},\"table\":{\"type\":\"string\"},\"type\":{\"enum\":[\"clickhouse\"],\"type\":\"string\"}},\"required\":[\"endpoint\",\"table\",\"type\"],\"type\":\"object\"},{\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"authenticated-read\",\"aws-exec-read\",\"bucket-owner-full-control\",\"bucket-owner-read\",\"private\",\"public-read\",\"public-read-write\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"enum\":[\"s3\"],\"type\":\"string\"}},\"required\":[\"compression\",\"encoding\",\"endpoint\",\"fileStructure\",\"region\",\"roleArn\",\"type\"],\"type\":\"object\"},{\"properties\":{\"target\":{\"enum\":[\"vercel-otel-traces-db\"],\"type\":\"string\"},\"type\":{\"enum\":[\"internal\"],\"type\":\"string\"}},\"required\":[\"target\",\"type\"],\"type\":\"object\"}]},\"disabledAt\":{\"type\":\"number\"},\"disabledBy\":{\"type\":\"string\"},\"disabledReason\":{\"enum\":[\"account-plan-downgrade\",\"disabled-by-admin\",\"disabled-by-owner\",\"feature-not-available\",\"limits-exceeded\"],\"type\":\"string\"},\"filterV2\":{\"properties\":{\"filter\":{\"oneOf\":[{\"properties\":{\"deployment\":{\"properties\":{\"environments\":{\"items\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"properties\":{\"legacy_excludeCachedStaticAssetLogs\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"external\",\"firewall\",\"lambda\",\"redirect\",\"static\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"enum\":[\"basic\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"enum\":[\"odata\"],\"type\":\"string\"}},\"required\":[\"text\",\"type\"],\"type\":\"object\"}]},\"version\":{\"enum\":[\"v2\"],\"type\":\"string\"}},\"required\":[\"filter\",\"version\"],\"type\":\"object\"},\"firstErrorTimestamp\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"sampling\":{\"items\":{\"properties\":{\"env\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"rate\":{\"type\":\"number\"},\"requestPath\":{\"type\":\"string\"},\"type\":{\"enum\":[\"head_sampling\"],\"type\":\"string\"}},\"required\":[\"rate\",\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"schemas\":{\"properties\":{\"ai_gateway\":{\"type\":\"object\"},\"analytics\":{\"type\":\"object\"},\"audit_log\":{\"type\":\"object\"},\"connect\":{\"type\":\"object\"},\"log\":{\"type\":\"object\"},\"speed_insights\":{\"type\":\"object\"},\"trace\":{\"type\":\"object\"}},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"properties\":{\"kind\":{\"enum\":[\"self-served\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"disabled\",\"enabled\",\"errored\"],\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"delivery\",\"id\",\"name\",\"ownerId\",\"schemas\",\"source\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"createdAt\":{\"type\":\"number\"},\"delivery\":{\"oneOf\":[{\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"http\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"encoding\":{\"enum\":[\"json\",\"proto\"],\"type\":\"string\"},\"endpoint\":{\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"otlphttp\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"endpoint\":{\"type\":\"string\"},\"table\":{\"type\":\"string\"},\"type\":{\"enum\":[\"clickhouse\"],\"type\":\"string\"}},\"required\":[\"endpoint\",\"table\",\"type\"],\"type\":\"object\"},{\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"authenticated-read\",\"aws-exec-read\",\"bucket-owner-full-control\",\"bucket-owner-read\",\"private\",\"public-read\",\"public-read-write\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"enum\":[\"s3\"],\"type\":\"string\"}},\"required\":[\"compression\",\"encoding\",\"endpoint\",\"fileStructure\",\"region\",\"roleArn\",\"type\"],\"type\":\"object\"},{\"properties\":{\"target\":{\"enum\":[\"vercel-otel-traces-db\"],\"type\":\"string\"},\"type\":{\"enum\":[\"internal\"],\"type\":\"string\"}},\"required\":[\"target\",\"type\"],\"type\":\"object\"}]},\"disabledAt\":{\"type\":\"number\"},\"disabledBy\":{\"type\":\"string\"},\"disabledReason\":{\"enum\":[\"account-plan-downgrade\",\"disabled-by-admin\",\"disabled-by-owner\",\"feature-not-available\",\"limits-exceeded\"],\"type\":\"string\"},\"filterV2\":{\"properties\":{\"filter\":{\"oneOf\":[{\"properties\":{\"deployment\":{\"properties\":{\"environments\":{\"items\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"properties\":{\"legacy_excludeCachedStaticAssetLogs\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"external\",\"firewall\",\"lambda\",\"redirect\",\"static\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"enum\":[\"basic\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"enum\":[\"odata\"],\"type\":\"string\"}},\"required\":[\"text\",\"type\"],\"type\":\"object\"}]},\"version\":{\"enum\":[\"v2\"],\"type\":\"string\"}},\"required\":[\"filter\",\"version\"],\"type\":\"object\"},\"firstErrorTimestamp\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"integrationConfigurationUri\":{\"type\":\"string\"},\"integrationIcon\":{\"type\":\"string\"},\"integrationWebsite\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectAccess\":{\"oneOf\":[{\"properties\":{\"access\":{\"enum\":[\"all\"],\"type\":\"string\"},\"managedBy\":{\"enum\":[\"drain\",\"integration\"],\"type\":\"string\"}},\"required\":[\"access\",\"managedBy\"],\"type\":\"object\"},{\"properties\":{\"access\":{\"enum\":[\"some\"],\"type\":\"string\"},\"managedBy\":{\"enum\":[\"drain\",\"integration\"],\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"access\",\"managedBy\",\"projectIds\"],\"type\":\"object\"}]},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"sampling\":{\"items\":{\"properties\":{\"env\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"rate\":{\"type\":\"number\"},\"requestPath\":{\"type\":\"string\"},\"type\":{\"enum\":[\"head_sampling\"],\"type\":\"string\"}},\"required\":[\"rate\",\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"schemas\":{\"properties\":{\"ai_gateway\":{\"type\":\"object\"},\"analytics\":{\"type\":\"object\"},\"audit_log\":{\"type\":\"object\"},\"connect\":{\"type\":\"object\"},\"log\":{\"type\":\"object\"},\"speed_insights\":{\"type\":\"object\"},\"trace\":{\"type\":\"object\"}},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"properties\":{\"kind\":{\"enum\":[\"self-served\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"disabled\",\"enabled\",\"errored\"],\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"delivery\",\"id\",\"name\",\"ownerId\",\"schemas\",\"source\",\"updatedAt\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/drains"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "drains"
+            }
+          ]
+          select: {
+            exist: [
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              delivery: "`reqdata.delivery`"
+              filter: "`reqdata.filter`"
+              name: "`reqdata.name`"
+              projectIds: "`reqdata.project_id`"
+              projects: "`reqdata.project`"
+              sampling: "`reqdata.sampling`"
+              schemas: "`reqdata.schema`"
+              source: "`reqdata.source`"
+              transforms: "`reqdata.transform`"
+            }
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/drains/test"
+            json: "{\"operationId\":\"testDrain\",\"parameters\":[{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"delivery\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"endpoint\",\"encoding\",\"headers\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"encoding\":{\"enum\":[\"proto\",\"json\"],\"type\":\"string\"},\"endpoint\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"}]},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"endpoint\",\"encoding\",\"headers\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"private\",\"bucket-owner-read\",\"bucket-owner-full-control\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"default\":\"AES256\",\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"endpoint\",\"encoding\",\"compression\",\"fileStructure\",\"roleArn\",\"region\"],\"type\":\"object\"}],\"type\":\"object\"},\"schemas\":{\"additionalProperties\":{\"properties\":{\"version\":{\"type\":\"string\"}},\"required\":[\"version\"],\"type\":\"object\"},\"type\":\"object\"}},\"required\":[\"schemas\",\"delivery\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"type\":\"object\"},{\"properties\":{\"endpoint\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"}},\"required\":[\"endpoint\",\"error\",\"status\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/drains/test"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "drains"
+            }
+            {
+              lit: "test"
+            }
+          ]
+          select: {
+            "$action": "test"
+            exist: [
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              delivery: "`reqdata.delivery`"
+              schemas: "`reqdata.schema`"
+            }
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: false
+                kind: "query"
+                name: "include_metadata"
+                orig: "include_metadata"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/drains"
+            json: "{\"operationId\":\"getDrains\",\"parameters\":[{\"in\":\"query\",\"name\":\"projectId\",\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"includeMetadata\",\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"drains\":{\"oneOf\":[{\"items\":{\"properties\":{\"createdAt\":{\"type\":\"number\"},\"delivery\":{\"oneOf\":[{\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"http\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"encoding\":{\"enum\":[\"json\",\"proto\"],\"type\":\"string\"},\"endpoint\":{\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"otlphttp\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"endpoint\":{\"type\":\"string\"},\"table\":{\"type\":\"string\"},\"type\":{\"enum\":[\"clickhouse\"],\"type\":\"string\"}},\"required\":[\"endpoint\",\"table\",\"type\"],\"type\":\"object\"},{\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"authenticated-read\",\"aws-exec-read\",\"bucket-owner-full-control\",\"bucket-owner-read\",\"private\",\"public-read\",\"public-read-write\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"enum\":[\"s3\"],\"type\":\"string\"}},\"required\":[\"compression\",\"encoding\",\"endpoint\",\"fileStructure\",\"region\",\"roleArn\",\"type\"],\"type\":\"object\"},{\"properties\":{\"target\":{\"enum\":[\"vercel-otel-traces-db\"],\"type\":\"string\"},\"type\":{\"enum\":[\"internal\"],\"type\":\"string\"}},\"required\":[\"target\",\"type\"],\"type\":\"object\"}]},\"disabledAt\":{\"type\":\"number\"},\"disabledBy\":{\"type\":\"string\"},\"disabledReason\":{\"enum\":[\"account-plan-downgrade\",\"disabled-by-admin\",\"disabled-by-owner\",\"feature-not-available\",\"limits-exceeded\"],\"type\":\"string\"},\"filterV2\":{\"properties\":{\"filter\":{\"oneOf\":[{\"properties\":{\"deployment\":{\"properties\":{\"environments\":{\"items\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"properties\":{\"legacy_excludeCachedStaticAssetLogs\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"external\",\"firewall\",\"lambda\",\"redirect\",\"static\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"enum\":[\"basic\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"enum\":[\"odata\"],\"type\":\"string\"}},\"required\":[\"text\",\"type\"],\"type\":\"object\"}]},\"version\":{\"enum\":[\"v2\"],\"type\":\"string\"}},\"required\":[\"filter\",\"version\"],\"type\":\"object\"},\"firstErrorTimestamp\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"sampling\":{\"items\":{\"properties\":{\"env\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"rate\":{\"type\":\"number\"},\"requestPath\":{\"type\":\"string\"},\"type\":{\"enum\":[\"head_sampling\"],\"type\":\"string\"}},\"required\":[\"rate\",\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"schemas\":{\"properties\":{\"ai_gateway\":{\"type\":\"object\"},\"analytics\":{\"type\":\"object\"},\"audit_log\":{\"type\":\"object\"},\"connect\":{\"type\":\"object\"},\"log\":{\"type\":\"object\"},\"speed_insights\":{\"type\":\"object\"},\"trace\":{\"type\":\"object\"}},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"properties\":{\"kind\":{\"enum\":[\"self-served\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"disabled\",\"enabled\",\"errored\"],\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"delivery\",\"id\",\"name\",\"ownerId\",\"schemas\",\"source\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"},{\"items\":{\"properties\":{\"createdAt\":{\"type\":\"number\"},\"delivery\":{\"oneOf\":[{\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"http\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"encoding\":{\"enum\":[\"json\",\"proto\"],\"type\":\"string\"},\"endpoint\":{\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"otlphttp\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"endpoint\":{\"type\":\"string\"},\"table\":{\"type\":\"string\"},\"type\":{\"enum\":[\"clickhouse\"],\"type\":\"string\"}},\"required\":[\"endpoint\",\"table\",\"type\"],\"type\":\"object\"},{\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"authenticated-read\",\"aws-exec-read\",\"bucket-owner-full-control\",\"bucket-owner-read\",\"private\",\"public-read\",\"public-read-write\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"enum\":[\"s3\"],\"type\":\"string\"}},\"required\":[\"compression\",\"encoding\",\"endpoint\",\"fileStructure\",\"region\",\"roleArn\",\"type\"],\"type\":\"object\"},{\"properties\":{\"target\":{\"enum\":[\"vercel-otel-traces-db\"],\"type\":\"string\"},\"type\":{\"enum\":[\"internal\"],\"type\":\"string\"}},\"required\":[\"target\",\"type\"],\"type\":\"object\"}]},\"disabledAt\":{\"type\":\"number\"},\"disabledBy\":{\"type\":\"string\"},\"disabledReason\":{\"enum\":[\"account-plan-downgrade\",\"disabled-by-admin\",\"disabled-by-owner\",\"feature-not-available\",\"limits-exceeded\"],\"type\":\"string\"},\"filterV2\":{\"properties\":{\"filter\":{\"oneOf\":[{\"properties\":{\"deployment\":{\"properties\":{\"environments\":{\"items\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"properties\":{\"legacy_excludeCachedStaticAssetLogs\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"external\",\"firewall\",\"lambda\",\"redirect\",\"static\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"enum\":[\"basic\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"enum\":[\"odata\"],\"type\":\"string\"}},\"required\":[\"text\",\"type\"],\"type\":\"object\"}]},\"version\":{\"enum\":[\"v2\"],\"type\":\"string\"}},\"required\":[\"filter\",\"version\"],\"type\":\"object\"},\"firstErrorTimestamp\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"integrationConfigurationUri\":{\"type\":\"string\"},\"integrationIcon\":{\"type\":\"string\"},\"integrationWebsite\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectAccess\":{\"oneOf\":[{\"properties\":{\"access\":{\"enum\":[\"all\"],\"type\":\"string\"},\"managedBy\":{\"enum\":[\"drain\",\"integration\"],\"type\":\"string\"}},\"required\":[\"access\",\"managedBy\"],\"type\":\"object\"},{\"properties\":{\"access\":{\"enum\":[\"some\"],\"type\":\"string\"},\"managedBy\":{\"enum\":[\"drain\",\"integration\"],\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"access\",\"managedBy\",\"projectIds\"],\"type\":\"object\"}]},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"sampling\":{\"items\":{\"properties\":{\"env\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"rate\":{\"type\":\"number\"},\"requestPath\":{\"type\":\"string\"},\"type\":{\"enum\":[\"head_sampling\"],\"type\":\"string\"}},\"required\":[\"rate\",\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"schemas\":{\"properties\":{\"ai_gateway\":{\"type\":\"object\"},\"analytics\":{\"type\":\"object\"},\"audit_log\":{\"type\":\"object\"},\"connect\":{\"type\":\"object\"},\"log\":{\"type\":\"object\"},\"speed_insights\":{\"type\":\"object\"},\"trace\":{\"type\":\"object\"}},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"properties\":{\"kind\":{\"enum\":[\"self-served\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"disabled\",\"enabled\",\"errored\"],\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"delivery\",\"id\",\"name\",\"ownerId\",\"schemas\",\"source\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"}]}},\"required\":[\"drains\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/drains"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "drains"
+            }
+          ]
+          select: {
+            exist: [
+              "include_metadata"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/drains/{id}"
+            json: "{\"operationId\":\"getDrain\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"number\"},\"delivery\":{\"oneOf\":[{\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"http\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"encoding\":{\"enum\":[\"json\",\"proto\"],\"type\":\"string\"},\"endpoint\":{\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"otlphttp\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"endpoint\":{\"type\":\"string\"},\"table\":{\"type\":\"string\"},\"type\":{\"enum\":[\"clickhouse\"],\"type\":\"string\"}},\"required\":[\"endpoint\",\"table\",\"type\"],\"type\":\"object\"},{\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"authenticated-read\",\"aws-exec-read\",\"bucket-owner-full-control\",\"bucket-owner-read\",\"private\",\"public-read\",\"public-read-write\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"enum\":[\"s3\"],\"type\":\"string\"}},\"required\":[\"compression\",\"encoding\",\"endpoint\",\"fileStructure\",\"region\",\"roleArn\",\"type\"],\"type\":\"object\"},{\"properties\":{\"target\":{\"enum\":[\"vercel-otel-traces-db\"],\"type\":\"string\"},\"type\":{\"enum\":[\"internal\"],\"type\":\"string\"}},\"required\":[\"target\",\"type\"],\"type\":\"object\"}]},\"disabledAt\":{\"type\":\"number\"},\"disabledBy\":{\"type\":\"string\"},\"disabledReason\":{\"enum\":[\"account-plan-downgrade\",\"disabled-by-admin\",\"disabled-by-owner\",\"feature-not-available\",\"limits-exceeded\"],\"type\":\"string\"},\"filterV2\":{\"properties\":{\"filter\":{\"oneOf\":[{\"properties\":{\"deployment\":{\"properties\":{\"environments\":{\"items\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"properties\":{\"legacy_excludeCachedStaticAssetLogs\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"external\",\"firewall\",\"lambda\",\"redirect\",\"static\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"enum\":[\"basic\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"enum\":[\"odata\"],\"type\":\"string\"}},\"required\":[\"text\",\"type\"],\"type\":\"object\"}]},\"version\":{\"enum\":[\"v2\"],\"type\":\"string\"}},\"required\":[\"filter\",\"version\"],\"type\":\"object\"},\"firstErrorTimestamp\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"sampling\":{\"items\":{\"properties\":{\"env\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"rate\":{\"type\":\"number\"},\"requestPath\":{\"type\":\"string\"},\"type\":{\"enum\":[\"head_sampling\"],\"type\":\"string\"}},\"required\":[\"rate\",\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"schemas\":{\"properties\":{\"ai_gateway\":{\"type\":\"object\"},\"analytics\":{\"type\":\"object\"},\"audit_log\":{\"type\":\"object\"},\"connect\":{\"type\":\"object\"},\"log\":{\"type\":\"object\"},\"speed_insights\":{\"type\":\"object\"},\"trace\":{\"type\":\"object\"}},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"properties\":{\"kind\":{\"enum\":[\"self-served\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"disabled\",\"enabled\",\"errored\"],\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"delivery\",\"id\",\"name\",\"ownerId\",\"schemas\",\"source\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"createdAt\":{\"type\":\"number\"},\"delivery\":{\"oneOf\":[{\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"http\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"encoding\":{\"enum\":[\"json\",\"proto\"],\"type\":\"string\"},\"endpoint\":{\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"otlphttp\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"endpoint\":{\"type\":\"string\"},\"table\":{\"type\":\"string\"},\"type\":{\"enum\":[\"clickhouse\"],\"type\":\"string\"}},\"required\":[\"endpoint\",\"table\",\"type\"],\"type\":\"object\"},{\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"authenticated-read\",\"aws-exec-read\",\"bucket-owner-full-control\",\"bucket-owner-read\",\"private\",\"public-read\",\"public-read-write\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"enum\":[\"s3\"],\"type\":\"string\"}},\"required\":[\"compression\",\"encoding\",\"endpoint\",\"fileStructure\",\"region\",\"roleArn\",\"type\"],\"type\":\"object\"},{\"properties\":{\"target\":{\"enum\":[\"vercel-otel-traces-db\"],\"type\":\"string\"},\"type\":{\"enum\":[\"internal\"],\"type\":\"string\"}},\"required\":[\"target\",\"type\"],\"type\":\"object\"}]},\"disabledAt\":{\"type\":\"number\"},\"disabledBy\":{\"type\":\"string\"},\"disabledReason\":{\"enum\":[\"account-plan-downgrade\",\"disabled-by-admin\",\"disabled-by-owner\",\"feature-not-available\",\"limits-exceeded\"],\"type\":\"string\"},\"filterV2\":{\"properties\":{\"filter\":{\"oneOf\":[{\"properties\":{\"deployment\":{\"properties\":{\"environments\":{\"items\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"properties\":{\"legacy_excludeCachedStaticAssetLogs\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"external\",\"firewall\",\"lambda\",\"redirect\",\"static\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"enum\":[\"basic\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"enum\":[\"odata\"],\"type\":\"string\"}},\"required\":[\"text\",\"type\"],\"type\":\"object\"}]},\"version\":{\"enum\":[\"v2\"],\"type\":\"string\"}},\"required\":[\"filter\",\"version\"],\"type\":\"object\"},\"firstErrorTimestamp\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"integrationConfigurationUri\":{\"type\":\"string\"},\"integrationIcon\":{\"type\":\"string\"},\"integrationWebsite\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectAccess\":{\"oneOf\":[{\"properties\":{\"access\":{\"enum\":[\"all\"],\"type\":\"string\"},\"managedBy\":{\"enum\":[\"drain\",\"integration\"],\"type\":\"string\"}},\"required\":[\"access\",\"managedBy\"],\"type\":\"object\"},{\"properties\":{\"access\":{\"enum\":[\"some\"],\"type\":\"string\"},\"managedBy\":{\"enum\":[\"drain\",\"integration\"],\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"access\",\"managedBy\",\"projectIds\"],\"type\":\"object\"}]},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"sampling\":{\"items\":{\"properties\":{\"env\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"rate\":{\"type\":\"number\"},\"requestPath\":{\"type\":\"string\"},\"type\":{\"enum\":[\"head_sampling\"],\"type\":\"string\"}},\"required\":[\"rate\",\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"schemas\":{\"properties\":{\"ai_gateway\":{\"type\":\"object\"},\"analytics\":{\"type\":\"object\"},\"audit_log\":{\"type\":\"object\"},\"connect\":{\"type\":\"object\"},\"log\":{\"type\":\"object\"},\"speed_insights\":{\"type\":\"object\"},\"trace\":{\"type\":\"object\"}},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"properties\":{\"kind\":{\"enum\":[\"self-served\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"disabled\",\"enabled\",\"errored\"],\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"delivery\",\"id\",\"name\",\"ownerId\",\"schemas\",\"source\",\"updatedAt\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/drains/{id}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "drains"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/drains/{id}"
+            json: "{\"operationId\":\"deleteDrain\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/drains/{id}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "drains"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v1/drains/{id}"
+            json: "{\"operationId\":\"updateDrain\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"delivery\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"endpoint\",\"encoding\",\"headers\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"encoding\":{\"enum\":[\"proto\",\"json\"],\"type\":\"string\"},\"endpoint\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"}]},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"endpoint\",\"encoding\",\"headers\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"private\",\"bucket-owner-read\",\"bucket-owner-full-control\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"default\":\"AES256\",\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"endpoint\",\"encoding\",\"compression\",\"fileStructure\",\"roleArn\",\"region\"],\"type\":\"object\"}],\"type\":\"object\"},\"filter\":{\"oneOf\":[{\"type\":\"string\"},{\"additionalProperties\":false,\"properties\":{\"filter\":{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"deployment\":{\"additionalProperties\":false,\"properties\":{\"environments\":{\"items\":{\"enum\":[\"production\",\"preview\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"additionalProperties\":false,\"properties\":{\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"lambda\",\"static\",\"external\",\"firewall\",\"redirect\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"additionalProperties\":false,\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"text\"],\"type\":\"object\"}]},\"version\":{\"type\":\"string\"}},\"required\":[\"version\",\"filter\"],\"type\":\"object\"}]},\"name\":{\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"nullable\":true,\"type\":\"array\"},\"projects\":{\"enum\":[\"some\",\"all\"],\"type\":\"string\"},\"sampling\":{\"items\":{\"additionalProperties\":false,\"properties\":{\"env\":{\"description\":\"Environment to apply sampling to\",\"enum\":[\"production\",\"preview\"],\"type\":\"string\"},\"rate\":{\"description\":\"Sampling rate from 0 to 1 (e.g., 0.1 for 10%)\",\"maximum\":1,\"minimum\":0,\"type\":\"number\"},\"requestPath\":{\"description\":\"Request path prefix to apply the sampling rule to\",\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"rate\"],\"type\":\"object\"},\"maxItems\":10,\"nullable\":true,\"type\":\"array\"},\"schemas\":{\"additionalProperties\":{\"properties\":{\"version\":{\"type\":\"string\"}},\"required\":[\"version\"],\"type\":\"object\"},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"kind\":{\"default\":\"integration\",\"type\":\"string\"}},\"required\":[\"externalResourceId\"]},{\"additionalProperties\":false,\"properties\":{\"kind\":{\"default\":\"integration\",\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"resourceId\"]},{\"additionalProperties\":false,\"properties\":{\"kind\":{\"default\":\"integration\",\"type\":\"string\"}},\"required\":[\"kind\"]}]},{\"additionalProperties\":false,\"properties\":{\"kind\":{\"default\":\"self-served\",\"type\":\"string\"}},\"required\":[\"kind\"]}],\"type\":\"object\"},\"status\":{\"enum\":[\"enabled\",\"disabled\"],\"type\":\"string\"},\"transforms\":{\"items\":{\"properties\":{\"id\":{\"type\":\"string\"}},\"required\":[\"id\"],\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"createdAt\":{\"type\":\"number\"},\"delivery\":{\"oneOf\":[{\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"http\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"encoding\":{\"enum\":[\"json\",\"proto\"],\"type\":\"string\"},\"endpoint\":{\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"otlphttp\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"endpoint\":{\"type\":\"string\"},\"table\":{\"type\":\"string\"},\"type\":{\"enum\":[\"clickhouse\"],\"type\":\"string\"}},\"required\":[\"endpoint\",\"table\",\"type\"],\"type\":\"object\"},{\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"authenticated-read\",\"aws-exec-read\",\"bucket-owner-full-control\",\"bucket-owner-read\",\"private\",\"public-read\",\"public-read-write\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"enum\":[\"s3\"],\"type\":\"string\"}},\"required\":[\"compression\",\"encoding\",\"endpoint\",\"fileStructure\",\"region\",\"roleArn\",\"type\"],\"type\":\"object\"},{\"properties\":{\"target\":{\"enum\":[\"vercel-otel-traces-db\"],\"type\":\"string\"},\"type\":{\"enum\":[\"internal\"],\"type\":\"string\"}},\"required\":[\"target\",\"type\"],\"type\":\"object\"}]},\"disabledAt\":{\"type\":\"number\"},\"disabledBy\":{\"type\":\"string\"},\"disabledReason\":{\"enum\":[\"account-plan-downgrade\",\"disabled-by-admin\",\"disabled-by-owner\",\"feature-not-available\",\"limits-exceeded\"],\"type\":\"string\"},\"filterV2\":{\"properties\":{\"filter\":{\"oneOf\":[{\"properties\":{\"deployment\":{\"properties\":{\"environments\":{\"items\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"properties\":{\"legacy_excludeCachedStaticAssetLogs\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"external\",\"firewall\",\"lambda\",\"redirect\",\"static\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"enum\":[\"basic\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"enum\":[\"odata\"],\"type\":\"string\"}},\"required\":[\"text\",\"type\"],\"type\":\"object\"}]},\"version\":{\"enum\":[\"v2\"],\"type\":\"string\"}},\"required\":[\"filter\",\"version\"],\"type\":\"object\"},\"firstErrorTimestamp\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"sampling\":{\"items\":{\"properties\":{\"env\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"rate\":{\"type\":\"number\"},\"requestPath\":{\"type\":\"string\"},\"type\":{\"enum\":[\"head_sampling\"],\"type\":\"string\"}},\"required\":[\"rate\",\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"schemas\":{\"properties\":{\"ai_gateway\":{\"type\":\"object\"},\"analytics\":{\"type\":\"object\"},\"audit_log\":{\"type\":\"object\"},\"connect\":{\"type\":\"object\"},\"log\":{\"type\":\"object\"},\"speed_insights\":{\"type\":\"object\"},\"trace\":{\"type\":\"object\"}},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"properties\":{\"kind\":{\"enum\":[\"self-served\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"disabled\",\"enabled\",\"errored\"],\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"delivery\",\"id\",\"name\",\"ownerId\",\"schemas\",\"source\",\"updatedAt\"],\"type\":\"object\"},{\"properties\":{\"createdAt\":{\"type\":\"number\"},\"delivery\":{\"oneOf\":[{\"properties\":{\"compression\":{\"enum\":[\"gzip\",\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"http\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"encoding\":{\"enum\":[\"json\",\"proto\"],\"type\":\"string\"},\"endpoint\":{\"properties\":{\"traces\":{\"type\":\"string\"}},\"required\":[\"traces\"],\"type\":\"object\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"secret\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"kind\":{\"enum\":[\"INTEGRATION_SECRET\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"}]},\"type\":{\"enum\":[\"otlphttp\"],\"type\":\"string\"}},\"required\":[\"encoding\",\"endpoint\",\"headers\",\"type\"],\"type\":\"object\"},{\"properties\":{\"endpoint\":{\"type\":\"string\"},\"table\":{\"type\":\"string\"},\"type\":{\"enum\":[\"clickhouse\"],\"type\":\"string\"}},\"required\":[\"endpoint\",\"table\",\"type\"],\"type\":\"object\"},{\"properties\":{\"compression\":{\"enum\":[\"none\"],\"type\":\"string\"},\"encoding\":{\"enum\":[\"json\",\"ndjson\"],\"type\":\"string\"},\"endpoint\":{\"type\":\"string\"},\"fileStructure\":{\"enum\":[\"hive\"],\"type\":\"string\"},\"objectAcl\":{\"enum\":[\"authenticated-read\",\"aws-exec-read\",\"bucket-owner-full-control\",\"bucket-owner-read\",\"private\",\"public-read\",\"public-read-write\"],\"type\":\"string\"},\"region\":{\"type\":\"string\"},\"roleArn\":{\"type\":\"string\"},\"serverSideEncryption\":{\"enum\":[\"AES256\",\"aws:kms\",\"aws:kms:dsse\"],\"type\":\"string\"},\"type\":{\"enum\":[\"s3\"],\"type\":\"string\"}},\"required\":[\"compression\",\"encoding\",\"endpoint\",\"fileStructure\",\"region\",\"roleArn\",\"type\"],\"type\":\"object\"},{\"properties\":{\"target\":{\"enum\":[\"vercel-otel-traces-db\"],\"type\":\"string\"},\"type\":{\"enum\":[\"internal\"],\"type\":\"string\"}},\"required\":[\"target\",\"type\"],\"type\":\"object\"}]},\"disabledAt\":{\"type\":\"number\"},\"disabledBy\":{\"type\":\"string\"},\"disabledReason\":{\"enum\":[\"account-plan-downgrade\",\"disabled-by-admin\",\"disabled-by-owner\",\"feature-not-available\",\"limits-exceeded\"],\"type\":\"string\"},\"filterV2\":{\"properties\":{\"filter\":{\"oneOf\":[{\"properties\":{\"deployment\":{\"properties\":{\"environments\":{\"items\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"log\":{\"properties\":{\"legacy_excludeCachedStaticAssetLogs\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sources\":{\"items\":{\"enum\":[\"build\",\"edge\",\"external\",\"firewall\",\"lambda\",\"redirect\",\"static\"],\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"project\":{\"properties\":{\"ids\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":{\"enum\":[\"basic\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},{\"properties\":{\"text\":{\"type\":\"string\"},\"type\":{\"enum\":[\"odata\"],\"type\":\"string\"}},\"required\":[\"text\",\"type\"],\"type\":\"object\"}]},\"version\":{\"enum\":[\"v2\"],\"type\":\"string\"}},\"required\":[\"filter\",\"version\"],\"type\":\"object\"},\"firstErrorTimestamp\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"integrationConfigurationUri\":{\"type\":\"string\"},\"integrationIcon\":{\"type\":\"string\"},\"integrationWebsite\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"projectAccess\":{\"oneOf\":[{\"properties\":{\"access\":{\"enum\":[\"all\"],\"type\":\"string\"},\"managedBy\":{\"enum\":[\"drain\",\"integration\"],\"type\":\"string\"}},\"required\":[\"access\",\"managedBy\"],\"type\":\"object\"},{\"properties\":{\"access\":{\"enum\":[\"some\"],\"type\":\"string\"},\"managedBy\":{\"enum\":[\"drain\",\"integration\"],\"type\":\"string\"},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"access\",\"managedBy\",\"projectIds\"],\"type\":\"object\"}]},\"projectIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"sampling\":{\"items\":{\"properties\":{\"env\":{\"enum\":[\"preview\",\"production\"],\"type\":\"string\"},\"rate\":{\"type\":\"number\"},\"requestPath\":{\"type\":\"string\"},\"type\":{\"enum\":[\"head_sampling\"],\"type\":\"string\"}},\"required\":[\"rate\",\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"schemas\":{\"properties\":{\"ai_gateway\":{\"type\":\"object\"},\"analytics\":{\"type\":\"object\"},\"audit_log\":{\"type\":\"object\"},\"connect\":{\"type\":\"object\"},\"log\":{\"type\":\"object\"},\"speed_insights\":{\"type\":\"object\"},\"trace\":{\"type\":\"object\"}},\"type\":\"object\"},\"source\":{\"oneOf\":[{\"properties\":{\"kind\":{\"enum\":[\"self-served\"],\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"disabled\",\"enabled\",\"errored\"],\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"delivery\",\"id\",\"name\",\"ownerId\",\"schemas\",\"source\",\"updatedAt\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v1/drains/{id}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "drains"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              delivery: "`reqdata.delivery`"
+              filter: "`reqdata.filter`"
+              name: "`reqdata.name`"
+              projectIds: "`reqdata.project_id`"
+              projects: "`reqdata.project`"
+              sampling: "`reqdata.sampling`"
+              schemas: "`reqdata.schema`"
+              source: "`reqdata.source`"
+              status: "`reqdata.status`"
+              transforms: "`reqdata.transform`"
+            }
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

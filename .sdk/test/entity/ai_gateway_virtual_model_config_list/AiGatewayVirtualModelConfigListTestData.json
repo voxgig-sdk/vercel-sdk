@@ -1,0 +1,552 @@
+{
+  "existing": {
+    "ai_gateway_virtual_model_config_list": {
+      "AI_GATEWAY_VIRTUAL_MODEL_CONFIG_LIST00": {
+        "allowFallbackFromFast": true,
+        "baseUrl": "s155",
+        "byokCredentialIds": [],
+        "caching": "s157",
+        "createdAt": 344,
+        "createdBy": "s159",
+        "deleted": true,
+        "description": "s15b",
+        "disallowPromptTraining": true,
+        "displayName": "s15d",
+        "has": [],
+        "hipaaCompliant": false,
+        "inferenceRegion": {},
+        "instanceId": "s161",
+        "kind": "s162",
+        "modelSlug": "s163",
+        "models": [],
+        "observabilityTags": [],
+        "ownerId": "s166",
+        "providerOnly": [],
+        "providerOptions": {},
+        "providerOrder": [],
+        "providerTimeouts": {},
+        "requires": [],
+        "selector": "s16c",
+        "serviceTier": "s16d",
+        "sort": "s16e",
+        "speed": "s16f",
+        "status": "s170",
+        "updatedAt": 369,
+        "updatedBy": "s172",
+        "virtualModelSlug": "s173",
+        "visibility": "s174",
+        "zeroDataRetention": false
+      },
+      "AI_GATEWAY_VIRTUAL_MODEL_CONFIG_LIST01": {
+        "allowFallbackFromFast": true,
+        "baseUrl": "s2a9",
+        "byokCredentialIds": [],
+        "caching": "s2ab",
+        "createdAt": 684,
+        "createdBy": "s2ad",
+        "deleted": true,
+        "description": "s2af",
+        "disallowPromptTraining": true,
+        "displayName": "s2b1",
+        "has": [],
+        "hipaaCompliant": false,
+        "inferenceRegion": {},
+        "instanceId": "s2b5",
+        "kind": "s2b6",
+        "modelSlug": "s2b7",
+        "models": [],
+        "observabilityTags": [],
+        "ownerId": "s2ba",
+        "providerOnly": [],
+        "providerOptions": {},
+        "providerOrder": [],
+        "providerTimeouts": {},
+        "requires": [],
+        "selector": "s2c0",
+        "serviceTier": "s2c1",
+        "sort": "s2c2",
+        "speed": "s2c3",
+        "status": "s2c4",
+        "updatedAt": 709,
+        "updatedBy": "s2c6",
+        "virtualModelSlug": "s2c7",
+        "visibility": "s2c8",
+        "zeroDataRetention": false
+      },
+      "AI_GATEWAY_VIRTUAL_MODEL_CONFIG_LIST02": {
+        "allowFallbackFromFast": true,
+        "baseUrl": "s3fd",
+        "byokCredentialIds": [],
+        "caching": "s3ff",
+        "createdAt": 1024,
+        "createdBy": "s401",
+        "deleted": true,
+        "description": "s403",
+        "disallowPromptTraining": true,
+        "displayName": "s405",
+        "has": [],
+        "hipaaCompliant": false,
+        "inferenceRegion": {},
+        "instanceId": "s409",
+        "kind": "s40a",
+        "modelSlug": "s40b",
+        "models": [],
+        "observabilityTags": [],
+        "ownerId": "s40e",
+        "providerOnly": [],
+        "providerOptions": {},
+        "providerOrder": [],
+        "providerTimeouts": {},
+        "requires": [],
+        "selector": "s414",
+        "serviceTier": "s415",
+        "sort": "s416",
+        "speed": "s417",
+        "status": "s418",
+        "updatedAt": 1049,
+        "updatedBy": "s41a",
+        "virtualModelSlug": "s41b",
+        "visibility": "s41c",
+        "zeroDataRetention": false
+      }
+    }
+  },
+  "new": {
+    "ai_gateway_virtual_model_config_list": {
+      "ai_gateway_virtual_model_config_list_ref01": {
+        "allowFallbackFromFast": true,
+        "baseUrl": "s551",
+        "byokCredentialIds": [],
+        "caching": "s553",
+        "createdAt": 1364,
+        "createdBy": "s555",
+        "deleted": true,
+        "description": "s557",
+        "disallowPromptTraining": true,
+        "displayName": "s559",
+        "has": [],
+        "hipaaCompliant": false,
+        "inferenceRegion": {},
+        "instanceId": "s55d",
+        "kind": "s55e",
+        "modelSlug": "s55f",
+        "models": [],
+        "observabilityTags": [],
+        "ownerId": "s562",
+        "providerOnly": [],
+        "providerOptions": {},
+        "providerOrder": [],
+        "providerTimeouts": {},
+        "requires": [],
+        "selector": "s568",
+        "serviceTier": "s569",
+        "sort": "s56a",
+        "speed": "s56b",
+        "status": "s56c",
+        "updatedAt": 1389,
+        "updatedBy": "s56e",
+        "virtualModelSlug": "s56f",
+        "visibility": "s570",
+        "zeroDataRetention": false
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/ai-gateway/virtual-model-configs/list": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listAiGatewayVirtualModelConfigs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ownerId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cursor": {
+                      "description": "Cursor for the next page, or null when no more pages remain.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "virtualModelConfigs": {
+                      "description": "The page of VMCs.",
+                      "items": {
+                        "description": "Public response shape for virtual model configs. Used so OpenAPI generation can avoid ElectroDB's recursive EntityItem types.",
+                        "properties": {
+                          "allowFallbackFromFast": {
+                            "description": "Allow fallback from fast to standard providers on failure.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "baseUrl": {
+                            "description": "For kind=relay: URL the gateway forwards requests to as a transparent proxy.",
+                            "type": "string"
+                          },
+                          "byokCredentialIds": {
+                            "description": "BYOK credential IDs allowed for this VMC.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "caching": {
+                            "description": "Use caching if available.",
+                            "enum": [
+                              "auto"
+                            ],
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "description": "Creation timestamp (epoch ms).",
+                            "type": "number"
+                          },
+                          "createdBy": {
+                            "description": "User or app id that created this VMC.",
+                            "type": "string"
+                          },
+                          "deleted": {
+                            "description": "Whether this VMC is soft-deleted.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "description": {
+                            "description": "Optional description for UI.",
+                            "type": "string"
+                          },
+                          "disallowPromptTraining": {
+                            "description": "Only use providers that will not train on your prompts.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "displayName": {
+                            "description": "Human-readable name for UI.",
+                            "type": "string"
+                          },
+                          "has": {
+                            "description": "Limit providers to those with these features.",
+                            "items": {
+                              "description": "Limit providers to those with these features.",
+                              "enum": [
+                                "implicit-caching",
+                                "vision"
+                              ],
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "hipaaCompliant": {
+                            "description": "Only use HIPAA-compliant providers.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "inferenceRegion": {
+                            "description": "Region pinned on the VMC for system-credential routing (alias/router only).",
+                            "properties": {
+                              "geoRegion": {
+                                "description": "Geo zone (e.g. \"us\", \"eu\").",
+                                "type": "string"
+                              },
+                              "providerRegion": {
+                                "description": "Provider-specific region identifier.",
+                                "type": "string"
+                              },
+                              "providers": {
+                                "additionalProperties": {
+                                  "description": "Per-provider region overrides keyed by provider slug.",
+                                  "nullable": true,
+                                  "properties": {
+                                    "geoRegion": {
+                                      "description": "Geo zone (e.g. \"us\", \"eu\").",
+                                      "type": "string"
+                                    },
+                                    "providerRegion": {
+                                      "description": "Provider-specific region identifier.",
+                                      "type": "string"
+                                    },
+                                    "scope": {
+                                      "description": "Pin scope: `specific` (one provider region), `zone` (geo zone), or `global`.",
+                                      "enum": [
+                                        "global",
+                                        "specific",
+                                        "zone"
+                                      ],
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "description": "Per-provider region overrides keyed by provider slug.",
+                                "type": "object"
+                              },
+                              "scope": {
+                                "description": "Pin scope: `specific` (one provider region), `zone` (geo zone), or `global`.",
+                                "enum": [
+                                  "global",
+                                  "specific",
+                                  "zone"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "instanceId": {
+                            "description": "The concrete model-provider instance this VMC resolves to.",
+                            "type": "string"
+                          },
+                          "kind": {
+                            "description": "VMC kind: alias, relay, or router.",
+                            "type": "string"
+                          },
+                          "modelSlug": {
+                            "description": "Canonical model slug this VMC maps to (e.g. \"creator/model\"). Not used by kind=router.",
+                            "type": "string"
+                          },
+                          "models": {
+                            "description": "For kind=router: ordered candidates, model slugs or router references. Otherwise: fallback models.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "observabilityTags": {
+                            "description": "Observability tags attached to requests through this VMC.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "ownerId": {
+                            "description": "Team (owner) that owns this VMC.",
+                            "type": "string"
+                          },
+                          "providerOnly": {
+                            "description": "Restrict routing to only these providers.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "providerOptions": {
+                            "additionalProperties": {
+                              "additionalProperties": true,
+                              "description": "Arbitrary per-provider AI SDK options, keyed by gateway provider slug.",
+                              "type": "object"
+                            },
+                            "description": "Arbitrary per-provider AI SDK options, keyed by gateway provider slug.",
+                            "type": "object"
+                          },
+                          "providerOrder": {
+                            "description": "Ordered list of providers to try as fallbacks on failure.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "providerTimeouts": {
+                            "description": "Per-request provider timeouts in ms, keyed by provider slug for BYOK credentials.",
+                            "properties": {
+                              "byok": {
+                                "additionalProperties": {
+                                  "type": "number"
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "requires": {
+                            "description": "For kind=router: capability tags a candidate must have.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "selector": {
+                            "description": "For kind=router: how to order candidates.",
+                            "enum": [
+                              "cost",
+                              "priority",
+                              "tps",
+                              "ttft"
+                            ],
+                            "type": "string"
+                          },
+                          "serviceTier": {
+                            "description": "Service tier for providers that support it.",
+                            "enum": [
+                              "fast",
+                              "flex",
+                              "priority"
+                            ],
+                            "type": "string"
+                          },
+                          "sort": {
+                            "description": "Rank eligible providers by an attribute.",
+                            "enum": [
+                              "cost",
+                              "latency",
+                              "price",
+                              "throughput",
+                              "tps",
+                              "ttft"
+                            ],
+                            "type": "string"
+                          },
+                          "speed": {
+                            "description": "Only use fastest providers with short timeouts.",
+                            "enum": [
+                              "fast"
+                            ],
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "UI lifecycle status: draft, active, or archived.",
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "description": "Last update timestamp (epoch ms).",
+                            "type": "number"
+                          },
+                          "updatedBy": {
+                            "description": "User or app id that last updated this VMC.",
+                            "type": "string"
+                          },
+                          "virtualModelSlug": {
+                            "description": "Client-facing alias used as the model slug in Gateway calls.",
+                            "type": "string"
+                          },
+                          "visibility": {
+                            "description": "Visibility in listings: public, internal, or stealth.",
+                            "type": "string"
+                          },
+                          "zeroDataRetention": {
+                            "description": "Only use providers with zero data retention.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "createdAt",
+                          "deleted",
+                          "kind",
+                          "ownerId",
+                          "status",
+                          "updatedAt",
+                          "virtualModelSlug"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "cursor",
+                    "virtualModelConfigs"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

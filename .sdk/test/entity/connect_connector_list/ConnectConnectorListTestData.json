@@ -1,0 +1,928 @@
+{
+  "existing": {
+    "connect_connector_list": {
+      "CONNECT_CONNECTOR_LIST00": {
+        "accentColor": "s172",
+        "appTokens": {},
+        "backgroundColor": "s174",
+        "clientUrl": "s175",
+        "connectionMethod": "s176",
+        "createdAt": 375,
+        "createdBy": "s178",
+        "creationMode": "s179",
+        "defaultInstallationId": "s17a",
+        "devsite": "s17b",
+        "displayName": "s17c",
+        "docsite": "s17d",
+        "events": [],
+        "icon": "s17f",
+        "id": "CONNECT_CONNECTOR_LIST00",
+        "knownStale": false,
+        "managed": {},
+        "name": "s183",
+        "redirectUri": "s184",
+        "reinstallAt": 389,
+        "service": "s186",
+        "supportedSubjectTypes": [],
+        "supportsIcon": "s188",
+        "supportsInstallation": false,
+        "supportsRevocation": true,
+        "supportsTriggers": false,
+        "target": "s18c",
+        "triggerDestinations": [],
+        "triggers": {},
+        "type": "s18f",
+        "typeIcon": "s190",
+        "typeName": "s191",
+        "uid": "s192",
+        "updatedAt": 403,
+        "updatedBy": "s194",
+        "userTokens": {},
+        "website": "s196"
+      },
+      "CONNECT_CONNECTOR_LIST01": {
+        "accentColor": "s2e4",
+        "appTokens": {},
+        "backgroundColor": "s2e6",
+        "clientUrl": "s2e7",
+        "connectionMethod": "s2e8",
+        "createdAt": 745,
+        "createdBy": "s2ea",
+        "creationMode": "s2eb",
+        "defaultInstallationId": "s2ec",
+        "devsite": "s2ed",
+        "displayName": "s2ee",
+        "docsite": "s2ef",
+        "events": [],
+        "icon": "s2f1",
+        "id": "CONNECT_CONNECTOR_LIST01",
+        "knownStale": false,
+        "managed": {},
+        "name": "s2f5",
+        "redirectUri": "s2f6",
+        "reinstallAt": 759,
+        "service": "s2f8",
+        "supportedSubjectTypes": [],
+        "supportsIcon": "s2fa",
+        "supportsInstallation": false,
+        "supportsRevocation": true,
+        "supportsTriggers": false,
+        "target": "s2fe",
+        "triggerDestinations": [],
+        "triggers": {},
+        "type": "s301",
+        "typeIcon": "s302",
+        "typeName": "s303",
+        "uid": "s304",
+        "updatedAt": 773,
+        "updatedBy": "s306",
+        "userTokens": {},
+        "website": "s308"
+      },
+      "CONNECT_CONNECTOR_LIST02": {
+        "accentColor": "s456",
+        "appTokens": {},
+        "backgroundColor": "s458",
+        "clientUrl": "s459",
+        "connectionMethod": "s45a",
+        "createdAt": 1115,
+        "createdBy": "s45c",
+        "creationMode": "s45d",
+        "defaultInstallationId": "s45e",
+        "devsite": "s45f",
+        "displayName": "s460",
+        "docsite": "s461",
+        "events": [],
+        "icon": "s463",
+        "id": "CONNECT_CONNECTOR_LIST02",
+        "knownStale": false,
+        "managed": {},
+        "name": "s467",
+        "redirectUri": "s468",
+        "reinstallAt": 1129,
+        "service": "s46a",
+        "supportedSubjectTypes": [],
+        "supportsIcon": "s46c",
+        "supportsInstallation": false,
+        "supportsRevocation": true,
+        "supportsTriggers": false,
+        "target": "s470",
+        "triggerDestinations": [],
+        "triggers": {},
+        "type": "s473",
+        "typeIcon": "s474",
+        "typeName": "s475",
+        "uid": "s476",
+        "updatedAt": 1143,
+        "updatedBy": "s478",
+        "userTokens": {},
+        "website": "s47a"
+      }
+    }
+  },
+  "new": {
+    "connect_connector_list": {
+      "connect_connector_list_ref01": {
+        "accentColor": "s5c8",
+        "appTokens": {},
+        "backgroundColor": "s5ca",
+        "clientUrl": "s5cb",
+        "connectionMethod": "s5cc",
+        "createdAt": 1485,
+        "createdBy": "s5ce",
+        "creationMode": "s5cf",
+        "defaultInstallationId": "s5d0",
+        "devsite": "s5d1",
+        "displayName": "s5d2",
+        "docsite": "s5d3",
+        "events": [],
+        "icon": "s5d5",
+        "knownStale": false,
+        "managed": {},
+        "name": "s5d9",
+        "redirectUri": "s5da",
+        "reinstallAt": 1499,
+        "service": "s5dc",
+        "supportedSubjectTypes": [],
+        "supportsIcon": "s5de",
+        "supportsInstallation": false,
+        "supportsRevocation": true,
+        "supportsTriggers": false,
+        "target": "s5e2",
+        "triggerDestinations": [],
+        "triggers": {},
+        "type": "s5e5",
+        "typeIcon": "s5e6",
+        "typeName": "s5e7",
+        "uid": "s5e8",
+        "updatedAt": 1513,
+        "updatedBy": "s5ea",
+        "userTokens": {},
+        "website": "s5ec"
+      }
+    }
+  },
+  "requests": {
+    "GET /v2/connect/connectors": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listConnectors",
+        "parameters": [
+          {
+            "description": "Maximum number of connectors to return. Defaults to 20.",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "description": "Maximum number of connectors to return. Defaults to 20.",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Cursor from `pagination.next` on the previous response.",
+            "in": "query",
+            "name": "cursor",
+            "schema": {
+              "description": "Cursor from `pagination.next` on the previous response.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return only connectors connected to this project.",
+            "in": "query",
+            "name": "projectId",
+            "schema": {
+              "description": "Return only connectors connected to this project.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Search connector names, UIDs, and services.",
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "description": "Search connector names, UIDs, and services.",
+              "maxLength": 100,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated connector types: `slack`, `discord`, `github`, `linear`, `linq`, `salesforce`, `sendblue`, `snowflake`, `snowflake-wif`, `microsoft-entra`, `api-key`, `photon`, `oauth`, or `custom`.",
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "description": "Comma-separated connector types: `slack`, `discord`, `github`, `linear`, `linq`, `salesforce`, `sendblue`, `snowflake`, `snowflake-wif`, `microsoft-entra`, `api-key`, `photon`, `oauth`, or `custom`.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated provider or service identifiers.",
+            "in": "query",
+            "name": "service",
+            "schema": {
+              "description": "Comma-separated provider or service identifiers.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort by name in ascending order, or by creation or update time in descending order.",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "description": "Sort by name in ascending order, or by creation or update time in descending order.",
+              "enum": [
+                "name",
+                "createdAt",
+                "updatedAt"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Page of connectors.",
+                  "properties": {
+                    "connectors": {
+                      "description": "Connectors in this page.",
+                      "items": {
+                        "description": "A connector that defines how Vercel accesses an external service.",
+                        "properties": {
+                          "accentColor": {
+                            "description": "Hex accent color (e.g., `#000000`) for branding.",
+                            "type": "string"
+                          },
+                          "appTokens": {
+                            "description": "App-token capabilities and known grants for the connector.",
+                            "properties": {
+                              "crossInstallation": {
+                                "description": "Whether one app token can be used across installations.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "permissionsUrl": {
+                                "description": "Link to the page on the service where this connector's app-level permissions are declared and granted, when the service has one and it differs from `clientUrl`.",
+                                "type": "string"
+                              },
+                              "requiresReinstallation": {
+                                "description": "True when changing app token grants requires reinstalling the app, so tokens cannot be partitioned independently by requester environment.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "scopes": {
+                                "description": "Known allowed app-level scopes. For Slack this is the bot scope set configured on the app; for OAuth it is the connector's enabled `clientCredentials.scopes` configuration.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "supportedAuthorizationDetails": {
+                                "description": "Supported OAuth authorization-detail type names.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "supportsRefinement": {
+                                "description": "Whether callers can narrow app-token grants per request.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "supportsResources": {
+                                "description": "Whether callers can request resource-specific app tokens.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "crossInstallation",
+                              "supportsRefinement"
+                            ],
+                            "type": "object"
+                          },
+                          "backgroundColor": {
+                            "description": "Hex background color (e.g., `#000000`) for branding.",
+                            "type": "string"
+                          },
+                          "clientUrl": {
+                            "description": "Provider-side URL for viewing or managing the resource represented by the connector. The destination can be an app, account, phone line, or service instance, depending on the connector type.",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "connectionMethod": {
+                            "description": "The connection method this connector was created from, when the create request named one.",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "description": "Creation time in epoch milliseconds.",
+                            "type": "number"
+                          },
+                          "createdBy": {
+                            "description": "Principal that created the connector.",
+                            "oneOf": [
+                              {
+                                "description": "Principal that originally created the connector — either a Vercel user (interactive dashboard / CLI flow) or a Vercel deployment (OIDC-authenticated project, used by runtime auto-provisioning). See {@link ConnexPrincipal}. Optional: pre-existing rows from before this shape was introduced may carry no attribution at all.",
+                                "properties": {
+                                  "id": {
+                                    "description": "Vercel user ID.",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "Principal kind.",
+                                    "enum": [
+                                      "user"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "type"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "description": "Principal that originally created the connector — either a Vercel user (interactive dashboard / CLI flow) or a Vercel deployment (OIDC-authenticated project, used by runtime auto-provisioning). See {@link ConnexPrincipal}. Optional: pre-existing rows from before this shape was introduced may carry no attribution at all.",
+                                "properties": {
+                                  "environment": {
+                                    "description": "Deployment environment of the project principal.",
+                                    "oneOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "enum": [
+                                          "development",
+                                          "preview",
+                                          "production"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "id": {
+                                    "description": "Vercel project ID.",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "Principal kind.",
+                                    "enum": [
+                                      "project"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "environment",
+                                  "id",
+                                  "type"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "creationMode": {
+                            "description": "How the connector row was originally created. New create paths stamp this explicitly; older rows may omit it.",
+                            "enum": [
+                              "managed",
+                              "manual"
+                            ],
+                            "type": "string"
+                          },
+                          "defaultInstallationId": {
+                            "description": "Installation used when a token request does not specify an installation.",
+                            "type": "string"
+                          },
+                          "devsite": {
+                            "description": "Developer website for the connected service.",
+                            "type": "string"
+                          },
+                          "displayName": {
+                            "description": "Human-readable connector name.",
+                            "type": "string"
+                          },
+                          "docsite": {
+                            "description": "Developer documentation for the connected service.",
+                            "type": "string"
+                          },
+                          "events": {
+                            "description": "Known events this connector subscribes to (e.g. Slack bot events, GitHub webhook events). Names are type-specific and validated by the managed-create flow when forwarded to the third-party service.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "icon": {
+                            "description": "Connector branding icon. SHA-1 hash that resolves to the uploaded icon through the Vercel avatar service. Consumers render this with `https://vercel.com/api/www/avatar/{icon}`.",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Stable `scl_` connector ID. Use this value directly in `{connector}`.",
+                            "type": "string"
+                          },
+                          "knownStale": {
+                            "description": "Whether the connector is known to have been edited since the app package it publishes to the provider was last built, so that package no longer matches it. Absent when it was not computed, or when the connector type publishes no such package. Derived on every read rather than marked at edit time, so reverting an edit clears it. Only reported by connector types that publish a package a user has to re-publish by hand — Microsoft Teams today.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "managed": {
+                            "description": "Managed connector metadata exposed without leaking the manager connector or installation identifiers.",
+                            "properties": {
+                              "sync": {
+                                "description": "Whether Vercel synchronizes provider-side configuration.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "name": {
+                            "description": "Connector name within the owning team.",
+                            "type": "string"
+                          },
+                          "redirectUri": {
+                            "description": "Redirect URI registered with the third-party service for this connector, if any. Used by `startAuthorization`/`startInstallation` to replay the exact URI back to the provider's token endpoint. Absent on connectors created before this field was introduced; those callers fall back to the `https://connect.vercel.com/callback` default.",
+                            "type": "string"
+                          },
+                          "reinstallAt": {
+                            "description": "Time when this connector started requiring reinstallation because an installation-affecting app-token grant changed.",
+                            "type": "number"
+                          },
+                          "service": {
+                            "description": "Best-effort identifier of the third-party service this connector represents, independent of `type`. Examples: `'slack'`, `'mcp.linear.app'`, and `'auth.example.com'`. Always present in API responses.",
+                            "type": "string"
+                          },
+                          "supportedSubjectTypes": {
+                            "description": "Token subject types supported by the connector.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "supportsIcon": {
+                            "description": "Whether the connector icon can propagate to the provider.",
+                            "enum": [
+                              false,
+                              "maybe",
+                              true
+                            ]
+                          },
+                          "supportsInstallation": {
+                            "description": "Whether the connector supports an installation flow.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "supportsRevocation": {
+                            "description": "Whether Connect can revoke tokens for this connector.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "supportsTriggers": {
+                            "description": "Whether this connector type supports trigger webhooks. Derived from the type definition; indicates that `triggers` and `triggerDestinations` may be meaningful for this connector.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "target": {
+                            "description": "Which of the service's products/surfaces this connector points at.",
+                            "type": "string"
+                          },
+                          "triggerDestinations": {
+                            "description": "Destinations that incoming triggers should be forwarded to. Limited to 3 entries. Set the initial destination with `triggerDestination` during creation. Replace the complete set with `PATCH /v1/connect/connectors/{connector}/trigger-destinations`.",
+                            "items": {
+                              "description": "Destinations that incoming triggers should be forwarded to. Limited to 3 entries. Set the initial destination with `triggerDestination` during creation. Replace the complete set with `PATCH /v1/connect/connectors/{connector}/trigger-destinations`.",
+                              "properties": {
+                                "branch": {
+                                  "description": "Git branch used to select a preview deployment.",
+                                  "type": "string"
+                                },
+                                "customEnvironmentId": {
+                                  "description": "Stable custom-environment ID to route this destination to. Mutually exclusive with `branch`; omitted destinations keep the legacy production behavior.",
+                                  "type": "string"
+                                },
+                                "path": {
+                                  "description": "Route path that receives the forwarded trigger request.",
+                                  "type": "string"
+                                },
+                                "projectId": {
+                                  "description": "Vercel project that receives matching trigger requests.",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "projectId"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "triggers": {
+                            "description": "Incoming trigger configuration for the connector.",
+                            "properties": {
+                              "enabled": {
+                                "description": "Whether incoming triggers are enabled for the connector.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "enabled"
+                            ],
+                            "type": "object"
+                          },
+                          "type": {
+                            "description": "Connector implementation type.",
+                            "enum": [
+                              "api-key",
+                              "aws-alpha",
+                              "custom",
+                              "discord",
+                              "github",
+                              "linear",
+                              "linq",
+                              "microsoft-entra",
+                              "microsoft-teams",
+                              "oauth",
+                              "photon",
+                              "salesforce",
+                              "sendblue",
+                              "slack",
+                              "snowflake",
+                              "snowflake-wif"
+                            ],
+                            "type": "string"
+                          },
+                          "typeIcon": {
+                            "description": "Icon identifier supplied by the connector type.",
+                            "type": "string"
+                          },
+                          "typeName": {
+                            "description": "Human-readable name of the connector type.",
+                            "type": "string"
+                          },
+                          "uid": {
+                            "description": "Team-scoped UID. URL-encode this value before using it in `{connector}`.",
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "description": "Last update time in epoch milliseconds.",
+                            "type": "number"
+                          },
+                          "updatedBy": {
+                            "description": "Principal that most recently updated the connector.",
+                            "oneOf": [
+                              {
+                                "description": "Principal that most recently mutated the connector. Same shape as {@link createdBy} but tracks the most recent updater, not the original creator. At create time the two fields point at the same principal; they diverge on the first subsequent update.",
+                                "properties": {
+                                  "id": {
+                                    "description": "Vercel user ID.",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "Principal kind.",
+                                    "enum": [
+                                      "user"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "type"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "description": "Principal that most recently mutated the connector. Same shape as {@link createdBy} but tracks the most recent updater, not the original creator. At create time the two fields point at the same principal; they diverge on the first subsequent update.",
+                                "properties": {
+                                  "environment": {
+                                    "description": "Deployment environment of the project principal.",
+                                    "oneOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "enum": [
+                                          "development",
+                                          "preview",
+                                          "production"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "id": {
+                                    "description": "Vercel project ID.",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "Principal kind.",
+                                    "enum": [
+                                      "project"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "environment",
+                                  "id",
+                                  "type"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "userTokens": {
+                            "description": "User-token capabilities and known grants for the connector.",
+                            "properties": {
+                              "crossInstallation": {
+                                "description": "Whether one user token can be used across installations.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "manualCredentialInput": {
+                                "description": "User authorization is completed by the Connect consent screen submitting a credential instead of an OAuth redirect.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "scopes": {
+                                "description": "Known allowed user-level scopes. For Slack this is the user scope set configured on the app; for OAuth it is the connector's enabled `userAuthorization.scopes` configuration.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "supportedAuthorizationDetails": {
+                                "description": "Supported OAuth authorization-detail type names.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "supportsRefinement": {
+                                "description": "Whether callers can narrow user-token grants per request.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "supportsResources": {
+                                "description": "Whether callers can request resource-specific user tokens.",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "crossInstallation",
+                              "supportsRefinement"
+                            ],
+                            "type": "object"
+                          },
+                          "website": {
+                            "description": "Public website for the connected service.",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "createdAt",
+                          "displayName",
+                          "id",
+                          "name",
+                          "service",
+                          "supportedSubjectTypes",
+                          "supportsIcon",
+                          "supportsInstallation",
+                          "supportsRevocation",
+                          "supportsTriggers",
+                          "type",
+                          "typeName",
+                          "uid",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pagination": {
+                      "description": "Cursor for the next page.",
+                      "properties": {
+                        "next": {
+                          "description": "Opaque value to pass as `cursor` on the next request.",
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "next"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "connectors",
+                    "pagination"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A page of connectors."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "error": {
+                      "additionalProperties": true,
+                      "description": "Error details.",
+                      "properties": {
+                        "code": {
+                          "description": "Stable machine-readable error code.",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Human-readable error message.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The requested resource is no longer available."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The request cannot be completed in the current state."
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

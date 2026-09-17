@@ -16,7 +16,7 @@ import (
 // reqdata map passed through to the SDK. For load, `query` should be
 // `{"id": <value>}`. For list, omit `query` or pass an empty map.
 type Args struct {
-	Entity string         `json:"entity" jsonschema:"project"`
+	Entity string         `json:"entity" jsonschema:"access_group | ai_gateway | ai_gateway_rule | ai_gateway_rule_list | ai_gateway_virtual_model_config | ai_gateway_virtual_model_config_list | alias | api_ai_gateway | api_key | artifact | authentication | billing | bulk_redirect | cert | check | checks_v2 | connect | connect_connector | connect_connector_list | connect_connector_project_connection_list | connect_project_connection | connect_project_connector_connection_list | deployment | dns | domain | domains_registrar | drain | edge_cache | env | environment | feature_flag | file | flag | flags_sdk_key_with_secret | global_config | global_config_item | global_config_token | integration | kms | list_event_type | log | log_drain | marketplace | microfrontend | network | networking | observability | private_link_endpoint | project | project_member | project_route | query | record | rolling_release | sandbox | schema | security | segment | storage | team | tld_name | toggle | user | vcr | vcr_image_list | vcr_repository_list | vcr_repository_permission_list | web_analytics | webhook"`
 	Query  map[string]any `json:"query,omitempty" jsonschema:"optional match map e.g. {\"id\":1} for load, omit for list"`
 }
 
@@ -77,8 +77,144 @@ func runOp(client *sdk.VercelSDK, op string, args Args) (*mcp.CallToolResult, an
 // emits one `case "<name>":` per entity defined in the SDK model.
 func entityFor(client *sdk.VercelSDK, name string) (sdk.VercelEntity, error) {
 	switch strings.ToLower(name) {
+	case "access_group":
+		return client.AccessGroup(nil), nil
+	case "ai_gateway":
+		return client.AiGateway(nil), nil
+	case "ai_gateway_rule":
+		return client.AiGatewayRule(nil), nil
+	case "ai_gateway_rule_list":
+		return client.AiGatewayRuleList(nil), nil
+	case "ai_gateway_virtual_model_config":
+		return client.AiGatewayVirtualModelConfig(nil), nil
+	case "ai_gateway_virtual_model_config_list":
+		return client.AiGatewayVirtualModelConfigList(nil), nil
+	case "alias":
+		return client.Alias(nil), nil
+	case "api_ai_gateway":
+		return client.ApiAiGateway(nil), nil
+	case "api_key":
+		return client.ApiKey(nil), nil
+	case "artifact":
+		return client.Artifact(nil), nil
+	case "authentication":
+		return client.Authentication(nil), nil
+	case "billing":
+		return client.Billing(nil), nil
+	case "bulk_redirect":
+		return client.BulkRedirect(nil), nil
+	case "cert":
+		return client.Cert(nil), nil
+	case "check":
+		return client.Check(nil), nil
+	case "checks_v2":
+		return client.ChecksV2(nil), nil
+	case "connect":
+		return client.Connect(nil), nil
+	case "connect_connector":
+		return client.ConnectConnector(nil), nil
+	case "connect_connector_list":
+		return client.ConnectConnectorList(nil), nil
+	case "connect_connector_project_connection_list":
+		return client.ConnectConnectorProjectConnectionList(nil), nil
+	case "connect_project_connection":
+		return client.ConnectProjectConnection(nil), nil
+	case "connect_project_connector_connection_list":
+		return client.ConnectProjectConnectorConnectionList(nil), nil
+	case "deployment":
+		return client.Deployment(nil), nil
+	case "dns":
+		return client.Dns(nil), nil
+	case "domain":
+		return client.Domain(nil), nil
+	case "domains_registrar":
+		return client.DomainsRegistrar(nil), nil
+	case "drain":
+		return client.Drain(nil), nil
+	case "edge_cache":
+		return client.EdgeCache(nil), nil
+	case "env":
+		return client.Env(nil), nil
+	case "environment":
+		return client.Environment(nil), nil
+	case "feature_flag":
+		return client.FeatureFlag(nil), nil
+	case "file":
+		return client.File(nil), nil
+	case "flag":
+		return client.Flag(nil), nil
+	case "flags_sdk_key_with_secret":
+		return client.FlagsSdkKeyWithSecret(nil), nil
+	case "global_config":
+		return client.GlobalConfig(nil), nil
+	case "global_config_item":
+		return client.GlobalConfigItem(nil), nil
+	case "global_config_token":
+		return client.GlobalConfigToken(nil), nil
+	case "integration":
+		return client.Integration(nil), nil
+	case "kms":
+		return client.Kms(nil), nil
+	case "list_event_type":
+		return client.ListEventType(nil), nil
+	case "log":
+		return client.Log(nil), nil
+	case "log_drain":
+		return client.LogDrain(nil), nil
+	case "marketplace":
+		return client.Marketplace(nil), nil
+	case "microfrontend":
+		return client.Microfrontend(nil), nil
+	case "network":
+		return client.Network(nil), nil
+	case "networking":
+		return client.Networking(nil), nil
+	case "observability":
+		return client.Observability(nil), nil
+	case "private_link_endpoint":
+		return client.PrivateLinkEndpoint(nil), nil
 	case "project":
 		return client.Project(nil), nil
+	case "project_member":
+		return client.ProjectMember(nil), nil
+	case "project_route":
+		return client.ProjectRoute(nil), nil
+	case "query":
+		return client.Query(nil), nil
+	case "record":
+		return client.Record(nil), nil
+	case "rolling_release":
+		return client.RollingRelease(nil), nil
+	case "sandbox":
+		return client.Sandbox(nil), nil
+	case "schema":
+		return client.Schema(nil), nil
+	case "security":
+		return client.Security(nil), nil
+	case "segment":
+		return client.Segment(nil), nil
+	case "storage":
+		return client.Storage(nil), nil
+	case "team":
+		return client.Team(nil), nil
+	case "tld_name":
+		return client.TldName(nil), nil
+	case "toggle":
+		return client.Toggle(nil), nil
+	case "user":
+		return client.User(nil), nil
+	case "vcr":
+		return client.Vcr(nil), nil
+	case "vcr_image_list":
+		return client.VcrImageList(nil), nil
+	case "vcr_repository_list":
+		return client.VcrRepositoryList(nil), nil
+	case "vcr_repository_permission_list":
+		return client.VcrRepositoryPermissionList(nil), nil
+	case "web_analytics":
+		return client.WebAnalytics(nil), nil
+	case "webhook":
+		return client.Webhook(nil), nil
 
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)

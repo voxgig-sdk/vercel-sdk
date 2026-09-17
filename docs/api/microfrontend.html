@@ -1,0 +1,5848 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Microfrontend | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a aria-current="page" href="../api/microfrontend.html">Microfrontend</a><div class="nav-sections"><a class="nav-section" href="#post-v1microfrontendsgroup">POST /v1/microfrontends/group</a>
+<a class="nav-section" href="#get-v1microfrontendsgroupsgroupidprojects">GET /v1/microfrontends/groups/{groupId}/projects</a>
+<a class="nav-section" href="#get-v1microfrontendsdeploymentidconfig">GET /v1/microfrontends/{deploymentId}/config</a>
+<a class="nav-section" href="#get-v1microfrontendsprojectsprojectidornameproduction-mfe-config">GET /v1/microfrontends/projects/{projectIdOrName}/production-mfe-config</a>
+<a class="nav-section" href="#get-v1microfrontendsgroups">GET /v1/microfrontends/groups</a></div>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="microfrontend">Microfrontend</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1microfrontendsgroup"><code>/v1/microfrontends/group</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1microfrontendsgroupsgroupidprojects"><code>/v1/microfrontends/groups/{groupId}/projects</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1microfrontendsdeploymentidconfig"><code>/v1/microfrontends/{deploymentId}/config</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1microfrontendsprojectsprojectidornameproduction-mfe-config"><code>/v1/microfrontends/projects/{projectIdOrName}/production-mfe-config</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1microfrontendsgroups"><code>/v1/microfrontends/groups</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>abuse</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>alias</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>analytics</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>applications</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>appliedCve55182Migration</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>autoAssignCustomDomains</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>autoAssignCustomDomainsUpdatedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>autoExposeSystemEnvs</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>blobs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>buildCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>commandForIgnoringBuildStep</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>concurrencyBucketName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>connectBuildsEnabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>connectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>connectConfigurations</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>creator</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crons</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>customEnvironments</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>customerSupportCodeVisibility</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dataCache</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultResourceConfig</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentExpiration</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Retention policies for deployments.</td>
+</tr>
+<tr>
+<td><code>deploymentPolicy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Project shape.</td>
+</tr>
+<tr>
+<td><code>devCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>directoryListing</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>dismissedToasts</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enableAffectedProjectsDeployments</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enableExternalRewriteCaching</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enablePreviewFeedback</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enableProductionFeedback</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>expiration</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>features</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>framework</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gitComments</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gitForkProtection</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gitLFS</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gitProviderOptions</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>hasActiveBranches</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>hasDeployments</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>installCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>internalRoutes</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ipBuckets</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>jobs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lastAliasRequest</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lastRollbackTarget</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>latestDeployments</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>live</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>microfrontends</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nodeVersion</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Optional configuration options for the microfrontend.</td>
+</tr>
+<tr>
+<td><code>optionsAllowlist</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>outputDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>passiveConnectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>passport</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>passwordProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>paused</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>permissions</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>productionDeploymentsFastLane</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protectedSourcemaps</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protectionBypass</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protectionConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resourceConfig</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rollbackDescription</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Description of why a project was rolled back, and by whom.</td>
+</tr>
+<tr>
+<td><code>rollingRelease</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Project-level rolling release configuration that defines how deployments should be gradually rolled out</td>
+</tr>
+<tr>
+<td><code>rootDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sandbox</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>schema</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>See https://openapi.vercel.sh/microfrontends.json.</td>
+</tr>
+<tr>
+<td><code>security</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>serverlessFunctionZeroConfigFailover</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>services</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>skewProtectionAllowedDomains</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>skewProtectionBoundaryAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>skewProtectionMaxAge</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>skipGitConnectDuringLink</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sourceFilesOutsideRootDirectory</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>speedInsights</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ssoProtection</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>staticIps</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>targets</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tier</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tracing</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>transferCompletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>transferStartedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>transferToAccountId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>transferredFromAccountId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>trustedIps</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>trustedSources</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>usageStatus</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>v0</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>v0Created</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the microfrontends config schema.</td>
+</tr>
+<tr>
+<td><code>webAnalytics</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1microfrontendsgroup" class="operation" data-method="post"><code>POST</code> /v1/microfrontends/group</h3>
+<p>Operation ID: <code>createMicrofrontendsGroupWithApplications</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defaultApp</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The default app for the new microfrontend group</td>
+</tr>
+<tr>
+<td><code>defaultApp.defaultRoute</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The default route for the default app of the new microfrontend group</td>
+</tr>
+<tr>
+<td><code>defaultApp.projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The id of the project that will be used as the default app for the new microfrontend group</td>
+</tr>
+<tr>
+<td><code>groupName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the microfrontends group that will be used to identify the group</td>
+</tr>
+<tr>
+<td><code>otherApplications</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>The list of other applications that will be used in the new microfrontend group</td>
+</tr>
+<tr>
+<td><code>otherApplications[].defaultRoute</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The default route for the application in the new microfrontend group</td>
+</tr>
+<tr>
+<td><code>otherApplications[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The id of the project that will be used in the new microfrontend group</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>newMicrofrontendsGroup</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newMicrofrontendsGroup.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newMicrofrontendsGroup.enablePolyrepoBranchRouting</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newMicrofrontendsGroup.fallbackEnvironment</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newMicrofrontendsGroup.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newMicrofrontendsGroup.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newMicrofrontendsGroup.slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newMicrofrontendsGroup.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v1microfrontendsgroupsgroupidprojects" class="operation" data-method="get"><code>GET</code> /v1/microfrontends/groups/{groupId}/projects</h3>
+<p>Operation ID: <code>getMicrofrontendsInGroup</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>groupId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>projects</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block.action</code></td>
+<td><code>enum: blocked</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block.actor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block.caseId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block.comment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block.ineligibleForAppeal</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block.isCascading</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block.reason</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.block.statusCode</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.blockHistory</code></td>
+<td><code>array of object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.history</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.history[].at</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.history[].by</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.history[].byId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.history[].reason</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.history[].scanner</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.interstitial</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.interstitialHistory</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.interstitialHistory[].action</code></td>
+<td><code>enum: add-deployment-interstitial, add-project-interstitial, remove-deployment-interstitial, remove-project-interstitial</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.interstitialHistory[].actor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.interstitialHistory[].caseId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.interstitialHistory[].comment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.interstitialHistory[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.interstitialHistory[].reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.scanner</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].abuse.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].accountId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].configuredBy</code></td>
+<td><code>enum: A, CNAME, dns-01, http, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].configuredChangedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.alias</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.aliasAssigned</code></td>
+<td><code>number or enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.aliasError</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.aliasError.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.aliasError.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.aliasFinal</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.automaticAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The pattern to match against branch names</td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.branchMatcher.type</code></td>
+<td><code>enum: endsWith, equals, startsWith</code></td>
+<td>Yes</td>
+<td>The type of matching to perform</td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.buildingAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.builds</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.builds[].dest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.builds[].src</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.builds[].use</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.checksConclusion</code></td>
+<td><code>enum: canceled, failed, skipped, succeeded</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.checksState</code></td>
+<td><code>enum: completed, registered, running</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.connectBuildsEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.connectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.createdIn</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.creator.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.creator.githubLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.creator.gitlabLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.creator.uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.creator.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.deletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.deploymentHostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.forced</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.monorepoManager</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.aud</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.custom_environment_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.environment</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.iss</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.mfe_group_ids</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.owner</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.owner_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.plan</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.project</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.project_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.scope</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.oidcTokenClaims.sub</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.plan</code></td>
+<td><code>enum: enterprise, hobby, pro</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.previewCommentsEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether or not preview comments are enabled for the deployment</td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.private</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.readyAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.readySubstate</code></td>
+<td><code>enum: PROMOTED, ROLLING, STAGED</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.requestedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.teamId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.type</code></td>
+<td><code>enum: LAMBDAS</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Present for user creators; omitted for app/integration/system creators.</td>
+</tr>
+<tr>
+<td><code>projects[].alias[].deployment.withCache</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].environment</code></td>
+<td><code>enum: preview, production</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].gitBranch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].alias[].target</code></td>
+<td><code>enum: PREVIEW, PRODUCTION, STAGING</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].analytics</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].analytics.canceledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].analytics.disabledAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].analytics.enabledAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].analytics.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].analytics.paidAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].analytics.sampleRatePercent</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].analytics.spendLimitInDollars</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].appliedCve55182Migration</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].autoAssignCustomDomains</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].autoAssignCustomDomainsUpdatedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].autoExposeSystemEnvs</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].avatar</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].blobs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].blobs.isDefaultApp</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Marks the team-level, Vercel-managed default blob project (<code>vercel-blob-default-project</code>) that orphan blob stores are scoped to when connected without an explicit project. Set only by internal storage flows and immutable after creation, guards rely on it to protect the connected stores from being lost when the project is deleted or transferred.</td>
+</tr>
+<tr>
+<td><code>projects[].buildCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].commandForIgnoringBuildStep</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].concurrencyBucketName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectBuildsEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].aws</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].aws.securityGroupId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].aws.subnetIds</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].buildsEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].connectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].dc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].envId</code></td>
+<td><code>string or enum: preview, production</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].passive</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].connectConfigurations[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].creator</code></td>
+<td><code>object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].crons</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].crons.definitions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].crons.definitions[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A human-readable description of what this cron job does.</td>
+</tr>
+<tr>
+<td><code>projects[].crons.definitions[].host</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The hostname that should be used.</td>
+</tr>
+<tr>
+<td><code>projects[].crons.definitions[].hostInferred</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the host was inferred from the production deployment URL rather than explicitly provided.</td>
+</tr>
+<tr>
+<td><code>projects[].crons.definitions[].path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The path that should be called for the cronjob.</td>
+</tr>
+<tr>
+<td><code>projects[].crons.definitions[].schedule</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The cron expression.</td>
+</tr>
+<tr>
+<td><code>projects[].crons.definitions[].source</code></td>
+<td><code>enum: api</code></td>
+<td>No</td>
+<td>The origin of this definition. 'api' means created via the API. Undefined means it originated from a deployment (vercel.json).</td>
+</tr>
+<tr>
+<td><code>projects[].crons.deploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the Deployment from which the definitions originated.</td>
+</tr>
+<tr>
+<td><code>projects[].crons.disabledAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The time the feature was disabled for this project.</td>
+</tr>
+<tr>
+<td><code>projects[].crons.enabledAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The time the feature was enabled for this project. Note: It enables automatically with the first Deployment that outputs cronjobs.</td>
+</tr>
+<tr>
+<td><code>projects[].crons.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configuration for matching git branches to this environment</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The pattern to match against branch names</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].branchMatcher.type</code></td>
+<td><code>enum: endsWith, equals, startsWith</code></td>
+<td>Yes</td>
+<td>The type of matching to perform</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was created</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].currentDeploymentAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>List of aliases for the current deployment</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional description of the environment's purpose</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>List of domains associated with this environment</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].apexName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].gitBranch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].verification</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete <code>POST /projects/:idOrName/domains/:domain/verify</code> to verify the domain. Possible challenges: - If <code>verification.type = TXT</code> the <code>verification.domain</code> will be checked for a TXT record matching <code>verification.value</code>.</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].verification[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].verification[].reason</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].verification[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].verification[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].domains[].verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td><code>true</code> if the domain is verified for use with the project. If <code>false</code> it will not be used as an alias on this project until the challenge in <code>verification</code> is completed.</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the custom environment (format: env_*)</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>URL-friendly name of the environment</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].type</code></td>
+<td><code>enum: development, preview, production</code></td>
+<td>Yes</td>
+<td>The type of environment (production, preview, or development)</td>
+</tr>
+<tr>
+<td><code>projects[].customEnvironments[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was last updated</td>
+</tr>
+<tr>
+<td><code>projects[].customerSupportCodeVisibility</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].dataCache</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].dataCache.storageSizeBytes</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].dataCache.unlimited</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].dataCache.userDisabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.buildMachineElasticLastUpdated</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.buildMachineElasticReason</code></td>
+<td><code>enum: basic-floor, build-timeout-failure, enospc-failure, enterprise-floor, high-peak-disk, high-peak-memory, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.buildMachineSelection</code></td>
+<td><code>enum: elastic, fixed</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.buildMachineType</code></td>
+<td><code>enum: basic, enhanced, standard, turbo</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.buildQueue</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.buildQueue.configuration</code></td>
+<td><code>enum: SKIP_NAMESPACE_QUEUE, WAIT_FOR_NAMESPACE_QUEUE</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.elasticConcurrencyEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.enableFunctionsBeta</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.fluid</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.functionDefaultMemoryType</code></td>
+<td><code>enum: performance, performance_xl, standard, standard_legacy</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.functionDefaultRegions</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.functionDefaultTimeout</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.functionZeroConfigFailover</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].defaultResourceConfig.isNSNBDisabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].deploymentExpiration</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Retention policies for deployments. These are enforced at the project level, but we also maintain an instance of this at the team level as a default policy that gets applied to new projects.</td>
+</tr>
+<tr>
+<td><code>projects[].deploymentExpiration.deploymentsToKeep</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Minimum number of production deployments to keep for this project, even if they are over the production expiration limit.</td>
+</tr>
+<tr>
+<td><code>projects[].deploymentExpiration.expirationDays</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep non-production deployments (mostly preview deployments) before soft deletion.</td>
+</tr>
+<tr>
+<td><code>projects[].deploymentExpiration.expirationDaysCanceled</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep canceled deployments before soft deletion.</td>
+</tr>
+<tr>
+<td><code>projects[].deploymentExpiration.expirationDaysErrored</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep errored deployments before soft deletion.</td>
+</tr>
+<tr>
+<td><code>projects[].deploymentExpiration.expirationDaysProduction</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep production deployments before soft deletion.</td>
+</tr>
+<tr>
+<td><code>projects[].deploymentPolicy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Project shape. <code>null</code> on a rule list clears the project's override for that rule type (fall back to team for every env); omitting is equivalent. Setting <code>deploymentPolicy</code> itself to <code>null</code> clears every override at once. Kept structurally distinct from {@link TeamDeploymentPolicy} so the two storage locations don't share a type by accident.</td>
+</tr>
+<tr>
+<td><code>projects[].deploymentPolicy.deploymentSources</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].deploymentPolicy.deploymentSources[].enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].deploymentPolicy.deploymentSources[].environments</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].deploymentPolicy.deploymentSources[].sources</code></td>
+<td><code>array of enum: cli, deploy-hook, git, integration, rest-api, v0</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].deploymentPolicy.gitSources</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].deploymentPolicy.gitSources[].enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].deploymentPolicy.gitSources[].environments</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].deploymentPolicy.gitSources[].sources</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].devCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].directoryListing</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].dismissedToasts</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].dismissedToasts[].action</code></td>
+<td><code>enum: accept, cancel, delete</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].dismissedToasts[].dismissedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].dismissedToasts[].key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].dismissedToasts[].value</code></td>
+<td><code>string or number or object or enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].enableAffectedProjectsDeployments</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].enableExternalRewriteCaching</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].enablePreviewFeedback</code></td>
+<td><code>enum: false, true, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].enableProductionFeedback</code></td>
+<td><code>enum: false, true, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].comment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].configurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].contentHint</code></td>
+<td><code>object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].createdBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].customEnvironmentIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].decrypted</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].edgeConfigId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].edgeConfigTokenId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].gitBranch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].internalContentHint</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Similar to <code>contentHints</code>, but should not be exposed to the user.</td>
+</tr>
+<tr>
+<td><code>projects[].env[].internalContentHint.encryptedValue</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Contains the <code>value</code> of the env variable, encrypted with a special key to make decryption possible in the subscriber Lambda.</td>
+</tr>
+<tr>
+<td><code>projects[].env[].internalContentHint.type</code></td>
+<td><code>enum: flags-secret</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].legacyValue</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Legacy now-encryption ciphertext, present after migration swaps value/vsmValue</td>
+</tr>
+<tr>
+<td><code>projects[].env[].sunsetSecretId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>This is used to identify variables that have been migrated from type secret to sensitive.</td>
+</tr>
+<tr>
+<td><code>projects[].env[].target</code></td>
+<td><code>array of enum: development, development, preview, preview, production or enum: development, development, preview, preview, production</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].type</code></td>
+<td><code>enum: encrypted, plain, secret, sensitive, system</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].updatedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].env[].visibility</code></td>
+<td><code>enum: config, secret</code></td>
+<td>No</td>
+<td>User-facing config/secret model. When set, authoritative for new code paths. Legacy rows omit this field and callers fall back to existing <code>type</code> behavior.</td>
+</tr>
+<tr>
+<td><code>projects[].env[].vsmValue</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].expiration</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].features</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].features.webAnalytics</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].framework</code></td>
+<td><code>enum: actix-web, angular, ash, astro, axum, blitzjs, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].gitComments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].gitComments.onCommit</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the Vercel bot should comment on commits</td>
+</tr>
+<tr>
+<td><code>projects[].gitComments.onPullRequest</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the Vercel bot should comment on PRs</td>
+</tr>
+<tr>
+<td><code>projects[].gitForkProtection</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].gitLFS</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].gitProviderOptions</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].gitProviderOptions.consolidatedGitCommitStatus</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configuration for consolidated git commit status reporting. When enabled, Vercel will post a single consolidated commit status instead of individual statuses for each deployment.</td>
+</tr>
+<tr>
+<td><code>projects[].gitProviderOptions.consolidatedGitCommitStatus.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether consolidated commit status is enabled.</td>
+</tr>
+<tr>
+<td><code>projects[].gitProviderOptions.consolidatedGitCommitStatus.propagateFailures</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether to propagate individual deployment failures to the consolidated status.</td>
+</tr>
+<tr>
+<td><code>projects[].gitProviderOptions.createDeployments</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td>Whether the Vercel bot should automatically create GitHub deployments https://docs.github.com/en/rest/deployments/deployments#about-deployments NOTE: repository-dispatch events should be used instead</td>
+</tr>
+<tr>
+<td><code>projects[].gitProviderOptions.disableRepositoryDispatchEvents</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the Vercel bot should not automatically create GitHub repository-dispatch events on deployment events. https://vercel.com/docs/git/vercel-for-github#repository-dispatch-events - <code>true</code>: disable repository-dispatch events for this project (explicit override of the team setting). - <code>false</code>: enable repository-dispatch events for this project (explicit override of the team setting). - absent: inherit from <code>team.disableRepositoryDispatchEvents</code>.</td>
+</tr>
+<tr>
+<td><code>projects[].gitProviderOptions.gitCommitStatus</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether Vercel should post commit statuses for this project. When omitted, commit statuses remain enabled.</td>
+</tr>
+<tr>
+<td><code>projects[].gitProviderOptions.requireVerifiedCommits</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the project requires commits to be signed &amp; verified before deployments will be created. - <code>true</code>: require verified commits for this project (explicit override of the team setting). - <code>false</code>: do not require verified commits (explicit override of the team setting). - absent: inherit from <code>team.requireVerifiedCommits</code>.</td>
+</tr>
+<tr>
+<td><code>projects[].hasActiveBranches</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].hasDeployments</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].installCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].internalRoutes</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].ipBuckets</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].ipBuckets[].bucket</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].ipBuckets[].default</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].ipBuckets[].supportUntil</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].jobs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].jobs.lint</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].jobs.lint.targets</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].jobs.mfe-config-present</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].jobs.mfe-config-present.targets</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].jobs.typecheck</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].jobs.typecheck.targets</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].lastAliasRequest</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].lastAliasRequest.fromDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].lastAliasRequest.fromRollingReleaseId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>If rolling back from a rolling release, fromDeploymentId captures the &quot;base&quot; of that rolling release, and fromRollingReleaseId captures the &quot;target&quot; of that rolling release.</td>
+</tr>
+<tr>
+<td><code>projects[].lastAliasRequest.jobStatus</code></td>
+<td><code>enum: failed, in-progress, pending, skipped, succeeded</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].lastAliasRequest.requestedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].lastAliasRequest.toDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].lastAliasRequest.type</code></td>
+<td><code>enum: promote, rollback</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].lastRollbackTarget</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].alias</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].aliasAssigned</code></td>
+<td><code>number or enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].aliasError</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].aliasError.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].aliasError.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].aliasFinal</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].automaticAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The pattern to match against branch names</td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].branchMatcher.type</code></td>
+<td><code>enum: endsWith, equals, startsWith</code></td>
+<td>Yes</td>
+<td>The type of matching to perform</td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].buildingAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].builds</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].builds[].dest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].builds[].src</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].builds[].use</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].checksConclusion</code></td>
+<td><code>enum: canceled, failed, skipped, succeeded</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].checksState</code></td>
+<td><code>enum: completed, registered, running</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].connectBuildsEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].connectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].createdIn</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].creator.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].creator.githubLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].creator.gitlabLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].creator.uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].creator.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].deletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].deploymentHostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].forced</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].monorepoManager</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.aud</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.custom_environment_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.environment</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.iss</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.mfe_group_ids</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.owner</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.owner_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.plan</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.project</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.project_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.scope</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].oidcTokenClaims.sub</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].plan</code></td>
+<td><code>enum: enterprise, hobby, pro</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].previewCommentsEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether or not preview comments are enabled for the deployment</td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].private</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].readyAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].readySubstate</code></td>
+<td><code>enum: PROMOTED, ROLLING, STAGED</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].requestedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].teamId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].type</code></td>
+<td><code>enum: LAMBDAS</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Present for user creators; omitted for app/integration/system creators.</td>
+</tr>
+<tr>
+<td><code>projects[].latestDeployments[].withCache</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].link</code></td>
+<td><code>object or object or object or object or object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].live</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].microfrontends</code></td>
+<td><code>object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].nodeVersion</code></td>
+<td><code>enum: 10.x, 12.x, 14.x, 16.x, 18.x, 20.x, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].oidcTokenConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].oidcTokenConfig.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether or not to generate OpenID Connect JSON Web Tokens.</td>
+</tr>
+<tr>
+<td><code>projects[].oidcTokenConfig.issuerMode</code></td>
+<td><code>enum: global, team</code></td>
+<td>No</td>
+<td>- team: <code>https://oidc.vercel.com/[team_slug]</code> - global: <code>https://oidc.vercel.com</code></td>
+</tr>
+<tr>
+<td><code>projects[].optionsAllowlist</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].optionsAllowlist.paths</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].optionsAllowlist.paths[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].outputDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].passiveConnectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].passport</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].passport.connectorId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].passport.deploymentType</code></td>
+<td><code>enum: all, all_except_custom_domains, preview, prod_deployment_urls_and_all_previews</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].passwordProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].paused</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.Monitoring</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.NotificationMonitoringAlert</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.accessGroup</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.agent</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayApiKey</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayApiKeyBypassAll</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayApiKeyOwnedBySelf</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayApiKeySpendAttribution</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayApiKeyZdrExemption</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayBudget</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayCredits</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayGuardrails</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayPrivateModels</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayRules</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewaySettings</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayTranscripts</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayTranscriptsSettings</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayUsage</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aiGatewayVirtualModelConfigs</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.alertRules</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.alerts</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aliasGlobal</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aliasProject</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.aliasProtectionBypass</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.analytics</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.analyticsSampling</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.analyticsUsage</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.apiKey</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.apiKeyAiGateway</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.apiKeyOwnedBySelf</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.auditLog</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.automation</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.billingAddress</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.billingInformation</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.billingInvoice</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.billingInvoiceEmailRecipient</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.billingInvoiceLanguage</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.billingPlan</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.billingPurchaseOrder</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.billingRefund</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.billingTaxId</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.blob</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.blobStoreTokenSet</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.budget</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.buildMachine</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.buildMachineDefault</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.bulkRedirects</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.cacheArtifact</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.cacheArtifactUsageEvent</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.ciInvocations</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.ciLogs</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.codeChecks</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.codeOwners</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.concurrentBuilds</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.connect</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.connectConfiguration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.connectConfigurationLink</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.connectLogs</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.connexClient</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.connexClientProject</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.connexContact</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.connexInstallation</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.connexToken</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.cursorOriginInstallation</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.dataCacheBillingSettings</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.dataCacheNamespace</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.defaultDeploymentProtection</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deployment</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentBuildLogs</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentCheck</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentCheckPreview</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentCheckReRunFromProductionBranch</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentPolicy</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentPreview</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentPrivate</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentProductionGit</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentPromote</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentProtectionException</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentRollback</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.deploymentV0</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.domain</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.domainAcceptDelegation</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.domainAuthCodes</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.domainCertificate</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.domainCheckConfig</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.domainMove</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.domainPurchase</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.domainRecord</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.domainTransferIn</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.drain</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.edgeCacheNamespace</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.edgeConfig</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.edgeConfigItem</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.edgeConfigSchema</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.edgeConfigToken</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.endpointVerification</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.environments</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.event</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.fileUpload</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.flagsExplorerSubscription</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.gitCredentialGrant</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.gitRepository</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.imageOptimizationNewPrice</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationAccount</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationConfiguration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationConfigurationProjects</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationConfigurationRole</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationConfigurationTransfer</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationDeploymentAction</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationEvent</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationLog</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationPullRequest</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationResource</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationResourceData</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationResourceReplCommand</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationResourceSecrets</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationSSOSession</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationStoreTokenSet</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationStrict</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.integrationVercelConfigurationOverride</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.ipBlocking</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.job</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.jobGlobal</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.kmsIssuer</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.kmsProjectGrant</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.logDrain</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.logs</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.logsPreset</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.marketplaceBillingData</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.marketplaceExperimentationEdgeConfigData</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.marketplaceExperimentationItem</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.marketplaceFlexCommit</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.marketplaceInstallationMember</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.marketplaceInvoice</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.marketplaceSettings</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.monitoringAlert</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.monitoringChart</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.monitoringQuery</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.monitoringSettings</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationCustomerBudget</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationDeploymentFailed</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationDomainConfiguration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationDomainExpire</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationDomainMoved</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationDomainPurchase</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationDomainRenewal</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationDomainTransfer</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationDomainUnverified</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationPaymentFailed</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationPreferences</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationStatementOfReasons</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.notificationUsageAlert</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.oauth2Application</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.oauth2Connection</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.observabilityConfiguration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.observabilityData</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.observabilityFunnel</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.observabilityNotebook</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.oidcFederationPolicy</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.onDemandBuild</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.onDemandConcurrency</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.openTelemetryEndpoint</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.optionsAllowlist</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.organization</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.organizationDomain</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.organizationTeam</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.ownEvent</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.pageIntegrity</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.passwordProtection</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.passwordProtectionInvoiceItem</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.paymentMethod</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.permissions</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.postgres</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.postgresStoreTokenSet</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.previewDeploymentSuffix</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.privateCloudAccount</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.privateLinkEndpoint</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.proTrialOnboarding</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.productionAliasProtectionBypass</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.productionShareableLink</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.project</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectAccessGroup</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectAnalyticsSampling</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectAnalyticsUsage</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectCheck</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectCheckRun</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectDeploymentExpiration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectDeploymentHook</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectDeploymentProtectionStrict</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectDomain</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectDomainCheckConfig</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectDomainMove</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectDomainVerify</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectEnvVars</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectEnvVarsProduction</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectEnvVarsUnownedByIntegration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectEvent</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectFlags</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectFlagsProduction</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectFlagsSdkKey</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectFromV0</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectId</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectIntegrationConfiguration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectLink</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectMember</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectMonitoring</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectOIDCToken</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectPermissions</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectProductionBranch</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectProtectionBypass</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectRollingRelease</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectRoutes</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectSetting</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectSupportCase</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectSupportCaseComment</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectTier</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectTransfer</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectTransferIn</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectTransferOut</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectTransferRequest</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.projectUsage</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.rateLimit</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.redis</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.redisStoreTokenSet</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.remoteCaching</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.repository</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.samlConfig</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.schedule</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.seawallConfig</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.secret</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.securityConfig</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.securityPlusConfiguration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.sensitiveEnvironmentVariablePolicy</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.setting</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.shareableLink</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.shareableLinkStrict</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.sharedEnvVarConnection</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.sharedEnvVars</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.sharedEnvVarsProduction</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.skewProtection</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.space</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.spaceRun</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.storeIsLocked</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.storeTokenSetSensitive</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.storeTransfer</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.supportCase</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.supportCaseComment</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.team</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamAccessRequest</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamFellowMembership</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamGitExclusivity</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamInvite</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamInviteCode</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamInviteLink</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamJoin</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamMemberMfaStatus</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamMicrofrontends</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamOwnMembership</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamOwnMembershipDisconnectSAML</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamSudo</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.teamTokenInvalidation</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.token</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.toolbarComment</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.trustedIps</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.trustedSources</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.usage</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.usageCycle</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.user</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.userConnection</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.userMfaConfiguration</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.userPreference</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.userSudo</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.v0Chat</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.vcrRepository</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.vercelAppInstallation</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.vercelAppInstallationRequest</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.vercelAuth</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.vercelRun</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.vpcPeeringConnection</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.webAnalytics</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.webAnalyticsPlan</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.webAuthn</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.webhook</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.webhook-event</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].permissions.workflowRunData</code></td>
+<td><code>array of enum: create, delete, list, read, update</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].productionDeploymentsFastLane</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].protectedSourcemaps</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].protectionBypass</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].protectionConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].protectionConfig.sandboxUrls</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].protectionConfig.sandboxUrls.inheritDeploymentProtection</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.buildMachineElasticLastUpdated</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.buildMachineElasticReason</code></td>
+<td><code>enum: basic-floor, build-timeout-failure, enospc-failure, enterprise-floor, high-peak-disk, high-peak-memory, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.buildMachineSelection</code></td>
+<td><code>enum: elastic, fixed</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.buildMachineType</code></td>
+<td><code>enum: basic, enhanced, standard, turbo</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.buildQueue</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.buildQueue.configuration</code></td>
+<td><code>enum: SKIP_NAMESPACE_QUEUE, WAIT_FOR_NAMESPACE_QUEUE</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.elasticConcurrencyEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.enableFunctionsBeta</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.fluid</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.functionDefaultMemoryType</code></td>
+<td><code>enum: performance, performance_xl, standard, standard_legacy</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.functionDefaultRegions</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.functionDefaultTimeout</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.functionZeroConfigFailover</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].resourceConfig.isNSNBDisabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].rollbackDescription</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Description of why a project was rolled back, and by whom. Note that lastAliasRequest contains the from/to details of the rollback.</td>
+</tr>
+<tr>
+<td><code>projects[].rollbackDescription.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when the rollback was requested.</td>
+</tr>
+<tr>
+<td><code>projects[].rollbackDescription.description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>User-supplied explanation of why they rolled back the project. Limited to 250 characters.</td>
+</tr>
+<tr>
+<td><code>projects[].rollbackDescription.userId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The user who rolled back the project.</td>
+</tr>
+<tr>
+<td><code>projects[].rollbackDescription.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The username of the user who rolled back the project.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Project-level rolling release configuration that defines how deployments should be gradually rolled out</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.canaryResponseHeader</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the request served by a canary deployment should return a header indicating a canary was served. Defaults to <code>false</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Automated gating configuration. Omitted (the default) means no gating is configured, which is equivalent to <code>enabled: false</code>.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.action</code></td>
+<td><code>enum: pause, rollback</code></td>
+<td>Yes</td>
+<td>What to do when the gate trips: pause the rollout, or roll it back.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.checks</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>The checks to evaluate. An empty array means nothing is evaluated.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.checks[].excludePaths</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Request paths to ignore entirely, dropped from both the numerator (errors) and the denominator (total requests). Matched exactly against the request path with any query string removed; no prefix or glob matching. Defaults to <code>[]</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.checks[].excludeStatusCodes</code></td>
+<td><code>array of number</code></td>
+<td>No</td>
+<td>Response status codes to ignore entirely, dropped from both the numerator (errors) and the denominator (total requests). Defaults to <code>[]</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.checks[].ingestWatermarkSeconds</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Seconds of ingest lag to allow for: the query's upper bound is <code>now() - this value</code>, so the check never reads a window that is still filling. Defaults to <code>30</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.checks[].minSampleSize</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Minimum number of requests required in the window before the check can fail. Below this, the check is inconclusive rather than failing, so low-traffic stages don't gate on noise. Defaults to <code>100</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.checks[].type</code></td>
+<td><code>enum: error-rate-5xx</code></td>
+<td>Yes</td>
+<td>The metric this check evaluates.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.dryRun</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>When true, a tripped gate is only reported, {@link action} is not taken.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether automated gating is enabled for this project's rollouts.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.failureThreshold</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>How many failing evaluations within {@link windowSize} trip the gate. Defaults to <code>3</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.gate.windowSize</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>How many of the most recent evaluations {@link failureThreshold} is counted against. Defaults to <code>5</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.stages</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array of all the stages required during a deployment release. Each stage defines a target percentage and advancement rules. The final stage must always have targetPercentage: 100.</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.stages[].duration</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Duration in minutes for automatic advancement to the next stage</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.stages[].linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.stages[].requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.stages[].targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>projects[].rollingRelease.target</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The environment that the release targets, currently only supports production. Adding in case we want to configure with alias groups or custom environments.</td>
+</tr>
+<tr>
+<td><code>projects[].rootDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].sandbox</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].sandbox.failoverRegions</code></td>
+<td><code>array of enum: arn1, bom1, cdg1, cle1, cpt1, dub1, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].sandbox.region</code></td>
+<td><code>enum: arn1, bom1, cdg1, cle1, cpt1, dub1, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.attackModeActiveUntil</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.attackModeEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.attackModeUpdatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.botIdEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.firewallBypassIps</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.firewallConfigVersion</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.firewallEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.firewallSeawallEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.firewallUpdatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.ja3Enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.ja4Enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.log_headers</code></td>
+<td><code>array of string or enum: *</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.ai_bots</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.ai_bots.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.ai_bots.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.bot_filter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.bot_filter.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.bot_filter.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.owasp</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.owasp.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.owasp.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.traffic_sources</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.traffic_sources.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.traffic_sources.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.vercel_ruleset</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.vercel_ruleset.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.managedRules.vercel_ruleset.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].security.pageIntegrityEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether Page Integrity is enabled for this project. Used by the metadata service to gate DynamoDB lookups against the page-integrity-inventory table.</td>
+</tr>
+<tr>
+<td><code>projects[].security.rulesets</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].serverlessFunctionZeroConfigFailover</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].services</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].services[].framework</code></td>
+<td><code>enum: actix-web, angular, ash, astro, axum, blitzjs, ...</code></td>
+<td>No</td>
+<td>Framework slug, when the service has one (omitted otherwise).</td>
+</tr>
+<tr>
+<td><code>projects[].services[].runtime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Generic runtime, for example 'node' | 'python' | 'go' | 'ruby' | 'rust' (Service.runtime). Omitted for static builds.</td>
+</tr>
+<tr>
+<td><code>projects[].services[].serviceName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Service name from the deployment (Service.name).</td>
+</tr>
+<tr>
+<td><code>projects[].services[].serviceType</code></td>
+<td><code>enum: cron, job, web, worker</code></td>
+<td>No</td>
+<td>Service kind (Service.type). Omitted for schemas that do not define one.</td>
+</tr>
+<tr>
+<td><code>projects[].skewProtectionAllowedDomains</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].skewProtectionBoundaryAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].skewProtectionMaxAge</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].skipGitConnectDuringLink</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].sourceFilesOutsideRootDirectory</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].speedInsights</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].speedInsights.canceledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].speedInsights.dataReceivedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>When the first free (not Speed Insights Plus) production data point was observed, in ms. Set once by subscriber-analytics-events; projects that already had data before this field shipped get it backfilled on their next batch, so it reads &quot;first free data point observed&quot;, not necessarily &quot;first ever&quot;.</td>
+</tr>
+<tr>
+<td><code>projects[].speedInsights.disabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].speedInsights.enabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].speedInsights.hasData</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].speedInsights.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].speedInsights.paidAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].ssoProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].ssoProtection.april2026SecurityIncidentMigrationAppliedFrom</code></td>
+<td><code>enum: all, all_except_custom_domains, preview, prod_deployment_urls_and_all_previews, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].ssoProtection.cve55182MigrationAppliedFrom</code></td>
+<td><code>enum: all, all_except_custom_domains, preview, prod_deployment_urls_and_all_previews, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].ssoProtection.deploymentType</code></td>
+<td><code>enum: all, all_except_custom_domains, preview, prod_deployment_urls_and_all_previews</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].staticIps</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].staticIps.builds</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].staticIps.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].staticIps.regions</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].targets</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].tier</code></td>
+<td><code>enum: priority</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].tracing</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].tracing.domains</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].tracing.ignorePaths</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].tracing.samplingRules</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].tracing.samplingRules[].destination</code></td>
+<td><code>enum: external, internal</code></td>
+<td>No</td>
+<td>Which tracing destination this rule applies to. <code>internal</code> is the hidden Vercel production-tracing drain (internal delivery); <code>external</code> is any customer-configured drain. Derived from the owning drain's delivery type when project tracing is computed; absent on configs persisted before this field existed.</td>
+</tr>
+<tr>
+<td><code>projects[].tracing.samplingRules[].env</code></td>
+<td><code>enum: preview, production</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].tracing.samplingRules[].rate</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].tracing.samplingRules[].requestPath</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].transferCompletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].transferStartedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].transferToAccountId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].transferredFromAccountId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].trustedIps</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].trustedSources</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].trustedSources.enableVercelCiSameRepository</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Allow same-team Vercel CI access to preview deployments built from the CI run's repository, using the deployment source rather than the current project repository link. Defaults to enabled when not stored; omitted or null Trusted Sources updates preserve the stored value.</td>
+</tr>
+<tr>
+<td><code>projects[].trustedSources.oidcProviders</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].trustedSources.projects</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].usageStatus</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].usageStatus.bypassThrottleUntil</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp until which throttling is bypassed (project pays list rates for overage).</td>
+</tr>
+<tr>
+<td><code>projects[].usageStatus.exceededAllowanceUntil</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp until which the project has exceeded its CDN allowance.</td>
+</tr>
+<tr>
+<td><code>projects[].usageStatus.kind</code></td>
+<td><code>enum: flat</code></td>
+<td>Yes</td>
+<td>Billing mode. Always 'flat' for flat-rate projects.</td>
+</tr>
+<tr>
+<td><code>projects[].usageStatus.teamThrottled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Synced from <code>team.billing.usageStatus.throttled</code>. When <code>true</code>, the team has throttled all of its projects regardless of <code>throttled</code>. The effective throttle the CDN enforces is <code>throttled || teamThrottled</code>.</td>
+</tr>
+<tr>
+<td><code>projects[].usageStatus.throttled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Per-project throttle, set explicitly for this project (for example via the per-project Flat Rate CDN endpoint).</td>
+</tr>
+<tr>
+<td><code>projects[].v0</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].v0Created</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].webAnalytics</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].webAnalytics.canceledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].webAnalytics.disabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].webAnalytics.enabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].webAnalytics.hasData</code></td>
+<td><code>enum: true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].webAnalytics.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1microfrontendsdeploymentidconfig" class="operation" data-method="get"><code>GET</code> /v1/microfrontends/{deploymentId}/config</h3>
+<p>Operation ID: <code>getMicrofrontendsConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>deploymentId</code> | <code>path</code> | <code>string</code> | Yes | The unique deployment identifier |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>projectIds are added when the config is uploaded to s3 deployment assets.</td>
+</tr>
+<tr>
+<td><code>config.$schema</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>See https://openapi.vercel.sh/microfrontends.json.</td>
+</tr>
+<tr>
+<td><code>config.applications</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config.options</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Optional configuration options for the microfrontend.</td>
+</tr>
+<tr>
+<td><code>config.options.disableOverrides</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>If you want to disable the overrides for the site. For example, if you are managing rewrites between applications externally, you may wish to disable the overrides on the toolbar as they will have no effect. See https://vercel.com/docs/microfrontends/managing-microfrontends/vercel-toolbar#routing-overrides.</td>
+</tr>
+<tr>
+<td><code>config.options.localProxyPort</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The port number used by the local proxy server. The default value is 3024. See https://vercel.com/docs/microfrontends/local-development.</td>
+</tr>
+<tr>
+<td><code>config.version</code></td>
+<td><code>enum: 1</code></td>
+<td>No</td>
+<td>The version of the microfrontends config schema.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h5 id="500-1" class="status" data-status="5xx">500</h5>
+<h3 id="get-v1microfrontendsprojectsprojectidornameproduction-mfe-config" class="operation" data-method="get"><code>GET</code> /v1/microfrontends/projects/{projectIdOrName}/production-mfe-config</h3>
+<p>Operation ID: <code>getMicrofrontendsConfigForProject</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The name or ID of the project |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>projectIds are added when the config is uploaded to s3 deployment assets.</td>
+</tr>
+<tr>
+<td><code>config.$schema</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>See https://openapi.vercel.sh/microfrontends.json.</td>
+</tr>
+<tr>
+<td><code>config.applications</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config.options</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Optional configuration options for the microfrontend.</td>
+</tr>
+<tr>
+<td><code>config.options.disableOverrides</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>If you want to disable the overrides for the site. For example, if you are managing rewrites between applications externally, you may wish to disable the overrides on the toolbar as they will have no effect. See https://vercel.com/docs/microfrontends/managing-microfrontends/vercel-toolbar#routing-overrides.</td>
+</tr>
+<tr>
+<td><code>config.options.localProxyPort</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The port number used by the local proxy server. The default value is 3024. See https://vercel.com/docs/microfrontends/local-development.</td>
+</tr>
+<tr>
+<td><code>config.version</code></td>
+<td><code>enum: 1</code></td>
+<td>No</td>
+<td>The version of the microfrontends config schema.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h5 id="500-2" class="status" data-status="5xx">500</h5>
+<h3 id="get-v1microfrontendsgroups" class="operation" data-method="get"><code>GET</code> /v1/microfrontends/groups</h3>
+<p>Operation ID: <code>getMicrofrontendsGroups</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h5 id="400" class="status" data-status="4xx">400</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h5 id="500-3" class="status" data-status="5xx">500</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

@@ -1,0 +1,2994 @@
+{
+  "existing": {
+    "check": {
+      "CHECK00": {
+        "blocking": true,
+        "blocks": "s10f",
+        "completedAt": 272,
+        "conclusion": "s111",
+        "createdAt": 274,
+        "deletedAt": 275,
+        "detailsUrl": "s114",
+        "externalId": "s115",
+        "id": "CHECK00",
+        "integrationId": "s117",
+        "isRerequestable": true,
+        "metrics": {},
+        "name": "s11a",
+        "output": {},
+        "ownerId": "s11c",
+        "path": "s11d",
+        "projectId": "s11e",
+        "requires": "s11f",
+        "rerequestable": true,
+        "source": "s121",
+        "sourceIntegrationConfigurationId": "s122",
+        "sourceKind": "s123",
+        "startedAt": 292,
+        "status": "s125",
+        "targets": [],
+        "timeout": 295,
+        "updatedAt": 296,
+        "deployment_id": "DEPLOYMENT01",
+        "project_id_or_name": "PROJECT_ID_OR_NAME01",
+        "project_id": "PROJECT01"
+      },
+      "CHECK01": {
+        "blocking": true,
+        "blocks": "s21d",
+        "completedAt": 542,
+        "conclusion": "s21f",
+        "createdAt": 544,
+        "deletedAt": 545,
+        "detailsUrl": "s222",
+        "externalId": "s223",
+        "id": "CHECK01",
+        "integrationId": "s225",
+        "isRerequestable": true,
+        "metrics": {},
+        "name": "s228",
+        "output": {},
+        "ownerId": "s22a",
+        "path": "s22b",
+        "projectId": "s22c",
+        "requires": "s22d",
+        "rerequestable": true,
+        "source": "s22f",
+        "sourceIntegrationConfigurationId": "s230",
+        "sourceKind": "s231",
+        "startedAt": 562,
+        "status": "s233",
+        "targets": [],
+        "timeout": 565,
+        "updatedAt": 566,
+        "deployment_id": "DEPLOYMENT01",
+        "project_id_or_name": "PROJECT_ID_OR_NAME01",
+        "project_id": "PROJECT01"
+      },
+      "CHECK02": {
+        "blocking": true,
+        "blocks": "s32b",
+        "completedAt": 812,
+        "conclusion": "s32d",
+        "createdAt": 814,
+        "deletedAt": 815,
+        "detailsUrl": "s330",
+        "externalId": "s331",
+        "id": "CHECK02",
+        "integrationId": "s333",
+        "isRerequestable": true,
+        "metrics": {},
+        "name": "s336",
+        "output": {},
+        "ownerId": "s338",
+        "path": "s339",
+        "projectId": "s33a",
+        "requires": "s33b",
+        "rerequestable": true,
+        "source": "s33d",
+        "sourceIntegrationConfigurationId": "s33e",
+        "sourceKind": "s33f",
+        "startedAt": 832,
+        "status": "s341",
+        "targets": [],
+        "timeout": 835,
+        "updatedAt": 836,
+        "deployment_id": "DEPLOYMENT01",
+        "project_id_or_name": "PROJECT_ID_OR_NAME01",
+        "project_id": "PROJECT01"
+      }
+    }
+  },
+  "new": {
+    "check": {
+      "check_ref01": {
+        "blocking": true,
+        "blocks": "s439",
+        "completedAt": 1082,
+        "conclusion": "s43b",
+        "createdAt": 1084,
+        "deletedAt": 1085,
+        "detailsUrl": "s43e",
+        "externalId": "s43f",
+        "integrationId": "s441",
+        "isRerequestable": true,
+        "metrics": {},
+        "name": "s444",
+        "output": {},
+        "ownerId": "s446",
+        "path": "s447",
+        "projectId": "s448",
+        "requires": "s449",
+        "rerequestable": true,
+        "source": "s44b",
+        "sourceIntegrationConfigurationId": "s44c",
+        "sourceKind": "s44d",
+        "startedAt": 1102,
+        "status": "s44f",
+        "targets": [],
+        "timeout": 1105,
+        "updatedAt": 1106
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/deployments/{deploymentId}/checks/{checkId}/rerequest": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "rerequestCheck",
+        "parameters": [
+          {
+            "description": "The deployment to rerun the check for.",
+            "in": "path",
+            "name": "deploymentId",
+            "required": true,
+            "schema": {
+              "description": "The deployment to rerun the check for.",
+              "example": "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The check to rerun",
+            "in": "path",
+            "name": "checkId",
+            "required": true,
+            "schema": {
+              "description": "The check to rerun",
+              "example": "check_2qn7PZrx89yxY34vEZPD31Y9XVj6",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Mark the check as running",
+            "in": "query",
+            "name": "autoUpdate",
+            "required": false,
+            "schema": {
+              "description": "Mark the check as running",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": "The deployment was not found\nCheck was not found"
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/deployments/{deploymentId}/checks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createCheck",
+        "parameters": [
+          {
+            "description": "The deployment to create the check for.",
+            "in": "path",
+            "name": "deploymentId",
+            "required": true,
+            "schema": {
+              "description": "The deployment to create the check for.",
+              "example": "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "blocking": {
+                    "description": "Whether the check should block a deployment from succeeding",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "detailsUrl": {
+                    "description": "URL to display for further details",
+                    "example": "http://example.com",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "description": "An identifier that can be used as an external reference",
+                    "example": "1234abc",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The name of the check being created",
+                    "example": "Performance Check",
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  "path": {
+                    "description": "Path of the page that is being checked",
+                    "example": "/",
+                    "maxLength": 255,
+                    "type": "string"
+                  },
+                  "rerequestable": {
+                    "description": "Whether a user should be able to request for the check to be rerun if it fails",
+                    "example": true,
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "name",
+                  "blocking"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blocking": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "completedAt": {
+                      "type": "number"
+                    },
+                    "conclusion": {
+                      "enum": [
+                        "canceled",
+                        "failed",
+                        "neutral",
+                        "skipped",
+                        "stale",
+                        "succeeded"
+                      ],
+                      "example": "succeeded",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "deploymentId": {
+                      "type": "string"
+                    },
+                    "detailsUrl": {
+                      "type": "string"
+                    },
+                    "externalId": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "chk_1a2b3c4d5e6f7g8h9i0j",
+                      "type": "string"
+                    },
+                    "integrationId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "Performance Check",
+                      "type": "string"
+                    },
+                    "output": {
+                      "properties": {
+                        "metrics": {
+                          "properties": {
+                            "CLS": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "FCP": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "LCP": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "TBT": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "virtualExperienceScore": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "CLS",
+                            "FCP",
+                            "LCP",
+                            "TBT"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "path": {
+                      "example": "/api/users",
+                      "type": "string"
+                    },
+                    "rerequestable": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "startedAt": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "enum": [
+                        "completed",
+                        "registered",
+                        "running"
+                      ],
+                      "example": "completed",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "blocking",
+                    "createdAt",
+                    "deploymentId",
+                    "id",
+                    "integrationId",
+                    "name",
+                    "status",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid.\nCannot create check for finished deployment\nThe provided token is not from an OAuth2 Client"
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": "The deployment was not found"
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v2/projects/{projectIdOrName}/checks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createProjectCheck",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectIdOrName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "blocks": {
+                    "default": "deployment-alias",
+                    "enum": [
+                      "build-start",
+                      "deployment-start",
+                      "deployment-alias",
+                      "deployment-promotion",
+                      "none"
+                    ],
+                    "type": "string"
+                  },
+                  "isRerequestable": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "requires": {
+                    "default": "deployment-url",
+                    "enum": [
+                      "build-ready",
+                      "deployment-url",
+                      "none"
+                    ],
+                    "type": "string"
+                  },
+                  "source": {
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "externalResourceId": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "default": "integration",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "kind": {
+                            "type": "string"
+                          },
+                          "webhookId": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ]
+                      },
+                      {
+                        "properties": {
+                          "externalCheckName": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "provider": {
+                            "enum": [
+                              "github"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "externalCheckName",
+                          "provider"
+                        ]
+                      }
+                    ],
+                    "type": "object"
+                  },
+                  "targets": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "uniqueItems": true
+                  },
+                  "timeout": {
+                    "default": 300,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "name",
+                  "requires"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blocks": {
+                      "enum": [
+                        "build-start",
+                        "deployment-alias",
+                        "deployment-promotion",
+                        "deployment-start",
+                        "none"
+                      ],
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "deletedAt": {
+                      "type": "number"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "isRerequestable": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "type": "string"
+                    },
+                    "requires": {
+                      "enum": [
+                        "build-ready",
+                        "deployment-url",
+                        "none"
+                      ],
+                      "type": "string"
+                    },
+                    "source": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "externalResourceId": {
+                              "type": "string"
+                            },
+                            "integrationConfigurationId": {
+                              "type": "string"
+                            },
+                            "integrationId": {
+                              "type": "string"
+                            },
+                            "kind": {
+                              "enum": [
+                                "integration"
+                              ],
+                              "type": "string"
+                            },
+                            "resourceId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "integrationConfigurationId",
+                            "integrationId",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "kind": {
+                              "enum": [
+                                "webhook"
+                              ],
+                              "type": "string"
+                            },
+                            "webhookId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "externalCheckName": {
+                              "type": "string"
+                            },
+                            "kind": {
+                              "enum": [
+                                "git-provider"
+                              ],
+                              "type": "string"
+                            },
+                            "provider": {
+                              "enum": [
+                                "bitbucket",
+                                "github",
+                                "gitlab"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "externalCheckName",
+                            "kind",
+                            "provider"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "sourceIntegrationConfigurationId": {
+                      "type": "string"
+                    },
+                    "sourceKind": {
+                      "enum": [
+                        "git-provider",
+                        "integration",
+                        "vercel",
+                        "webhook",
+                        "integration",
+                        "webhook",
+                        "git-provider"
+                      ],
+                      "type": "string"
+                    },
+                    "targets": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "timeout": {
+                      "type": "number"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "blocks",
+                    "createdAt",
+                    "id",
+                    "isRerequestable",
+                    "name",
+                    "ownerId",
+                    "projectId",
+                    "requires",
+                    "source",
+                    "sourceKind",
+                    "targets",
+                    "timeout",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/projects/{projectIdOrName}/checks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listProjectChecks",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectIdOrName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "blocks",
+            "required": false,
+            "schema": {
+              "enum": [
+                "build-start",
+                "deployment-start",
+                "deployment-alias",
+                "deployment-promotion",
+                "none"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "checks": {
+                      "items": {
+                        "properties": {
+                          "blocks": {
+                            "enum": [
+                              "build-start",
+                              "deployment-alias",
+                              "deployment-promotion",
+                              "deployment-start",
+                              "none"
+                            ],
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "number"
+                          },
+                          "deletedAt": {
+                            "type": "number"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "isRerequestable": {
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "ownerId": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": "string"
+                          },
+                          "requires": {
+                            "enum": [
+                              "build-ready",
+                              "deployment-url",
+                              "none"
+                            ],
+                            "type": "string"
+                          },
+                          "source": {
+                            "oneOf": [
+                              {
+                                "properties": {
+                                  "externalResourceId": {
+                                    "type": "string"
+                                  },
+                                  "integrationConfigurationId": {
+                                    "type": "string"
+                                  },
+                                  "integrationId": {
+                                    "type": "string"
+                                  },
+                                  "kind": {
+                                    "enum": [
+                                      "integration"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "resourceId": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "integrationConfigurationId",
+                                  "integrationId",
+                                  "kind"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "properties": {
+                                  "kind": {
+                                    "enum": [
+                                      "webhook"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "webhookId": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "properties": {
+                                  "externalCheckName": {
+                                    "type": "string"
+                                  },
+                                  "kind": {
+                                    "enum": [
+                                      "git-provider"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "provider": {
+                                    "enum": [
+                                      "bitbucket",
+                                      "github",
+                                      "gitlab"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "externalCheckName",
+                                  "kind",
+                                  "provider"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "sourceIntegrationConfigurationId": {
+                            "type": "string"
+                          },
+                          "sourceKind": {
+                            "enum": [
+                              "git-provider",
+                              "integration",
+                              "vercel",
+                              "webhook",
+                              "integration",
+                              "webhook",
+                              "git-provider"
+                            ],
+                            "type": "string"
+                          },
+                          "targets": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "timeout": {
+                            "type": "number"
+                          },
+                          "updatedAt": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "blocks",
+                          "createdAt",
+                          "id",
+                          "isRerequestable",
+                          "name",
+                          "ownerId",
+                          "projectId",
+                          "requires",
+                          "source",
+                          "sourceKind",
+                          "targets",
+                          "timeout",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "checks"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/deployments/{deploymentId}/checks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllChecks",
+        "parameters": [
+          {
+            "description": "The deployment to get all checks for",
+            "in": "path",
+            "name": "deploymentId",
+            "required": true,
+            "schema": {
+              "description": "The deployment to get all checks for",
+              "example": "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "checks": {
+                      "items": {
+                        "properties": {
+                          "blocking": {
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "completedAt": {
+                            "type": "number"
+                          },
+                          "conclusion": {
+                            "enum": [
+                              "canceled",
+                              "failed",
+                              "neutral",
+                              "skipped",
+                              "stale",
+                              "succeeded"
+                            ],
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "number"
+                          },
+                          "detailsUrl": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "integrationId": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "output": {
+                            "properties": {
+                              "metrics": {
+                                "properties": {
+                                  "CLS": {
+                                    "properties": {
+                                      "previousValue": {
+                                        "type": "number"
+                                      },
+                                      "source": {
+                                        "enum": [
+                                          "web-vitals"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "nullable": true,
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "source",
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "FCP": {
+                                    "properties": {
+                                      "previousValue": {
+                                        "type": "number"
+                                      },
+                                      "source": {
+                                        "enum": [
+                                          "web-vitals"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "nullable": true,
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "source",
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "LCP": {
+                                    "properties": {
+                                      "previousValue": {
+                                        "type": "number"
+                                      },
+                                      "source": {
+                                        "enum": [
+                                          "web-vitals"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "nullable": true,
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "source",
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "TBT": {
+                                    "properties": {
+                                      "previousValue": {
+                                        "type": "number"
+                                      },
+                                      "source": {
+                                        "enum": [
+                                          "web-vitals"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "nullable": true,
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "source",
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "virtualExperienceScore": {
+                                    "properties": {
+                                      "previousValue": {
+                                        "type": "number"
+                                      },
+                                      "source": {
+                                        "enum": [
+                                          "web-vitals"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "nullable": true,
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "source",
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  }
+                                },
+                                "required": [
+                                  "CLS",
+                                  "FCP",
+                                  "LCP",
+                                  "TBT"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "path": {
+                            "type": "string"
+                          },
+                          "rerequestable": {
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "startedAt": {
+                            "type": "number"
+                          },
+                          "status": {
+                            "enum": [
+                              "completed",
+                              "registered",
+                              "running"
+                            ],
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "blocking",
+                          "createdAt",
+                          "id",
+                          "integrationId",
+                          "name",
+                          "rerequestable",
+                          "status",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "checks"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": "The deployment was not found"
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/deployments/{deploymentId}/checks/{checkId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCheck",
+        "parameters": [
+          {
+            "description": "The deployment to get the check for.",
+            "in": "path",
+            "name": "deploymentId",
+            "required": true,
+            "schema": {
+              "description": "The deployment to get the check for.",
+              "example": "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The check to fetch",
+            "in": "path",
+            "name": "checkId",
+            "required": true,
+            "schema": {
+              "description": "The check to fetch",
+              "example": "check_2qn7PZrx89yxY34vEZPD31Y9XVj6",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blocking": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "completedAt": {
+                      "type": "number"
+                    },
+                    "conclusion": {
+                      "enum": [
+                        "canceled",
+                        "failed",
+                        "neutral",
+                        "skipped",
+                        "stale",
+                        "succeeded"
+                      ],
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "deploymentId": {
+                      "type": "string"
+                    },
+                    "detailsUrl": {
+                      "type": "string"
+                    },
+                    "externalId": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "integrationId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "output": {
+                      "properties": {
+                        "metrics": {
+                          "properties": {
+                            "CLS": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "FCP": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "LCP": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "TBT": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "virtualExperienceScore": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "CLS",
+                            "FCP",
+                            "LCP",
+                            "TBT"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "rerequestable": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "startedAt": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "enum": [
+                        "completed",
+                        "registered",
+                        "running"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "blocking",
+                    "createdAt",
+                    "deploymentId",
+                    "id",
+                    "integrationId",
+                    "name",
+                    "status",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource.\nThe provided token is not from an OAuth2 Client that created the Check"
+          },
+          "404": {
+            "description": "Check was not found\nThe deployment was not found"
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/projects/{projectIdOrName}/checks/{checkId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getProjectCheck",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectIdOrName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the resource that will be updated.",
+            "in": "path",
+            "name": "checkId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the resource that will be updated.",
+              "example": "stf_89ha9sdhh9a9",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blocks": {
+                      "enum": [
+                        "build-start",
+                        "deployment-alias",
+                        "deployment-promotion",
+                        "deployment-start",
+                        "none"
+                      ],
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "deletedAt": {
+                      "type": "number"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "isRerequestable": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "type": "string"
+                    },
+                    "requires": {
+                      "enum": [
+                        "build-ready",
+                        "deployment-url",
+                        "none"
+                      ],
+                      "type": "string"
+                    },
+                    "source": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "externalResourceId": {
+                              "type": "string"
+                            },
+                            "integrationConfigurationId": {
+                              "type": "string"
+                            },
+                            "integrationId": {
+                              "type": "string"
+                            },
+                            "kind": {
+                              "enum": [
+                                "integration"
+                              ],
+                              "type": "string"
+                            },
+                            "resourceId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "integrationConfigurationId",
+                            "integrationId",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "kind": {
+                              "enum": [
+                                "webhook"
+                              ],
+                              "type": "string"
+                            },
+                            "webhookId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "externalCheckName": {
+                              "type": "string"
+                            },
+                            "kind": {
+                              "enum": [
+                                "git-provider"
+                              ],
+                              "type": "string"
+                            },
+                            "provider": {
+                              "enum": [
+                                "bitbucket",
+                                "github",
+                                "gitlab"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "externalCheckName",
+                            "kind",
+                            "provider"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "sourceIntegrationConfigurationId": {
+                      "type": "string"
+                    },
+                    "sourceKind": {
+                      "enum": [
+                        "git-provider",
+                        "integration",
+                        "vercel",
+                        "webhook",
+                        "integration",
+                        "webhook",
+                        "git-provider"
+                      ],
+                      "type": "string"
+                    },
+                    "targets": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "timeout": {
+                      "type": "number"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "blocks",
+                    "createdAt",
+                    "id",
+                    "isRerequestable",
+                    "name",
+                    "ownerId",
+                    "projectId",
+                    "requires",
+                    "source",
+                    "sourceKind",
+                    "targets",
+                    "timeout",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v2/projects/{projectIdOrName}/checks/{checkId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteProjectCheck",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectIdOrName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "checkId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "enum": [
+                        true
+                      ],
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/deployments/{deploymentId}/checks/{checkId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateCheck",
+        "parameters": [
+          {
+            "description": "The deployment to update the check for.",
+            "in": "path",
+            "name": "deploymentId",
+            "required": true,
+            "schema": {
+              "description": "The deployment to update the check for.",
+              "example": "dpl_2qn7PZrx89yxY34vEZPD31Y9XVj6",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The check being updated",
+            "in": "path",
+            "name": "checkId",
+            "required": true,
+            "schema": {
+              "description": "The check being updated",
+              "example": "check_2qn7PZrx89yxY34vEZPD31Y9XVj6",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "conclusion": {
+                    "description": "The result of the check being run",
+                    "enum": [
+                      "canceled",
+                      "failed",
+                      "neutral",
+                      "succeeded",
+                      "skipped"
+                    ]
+                  },
+                  "detailsUrl": {
+                    "description": "A URL a user may visit to see more information about the check",
+                    "example": "https://example.com/check/run/1234abc",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "description": "An identifier that can be used as an external reference",
+                    "example": "1234abc",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The name of the check being created",
+                    "example": "Performance Check",
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  "output": {
+                    "description": "The results of the check Run",
+                    "properties": {
+                      "metrics": {
+                        "additionalProperties": false,
+                        "description": "Metrics about the page",
+                        "properties": {
+                          "CLS": {
+                            "properties": {
+                              "previousValue": {
+                                "description": "Previous Cumulative Layout Shift value to display a delta",
+                                "example": 2,
+                                "type": "number"
+                              },
+                              "source": {
+                                "enum": [
+                                  "web-vitals"
+                                ],
+                                "type": "string"
+                              },
+                              "value": {
+                                "description": "Cumulative Layout Shift value",
+                                "example": 4,
+                                "nullable": true,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "type": "object"
+                          },
+                          "FCP": {
+                            "properties": {
+                              "previousValue": {
+                                "description": "Previous First Contentful Paint value to display a delta",
+                                "example": 900,
+                                "type": "number"
+                              },
+                              "source": {
+                                "enum": [
+                                  "web-vitals"
+                                ],
+                                "type": "string"
+                              },
+                              "value": {
+                                "description": "First Contentful Paint value",
+                                "example": 1200,
+                                "nullable": true,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "type": "object"
+                          },
+                          "LCP": {
+                            "properties": {
+                              "previousValue": {
+                                "description": "Previous Largest Contentful Paint value to display a delta",
+                                "example": 1000,
+                                "type": "number"
+                              },
+                              "source": {
+                                "enum": [
+                                  "web-vitals"
+                                ],
+                                "type": "string"
+                              },
+                              "value": {
+                                "description": "Largest Contentful Paint value",
+                                "example": 1200,
+                                "nullable": true,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "type": "object"
+                          },
+                          "TBT": {
+                            "properties": {
+                              "previousValue": {
+                                "description": "Previous Total Blocking Time value to display a delta",
+                                "example": 3500,
+                                "type": "number"
+                              },
+                              "source": {
+                                "enum": [
+                                  "web-vitals"
+                                ]
+                              },
+                              "value": {
+                                "description": "Total Blocking Time value",
+                                "example": 3000,
+                                "nullable": true,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "type": "object"
+                          },
+                          "virtualExperienceScore": {
+                            "properties": {
+                              "previousValue": {
+                                "description": "A previous Virtual Experience Score value to display a delta, between 0 and 100",
+                                "example": 35,
+                                "maximum": 100,
+                                "minimum": 0,
+                                "type": "integer"
+                              },
+                              "source": {
+                                "enum": [
+                                  "web-vitals"
+                                ]
+                              },
+                              "value": {
+                                "description": "The calculated Virtual Experience Score value, between 0 and 100",
+                                "example": 30,
+                                "maximum": 100,
+                                "minimum": 0,
+                                "nullable": true,
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "FCP",
+                          "LCP",
+                          "CLS",
+                          "TBT"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "path": {
+                    "description": "Path of the page that is being checked",
+                    "example": "/",
+                    "maxLength": 255,
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "The current status of the check",
+                    "enum": [
+                      "running",
+                      "completed"
+                    ]
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blocking": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "completedAt": {
+                      "type": "number"
+                    },
+                    "conclusion": {
+                      "enum": [
+                        "canceled",
+                        "failed",
+                        "neutral",
+                        "skipped",
+                        "stale",
+                        "succeeded"
+                      ],
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "deploymentId": {
+                      "type": "string"
+                    },
+                    "detailsUrl": {
+                      "type": "string"
+                    },
+                    "externalId": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "integrationId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "output": {
+                      "properties": {
+                        "metrics": {
+                          "properties": {
+                            "CLS": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "FCP": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "LCP": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "TBT": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "virtualExperienceScore": {
+                              "properties": {
+                                "previousValue": {
+                                  "type": "number"
+                                },
+                                "source": {
+                                  "enum": [
+                                    "web-vitals"
+                                  ],
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "nullable": true,
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "source",
+                                "value"
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "CLS",
+                            "FCP",
+                            "LCP",
+                            "TBT"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "rerequestable": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "startedAt": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "enum": [
+                        "completed",
+                        "registered",
+                        "running"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "blocking",
+                    "createdAt",
+                    "deploymentId",
+                    "id",
+                    "integrationId",
+                    "name",
+                    "status",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid.\nThe provided token is not from an OAuth2 Client"
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": "Check was not found\nThe deployment was not found"
+          },
+          "410": {
+            "description": ""
+          },
+          "413": {
+            "description": "The output provided is too large"
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v2/projects/{projectIdOrName}/checks/{checkId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateProjectCheck",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectIdOrName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "checkId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "blocks": {
+                    "default": "deployment-alias",
+                    "enum": [
+                      "build-start",
+                      "deployment-start",
+                      "deployment-alias",
+                      "deployment-promotion",
+                      "none"
+                    ],
+                    "type": "string"
+                  },
+                  "isRerequestable": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "requires": {
+                    "default": "deployment-url",
+                    "enum": [
+                      "build-ready",
+                      "deployment-url",
+                      "none"
+                    ],
+                    "type": "string"
+                  },
+                  "targets": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "timeout": {
+                    "default": 300,
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "blocks": {
+                      "enum": [
+                        "build-start",
+                        "deployment-alias",
+                        "deployment-promotion",
+                        "deployment-start",
+                        "none"
+                      ],
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "deletedAt": {
+                      "type": "number"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "isRerequestable": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "type": "string"
+                    },
+                    "requires": {
+                      "enum": [
+                        "build-ready",
+                        "deployment-url",
+                        "none"
+                      ],
+                      "type": "string"
+                    },
+                    "source": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "externalResourceId": {
+                              "type": "string"
+                            },
+                            "integrationConfigurationId": {
+                              "type": "string"
+                            },
+                            "integrationId": {
+                              "type": "string"
+                            },
+                            "kind": {
+                              "enum": [
+                                "integration"
+                              ],
+                              "type": "string"
+                            },
+                            "resourceId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "integrationConfigurationId",
+                            "integrationId",
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "kind": {
+                              "enum": [
+                                "webhook"
+                              ],
+                              "type": "string"
+                            },
+                            "webhookId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "externalCheckName": {
+                              "type": "string"
+                            },
+                            "kind": {
+                              "enum": [
+                                "git-provider"
+                              ],
+                              "type": "string"
+                            },
+                            "provider": {
+                              "enum": [
+                                "bitbucket",
+                                "github",
+                                "gitlab"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "externalCheckName",
+                            "kind",
+                            "provider"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "sourceIntegrationConfigurationId": {
+                      "type": "string"
+                    },
+                    "sourceKind": {
+                      "enum": [
+                        "git-provider",
+                        "integration",
+                        "vercel",
+                        "webhook",
+                        "integration",
+                        "webhook",
+                        "git-provider"
+                      ],
+                      "type": "string"
+                    },
+                    "targets": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "timeout": {
+                      "type": "number"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "blocks",
+                    "createdAt",
+                    "id",
+                    "isRerequestable",
+                    "name",
+                    "ownerId",
+                    "projectId",
+                    "requires",
+                    "source",
+                    "sourceKind",
+                    "targets",
+                    "timeout",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

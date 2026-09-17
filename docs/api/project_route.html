@@ -1,0 +1,2191 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ProjectRoute | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a aria-current="page" href="../api/project_route.html">ProjectRoute</a><div class="nav-sections"><a class="nav-section" href="#post-v1projectsprojectidroutes">POST /v1/projects/{projectId}/routes</a>
+<a class="nav-section" href="#post-v1projectsprojectidroutesgenerate">POST /v1/projects/{projectId}/routes/generate</a>
+<a class="nav-section" href="#post-v1projectsprojectidroutesversions">POST /v1/projects/{projectId}/routes/versions</a>
+<a class="nav-section" href="#get-v1projectsprojectidroutesversions">GET /v1/projects/{projectId}/routes/versions</a>
+<a class="nav-section" href="#get-v1projectsprojectidroutes">GET /v1/projects/{projectId}/routes</a>
+<a class="nav-section" href="#patch-v1projectsprojectidroutesrouteid">PATCH /v1/projects/{projectId}/routes/{routeId}</a>
+<a class="nav-section" href="#delete-v1projectsprojectidroutes">DELETE /v1/projects/{projectId}/routes</a>
+<a class="nav-section" href="#put-v1projectsprojectidroutes">PUT /v1/projects/{projectId}/routes</a></div>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="projectroute">ProjectRoute</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1projectsprojectidroutes"><code>/v1/projects/{projectId}/routes</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1projectsprojectidroutesgenerate"><code>/v1/projects/{projectId}/routes/generate</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1projectsprojectidroutesversions"><code>/v1/projects/{projectId}/routes/versions</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsprojectidroutesversions"><code>/v1/projects/{projectId}/routes/versions</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsprojectidroutes"><code>/v1/projects/{projectId}/routes</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1projectsprojectidroutesrouteid"><code>/v1/projects/{projectId}/routes/{routeId}</code></a></td>
+<td><code>patch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1projectsprojectidroutes"><code>/v1/projects/{projectId}/routes</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1projectsprojectidroutes"><code>/v1/projects/{projectId}/routes</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>alias</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The staging alias for previewing this version.</td>
+</tr>
+<tr>
+<td><code>conditions</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The user who created this version.</td>
+</tr>
+<tr>
+<td><code>currentRoute</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the version.</td>
+</tr>
+<tr>
+<td><code>isLive</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether this version is currently live in production.</td>
+</tr>
+<tr>
+<td><code>isStaging</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether this version is staged and not yet promoted to production.</td>
+</tr>
+<tr>
+<td><code>lastModified</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when this version was last modified.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>overwrite</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pathCondition</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Controls where the route is inserted.</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>restore</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, restores the staged route to the value in the production version.</td>
+</tr>
+<tr>
+<td><code>route</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The full route object to replace the existing route with</td>
+</tr>
+<tr>
+<td><code>routes</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ruleCount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The number of routing rules in this version.</td>
+</tr>
+<tr>
+<td><code>s3Key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The S3 key where the routing rules are stored.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A version of routing rules stored in S3.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1projectsprojectidroutes" class="operation" data-method="post"><code>POST</code> /v1/projects/{projectId}/routes</h3>
+<p>Operation ID: <code>addRoute</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>position</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Controls where the route is inserted. Defaults to &quot;end&quot; if omitted.</td>
+</tr>
+<tr>
+<td><code>position.placement</code></td>
+<td><code>enum: start, end, after, before</code></td>
+<td>No</td>
+<td>&quot;after&quot;/&quot;before&quot; require referenceId.</td>
+</tr>
+<tr>
+<td><code>position.referenceId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Route ID to insert after/before. Required for &quot;after&quot;/&quot;before&quot;.</td>
+</tr>
+<tr>
+<td><code>route</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.caseSensitive</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.dest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has[].type</code></td>
+<td><code>enum: host, header, cookie, query</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.missing</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.missing[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.missing[].type</code></td>
+<td><code>enum: host, header, cookie, query</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.missing[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.respectOriginCacheControl</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.src</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.status</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].args</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].env</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].op</code></td>
+<td><code>enum: append, set, delete</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].target</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].type</code></td>
+<td><code>enum: request.headers, request.query, response.headers</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.srcSyntax</code></td>
+<td><code>enum: equals, path-to-regexp, regex</code></td>
+<td>No</td>
+<td>Pattern syntax type. If not provided, inferred from pattern.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>route</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional description of what the routing rule does.</td>
+</tr>
+<tr>
+<td><code>route.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the routing rule is enabled. Defaults to true.</td>
+</tr>
+<tr>
+<td><code>route.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the routing rule.</td>
+</tr>
+<tr>
+<td><code>route.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable name for the routing rule.</td>
+</tr>
+<tr>
+<td><code>route.rawDest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Original destination provided by user.</td>
+</tr>
+<tr>
+<td><code>route.rawSrc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Original source pattern provided by user (path-to-regexp or regex). Used to display the user's input in API responses.</td>
+</tr>
+<tr>
+<td><code>route.route</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The route definition from @vercel/routing-utils.</td>
+</tr>
+<tr>
+<td><code>route.route.caseSensitive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.check</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.continue</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.dest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.destination</code></td>
+<td><code>string or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.env</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.important</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.locale</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.locale.cookie</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.locale.redirect</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.methods</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.middleware</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>A middleware index in the <code>middleware</code> key under the build result</td>
+</tr>
+<tr>
+<td><code>route.route.middlewarePath</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A middleware key within the <code>output</code> key under the build result. Overrides a <code>middleware</code> definition.</td>
+</tr>
+<tr>
+<td><code>route.route.middlewareRawSrc</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The original middleware matchers.</td>
+</tr>
+<tr>
+<td><code>route.route.missing</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.mitigate</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.mitigate.action</code></td>
+<td><code>enum: challenge, deny</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.override</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.respectOriginCacheControl</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.source</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Aliases for <code>src</code>, <code>dest</code>, and <code>status</code>. These provide consistency with the <code>rewrites</code>, <code>redirects</code>, and <code>headers</code> fields which use <code>source</code>, <code>destination</code>, and <code>statusCode</code>. During normalization, the string forms are converted to their canonical forms (<code>src</code>, <code>dest</code>, <code>status</code>) and stripped from the route object. <code>destination</code> may also be a service-targeted object, in which case routing is delegated into the named service's internal route table and the object is preserved as-is (not folded into <code>dest</code>).</td>
+</tr>
+<tr>
+<td><code>route.route.src</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.status</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.statusCode</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.routeType</code></td>
+<td><code>enum: redirect, rewrite, set_status, transform</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.srcSyntax</code></td>
+<td><code>enum: equals, path-to-regexp, regex</code></td>
+<td>No</td>
+<td>The syntax type of the source pattern. Determines how the pattern is compiled to regex.</td>
+</tr>
+<tr>
+<td><code>route.staged</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this route is new and not yet published to production. Set to true only when a route is first created via add-route. Cleared (set to false) when a version is promoted to production.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A version of routing rules stored in S3.</td>
+</tr>
+<tr>
+<td><code>version.alias</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The staging alias for previewing this version.</td>
+</tr>
+<tr>
+<td><code>version.createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The user who created this version.</td>
+</tr>
+<tr>
+<td><code>version.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the version.</td>
+</tr>
+<tr>
+<td><code>version.isLive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is currently live in production.</td>
+</tr>
+<tr>
+<td><code>version.isStaging</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is staged and not yet promoted to production.</td>
+</tr>
+<tr>
+<td><code>version.lastModified</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when this version was last modified.</td>
+</tr>
+<tr>
+<td><code>version.ruleCount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The number of routing rules in this version.</td>
+</tr>
+<tr>
+<td><code>version.s3Key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The S3 key where the routing rules are stored.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h3 id="post-v1projectsprojectidroutesgenerate" class="operation" data-method="post"><code>POST</code> /v1/projects/{projectId}/routes/generate</h3>
+<p>Operation ID: <code>generateRoute</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>currentRoute</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.actions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.actions[].dest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.actions[].headers</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.actions[].headers[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.actions[].headers[].op</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.actions[].headers[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.actions[].status</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.actions[].subType</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.actions[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.conditions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.conditions[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.conditions[].missing</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.conditions[].operator</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.conditions[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.pathCondition</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.pathCondition.syntax</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>currentRoute.pathCondition.value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.actions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.actions[].dest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.actions[].headers</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.actions[].headers[].key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.actions[].headers[].op</code></td>
+<td><code>enum: append, delete, set</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.actions[].headers[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.actions[].status</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.actions[].subType</code></td>
+<td><code>enum: response-headers, transform-request-header, transform-request-query</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.actions[].type</code></td>
+<td><code>enum: modify, redirect, rewrite, set-status</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.conditions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.conditions[].field</code></td>
+<td><code>enum: cookie, header, host, query</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.conditions[].missing</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.conditions[].operator</code></td>
+<td><code>enum: contains, eq, exists, re</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.conditions[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.pathCondition</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.pathCondition.syntax</code></td>
+<td><code>enum: equals, path-to-regexp, regex</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.pathCondition.value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="408" class="status" data-status="4xx">408</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h5 id="500-1" class="status" data-status="5xx">500</h5>
+<h3 id="post-v1projectsprojectidroutesversions" class="operation" data-method="post"><code>POST</code> /v1/projects/{projectId}/routes/versions</h3>
+<p>Operation ID: <code>updateRouteVersions</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td><code>enum: promote, restore, discard</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A version of routing rules stored in S3.</td>
+</tr>
+<tr>
+<td><code>version.alias</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The staging alias for previewing this version.</td>
+</tr>
+<tr>
+<td><code>version.createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The user who created this version.</td>
+</tr>
+<tr>
+<td><code>version.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the version.</td>
+</tr>
+<tr>
+<td><code>version.isLive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is currently live in production.</td>
+</tr>
+<tr>
+<td><code>version.isStaging</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is staged and not yet promoted to production.</td>
+</tr>
+<tr>
+<td><code>version.lastModified</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when this version was last modified.</td>
+</tr>
+<tr>
+<td><code>version.ruleCount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The number of routing rules in this version.</td>
+</tr>
+<tr>
+<td><code>version.s3Key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The S3 key where the routing rules are stored.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="409-1" class="status" data-status="4xx">409</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h5 id="500-2" class="status" data-status="5xx">500</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v1projectsprojectidroutesversions" class="operation" data-method="get"><code>GET</code> /v1/projects/{projectId}/routes/versions</h3>
+<p>Operation ID: <code>getRouteVersions</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>versions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].alias</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The staging alias for previewing this version.</td>
+</tr>
+<tr>
+<td><code>versions[].createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The user who created this version.</td>
+</tr>
+<tr>
+<td><code>versions[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the version.</td>
+</tr>
+<tr>
+<td><code>versions[].isLive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is currently live in production.</td>
+</tr>
+<tr>
+<td><code>versions[].isStaging</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is staged and not yet promoted to production.</td>
+</tr>
+<tr>
+<td><code>versions[].lastModified</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when this version was last modified.</td>
+</tr>
+<tr>
+<td><code>versions[].ruleCount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The number of routing rules in this version.</td>
+</tr>
+<tr>
+<td><code>versions[].s3Key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The S3 key where the routing rules are stored.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1projectsprojectidroutes" class="operation" data-method="get"><code>GET</code> /v1/projects/{projectId}/routes</h3>
+<p>Operation ID: <code>getRoutes</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>versionId</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>q</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>filter</code> | <code>query</code> | <code>enum: rewrite, redirect, set_status, transform</code> | No |  |
+| <code>diff</code> | <code>query</code> | <code>boolean or enum: only</code> | No |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h2 id="patch">patch</h2>
+<h3 id="patch-v1projectsprojectidroutesrouteid" class="operation" data-method="patch"><code>PATCH</code> /v1/projects/{projectId}/routes/{routeId}</h3>
+<p>Operation ID: <code>editRoute</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>routeId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>restore</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, restores the staged route to the value in the production version.</td>
+</tr>
+<tr>
+<td><code>route</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The full route object to replace the existing route with</td>
+</tr>
+<tr>
+<td><code>route.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.caseSensitive</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.dest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has[].type</code></td>
+<td><code>enum: host, header, cookie, query</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.missing</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.missing[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.missing[].type</code></td>
+<td><code>enum: host, header, cookie, query</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.missing[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.respectOriginCacheControl</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.src</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.status</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].args</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].env</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].op</code></td>
+<td><code>enum: append, set, delete</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].target</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms[].type</code></td>
+<td><code>enum: request.headers, request.query, response.headers</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.srcSyntax</code></td>
+<td><code>enum: equals, path-to-regexp, regex</code></td>
+<td>No</td>
+<td>Pattern syntax type. If not provided, inferred from pattern.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-5" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>route</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional description of what the routing rule does.</td>
+</tr>
+<tr>
+<td><code>route.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the routing rule is enabled. Defaults to true.</td>
+</tr>
+<tr>
+<td><code>route.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the routing rule.</td>
+</tr>
+<tr>
+<td><code>route.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable name for the routing rule.</td>
+</tr>
+<tr>
+<td><code>route.rawDest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Original destination provided by user.</td>
+</tr>
+<tr>
+<td><code>route.rawSrc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Original source pattern provided by user (path-to-regexp or regex). Used to display the user's input in API responses.</td>
+</tr>
+<tr>
+<td><code>route.route</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The route definition from @vercel/routing-utils.</td>
+</tr>
+<tr>
+<td><code>route.route.caseSensitive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.check</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.continue</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.dest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.destination</code></td>
+<td><code>string or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.env</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.has</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.important</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.locale</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.locale.cookie</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.locale.redirect</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.methods</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.middleware</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>A middleware index in the <code>middleware</code> key under the build result</td>
+</tr>
+<tr>
+<td><code>route.route.middlewarePath</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A middleware key within the <code>output</code> key under the build result. Overrides a <code>middleware</code> definition.</td>
+</tr>
+<tr>
+<td><code>route.route.middlewareRawSrc</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The original middleware matchers.</td>
+</tr>
+<tr>
+<td><code>route.route.missing</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.mitigate</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.mitigate.action</code></td>
+<td><code>enum: challenge, deny</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.override</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.respectOriginCacheControl</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.source</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Aliases for <code>src</code>, <code>dest</code>, and <code>status</code>. These provide consistency with the <code>rewrites</code>, <code>redirects</code>, and <code>headers</code> fields which use <code>source</code>, <code>destination</code>, and <code>statusCode</code>. During normalization, the string forms are converted to their canonical forms (<code>src</code>, <code>dest</code>, <code>status</code>) and stripped from the route object. <code>destination</code> may also be a service-targeted object, in which case routing is delegated into the named service's internal route table and the object is preserved as-is (not folded into <code>dest</code>).</td>
+</tr>
+<tr>
+<td><code>route.route.src</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.status</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.statusCode</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.route.transforms</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.routeType</code></td>
+<td><code>enum: redirect, rewrite, set_status, transform</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>route.srcSyntax</code></td>
+<td><code>enum: equals, path-to-regexp, regex</code></td>
+<td>No</td>
+<td>The syntax type of the source pattern. Determines how the pattern is compiled to regex.</td>
+</tr>
+<tr>
+<td><code>route.staged</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this route is new and not yet published to production. Set to true only when a route is first created via add-route. Cleared (set to false) when a version is promoted to production.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A version of routing rules stored in S3.</td>
+</tr>
+<tr>
+<td><code>version.alias</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The staging alias for previewing this version.</td>
+</tr>
+<tr>
+<td><code>version.createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The user who created this version.</td>
+</tr>
+<tr>
+<td><code>version.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the version.</td>
+</tr>
+<tr>
+<td><code>version.isLive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is currently live in production.</td>
+</tr>
+<tr>
+<td><code>version.isStaging</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is staged and not yet promoted to production.</td>
+</tr>
+<tr>
+<td><code>version.lastModified</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when this version was last modified.</td>
+</tr>
+<tr>
+<td><code>version.ruleCount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The number of routing rules in this version.</td>
+</tr>
+<tr>
+<td><code>version.s3Key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The S3 key where the routing rules are stored.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="409-2" class="status" data-status="4xx">409</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h5 id="500-3" class="status" data-status="5xx">500</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1projectsprojectidroutes" class="operation" data-method="delete"><code>DELETE</code> /v1/projects/{projectId}/routes</h3>
+<p>Operation ID: <code>deleteRoutes</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-4">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>routeIds</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>The IDs of the routes to delete</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-6" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deletedCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A version of routing rules stored in S3.</td>
+</tr>
+<tr>
+<td><code>version.alias</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The staging alias for previewing this version.</td>
+</tr>
+<tr>
+<td><code>version.createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The user who created this version.</td>
+</tr>
+<tr>
+<td><code>version.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the version.</td>
+</tr>
+<tr>
+<td><code>version.isLive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is currently live in production.</td>
+</tr>
+<tr>
+<td><code>version.isStaging</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is staged and not yet promoted to production.</td>
+</tr>
+<tr>
+<td><code>version.lastModified</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when this version was last modified.</td>
+</tr>
+<tr>
+<td><code>version.ruleCount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The number of routing rules in this version.</td>
+</tr>
+<tr>
+<td><code>version.s3Key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The S3 key where the routing rules are stored.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="409-3" class="status" data-status="4xx">409</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h5 id="500-4" class="status" data-status="5xx">500</h5>
+<h2 id="update">update</h2>
+<h3 id="put-v1projectsprojectidroutes" class="operation" data-method="put"><code>PUT</code> /v1/projects/{projectId}/routes</h3>
+<p>Operation ID: <code>stageRoutes</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-5">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>overwrite</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.caseSensitive</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.dest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.has</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.has[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.has[].type</code></td>
+<td><code>enum: host, header, cookie, query</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.has[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.missing</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.missing[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.missing[].type</code></td>
+<td><code>enum: host, header, cookie, query</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.missing[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.respectOriginCacheControl</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.src</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.status</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.transforms</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.transforms[].args</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.transforms[].env</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.transforms[].op</code></td>
+<td><code>enum: append, set, delete</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.transforms[].target</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>routes[].route.transforms[].type</code></td>
+<td><code>enum: request.headers, request.query, response.headers</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-7" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A version of routing rules stored in S3.</td>
+</tr>
+<tr>
+<td><code>version.alias</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The staging alias for previewing this version.</td>
+</tr>
+<tr>
+<td><code>version.createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The user who created this version.</td>
+</tr>
+<tr>
+<td><code>version.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the version.</td>
+</tr>
+<tr>
+<td><code>version.isLive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is currently live in production.</td>
+</tr>
+<tr>
+<td><code>version.isStaging</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this version is staged and not yet promoted to production.</td>
+</tr>
+<tr>
+<td><code>version.lastModified</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when this version was last modified.</td>
+</tr>
+<tr>
+<td><code>version.ruleCount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The number of routing rules in this version.</td>
+</tr>
+<tr>
+<td><code>version.s3Key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The S3 key where the routing rules are stored.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="409-4" class="status" data-status="4xx">409</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+<h5 id="500-5" class="status" data-status="5xx">500</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

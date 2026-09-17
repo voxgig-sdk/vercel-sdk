@@ -1,0 +1,239 @@
+{
+  "existing": {
+    "ai_gateway_rule_list": {
+      "AI_GATEWAY_RULE_LIST00": {
+        "action": {},
+        "createdAt": 121,
+        "createdBy": "s7a",
+        "deleted": false,
+        "description": "s7c",
+        "enabled": false,
+        "match": {},
+        "ownerId": "s7f",
+        "ruleId": "s80",
+        "type": "s81",
+        "updatedAt": 130,
+        "updatedBy": "s83"
+      },
+      "AI_GATEWAY_RULE_LIST01": {
+        "action": {},
+        "createdAt": 241,
+        "createdBy": "sf2",
+        "deleted": false,
+        "description": "sf4",
+        "enabled": false,
+        "match": {},
+        "ownerId": "sf7",
+        "ruleId": "sf8",
+        "type": "sf9",
+        "updatedAt": 250,
+        "updatedBy": "sfb"
+      },
+      "AI_GATEWAY_RULE_LIST02": {
+        "action": {},
+        "createdAt": 361,
+        "createdBy": "s16a",
+        "deleted": false,
+        "description": "s16c",
+        "enabled": false,
+        "match": {},
+        "ownerId": "s16f",
+        "ruleId": "s170",
+        "type": "s171",
+        "updatedAt": 370,
+        "updatedBy": "s173"
+      }
+    }
+  },
+  "new": {
+    "ai_gateway_rule_list": {
+      "ai_gateway_rule_list_ref01": {
+        "action": {},
+        "createdAt": 481,
+        "createdBy": "s1e2",
+        "deleted": false,
+        "description": "s1e4",
+        "enabled": false,
+        "match": {},
+        "ownerId": "s1e7",
+        "ruleId": "s1e8",
+        "type": "s1e9",
+        "updatedAt": 490,
+        "updatedBy": "s1eb"
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/ai-gateway/rules": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listAiGatewayRules",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "includeDisabled",
+            "schema": {
+              "enum": [
+                "true",
+                "false"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "rules": {
+                      "items": {
+                        "description": "Public response shape for AI Gateway routing rules. Used so OpenAPI generation can avoid ElectroDB's recursive EntityItem types.",
+                        "properties": {
+                          "action": {
+                            "properties": {
+                              "reason": {
+                                "type": "string"
+                              },
+                              "rewriteModel": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "createdAt": {
+                            "type": "number"
+                          },
+                          "createdBy": {
+                            "type": "string"
+                          },
+                          "deleted": {
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "enabled": {
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "match": {
+                            "properties": {
+                              "model": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "ownerId": {
+                            "type": "string"
+                          },
+                          "ruleId": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "deny",
+                              "rewrite"
+                            ],
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "number"
+                          },
+                          "updatedBy": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "createdAt",
+                          "enabled",
+                          "ownerId",
+                          "ruleId",
+                          "type",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "rules"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

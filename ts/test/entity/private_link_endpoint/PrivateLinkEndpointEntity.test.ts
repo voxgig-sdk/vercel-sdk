@@ -1,0 +1,189 @@
+
+
+import Path from 'node:path'
+import * as Fs from 'node:fs'
+
+import { test, describe, afterEach } from 'node:test'
+import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
+
+
+import { VercelSDK, BaseFeature, stdutil } from '../../..'
+
+import {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  loadEnvLocal,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+  maybeSkipControl,
+} from '../../utility'
+
+
+// AFTER the imports on purpose: TypeScript hoists `import` above any
+// statement in the emitted CommonJS, so a loader placed above them would
+// run only after every imported module had already been evaluated - and
+// anything reading process.env at module scope would miss these values.
+loadEnvLocal(__dirname + '/../../../.env.local')
+
+
+describe('PrivateLinkEndpointEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when VERCEL_TEST_LIVE=TRUE.
+  afterEach(liveDelay('VERCEL_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = VercelSDK.test()
+    const ent = testsdk.PrivateLinkEndpoint()
+    assert(null != ent)
+  })
+
+
+  test('basic', async (t) => {
+
+    const live = 'TRUE' === process.env.VERCEL_TEST_LIVE
+    for (const op of ['create', 'list', 'update', 'load']) {
+      if (!live && maybeSkipControl(t, 'entityOp', 'private_link_endpoint.' + op, live)) return
+    }
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"awsDnsEntries","req":false,"short":"The regional DNS names assigned to the endpoint by AWS.","type":"`$ARRAY`","index$":0},{"active":true,"name":"awsServiceName","req":true,"short":"The AWS VPC endpoint service the endpoint connects to.","type":"`$STRING`","index$":1},{"active":true,"name":"createdAt","req":true,"short":"Timestamp in milliseconds since the UNIX epoch for when the endpoint was created.","type":"`$NUMBER`","index$":2},{"active":true,"name":"enablePrivateDns","req":false,"short":"Whether to resolve the endpoint service through its private DNS names, which are then returned in `privateDnsNames`.","type":"`$BOOLEAN`","index$":3},{"active":true,"name":"endpointId","req":true,"short":"The unique identifier of the PrivateLink endpoint.","type":"`$STRING`","index$":4},{"active":true,"name":"id","req":false,"type":"`$STRING`","index$":5},{"active":true,"name":"name","op":{"update":{"req":false,"type":"`$STRING`"}},"req":true,"short":"The name of the PrivateLink endpoint, shown in the Vercel dashboard.","type":"`$STRING`","index$":6},{"active":true,"name":"privateDnsNames","req":false,"short":"The private DNS names of the endpoint service, populated when private DNS is enabled for the endpoint.","type":"`$ARRAY`","index$":7},{"active":true,"name":"projectId","req":true,"short":"The identifier of the project the PrivateLink endpoint belongs to.","type":"`$STRING`","index$":8},{"active":true,"name":"status","req":true,"short":"The current state of the endpoint.","type":"`$STRING`","index$":9},{"active":true,"name":"statusMessage","req":false,"short":"A human-readable explanation of why the endpoint could not be provisioned.","type":"`$STRING`","index$":10},{"active":true,"name":"teamId","req":true,"short":"The identifier of the team that owns the PrivateLink endpoint.","type":"`$STRING`","index$":11},{"active":true,"name":"updatedAt","req":true,"short":"Timestamp in milliseconds since the UNIX epoch for when the endpoint was last updated.","type":"`$NUMBER`","index$":12},{"active":true,"name":"vercelRegion","req":true,"short":"The Vercel region the endpoint is provisioned in.","type":"`$STRING`","index$":13},{"active":true,"name":"vpcEndpointId","req":false,"short":"The identifier of the underlying AWS VPC endpoint.","type":"`$STRING`","index$":14}],"id":{"field":"id","name":"id"},"name":"private_link_endpoint","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{"query":[{"active":true,"example":"my-team-url-slug","kind":"query","name":"slug","orig":"slug","reqd":false,"type":"`$STRING`","index$":0},{"active":true,"example":"team_1a2b3c4d5e6f7g8h9i0j1k2l","kind":"query","name":"team_id","orig":"team_id","reqd":false,"type":"`$STRING`","index$":1}]},"contract":{"id":"POST /v1/networking/privatelink/endpoints","json":"{\"operationId\":\"createPrivateLinkEndpoint\",\"parameters\":[{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"awsServiceName\":{\"description\":\"The name of the AWS VPC endpoint service to connect to. Its AWS region is read from the name; when that region differs from the one behind `vercelRegion`, the service must allow cross-region access.\",\"example\":\"com.amazonaws.vpce.us-east-1.vpce-svc-0123456789abcdef0\",\"type\":\"string\"},\"enablePrivateDns\":{\"description\":\"Whether to resolve the endpoint service through its private DNS names, which are then returned in `privateDnsNames`. Defaults to `false`, in which case the endpoint is reachable through the DNS names in `awsDnsEntries`.\",\"example\":false,\"type\":\"boolean\"},\"name\":{\"description\":\"The name of the PrivateLink endpoint, used as its label in the Vercel dashboard.\",\"example\":\"payments-db\",\"maxLength\":255,\"type\":\"string\"},\"projectId\":{\"description\":\"The project ID to create the PrivateLink endpoint for.\",\"example\":\"prj_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"vercelRegion\":{\"description\":\"The Vercel region to provision the endpoint in. Advanced Networking must be enabled for the project in that region. The endpoint service itself may live in another AWS region.\",\"example\":\"iad1\",\"type\":\"string\"}},\"required\":[\"projectId\",\"name\",\"vercelRegion\",\"awsServiceName\"],\"type\":\"object\"}}}},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A PrivateLink endpoint, which connects a project to an AWS VPC endpoint service in a single region so that traffic reaches the service over AWS PrivateLink rather than the public internet.\",\"properties\":{\"awsDnsEntries\":{\"description\":\"The regional DNS names assigned to the endpoint by AWS. Use these to reach the service when private DNS is not enabled.\",\"example\":[\"vpce-0123456789abcdef0-a1b2c3d4.vpce-svc-0123456789abcdef0.us-east-1.vpce.amazonaws.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"awsServiceName\":{\"description\":\"The AWS VPC endpoint service the endpoint connects to.\",\"example\":\"com.amazonaws.vpce.us-east-1.vpce-svc-0123456789abcdef0\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds since the UNIX epoch for when the endpoint was created.\",\"example\":1610963878358,\"type\":\"number\"},\"endpointId\":{\"description\":\"The unique identifier of the PrivateLink endpoint.\",\"example\":\"ple_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the PrivateLink endpoint, shown in the Vercel dashboard.\",\"example\":\"payments-db\",\"type\":\"string\"},\"privateDnsNames\":{\"description\":\"The private DNS names of the endpoint service, populated when private DNS is enabled for the endpoint.\",\"example\":[\"payments.internal.example.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"projectId\":{\"description\":\"The identifier of the project the PrivateLink endpoint belongs to.\",\"example\":\"prj_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"status\":{\"description\":\"The current state of the endpoint. - `creating`: the endpoint is being created. - `pending-acceptance`: waiting for the endpoint service owner to accept the connection. Only occurs for services that require manual acceptance. - `provisioning`: the connection was accepted and AWS is finishing setup. - `available`: the endpoint is fully provisioned and ready to use. - `rejected`: the endpoint service owner rejected the connection. - `failed`: the endpoint could not be provisioned. - `deleting`: the endpoint is being deleted.\",\"enum\":[\"available\",\"creating\",\"deleting\",\"failed\",\"pending-acceptance\",\"provisioning\",\"rejected\"],\"example\":\"available\",\"type\":\"string\"},\"statusMessage\":{\"description\":\"A human-readable explanation of why the endpoint could not be provisioned. Only set when `status` is `failed`, and absent for every other status including `rejected`, since AWS does not report a rejection reason.\",\"example\":\"Endpoint did not become available in time. Try deleting and recreating, or visit https://vercel.com/help if the issue persists.\",\"type\":\"string\"},\"teamId\":{\"description\":\"The identifier of the team that owns the PrivateLink endpoint.\",\"example\":\"team_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Timestamp in milliseconds since the UNIX epoch for when the endpoint was last updated.\",\"example\":1610963878358,\"type\":\"number\"},\"vercelRegion\":{\"description\":\"The Vercel region the endpoint is provisioned in.\",\"example\":\"iad1\",\"type\":\"string\"},\"vpcEndpointId\":{\"description\":\"The identifier of the underlying AWS VPC endpoint. Absent until AWS has created the endpoint.\",\"example\":\"vpce-0123456789abcdef0\",\"type\":\"string\"}},\"required\":[\"awsServiceName\",\"createdAt\",\"endpointId\",\"name\",\"projectId\",\"status\",\"teamId\",\"updatedAt\",\"vercelRegion\"],\"type\":\"object\"}}},\"description\":\"The PrivateLink endpoint was created and is being provisioned.\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/v1/networking/privatelink/endpoints","segments":[{"lit":"v1"},{"lit":"networking"},{"lit":"privatelink"},{"lit":"endpoints"}],"select":{"exist":["slug","team_id"]},"transform":{"req":{"awsServiceName":"`reqdata.aws_service_name`","enablePrivateDns":"`reqdata.enable_private_dn`","name":"`reqdata.name`","projectId":"`reqdata.project_id`","vercelRegion":"`reqdata.vercel_region`"},"res":"`body`"},"index$":0}],"key$":"create"},"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"example":"prj_a1b2c3d4e5f6g7h8","kind":"query","name":"project_id","orig":"project_id","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"example":"my-team-url-slug","kind":"query","name":"slug","orig":"slug","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"example":"team_1a2b3c4d5e6f7g8h9i0j1k2l","kind":"query","name":"team_id","orig":"team_id","reqd":false,"type":"`$STRING`","index$":2}]},"contract":{"id":"GET /v1/networking/privatelink/endpoints","json":"{\"operationId\":\"listPrivateLinkEndpoints\",\"parameters\":[{\"description\":\"The project ID to list PrivateLink endpoints for.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"The project ID to list PrivateLink endpoints for.\",\"example\":\"prj_a1b2c3d4e5f6g7h8\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"description\":\"A PrivateLink endpoint, which connects a project to an AWS VPC endpoint service in a single region so that traffic reaches the service over AWS PrivateLink rather than the public internet.\",\"properties\":{\"awsDnsEntries\":{\"description\":\"The regional DNS names assigned to the endpoint by AWS. Use these to reach the service when private DNS is not enabled.\",\"example\":[\"vpce-0123456789abcdef0-a1b2c3d4.vpce-svc-0123456789abcdef0.us-east-1.vpce.amazonaws.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"awsServiceName\":{\"description\":\"The AWS VPC endpoint service the endpoint connects to.\",\"example\":\"com.amazonaws.vpce.us-east-1.vpce-svc-0123456789abcdef0\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds since the UNIX epoch for when the endpoint was created.\",\"example\":1610963878358,\"type\":\"number\"},\"endpointId\":{\"description\":\"The unique identifier of the PrivateLink endpoint.\",\"example\":\"ple_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the PrivateLink endpoint, shown in the Vercel dashboard.\",\"example\":\"payments-db\",\"type\":\"string\"},\"privateDnsNames\":{\"description\":\"The private DNS names of the endpoint service, populated when private DNS is enabled for the endpoint.\",\"example\":[\"payments.internal.example.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"projectId\":{\"description\":\"The identifier of the project the PrivateLink endpoint belongs to.\",\"example\":\"prj_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"status\":{\"description\":\"The current state of the endpoint. - `creating`: the endpoint is being created. - `pending-acceptance`: waiting for the endpoint service owner to accept the connection. Only occurs for services that require manual acceptance. - `provisioning`: the connection was accepted and AWS is finishing setup. - `available`: the endpoint is fully provisioned and ready to use. - `rejected`: the endpoint service owner rejected the connection. - `failed`: the endpoint could not be provisioned. - `deleting`: the endpoint is being deleted.\",\"enum\":[\"available\",\"creating\",\"deleting\",\"failed\",\"pending-acceptance\",\"provisioning\",\"rejected\"],\"example\":\"available\",\"type\":\"string\"},\"statusMessage\":{\"description\":\"A human-readable explanation of why the endpoint could not be provisioned. Only set when `status` is `failed`, and absent for every other status including `rejected`, since AWS does not report a rejection reason.\",\"example\":\"Endpoint did not become available in time. Try deleting and recreating, or visit https://vercel.com/help if the issue persists.\",\"type\":\"string\"},\"teamId\":{\"description\":\"The identifier of the team that owns the PrivateLink endpoint.\",\"example\":\"team_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Timestamp in milliseconds since the UNIX epoch for when the endpoint was last updated.\",\"example\":1610963878358,\"type\":\"number\"},\"vercelRegion\":{\"description\":\"The Vercel region the endpoint is provisioned in.\",\"example\":\"iad1\",\"type\":\"string\"},\"vpcEndpointId\":{\"description\":\"The identifier of the underlying AWS VPC endpoint. Absent until AWS has created the endpoint.\",\"example\":\"vpce-0123456789abcdef0\",\"type\":\"string\"}},\"required\":[\"awsServiceName\",\"createdAt\",\"endpointId\",\"name\",\"projectId\",\"status\",\"teamId\",\"updatedAt\",\"vercelRegion\"],\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"The PrivateLink endpoints of the project.\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v1/networking/privatelink/endpoints","segments":[{"lit":"v1"},{"lit":"networking"},{"lit":"privatelink"},{"lit":"endpoints"}],"select":{"exist":["project_id","slug","team_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"example":"ple_a1b2c3d4e5f6g7h8","kind":"param","name":"id","orig":"endpoint_id","reqd":true,"type":"`$STRING`","index$":0}],"query":[{"active":true,"example":"prj_a1b2c3d4e5f6g7h8","kind":"query","name":"project_id","orig":"project_id","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"example":"my-team-url-slug","kind":"query","name":"slug","orig":"slug","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"example":"team_1a2b3c4d5e6f7g8h9i0j1k2l","kind":"query","name":"team_id","orig":"team_id","reqd":false,"type":"`$STRING`","index$":2}]},"contract":{"id":"GET /v1/networking/privatelink/endpoints/{endpointId}","json":"{\"operationId\":\"readPrivateLinkEndpoint\",\"parameters\":[{\"description\":\"The project ID the PrivateLink endpoint belongs to.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"The project ID the PrivateLink endpoint belongs to.\",\"example\":\"prj_a1b2c3d4e5f6g7h8\",\"type\":\"string\"}},{\"description\":\"The unique identifier of the PrivateLink endpoint.\",\"in\":\"path\",\"name\":\"endpointId\",\"required\":true,\"schema\":{\"description\":\"The unique identifier of the PrivateLink endpoint.\",\"example\":\"ple_a1b2c3d4e5f6g7h8\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A PrivateLink endpoint, which connects a project to an AWS VPC endpoint service in a single region so that traffic reaches the service over AWS PrivateLink rather than the public internet.\",\"properties\":{\"awsDnsEntries\":{\"description\":\"The regional DNS names assigned to the endpoint by AWS. Use these to reach the service when private DNS is not enabled.\",\"example\":[\"vpce-0123456789abcdef0-a1b2c3d4.vpce-svc-0123456789abcdef0.us-east-1.vpce.amazonaws.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"awsServiceName\":{\"description\":\"The AWS VPC endpoint service the endpoint connects to.\",\"example\":\"com.amazonaws.vpce.us-east-1.vpce-svc-0123456789abcdef0\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds since the UNIX epoch for when the endpoint was created.\",\"example\":1610963878358,\"type\":\"number\"},\"endpointId\":{\"description\":\"The unique identifier of the PrivateLink endpoint.\",\"example\":\"ple_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the PrivateLink endpoint, shown in the Vercel dashboard.\",\"example\":\"payments-db\",\"type\":\"string\"},\"privateDnsNames\":{\"description\":\"The private DNS names of the endpoint service, populated when private DNS is enabled for the endpoint.\",\"example\":[\"payments.internal.example.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"projectId\":{\"description\":\"The identifier of the project the PrivateLink endpoint belongs to.\",\"example\":\"prj_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"status\":{\"description\":\"The current state of the endpoint. - `creating`: the endpoint is being created. - `pending-acceptance`: waiting for the endpoint service owner to accept the connection. Only occurs for services that require manual acceptance. - `provisioning`: the connection was accepted and AWS is finishing setup. - `available`: the endpoint is fully provisioned and ready to use. - `rejected`: the endpoint service owner rejected the connection. - `failed`: the endpoint could not be provisioned. - `deleting`: the endpoint is being deleted.\",\"enum\":[\"available\",\"creating\",\"deleting\",\"failed\",\"pending-acceptance\",\"provisioning\",\"rejected\"],\"example\":\"available\",\"type\":\"string\"},\"statusMessage\":{\"description\":\"A human-readable explanation of why the endpoint could not be provisioned. Only set when `status` is `failed`, and absent for every other status including `rejected`, since AWS does not report a rejection reason.\",\"example\":\"Endpoint did not become available in time. Try deleting and recreating, or visit https://vercel.com/help if the issue persists.\",\"type\":\"string\"},\"teamId\":{\"description\":\"The identifier of the team that owns the PrivateLink endpoint.\",\"example\":\"team_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Timestamp in milliseconds since the UNIX epoch for when the endpoint was last updated.\",\"example\":1610963878358,\"type\":\"number\"},\"vercelRegion\":{\"description\":\"The Vercel region the endpoint is provisioned in.\",\"example\":\"iad1\",\"type\":\"string\"},\"vpcEndpointId\":{\"description\":\"The identifier of the underlying AWS VPC endpoint. Absent until AWS has created the endpoint.\",\"example\":\"vpce-0123456789abcdef0\",\"type\":\"string\"}},\"required\":[\"awsServiceName\",\"createdAt\",\"endpointId\",\"name\",\"projectId\",\"status\",\"teamId\",\"updatedAt\",\"vercelRegion\"],\"type\":\"object\"}}},\"description\":\"The requested PrivateLink endpoint.\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v1/networking/privatelink/endpoints/{endpointId}","rename":{"param":{"endpointId":"id"}},"segments":[{"lit":"v1"},{"lit":"networking"},{"lit":"privatelink"},{"lit":"endpoints"},{"var":"id"}],"select":{"exist":["id","project_id","slug","team_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"},"update":{"input":"data","name":"update","points":[{"active":true,"args":{"params":[{"active":true,"example":"ple_a1b2c3d4e5f6g7h8","kind":"param","name":"id","orig":"endpoint_id","reqd":true,"type":"`$STRING`","index$":0}],"query":[{"active":true,"example":"prj_a1b2c3d4e5f6g7h8","kind":"query","name":"project_id","orig":"project_id","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"example":"my-team-url-slug","kind":"query","name":"slug","orig":"slug","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"example":"team_1a2b3c4d5e6f7g8h9i0j1k2l","kind":"query","name":"team_id","orig":"team_id","reqd":false,"type":"`$STRING`","index$":2}]},"contract":{"id":"PATCH /v1/networking/privatelink/endpoints/{endpointId}","json":"{\"operationId\":\"updatePrivateLinkEndpoint\",\"parameters\":[{\"description\":\"The project ID the PrivateLink endpoint belongs to.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"The project ID the PrivateLink endpoint belongs to.\",\"example\":\"prj_a1b2c3d4e5f6g7h8\",\"type\":\"string\"}},{\"description\":\"The unique identifier of the PrivateLink endpoint.\",\"in\":\"path\",\"name\":\"endpointId\",\"required\":true,\"schema\":{\"description\":\"The unique identifier of the PrivateLink endpoint.\",\"example\":\"ple_a1b2c3d4e5f6g7h8\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"enablePrivateDns\":{\"description\":\"When `true`, resolves the endpoint service through its private DNS names, which are then returned in `privateDnsNames`. When `false`, clears them. When omitted, the current setting is kept. At least one of `name` or `enablePrivateDns` must be provided.\",\"example\":false,\"type\":\"boolean\"},\"name\":{\"description\":\"A new name for the PrivateLink endpoint. When omitted, the current name is kept.\",\"example\":\"payments-db\",\"maxLength\":255,\"type\":\"string\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A PrivateLink endpoint, which connects a project to an AWS VPC endpoint service in a single region so that traffic reaches the service over AWS PrivateLink rather than the public internet.\",\"properties\":{\"awsDnsEntries\":{\"description\":\"The regional DNS names assigned to the endpoint by AWS. Use these to reach the service when private DNS is not enabled.\",\"example\":[\"vpce-0123456789abcdef0-a1b2c3d4.vpce-svc-0123456789abcdef0.us-east-1.vpce.amazonaws.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"awsServiceName\":{\"description\":\"The AWS VPC endpoint service the endpoint connects to.\",\"example\":\"com.amazonaws.vpce.us-east-1.vpce-svc-0123456789abcdef0\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds since the UNIX epoch for when the endpoint was created.\",\"example\":1610963878358,\"type\":\"number\"},\"endpointId\":{\"description\":\"The unique identifier of the PrivateLink endpoint.\",\"example\":\"ple_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the PrivateLink endpoint, shown in the Vercel dashboard.\",\"example\":\"payments-db\",\"type\":\"string\"},\"privateDnsNames\":{\"description\":\"The private DNS names of the endpoint service, populated when private DNS is enabled for the endpoint.\",\"example\":[\"payments.internal.example.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"projectId\":{\"description\":\"The identifier of the project the PrivateLink endpoint belongs to.\",\"example\":\"prj_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"status\":{\"description\":\"The current state of the endpoint. - `creating`: the endpoint is being created. - `pending-acceptance`: waiting for the endpoint service owner to accept the connection. Only occurs for services that require manual acceptance. - `provisioning`: the connection was accepted and AWS is finishing setup. - `available`: the endpoint is fully provisioned and ready to use. - `rejected`: the endpoint service owner rejected the connection. - `failed`: the endpoint could not be provisioned. - `deleting`: the endpoint is being deleted.\",\"enum\":[\"available\",\"creating\",\"deleting\",\"failed\",\"pending-acceptance\",\"provisioning\",\"rejected\"],\"example\":\"available\",\"type\":\"string\"},\"statusMessage\":{\"description\":\"A human-readable explanation of why the endpoint could not be provisioned. Only set when `status` is `failed`, and absent for every other status including `rejected`, since AWS does not report a rejection reason.\",\"example\":\"Endpoint did not become available in time. Try deleting and recreating, or visit https://vercel.com/help if the issue persists.\",\"type\":\"string\"},\"teamId\":{\"description\":\"The identifier of the team that owns the PrivateLink endpoint.\",\"example\":\"team_a1b2c3d4e5f6g7h8\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Timestamp in milliseconds since the UNIX epoch for when the endpoint was last updated.\",\"example\":1610963878358,\"type\":\"number\"},\"vercelRegion\":{\"description\":\"The Vercel region the endpoint is provisioned in.\",\"example\":\"iad1\",\"type\":\"string\"},\"vpcEndpointId\":{\"description\":\"The identifier of the underlying AWS VPC endpoint. Absent until AWS has created the endpoint.\",\"example\":\"vpce-0123456789abcdef0\",\"type\":\"string\"}},\"required\":[\"awsServiceName\",\"createdAt\",\"endpointId\",\"name\",\"projectId\",\"status\",\"teamId\",\"updatedAt\",\"vercelRegion\"],\"type\":\"object\"}}},\"description\":\"The updated PrivateLink endpoint.\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"PATCH","orig":"/v1/networking/privatelink/endpoints/{endpointId}","rename":{"param":{"endpointId":"id"}},"segments":[{"lit":"v1"},{"lit":"networking"},{"lit":"privatelink"},{"lit":"endpoints"},{"var":"id"}],"select":{"exist":["id","project_id","slug","team_id"]},"transform":{"req":{"enablePrivateDns":"`reqdata.enable_private_dn`","name":"`reqdata.name`"},"res":"`body`"},"index$":0}],"key$":"update"}},"relations":{"ancestors":[]},"key$":"private_link_endpoint","name__orig":"private_link_endpoint","Name":"PrivateLinkEndpoint","name_":"private_link_endpoint","name-":"private-link-endpoint","NAME":"PRIVATE_LINK_ENDPOINT","index$":47}, {"active":true,"entity":"private_link_endpoint","key$":"BasicPrivateLinkEndpointFlow","kind":"basic","name":"BasicPrivateLinkEndpointFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"private_link_endpoint_ref01"},"match":{},"op":"create","spec":[],"valid":[],"index$":0},{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"private_link_endpoint_ref01"}}],"index$":1},{"active":true,"data":{},"input":{"ref":"private_link_endpoint_ref01","srcdatavar":"private_link_endpoint_ref01_data","suffix":"_up0","textfield":"awsServiceName"},"match":{},"op":"update","spec":[{"apply":"TextFieldMark","def":{"mark":"Mark01-private_link_endpoint_ref01"}}],"valid":[],"index$":2},{"active":true,"data":{},"input":{"ref":"private_link_endpoint_ref01","srcdatavar":"private_link_endpoint_ref01_data","suffix":"_dt0"},"match":{"id":"private_link_endpoint01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-private_link_endpoint_ref01"}}],"index$":3}]}, 'PrivateLinkEndpoint')
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+
+    // CREATE
+    const private_link_endpoint_ref01_ent = client.PrivateLinkEndpoint()
+    let private_link_endpoint_ref01_data = setup.data.new.private_link_endpoint['private_link_endpoint_ref01']
+
+    private_link_endpoint_ref01_data = (await private_link_endpoint_ref01_ent.create(private_link_endpoint_ref01_data)).data()
+    assert(null != private_link_endpoint_ref01_data.id)
+
+
+    // LIST
+    const private_link_endpoint_ref01_match: any = {}
+
+    const private_link_endpoint_ref01_list = (await private_link_endpoint_ref01_ent.list(private_link_endpoint_ref01_match)).map((e: any) => e.data())
+
+    assert(!isempty(select(private_link_endpoint_ref01_list, { id: private_link_endpoint_ref01_data.id })))
+
+
+    // UPDATE
+    const private_link_endpoint_ref01_data_up0: any = {}
+    private_link_endpoint_ref01_data_up0.id = private_link_endpoint_ref01_data.id
+
+    const private_link_endpoint_ref01_markdef_up0 = { name: 'awsServiceName', value: 'Mark01-private_link_endpoint_ref01_' + setup.now }
+    ;(private_link_endpoint_ref01_data_up0 as any)[private_link_endpoint_ref01_markdef_up0.name] = private_link_endpoint_ref01_markdef_up0.value
+
+    const private_link_endpoint_ref01_resdata_up0 = (await private_link_endpoint_ref01_ent.update(private_link_endpoint_ref01_data_up0)).data()
+    assert(private_link_endpoint_ref01_resdata_up0.id === private_link_endpoint_ref01_data_up0.id)
+
+    assert((private_link_endpoint_ref01_resdata_up0 as any)[private_link_endpoint_ref01_markdef_up0.name] === private_link_endpoint_ref01_markdef_up0.value)
+
+
+    // LOAD
+    const private_link_endpoint_ref01_match_dt0: any = {}
+    private_link_endpoint_ref01_match_dt0.id = private_link_endpoint_ref01_data.id
+    const private_link_endpoint_ref01_data_dt0 = (await private_link_endpoint_ref01_ent.load(private_link_endpoint_ref01_match_dt0)).data()
+    assert(private_link_endpoint_ref01_data_dt0.id === private_link_endpoint_ref01_data.id)
+
+
+  })
+})
+
+
+
+function basicSetup(extra?: any) {
+  // TODO: fix test def options
+  const options: any = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname, 
+      '../../../../.sdk/test/entity/private_link_endpoint/PrivateLinkEndpointTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = VercelSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['private_link_endpoint01','private_link_endpoint02','private_link_endpoint03'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'VERCEL_TEST_PRIVATE_LINK_ENDPOINT_ENTID': idmap,
+    'VERCEL_TEST_LIVE': 'FALSE',
+    'VERCEL_TEST_EXPLAIN': 'FALSE',
+    'VERCEL_APIKEY': '',
+  })
+
+  idmap = env['VERCEL_TEST_PRIVATE_LINK_ENDPOINT_ENTID']
+
+  const live = 'TRUE' === env.VERCEL_TEST_LIVE
+
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['VERCEL_TEST_PRIVATE_LINK_ENDPOINT_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new VercelSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+        apikey: env.VERCEL_APIKEY,
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.VERCEL_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  

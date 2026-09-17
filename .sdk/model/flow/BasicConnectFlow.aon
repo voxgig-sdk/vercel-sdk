@@ -1,0 +1,36 @@
+# BasicConnectFlow
+
+main: kit: flow: BasicConnectFlow:
+{
+  entity: "connect",
+  kind: "basic",
+  name: "BasicConnectFlow",
+  step: [
+    {
+      input: {
+        ref: "connect_ref01"
+      }
+
+      match: {
+        connector: "connector01",
+        connector_id: "connector01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "connect_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "connect01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicConnectFlow"
+}

@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>User | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a aria-current="page" href="../api/user.html">User</a><div class="nav-sections"><a class="nav-section" href="#get-v3events">GET /v3/events</a>
+<a class="nav-section" href="#get-v2user">GET /v2/user</a>
+<a class="nav-section" href="#delete-v1user">DELETE /v1/user</a></div>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="user">User</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v3events"><code>/v3/events</code></a></td>
+<td><code>list</code></td>
+<td>Successful response</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2user"><code>/v2/user</code></a></td>
+<td><code>load</code></td>
+<td>Successful response</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1user"><code>/v1/user</code></a></td>
+<td><code>remove</code></td>
+<td>Response indicating that the User deletion process has been initiated, and a confirmation email has been sent</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>categories</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The categories that group this event with related event types.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp (in milliseconds) of when the event was generated.</td>
+</tr>
+<tr>
+<td><code>entities</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>A list of &quot;entities&quot; within the event <code>text</code>.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the Event.</td>
+</tr>
+<tr>
+<td><code>payload</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>principal</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>principalId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the principal who generated the event.</td>
+</tr>
+<tr>
+<td><code>requestId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the session that the principal's token belongs to, when it belongs to one.</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The human-readable text of the Event.</td>
+</tr>
+<tr>
+<td><code>tokenId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The public ID of the token that the principal authenticated with, when the request behind this event carried one.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of the event.</td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Metadata for {@link userId}.</td>
+</tr>
+<tr>
+<td><code>userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>When the principal who generated the event is a user, this is their ID; otherwise, it is empty.</td>
+</tr>
+<tr>
+<td><code>via</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Metadata for {@link viaIds}.</td>
+</tr>
+<tr>
+<td><code>viaIds</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>If the principal delegated its authority (for example, a user delegating to an app), then this array contains the ID of the current actor.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-v3events" class="operation" data-method="get"><code>GET</code> /v3/events</h3>
+<p>Operation ID: <code>listUserEvents</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No | Maximum number of items which may be returned. |
+| <code>since</code> | <code>query</code> | <code>string</code> | No | Timestamp to only include items created since then. |
+| <code>until</code> | <code>query</code> | <code>string</code> | No | Timestamp to only include items created until then. |
+| <code>types</code> | <code>query</code> | <code>string</code> | No | Comma-delimited list of event &quot;types&quot; to filter the results by. |
+| <code>userId</code> | <code>query</code> | <code>string</code> | No | Deprecated. Use <code>principalId</code> instead. If <code>principalId</code> and <code>userId</code> both exist, <code>principalId</code> will be used. |
+| <code>principalId</code> | <code>query</code> | <code>string</code> | No | When retrieving events for a Team, the <code>principalId</code> parameter may be specified to filter events generated by a specific principal. |
+| <code>projectIds</code> | <code>query</code> | <code>string</code> | No | Comma-delimited list of project IDs to filter the results by. |
+| <code>entityId</code> | <code>query</code> | <code>string</code> | No | Filters events to those associated with a specific entity (matched against <code>payload.id</code>). For example, a connector ID. |
+| <code>withPayload</code> | <code>query</code> | <code>string</code> | No | When set to <code>true</code>, the response will include the <code>payload</code> field for each event. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-successful-response" class="status" data-status="2xx">200: Successful response</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>events</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>Array of events generated by the User.</td>
+</tr>
+<tr>
+<td><code>events[].categories</code></td>
+<td><code>array of enum: account, ai, ai-gateway, billing, connect, deployment, ...</code></td>
+<td>No</td>
+<td>The categories that group this event with related event types. An event can belong to multiple categories (for example a firewall event is both Firewall and Security). The first entry is the &quot;primary&quot; category. Use the <code>/events/types</code> endpoint to discover the full list of categories.</td>
+</tr>
+<tr>
+<td><code>events[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp (in milliseconds) of when the event was generated.</td>
+</tr>
+<tr>
+<td><code>events[].entities</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>A list of &quot;entities&quot; within the event <code>text</code>. Useful for enhancing the displayed text with additional styling and links.</td>
+</tr>
+<tr>
+<td><code>events[].entities[].end</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The index of where the entity ends within the <code>text</code> (non-inclusive).</td>
+</tr>
+<tr>
+<td><code>events[].entities[].start</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The index of where the entity begins within the <code>text</code> (inclusive).</td>
+</tr>
+<tr>
+<td><code>events[].entities[].type</code></td>
+<td><code>enum: app, author, bitbucket_login, bold, deployment_host, deployment_inspector, ...</code></td>
+<td>Yes</td>
+<td>The type of entity.</td>
+</tr>
+<tr>
+<td><code>events[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the Event.</td>
+</tr>
+<tr>
+<td><code>events[].payload</code></td>
+<td><code>object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>events[].principal</code></td>
+<td><code>object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>events[].principalId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the principal who generated the event. The principal is typically a user, but it could also be an app, an integration, etc. The principal may have delegated its authority to an acting party, and so {@link viaIds} should be checked as well.</td>
+</tr>
+<tr>
+<td><code>events[].requestId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>events[].sessionId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the session that the principal's token belongs to, when it belongs to one.</td>
+</tr>
+<tr>
+<td><code>events[].text</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The human-readable text of the Event.</td>
+</tr>
+<tr>
+<td><code>events[].tokenId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The public ID of the token that the principal authenticated with, when the request behind this event carried one.</td>
+</tr>
+<tr>
+<td><code>events[].type</code></td>
+<td><code>enum: access-group-created, access-group-deleted, access-group-project-updated, access-group-updated, access-group-user-added, access-group-user-removed, ...</code></td>
+<td>No</td>
+<td>The type of the event.</td>
+</tr>
+<tr>
+<td><code>events[].user</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Metadata for {@link userId}.</td>
+</tr>
+<tr>
+<td><code>events[].user.avatar</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>events[].user.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>events[].user.slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>events[].user.uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>events[].user.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>events[].userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>When the principal who generated the event is a user, this is their ID; otherwise, it is empty.</td>
+</tr>
+<tr>
+<td><code>events[].via</code></td>
+<td><code>array of object or object or object or object</code></td>
+<td>No</td>
+<td>Metadata for {@link viaIds}.</td>
+</tr>
+<tr>
+<td><code>events[].viaIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>If the principal delegated its authority (for example, a user delegating to an app), then this array contains the ID of the current actor. For example, if <code>principalId</code> is &quot;user123&quot; and <code>viaIds</code> is <code>[&amp;quot;app456&amp;quot;]</code>, we can say the event was triggered by - &quot;app456 on behalf of user123&quot;, or - &quot;user123 via app4556&quot;. Both are equivalent. Arbitrarily long chains of delegation can be represented. For example, if <code>principalId</code> is &quot;user123&quot; and <code>viaIds</code> is <code>[&amp;quot;service1&amp;quot;, &amp;quot;service2&amp;quot;]</code>, we can say the event was triggered by &quot;user123 via service1 via service2&quot;.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v2user" class="operation" data-method="get"><code>GET</code> /v2/user</h3>
+<p>Operation ID: <code>getAuthUser</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-successful-response-1" class="status" data-status="2xx">200: Successful response</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="302" class="status" data-status="3xx">302</h5>
+<h5 id="400" class="status" data-status="4xx">400</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1user" class="operation" data-method="delete"><code>DELETE</code> /v1/user</h3>
+<p>Operation ID: <code>requestDelete</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reasons</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Optional array of objects that describe the reason why the User account is being deleted.</td>
+</tr>
+<tr>
+<td><code>reasons[].description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Description of the reason why the User account is being deleted.</td>
+</tr>
+<tr>
+<td><code>reasons[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Idenitifier slug of the reason why the User account is being deleted.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="202-response-indicating-that-the-user-deletion-process-has-been-initiated-and-a-confirmation-email-has-been-sent" class="status" data-status="2xx">202: Response indicating that the User deletion process has been initiated, and a confirmation email has been sent</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Email address of the User who has initiated deletion.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier of the User who has initiated deletion.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>User deletion progress status.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401" class="status" data-status="4xx">401</h5>
+<h5 id="402" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

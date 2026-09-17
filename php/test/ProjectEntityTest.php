@@ -42,6 +42,7 @@ class ProjectEntityTest extends TestCase
         $project_ref01_ent = $client->Project(null);
         $project_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.project"), "project_ref01"));
+        $project_ref01_data["project_id"] = $setup["idmap"]["project01"];
 
         $project_ref01_data_result = $project_ref01_ent->create($project_ref01_data, null);
         $project_ref01_data = Helpers::to_map(is_object($project_ref01_data_result) && method_exists($project_ref01_data_result, 'data_get') ? $project_ref01_data_result->data_get() : $project_ref01_data_result);
@@ -96,7 +97,7 @@ function project_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["project01", "project02", "project03"] as $k) {
+    foreach (["project01", "project02", "project03", "transfer_request01", "transfer_request02", "transfer_request03", "rollback01", "rollback02", "rollback03", "promote01", "promote02", "promote03", "domain01", "domain02", "domain03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

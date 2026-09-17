@@ -1,0 +1,189 @@
+{
+  "existing": {
+    "file": {
+      "FILE00": {
+        "children": [],
+        "contentType": "s3d",
+        "mode": 62,
+        "name": "s3f",
+        "type": "s40",
+        "uid": "s41",
+        "deployment_id": "DEPLOYMENT01"
+      },
+      "FILE01": {
+        "children": [],
+        "contentType": "s79",
+        "mode": 122,
+        "name": "s7b",
+        "type": "s7c",
+        "uid": "s7d",
+        "deployment_id": "DEPLOYMENT01"
+      },
+      "FILE02": {
+        "children": [],
+        "contentType": "sb5",
+        "mode": 182,
+        "name": "sb7",
+        "type": "sb8",
+        "uid": "sb9",
+        "deployment_id": "DEPLOYMENT01"
+      }
+    }
+  },
+  "new": {
+    "file": {
+      "file_ref01": {
+        "children": [],
+        "contentType": "sf1",
+        "mode": 242,
+        "name": "sf3",
+        "type": "sf4",
+        "uid": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /v6/deployments/{id}/files": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listDeploymentFiles",
+        "parameters": [
+          {
+            "description": "The unique deployment identifier",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "description": "The unique deployment identifier",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "description": "A deployment file tree entry",
+                    "properties": {
+                      "children": {
+                        "description": "The list of children files of the directory (only valid for the `directory` type)",
+                        "items": {
+                          "description": "A deployment file tree entry",
+                          "properties": "[Circular *paths./v6/deployments/{id}/files.get.responses.200.content.application/json.schema.items.properties]",
+                          "required": [
+                            "mode",
+                            "name",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "contentType": {
+                        "description": "The content-type of the file (only valid for the `file` type)",
+                        "example": "application/json",
+                        "type": "string"
+                      },
+                      "mode": {
+                        "description": "The file \"mode\" indicating file type and permissions.",
+                        "type": "number"
+                      },
+                      "name": {
+                        "description": "The name of the file tree entry",
+                        "example": "my-file.json",
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "String indicating the type of file tree entry.",
+                        "enum": [
+                          "directory",
+                          "file",
+                          "invalid",
+                          "lambda",
+                          "middleware",
+                          "symlink"
+                        ],
+                        "example": "file",
+                        "type": "string"
+                      },
+                      "uid": {
+                        "description": "The unique identifier of the file (only valid for the `file` type)",
+                        "example": "2d4aad419917f15b1146e9e03ddc9bb31747e4d0",
+                        "type": "string"
+                      }
+                    },
+                    "required": {
+                      "$ref": "#/responses/200/content/application~1json/schema/items/properties/children/items/required"
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Retrieved the file tree successfully"
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": "File tree not found\nDeployment not found"
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

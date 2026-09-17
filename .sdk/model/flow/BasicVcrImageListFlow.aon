@@ -1,0 +1,26 @@
+# BasicVcrImageListFlow
+
+main: kit: flow: BasicVcrImageListFlow:
+{
+  entity: "vcr_image_list",
+  kind: "basic",
+  name: "BasicVcrImageListFlow",
+  step: [
+    {
+      match: {
+        id_or_name: "id_or_name01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "vcr_image_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicVcrImageListFlow"
+}

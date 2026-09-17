@@ -1,0 +1,791 @@
+# Entity: project_route
+
+main: kit: entity: project_route: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "action"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "actions"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "alias"
+      req: false
+      short: "The staging alias for previewing this version."
+      type: "`$STRING`"
+    }
+    {
+      name: "conditions"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "createdBy"
+      req: true
+      short: "The user who created this version."
+      type: "`$STRING`"
+    }
+    {
+      name: "currentRoute"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "description"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      short: "Unique identifier for the version."
+      type: "`$STRING`"
+    }
+    {
+      name: "isLive"
+      req: false
+      short: "Whether this version is currently live in production."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "isStaging"
+      req: false
+      short: "Whether this version is staged and not yet promoted to production."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "lastModified"
+      req: true
+      short: "Timestamp of when this version was last modified."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "overwrite"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "pathCondition"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "position"
+      req: false
+      short: "Controls where the route is inserted."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "prompt"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "restore"
+      req: false
+      short: "If true, restores the staged route to the value in the production version."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "route"
+      req: true
+      short: "The full route object to replace the existing route with"
+      type: "`$OBJECT`"
+      union: {
+        branches: 2
+        count: 15
+        depth: 15
+      }
+    }
+    {
+      name: "routes"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "ruleCount"
+      req: false
+      short: "The number of routing rules in this version."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "s3Key"
+      req: true
+      short: "The S3 key where the routing rules are stored."
+      type: "`$STRING`"
+    }
+    {
+      name: "version"
+      req: true
+      short: "A version of routing rules stored in S3."
+      type: "`$OBJECT`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "project_route"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/projects/{projectId}/routes"
+            json: "{\"operationId\":\"addRoute\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"position\":{\"description\":\"Controls where the route is inserted. Defaults to \\\"end\\\" if omitted.\",\"properties\":{\"placement\":{\"description\":\"\\\"after\\\"/\\\"before\\\" require referenceId.\",\"enum\":[\"start\",\"end\",\"after\",\"before\"],\"type\":\"string\"},\"referenceId\":{\"description\":\"Route ID to insert after/before. Required for \\\"after\\\"/\\\"before\\\".\",\"type\":\"string\"}},\"type\":\"object\"},\"route\":{\"properties\":{\"description\":{\"maxLength\":1024,\"type\":\"string\"},\"enabled\":{\"type\":\"boolean\"},\"name\":{\"maxLength\":256,\"type\":\"string\"},\"route\":{\"properties\":{\"caseSensitive\":{\"type\":\"boolean\"},\"dest\":{\"type\":\"string\"},\"has\":{\"items\":{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"host\",\"header\",\"cookie\",\"query\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"headers\":{\"type\":\"object\"},\"missing\":{\"items\":{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"host\",\"header\",\"cookie\",\"query\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"respectOriginCacheControl\":{\"type\":\"boolean\"},\"src\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"},\"transforms\":{\"items\":{\"properties\":{\"args\":{},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"append\",\"set\",\"delete\"],\"type\":\"string\"},\"target\":{\"type\":\"object\"},\"type\":{\"enum\":[\"request.headers\",\"request.query\",\"response.headers\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"src\"],\"type\":\"object\"},\"srcSyntax\":{\"description\":\"Pattern syntax type. If not provided, inferred from pattern.\",\"enum\":[\"equals\",\"path-to-regexp\",\"regex\"],\"type\":\"string\"}},\"required\":[\"name\",\"route\"],\"type\":\"object\"}},\"required\":[\"route\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"route\":{\"properties\":{\"description\":{\"description\":\"Optional description of what the routing rule does.\",\"type\":\"string\"},\"enabled\":{\"description\":\"Whether the routing rule is enabled. Defaults to true.\",\"enum\":[false,true],\"type\":\"boolean\"},\"id\":{\"description\":\"Unique identifier for the routing rule.\",\"type\":\"string\"},\"name\":{\"description\":\"Human-readable name for the routing rule.\",\"type\":\"string\"},\"rawDest\":{\"description\":\"Original destination provided by user.\",\"type\":\"string\"},\"rawSrc\":{\"description\":\"Original source pattern provided by user (path-to-regexp or regex). Used to display the user's input in API responses.\",\"type\":\"string\"},\"route\":{\"description\":\"The route definition from @vercel/routing-utils.\",\"properties\":{\"caseSensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"check\":{\"enum\":[false,true],\"type\":\"boolean\"},\"continue\":{\"enum\":[false,true],\"type\":\"boolean\"},\"dest\":{\"type\":\"string\"},\"destination\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"path\":{\"description\":\"Routing-only path used to select a route inside the target service.\",\"type\":\"string\"},\"service\":{\"type\":\"string\"},\"type\":{\"description\":\"Optional explicit format marker. The destination is identified by the presence of `service`, so `type` is no longer required.\",\"enum\":[\"service\"],\"type\":\"string\"}},\"required\":[\"service\"],\"type\":\"object\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"has\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"important\":{\"enum\":[false,true],\"type\":\"boolean\"},\"locale\":{\"properties\":{\"cookie\":{\"type\":\"string\"},\"redirect\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"}},\"type\":\"object\"},\"methods\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"middleware\":{\"description\":\"A middleware index in the `middleware` key under the build result\",\"type\":\"number\"},\"middlewarePath\":{\"description\":\"A middleware key within the `output` key under the build result. Overrides a `middleware` definition.\",\"type\":\"string\"},\"middlewareRawSrc\":{\"description\":\"The original middleware matchers.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"missing\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"mitigate\":{\"properties\":{\"action\":{\"enum\":[\"challenge\",\"deny\"],\"type\":\"string\"}},\"required\":[\"action\"],\"type\":\"object\"},\"override\":{\"enum\":[false,true],\"type\":\"boolean\"},\"respectOriginCacheControl\":{\"enum\":[false,true],\"type\":\"boolean\"},\"source\":{\"description\":\"Aliases for `src`, `dest`, and `status`. These provide consistency with the `rewrites`, `redirects`, and `headers` fields which use `source`, `destination`, and `statusCode`. During normalization, the string forms are converted to their canonical forms (`src`, `dest`, `status`) and stripped from the route object. `destination` may also be a service-targeted object, in which case routing is delegated into the named service's internal route table and the object is preserved as-is (not folded into `dest`).\",\"type\":\"string\"},\"src\":{\"type\":\"string\"},\"status\":{\"type\":\"number\"},\"statusCode\":{\"type\":\"number\"},\"transforms\":{\"items\":{\"oneOf\":[{\"properties\":{\"args\":{\"oneOf\":[{\"type\":\"string\"},{\"items\":{\"type\":\"string\"},\"type\":\"array\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"append\",\"delete\",\"set\"],\"type\":\"string\"},\"target\":{\"properties\":{\"key\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\"],\"type\":\"object\"},\"type\":{\"enum\":[\"request.headers\",\"request.query\",\"response.headers\"],\"type\":\"string\"}},\"required\":[\"op\",\"target\",\"type\"],\"type\":\"object\"},{\"properties\":{\"args\":{\"type\":\"string\"},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"set\"],\"type\":\"string\"},\"type\":{\"enum\":[\"request.path\"],\"type\":\"string\"}},\"required\":[\"args\",\"op\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"}},\"required\":[\"src\"],\"type\":\"object\"},\"routeType\":{\"enum\":[\"redirect\",\"rewrite\",\"set_status\",\"transform\"],\"type\":\"string\"},\"srcSyntax\":{\"description\":\"The syntax type of the source pattern. Determines how the pattern is compiled to regex.\",\"enum\":[\"equals\",\"path-to-regexp\",\"regex\"],\"type\":\"string\"},\"staged\":{\"description\":\"Whether this route is new and not yet published to production. Set to true only when a route is first created via add-route. Cleared (set to false) when a version is promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"route\"],\"type\":\"object\"},\"version\":{\"description\":\"A version of routing rules stored in S3.\",\"properties\":{\"alias\":{\"description\":\"The staging alias for previewing this version.\",\"type\":\"string\"},\"createdBy\":{\"description\":\"The user who created this version.\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version is staged and not yet promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"lastModified\":{\"description\":\"Timestamp of when this version was last modified.\",\"type\":\"number\"},\"ruleCount\":{\"description\":\"The number of routing rules in this version.\",\"type\":\"number\"},\"s3Key\":{\"description\":\"The S3 key where the routing rules are stored.\",\"type\":\"string\"}},\"required\":[\"createdBy\",\"id\",\"lastModified\",\"s3Key\"],\"type\":\"object\"}},\"required\":[\"route\",\"version\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/projects/{projectId}/routes"
+          rename: {
+            param: {
+              projectId: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "routes"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/projects/{projectId}/routes/generate"
+            json: "{\"operationId\":\"generateRoute\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"currentRoute\":{\"properties\":{\"actions\":{\"items\":{\"properties\":{\"dest\":{\"type\":\"string\"},\"headers\":{\"items\":{\"properties\":{\"key\":{\"type\":\"string\"},\"op\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"type\":\"integer\"},\"subType\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"conditions\":{\"items\":{\"properties\":{\"field\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"missing\":{\"type\":\"boolean\"},\"operator\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"description\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"pathCondition\":{\"properties\":{\"syntax\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"type\":\"object\"}},\"required\":[\"pathCondition\",\"actions\"],\"type\":\"object\"},\"prompt\":{\"maxLength\":2000,\"type\":\"string\"}},\"required\":[\"prompt\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"type\":\"string\"},\"route\":{\"properties\":{\"actions\":{\"items\":{\"properties\":{\"dest\":{\"type\":\"string\"},\"headers\":{\"items\":{\"properties\":{\"key\":{\"type\":\"string\"},\"op\":{\"enum\":[\"append\",\"delete\",\"set\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"key\",\"op\"],\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"type\":\"number\"},\"subType\":{\"enum\":[\"response-headers\",\"transform-request-header\",\"transform-request-query\"],\"type\":\"string\"},\"type\":{\"enum\":[\"modify\",\"redirect\",\"rewrite\",\"set-status\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"conditions\":{\"items\":{\"properties\":{\"field\":{\"enum\":[\"cookie\",\"header\",\"host\",\"query\"],\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"missing\":{\"enum\":[false,true],\"type\":\"boolean\"},\"operator\":{\"enum\":[\"contains\",\"eq\",\"exists\",\"re\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"field\",\"missing\",\"operator\"],\"type\":\"object\"},\"type\":\"array\"},\"description\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"pathCondition\":{\"properties\":{\"syntax\":{\"enum\":[\"equals\",\"path-to-regexp\",\"regex\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"syntax\",\"value\"],\"type\":\"object\"}},\"required\":[\"actions\",\"description\",\"name\",\"pathCondition\"],\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"408\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/projects/{projectId}/routes/generate"
+          rename: {
+            param: {
+              projectId: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "routes"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          select: {
+            exist: [
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.route`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/projects/{projectId}/routes/versions"
+            json: "{\"operationId\":\"updateRouteVersions\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"action\":{\"enum\":[\"promote\",\"restore\",\"discard\"],\"type\":\"string\"},\"id\":{\"type\":\"string\"}},\"required\":[\"id\",\"action\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"version\":{\"description\":\"A version of routing rules stored in S3.\",\"properties\":{\"alias\":{\"description\":\"The staging alias for previewing this version.\",\"type\":\"string\"},\"createdBy\":{\"description\":\"The user who created this version.\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version is staged and not yet promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"lastModified\":{\"description\":\"Timestamp of when this version was last modified.\",\"type\":\"number\"},\"ruleCount\":{\"description\":\"The number of routing rules in this version.\",\"type\":\"number\"},\"s3Key\":{\"description\":\"The S3 key where the routing rules are stored.\",\"type\":\"string\"}},\"required\":[\"createdBy\",\"id\",\"lastModified\",\"s3Key\"],\"type\":\"object\"}},\"required\":[\"version\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/projects/{projectId}/routes/versions"
+          rename: {
+            param: {
+              projectId: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "routes"
+            }
+            {
+              lit: "versions"
+            }
+          ]
+          select: {
+            exist: [
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.version`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/projects/{projectId}/routes/versions"
+            json: "{\"operationId\":\"getRouteVersions\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"versions\":{\"items\":{\"description\":\"A version of routing rules stored in S3.\",\"properties\":{\"alias\":{\"description\":\"The staging alias for previewing this version.\",\"type\":\"string\"},\"createdBy\":{\"description\":\"The user who created this version.\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version is staged and not yet promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"lastModified\":{\"description\":\"Timestamp of when this version was last modified.\",\"type\":\"number\"},\"ruleCount\":{\"description\":\"The number of routing rules in this version.\",\"type\":\"number\"},\"s3Key\":{\"description\":\"The S3 key where the routing rules are stored.\",\"type\":\"string\"}},\"required\":[\"createdBy\",\"id\",\"lastModified\",\"s3Key\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"versions\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/projects/{projectId}/routes/versions"
+          rename: {
+            param: {
+              projectId: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "routes"
+            }
+            {
+              lit: "versions"
+            }
+          ]
+          select: {
+            exist: [
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.versions`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "diff"
+                orig: "diff"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "filter"
+                orig: "filter"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "version_id"
+                orig: "version_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/projects/{projectId}/routes"
+            json: "{\"operationId\":\"getRoutes\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"versionId\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"q\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"filter\",\"required\":false,\"schema\":{\"enum\":[\"rewrite\",\"redirect\",\"set_status\",\"transform\"],\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"diff\",\"required\":false,\"schema\":{\"oneOf\":[{\"type\":\"boolean\"},{\"enum\":[\"only\"],\"type\":\"string\"}]}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"type\":\"object\"},{\"properties\":{\"diffCount\":{\"type\":\"number\"},\"routes\":{\"items\":{\"description\":\"A routing rule with metadata for project-level routing.\",\"properties\":{\"description\":{\"description\":\"Optional description of what the routing rule does.\",\"type\":\"string\"},\"enabled\":{\"description\":\"Whether the routing rule is enabled. Defaults to true.\",\"enum\":[false,true],\"type\":\"boolean\"},\"id\":{\"description\":\"Unique identifier for the routing rule.\",\"type\":\"string\"},\"name\":{\"description\":\"Human-readable name for the routing rule.\",\"type\":\"string\"},\"rawDest\":{\"description\":\"Original destination provided by user.\",\"type\":\"string\"},\"rawSrc\":{\"description\":\"Original source pattern provided by user (path-to-regexp or regex). Used to display the user's input in API responses.\",\"type\":\"string\"},\"route\":{\"description\":\"The route definition from @vercel/routing-utils.\",\"properties\":{\"caseSensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"check\":{\"enum\":[false,true],\"type\":\"boolean\"},\"continue\":{\"enum\":[false,true],\"type\":\"boolean\"},\"dest\":{\"type\":\"string\"},\"destination\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"path\":{\"description\":\"Routing-only path used to select a route inside the target service.\",\"type\":\"string\"},\"service\":{\"type\":\"string\"},\"type\":{\"description\":\"Optional explicit format marker. The destination is identified by the presence of `service`, so `type` is no longer required.\",\"enum\":[\"service\"],\"type\":\"string\"}},\"required\":[\"service\"],\"type\":\"object\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"has\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"important\":{\"enum\":[false,true],\"type\":\"boolean\"},\"locale\":{\"properties\":{\"cookie\":{\"type\":\"string\"},\"redirect\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"}},\"type\":\"object\"},\"methods\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"middleware\":{\"description\":\"A middleware index in the `middleware` key under the build result\",\"type\":\"number\"},\"middlewarePath\":{\"description\":\"A middleware key within the `output` key under the build result. Overrides a `middleware` definition.\",\"type\":\"string\"},\"middlewareRawSrc\":{\"description\":\"The original middleware matchers.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"missing\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"mitigate\":{\"properties\":{\"action\":{\"enum\":[\"challenge\",\"deny\"],\"type\":\"string\"}},\"required\":[\"action\"],\"type\":\"object\"},\"override\":{\"enum\":[false,true],\"type\":\"boolean\"},\"respectOriginCacheControl\":{\"enum\":[false,true],\"type\":\"boolean\"},\"source\":{\"description\":\"Aliases for `src`, `dest`, and `status`. These provide consistency with the `rewrites`, `redirects`, and `headers` fields which use `source`, `destination`, and `statusCode`. During normalization, the string forms are converted to their canonical forms (`src`, `dest`, `status`) and stripped from the route object. `destination` may also be a service-targeted object, in which case routing is delegated into the named service's internal route table and the object is preserved as-is (not folded into `dest`).\",\"type\":\"string\"},\"src\":{\"type\":\"string\"},\"status\":{\"type\":\"number\"},\"statusCode\":{\"type\":\"number\"},\"transforms\":{\"items\":{\"oneOf\":[{\"properties\":{\"args\":{\"oneOf\":[{\"type\":\"string\"},{\"items\":{\"type\":\"string\"},\"type\":\"array\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"append\",\"delete\",\"set\"],\"type\":\"string\"},\"target\":{\"properties\":{\"key\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\"],\"type\":\"object\"},\"type\":{\"enum\":[\"request.headers\",\"request.query\",\"response.headers\"],\"type\":\"string\"}},\"required\":[\"op\",\"target\",\"type\"],\"type\":\"object\"},{\"properties\":{\"args\":{\"type\":\"string\"},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"set\"],\"type\":\"string\"},\"type\":{\"enum\":[\"request.path\"],\"type\":\"string\"}},\"required\":[\"args\",\"op\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"}},\"required\":[\"src\"],\"type\":\"object\"},\"routeType\":{\"description\":\"Computed route type based on the route configuration. Only present in API responses, not stored in S3.\",\"enum\":[\"redirect\",\"rewrite\",\"set_status\",\"transform\"],\"type\":\"string\"},\"srcSyntax\":{\"description\":\"The syntax type of the source pattern. Determines how the pattern is compiled to regex.\",\"enum\":[\"equals\",\"path-to-regexp\",\"regex\"],\"type\":\"string\"},\"staged\":{\"description\":\"Whether this route is new and not yet published to production. Set to true only when a route is first created via add-route. Cleared (set to false) when a version is promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"route\"],\"type\":\"object\"},\"type\":\"array\"},\"version\":{\"description\":\"A version of routing rules stored in S3.\",\"properties\":{\"alias\":{\"description\":\"The staging alias for previewing this version.\",\"type\":\"string\"},\"createdBy\":{\"description\":\"The user who created this version.\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version is staged and not yet promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"lastModified\":{\"description\":\"Timestamp of when this version was last modified.\",\"type\":\"number\"},\"ruleCount\":{\"description\":\"The number of routing rules in this version.\",\"type\":\"number\"},\"s3Key\":{\"description\":\"The S3 key where the routing rules are stored.\",\"type\":\"string\"}},\"required\":[\"createdBy\",\"id\",\"lastModified\",\"s3Key\"],\"type\":\"object\"}},\"required\":[\"diffCount\",\"routes\",\"version\"],\"type\":\"object\"},{\"properties\":{\"routes\":{\"items\":{\"description\":\"A routing rule with metadata for project-level routing.\",\"properties\":{\"description\":{\"description\":\"Optional description of what the routing rule does.\",\"type\":\"string\"},\"enabled\":{\"description\":\"Whether the routing rule is enabled. Defaults to true.\",\"enum\":[false,true],\"type\":\"boolean\"},\"id\":{\"description\":\"Unique identifier for the routing rule.\",\"type\":\"string\"},\"name\":{\"description\":\"Human-readable name for the routing rule.\",\"type\":\"string\"},\"rawDest\":{\"description\":\"Original destination provided by user.\",\"type\":\"string\"},\"rawSrc\":{\"description\":\"Original source pattern provided by user (path-to-regexp or regex). Used to display the user's input in API responses.\",\"type\":\"string\"},\"route\":{\"description\":\"The route definition from @vercel/routing-utils.\",\"properties\":{\"caseSensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"check\":{\"enum\":[false,true],\"type\":\"boolean\"},\"continue\":{\"enum\":[false,true],\"type\":\"boolean\"},\"dest\":{\"type\":\"string\"},\"destination\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"path\":{\"description\":\"Routing-only path used to select a route inside the target service.\",\"type\":\"string\"},\"service\":{\"type\":\"string\"},\"type\":{\"description\":\"Optional explicit format marker. The destination is identified by the presence of `service`, so `type` is no longer required.\",\"enum\":[\"service\"],\"type\":\"string\"}},\"required\":[\"service\"],\"type\":\"object\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"has\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"important\":{\"enum\":[false,true],\"type\":\"boolean\"},\"locale\":{\"properties\":{\"cookie\":{\"type\":\"string\"},\"redirect\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"}},\"type\":\"object\"},\"methods\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"middleware\":{\"description\":\"A middleware index in the `middleware` key under the build result\",\"type\":\"number\"},\"middlewarePath\":{\"description\":\"A middleware key within the `output` key under the build result. Overrides a `middleware` definition.\",\"type\":\"string\"},\"middlewareRawSrc\":{\"description\":\"The original middleware matchers.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"missing\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"mitigate\":{\"properties\":{\"action\":{\"enum\":[\"challenge\",\"deny\"],\"type\":\"string\"}},\"required\":[\"action\"],\"type\":\"object\"},\"override\":{\"enum\":[false,true],\"type\":\"boolean\"},\"respectOriginCacheControl\":{\"enum\":[false,true],\"type\":\"boolean\"},\"source\":{\"description\":\"Aliases for `src`, `dest`, and `status`. These provide consistency with the `rewrites`, `redirects`, and `headers` fields which use `source`, `destination`, and `statusCode`. During normalization, the string forms are converted to their canonical forms (`src`, `dest`, `status`) and stripped from the route object. `destination` may also be a service-targeted object, in which case routing is delegated into the named service's internal route table and the object is preserved as-is (not folded into `dest`).\",\"type\":\"string\"},\"src\":{\"type\":\"string\"},\"status\":{\"type\":\"number\"},\"statusCode\":{\"type\":\"number\"},\"transforms\":{\"items\":{\"oneOf\":[{\"properties\":{\"args\":{\"oneOf\":[{\"type\":\"string\"},{\"items\":{\"type\":\"string\"},\"type\":\"array\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"append\",\"delete\",\"set\"],\"type\":\"string\"},\"target\":{\"properties\":{\"key\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\"],\"type\":\"object\"},\"type\":{\"enum\":[\"request.headers\",\"request.query\",\"response.headers\"],\"type\":\"string\"}},\"required\":[\"op\",\"target\",\"type\"],\"type\":\"object\"},{\"properties\":{\"args\":{\"type\":\"string\"},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"set\"],\"type\":\"string\"},\"type\":{\"enum\":[\"request.path\"],\"type\":\"string\"}},\"required\":[\"args\",\"op\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"}},\"required\":[\"src\"],\"type\":\"object\"},\"routeType\":{\"description\":\"Computed route type based on the route configuration. Only present in API responses, not stored in S3.\",\"enum\":[\"redirect\",\"rewrite\",\"set_status\",\"transform\"],\"type\":\"string\"},\"srcSyntax\":{\"description\":\"The syntax type of the source pattern. Determines how the pattern is compiled to regex.\",\"enum\":[\"equals\",\"path-to-regexp\",\"regex\"],\"type\":\"string\"},\"staged\":{\"description\":\"Whether this route is new and not yet published to production. Set to true only when a route is first created via add-route. Cleared (set to false) when a version is promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"route\"],\"type\":\"object\"},\"type\":\"array\"},\"version\":{\"description\":\"A version of routing rules stored in S3.\",\"properties\":{\"alias\":{\"description\":\"The staging alias for previewing this version.\",\"type\":\"string\"},\"createdBy\":{\"description\":\"The user who created this version.\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version is staged and not yet promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"lastModified\":{\"description\":\"Timestamp of when this version was last modified.\",\"type\":\"number\"},\"ruleCount\":{\"description\":\"The number of routing rules in this version.\",\"type\":\"number\"},\"s3Key\":{\"description\":\"The S3 key where the routing rules are stored.\",\"type\":\"string\"}},\"required\":[\"createdBy\",\"id\",\"lastModified\",\"s3Key\"],\"type\":\"object\"}},\"required\":[\"routes\",\"version\"],\"type\":\"object\"},{\"properties\":{\"limit\":{\"properties\":{\"currentRoutes\":{\"type\":\"number\"},\"maxRoutes\":{\"type\":\"number\"}},\"required\":[\"currentRoutes\",\"maxRoutes\"],\"type\":\"object\"},\"routes\":{\"items\":{\"description\":\"A routing rule with metadata for project-level routing.\",\"properties\":{\"description\":{\"description\":\"Optional description of what the routing rule does.\",\"type\":\"string\"},\"enabled\":{\"description\":\"Whether the routing rule is enabled. Defaults to true.\",\"enum\":[false,true],\"type\":\"boolean\"},\"id\":{\"description\":\"Unique identifier for the routing rule.\",\"type\":\"string\"},\"name\":{\"description\":\"Human-readable name for the routing rule.\",\"type\":\"string\"},\"rawDest\":{\"description\":\"Original destination provided by user.\",\"type\":\"string\"},\"rawSrc\":{\"description\":\"Original source pattern provided by user (path-to-regexp or regex). Used to display the user's input in API responses.\",\"type\":\"string\"},\"route\":{\"description\":\"The route definition from @vercel/routing-utils.\",\"properties\":{\"caseSensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"check\":{\"enum\":[false,true],\"type\":\"boolean\"},\"continue\":{\"enum\":[false,true],\"type\":\"boolean\"},\"dest\":{\"type\":\"string\"},\"destination\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"path\":{\"description\":\"Routing-only path used to select a route inside the target service.\",\"type\":\"string\"},\"service\":{\"type\":\"string\"},\"type\":{\"description\":\"Optional explicit format marker. The destination is identified by the presence of `service`, so `type` is no longer required.\",\"enum\":[\"service\"],\"type\":\"string\"}},\"required\":[\"service\"],\"type\":\"object\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"has\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"important\":{\"enum\":[false,true],\"type\":\"boolean\"},\"locale\":{\"properties\":{\"cookie\":{\"type\":\"string\"},\"redirect\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"}},\"type\":\"object\"},\"methods\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"middleware\":{\"description\":\"A middleware index in the `middleware` key under the build result\",\"type\":\"number\"},\"middlewarePath\":{\"description\":\"A middleware key within the `output` key under the build result. Overrides a `middleware` definition.\",\"type\":\"string\"},\"middlewareRawSrc\":{\"description\":\"The original middleware matchers.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"missing\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"mitigate\":{\"properties\":{\"action\":{\"enum\":[\"challenge\",\"deny\"],\"type\":\"string\"}},\"required\":[\"action\"],\"type\":\"object\"},\"override\":{\"enum\":[false,true],\"type\":\"boolean\"},\"respectOriginCacheControl\":{\"enum\":[false,true],\"type\":\"boolean\"},\"source\":{\"description\":\"Aliases for `src`, `dest`, and `status`. These provide consistency with the `rewrites`, `redirects`, and `headers` fields which use `source`, `destination`, and `statusCode`. During normalization, the string forms are converted to their canonical forms (`src`, `dest`, `status`) and stripped from the route object. `destination` may also be a service-targeted object, in which case routing is delegated into the named service's internal route table and the object is preserved as-is (not folded into `dest`).\",\"type\":\"string\"},\"src\":{\"type\":\"string\"},\"status\":{\"type\":\"number\"},\"statusCode\":{\"type\":\"number\"},\"transforms\":{\"items\":{\"oneOf\":[{\"properties\":{\"args\":{\"oneOf\":[{\"type\":\"string\"},{\"items\":{\"type\":\"string\"},\"type\":\"array\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"append\",\"delete\",\"set\"],\"type\":\"string\"},\"target\":{\"properties\":{\"key\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\"],\"type\":\"object\"},\"type\":{\"enum\":[\"request.headers\",\"request.query\",\"response.headers\"],\"type\":\"string\"}},\"required\":[\"op\",\"target\",\"type\"],\"type\":\"object\"},{\"properties\":{\"args\":{\"type\":\"string\"},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"set\"],\"type\":\"string\"},\"type\":{\"enum\":[\"request.path\"],\"type\":\"string\"}},\"required\":[\"args\",\"op\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"}},\"required\":[\"src\"],\"type\":\"object\"},\"routeType\":{\"description\":\"Computed route type based on the route configuration. Only present in API responses, not stored in S3.\",\"enum\":[\"redirect\",\"rewrite\",\"set_status\",\"transform\"],\"type\":\"string\"},\"srcSyntax\":{\"description\":\"The syntax type of the source pattern. Determines how the pattern is compiled to regex.\",\"enum\":[\"equals\",\"path-to-regexp\",\"regex\"],\"type\":\"string\"},\"staged\":{\"description\":\"Whether this route is new and not yet published to production. Set to true only when a route is first created via add-route. Cleared (set to false) when a version is promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"route\"],\"type\":\"object\"},\"type\":\"array\"},\"version\":{\"description\":\"A version of routing rules stored in S3.\",\"properties\":{\"alias\":{\"description\":\"The staging alias for previewing this version.\",\"type\":\"string\"},\"createdBy\":{\"description\":\"The user who created this version.\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version is staged and not yet promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"lastModified\":{\"description\":\"Timestamp of when this version was last modified.\",\"type\":\"number\"},\"ruleCount\":{\"description\":\"The number of routing rules in this version.\",\"type\":\"number\"},\"s3Key\":{\"description\":\"The S3 key where the routing rules are stored.\",\"type\":\"string\"}},\"required\":[\"createdBy\",\"id\",\"lastModified\",\"s3Key\"],\"type\":\"object\"}},\"required\":[\"limit\",\"routes\",\"version\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/projects/{projectId}/routes"
+          rename: {
+            param: {
+              projectId: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "routes"
+            }
+          ]
+          select: {
+            exist: [
+              "diff"
+              "filter"
+              "id"
+              "q"
+              "slug"
+              "team_id"
+              "version_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    patch: {
+      name: "patch"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "route_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v1/projects/{projectId}/routes/{routeId}"
+            json: "{\"operationId\":\"editRoute\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"routeId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"restore\":{\"description\":\"If true, restores the staged route to the value in the production version.\",\"type\":\"boolean\"},\"route\":{\"description\":\"The full route object to replace the existing route with\",\"properties\":{\"description\":{\"maxLength\":1024,\"type\":\"string\"},\"enabled\":{\"type\":\"boolean\"},\"name\":{\"maxLength\":256,\"type\":\"string\"},\"route\":{\"properties\":{\"caseSensitive\":{\"type\":\"boolean\"},\"dest\":{\"type\":\"string\"},\"has\":{\"items\":{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"host\",\"header\",\"cookie\",\"query\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"headers\":{\"type\":\"object\"},\"missing\":{\"items\":{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"host\",\"header\",\"cookie\",\"query\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"respectOriginCacheControl\":{\"type\":\"boolean\"},\"src\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"},\"transforms\":{\"items\":{\"properties\":{\"args\":{},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"append\",\"set\",\"delete\"],\"type\":\"string\"},\"target\":{\"type\":\"object\"},\"type\":{\"enum\":[\"request.headers\",\"request.query\",\"response.headers\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"src\"],\"type\":\"object\"},\"srcSyntax\":{\"description\":\"Pattern syntax type. If not provided, inferred from pattern.\",\"enum\":[\"equals\",\"path-to-regexp\",\"regex\"],\"type\":\"string\"}},\"required\":[\"name\",\"route\"],\"type\":\"object\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"route\":{\"properties\":{\"description\":{\"description\":\"Optional description of what the routing rule does.\",\"type\":\"string\"},\"enabled\":{\"description\":\"Whether the routing rule is enabled. Defaults to true.\",\"enum\":[false,true],\"type\":\"boolean\"},\"id\":{\"description\":\"Unique identifier for the routing rule.\",\"type\":\"string\"},\"name\":{\"description\":\"Human-readable name for the routing rule.\",\"type\":\"string\"},\"rawDest\":{\"description\":\"Original destination provided by user.\",\"type\":\"string\"},\"rawSrc\":{\"description\":\"Original source pattern provided by user (path-to-regexp or regex). Used to display the user's input in API responses.\",\"type\":\"string\"},\"route\":{\"description\":\"The route definition from @vercel/routing-utils.\",\"properties\":{\"caseSensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"check\":{\"enum\":[false,true],\"type\":\"boolean\"},\"continue\":{\"enum\":[false,true],\"type\":\"boolean\"},\"dest\":{\"type\":\"string\"},\"destination\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"path\":{\"description\":\"Routing-only path used to select a route inside the target service.\",\"type\":\"string\"},\"service\":{\"type\":\"string\"},\"type\":{\"description\":\"Optional explicit format marker. The destination is identified by the presence of `service`, so `type` is no longer required.\",\"enum\":[\"service\"],\"type\":\"string\"}},\"required\":[\"service\"],\"type\":\"object\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"has\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"headers\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"important\":{\"enum\":[false,true],\"type\":\"boolean\"},\"locale\":{\"properties\":{\"cookie\":{\"type\":\"string\"},\"redirect\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"}},\"type\":\"object\"},\"methods\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"middleware\":{\"description\":\"A middleware index in the `middleware` key under the build result\",\"type\":\"number\"},\"middlewarePath\":{\"description\":\"A middleware key within the `output` key under the build result. Overrides a `middleware` definition.\",\"type\":\"string\"},\"middlewareRawSrc\":{\"description\":\"The original middleware matchers.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"missing\":{\"items\":{\"oneOf\":[{\"properties\":{\"type\":{\"enum\":[\"host\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"type\",\"value\"],\"type\":\"object\"},{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"cookie\",\"header\",\"query\"],\"type\":\"string\"},\"value\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"re\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"},\"mitigate\":{\"properties\":{\"action\":{\"enum\":[\"challenge\",\"deny\"],\"type\":\"string\"}},\"required\":[\"action\"],\"type\":\"object\"},\"override\":{\"enum\":[false,true],\"type\":\"boolean\"},\"respectOriginCacheControl\":{\"enum\":[false,true],\"type\":\"boolean\"},\"source\":{\"description\":\"Aliases for `src`, `dest`, and `status`. These provide consistency with the `rewrites`, `redirects`, and `headers` fields which use `source`, `destination`, and `statusCode`. During normalization, the string forms are converted to their canonical forms (`src`, `dest`, `status`) and stripped from the route object. `destination` may also be a service-targeted object, in which case routing is delegated into the named service's internal route table and the object is preserved as-is (not folded into `dest`).\",\"type\":\"string\"},\"src\":{\"type\":\"string\"},\"status\":{\"type\":\"number\"},\"statusCode\":{\"type\":\"number\"},\"transforms\":{\"items\":{\"oneOf\":[{\"properties\":{\"args\":{\"oneOf\":[{\"type\":\"string\"},{\"items\":{\"type\":\"string\"},\"type\":\"array\"}]},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"append\",\"delete\",\"set\"],\"type\":\"string\"},\"target\":{\"properties\":{\"key\":{\"oneOf\":[{\"type\":\"string\"},{\"properties\":{\"eq\":{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"number\"}]},\"gt\":{\"type\":\"number\"},\"gte\":{\"type\":\"number\"},\"inc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lt\":{\"type\":\"number\"},\"lte\":{\"type\":\"number\"},\"neq\":{\"type\":\"string\"},\"ninc\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"pre\":{\"type\":\"string\"},\"suf\":{\"type\":\"string\"}},\"type\":\"object\"}]}},\"required\":[\"key\"],\"type\":\"object\"},\"type\":{\"enum\":[\"request.headers\",\"request.query\",\"response.headers\"],\"type\":\"string\"}},\"required\":[\"op\",\"target\",\"type\"],\"type\":\"object\"},{\"properties\":{\"args\":{\"type\":\"string\"},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"set\"],\"type\":\"string\"},\"type\":{\"enum\":[\"request.path\"],\"type\":\"string\"}},\"required\":[\"args\",\"op\",\"type\"],\"type\":\"object\"}]},\"type\":\"array\"}},\"required\":[\"src\"],\"type\":\"object\"},\"routeType\":{\"enum\":[\"redirect\",\"rewrite\",\"set_status\",\"transform\"],\"type\":\"string\"},\"srcSyntax\":{\"description\":\"The syntax type of the source pattern. Determines how the pattern is compiled to regex.\",\"enum\":[\"equals\",\"path-to-regexp\",\"regex\"],\"type\":\"string\"},\"staged\":{\"description\":\"Whether this route is new and not yet published to production. Set to true only when a route is first created via add-route. Cleared (set to false) when a version is promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"route\"],\"type\":\"object\"},\"version\":{\"description\":\"A version of routing rules stored in S3.\",\"properties\":{\"alias\":{\"description\":\"The staging alias for previewing this version.\",\"type\":\"string\"},\"createdBy\":{\"description\":\"The user who created this version.\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version is staged and not yet promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"lastModified\":{\"description\":\"Timestamp of when this version was last modified.\",\"type\":\"number\"},\"ruleCount\":{\"description\":\"The number of routing rules in this version.\",\"type\":\"number\"},\"s3Key\":{\"description\":\"The S3 key where the routing rules are stored.\",\"type\":\"string\"}},\"required\":[\"createdBy\",\"id\",\"lastModified\",\"s3Key\"],\"type\":\"object\"}},\"required\":[\"version\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v1/projects/{projectId}/routes/{routeId}"
+          rename: {
+            param: {
+              projectId: "project_id"
+              routeId: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "routes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/projects/{projectId}/routes"
+            json: "{\"operationId\":\"deleteRoutes\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"routeIds\":{\"description\":\"The IDs of the routes to delete\",\"items\":{\"type\":\"string\"},\"minItems\":1,\"type\":\"array\"}},\"required\":[\"routeIds\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deletedCount\":{\"type\":\"number\"},\"version\":{\"description\":\"A version of routing rules stored in S3.\",\"properties\":{\"alias\":{\"description\":\"The staging alias for previewing this version.\",\"type\":\"string\"},\"createdBy\":{\"description\":\"The user who created this version.\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version is staged and not yet promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"lastModified\":{\"description\":\"Timestamp of when this version was last modified.\",\"type\":\"number\"},\"ruleCount\":{\"description\":\"The number of routing rules in this version.\",\"type\":\"number\"},\"s3Key\":{\"description\":\"The S3 key where the routing rules are stored.\",\"type\":\"string\"}},\"required\":[\"createdBy\",\"id\",\"lastModified\",\"s3Key\"],\"type\":\"object\"}},\"required\":[\"deletedCount\",\"version\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/projects/{projectId}/routes"
+          rename: {
+            param: {
+              projectId: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "routes"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.version`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /v1/projects/{projectId}/routes"
+            json: "{\"operationId\":\"stageRoutes\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"overwrite\":{\"type\":\"boolean\"},\"routes\":{\"default\":[],\"items\":{\"properties\":{\"description\":{\"maxLength\":1024,\"type\":\"string\"},\"enabled\":{\"type\":\"boolean\"},\"id\":{\"maxLength\":256,\"type\":\"string\"},\"name\":{\"maxLength\":256,\"type\":\"string\"},\"route\":{\"properties\":{\"caseSensitive\":{\"type\":\"boolean\"},\"dest\":{\"type\":\"string\"},\"has\":{\"items\":{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"host\",\"header\",\"cookie\",\"query\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"headers\":{\"type\":\"object\"},\"missing\":{\"items\":{\"properties\":{\"key\":{\"type\":\"string\"},\"type\":{\"enum\":[\"host\",\"header\",\"cookie\",\"query\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"respectOriginCacheControl\":{\"type\":\"boolean\"},\"src\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"},\"transforms\":{\"items\":{\"properties\":{\"args\":{},\"env\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"op\":{\"enum\":[\"append\",\"set\",\"delete\"],\"type\":\"string\"},\"target\":{\"type\":\"object\"},\"type\":{\"enum\":[\"request.headers\",\"request.query\",\"response.headers\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"src\"],\"type\":\"object\"}},\"required\":[\"id\",\"name\",\"route\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"version\":{\"description\":\"A version of routing rules stored in S3.\",\"properties\":{\"alias\":{\"description\":\"The staging alias for previewing this version.\",\"type\":\"string\"},\"createdBy\":{\"description\":\"The user who created this version.\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version is staged and not yet promoted to production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"lastModified\":{\"description\":\"Timestamp of when this version was last modified.\",\"type\":\"number\"},\"ruleCount\":{\"description\":\"The number of routing rules in this version.\",\"type\":\"number\"},\"s3Key\":{\"description\":\"The S3 key where the routing rules are stored.\",\"type\":\"string\"}},\"required\":[\"createdBy\",\"id\",\"lastModified\",\"s3Key\"],\"type\":\"object\"}},\"required\":[\"version\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/v1/projects/{projectId}/routes"
+          rename: {
+            param: {
+              projectId: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "routes"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.version`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "project"
+      ]
+    ]
+  }
+
+
+
+}

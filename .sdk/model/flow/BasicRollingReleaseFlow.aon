@@ -1,0 +1,76 @@
+# BasicRollingReleaseFlow
+
+main: kit: flow: BasicRollingReleaseFlow:
+{
+  entity: "rolling_release",
+  kind: "basic",
+  name: "BasicRollingReleaseFlow",
+  step: [
+    {
+      input: {
+        ref: "rolling_release_ref01"
+      }
+
+      match: {
+        project_id: "project01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "rolling_release_ref01",
+        srcdatavar: "rolling_release_ref01_data",
+        suffix: "_up0",
+        textfield: "advancementType"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-rolling_release_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "rolling_release_ref01",
+        srcdatavar: "rolling_release_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "rolling_release01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-rolling_release_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "rolling_release_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "rolling_release01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicRollingReleaseFlow"
+}

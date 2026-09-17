@@ -19,16 +19,18 @@ make build
 export VERCEL_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
-./vercel-cli load 1 project            # {id:1} shorthand
-./vercel-cli load '{id:1}' project       # explicit match map
-./vercel-cli update '{name:"x"}' project
+./vercel-cli list access_group
+./vercel-cli load 1 access_group            # {id:1} shorthand
+./vercel-cli load '{id:1}' access_group       # explicit match map
+./vercel-cli update '{name:"x"}' access_group
+./vercel-cli list ai_gateway
 
 # 5. Override the API base URL for a single call
-VERCEL_BASE=https://api.example.com ./vercel-cli load 1 project
+VERCEL_BASE=https://api.example.com ./vercel-cli list access_group
 
 # 6. No arguments -> interactive REPL
 ./vercel-cli
-vercel> load 1 project
+vercel> list access_group
 vercel> /quit
 ```
 
@@ -54,7 +56,7 @@ vercel> /quit
    arguments to open the REPL):
 
    ```sh
-   ./dist/*/vercel-cli load 1 project
+   ./dist/*/vercel-cli list access_group
    ```
 
 4. **Go interactive.** Run the binary with no arguments to open the REPL, then
@@ -64,11 +66,20 @@ That is the whole loop: *build → set key → evaluate boru expressions*.
 
 ## How-to guides
 
+### List the records of an entity
+
+```sh
+./vercel-cli list access_group
+```
+
+`list <entity>` returns the first page of records. `<entity>` is a bareword —
+it is auto-quoted as an boru atom, so no quotes are needed.
+
 ### Load a single record
 
 ```sh
-./vercel-cli load 1 project          # scalar shorthand for {id:1}
-./vercel-cli load '{id:1}' project     # explicit match map
+./vercel-cli load 1 access_group          # scalar shorthand for {id:1}
+./vercel-cli load '{id:1}' access_group     # explicit match map
 ```
 
 The query is either a **scalar** (`1`, treated as `{id:1}`) or a **match map**
@@ -77,7 +88,7 @@ The query is either a **scalar** (`1`, treated as `{id:1}`) or a **match map**
 ### Update a record
 
 ```sh
-./vercel-cli update '{id:1,name:"new"}' project
+./vercel-cli update '{id:1,name:"new"}' access_group
 ```
 
 The match map carries both the selector and the new field values; the updated
@@ -90,7 +101,7 @@ Configuration is read from the environment — nothing is written to disk:
 ```sh
 export VERCEL_APIKEY=sk_live_xxx            # API key
 export VERCEL_BASE=https://api.example.com  # optional: override the API base URL
-./vercel-cli load 1 project
+./vercel-cli list access_group
 ```
 
 Both are injectable by a secrets vault, so the key never has to be typed inline.
@@ -102,7 +113,7 @@ evaluated as its own boru expression:
 
 ```text
 $ ./vercel-cli
-vercel> load 1 project
+vercel> list access_group
 vercel> /help
 vercel> /quit
 ```
@@ -117,7 +128,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 1 entity.
+below — this SDK exposes 69 entities.
 
 ## Reference
 
@@ -127,10 +138,11 @@ The CLI registers these boru words, each bound to the SDK:
 
 | Word     | Signatures                                    | Returns                        |
 |----------|-----------------------------------------------|--------------------------------|
+| `list`   | `list <entity>` · `list <query> <entity>`     | First page of records          |
 | `load`   | `load <entity>` · `load <query> <entity>`     | A single record                |
 | `update` | `update <query> <entity>`                     | Update a record, return it     |
 
-- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `project`).
+- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `access_group`).
 - `<query>` is either a **Map** (`{id:1}`) or a **Scalar** (`1`, treated as
   `{id:1}`). A scalar is always wrapped as `{id:<value>}`.
 
@@ -171,9 +183,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 1 entity this SDK exposes (any is valid as `<entity>`):
+The 69 entities this SDK exposes (any is valid as `<entity>`):
 
-project
+access_group ai_gateway ai_gateway_rule ai_gateway_rule_list ai_gateway_virtual_model_config ai_gateway_virtual_model_config_list alias api_ai_gateway api_key artifact authentication billing bulk_redirect cert check checks_v2 connect connect_connector connect_connector_list connect_connector_project_connection_list connect_project_connection connect_project_connector_connection_list deployment dns domain domains_registrar drain edge_cache env environment feature_flag file flag flags_sdk_key_with_secret global_config global_config_item global_config_token integration kms list_event_type log log_drain marketplace microfrontend network networking observability private_link_endpoint project project_member project_route query record rolling_release sandbox schema security segment storage team tld_name toggle user vcr vcr_image_list vcr_repository_list vcr_repository_permission_list web_analytics webhook
 
 ## Explanation
 

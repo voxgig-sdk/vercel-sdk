@@ -1,0 +1,22 @@
+# BasicAiGatewayRuleListFlow
+
+main: kit: flow: BasicAiGatewayRuleListFlow:
+{
+  entity: "ai_gateway_rule_list",
+  kind: "basic",
+  name: "BasicAiGatewayRuleListFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ai_gateway_rule_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAiGatewayRuleListFlow"
+}

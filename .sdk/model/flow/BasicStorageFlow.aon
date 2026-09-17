@@ -1,0 +1,53 @@
+# BasicStorageFlow
+
+main: kit: flow: BasicStorageFlow:
+{
+  entity: "storage",
+  kind: "basic",
+  name: "BasicStorageFlow",
+  step: [
+    {
+      input: {
+        ref: "storage_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "storage_ref01",
+        srcdatavar: "storage_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "storage01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-storage_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "storage_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "storage01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicStorageFlow"
+}

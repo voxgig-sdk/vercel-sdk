@@ -1,0 +1,497 @@
+# Entity: checks_v2
+
+main: kit: entity: checks_v2: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "checkId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "completedAt"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "conclusion"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "conclusionText"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "externalId"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      format: "uri"
+      name: "externalUrl"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "output"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "runs"
+      req: true
+      type: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 4
+        depth: 9
+      }
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "checks_v2"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v2/deployments/{deploymentId}/check-runs"
+            json: "{\"operationId\":\"createDeploymentCheckRun\",\"parameters\":[{\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"checkId\":{\"type\":\"string\"}},\"required\":[\"checkId\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"description\":\"Check run backed by a project-level `check` definition.\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"checkId\":{\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"kind\":{\"enum\":[\"webhook\"],\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"git-provider\"],\"type\":\"string\"},\"provider\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"}},\"required\":[\"externalCheckName\",\"kind\",\"provider\"],\"type\":\"object\"},{\"description\":\"Native Vercel checks — check definition and check run `source`.\",\"properties\":{\"origin\":{\"enum\":[\"api\",\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-native-check\"],\"type\":\"string\"}},\"type\":\"object\"},{\"description\":\"Project-defined CI requirement; its selection is frozen on each check run.\",\"properties\":{\"origin\":{\"enum\":[\"api\"],\"type\":\"string\"},\"selection\":{\"oneOf\":[{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"job\"],\"type\":\"string\"}},\"required\":[\"job\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"task\"],\"type\":\"string\"},\"task\":{\"type\":\"string\"}},\"required\":[\"job\",\"kind\",\"task\"],\"type\":\"object\"}]},\"subKind\":{\"enum\":[\"vercel-ci-check\"],\"type\":\"string\"}},\"required\":[\"origin\",\"selection\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"checkId\",\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"},{\"description\":\"Vercel CI check run without a parent `check` (no `checkId` field).\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"description\":\"Config-driven CI task — check run `source` only (no parent check).\",\"properties\":{\"invocationAttempt\":{\"type\":\"number\"},\"invocationId\":{\"type\":\"string\"},\"jobDefinitionId\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"config\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci\"],\"type\":\"string\"}},\"required\":[\"invocationId\",\"jobDefinitionId\",\"origin\",\"subKind\"],\"type\":\"object\"},{\"description\":\"CI sentinel — check run `source` only (no parent check).\",\"properties\":{\"origin\":{\"enum\":[\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci-sentinel\"],\"type\":\"string\"}},\"required\":[\"origin\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v2/deployments/{deploymentId}/check-runs"
+          rename: {
+            param: {
+              deploymentId: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "check-runs"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "ckr_89ha9sdhh9a9"
+                kind: "param"
+                name: "check_id"
+                orig: "check_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/projects/{projectIdOrName}/checks/{checkId}/runs"
+            json: "{\"operationId\":\"listCheckRuns\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectIdOrName\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The ID of the resource that will be updated.\",\"in\":\"path\",\"name\":\"checkId\",\"required\":true,\"schema\":{\"description\":\"The ID of the resource that will be updated.\",\"example\":\"ckr_89ha9sdhh9a9\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"runs\":{\"items\":{\"oneOf\":[{\"description\":\"Check run backed by a project-level `check` definition.\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"checkId\":{\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"kind\":{\"enum\":[\"webhook\"],\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"git-provider\"],\"type\":\"string\"},\"provider\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"}},\"required\":[\"externalCheckName\",\"kind\",\"provider\"],\"type\":\"object\"},{\"description\":\"Native Vercel checks — check definition and check run `source`.\",\"properties\":{\"origin\":{\"enum\":[\"api\",\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-native-check\"],\"type\":\"string\"}},\"type\":\"object\"},{\"description\":\"Project-defined CI requirement; its selection is frozen on each check run.\",\"properties\":{\"origin\":{\"enum\":[\"api\"],\"type\":\"string\"},\"selection\":{\"oneOf\":[{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"job\"],\"type\":\"string\"}},\"required\":[\"job\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"task\"],\"type\":\"string\"},\"task\":{\"type\":\"string\"}},\"required\":[\"job\",\"kind\",\"task\"],\"type\":\"object\"}]},\"subKind\":{\"enum\":[\"vercel-ci-check\"],\"type\":\"string\"}},\"required\":[\"origin\",\"selection\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"checkId\",\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"},{\"description\":\"Vercel CI check run without a parent `check` (no `checkId` field).\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"description\":\"Config-driven CI task — check run `source` only (no parent check).\",\"properties\":{\"invocationAttempt\":{\"type\":\"number\"},\"invocationId\":{\"type\":\"string\"},\"jobDefinitionId\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"config\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci\"],\"type\":\"string\"}},\"required\":[\"invocationId\",\"jobDefinitionId\",\"origin\",\"subKind\"],\"type\":\"object\"},{\"description\":\"CI sentinel — check run `source` only (no parent check).\",\"properties\":{\"origin\":{\"enum\":[\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci-sentinel\"],\"type\":\"string\"}},\"required\":[\"origin\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"}]},\"type\":\"array\"}},\"required\":[\"runs\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/projects/{projectIdOrName}/checks/{checkId}/runs"
+          rename: {
+            param: {
+              checkId: "check_id"
+              projectIdOrName: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "checks"
+            }
+            {
+              var: "check_id"
+            }
+            {
+              lit: "runs"
+            }
+          ]
+          select: {
+            exist: [
+              "check_id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.runs`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/deployments/{deploymentId}/check-runs"
+            json: "{\"operationId\":\"listDeploymentCheckRuns\",\"parameters\":[{\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"runs\":{\"items\":{\"oneOf\":[{\"description\":\"Check run backed by a project-level `check` definition.\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"checkId\":{\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"kind\":{\"enum\":[\"webhook\"],\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"git-provider\"],\"type\":\"string\"},\"provider\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"}},\"required\":[\"externalCheckName\",\"kind\",\"provider\"],\"type\":\"object\"},{\"description\":\"Native Vercel checks — check definition and check run `source`.\",\"properties\":{\"origin\":{\"enum\":[\"api\",\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-native-check\"],\"type\":\"string\"}},\"type\":\"object\"},{\"description\":\"Project-defined CI requirement; its selection is frozen on each check run.\",\"properties\":{\"origin\":{\"enum\":[\"api\"],\"type\":\"string\"},\"selection\":{\"oneOf\":[{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"job\"],\"type\":\"string\"}},\"required\":[\"job\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"task\"],\"type\":\"string\"},\"task\":{\"type\":\"string\"}},\"required\":[\"job\",\"kind\",\"task\"],\"type\":\"object\"}]},\"subKind\":{\"enum\":[\"vercel-ci-check\"],\"type\":\"string\"}},\"required\":[\"origin\",\"selection\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"checkId\",\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"},{\"description\":\"Vercel CI check run without a parent `check` (no `checkId` field).\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"description\":\"Config-driven CI task — check run `source` only (no parent check).\",\"properties\":{\"invocationAttempt\":{\"type\":\"number\"},\"invocationId\":{\"type\":\"string\"},\"jobDefinitionId\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"config\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci\"],\"type\":\"string\"}},\"required\":[\"invocationId\",\"jobDefinitionId\",\"origin\",\"subKind\"],\"type\":\"object\"},{\"description\":\"CI sentinel — check run `source` only (no parent check).\",\"properties\":{\"origin\":{\"enum\":[\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci-sentinel\"],\"type\":\"string\"}},\"required\":[\"origin\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"}]},\"type\":\"array\"}},\"required\":[\"runs\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/deployments/{deploymentId}/check-runs"
+          rename: {
+            param: {
+              deploymentId: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "check-runs"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.runs`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "ckr_89ha9sdhh9a9"
+                kind: "param"
+                name: "check_run_id"
+                orig: "check_run_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/deployments/{deploymentId}/check-runs/{checkRunId}"
+            json: "{\"operationId\":\"getDeploymentCheckRun\",\"parameters\":[{\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The ID of the resource that will be updated.\",\"in\":\"path\",\"name\":\"checkRunId\",\"required\":true,\"schema\":{\"description\":\"The ID of the resource that will be updated.\",\"example\":\"ckr_89ha9sdhh9a9\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"description\":\"Check run backed by a project-level `check` definition.\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"checkId\":{\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"kind\":{\"enum\":[\"webhook\"],\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"git-provider\"],\"type\":\"string\"},\"provider\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"}},\"required\":[\"externalCheckName\",\"kind\",\"provider\"],\"type\":\"object\"},{\"description\":\"Native Vercel checks — check definition and check run `source`.\",\"properties\":{\"origin\":{\"enum\":[\"api\",\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-native-check\"],\"type\":\"string\"}},\"type\":\"object\"},{\"description\":\"Project-defined CI requirement; its selection is frozen on each check run.\",\"properties\":{\"origin\":{\"enum\":[\"api\"],\"type\":\"string\"},\"selection\":{\"oneOf\":[{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"job\"],\"type\":\"string\"}},\"required\":[\"job\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"task\"],\"type\":\"string\"},\"task\":{\"type\":\"string\"}},\"required\":[\"job\",\"kind\",\"task\"],\"type\":\"object\"}]},\"subKind\":{\"enum\":[\"vercel-ci-check\"],\"type\":\"string\"}},\"required\":[\"origin\",\"selection\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"checkId\",\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"},{\"description\":\"Vercel CI check run without a parent `check` (no `checkId` field).\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"description\":\"Config-driven CI task — check run `source` only (no parent check).\",\"properties\":{\"invocationAttempt\":{\"type\":\"number\"},\"invocationId\":{\"type\":\"string\"},\"jobDefinitionId\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"config\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci\"],\"type\":\"string\"}},\"required\":[\"invocationId\",\"jobDefinitionId\",\"origin\",\"subKind\"],\"type\":\"object\"},{\"description\":\"CI sentinel — check run `source` only (no parent check).\",\"properties\":{\"origin\":{\"enum\":[\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci-sentinel\"],\"type\":\"string\"}},\"required\":[\"origin\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/deployments/{deploymentId}/check-runs/{checkRunId}"
+          rename: {
+            param: {
+              checkRunId: "check_run_id"
+              deploymentId: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "check-runs"
+            }
+            {
+              var: "check_run_id"
+            }
+          ]
+          select: {
+            exist: [
+              "check_run_id"
+              "deployment_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "check_run_id"
+                orig: "check_run_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v2/deployments/{deploymentId}/check-runs/{checkRunId}"
+            json: "{\"operationId\":\"updateDeploymentCheckRun\",\"parameters\":[{\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"checkRunId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"skipped\",\"timeout\",\"failed\",\"neutral\",\"succeeded\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"format\":\"uri\",\"pattern\":\"^https?://|^sso:\",\"type\":\"string\"},\"output\":{\"type\":\"object\"},\"status\":{\"enum\":[\"queued\",\"running\",\"completed\"],\"type\":\"string\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"description\":\"Check run backed by a project-level `check` definition.\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"checkId\":{\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"properties\":{\"externalResourceId\":{\"type\":\"string\"},\"integrationConfigurationId\":{\"type\":\"string\"},\"integrationId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"integration\"],\"type\":\"string\"},\"resourceId\":{\"type\":\"string\"}},\"required\":[\"integrationConfigurationId\",\"integrationId\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"kind\":{\"enum\":[\"webhook\"],\"type\":\"string\"},\"webhookId\":{\"type\":\"string\"}},\"required\":[\"kind\"],\"type\":\"object\"},{\"properties\":{\"externalCheckName\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"git-provider\"],\"type\":\"string\"},\"provider\":{\"enum\":[\"bitbucket\",\"github\",\"gitlab\"],\"type\":\"string\"}},\"required\":[\"externalCheckName\",\"kind\",\"provider\"],\"type\":\"object\"},{\"description\":\"Native Vercel checks — check definition and check run `source`.\",\"properties\":{\"origin\":{\"enum\":[\"api\",\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-native-check\"],\"type\":\"string\"}},\"type\":\"object\"},{\"description\":\"Project-defined CI requirement; its selection is frozen on each check run.\",\"properties\":{\"origin\":{\"enum\":[\"api\"],\"type\":\"string\"},\"selection\":{\"oneOf\":[{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"job\"],\"type\":\"string\"}},\"required\":[\"job\",\"kind\"],\"type\":\"object\"},{\"properties\":{\"job\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"task\"],\"type\":\"string\"},\"task\":{\"type\":\"string\"}},\"required\":[\"job\",\"kind\",\"task\"],\"type\":\"object\"}]},\"subKind\":{\"enum\":[\"vercel-ci-check\"],\"type\":\"string\"}},\"required\":[\"origin\",\"selection\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"checkId\",\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"},{\"description\":\"Vercel CI check run without a parent `check` (no `checkId` field).\",\"properties\":{\"blocks\":{\"enum\":[\"build-start\",\"deployment-alias\",\"deployment-promotion\",\"deployment-start\",\"none\"],\"type\":\"string\"},\"completedAt\":{\"type\":\"number\"},\"conclusion\":{\"enum\":[\"canceled\",\"failed\",\"neutral\",\"skipped\",\"succeeded\",\"timeout\"],\"type\":\"string\"},\"conclusionText\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"deploymentId\":{\"type\":\"string\"},\"externalId\":{\"type\":\"string\"},\"externalUrl\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"output\":{\"additionalProperties\":true,\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"requires\":{\"enum\":[\"build-ready\",\"deployment-url\",\"none\"],\"type\":\"string\"},\"source\":{\"oneOf\":[{\"description\":\"Config-driven CI task — check run `source` only (no parent check).\",\"properties\":{\"invocationAttempt\":{\"type\":\"number\"},\"invocationId\":{\"type\":\"string\"},\"jobDefinitionId\":{\"type\":\"string\"},\"origin\":{\"enum\":[\"config\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci\"],\"type\":\"string\"}},\"required\":[\"invocationId\",\"jobDefinitionId\",\"origin\",\"subKind\"],\"type\":\"object\"},{\"description\":\"CI sentinel — check run `source` only (no parent check).\",\"properties\":{\"origin\":{\"enum\":[\"platform\"],\"type\":\"string\"},\"subKind\":{\"enum\":[\"vercel-ci-sentinel\"],\"type\":\"string\"}},\"required\":[\"origin\",\"subKind\"],\"type\":\"object\"}]},\"status\":{\"enum\":[\"completed\",\"queued\",\"running\"],\"type\":\"string\"},\"targets\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"timeout\":{\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"}},\"required\":[\"createdAt\",\"deploymentId\",\"id\",\"name\",\"ownerId\",\"source\",\"status\",\"timeout\",\"updatedAt\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"413\":{\"description\":\"The output provided is too large\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v2/deployments/{deploymentId}/check-runs/{checkRunId}"
+          rename: {
+            param: {
+              checkRunId: "check_run_id"
+              deploymentId: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "check-runs"
+            }
+            {
+              var: "check_run_id"
+            }
+          ]
+          select: {
+            exist: [
+              "check_run_id"
+              "deployment_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              completedAt: "`reqdata.completed_at`"
+              conclusion: "`reqdata.conclusion`"
+              conclusionText: "`reqdata.conclusion_text`"
+              externalId: "`reqdata.external_id`"
+              externalUrl: "`reqdata.external_url`"
+              output: "`reqdata.output`"
+              status: "`reqdata.status`"
+            }
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "deployment"
+      ]
+      [
+        "deployment"
+        "check_run"
+      ]
+      [
+        "project"
+        "check"
+      ]
+    ]
+  }
+
+
+
+}

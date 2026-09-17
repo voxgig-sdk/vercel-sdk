@@ -43,6 +43,7 @@ class TestProjectEntity:
         project_ref01_ent = client.Project(None)
         project_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.project"), "project_ref01"))
+        project_ref01_data["project_id"] = setup["idmap"]["project01"]
 
         project_ref01_data = helpers.to_map(runner.entity_data(project_ref01_ent.create(project_ref01_data, None)))
         assert project_ref01_data is not None
@@ -95,7 +96,7 @@ def _project_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["project01", "project02", "project03"],
+        ["project01", "project02", "project03", "transfer_request01", "transfer_request02", "transfer_request03", "rollback01", "rollback02", "rollback03", "promote01", "promote02", "promote03", "domain01", "domain02", "domain03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

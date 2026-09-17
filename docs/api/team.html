@@ -1,0 +1,4188 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Team | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a aria-current="page" href="../api/team.html">Team</a><div class="nav-sections"><a class="nav-section" href="#post-v1teamsteamiddsync-roles">POST /v1/teams/{teamId}/dsync-roles</a>
+<a class="nav-section" href="#post-v2teamsteamidmembers">POST /v2/teams/{teamId}/members</a>
+<a class="nav-section" href="#post-v1teamsteamidmembersteamsjoin">POST /v1/teams/{teamId}/members/teams/join</a>
+<a class="nav-section" href="#post-v1teamsteamidrequest">POST /v1/teams/{teamId}/request</a>
+<a class="nav-section" href="#post-v1teams">POST /v1/teams</a>
+<a class="nav-section" href="#get-v3teamsteamidmembers">GET /v3/teams/{teamId}/members</a>
+<a class="nav-section" href="#get-v2teams">GET /v2/teams</a>
+<a class="nav-section" href="#get-v2teamsteamid">GET /v2/teams/{teamId}</a>
+<a class="nav-section" href="#get-v1teamsteamidrequestuserid">GET /v1/teams/{teamId}/request/{userId}</a>
+<a class="nav-section" href="#delete-v1teamsteamidmicrofrontendsgroupid">DELETE /v1/teams/{teamId}/microfrontends/{groupId}</a>
+<a class="nav-section" href="#delete-v1teamsteamid">DELETE /v1/teams/{teamId}</a>
+<a class="nav-section" href="#delete-v1teamsteamidmembersuid">DELETE /v1/teams/{teamId}/members/{uid}</a>
+<a class="nav-section" href="#delete-v1teamsteamidinvitesinviteid">DELETE /v1/teams/{teamId}/invites/{inviteId}</a>
+<a class="nav-section" href="#patch-v1teamsteamidmicrofrontendsgroupid">PATCH /v1/teams/{teamId}/microfrontends/{groupId}</a>
+<a class="nav-section" href="#patch-v2teamsteamid">PATCH /v2/teams/{teamId}</a>
+<a class="nav-section" href="#patch-v1teamsteamidmembersuid">PATCH /v1/teams/{teamId}/members/{uid}</a></div>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="team">Team</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1teamsteamiddsync-roles"><code>/v1/teams/{teamId}/dsync-roles</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v2teamsteamidmembers"><code>/v2/teams/{teamId}/members</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1teamsteamidmembersteamsjoin"><code>/v1/teams/{teamId}/members/teams/join</code></a></td>
+<td><code>create</code></td>
+<td>Successfully joined a team</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1teamsteamidrequest"><code>/v1/teams/{teamId}/request</code></a></td>
+<td><code>create</code></td>
+<td>Successfuly requested access to the team</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1teams"><code>/v1/teams</code></a></td>
+<td><code>create</code></td>
+<td>The team was created successfully</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v3teamsteamidmembers"><code>/v3/teams/{teamId}/members</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2teams"><code>/v2/teams</code></a></td>
+<td><code>list</code></td>
+<td>A paginated list of teams</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2teamsteamid"><code>/v2/teams/{teamId}</code></a></td>
+<td><code>load</code></td>
+<td>The requested team</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1teamsteamidrequestuserid"><code>/v1/teams/{teamId}/request/{userId}</code></a></td>
+<td><code>load</code></td>
+<td>Successfully</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1teamsteamidmicrofrontendsgroupid"><code>/v1/teams/{teamId}/microfrontends/{groupId}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1teamsteamid"><code>/v1/teams/{teamId}</code></a></td>
+<td><code>remove</code></td>
+<td>The Team was successfully deleted</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1teamsteamidmembersuid"><code>/v1/teams/{teamId}/members/{uid}</code></a></td>
+<td><code>remove</code></td>
+<td>Successfully removed a member of the team</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1teamsteamidinvitesinviteid"><code>/v1/teams/{teamId}/invites/{inviteId}</code></a></td>
+<td><code>remove</code></td>
+<td>Successfully deleted Team invite code</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1teamsteamidmicrofrontendsgroupid"><code>/v1/teams/{teamId}/microfrontends/{groupId}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v2teamsteamid"><code>/v2/teams/{teamId}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1teamsteamidmembersuid"><code>/v1/teams/{teamId}/members/{uid}</code></a></td>
+<td><code>update</code></td>
+<td>Successfully updated the membership</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessRequestedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds when the user requested access to the team.</td>
+</tr>
+<tr>
+<td><code>apiKeysInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which API keys created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>appTokensInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which Vercel App tokens created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>attribution</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Attribution information for the session or current page</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the file used as avatar for this Team.</td>
+</tr>
+<tr>
+<td><code>billing</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The team's billing plan.</td>
+</tr>
+<tr>
+<td><code>bitbucket</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Map of the connected Bitbucket account.</td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Current status of the membership.</td>
+</tr>
+<tr>
+<td><code>connect</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>UNIX timestamp (in milliseconds) when the Team was created.</td>
+</tr>
+<tr>
+<td><code>creatorId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the user who created the Team.</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default deployment protection for this team null indicates protection is disabled</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default deployment expiration settings for this team</td>
+</tr>
+<tr>
+<td><code>defaultPassport</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Default Passport configuration for new projects in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultRoles</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default roles for the team.</td>
+</tr>
+<tr>
+<td><code>deploymentPolicy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Composable deployment-time policy for the team.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A short description of the Team.</td>
+</tr>
+<tr>
+<td><code>disableHardAutoBlocks</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>disableRepositoryDispatchEvents</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Default for projects in the team.</td>
+</tr>
+<tr>
+<td><code>disjunctiveProductionSecretPolicy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Require production secrets to use a different value than preview or development.</td>
+</tr>
+<tr>
+<td><code>dpAccessRequestsMode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Controls who can request access to protected deployments.</td>
+</tr>
+<tr>
+<td><code>emailDomain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hostname that'll be matched with emails on sign-up to automatically join the Team.</td>
+</tr>
+<tr>
+<td><code>enablePolyrepoBranchRouting</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether Preview Deployments can link to branches with the same name in other Git repositories.</td>
+</tr>
+<tr>
+<td><code>enablePreviewFeedback</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Whether toolbar is enabled on preview deployments</td>
+</tr>
+<tr>
+<td><code>enableProductionFeedback</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Whether toolbar is enabled on production deployments</td>
+</tr>
+<tr>
+<td><code>fallbackEnvironment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The new fallback environment for the microfrontends group.</td>
+</tr>
+<tr>
+<td><code>github</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Map of the connected GitHub account.</td>
+</tr>
+<tr>
+<td><code>gitlab</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Map of the connected GitLab account.</td>
+</tr>
+<tr>
+<td><code>hideIpAddresses</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates if IP addresses should be accessible in observability (o11y) tooling</td>
+</tr>
+<tr>
+<td><code>hideIpAddressesInLogDrains</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates if IP addresses should be accessible in log drains</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Team's unique identifier.</td>
+</tr>
+<tr>
+<td><code>integrationTokensInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which integration tokens created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>inviteCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Code that can be used to join this Team.</td>
+</tr>
+<tr>
+<td><code>ipBuckets</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A map that describes the origin from where the user joined.</td>
+</tr>
+<tr>
+<td><code>membership</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The membership of the authenticated User in relation to the Team.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name associated with the Team account, or <code>null</code> if none has been provided.</td>
+</tr>
+<tr>
+<td><code>nsnbConfig</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>NSNB configuration for the team.</td>
+</tr>
+<tr>
+<td><code>orgRootTeamId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Best-effort ID of the organization’s root billing team.</td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.</td>
+</tr>
+<tr>
+<td><code>parentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The organizationId for teams that belong to an organization (set on both the organization's root team and its child teams).</td>
+</tr>
+<tr>
+<td><code>personalAccessTokensInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which personal access tokens created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the team is a platform team.</td>
+</tr>
+<tr>
+<td><code>previewDeploymentSuffix</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The hostname that is current set as preview deployment suffix.</td>
+</tr>
+<tr>
+<td><code>projects</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>regenerateInviteCode</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Create a new invite code and replace the current one.</td>
+</tr>
+<tr>
+<td><code>remoteCaching</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Is remote caching enabled for this team</td>
+</tr>
+<tr>
+<td><code>requireVerifiedCommits</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When enabled, all projects in the team require commits to be signed and verified by the git provider before deployments will be created.</td>
+</tr>
+<tr>
+<td><code>resourceConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Resource configuration for the team.</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The role in the team of the member.</td>
+</tr>
+<tr>
+<td><code>saml</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>When &quot;Single Sign-On (SAML)&quot; is configured, this object contains information regarding the configuration of the Identity Provider (IdP).</td>
+</tr>
+<tr>
+<td><code>sensitiveEnvironmentVariablePolicy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Sensitive environment variable policy for this team</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Team's slug, which is unique across the Vercel platform.</td>
+</tr>
+<tr>
+<td><code>stagingPrefix</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The prefix that is prepended to automatic aliases.</td>
+</tr>
+<tr>
+<td><code>strictConnectors</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>When enabled, creating and managing connectors requires Owner role or the ConnectorManager permission.</td>
+</tr>
+<tr>
+<td><code>strictDeploymentProtectionSettings</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>When enabled, deployment protection settings require stricter permissions (owner-only).</td>
+</tr>
+<tr>
+<td><code>strictPasswordProtectionSettings</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>When enabled, adding, changing, or removing project password protection requires Owner role.</td>
+</tr>
+<tr>
+<td><code>strictShareableLinks</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>When enabled, creating shareable links requires Owner role.</td>
+</tr>
+<tr>
+<td><code>teamName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the team.</td>
+</tr>
+<tr>
+<td><code>teamPermissions</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The team permissions to set for the member.</td>
+</tr>
+<tr>
+<td><code>teamSlug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The slug of the team.</td>
+</tr>
+<tr>
+<td><code>teams</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp (in milliseconds) of when the Team was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1teamsteamiddsync-roles" class="operation" data-method="post"><code>POST</code> /v1/teams/{teamId}/dsync-roles</h3>
+<p>Operation ID: <code>postTeamDsyncRoles</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>roles</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Directory groups to role or access group mappings.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ok</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h3 id="post-v2teamsteamidmembers" class="operation" data-method="post"><code>POST</code> /v2/teams/{teamId}/members</h3>
+<p>Operation ID: <code>inviteUserToTeam</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].email</code></td>
+<td><code>string (email)</code></td>
+<td>Yes</td>
+<td>The email address of the user to invite</td>
+</tr>
+<tr>
+<td><code>[].projects</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].projects[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the project.</td>
+</tr>
+<tr>
+<td><code>[].projects[].role</code></td>
+<td><code>enum: ADMIN, PROJECT_VIEWER, PROJECT_DEVELOPER, PROJECT_GUEST</code></td>
+<td>Yes</td>
+<td>Sets the project roles for the invited user</td>
+</tr>
+<tr>
+<td><code>[].role</code></td>
+<td><code>enum: OWNER, MEMBER, DEVELOPER, SECURITY, BILLING, VIEWER, ...</code></td>
+<td>No</td>
+<td>The role of the user to invite</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The email of the invited user.</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td><code>enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>Yes</td>
+<td>The role used for the invitation</td>
+</tr>
+<tr>
+<td><code>teamPermissions</code></td>
+<td><code>array of enum: AiGatewayBudgetManager, AiGatewayCredits, AiGatewaySettings, AiGatewayTranscriptsManager, AiGatewayTranscriptsViewer, AiGatewayUser, ...</code></td>
+<td>No</td>
+<td>The team permissions of the user</td>
+</tr>
+<tr>
+<td><code>teamRoles</code></td>
+<td><code>array of enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>No</td>
+<td>The team roles of the user</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the invited user</td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The username of the invited user</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-the-authenticated-user-must-be-a-team-owner-to-perform-the-action" class="status" data-status="4xx">403: You do not have permission to access this resource. The authenticated user must be a team owner to perform the action</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h5 id="503" class="status" data-status="5xx">503</h5>
+<h3 id="post-v1teamsteamidmembersteamsjoin" class="operation" data-method="post"><code>POST</code> /v1/teams/{teamId}/members/teams/join</h3>
+<p>Operation ID: <code>joinTeam</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>inviteCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The invite code to join the team.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-successfully-joined-a-team" class="status" data-status="2xx">200: Successfully joined a team</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>from</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The origin of how the user joined.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the team the user joined.</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The slug of the team the user joined.</td>
+</tr>
+<tr>
+<td><code>teamId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the team the user joined.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401" class="status" data-status="4xx">401</h5>
+<h5 id="402" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h5 id="503-1" class="status" data-status="5xx">503</h5>
+<h3 id="post-v1teamsteamidrequest" class="operation" data-method="post"><code>POST</code> /v1/teams/{teamId}/request</h3>
+<p>Operation ID: <code>requestAccessToTeam</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>joinedFrom</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.commitId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The commit sha if the origin is a git provider.</td>
+</tr>
+<tr>
+<td><code>joinedFrom.gitUserId</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td>The ID of the Git account of the user who requests access.</td>
+</tr>
+<tr>
+<td><code>joinedFrom.gitUserLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The login name for the Git account of the user who requests access.</td>
+</tr>
+<tr>
+<td><code>joinedFrom.origin</code></td>
+<td><code>enum: import, teams, github, gitlab, bitbucket, feedback, ...</code></td>
+<td>Yes</td>
+<td>The origin of the request.</td>
+</tr>
+<tr>
+<td><code>joinedFrom.repoId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the repository for the given Git provider.</td>
+</tr>
+<tr>
+<td><code>joinedFrom.repoPath</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The path to the repository for the given Git provider.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-successfuly-requested-access-to-the-team" class="status" data-status="2xx">200: Successfuly requested access to the team</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessRequestedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bitbucket</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bitbucket.login</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>github</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>github.login</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gitlab</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gitlab.login</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.commitId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.dsyncConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.dsyncUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.gitUserId</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.gitUserLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.idpUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.origin</code></td>
+<td><code>enum: account-update, bitbucket, dsync, feedback, github, gitlab, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.repoId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.repoPath</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.ssoConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.ssoUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>teamName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>teamSlug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-1" class="status" data-status="4xx">401</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-team-was-not-found" class="status" data-status="4xx">404: The team was not found</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h5 id="429" class="status" data-status="4xx">429</h5>
+<h5 id="503-2" class="status" data-status="5xx">503</h5>
+<h3 id="post-v1teams" class="operation" data-method="post"><code>POST</code> /v1/teams</h3>
+<p>Operation ID: <code>createTeam</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="request-body-4">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attribution</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Attribution information for the session or current page</td>
+</tr>
+<tr>
+<td><code>attribution.landingPage</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Session landing page</td>
+</tr>
+<tr>
+<td><code>attribution.pageBeforeConversionPage</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Referrer to the signup page</td>
+</tr>
+<tr>
+<td><code>attribution.sessionReferrer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Session referrer</td>
+</tr>
+<tr>
+<td><code>attribution.utm</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>attribution.utm.utmCampaign</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>UTM campaign</td>
+</tr>
+<tr>
+<td><code>attribution.utm.utmMedium</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>UTM medium</td>
+</tr>
+<tr>
+<td><code>attribution.utm.utmSource</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>UTM source</td>
+</tr>
+<tr>
+<td><code>attribution.utm.utmTerm</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>UTM term</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The desired name for the Team. It will be generated from the provided slug if nothing is provided</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The desired slug for the Team</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-the-team-was-created-successfully" class="status" data-status="2xx">200: The team was created successfully</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Id of the created team</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-the-slug-is-already-in-use" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. The slug is already in use</h5>
+<h5 id="401-2" class="status" data-status="4xx">401</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v3teamsteamidmembers" class="operation" data-method="get"><code>GET</code> /v3/teams/{teamId}/members</h3>
+<p>Operation ID: <code>getTeamMembers</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No | Limit how many teams should be returned |
+| <code>since</code> | <code>query</code> | <code>number</code> | No | Timestamp in milliseconds to only include members added since then. |
+| <code>until</code> | <code>query</code> | <code>number</code> | No | Timestamp in milliseconds to only include members added until then. |
+| <code>search</code> | <code>query</code> | <code>string</code> | No | Search team members by their name, username, and email. |
+| <code>role</code> | <code>query</code> | <code>enum: OWNER, MEMBER, DEVELOPER, SECURITY, BILLING, VIEWER, ...</code> | No | Only return members with the specified team role. |
+| <code>excludeProject</code> | <code>query</code> | <code>string</code> | No | Exclude members who belong to the specified project. |
+| <code>eligibleMembersForProjectId</code> | <code>query</code> | <code>string</code> | No | Include team members who are eligible to be members of the specified project. |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>emailInviteCodes</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].accessGroups</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].entitlements</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].expired</code></td>
+<td><code>enum: true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].isDSyncUser</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].projects</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].role</code></td>
+<td><code>enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].teamPermissions</code></td>
+<td><code>array of enum: AiGatewayBudgetManager, AiGatewayCredits, AiGatewaySettings, AiGatewayTranscriptsManager, AiGatewayTranscriptsViewer, AiGatewayUser, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>emailInviteCodes[].teamRoles</code></td>
+<td><code>array of enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].accessRequestedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp in milliseconds for when this team member was accepted by an owner.</td>
+</tr>
+<tr>
+<td><code>members[].avatar</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>ID of the file for the Avatar of this member.</td>
+</tr>
+<tr>
+<td><code>members[].bitbucket</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information about the Bitbucket account of this user.</td>
+</tr>
+<tr>
+<td><code>members[].bitbucket.login</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].confirmed</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Boolean that indicates if this member was confirmed by an owner.</td>
+</tr>
+<tr>
+<td><code>members[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds when this member was added.</td>
+</tr>
+<tr>
+<td><code>members[].email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The email of this member.</td>
+</tr>
+<tr>
+<td><code>members[].github</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information about the GitHub account for this user.</td>
+</tr>
+<tr>
+<td><code>members[].github.login</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].gitlab</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information about the GitLab account of this user.</td>
+</tr>
+<tr>
+<td><code>members[].gitlab.login</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].isEnterpriseManaged</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Indicates whether the user is managed by an enterprise.</td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Map with information about the members origin if they joined by requesting access.</td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.commitId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.dsyncConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.dsyncUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.gitUserId</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.gitUserLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.idpUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.origin</code></td>
+<td><code>enum: account-update, bitbucket, dsync, feedback, github, gitlab, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.repoId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.repoPath</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.ssoConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].joinedFrom.ssoUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of this user.</td>
+</tr>
+<tr>
+<td><code>members[].projects</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Array of project memberships</td>
+</tr>
+<tr>
+<td><code>members[].projects[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].projects[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].projects[].role</code></td>
+<td><code>enum: ADMIN, PROJECT_DEVELOPER, PROJECT_GUEST, PROJECT_VIEWER</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>members[].role</code></td>
+<td><code>enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>Yes</td>
+<td>Role of this user in the team.</td>
+</tr>
+<tr>
+<td><code>members[].uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of this user.</td>
+</tr>
+<tr>
+<td><code>members[].username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique username of this user.</td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.count</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Amount of items in the current page.</td>
+</tr>
+<tr>
+<td><code>pagination.hasNext</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the next page.</td>
+</tr>
+<tr>
+<td><code>pagination.prev</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the previous page.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h3 id="get-v2teams" class="operation" data-method="get"><code>GET</code> /v2/teams</h3>
+<p>Operation ID: <code>getTeams</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No | Maximum number of Teams which may be returned. |
+| <code>since</code> | <code>query</code> | <code>number</code> | No | Timestamp (in milliseconds) to only include Teams created since then. |
+| <code>until</code> | <code>query</code> | <code>number</code> | No | Timestamp (in milliseconds) to only include Teams created until then. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-a-paginated-list-of-teams" class="status" data-status="2xx">200: A paginated list of teams</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.</td>
+</tr>
+<tr>
+<td><code>pagination.count</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Amount of items in the current page.</td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the next page.</td>
+</tr>
+<tr>
+<td><code>pagination.prev</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the previous page.</td>
+</tr>
+<tr>
+<td><code>teams</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-3" class="status" data-status="4xx">401</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v2teamsteamid" class="operation" data-method="get"><code>GET</code> /v2/teams/{teamId}</h3>
+<p>Operation ID: <code>getTeam</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-the-requested-team" class="status" data-status="2xx">200: The requested team</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiKeysInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which API keys created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>appTokensInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which Vercel App tokens created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the file used as avatar for this Team.</td>
+</tr>
+<tr>
+<td><code>billing</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The team's billing plan.</td>
+</tr>
+<tr>
+<td><code>billing.plan</code></td>
+<td><code>enum: enterprise, hobby, pro</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>connect</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>connect.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>UNIX timestamp (in milliseconds) when the Team was created.</td>
+</tr>
+<tr>
+<td><code>creatorId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the user who created the Team.</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default deployment protection for this team null indicates protection is disabled</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.passwordProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.passwordProtection.deploymentType</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.ssoProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.ssoProtection.deploymentType</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default deployment expiration settings for this team</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.deploymentsToKeep</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Minimum number of production deployments to keep for this project, even if they are over the production expiration limit.</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationDays</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep non-production deployments (mostly preview deployments) before soft deletion.</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationDaysCanceled</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep canceled deployments before soft deletion.</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationDaysErrored</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep errored deployments before soft deletion.</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationDaysProduction</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep production deployments before soft deletion.</td>
+</tr>
+<tr>
+<td><code>defaultPassport</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default Passport configuration for new projects in this team.</td>
+</tr>
+<tr>
+<td><code>defaultPassport.connectorId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Default Passport configuration for new projects in this team.</td>
+</tr>
+<tr>
+<td><code>defaultPassport.deploymentType</code></td>
+<td><code>enum: all, all_except_custom_domains, preview, prod_deployment_urls_and_all_previews</code></td>
+<td>Yes</td>
+<td>Default Passport configuration for new projects in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.lint</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.lint.targets</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.mfe-config-present</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.mfe-config-present.targets</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.typecheck</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.typecheck.targets</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultRoles</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default roles for the team.</td>
+</tr>
+<tr>
+<td><code>defaultRoles.teamPermissions</code></td>
+<td><code>array of enum: AiGatewayBudgetManager, AiGatewayCredits, AiGatewaySettings, AiGatewayTranscriptsManager, AiGatewayTranscriptsViewer, AiGatewayUser, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultRoles.teamRoles</code></td>
+<td><code>array of enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Composable deployment-time policy for the team. Used as the default for every project on the team, with optional per-project overrides on <code>project.deploymentPolicy</code>.</td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.deploymentSources</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.deploymentSources[].enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.deploymentSources[].environments</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.deploymentSources[].sources</code></td>
+<td><code>array of enum: cli, deploy-hook, git, integration, rest-api, v0</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.gitSources</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.gitSources[].enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.gitSources[].environments</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.gitSources[].sources</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A short description of the Team.</td>
+</tr>
+<tr>
+<td><code>disableHardAutoBlocks</code></td>
+<td><code>number or enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>disableRepositoryDispatchEvents</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Default for projects in the team. When <code>true</code>, projects in this team will not emit GitHub repository-dispatch events on deployment events unless the project explicitly overrides this setting via <code>project.gitProviderOptions.disableRepositoryDispatchEvents</code>.</td>
+</tr>
+<tr>
+<td><code>disjunctiveProductionSecretPolicy</code></td>
+<td><code>enum: default, off, on, null</code></td>
+<td>No</td>
+<td>Require production secrets to use a different value than preview or development.</td>
+</tr>
+<tr>
+<td><code>dpAccessRequestsMode</code></td>
+<td><code>enum: all, email-domain, none</code></td>
+<td>No</td>
+<td>Controls who can request access to protected deployments.</td>
+</tr>
+<tr>
+<td><code>emailDomain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hostname that'll be matched with emails on sign-up to automatically join the Team.</td>
+</tr>
+<tr>
+<td><code>enablePreviewFeedback</code></td>
+<td><code>enum: default, default-force, off, off-force, on, on-force, ...</code></td>
+<td>No</td>
+<td>Whether toolbar is enabled on preview deployments</td>
+</tr>
+<tr>
+<td><code>enableProductionFeedback</code></td>
+<td><code>enum: default, default-force, off, off-force, on, on-force, ...</code></td>
+<td>No</td>
+<td>Whether toolbar is enabled on production deployments</td>
+</tr>
+<tr>
+<td><code>hideIpAddresses</code></td>
+<td><code>enum: false, true, null</code></td>
+<td>No</td>
+<td>Indicates if IP addresses should be accessible in observability (o11y) tooling</td>
+</tr>
+<tr>
+<td><code>hideIpAddressesInLogDrains</code></td>
+<td><code>enum: false, true, null</code></td>
+<td>No</td>
+<td>Indicates if IP addresses should be accessible in log drains</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Team's unique identifier.</td>
+</tr>
+<tr>
+<td><code>integrationTokensInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which integration tokens created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>inviteCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Code that can be used to join this Team. Only visible to Team owners.</td>
+</tr>
+<tr>
+<td><code>ipBuckets</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ipBuckets[].bucket</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ipBuckets[].default</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ipBuckets[].supportUntil</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The membership of the authenticated User in relation to the Team.</td>
+</tr>
+<tr>
+<td><code>membership.accessRequestedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.confirmed</code></td>
+<td><code>enum: true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.created</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.entitlements</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.entitlements[].entitlement</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.commitId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.dsyncConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.dsyncUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.gitUserId</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.gitUserLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.idpUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.origin</code></td>
+<td><code>enum: account-update, bitbucket, dsync, feedback, github, gitlab, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.repoId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.repoPath</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.ssoConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.ssoUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.role</code></td>
+<td><code>enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.teamId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.teamPermissions</code></td>
+<td><code>array of enum: AiGatewayBudgetManager, AiGatewayCredits, AiGatewaySettings, AiGatewayTranscriptsManager, AiGatewayTranscriptsViewer, AiGatewayUser, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.teamRoles</code></td>
+<td><code>array of enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.uid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name associated with the Team account, or <code>null</code> if none has been provided.</td>
+</tr>
+<tr>
+<td><code>nsnbConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>NSNB configuration for the team.</td>
+</tr>
+<tr>
+<td><code>nsnbConfig.preference</code></td>
+<td><code>enum: auto-approval, block, manual-approval</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>orgRootTeamId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Best-effort ID of the organization’s root billing team. When present, compare <code>orgRootTeamId === id</code> to identify the root team. It may be omitted even when <code>parentId</code> is set if organization resolution fails or the referenced organization is missing. Always omitted for non-organization teams.</td>
+</tr>
+<tr>
+<td><code>parentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The organizationId for teams that belong to an organization (set on both the organization's root team and its child teams).</td>
+</tr>
+<tr>
+<td><code>personalAccessTokensInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which personal access tokens created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the team is a platform team.</td>
+</tr>
+<tr>
+<td><code>previewDeploymentSuffix</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The hostname that is current set as preview deployment suffix.</td>
+</tr>
+<tr>
+<td><code>remoteCaching</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Is remote caching enabled for this team</td>
+</tr>
+<tr>
+<td><code>remoteCaching.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>requireVerifiedCommits</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>When enabled, all projects in the team require commits to be signed and verified by the git provider before deployments will be created. Projects may override this via <code>project.gitProviderOptions.requireVerifiedCommits</code> (gated by <code>Project:Update</code>).</td>
+</tr>
+<tr>
+<td><code>resourceConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resourceConfig.blobStores</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of blob stores an account can create.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildEntitlements</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildEntitlements.enhancedBuilds</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Build machine configuration</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine.default</code></td>
+<td><code>enum: basic, elastic, enhanced, standard, turbo</code></td>
+<td>No</td>
+<td>Default build machine type for new builds</td>
+</tr>
+<tr>
+<td><code>resourceConfig.concurrentBuilds</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The total amount of concurrent builds that can be used.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.customEnvironmentsPerProject</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of custom environments allowed per project.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.edgeConfigSize</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum size in kilobytes of an Edge Config. Only specified if a custom limit is set.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.edgeConfigs</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of edge configs an account can create.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.elasticConcurrencyEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether every build for this team / user has elastic concurrency enabled automatically.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.kvDatabases</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of kv databases an account can create.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.postgresDatabases</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of postgres databases an account can create.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.serverlessFunctionMaxMemorySize</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum memory size (in MB) for a serverless function. Only specified if a custom limit is set.</td>
+</tr>
+<tr>
+<td><code>saml</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When &quot;Single Sign-On (SAML)&quot; is configured, this object contains information regarding the configuration of the Identity Provider (IdP).</td>
+</tr>
+<tr>
+<td><code>saml.connection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information for the SAML Single Sign-On configuration.</td>
+</tr>
+<tr>
+<td><code>saml.connection.connectedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp (in milliseconds) of when the configuration was connected.</td>
+</tr>
+<tr>
+<td><code>saml.connection.lastReceivedWebhookEvent</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (in milliseconds) of when the last webhook event was received from WorkOS.</td>
+</tr>
+<tr>
+<td><code>saml.connection.lastSyncedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (in milliseconds) of when the last directory sync was performed.</td>
+</tr>
+<tr>
+<td><code>saml.connection.state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Current state of the connection.</td>
+</tr>
+<tr>
+<td><code>saml.connection.status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>saml.connection.syncState</code></td>
+<td><code>enum: ACTIVE, SETUP</code></td>
+<td>No</td>
+<td>Controls whether directory sync events are processed. - 'SETUP': Directory connected but role mappings not yet configured. Events are acknowledged but not processed. - 'ACTIVE': Fully configured. Events are processed normally. - undefined: Legacy directory (pre-feature), treat as 'ACTIVE' for backwards compatibility.</td>
+</tr>
+<tr>
+<td><code>saml.connection.type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Identity Provider &quot;type&quot;, for example Okta.</td>
+</tr>
+<tr>
+<td><code>saml.defaultRedirectUri</code></td>
+<td><code>enum: v0.app, v0.dev, vercel.com</code></td>
+<td>No</td>
+<td>The default redirect URI to use after successful SAML authentication.</td>
+</tr>
+<tr>
+<td><code>saml.directory</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information for the Directory Sync configuration.</td>
+</tr>
+<tr>
+<td><code>saml.directory.connectedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp (in milliseconds) of when the configuration was connected.</td>
+</tr>
+<tr>
+<td><code>saml.directory.lastReceivedWebhookEvent</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (in milliseconds) of when the last webhook event was received from WorkOS.</td>
+</tr>
+<tr>
+<td><code>saml.directory.lastSyncedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (in milliseconds) of when the last directory sync was performed.</td>
+</tr>
+<tr>
+<td><code>saml.directory.state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Current state of the connection.</td>
+</tr>
+<tr>
+<td><code>saml.directory.syncState</code></td>
+<td><code>enum: ACTIVE, SETUP</code></td>
+<td>No</td>
+<td>Controls whether directory sync events are processed. - 'SETUP': Directory connected but role mappings not yet configured. Events are acknowledged but not processed. - 'ACTIVE': Fully configured. Events are processed normally. - undefined: Legacy directory (pre-feature), treat as 'ACTIVE' for backwards compatibility.</td>
+</tr>
+<tr>
+<td><code>saml.directory.type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Identity Provider &quot;type&quot;, for example Okta.</td>
+</tr>
+<tr>
+<td><code>saml.enforced</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>When <code>true</code>, interactions with the Team <strong>must</strong> be done with an authentication token that has been authenticated with the Team's SAML Single Sign-On provider.</td>
+</tr>
+<tr>
+<td><code>saml.roles</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When &quot;Directory Sync&quot; is configured, this object contains a mapping of which Directory Group (by ID) should be assigned to which Vercel Team &quot;role&quot;.</td>
+</tr>
+<tr>
+<td><code>sensitiveEnvironmentVariablePolicy</code></td>
+<td><code>enum: default, off, on, null</code></td>
+<td>No</td>
+<td>Sensitive environment variable policy for this team</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Team's slug, which is unique across the Vercel platform.</td>
+</tr>
+<tr>
+<td><code>stagingPrefix</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The prefix that is prepended to automatic aliases.</td>
+</tr>
+<tr>
+<td><code>strictConnectors</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, creating and managing connectors requires Owner role or the ConnectorManager permission.</td>
+</tr>
+<tr>
+<td><code>strictConnectors.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictConnectors.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictDeploymentProtectionSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, deployment protection settings require stricter permissions (owner-only).</td>
+</tr>
+<tr>
+<td><code>strictDeploymentProtectionSettings.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictDeploymentProtectionSettings.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictPasswordProtectionSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, adding, changing, or removing project password protection requires Owner role.</td>
+</tr>
+<tr>
+<td><code>strictPasswordProtectionSettings.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictPasswordProtectionSettings.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictShareableLinks</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, creating shareable links requires Owner role.</td>
+</tr>
+<tr>
+<td><code>strictShareableLinks.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictShareableLinks.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp (in milliseconds) of when the Team was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-not-authorized-to-access-the-team" class="status" data-status="4xx">403: You do not have permission to access this resource. Not authorized to access the team</h5>
+<h5 id="404-team-was-not-found" class="status" data-status="4xx">404: Team was not found</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1teamsteamidrequestuserid" class="operation" data-method="get"><code>GET</code> /v1/teams/{teamId}/request/{userId}</h3>
+<p>Operation ID: <code>getTeamAccessRequest</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>userId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-successfully" class="status" data-status="2xx">200: Successfully</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessRequestedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds when the user requested access to the team.</td>
+</tr>
+<tr>
+<td><code>bitbucket</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Map of the connected Bitbucket account.</td>
+</tr>
+<tr>
+<td><code>bitbucket.login</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Current status of the membership. Will be <code>true</code> if confirmed, if pending it'll be <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>github</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Map of the connected GitHub account.</td>
+</tr>
+<tr>
+<td><code>github.login</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gitlab</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Map of the connected GitLab account.</td>
+</tr>
+<tr>
+<td><code>gitlab.login</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>A map that describes the origin from where the user joined.</td>
+</tr>
+<tr>
+<td><code>joinedFrom.commitId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.dsyncConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.dsyncUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.gitUserId</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.gitUserLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.idpUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.origin</code></td>
+<td><code>enum: account-update, bitbucket, dsync, feedback, github, gitlab, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.repoId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.repoPath</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.ssoConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.ssoUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>teamName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the team.</td>
+</tr>
+<tr>
+<td><code>teamSlug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The slug of the team.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-user-is-already-a-confirmed-member-of-the-team-and-did-not-request-access-only-visible-when-the-authenticated-user-does-have-access-to-the-team" class="status" data-status="4xx">400: One of the provided values in the request query is invalid. User is already a confirmed member of the team and did not request access. Only visible when the authenticated user does have access to the team</h5>
+<h5 id="401-4" class="status" data-status="4xx">401</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-provided-user-doesn39t-have-a-membership-team-was-not-found" class="status" data-status="4xx">404: The provided user doesn't have a membership. Team was not found</h5>
+<h5 id="410-8" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1teamsteamidmicrofrontendsgroupid" class="operation" data-method="delete"><code>DELETE</code> /v1/teams/{teamId}/microfrontends/{groupId}</h3>
+<p>Operation ID: <code>deleteMicrofrontendsGroup</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>groupId</code> | <code>path</code> | <code>string</code> | Yes | The microfrontend group ID to delete. |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-9" class="status" data-status="4xx">410</h5>
+<h5 id="500-1" class="status" data-status="5xx">500</h5>
+<h3 id="delete-v1teamsteamid" class="operation" data-method="delete"><code>DELETE</code> /v1/teams/{teamId}</h3>
+<p>Operation ID: <code>deleteTeam</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newDefaultTeamId</code> | <code>query</code> | <code>string</code> | No | Id of the team to be set as the new default team |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-5">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reasons</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Optional array of objects that describe the reason why the team is being deleted.</td>
+</tr>
+<tr>
+<td><code>reasons[].description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Description of the reason why the team is being deleted.</td>
+</tr>
+<tr>
+<td><code>reasons[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Idenitifier slug of the reason why the team is being deleted.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-the-team-was-successfully-deleted" class="status" data-status="2xx">200: The Team was successfully deleted</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the deleted Team</td>
+</tr>
+<tr>
+<td><code>newDefaultTeamIdError</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Signifies whether the default team update has failed, when newDefaultTeamId is provided in request query.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-1" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-the-authenticated-user-can39t-access-the-team" class="status" data-status="4xx">403: You do not have permission to access this resource. The authenticated user can't access the team</h5>
+<h5 id="409-1" class="status" data-status="4xx">409</h5>
+<h5 id="410-10" class="status" data-status="4xx">410</h5>
+<h5 id="503-3" class="status" data-status="5xx">503</h5>
+<h3 id="delete-v1teamsteamidmembersuid" class="operation" data-method="delete"><code>DELETE</code> /v1/teams/{teamId}/members/{uid}</h3>
+<p>Operation ID: <code>removeTeamMember</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>uid</code> | <code>path</code> | <code>string</code> | Yes | The user ID of the member. |
+| <code>newDefaultTeamId</code> | <code>query</code> | <code>string</code> | No | The ID of the team to set as the new default team for the Northstar user. |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-successfully-removed-a-member-of-the-team" class="status" data-status="2xx">200: Successfully removed a member of the team</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ID of the team.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-not-authorized-to-update-the-team" class="status" data-status="4xx">403: You do not have permission to access this resource. Not authorized to update the team</h5>
+<h5 id="404-4" class="status" data-status="4xx">404</h5>
+<h5 id="410-11" class="status" data-status="4xx">410</h5>
+<h5 id="503-4" class="status" data-status="5xx">503</h5>
+<h3 id="delete-v1teamsteamidinvitesinviteid" class="operation" data-method="delete"><code>DELETE</code> /v1/teams/{teamId}/invites/{inviteId}</h3>
+<p>Operation ID: <code>deleteTeamInviteCode</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>inviteId</code> | <code>path</code> | <code>string</code> | Yes | The Team invite code ID. |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |</p>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-successfully-deleted-team-invite-code" class="status" data-status="2xx">200: Successfully deleted Team invite code</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ID of the team.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-invite-managed-by-directory-sync-not-authorized-to-access-this-team" class="status" data-status="4xx">403: You do not have permission to access this resource. Invite managed by directory sync Not authorized to access this team</h5>
+<h5 id="404-team-invite-code-not-found" class="status" data-status="4xx">404: Team invite code not found</h5>
+<h5 id="410-12" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="patch-v1teamsteamidmicrofrontendsgroupid" class="operation" data-method="patch"><code>PATCH</code> /v1/teams/{teamId}/microfrontends/{groupId}</h3>
+<p>Operation ID: <code>updateMicrofrontendsGroup</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>groupId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-6">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enablePolyrepoBranchRouting</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether Preview Deployments can link to branches with the same name in other Git repositories.</td>
+</tr>
+<tr>
+<td><code>fallbackEnvironment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The new fallback environment for the microfrontends group. Must be &quot;SAME_ENV&quot;, &quot;PRODUCTION&quot;, or a valid custom environment slug from the default app.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The new name for the existing microfrontends group.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-13">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>updatedMicrofrontendsGroup</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedMicrofrontendsGroup.enablePolyrepoBranchRouting</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedMicrofrontendsGroup.fallbackEnvironment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedMicrofrontendsGroup.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedMicrofrontendsGroup.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedMicrofrontendsGroup.slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-8" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-8" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-5" class="status" data-status="4xx">404</h5>
+<h5 id="410-13" class="status" data-status="4xx">410</h5>
+<h3 id="patch-v2teamsteamid" class="operation" data-method="patch"><code>PATCH</code> /v2/teams/{teamId}</h3>
+<p>Operation ID: <code>patchTeam</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-13">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-7">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>avatar</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The hash value of an uploaded image, or <code>null</code> to clear the avatar.</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default deployment protection settings for new projects.</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.passwordProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Allows to protect project deployments with a password</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.passwordProtection.deploymentType</code></td>
+<td><code>enum: all, preview, prod_deployment_urls_and_all_previews, all_except_custom_domains</code></td>
+<td>Yes</td>
+<td>Specify if the password will apply to every Deployment Target or just Preview</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.passwordProtection.password</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The password that will be used to protect Project Deployments</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.ssoProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Ensures visitors to your Preview Deployments are logged into Vercel and have a minimum of Viewer access on your team</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.ssoProtection.deploymentType</code></td>
+<td><code>enum: all, preview, prod_deployment_urls_and_all_previews, all_except_custom_domains</code></td>
+<td>Yes</td>
+<td>Specify if the Vercel Authentication (SSO Protection) will apply to every Deployment Target or just Preview</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expiration</code></td>
+<td><code>enum: 3y, 2y, 1y, 6m, 3m, 2m, ...</code></td>
+<td>No</td>
+<td>The time period to keep non-production deployments for</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationCanceled</code></td>
+<td><code>enum: 1y, 6m, 3m, 2m, 1m, 2w, ...</code></td>
+<td>No</td>
+<td>The time period to keep canceled deployments for</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationErrored</code></td>
+<td><code>enum: 1y, 6m, 3m, 2m, 1m, 2w, ...</code></td>
+<td>No</td>
+<td>The time period to keep errored deployments for</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationProduction</code></td>
+<td><code>enum: 3y, 2y, 1y, 6m, 3m, 2m, ...</code></td>
+<td>No</td>
+<td>The time period to keep production deployments for</td>
+</tr>
+<tr>
+<td><code>defaultPassport</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default Passport configuration for new projects.</td>
+</tr>
+<tr>
+<td><code>defaultPassport.connectorId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultPassport.deploymentType</code></td>
+<td><code>enum: all, preview, prod_deployment_urls_and_all_previews, all_except_custom_domains</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs</code></td>
+<td><code>object or string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy</code></td>
+<td><code>object or string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A short text that describes the team.</td>
+</tr>
+<tr>
+<td><code>disableRepositoryDispatchEvents</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Default for projects in the team. When <code>true</code>, projects in this team will not emit GitHub repository-dispatch events on deployment events unless the project explicitly overrides this setting.</td>
+</tr>
+<tr>
+<td><code>disjunctiveProductionSecretPolicy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Require production secrets to be in their own environment group: one of on, off or default.</td>
+</tr>
+<tr>
+<td><code>dpAccessRequestsMode</code></td>
+<td><code>enum: all, none, email-domain</code></td>
+<td>No</td>
+<td>Controls who can request access to protected deployments.</td>
+</tr>
+<tr>
+<td><code>emailDomain</code></td>
+<td><code>string (regex)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enablePreviewFeedback</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Enable preview toolbar: one of on, off or default.</td>
+</tr>
+<tr>
+<td><code>enableProductionFeedback</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Enable production toolbar: one of on, off or default.</td>
+</tr>
+<tr>
+<td><code>hideIpAddresses</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Display or hide IP addresses in Monitoring queries.</td>
+</tr>
+<tr>
+<td><code>hideIpAddressesInLogDrains</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Display or hide IP addresses in Log Drains.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the team.</td>
+</tr>
+<tr>
+<td><code>nsnbConfig</code></td>
+<td><code>object or string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>previewDeploymentSuffix</code></td>
+<td><code>string (hostname)</code></td>
+<td>No</td>
+<td>Suffix that will be used for all preview deployments.</td>
+</tr>
+<tr>
+<td><code>regenerateInviteCode</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Create a new invite code and replace the current one.</td>
+</tr>
+<tr>
+<td><code>remoteCaching</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Whether or not remote caching is enabled for the team</td>
+</tr>
+<tr>
+<td><code>remoteCaching.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Enable or disable remote caching for the team.</td>
+</tr>
+<tr>
+<td><code>requireVerifiedCommits</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When enabled, all projects in the team require commits to be signed and verified by the git provider before deployments will be created.</td>
+</tr>
+<tr>
+<td><code>resourceConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Resource configuration for the team.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Build machine configuration.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine.default</code></td>
+<td><code>enum: basic, enhanced, turbo, standard, elastic</code></td>
+<td>No</td>
+<td>Default build machine type for new builds: standard, enhanced, turbo, or elastic.</td>
+</tr>
+<tr>
+<td><code>saml</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>saml.enforced</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Require that members of the team use SAML Single Sign-On.</td>
+</tr>
+<tr>
+<td><code>saml.roles</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Directory groups to role or access group mappings.</td>
+</tr>
+<tr>
+<td><code>sensitiveEnvironmentVariablePolicy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Sensitive environment variable policy: one of on, off or default.</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A new slug for the team.</td>
+</tr>
+<tr>
+<td><code>strictConnectors</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, creating and managing connectors requires Owner role.</td>
+</tr>
+<tr>
+<td><code>strictConnectors.enabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Enable or disable requiring Owner role to manage connectors.</td>
+</tr>
+<tr>
+<td><code>strictDeploymentProtectionSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, deployment protection settings require stricter permissions (owner-only).</td>
+</tr>
+<tr>
+<td><code>strictDeploymentProtectionSettings.enabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Enable or disable strict deployment protection settings.</td>
+</tr>
+<tr>
+<td><code>strictPasswordProtectionSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, adding, changing, or removing project password protection requires Owner role.</td>
+</tr>
+<tr>
+<td><code>strictPasswordProtectionSettings.enabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Enable or disable requiring Owner role to change project password protection.</td>
+</tr>
+<tr>
+<td><code>strictShareableLinks</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, creating shareable links requires Owner role.</td>
+</tr>
+<tr>
+<td><code>strictShareableLinks.enabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Enable or disable requiring Owner role to create shareable links.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-14">Responses</h4>
+<h5 id="200-5" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiKeysInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which API keys created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>appTokensInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which Vercel App tokens created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the file used as avatar for this Team.</td>
+</tr>
+<tr>
+<td><code>billing</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The team's billing plan.</td>
+</tr>
+<tr>
+<td><code>billing.plan</code></td>
+<td><code>enum: enterprise, hobby, pro</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>connect</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>connect.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>UNIX timestamp (in milliseconds) when the Team was created.</td>
+</tr>
+<tr>
+<td><code>creatorId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the user who created the Team.</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default deployment protection for this team null indicates protection is disabled</td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.passwordProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.passwordProtection.deploymentType</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.ssoProtection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultDeploymentProtection.ssoProtection.deploymentType</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default deployment expiration settings for this team</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.deploymentsToKeep</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Minimum number of production deployments to keep for this project, even if they are over the production expiration limit.</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationDays</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep non-production deployments (mostly preview deployments) before soft deletion.</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationDaysCanceled</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep canceled deployments before soft deletion.</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationDaysErrored</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep errored deployments before soft deletion.</td>
+</tr>
+<tr>
+<td><code>defaultExpirationSettings.expirationDaysProduction</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of days to keep production deployments before soft deletion.</td>
+</tr>
+<tr>
+<td><code>defaultPassport</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default Passport configuration for new projects in this team.</td>
+</tr>
+<tr>
+<td><code>defaultPassport.connectorId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Default Passport configuration for new projects in this team.</td>
+</tr>
+<tr>
+<td><code>defaultPassport.deploymentType</code></td>
+<td><code>enum: all, all_except_custom_domains, preview, prod_deployment_urls_and_all_previews</code></td>
+<td>Yes</td>
+<td>Default Passport configuration for new projects in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.lint</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.lint.targets</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.mfe-config-present</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.mfe-config-present.targets</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.typecheck</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultProjectJobs.typecheck.targets</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Default job configuration applied to new projects created in this team.</td>
+</tr>
+<tr>
+<td><code>defaultRoles</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Default roles for the team.</td>
+</tr>
+<tr>
+<td><code>defaultRoles.teamPermissions</code></td>
+<td><code>array of enum: AiGatewayBudgetManager, AiGatewayCredits, AiGatewaySettings, AiGatewayTranscriptsManager, AiGatewayTranscriptsViewer, AiGatewayUser, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultRoles.teamRoles</code></td>
+<td><code>array of enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Composable deployment-time policy for the team. Used as the default for every project on the team, with optional per-project overrides on <code>project.deploymentPolicy</code>.</td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.deploymentSources</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.deploymentSources[].enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.deploymentSources[].environments</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.deploymentSources[].sources</code></td>
+<td><code>array of enum: cli, deploy-hook, git, integration, rest-api, v0</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.gitSources</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.gitSources[].enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.gitSources[].environments</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploymentPolicy.gitSources[].sources</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A short description of the Team.</td>
+</tr>
+<tr>
+<td><code>disableHardAutoBlocks</code></td>
+<td><code>number or enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>disableRepositoryDispatchEvents</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Default for projects in the team. When <code>true</code>, projects in this team will not emit GitHub repository-dispatch events on deployment events unless the project explicitly overrides this setting via <code>project.gitProviderOptions.disableRepositoryDispatchEvents</code>.</td>
+</tr>
+<tr>
+<td><code>disjunctiveProductionSecretPolicy</code></td>
+<td><code>enum: default, off, on, null</code></td>
+<td>No</td>
+<td>Require production secrets to use a different value than preview or development.</td>
+</tr>
+<tr>
+<td><code>dpAccessRequestsMode</code></td>
+<td><code>enum: all, email-domain, none</code></td>
+<td>No</td>
+<td>Controls who can request access to protected deployments.</td>
+</tr>
+<tr>
+<td><code>emailDomain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hostname that'll be matched with emails on sign-up to automatically join the Team.</td>
+</tr>
+<tr>
+<td><code>enablePreviewFeedback</code></td>
+<td><code>enum: default, default-force, off, off-force, on, on-force, ...</code></td>
+<td>No</td>
+<td>Whether toolbar is enabled on preview deployments</td>
+</tr>
+<tr>
+<td><code>enableProductionFeedback</code></td>
+<td><code>enum: default, default-force, off, off-force, on, on-force, ...</code></td>
+<td>No</td>
+<td>Whether toolbar is enabled on production deployments</td>
+</tr>
+<tr>
+<td><code>hideIpAddresses</code></td>
+<td><code>enum: false, true, null</code></td>
+<td>No</td>
+<td>Indicates if IP addresses should be accessible in observability (o11y) tooling</td>
+</tr>
+<tr>
+<td><code>hideIpAddressesInLogDrains</code></td>
+<td><code>enum: false, true, null</code></td>
+<td>No</td>
+<td>Indicates if IP addresses should be accessible in log drains</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Team's unique identifier.</td>
+</tr>
+<tr>
+<td><code>integrationTokensInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which integration tokens created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>inviteCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Code that can be used to join this Team. Only visible to Team owners.</td>
+</tr>
+<tr>
+<td><code>ipBuckets</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ipBuckets[].bucket</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ipBuckets[].default</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ipBuckets[].supportUntil</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The membership of the authenticated User in relation to the Team.</td>
+</tr>
+<tr>
+<td><code>membership.accessRequestedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.confirmed</code></td>
+<td><code>enum: true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.created</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.entitlements</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.entitlements[].entitlement</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.commitId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.dsyncConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.dsyncUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.gitUserId</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.gitUserLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.idpUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.origin</code></td>
+<td><code>enum: account-update, bitbucket, dsync, feedback, github, gitlab, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.repoId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.repoPath</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.ssoConnectedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.joinedFrom.ssoUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.role</code></td>
+<td><code>enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.teamId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.teamPermissions</code></td>
+<td><code>array of enum: AiGatewayBudgetManager, AiGatewayCredits, AiGatewaySettings, AiGatewayTranscriptsManager, AiGatewayTranscriptsViewer, AiGatewayUser, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.teamRoles</code></td>
+<td><code>array of enum: BILLING, CONTRIBUTOR, DEVELOPER, MEMBER, OWNER, SECURITY, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>membership.uid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name associated with the Team account, or <code>null</code> if none has been provided.</td>
+</tr>
+<tr>
+<td><code>nsnbConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>NSNB configuration for the team.</td>
+</tr>
+<tr>
+<td><code>nsnbConfig.preference</code></td>
+<td><code>enum: auto-approval, block, manual-approval</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>orgRootTeamId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Best-effort ID of the organization’s root billing team. When present, compare <code>orgRootTeamId === id</code> to identify the root team. It may be omitted even when <code>parentId</code> is set if organization resolution fails or the referenced organization is missing. Always omitted for non-organization teams.</td>
+</tr>
+<tr>
+<td><code>parentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The organizationId for teams that belong to an organization (set on both the organization's root team and its child teams).</td>
+</tr>
+<tr>
+<td><code>personalAccessTokensInvalidatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (ms) after which personal access tokens created at or before this time are considered invalid for this team.</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the team is a platform team.</td>
+</tr>
+<tr>
+<td><code>previewDeploymentSuffix</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The hostname that is current set as preview deployment suffix.</td>
+</tr>
+<tr>
+<td><code>remoteCaching</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Is remote caching enabled for this team</td>
+</tr>
+<tr>
+<td><code>remoteCaching.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>requireVerifiedCommits</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>When enabled, all projects in the team require commits to be signed and verified by the git provider before deployments will be created. Projects may override this via <code>project.gitProviderOptions.requireVerifiedCommits</code> (gated by <code>Project:Update</code>).</td>
+</tr>
+<tr>
+<td><code>resourceConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resourceConfig.blobStores</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of blob stores an account can create.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildEntitlements</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildEntitlements.enhancedBuilds</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Build machine configuration</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine.default</code></td>
+<td><code>enum: basic, elastic, enhanced, standard, turbo</code></td>
+<td>No</td>
+<td>Default build machine type for new builds</td>
+</tr>
+<tr>
+<td><code>resourceConfig.concurrentBuilds</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The total amount of concurrent builds that can be used.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.customEnvironmentsPerProject</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of custom environments allowed per project.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.edgeConfigSize</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum size in kilobytes of an Edge Config. Only specified if a custom limit is set.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.edgeConfigs</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of edge configs an account can create.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.elasticConcurrencyEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether every build for this team / user has elastic concurrency enabled automatically.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.kvDatabases</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of kv databases an account can create.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.postgresDatabases</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum number of postgres databases an account can create.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.serverlessFunctionMaxMemorySize</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The maximum memory size (in MB) for a serverless function. Only specified if a custom limit is set.</td>
+</tr>
+<tr>
+<td><code>saml</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When &quot;Single Sign-On (SAML)&quot; is configured, this object contains information regarding the configuration of the Identity Provider (IdP).</td>
+</tr>
+<tr>
+<td><code>saml.connection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information for the SAML Single Sign-On configuration.</td>
+</tr>
+<tr>
+<td><code>saml.connection.connectedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp (in milliseconds) of when the configuration was connected.</td>
+</tr>
+<tr>
+<td><code>saml.connection.lastReceivedWebhookEvent</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (in milliseconds) of when the last webhook event was received from WorkOS.</td>
+</tr>
+<tr>
+<td><code>saml.connection.lastSyncedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (in milliseconds) of when the last directory sync was performed.</td>
+</tr>
+<tr>
+<td><code>saml.connection.state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Current state of the connection.</td>
+</tr>
+<tr>
+<td><code>saml.connection.status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>saml.connection.syncState</code></td>
+<td><code>enum: ACTIVE, SETUP</code></td>
+<td>No</td>
+<td>Controls whether directory sync events are processed. - 'SETUP': Directory connected but role mappings not yet configured. Events are acknowledged but not processed. - 'ACTIVE': Fully configured. Events are processed normally. - undefined: Legacy directory (pre-feature), treat as 'ACTIVE' for backwards compatibility.</td>
+</tr>
+<tr>
+<td><code>saml.connection.type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Identity Provider &quot;type&quot;, for example Okta.</td>
+</tr>
+<tr>
+<td><code>saml.defaultRedirectUri</code></td>
+<td><code>enum: v0.app, v0.dev, vercel.com</code></td>
+<td>No</td>
+<td>The default redirect URI to use after successful SAML authentication.</td>
+</tr>
+<tr>
+<td><code>saml.directory</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Information for the Directory Sync configuration.</td>
+</tr>
+<tr>
+<td><code>saml.directory.connectedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp (in milliseconds) of when the configuration was connected.</td>
+</tr>
+<tr>
+<td><code>saml.directory.lastReceivedWebhookEvent</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (in milliseconds) of when the last webhook event was received from WorkOS.</td>
+</tr>
+<tr>
+<td><code>saml.directory.lastSyncedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp (in milliseconds) of when the last directory sync was performed.</td>
+</tr>
+<tr>
+<td><code>saml.directory.state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Current state of the connection.</td>
+</tr>
+<tr>
+<td><code>saml.directory.syncState</code></td>
+<td><code>enum: ACTIVE, SETUP</code></td>
+<td>No</td>
+<td>Controls whether directory sync events are processed. - 'SETUP': Directory connected but role mappings not yet configured. Events are acknowledged but not processed. - 'ACTIVE': Fully configured. Events are processed normally. - undefined: Legacy directory (pre-feature), treat as 'ACTIVE' for backwards compatibility.</td>
+</tr>
+<tr>
+<td><code>saml.directory.type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Identity Provider &quot;type&quot;, for example Okta.</td>
+</tr>
+<tr>
+<td><code>saml.enforced</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>When <code>true</code>, interactions with the Team <strong>must</strong> be done with an authentication token that has been authenticated with the Team's SAML Single Sign-On provider.</td>
+</tr>
+<tr>
+<td><code>saml.roles</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When &quot;Directory Sync&quot; is configured, this object contains a mapping of which Directory Group (by ID) should be assigned to which Vercel Team &quot;role&quot;.</td>
+</tr>
+<tr>
+<td><code>sensitiveEnvironmentVariablePolicy</code></td>
+<td><code>enum: default, off, on, null</code></td>
+<td>No</td>
+<td>Sensitive environment variable policy for this team</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The Team's slug, which is unique across the Vercel platform.</td>
+</tr>
+<tr>
+<td><code>stagingPrefix</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The prefix that is prepended to automatic aliases.</td>
+</tr>
+<tr>
+<td><code>strictConnectors</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, creating and managing connectors requires Owner role or the ConnectorManager permission.</td>
+</tr>
+<tr>
+<td><code>strictConnectors.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictConnectors.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictDeploymentProtectionSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, deployment protection settings require stricter permissions (owner-only).</td>
+</tr>
+<tr>
+<td><code>strictDeploymentProtectionSettings.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictDeploymentProtectionSettings.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictPasswordProtectionSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, adding, changing, or removing project password protection requires Owner role.</td>
+</tr>
+<tr>
+<td><code>strictPasswordProtectionSettings.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictPasswordProtectionSettings.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictShareableLinks</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>When enabled, creating shareable links requires Owner role.</td>
+</tr>
+<tr>
+<td><code>strictShareableLinks.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>strictShareableLinks.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp (in milliseconds) of when the Team was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-9" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-2" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-not-authorized-to-update-the-team-must-be-an-owner" class="status" data-status="4xx">403: You do not have permission to access this resource. Not authorized to update the team. Must be an OWNER</h5>
+<h5 id="410-14" class="status" data-status="4xx">410</h5>
+<h5 id="428" class="status" data-status="4xx">428</h5>
+<h3 id="patch-v1teamsteamidmembersuid" class="operation" data-method="patch"><code>PATCH</code> /v1/teams/{teamId}/members/{uid}</h3>
+<p>Operation ID: <code>updateTeamMember</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-14">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>uid</code> | <code>path</code> | <code>string</code> | Yes | The ID of the member. |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-8">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>enum: true</code></td>
+<td>No</td>
+<td>Accept a user who requested access to the team.</td>
+</tr>
+<tr>
+<td><code>joinedFrom</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>joinedFrom.ssoUserId</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projects[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the project.</td>
+</tr>
+<tr>
+<td><code>projects[].role</code></td>
+<td><code>enum: ADMIN, PROJECT_VIEWER, PROJECT_DEVELOPER, null</code></td>
+<td>Yes</td>
+<td>The project role of the member that will be added. &amp;quot;null&amp;quot; will remove this project level role.</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The role in the team of the member.</td>
+</tr>
+<tr>
+<td><code>teamPermissions</code></td>
+<td><code>array of enum: ConnectorManager, IntegrationManager, CreateProject, FullProductionDeployment, UsageViewer, EnvVariableManager, ...</code></td>
+<td>No</td>
+<td>The team permissions to set for the member. Permissions must be compatible with the team roles assigned to the member.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-15">Responses</h4>
+<h5 id="200-successfully-updated-the-membership" class="status" data-status="2xx">200: Successfully updated the membership</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ID of the team.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-cannot-disconnect-sso-from-a-team-member-that-does-not-have-a-sso-connection-cannot-confirm-a-member-that-is-already-confirmed-cannot-confirm-a-member-that-did-not-request-access" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid. Cannot disconnect SSO from a Team member that does not have a SSO connection. Cannot confirm a member that is already confirmed. Cannot confirm a member that did not request access</h5>
+<h5 id="401-the-request-is-not-authorized-team-members-can-only-be-updated-by-an-owner-or-by-the-authenticated-user-if-they-are-only-disconnecting-their-saml-connection-to-the-team" class="status" data-status="4xx">401: The request is not authorized. Team members can only be updated by an owner, or by the authenticated user if they are only disconnecting their SAML connection to the Team</h5>
+<h5 id="402-3" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-9" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-provided-user-is-not-part-of-this-team-a-user-with-the-specified-id-does-not-exist" class="status" data-status="4xx">404: The provided user is not part of this team. A user with the specified ID does not exist</h5>
+<h5 id="409-2" class="status" data-status="4xx">409</h5>
+<h5 id="410-15" class="status" data-status="4xx">410</h5>
+<h5 id="500-2" class="status" data-status="5xx">500</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

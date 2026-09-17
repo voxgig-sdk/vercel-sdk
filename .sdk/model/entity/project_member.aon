@@ -1,0 +1,337 @@
+# Entity: project_member
+
+main: kit: entity: project_member: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      format: "email"
+      name: "email"
+      req: false
+      short: "The email of the team member that should be added to this project."
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "role"
+      req: true
+      short: "The project role of the member that will be added."
+      type: "`$STRING`"
+    }
+    {
+      name: "uid"
+      req: false
+      short: "The ID of the team member that should be added to this project."
+      type: "`$STRING`"
+    }
+    {
+      name: "username"
+      req: false
+      short: "The username of the team member that should be added to this project."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "project_member"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "prj_pavWOn1iLObbXLRiwVvzmPrTWyTf"
+                kind: "param"
+                name: "id_or_name"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/projects/{idOrName}/members"
+            json: "{\"operationId\":\"addProjectMember\",\"parameters\":[{\"description\":\"The ID or name of the Project.\",\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"description\":\"The ID or name of the Project.\",\"example\":\"prj_pavWOn1iLObbXLRiwVvzmPrTWyTf\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"oneOf\":[{\"required\":[\"uid\"]},{\"required\":[\"username\"]},{\"required\":[\"email\"]}],\"properties\":{\"email\":{\"description\":\"The email of the team member that should be added to this project.\",\"example\":\"entity@example.com\",\"format\":\"email\",\"type\":\"string\"},\"role\":{\"description\":\"The project role of the member that will be added.\",\"enum\":[\"ADMIN\",\"PROJECT_VIEWER\",\"PROJECT_DEVELOPER\"],\"example\":\"ADMIN\",\"type\":\"string\"},\"uid\":{\"description\":\"The ID of the team member that should be added to this project.\",\"example\":\"ndlgr43fadlPyCtREAqxxdyFK\",\"maxLength\":256,\"type\":\"string\"},\"username\":{\"description\":\"The username of the team member that should be added to this project.\",\"example\":\"example\",\"maxLength\":256,\"type\":\"string\"}},\"required\":[\"role\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Responds with the project ID on success.\",\"properties\":{\"id\":{\"type\":\"string\"}},\"required\":[\"id\"],\"type\":\"object\"}}},\"description\":\"Responds with the project ID on success.\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/projects/{idOrName}/members"
+          rename: {
+            param: {
+              idOrName: "id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "id_or_name"
+            }
+            {
+              lit: "members"
+            }
+          ]
+          select: {
+            exist: [
+              "id_or_name"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              email: "`reqdata.email`"
+              role: "`reqdata.role`"
+              uid: "`reqdata.uid`"
+              username: "`reqdata.username`"
+            }
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "prj_pavWOn1iLObbXLRiwVvzmPrTWyTf"
+                kind: "param"
+                name: "id_or_name"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "search"
+                orig: "search"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1540095775951
+                kind: "query"
+                name: "since"
+                orig: "since"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1540095775951
+                kind: "query"
+                name: "until"
+                orig: "until"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/projects/{idOrName}/members"
+            json: "{\"operationId\":\"getProjectMembers\",\"parameters\":[{\"description\":\"The ID or name of the Project.\",\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"description\":\"The ID or name of the Project.\",\"example\":\"prj_pavWOn1iLObbXLRiwVvzmPrTWyTf\",\"type\":\"string\"}},{\"description\":\"Limit how many project members should be returned\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"description\":\"Limit how many project members should be returned\",\"example\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Timestamp in milliseconds to only include members added since then.\",\"in\":\"query\",\"name\":\"since\",\"required\":false,\"schema\":{\"description\":\"Timestamp in milliseconds to only include members added since then.\",\"example\":1540095775951,\"type\":\"integer\"}},{\"description\":\"Timestamp in milliseconds to only include members added until then.\",\"in\":\"query\",\"name\":\"until\",\"required\":false,\"schema\":{\"description\":\"Timestamp in milliseconds to only include members added until then.\",\"example\":1540095775951,\"type\":\"integer\"}},{\"description\":\"Search project members by their name, username, and email.\",\"in\":\"query\",\"name\":\"search\",\"required\":false,\"schema\":{\"description\":\"Search project members by their name, username, and email.\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"type\":\"object\"},{\"description\":\"Paginated list of members for the project.\",\"properties\":{\"members\":{\"items\":{\"properties\":{\"avatar\":{\"description\":\"ID of the file for the Avatar of this member.\",\"example\":\"123a6c5209bc3778245d011443644c8d27dc2c50\",\"type\":\"string\"},\"computedProjectRole\":{\"description\":\"Role of this user in the project.\",\"enum\":[\"ADMIN\",\"PROJECT_DEVELOPER\",\"PROJECT_GUEST\",\"PROJECT_VIEWER\"],\"example\":\"ADMIN\",\"type\":\"string\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds when this member was added.\",\"example\":1588720733602,\"type\":\"number\"},\"email\":{\"description\":\"The email of this member.\",\"example\":\"jane.doe@example.com\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this user.\",\"example\":\"Jane Doe\",\"type\":\"string\"},\"role\":{\"description\":\"Role of this user in the project.\",\"enum\":[\"ADMIN\",\"PROJECT_DEVELOPER\",\"PROJECT_GUEST\",\"PROJECT_VIEWER\"],\"example\":\"ADMIN\",\"type\":\"string\"},\"teamRole\":{\"description\":\"The role of this user in the team.\",\"enum\":[\"BILLING\",\"CONTRIBUTOR\",\"DEVELOPER\",\"MEMBER\",\"OWNER\",\"SECURITY\",\"VIEWER\",\"VIEWER_FOR_PLUS\"],\"example\":\"CONTRIBUTOR\",\"type\":\"string\"},\"uid\":{\"description\":\"The ID of this user.\",\"example\":\"zTuNVUXEAvvnNN3IaqinkyMw\",\"type\":\"string\"},\"username\":{\"description\":\"The unique username of this user.\",\"example\":\"jane-doe\",\"type\":\"string\"}},\"required\":[\"computedProjectRole\",\"createdAt\",\"email\",\"role\",\"teamRole\",\"uid\",\"username\"],\"type\":\"object\"},\"type\":\"array\"},\"pagination\":{\"properties\":{\"count\":{\"description\":\"Amount of items in the current page.\",\"example\":20,\"type\":\"number\"},\"hasNext\":{\"enum\":[false,true],\"type\":\"boolean\"},\"next\":{\"description\":\"Timestamp that must be used to request the next page.\",\"example\":1540095775951,\"nullable\":true,\"type\":\"number\"},\"prev\":{\"description\":\"Timestamp that must be used to request the previous page.\",\"example\":1540095775951,\"nullable\":true,\"type\":\"number\"}},\"required\":[\"count\",\"hasNext\",\"next\",\"prev\"],\"type\":\"object\"}},\"required\":[\"members\",\"pagination\"],\"type\":\"object\"}]}}},\"description\":\"Paginated list of members for the project.\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/projects/{idOrName}/members"
+          rename: {
+            param: {
+              idOrName: "id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "id_or_name"
+            }
+            {
+              lit: "members"
+            }
+          ]
+          select: {
+            exist: [
+              "id_or_name"
+              "limit"
+              "search"
+              "since"
+              "slug"
+              "team_id"
+              "until"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "ndlgr43fadlPyCtREAqxxdyFK"
+                kind: "param"
+                name: "id"
+                orig: "uid"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "prj_pavWOn1iLObbXLRiwVvzmPrTWyTf"
+                kind: "param"
+                name: "project_id"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/projects/{idOrName}/members/{uid}"
+            json: "{\"operationId\":\"removeProjectMember\",\"parameters\":[{\"description\":\"The ID or name of the Project.\",\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"description\":\"The ID or name of the Project.\",\"example\":\"prj_pavWOn1iLObbXLRiwVvzmPrTWyTf\",\"type\":\"string\"}},{\"description\":\"The user ID of the member.\",\"in\":\"path\",\"name\":\"uid\",\"required\":true,\"schema\":{\"description\":\"The user ID of the member.\",\"example\":\"ndlgr43fadlPyCtREAqxxdyFK\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"type\":\"string\"}},\"required\":[\"id\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/projects/{idOrName}/members/{uid}"
+          rename: {
+            param: {
+              idOrName: "project_id"
+              uid: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "project"
+      ]
+    ]
+  }
+
+
+
+}

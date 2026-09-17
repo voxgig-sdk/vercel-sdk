@@ -1,0 +1,22 @@
+# BasicVcrRepositoryListFlow
+
+main: kit: flow: BasicVcrRepositoryListFlow:
+{
+  entity: "vcr_repository_list",
+  kind: "basic",
+  name: "BasicVcrRepositoryListFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "vcr_repository_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicVcrRepositoryListFlow"
+}

@@ -1,0 +1,49 @@
+# BasicWebhookFlow
+
+main: kit: flow: BasicWebhookFlow:
+{
+  entity: "webhook",
+  kind: "basic",
+  name: "BasicWebhookFlow",
+  step: [
+    {
+      input: {
+        ref: "webhook_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "webhook_ref01",
+        srcdatavar: "webhook_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-webhook_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "webhook_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "webhook01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicWebhookFlow"
+}

@@ -1,0 +1,112 @@
+# BasicProjectRouteFlow
+
+main: kit: flow: BasicProjectRouteFlow:
+{
+  entity: "project_route",
+  kind: "basic",
+  name: "BasicProjectRouteFlow",
+  step: [
+    {
+      input: {
+        ref: "project_route_ref01"
+      }
+
+      match: {
+        project_id: "project01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        project_id: "project01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "project_route_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "project_route_ref01",
+        srcdatavar: "project_route_ref01_data",
+        suffix: "_up0",
+        textfield: "action"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-project_route_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "project_route_ref01",
+        srcdatavar: "project_route_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "project_route01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-project_route_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "project_route_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "project_route01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        project_id: "project01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "project_route_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicProjectRouteFlow"
+}

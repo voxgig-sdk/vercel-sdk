@@ -1,0 +1,122 @@
+# Entity: record
+
+main: kit: entity: record: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "comment"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "createdAt"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "creator"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "domain"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "recordType"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "ttl"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "value"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "record"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "record_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /domains/records/{recordId}"
+            json: "{\"operationId\":\"getDomainsRecordsByRecordId\",\"parameters\":[{\"description\":\"The unique ID of the DNS record\",\"in\":\"path\",\"name\":\"recordId\",\"required\":true,\"schema\":{\"description\":\"The unique ID of the DNS record\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"comment\":{\"type\":\"string\"},\"createdAt\":{\"nullable\":true,\"type\":\"number\"},\"creator\":{\"type\":\"string\"},\"domain\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"recordType\":{\"enum\":[\"A\",\"AAAA\",\"ALIAS\",\"CAA\",\"CNAME\",\"HTTPS\",\"MX\",\"NS\",\"SRV\",\"TXT\"],\"type\":\"string\"},\"ttl\":{\"type\":\"number\"},\"type\":{\"enum\":[\"A\",\"AAAA\",\"ALIAS\",\"CAA\",\"CNAME\",\"HTTPS\",\"MX\",\"NS\",\"SRV\",\"TXT\"],\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"creator\",\"domain\",\"id\",\"name\",\"recordType\",\"type\",\"value\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/domains/records/{recordId}"
+          rename: {
+            param: {
+              recordId: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "domains"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

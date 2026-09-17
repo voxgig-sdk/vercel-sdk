@@ -1,0 +1,2216 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Integration | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a aria-current="page" href="../api/integration.html">Integration</a><div class="nav-sections"><a class="nav-section" href="#post-v1integrationsinstallationsintegrationconfigurationidresourcesresourceidconnections">POST /v1/integrations/installations/{integrationConfigurationId}/resources/{resourceId}/connections</a>
+<a class="nav-section" href="#post-v1storagestoresintegrationdirect">POST /v1/storage/stores/integration/direct</a>
+<a class="nav-section" href="#get-v1integrationsintegrationintegrationidorslugproductsproductidorslugplans">GET /v1/integrations/integration/{integrationIdOrSlug}/products/{productIdOrSlug}/plans</a>
+<a class="nav-section" href="#get-v1integrationsconfigurationidproducts">GET /v1/integrations/configuration/{id}/products</a>
+<a class="nav-section" href="#get-v1integrationsgit-namespaces">GET /v1/integrations/git-namespaces</a>
+<a class="nav-section" href="#get-v1integrationssearch-repo">GET /v1/integrations/search-repo</a>
+<a class="nav-section" href="#get-v1integrationsconfigurations">GET /v1/integrations/configurations</a>
+<a class="nav-section" href="#get-v1integrationsconfigurationid">GET /v1/integrations/configuration/{id}</a>
+<a class="nav-section" href="#delete-v1integrationsconfigurationid">DELETE /v1/integrations/configuration/{id}</a></div>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="integration">Integration</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1integrationsinstallationsintegrationconfigurationidresourcesresourceidconnections"><code>/v1/integrations/installations/{integrationConfigurationId}/resources/{resourceId}/connections</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1storagestoresintegrationdirect"><code>/v1/storage/stores/integration/direct</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1integrationsintegrationintegrationidorslugproductsproductidorslugplans"><code>/v1/integrations/integration/{integrationIdOrSlug}/products/{productIdOrSlug}/plans</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1integrationsconfigurationidproducts"><code>/v1/integrations/configuration/{id}/products</code></a></td>
+<td><code>list</code></td>
+<td>List of products available for this integration configuration</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1integrationsgit-namespaces"><code>/v1/integrations/git-namespaces</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1integrationssearch-repo"><code>/v1/integrations/search-repo</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1integrationsconfigurations"><code>/v1/integrations/configurations</code></a></td>
+<td><code>load</code></td>
+<td>The list of configurations for the authenticated user</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1integrationsconfigurationid"><code>/v1/integrations/configuration/{id}</code></a></td>
+<td><code>load</code></td>
+<td>The configuration with the provided id</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1integrationsconfigurationid"><code>/v1/integrations/configuration/{id}</code></a></td>
+<td><code>remove</code></td>
+<td>The configuration was successfully removed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cost</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>details</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>effectiveDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>envVarEnvironments</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>highlightedDetails</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>initialCharge</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>makeEnvVarsSensitive</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>maximumAmount</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>maximumAmountAutoPurchasePerPeriod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadataSchema</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>minimumAmount</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>paymentMethodRequired</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>preauthorizationAmount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>primaryProtocol</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protocols</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>quote</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1integrationsinstallationsintegrationconfigurationidresourcesresourceidconnections" class="operation" data-method="post"><code>POST</code> /v1/integrations/installations/{integrationConfigurationId}/resources/{resourceId}/connections</h3>
+<p>Operation ID: <code>connectIntegrationResourceToProject</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>envVarEnvironments</code></td>
+<td><code>array of enum: production, preview, development or string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>makeEnvVarsSensitive</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="201" class="status" data-status="2xx">201</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1storagestoresintegrationdirect" class="operation" data-method="post"><code>POST</code> /v1/storage/stores/integration/direct</h3>
+<p>Operation ID: <code>createIntegrationStoreDirect</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>billingPlanId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>ID of the billing plan for paid resources. Get available plans from GET /integrations/integration/{id}/products/{productId}/plans. If not provided, automatically discovers free billing plans.</td>
+</tr>
+<tr>
+<td><code>externalId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional external identifier for tracking purposes</td>
+</tr>
+<tr>
+<td><code>integrationConfigurationId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>ID of your integration configuration. Get this from GET /v1/integrations/configurations</td>
+</tr>
+<tr>
+<td><code>integrationProductIdOrSlug</code></td>
+<td><code>any or any</code></td>
+<td>Yes</td>
+<td>ID or slug of the integration product. Get available products from GET /v1/integrations/configuration/{id}/products</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Optional key-value pairs for resource metadata</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable name for the storage resource</td>
+</tr>
+<tr>
+<td><code>paymentMethodId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Payment method ID for paid resources. Optional - uses default payment method if not provided.</td>
+</tr>
+<tr>
+<td><code>prepaymentAmountCents</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Amount in cents for prepayment billing plans. Required only for prepayment plans with variable amounts.</td>
+</tr>
+<tr>
+<td><code>protocolSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Protocol-specific configuration settings</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>enum: marketplace, deploy-button, external, v0, resource-claims, cli, ...</code></td>
+<td>No</td>
+<td>Source of the store creation request</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>store</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.cost</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.details</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.details[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.details[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.disabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.effectiveDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.highlightedDetails</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.highlightedDetails[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.highlightedDetails[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.initialCharge</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.maximumAmount</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.maximumAmountAutoPurchasePerPeriod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.minimumAmount</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.paymentMethodRequired</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.preauthorizationAmount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.quote</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.quote[].amount</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.quote[].line</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.scope</code></td>
+<td><code>enum: installation, resource</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.billingPlan.type</code></td>
+<td><code>enum: prepayment, subscription</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.agentTools</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.autoSensitive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.billable</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.mcp</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.mcpReadonly</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.projects</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.secretRotation</code></td>
+<td><code>object or enum: false</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.secretsSync</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.sso</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.transferable</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.capabilities.v0</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.directPartnerConsoleUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.externalResourceId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.externalResourceStatus</code></td>
+<td><code>enum: error, onboarding, pending, ready, resumed, suspended, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.notification</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.notification.href</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.notification.level</code></td>
+<td><code>enum: error, info, warn</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.notification.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.notification.title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.ownership</code></td>
+<td><code>enum: linked, owned, sandbox</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.parentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the parent resource. Used to establish a parent-child relationship between resources, such as sandbox resources linking to their owner account resource.</td>
+</tr>
+<tr>
+<td><code>store.product</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.agentSkills</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>URLs to skills/guides for how AI agents should use this product. Providers can specify these to help agents understand how to interact with their integration.</td>
+</tr>
+<tr>
+<td><code>store.product.capabilities</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.agentTools</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.autoSensitive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.billable</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.connectedImportResource</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.databaseUI</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.importResource</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.linking</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.mcp</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.mcpReadonly</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.nativeImportResource</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.projects</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.sandbox</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.secretRotation</code></td>
+<td><code>object or enum: false</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.secretsSync</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.sso</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.transferable</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.v0</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.capabilities.v0Flavors</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.disableResourceRenaming</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.guides</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.guides[].framework</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.guides[].steps</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.guides[].steps[].actions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.guides[].steps[].content</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.guides[].steps[].title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.guides[].title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.iconUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.billable</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.checks</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.connectedImportResource</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.connectedProvisioning</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.flexCommitEligible</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.importResource</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.maxAllowedTeams</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.mcp</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.mcpReadonly</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.nativeImportResource</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.provisioning</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.requiresBrowserInstall</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.secretRotation</code></td>
+<td><code>object or enum: false</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.sso</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.templateCloneOnly</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.transferable</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.updateConfiguration</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.capabilities.v0Flavors</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.flags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.icon</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integration.supportsInstallationBillingPlans</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.integrationConfigurationId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.logDrainStatus</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.metadataSchema</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.metadataSchema.properties</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.metadataSchema.required</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.metadataSchema.type</code></td>
+<td><code>enum: object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.metadataSchema.ui:order</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.primaryProtocol</code></td>
+<td><code>enum: ai, authentication, checks, experimentation, logDrain, messaging, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.projectConnectionScopes</code></td>
+<td><code>array of enum: read-write:deployment, read-write:deployment-check, read-write:domain, read-write:drains, read-write:global-project-env-vars, read-write:integration-deployment-action, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.repl</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.repl.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.repl.supportsReadOnlyMode</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.repl.welcomeMessage</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.resourceLinks</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.resourceLinks[].href</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.resourceLinks[].title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.resourceTitle</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Custom resource title to display during installation and configuration. If not provided, defaults to protocol-based defaults.</td>
+</tr>
+<tr>
+<td><code>store.product.shortDescription</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.showSSOLinkOnProjectConnection</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.supportedProtocols</code></td>
+<td><code>array of enum: ai, authentication, checks, experimentation, logDrain, messaging, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.product.tags</code></td>
+<td><code>array of enum: ai, authentication, blob, checks, drains, edge-config, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectFilter</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectFilter.git</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectFilter.git.owners</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectFilter.git.providers</code></td>
+<td><code>array of enum: bitbucket, github, gitlab or enum: *</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectFilter.git.repos</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].deployments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].deployments.actions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].deployments.actions[].environments</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].deployments.actions[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].deployments.required</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].envVarPrefix</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].environmentVariables</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].environments</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].framework</code></td>
+<td><code>enum: actix-web, angular, ash, astro, axum, blitzjs, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].latestDeployment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].makeEnvVarsSensitive</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.projectsMetadata[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.authentication</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.authentication.appUrls</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.authentication.appUrls[].target</code></td>
+<td><code>enum: development, preview, production</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.authentication.appUrls[].url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.experimentation</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.experimentation.edgeConfigId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.experimentation.edgeConfigSyncingEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.experimentation.edgeConfigTokenId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.experimentation.globalConfigId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.protocolSettings.experimentation.globalConfigSyncingEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.secretRotationCompletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The timestamp when secret rotation was completed.</td>
+</tr>
+<tr>
+<td><code>store.secretRotationRequestedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The timestamp when secret rotation was requested.</td>
+</tr>
+<tr>
+<td><code>store.secretRotationRequestedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the user/team who requested the secret rotation.</td>
+</tr>
+<tr>
+<td><code>store.secretRotationRequestedReason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reason for the secret rotation request.</td>
+</tr>
+<tr>
+<td><code>store.secrets</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.secrets[].frameworkPublishable</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.secrets[].length</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.secrets[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.status</code></td>
+<td><code>enum: available, error, initializing, limits-exceeded-suspended, limits-exceeded-suspended-store-count, onboarding, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.targets</code></td>
+<td><code>array of enum: development, preview, production</code></td>
+<td>No</td>
+<td>The deployment targets that this resource is available for.</td>
+</tr>
+<tr>
+<td><code>store.totalConnectedProjects</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>store.usageQuotaExceeded</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v1integrationsintegrationintegrationidorslugproductsproductidorslugplans" class="operation" data-method="get"><code>GET</code> /v1/integrations/integration/{integrationIdOrSlug}/products/{productIdOrSlug}/plans</h3>
+<p>Operation ID: <code>getBillingPlans</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationIdOrSlug</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>integrationConfigurationId</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>productIdOrSlug</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>metadata</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>source</code> | <code>query</code> | <code>enum: marketplace, deploy-button, external, v0, resource-claims, cli, ...</code> | No |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plans</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].cost</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].details</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].details[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].details[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].disabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].effectiveDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].highlightedDetails</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].highlightedDetails[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].highlightedDetails[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].initialCharge</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].maximumAmount</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].maximumAmountAutoPurchasePerPeriod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].minimumAmount</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].paymentMethodRequired</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].preauthorizationAmount</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].quote</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].quote[].amount</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].quote[].line</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].scope</code></td>
+<td><code>enum: installation, resource</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>plans[].type</code></td>
+<td><code>enum: prepayment, subscription</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1integrationsconfigurationidproducts" class="operation" data-method="get"><code>GET</code> /v1/integrations/configuration/{id}/products</h3>
+<p>Operation ID: <code>getConfigurationProducts</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of the integration configuration |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-list-of-products-available-for-this-integration-configuration" class="status" data-status="2xx">200: List of products available for this integration configuration</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>configuration</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>configuration.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integration</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integration.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integration.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integration.slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].metadataSchema</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].metadataSchema.properties</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].metadataSchema.required</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].metadataSchema.type</code></td>
+<td><code>enum: object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].metadataSchema.ui:order</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].primaryProtocol</code></td>
+<td><code>enum: ai, authentication, checks, experimentation, logDrain, messaging, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.ai</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.ai.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.authentication</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.authentication.appUrlRegistrationSupport</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>The partner accepts Vercel-managed app URLs via <code>protocolSettings.authentication.appUrls</code> on provision-resource and update-resource, and reconciles them into its trusted-origin / redirect-URL allowlist. When absent, consumers surface the URL for a one-time manual registration instead.</td>
+</tr>
+<tr>
+<td><code>products[].protocols.authentication.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.checks</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.checks.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.experimentation</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.experimentation.edgeConfigSyncingSupport</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.experimentation.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.logDrain</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.logDrain.endpoint</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.logDrain.format</code></td>
+<td><code>enum: json, ndjson</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.logDrain.headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.logDrain.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.messaging</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.messaging.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.observability</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.observability.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.other</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.other.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.storage</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.storage.repl</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.storage.repl.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.storage.repl.supportsReadOnlyMode</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.storage.repl.welcomeMessage</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.storage.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.traceDrain</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.traceDrain.endpoint</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.traceDrain.format</code></td>
+<td><code>enum: json, proto</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.traceDrain.headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.traceDrain.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.video</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.video.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.workflow</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].protocols.workflow.status</code></td>
+<td><code>enum: disabled, enabled</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>products[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h5 id="500-1" class="status" data-status="5xx">500</h5>
+<h3 id="get-v1integrationsgit-namespaces" class="operation" data-method="get"><code>GET</code> /v1/integrations/git-namespaces</h3>
+<p>Operation ID: <code>gitNamespaces</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>host</code> | <code>query</code> | <code>string</code> | No | The custom Git host if using a custom Git provider, like GitHub Enterprise Server |
+| <code>provider</code> | <code>query</code> | <code>enum: github, github-limited, github-custom-host, gitlab, bitbucket</code> | No |  |
+| <code>viewerMetadata</code> | <code>query</code> | <code>boolean</code> | No | When true, includes the viewer object for each namespace. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].id</code></td>
+<td><code>string or number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].installationId</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].isAccessRestricted</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].ownerType</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].provider</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].requireReauth</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].viewer</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].viewer.canCreateApp</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].viewer.role</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401" class="status" data-status="4xx">401</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-4" class="status" data-status="4xx">404</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h5 id="429" class="status" data-status="4xx">429</h5>
+<h5 id="500-2" class="status" data-status="5xx">500</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1integrationssearch-repo" class="operation" data-method="get"><code>GET</code> /v1/integrations/search-repo</h3>
+<p>Operation ID: <code>searchRepo</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>query</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>namespaceId</code> | <code>query</code> | <code>string or number</code> | No |  |
+| <code>provider</code> | <code>query</code> | <code>enum: github, github-limited, github-custom-host, gitlab, bitbucket, cursor-origin</code> | No |  |
+| <code>installationId</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>host</code> | <code>query</code> | <code>string</code> | No | The custom Git host if using a custom Git provider, like GitHub Enterprise Server |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-1" class="status" data-status="4xx">401</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-5" class="status" data-status="4xx">404</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h5 id="429-1" class="status" data-status="4xx">429</h5>
+<h5 id="500-3" class="status" data-status="5xx">500</h5>
+<h5 id="502" class="status" data-status="5xx">502</h5>
+<h3 id="get-v1integrationsconfigurations" class="operation" data-method="get"><code>GET</code> /v1/integrations/configurations</h3>
+<p>Operation ID: <code>getConfigurations</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>view</code> | <code>query</code> | <code>enum: account, project</code> | Yes |  |
+| <code>installationType</code> | <code>query</code> | <code>enum: marketplace, external, provisioning</code> | No |  |
+| <code>integrationIdOrSlug</code> | <code>query</code> | <code>string</code> | No | ID of the integration |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-the-list-of-configurations-for-the-authenticated-user" class="status" data-status="2xx">200: The list of configurations for the authenticated user</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>array of object or array of object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1integrationsconfigurationid" class="operation" data-method="get"><code>GET</code> /v1/integrations/configuration/{id}</h3>
+<p>Operation ID: <code>getConfiguration</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of the configuration to check |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-the-configuration-with-the-provided-id" class="status" data-status="2xx">200: The configuration with the provided id</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-configuration-was-not-found" class="status" data-status="4xx">404: The configuration was not found</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1integrationsconfigurationid" class="operation" data-method="delete"><code>DELETE</code> /v1/integrations/configuration/{id}</h3>
+<p>Operation ID: <code>deleteConfiguration</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="204-the-configuration-was-successfully-removed" class="status" data-status="2xx">204: The configuration was successfully removed</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-6" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-8" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-configuration-was-not-found-1" class="status" data-status="4xx">404: The configuration was not found</h5>
+<h5 id="410-8" class="status" data-status="4xx">410</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ConnectConnectorProjectConnectionList | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a aria-current="page" href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a><div class="nav-sections"><a class="nav-section" href="#get-v2connectconnectorsconnectorprojects">GET /v2/connect/connectors/{connector}/projects</a></div>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="connectconnectorprojectconnectionlist">ConnectConnectorProjectConnectionList</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2connectconnectorsconnectorprojects"><code>/v2/connect/connectors/{connector}/projects</code></a></td>
+<td><code>list</code></td>
+<td>A page of project connections for the connector</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>connectorId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable <code>scl_</code> connector ID, even when the request used a UID.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Time when the project connection was created, in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>enabledEnvironments</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Environments where the connector is enabled for the project.</td>
+</tr>
+<tr>
+<td><code>project</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Vercel project connected to the connector.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Time when the project connection was last updated, in epoch milliseconds.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-v2connectconnectorsconnectorprojects" class="operation" data-method="get"><code>GET</code> /v2/connect/connectors/{connector}/projects</h3>
+<p>Operation ID: <code>listConnectorProjectConnections</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>connector</code> | <code>path</code> | <code>string</code> | Yes | Stable connector ID or URL-encoded team-scoped UID. Examples: <code>scl_abc123</code> or <code>slack%2Fmy-bot</code>. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | Maximum number of project connections to return. Defaults to 50. |
+| <code>cursor</code> | <code>query</code> | <code>string</code> | No | Cursor from <code>pagination.next</code> on the previous response. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-a-page-of-project-connections-for-the-connector" class="status" data-status="2xx">200: A page of project connections for the connector</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Cursor for the next page.</td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Opaque value to pass as <code>cursor</code> on the next request.</td>
+</tr>
+<tr>
+<td><code>projects</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>Project connections in this page.</td>
+</tr>
+<tr>
+<td><code>projects[].connectorId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable <code>scl_</code> connector ID, even when the request used a UID.</td>
+</tr>
+<tr>
+<td><code>projects[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Time when the project connection was created, in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>projects[].enabledEnvironments</code></td>
+<td><code>array of string or enum: development, preview, production</code></td>
+<td>Yes</td>
+<td>Environments where the connector is enabled for the project.</td>
+</tr>
+<tr>
+<td><code>projects[].project</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Vercel project connected to the connector.</td>
+</tr>
+<tr>
+<td><code>projects[].project.customEnvironments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Custom environments available on the project. This list can include environments where the connector is not enabled.</td>
+</tr>
+<tr>
+<td><code>projects[].project.customEnvironments[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable custom environment ID.</td>
+</tr>
+<tr>
+<td><code>projects[].project.customEnvironments[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Current human-readable custom environment slug.</td>
+</tr>
+<tr>
+<td><code>projects[].project.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Same Vercel project ID as the connection's top-level <code>projectId</code>.</td>
+</tr>
+<tr>
+<td><code>projects[].project.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Current Vercel project name.</td>
+</tr>
+<tr>
+<td><code>projects[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Time when the project connection was last updated, in epoch milliseconds.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Error details.</td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable machine-readable error code.</td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable error message.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-requested-resource-was-not-found" class="status" data-status="4xx">404: The requested resource was not found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="410-the-requested-resource-is-no-longer-available" class="status" data-status="4xx">410: The requested resource is no longer available</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="422-the-request-cannot-be-completed-in-the-current-state" class="status" data-status="4xx">422: The request cannot be completed in the current state</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

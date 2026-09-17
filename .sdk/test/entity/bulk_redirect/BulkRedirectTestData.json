@@ -1,0 +1,1756 @@
+{
+  "existing": {
+    "bulk_redirect": {
+      "BULK_REDIRECT00": {
+        "alias": "s96",
+        "createdBy": "s97",
+        "id": "BULK_REDIRECT00",
+        "isLive": false,
+        "isStaging": true,
+        "key": "s9b",
+        "lastModified": 156,
+        "name": "s9d",
+        "overwrite": true,
+        "projectId": "s9f",
+        "redirect": {},
+        "redirectCount": 161,
+        "redirects": [],
+        "restore": false,
+        "teamId": "sa4"
+      },
+      "BULK_REDIRECT01": {
+        "alias": "s12c",
+        "createdBy": "s12d",
+        "id": "BULK_REDIRECT01",
+        "isLive": false,
+        "isStaging": true,
+        "key": "s131",
+        "lastModified": 306,
+        "name": "s133",
+        "overwrite": true,
+        "projectId": "s135",
+        "redirect": {},
+        "redirectCount": 311,
+        "redirects": [],
+        "restore": false,
+        "teamId": "s13a"
+      },
+      "BULK_REDIRECT02": {
+        "alias": "s1c2",
+        "createdBy": "s1c3",
+        "id": "BULK_REDIRECT02",
+        "isLive": false,
+        "isStaging": true,
+        "key": "s1c7",
+        "lastModified": 456,
+        "name": "s1c9",
+        "overwrite": true,
+        "projectId": "s1cb",
+        "redirect": {},
+        "redirectCount": 461,
+        "redirects": [],
+        "restore": false,
+        "teamId": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "bulk_redirect": {
+      "bulk_redirect_ref01": {
+        "alias": "s258",
+        "createdBy": "s259",
+        "isLive": false,
+        "isStaging": true,
+        "key": "s25d",
+        "lastModified": 606,
+        "name": "s25f",
+        "overwrite": true,
+        "projectId": "s261",
+        "redirect": {},
+        "redirectCount": 611,
+        "redirects": [],
+        "restore": false,
+        "teamId": "s266"
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/bulk-redirects/restore": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "restoreRedirects",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "redirects": {
+                    "description": "The redirects to restore. The source of the redirect is used to match the redirect to restore.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 100,
+                    "minItems": 1,
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "redirects"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "failedToRestore": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "restored": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "version": {
+                      "properties": {
+                        "alias": {
+                          "description": "The staging link for previewing redirects in this version.",
+                          "type": "string"
+                        },
+                        "createdBy": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "The unique identifier for the version.",
+                          "type": "string"
+                        },
+                        "isLive": {
+                          "description": "Whether this version is currently live in production.",
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "isStaging": {
+                          "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "key": {
+                          "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                          "type": "string"
+                        },
+                        "lastModified": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                          "type": "string"
+                        },
+                        "redirectCount": {
+                          "description": "The number of redirects in this version.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "createdBy",
+                        "id",
+                        "key",
+                        "lastModified"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "failedToRestore",
+                    "restored",
+                    "version"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/bulk-redirects/versions": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateVersion",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "action": {
+                    "enum": [
+                      "promote",
+                      "restore",
+                      "discard"
+                    ],
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "maxLength": 256,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "action"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "version": {
+                      "properties": {
+                        "alias": {
+                          "description": "The staging link for previewing redirects in this version.",
+                          "type": "string"
+                        },
+                        "createdBy": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "The unique identifier for the version.",
+                          "type": "string"
+                        },
+                        "isLive": {
+                          "description": "Whether this version is currently live in production.",
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "isStaging": {
+                          "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "key": {
+                          "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                          "type": "string"
+                        },
+                        "lastModified": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                          "type": "string"
+                        },
+                        "redirectCount": {
+                          "description": "The number of redirects in this version.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "createdBy",
+                        "id",
+                        "key",
+                        "lastModified"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "version"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/bulk-redirects/versions": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getVersions",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "versions": {
+                      "items": {
+                        "properties": {
+                          "alias": {
+                            "description": "The staging link for previewing redirects in this version.",
+                            "type": "string"
+                          },
+                          "createdBy": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The unique identifier for the version.",
+                            "type": "string"
+                          },
+                          "isLive": {
+                            "description": "Whether this version is currently live in production.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "isStaging": {
+                            "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "key": {
+                            "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                            "type": "string"
+                          },
+                          "lastModified": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                            "type": "string"
+                          },
+                          "redirectCount": {
+                            "description": "The number of redirects in this version.",
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "createdBy",
+                          "id",
+                          "key",
+                          "lastModified"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "versions"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/bulk-redirects": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRedirects",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "versionId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "diff",
+            "required": false,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "enum": [
+                    "only"
+                  ],
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "maximum": 250,
+              "minimum": 10,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "enum": [
+                "source",
+                "destination",
+                "statusCode"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "required": false,
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "pagination": {
+                          "properties": {
+                            "numPages": {
+                              "type": "number"
+                            },
+                            "page": {
+                              "type": "number"
+                            },
+                            "per_page": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "numPages",
+                            "page",
+                            "per_page"
+                          ],
+                          "type": "object"
+                        },
+                        "redirects": {
+                          "items": {
+                            "properties": {
+                              "caseSensitive": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "destination": {
+                                "type": "string"
+                              },
+                              "permanent": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "preserveQueryParams": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "query": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "sensitive": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "source": {
+                                "type": "string"
+                              },
+                              "statusCode": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "destination",
+                              "source"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "version": {
+                          "properties": {
+                            "alias": {
+                              "description": "The staging link for previewing redirects in this version.",
+                              "type": "string"
+                            },
+                            "createdBy": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "description": "The unique identifier for the version.",
+                              "type": "string"
+                            },
+                            "isLive": {
+                              "description": "Whether this version is currently live in production.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "isStaging": {
+                              "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "key": {
+                              "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                              "type": "string"
+                            },
+                            "lastModified": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                              "type": "string"
+                            },
+                            "redirectCount": {
+                              "description": "The number of redirects in this version.",
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "createdBy",
+                            "id",
+                            "key",
+                            "lastModified"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "pagination",
+                        "redirects"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "pagination": {
+                          "properties": {
+                            "numPages": {
+                              "type": "number"
+                            },
+                            "page": {
+                              "type": "number"
+                            },
+                            "per_page": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "numPages",
+                            "page",
+                            "per_page"
+                          ],
+                          "type": "object"
+                        },
+                        "redirects": {
+                          "items": {
+                            "properties": {
+                              "caseSensitive": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "destination": {
+                                "type": "string"
+                              },
+                              "permanent": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "preserveQueryParams": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "query": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "sensitive": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "source": {
+                                "type": "string"
+                              },
+                              "statusCode": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "destination",
+                              "source"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "version": {
+                          "properties": {
+                            "alias": {
+                              "description": "The staging link for previewing redirects in this version.",
+                              "type": "string"
+                            },
+                            "createdBy": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "description": "The unique identifier for the version.",
+                              "type": "string"
+                            },
+                            "isLive": {
+                              "description": "Whether this version is currently live in production.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "isStaging": {
+                              "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "key": {
+                              "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                              "type": "string"
+                            },
+                            "lastModified": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                              "type": "string"
+                            },
+                            "redirectCount": {
+                              "description": "The number of redirects in this version.",
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "createdBy",
+                            "id",
+                            "key",
+                            "lastModified"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "pagination",
+                        "redirects",
+                        "version"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/bulk-redirects": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "editRedirect",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "redirect": {
+                    "additionalProperties": false,
+                    "description": "The redirect object to edit. The source field is used to match the redirect to modify.",
+                    "properties": {
+                      "caseSensitive": {
+                        "type": "boolean"
+                      },
+                      "destination": {
+                        "type": "string"
+                      },
+                      "permanent": {
+                        "type": "boolean"
+                      },
+                      "preserveQueryParams": {
+                        "type": "boolean"
+                      },
+                      "query": {
+                        "type": "boolean"
+                      },
+                      "source": {
+                        "type": "string"
+                      },
+                      "statusCode": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "source"
+                    ],
+                    "type": "object"
+                  },
+                  "restore": {
+                    "description": "If true, restores the redirect from the latest production version to staging.",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "redirect"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "alias": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "version": {
+                      "properties": {
+                        "alias": {
+                          "description": "The staging link for previewing redirects in this version.",
+                          "type": "string"
+                        },
+                        "createdBy": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "The unique identifier for the version.",
+                          "type": "string"
+                        },
+                        "isLive": {
+                          "description": "Whether this version is currently live in production.",
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "isStaging": {
+                          "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "key": {
+                          "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                          "type": "string"
+                        },
+                        "lastModified": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                          "type": "string"
+                        },
+                        "redirectCount": {
+                          "description": "The number of redirects in this version.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "createdBy",
+                        "id",
+                        "key",
+                        "lastModified"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "alias",
+                    "version"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/bulk-redirects": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteRedirects",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "redirects": {
+                    "description": "The redirects to delete. The source of the redirect is used to match the redirect to delete.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "redirects"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "alias": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "properties": {
+                            "alias": {
+                              "description": "The staging link for previewing redirects in this version.",
+                              "type": "string"
+                            },
+                            "createdBy": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "description": "The unique identifier for the version.",
+                              "type": "string"
+                            },
+                            "isLive": {
+                              "description": "Whether this version is currently live in production.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "isStaging": {
+                              "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "key": {
+                              "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                              "type": "string"
+                            },
+                            "lastModified": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                              "type": "string"
+                            },
+                            "redirectCount": {
+                              "description": "The number of redirects in this version.",
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "createdBy",
+                            "id",
+                            "key",
+                            "lastModified"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "version"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "alias": {
+                          "nullable": true
+                        },
+                        "version": {
+                          "properties": {
+                            "alias": {
+                              "description": "The staging link for previewing redirects in this version.",
+                              "type": "string"
+                            },
+                            "createdBy": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "description": "The unique identifier for the version.",
+                              "type": "string"
+                            },
+                            "isLive": {
+                              "description": "Whether this version is currently live in production.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "isStaging": {
+                              "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "key": {
+                              "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                              "type": "string"
+                            },
+                            "lastModified": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                              "type": "string"
+                            },
+                            "redirectCount": {
+                              "description": "The number of redirects in this version.",
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "createdBy",
+                            "id",
+                            "key",
+                            "lastModified"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "alias",
+                        "version"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "alias": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "version": {
+                          "properties": {
+                            "alias": {
+                              "description": "The staging link for previewing redirects in this version.",
+                              "type": "string"
+                            },
+                            "createdBy": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "description": "The unique identifier for the version.",
+                              "type": "string"
+                            },
+                            "isLive": {
+                              "description": "Whether this version is currently live in production.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "isStaging": {
+                              "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "key": {
+                              "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                              "type": "string"
+                            },
+                            "lastModified": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                              "type": "string"
+                            },
+                            "redirectCount": {
+                              "description": "The number of redirects in this version.",
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "createdBy",
+                            "id",
+                            "key",
+                            "lastModified"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "alias",
+                        "version"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PUT /v1/bulk-redirects": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "stageRedirects",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "overwrite": {
+                    "type": "boolean"
+                  },
+                  "projectId": {
+                    "type": "string"
+                  },
+                  "redirects": {
+                    "default": [],
+                    "items": {
+                      "properties": {
+                        "caseSensitive": {
+                          "type": "boolean"
+                        },
+                        "destination": {
+                          "maxLength": 2048,
+                          "type": "string"
+                        },
+                        "permanent": {
+                          "type": "boolean"
+                        },
+                        "preserveQueryParams": {
+                          "type": "boolean"
+                        },
+                        "query": {
+                          "type": "boolean"
+                        },
+                        "source": {
+                          "maxLength": 2048,
+                          "type": "string"
+                        },
+                        "statusCode": {
+                          "oneOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "source",
+                        "destination"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "teamId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "projectId",
+                  "teamId"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "alias": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "version": {
+                      "properties": {
+                        "alias": {
+                          "description": "The staging link for previewing redirects in this version.",
+                          "type": "string"
+                        },
+                        "createdBy": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "The unique identifier for the version.",
+                          "type": "string"
+                        },
+                        "isLive": {
+                          "description": "Whether this version is currently live in production.",
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "isStaging": {
+                          "description": "Whether this version has not been promoted to production yet and is not serving end users.",
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "key": {
+                          "description": "The key of the version. The key may be duplicated across versions if the contents are the same as a different version.",
+                          "type": "string"
+                        },
+                        "lastModified": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "description": "Optional name for the version. If not provided, defaults to an ISO timestamp string.",
+                          "type": "string"
+                        },
+                        "redirectCount": {
+                          "description": "The number of redirects in this version.",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "createdBy",
+                        "id",
+                        "key",
+                        "lastModified"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "alias",
+                    "version"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

@@ -1,0 +1,592 @@
+# Entity: bulk_redirect
+
+main: kit: entity: bulk_redirect: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alias"
+      req: false
+      short: "The staging link for previewing redirects in this version."
+      type: "`$STRING`"
+    }
+    {
+      name: "createdBy"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      short: "The unique identifier for the version."
+      type: "`$STRING`"
+    }
+    {
+      name: "isLive"
+      req: false
+      short: "Whether this version is currently live in production."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "isStaging"
+      req: false
+      short: "Whether this version has not been promoted to production yet and is not serving end users."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "key"
+      req: true
+      short: "The key of the version."
+      type: "`$STRING`"
+    }
+    {
+      name: "lastModified"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Optional name for the version."
+      type: "`$STRING`"
+    }
+    {
+      name: "overwrite"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "projectId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "redirect"
+      req: true
+      short: "The redirect object to edit."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "redirectCount"
+      req: false
+      short: "The number of redirects in this version."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "redirects"
+      req: false
+      type: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 3
+      }
+    }
+    {
+      name: "restore"
+      req: false
+      short: "If true, restores the redirect from the latest production version to staging."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "teamId"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "bulk_redirect"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/bulk-redirects/restore"
+            json: "{\"operationId\":\"restoreRedirects\",\"parameters\":[{\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"name\":{\"maxLength\":256,\"type\":\"string\"},\"redirects\":{\"description\":\"The redirects to restore. The source of the redirect is used to match the redirect to restore.\",\"items\":{\"type\":\"string\"},\"maxItems\":100,\"minItems\":1,\"type\":\"array\"}},\"required\":[\"redirects\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"failedToRestore\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"restored\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"version\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"}},\"required\":[\"failedToRestore\",\"restored\",\"version\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/bulk-redirects/restore"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "bulk-redirects"
+            }
+            {
+              lit: "restore"
+            }
+          ]
+          select: {
+            "$action": "restore"
+            exist: [
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/bulk-redirects/versions"
+            json: "{\"operationId\":\"updateVersion\",\"parameters\":[{\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"action\":{\"enum\":[\"promote\",\"restore\",\"discard\"],\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"maxLength\":256,\"type\":\"string\"}},\"required\":[\"id\",\"action\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"version\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"}},\"required\":[\"version\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/bulk-redirects/versions"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "bulk-redirects"
+            }
+            {
+              lit: "versions"
+            }
+          ]
+          select: {
+            "$action": "version"
+            exist: [
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.version`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/bulk-redirects/versions"
+            json: "{\"operationId\":\"getVersions\",\"parameters\":[{\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"versions\":{\"items\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"versions\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/bulk-redirects/versions"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "bulk-redirects"
+            }
+            {
+              lit: "versions"
+            }
+          ]
+          select: {
+            "$action": "version"
+            exist: [
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.versions`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "diff"
+                orig: "diff"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "per_page"
+                orig: "per_page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort_by"
+                orig: "sort_by"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort_order"
+                orig: "sort_order"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "version_id"
+                orig: "version_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/bulk-redirects"
+            json: "{\"operationId\":\"getRedirects\",\"parameters\":[{\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"versionId\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"q\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"diff\",\"required\":false,\"schema\":{\"oneOf\":[{\"type\":\"boolean\"},{\"enum\":[\"only\"],\"type\":\"string\"}]}},{\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"minimum\":1,\"type\":\"integer\"}},{\"in\":\"query\",\"name\":\"per_page\",\"required\":false,\"schema\":{\"maximum\":250,\"minimum\":10,\"type\":\"integer\"}},{\"in\":\"query\",\"name\":\"sort_by\",\"required\":false,\"schema\":{\"enum\":[\"source\",\"destination\",\"statusCode\"],\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"sort_order\",\"required\":false,\"schema\":{\"enum\":[\"asc\",\"desc\"],\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"additionalProperties\":true,\"type\":\"object\"},{\"properties\":{\"pagination\":{\"properties\":{\"numPages\":{\"type\":\"number\"},\"page\":{\"type\":\"number\"},\"per_page\":{\"type\":\"number\"}},\"required\":[\"numPages\",\"page\",\"per_page\"],\"type\":\"object\"},\"redirects\":{\"items\":{\"properties\":{\"caseSensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"destination\":{\"type\":\"string\"},\"permanent\":{\"enum\":[false,true],\"type\":\"boolean\"},\"preserveQueryParams\":{\"enum\":[false,true],\"type\":\"boolean\"},\"query\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"source\":{\"type\":\"string\"},\"statusCode\":{\"type\":\"number\"}},\"required\":[\"destination\",\"source\"],\"type\":\"object\"},\"type\":\"array\"},\"version\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"}},\"required\":[\"pagination\",\"redirects\"],\"type\":\"object\"},{\"properties\":{\"pagination\":{\"properties\":{\"numPages\":{\"type\":\"number\"},\"page\":{\"type\":\"number\"},\"per_page\":{\"type\":\"number\"}},\"required\":[\"numPages\",\"page\",\"per_page\"],\"type\":\"object\"},\"redirects\":{\"items\":{\"properties\":{\"caseSensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"destination\":{\"type\":\"string\"},\"permanent\":{\"enum\":[false,true],\"type\":\"boolean\"},\"preserveQueryParams\":{\"enum\":[false,true],\"type\":\"boolean\"},\"query\":{\"enum\":[false,true],\"type\":\"boolean\"},\"sensitive\":{\"enum\":[false,true],\"type\":\"boolean\"},\"source\":{\"type\":\"string\"},\"statusCode\":{\"type\":\"number\"}},\"required\":[\"destination\",\"source\"],\"type\":\"object\"},\"type\":\"array\"},\"version\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"}},\"required\":[\"pagination\",\"redirects\",\"version\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/bulk-redirects"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "bulk-redirects"
+            }
+          ]
+          select: {
+            exist: [
+              "diff"
+              "page"
+              "per_page"
+              "project_id"
+              "q"
+              "slug"
+              "sort_by"
+              "sort_order"
+              "team_id"
+              "version_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    patch: {
+      name: "patch"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v1/bulk-redirects"
+            json: "{\"operationId\":\"editRedirect\",\"parameters\":[{\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"name\":{\"maxLength\":256,\"type\":\"string\"},\"redirect\":{\"additionalProperties\":false,\"description\":\"The redirect object to edit. The source field is used to match the redirect to modify.\",\"properties\":{\"caseSensitive\":{\"type\":\"boolean\"},\"destination\":{\"type\":\"string\"},\"permanent\":{\"type\":\"boolean\"},\"preserveQueryParams\":{\"type\":\"boolean\"},\"query\":{\"type\":\"boolean\"},\"source\":{\"type\":\"string\"},\"statusCode\":{\"type\":\"number\"}},\"required\":[\"source\"],\"type\":\"object\"},\"restore\":{\"description\":\"If true, restores the redirect from the latest production version to staging.\",\"type\":\"boolean\"}},\"required\":[\"redirect\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"alias\":{\"nullable\":true,\"type\":\"string\"},\"version\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"}},\"required\":[\"alias\",\"version\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v1/bulk-redirects"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "bulk-redirects"
+            }
+          ]
+          select: {
+            exist: [
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.version`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/bulk-redirects"
+            json: "{\"operationId\":\"deleteRedirects\",\"parameters\":[{\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"name\":{\"maxLength\":256,\"type\":\"string\"},\"redirects\":{\"description\":\"The redirects to delete. The source of the redirect is used to match the redirect to delete.\",\"items\":{\"type\":\"string\"},\"minItems\":1,\"type\":\"array\"}},\"required\":[\"redirects\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"alias\":{\"type\":\"string\"},\"version\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"}},\"required\":[\"version\"],\"type\":\"object\"},{\"properties\":{\"alias\":{\"nullable\":true},\"version\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"}},\"required\":[\"alias\",\"version\"],\"type\":\"object\"},{\"properties\":{\"alias\":{\"nullable\":true,\"type\":\"string\"},\"version\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"}},\"required\":[\"alias\",\"version\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/bulk-redirects"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "bulk-redirects"
+            }
+          ]
+          select: {
+            exist: [
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /v1/bulk-redirects"
+            json: "{\"operationId\":\"stageRedirects\",\"parameters\":[{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"name\":{\"maxLength\":256,\"type\":\"string\"},\"overwrite\":{\"type\":\"boolean\"},\"projectId\":{\"type\":\"string\"},\"redirects\":{\"default\":[],\"items\":{\"properties\":{\"caseSensitive\":{\"type\":\"boolean\"},\"destination\":{\"maxLength\":2048,\"type\":\"string\"},\"permanent\":{\"type\":\"boolean\"},\"preserveQueryParams\":{\"type\":\"boolean\"},\"query\":{\"type\":\"boolean\"},\"source\":{\"maxLength\":2048,\"type\":\"string\"},\"statusCode\":{\"oneOf\":[{\"type\":\"number\"},{\"type\":\"string\"}]}},\"required\":[\"source\",\"destination\"],\"type\":\"object\"},\"type\":\"array\"},\"teamId\":{\"type\":\"string\"}},\"required\":[\"projectId\",\"teamId\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"alias\":{\"nullable\":true,\"type\":\"string\"},\"version\":{\"properties\":{\"alias\":{\"description\":\"The staging link for previewing redirects in this version.\",\"type\":\"string\"},\"createdBy\":{\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the version.\",\"type\":\"string\"},\"isLive\":{\"description\":\"Whether this version is currently live in production.\",\"enum\":[false,true],\"type\":\"boolean\"},\"isStaging\":{\"description\":\"Whether this version has not been promoted to production yet and is not serving end users.\",\"enum\":[false,true],\"type\":\"boolean\"},\"key\":{\"description\":\"The key of the version. The key may be duplicated across versions if the contents are the same as a different version.\",\"type\":\"string\"},\"lastModified\":{\"type\":\"number\"},\"name\":{\"description\":\"Optional name for the version. If not provided, defaults to an ISO timestamp string.\",\"type\":\"string\"},\"redirectCount\":{\"description\":\"The number of redirects in this version.\",\"type\":\"number\"}},\"required\":[\"createdBy\",\"id\",\"key\",\"lastModified\"],\"type\":\"object\"}},\"required\":[\"alias\",\"version\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/v1/bulk-redirects"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "bulk-redirects"
+            }
+          ]
+          select: {
+            exist: [
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.version`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,3015 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Marketplace | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a aria-current="page" href="../api/marketplace.html">Marketplace</a><div class="nav-sections"><a class="nav-section" href="#post-v1installationsintegrationconfigurationidbillinginvoicesinvoiceidactions">POST /v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}/actions</a>
+<a class="nav-section" href="#post-v1installationsintegrationconfigurationidresourcesresourceidexperimentationitems">POST /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items</a>
+<a class="nav-section" href="#post-v1installationsintegrationconfigurationidbilling">POST /v1/installations/{integrationConfigurationId}/billing</a>
+<a class="nav-section" href="#post-v1installationsintegrationconfigurationidbillingbalance">POST /v1/installations/{integrationConfigurationId}/billing/balance</a>
+<a class="nav-section" href="#post-v1installationsintegrationconfigurationidbillingfinalize">POST /v1/installations/{integrationConfigurationId}/billing/finalize</a>
+<a class="nav-section" href="#post-v1installationsintegrationconfigurationidbillinginvoices">POST /v1/installations/{integrationConfigurationId}/billing/invoices</a>
+<a class="nav-section" href="#post-v1installationsintegrationconfigurationidcredentialsrevoke">POST /v1/installations/{integrationConfigurationId}/credentials/revoke</a>
+<a class="nav-section" href="#post-v1installationsintegrationconfigurationidcredentialsrotate">POST /v1/installations/{integrationConfigurationId}/credentials/rotate</a>
+<a class="nav-section" href="#post-v1installationsintegrationconfigurationidevents">POST /v1/installations/{integrationConfigurationId}/events</a>
+<a class="nav-section" href="#get-v1installationsintegrationconfigurationidresources">GET /v1/installations/{integrationConfigurationId}/resources</a>
+<a class="nav-section" href="#get-v1installationsintegrationconfigurationidbillinginvoicesinvoiceid">GET /v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}</a>
+<a class="nav-section" href="#get-v1installationsintegrationconfigurationidmembermemberid">GET /v1/installations/{integrationConfigurationId}/member/{memberId}</a>
+<a class="nav-section" href="#get-v1installationsintegrationconfigurationidresourcesresourceid">GET /v1/installations/{integrationConfigurationId}/resources/{resourceId}</a>
+<a class="nav-section" href="#get-v1installationsintegrationconfigurationidresourcesresourceidexperimentationglobal-config">GET /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config</a>
+<a class="nav-section" href="#get-v1installationsintegrationconfigurationidaccount">GET /v1/installations/{integrationConfigurationId}/account</a>
+<a class="nav-section" href="#patch-v1installationsintegrationconfigurationidresourcesresourceidexperimentationitemsitemid">PATCH /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}</a>
+<a class="nav-section" href="#patch-v1installationsintegrationconfigurationidresourcesresourceid">PATCH /v1/installations/{integrationConfigurationId}/resources/{resourceId}</a>
+<a class="nav-section" href="#patch-v1installationsintegrationconfigurationid">PATCH /v1/installations/{integrationConfigurationId}</a>
+<a class="nav-section" href="#delete-v1installationsintegrationconfigurationidresourcesresourceidexperimentationitemsitemid">DELETE /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}</a>
+<a class="nav-section" href="#delete-v1installationsintegrationconfigurationidresourcesresourceid">DELETE /v1/installations/{integrationConfigurationId}/resources/{resourceId}</a>
+<a class="nav-section" href="#put-v1installationsintegrationconfigurationidproductsintegrationproductidorslugresourcesresourceidsecrets">PUT /v1/installations/{integrationConfigurationId}/products/{integrationProductIdOrSlug}/resources/{resourceId}/secrets</a>
+<a class="nav-section" href="#put-v1installationsintegrationconfigurationidresourcesresourceid">PUT /v1/installations/{integrationConfigurationId}/resources/{resourceId}</a>
+<a class="nav-section" href="#put-v1installationsintegrationconfigurationidresourcesresourceidexperimentationglobal-config">PUT /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config</a>
+<a class="nav-section" href="#put-v1installationsintegrationconfigurationidresourcesresourceidsecrets">PUT /v1/installations/{integrationConfigurationId}/resources/{resourceId}/secrets</a></div>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="marketplace">Marketplace</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1installationsintegrationconfigurationidbillinginvoicesinvoiceidactions"><code>/v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}/actions</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1installationsintegrationconfigurationidresourcesresourceidexperimentationitems"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items</code></a></td>
+<td><code>create</code></td>
+<td>The items were created</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1installationsintegrationconfigurationidbilling"><code>/v1/installations/{integrationConfigurationId}/billing</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1installationsintegrationconfigurationidbillingbalance"><code>/v1/installations/{integrationConfigurationId}/billing/balance</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1installationsintegrationconfigurationidbillingfinalize"><code>/v1/installations/{integrationConfigurationId}/billing/finalize</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1installationsintegrationconfigurationidbillinginvoices"><code>/v1/installations/{integrationConfigurationId}/billing/invoices</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1installationsintegrationconfigurationidcredentialsrevoke"><code>/v1/installations/{integrationConfigurationId}/credentials/revoke</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1installationsintegrationconfigurationidcredentialsrotate"><code>/v1/installations/{integrationConfigurationId}/credentials/rotate</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1installationsintegrationconfigurationidevents"><code>/v1/installations/{integrationConfigurationId}/events</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1installationsintegrationconfigurationidresources"><code>/v1/installations/{integrationConfigurationId}/resources</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1installationsintegrationconfigurationidbillinginvoicesinvoiceid"><code>/v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1installationsintegrationconfigurationidmembermemberid"><code>/v1/installations/{integrationConfigurationId}/member/{memberId}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1installationsintegrationconfigurationidresourcesresourceid"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1installationsintegrationconfigurationidresourcesresourceidexperimentationglobal-config"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config</code></a></td>
+<td><code>load</code></td>
+<td>The Global Config data</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1installationsintegrationconfigurationidaccount"><code>/v1/installations/{integrationConfigurationId}/account</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1installationsintegrationconfigurationidresourcesresourceidexperimentationitemsitemid"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}</code></a></td>
+<td><code>patch</code></td>
+<td>The item was updated</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1installationsintegrationconfigurationidresourcesresourceid"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}</code></a></td>
+<td><code>patch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1installationsintegrationconfigurationid"><code>/v1/installations/{integrationConfigurationId}</code></a></td>
+<td><code>patch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1installationsintegrationconfigurationidresourcesresourceidexperimentationitemsitemid"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}</code></a></td>
+<td><code>remove</code></td>
+<td>The item was deleted</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1installationsintegrationconfigurationidresourcesresourceid"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1installationsintegrationconfigurationidproductsintegrationproductidorslugresourcesresourceidsecrets"><code>/v1/installations/{integrationConfigurationId}/products/{integrationProductIdOrSlug}/resources/{resourceId}/secrets</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1installationsintegrationconfigurationidresourcesresourceid"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1installationsintegrationconfigurationidresourcesresourceidexperimentationglobal-config"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config</code></a></td>
+<td><code>update</code></td>
+<td>The Global Config was updated</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1installationsintegrationconfigurationidresourcesresourceidsecrets"><code>/v1/installations/{integrationConfigurationId}/resources/{resourceId}/secrets</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>access_token</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>already_revoked</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>balances</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billing</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td>Billing data (interim invoicing data).</td>
+</tr>
+<tr>
+<td><code>billingPlan</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlanId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the billing plan the resource is subscribed to, if applicable</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>client_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>client_secret</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>System creation date.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>discounts</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Invoice discounts.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>eod</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>End of Day, the UTC datetime for when the end of the billing/usage day is in UTC time.</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>expires_in</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>externalId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Partner-supplied Invoice ID, if applicable.</td>
+</tr>
+<tr>
+<td><code>extras</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>final</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Set this to <code>true</code> if this is the final invoice for the installation.</td>
+</tr>
+<tr>
+<td><code>globalUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID provided by the 3rd party provider for the given resource</td>
+</tr>
+<tr>
+<td><code>internalId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID assigned by Vercel for the given resource</td>
+</tr>
+<tr>
+<td><code>invoiceDate</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Invoice date.</td>
+</tr>
+<tr>
+<td><code>invoiceId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel Marketplace Invoice ID.</td>
+</tr>
+<tr>
+<td><code>invoiceNumber</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>User-readable invoice number.</td>
+</tr>
+<tr>
+<td><code>isArchived</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Invoice items.</td>
+</tr>
+<tr>
+<td><code>memo</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Additional memo for the invoice.</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The configured metadata for the resource as defined by its product's Metadata Schema</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the resource as it is recorded in Vercel</td>
+</tr>
+<tr>
+<td><code>notification</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The notification, if set, displayed to the user when viewing the resource in Vercel</td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownership</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>paidAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Moment the invoice was paid.</td>
+</tr>
+<tr>
+<td><code>partial</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, will only update the provided secrets</td>
+</tr>
+<tr>
+<td><code>partnerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID provided by the partner for the given resource</td>
+</tr>
+<tr>
+<td><code>period</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Subscription period for this billing cycle.</td>
+</tr>
+<tr>
+<td><code>productId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the product the resource is derived from</td>
+</tr>
+<tr>
+<td><code>protocolSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Any settings provided for the resource to support its product's protocols</td>
+</tr>
+<tr>
+<td><code>refundReason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reason for refund.</td>
+</tr>
+<tr>
+<td><code>refundTotal</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Refund amount.</td>
+</tr>
+<tr>
+<td><code>refundedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Most recent moment the invoice was refunded.</td>
+</tr>
+<tr>
+<td><code>revoked</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>&quot;The <code>ADMIN</code> role, by default, is provided to users capable of installing integrations, while the <code>USER</code> role can be granted to Vercel users with the Vercel <code>Billing</code> or Vercel <code>Viewer</code> role, which are considered to be Read-Only roles.&quot;</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Invoice state.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The current status of the resource</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the invoice is in the testmode (no real transaction created).</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Server time of your integration, used to determine the most recent data for race conditions &amp; updates.</td>
+</tr>
+<tr>
+<td><code>token</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>token_type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>total</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Invoice total amount.</td>
+</tr>
+<tr>
+<td><code>updated</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>System update date.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>usage</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>userEmail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>validationErrors</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1installationsintegrationconfigurationidbillinginvoicesinvoiceidactions" class="operation" data-method="post"><code>POST</code> /v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}/actions</h3>
+<p>Operation ID: <code>update-invoice</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>invoiceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object</code>.</p>
+<h4 id="responses">Responses</h4>
+<h5 id="204" class="status" data-status="2xx">204</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1installationsintegrationconfigurationidresourcesresourceidexperimentationitems" class="operation" data-method="post"><code>POST</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items</h3>
+<p>Operation ID: <code>createInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItems</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>items</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].category</code></td>
+<td><code>enum: experiment, flag</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].isArchived</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].origin</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="204-the-items-were-created" class="status" data-status="2xx">204: The items were created</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1installationsintegrationconfigurationidbilling" class="operation" data-method="post"><code>POST</code> /v1/installations/{integrationConfigurationId}/billing</h3>
+<p>Operation ID: <code>submit-billing-data</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>billing</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td>Billing data (interim invoicing data).</td>
+</tr>
+<tr>
+<td><code>eod</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td>End of Day, the UTC datetime for when the end of the billing/usage day is in UTC time. This tells us which day the usage data is for, and also allows for your &quot;end of day&quot; to be different from UTC 00:00:00. eod must be within the period dates, and cannot be older than 24h earlier from our server's current time.</td>
+</tr>
+<tr>
+<td><code>period</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Period for the billing cycle. The period end date cannot be older than 24 hours earlier than our current server's time.</td>
+</tr>
+<tr>
+<td><code>period.end</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>period.start</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td>Server time of your integration, used to determine the most recent data for race conditions &amp; updates. Only the latest usage data for a given day, week, and month will be kept.</td>
+</tr>
+<tr>
+<td><code>usage</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>usage[].dayValue</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Metric value for the day. Could be a final or an interim value for the day.</td>
+</tr>
+<tr>
+<td><code>usage[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Metric name.</td>
+</tr>
+<tr>
+<td><code>usage[].periodValue</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Metric value for the billing period. Could be a final or an interim value for the period.</td>
+</tr>
+<tr>
+<td><code>usage[].planValue</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The limit value of the metric for a billing period, if a limit is defined by the plan.</td>
+</tr>
+<tr>
+<td><code>usage[].resourceId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Partner's resource ID.</td>
+</tr>
+<tr>
+<td><code>usage[].type</code></td>
+<td><code>enum: total, interval, rate</code></td>
+<td>Yes</td>
+<td>Type of the metric. - total: measured total value, such as Database size - interval: usage during the period, such as i/o or number of queries. - rate: rate of usage, such as queries per second.</td>
+</tr>
+<tr>
+<td><code>usage[].units</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Metric units. Example: &quot;GB&quot;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="201" class="status" data-status="2xx">201</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1installationsintegrationconfigurationidbillingbalance" class="operation" data-method="post"><code>POST</code> /v1/installations/{integrationConfigurationId}/billing/balance</h3>
+<p>Operation ID: <code>submit-prepayment-balances</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>balances</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>balances[].credit</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A human-readable description of the credits the user currently has, for example &quot;2,000 Tokens&quot;</td>
+</tr>
+<tr>
+<td><code>balances[].currencyValueInCents</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The dollar value of the credit balance, in USD and provided in cents, which is used to trigger automatic purchase thresholds.</td>
+</tr>
+<tr>
+<td><code>balances[].nameLabel</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the credits, for display purposes, for example &quot;Tokens&quot;</td>
+</tr>
+<tr>
+<td><code>balances[].resourceId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Partner's resource ID, exclude if credits are tied to the installation and not an individual resource.</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td>Server time of your integration, used to determine the most recent data for race conditions &amp; updates. Only the latest usage data for a given day, week, and month will be kept.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="201-1" class="status" data-status="2xx">201</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1installationsintegrationconfigurationidbillingfinalize" class="operation" data-method="post"><code>POST</code> /v1/installations/{integrationConfigurationId}/billing/finalize</h3>
+<p>Operation ID: <code>finalize-installation</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="204-1" class="status" data-status="2xx">204</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-4" class="status" data-status="4xx">404</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1installationsintegrationconfigurationidbillinginvoices" class="operation" data-method="post"><code>POST</code> /v1/installations/{integrationConfigurationId}/billing/invoices</h3>
+<p>Operation ID: <code>submit-invoice</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-4">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>discounts</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>discounts[].amount</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Currency amount as a decimal string.</td>
+</tr>
+<tr>
+<td><code>discounts[].billingPlanId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Partner's billing plan ID.</td>
+</tr>
+<tr>
+<td><code>discounts[].details</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>discounts[].end</code></td>
+<td><code>string (date-time)</code></td>
+<td>No</td>
+<td>Start and end are only needed if different from the period's start/end.</td>
+</tr>
+<tr>
+<td><code>discounts[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>discounts[].resourceId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Partner's resource ID.</td>
+</tr>
+<tr>
+<td><code>discounts[].start</code></td>
+<td><code>string (date-time)</code></td>
+<td>No</td>
+<td>Start and end are only needed if different from the period's start/end.</td>
+</tr>
+<tr>
+<td><code>externalId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Partner-provided invoice identifier. If provided, it must be unique for this installation.</td>
+</tr>
+<tr>
+<td><code>final</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Set this to <code>true</code> if this is the final invoice for the installation. Can only be set when the installation is pending deletion.</td>
+</tr>
+<tr>
+<td><code>invoiceDate</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td>Invoice date. Must be within the period's start and end.</td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].billingPlanId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Partner's billing plan ID.</td>
+</tr>
+<tr>
+<td><code>items[].details</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].end</code></td>
+<td><code>string (date-time)</code></td>
+<td>No</td>
+<td>Start and end are only needed if different from the period's start/end.</td>
+</tr>
+<tr>
+<td><code>items[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].price</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Currency amount as a decimal string.</td>
+</tr>
+<tr>
+<td><code>items[].quantity</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items[].resourceId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Partner's resource ID.</td>
+</tr>
+<tr>
+<td><code>items[].start</code></td>
+<td><code>string (date-time)</code></td>
+<td>No</td>
+<td>Start and end are only needed if different from the period's start/end.</td>
+</tr>
+<tr>
+<td><code>items[].total</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Currency amount as a decimal string.</td>
+</tr>
+<tr>
+<td><code>items[].units</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>memo</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Additional memo for the invoice.</td>
+</tr>
+<tr>
+<td><code>period</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Subscription period for this billing cycle.</td>
+</tr>
+<tr>
+<td><code>period.end</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>period.start</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Test mode</td>
+</tr>
+<tr>
+<td><code>test.result</code></td>
+<td><code>enum: paid, notpaid, overdue</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>test.validate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>invoiceId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>validationErrors</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-5" class="status" data-status="4xx">404</h5>
+<h5 id="409-1" class="status" data-status="4xx">409</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1installationsintegrationconfigurationidcredentialsrevoke" class="operation" data-method="post"><code>POST</code> /v1/installations/{integrationConfigurationId}/credentials/revoke</h3>
+<p>Operation ID: <code>revoke-installation-credential</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-5">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>client_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>client_secret</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>token</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>already_revoked</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>revoked</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-6" class="status" data-status="4xx">404</h5>
+<h5 id="409-2" class="status" data-status="4xx">409</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1installationsintegrationconfigurationidcredentialsrotate" class="operation" data-method="post"><code>POST</code> /v1/installations/{integrationConfigurationId}/credentials/rotate</h3>
+<p>Operation ID: <code>rotate-installation-credential</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-6">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>client_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>client_secret</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>access_token</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>expires_in</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>token_type</code></td>
+<td><code>enum: oauth2-token</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-6" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-7" class="status" data-status="4xx">404</h5>
+<h5 id="409-3" class="status" data-status="4xx">409</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1installationsintegrationconfigurationidevents" class="operation" data-method="post"><code>POST</code> /v1/installations/{integrationConfigurationId}/events</h3>
+<p>Operation ID: <code>create-event</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-7">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>event</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-8">Responses</h4>
+<h5 id="201-2" class="status" data-status="2xx">201</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-7" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-8" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-8" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-8" class="status" data-status="4xx">404</h5>
+<h5 id="410-8" class="status" data-status="4xx">410</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v1installationsintegrationconfigurationidresources" class="operation" data-method="get"><code>GET</code> /v1/installations/{integrationConfigurationId}/resources</h3>
+<p>Operation ID: <code>get-integration-resources</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>resources</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].billingPlanId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the billing plan the resource is subscribed to, if applicable</td>
+</tr>
+<tr>
+<td><code>resources[].internalId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID assigned by Vercel for the given resource</td>
+</tr>
+<tr>
+<td><code>resources[].metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The configured metadata for the resource as defined by its product's Metadata Schema</td>
+</tr>
+<tr>
+<td><code>resources[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the resource as it is recorded in Vercel</td>
+</tr>
+<tr>
+<td><code>resources[].notification</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The notification, if set, displayed to the user when viewing the resource in Vercel</td>
+</tr>
+<tr>
+<td><code>resources[].notification.href</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].notification.level</code></td>
+<td><code>enum: error, info, warn</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].notification.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].notification.title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].partnerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID provided by the partner for the given resource</td>
+</tr>
+<tr>
+<td><code>resources[].productId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the product the resource is derived from</td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Any settings provided for the resource to support its product's protocols</td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.authentication</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.authentication.appUrls</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.authentication.appUrls[].target</code></td>
+<td><code>enum: development, preview, production</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.authentication.appUrls[].url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.experimentation</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.experimentation.edgeConfigId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.experimentation.edgeConfigSyncingEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.experimentation.edgeConfigTokenId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.experimentation.globalConfigId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].protocolSettings.experimentation.globalConfigSyncingEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resources[].status</code></td>
+<td><code>enum: error, onboarding, pending, ready, resumed, suspended, ...</code></td>
+<td>No</td>
+<td>The current status of the resource</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-9" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-9" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-9" class="status" data-status="4xx">404</h5>
+<h5 id="410-9" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1installationsintegrationconfigurationidbillinginvoicesinvoiceid" class="operation" data-method="get"><code>GET</code> /v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}</h3>
+<p>Operation ID: <code>get-invoice</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>invoiceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>created</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>System creation date. ISO 8601 timestamp.</td>
+</tr>
+<tr>
+<td><code>discounts</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Invoice discounts.</td>
+</tr>
+<tr>
+<td><code>discounts[].amount</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Discount amount. A dollar-based decimal string.</td>
+</tr>
+<tr>
+<td><code>discounts[].billingPlanId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Partner's billing plan ID.</td>
+</tr>
+<tr>
+<td><code>discounts[].details</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Additional discount details.</td>
+</tr>
+<tr>
+<td><code>discounts[].end</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Start and end are only needed if different from the period's start/end. ISO 8601 timestamp.</td>
+</tr>
+<tr>
+<td><code>discounts[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Discount name.</td>
+</tr>
+<tr>
+<td><code>discounts[].resourceId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Partner's resource ID. If not specified, indicates installation-wide discount.</td>
+</tr>
+<tr>
+<td><code>discounts[].start</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Start and end are only needed if different from the period's start/end. ISO 8601 timestamp.</td>
+</tr>
+<tr>
+<td><code>externalId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Partner-supplied Invoice ID, if applicable.</td>
+</tr>
+<tr>
+<td><code>invoiceDate</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Invoice date. ISO 8601 timestamp.</td>
+</tr>
+<tr>
+<td><code>invoiceId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel Marketplace Invoice ID.</td>
+</tr>
+<tr>
+<td><code>invoiceNumber</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>User-readable invoice number.</td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>Invoice items.</td>
+</tr>
+<tr>
+<td><code>items[].billingPlanId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Partner's billing plan ID.</td>
+</tr>
+<tr>
+<td><code>items[].details</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Additional item details.</td>
+</tr>
+<tr>
+<td><code>items[].end</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Start and end are only needed if different from the period's start/end. ISO 8601 timestamp.</td>
+</tr>
+<tr>
+<td><code>items[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Invoice item name.</td>
+</tr>
+<tr>
+<td><code>items[].price</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Item price. A dollar-based decimal string.</td>
+</tr>
+<tr>
+<td><code>items[].quantity</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Item quantity.</td>
+</tr>
+<tr>
+<td><code>items[].resourceId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Partner's resource ID. If not specified, indicates installation-wide item.</td>
+</tr>
+<tr>
+<td><code>items[].start</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Start and end are only needed if different from the period's start/end. ISO 8601 timestamp.</td>
+</tr>
+<tr>
+<td><code>items[].total</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Item total. A dollar-based decimal string.</td>
+</tr>
+<tr>
+<td><code>items[].units</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Units for item's quantity.</td>
+</tr>
+<tr>
+<td><code>memo</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Additional memo for the invoice.</td>
+</tr>
+<tr>
+<td><code>paidAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Moment the invoice was paid. ISO 8601 timestamp.</td>
+</tr>
+<tr>
+<td><code>period</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Subscription period for this billing cycle. ISO 8601 timestamps.</td>
+</tr>
+<tr>
+<td><code>period.end</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>period.start</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>refundReason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reason for refund. Only applicable for states &quot;refunded&quot; or &quot;refund_request&quot;.</td>
+</tr>
+<tr>
+<td><code>refundTotal</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Refund amount. Only applicable for states &quot;refunded&quot; or &quot;refund_request&quot;. A dollar-based decimal string.</td>
+</tr>
+<tr>
+<td><code>refundedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Most recent moment the invoice was refunded. ISO 8601 timestamp.</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>enum: draft, invoiced, notpaid, overdue, paid, pending, ...</code></td>
+<td>Yes</td>
+<td>Invoice state.</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the invoice is in the testmode (no real transaction created).</td>
+</tr>
+<tr>
+<td><code>total</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Invoice total amount. A dollar-based decimal string.</td>
+</tr>
+<tr>
+<td><code>updated</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>System update date. ISO 8601 timestamp.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-10" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-10" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-10" class="status" data-status="4xx">404</h5>
+<h5 id="410-10" class="status" data-status="4xx">410</h5>
+<h5 id="429" class="status" data-status="4xx">429</h5>
+<h3 id="get-v1installationsintegrationconfigurationidmembermemberid" class="operation" data-method="get"><code>GET</code> /v1/installations/{integrationConfigurationId}/member/{memberId}</h3>
+<p>Operation ID: <code>get-member</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>memberId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-5" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>globalUserId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td><code>enum: ADMIN, USER</code></td>
+<td>Yes</td>
+<td>&quot;The <code>ADMIN</code> role, by default, is provided to users capable of installing integrations, while the <code>USER</code> role can be granted to Vercel users with the Vercel <code>Billing</code> or Vercel <code>Viewer</code> role, which are considered to be Read-Only roles.&quot;</td>
+</tr>
+<tr>
+<td><code>userEmail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-11" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-11" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-11" class="status" data-status="4xx">404</h5>
+<h5 id="410-11" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1installationsintegrationconfigurationidresourcesresourceid" class="operation" data-method="get"><code>GET</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}</h3>
+<p>Operation ID: <code>get-integration-resource</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes | The ID of the integration configuration (installation) the resource belongs to |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes | The ID provided by the 3rd party provider for the given resource |</p>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-6" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>billingPlanId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the billing plan the resource is subscribed to, if applicable</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID provided by the 3rd party provider for the given resource</td>
+</tr>
+<tr>
+<td><code>internalId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID assigned by Vercel for the given resource</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The configured metadata for the resource as defined by its product's Metadata Schema</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the resource as it is recorded in Vercel</td>
+</tr>
+<tr>
+<td><code>notification</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The notification, if set, displayed to the user when viewing the resource in Vercel</td>
+</tr>
+<tr>
+<td><code>notification.href</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification.level</code></td>
+<td><code>enum: error, info, warn</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification.title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>productId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the product the resource is derived from</td>
+</tr>
+<tr>
+<td><code>protocolSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Any settings provided for the resource to support its product's protocols</td>
+</tr>
+<tr>
+<td><code>protocolSettings.authentication</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protocolSettings.authentication.appUrls</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protocolSettings.authentication.appUrls[].target</code></td>
+<td><code>enum: development, preview, production</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protocolSettings.authentication.appUrls[].url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protocolSettings.experimentation</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protocolSettings.experimentation.edgeConfigId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>protocolSettings.experimentation.globalConfigId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: error, onboarding, pending, ready, resumed, suspended, ...</code></td>
+<td>No</td>
+<td>The current status of the resource</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-12" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-12" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-12" class="status" data-status="4xx">404</h5>
+<h5 id="410-12" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1installationsintegrationconfigurationidresourcesresourceidexperimentationglobal-config" class="operation" data-method="get"><code>GET</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config</h3>
+<p>Operation ID: <code>getInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-13">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-13">Responses</h4>
+<h5 id="200-the-global-config-data" class="status" data-status="2xx">200: The Global Config data</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>digest</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>purpose</code></td>
+<td><code>enum: experimentation, flags</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="304" class="status" data-status="3xx">304</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-13" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-13" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-13" class="status" data-status="4xx">404</h5>
+<h5 id="410-13" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1installationsintegrationconfigurationidaccount" class="operation" data-method="get"><code>GET</code> /v1/installations/{integrationConfigurationId}/account</h3>
+<p>Operation ID: <code>get-account-info</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-14">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-14">Responses</h4>
+<h5 id="200-7" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contact</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The best contact for the integration, which can change as team members and their roles change.</td>
+</tr>
+<tr>
+<td><code>contact.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>contact.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the team the installation is tied to.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A URL linking to the installation in the Vercel Dashboard.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-6" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-14" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-14" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-14" class="status" data-status="4xx">404</h5>
+<h5 id="410-14" class="status" data-status="4xx">410</h5>
+<h2 id="patch">patch</h2>
+<h3 id="patch-v1installationsintegrationconfigurationidresourcesresourceidexperimentationitemsitemid" class="operation" data-method="patch"><code>PATCH</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}</h3>
+<p>Operation ID: <code>updateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-15">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>itemId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-8">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>category</code></td>
+<td><code>enum: experiment, flag</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isArchived</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-15">Responses</h4>
+<h5 id="204-the-item-was-updated" class="status" data-status="2xx">204: The item was updated</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-8" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-15" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-15" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-15" class="status" data-status="4xx">404</h5>
+<h5 id="410-15" class="status" data-status="4xx">410</h5>
+<h3 id="patch-v1installationsintegrationconfigurationidresourcesresourceid" class="operation" data-method="patch"><code>PATCH</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}</h3>
+<p>Operation ID: <code>update-resource</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-16">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-9">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>billingPlan</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.cost</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.details</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.details[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.details[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.effectiveDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.highlightedDetails</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.highlightedDetails[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.highlightedDetails[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.paymentMethodRequired</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.type</code></td>
+<td><code>enum: prepayment, subscription</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>extras</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification</code></td>
+<td><code>object or string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownership</code></td>
+<td><code>enum: owned, linked, sandbox</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: ready, pending, onboarding, suspended, resumed, uninstalled, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-16">Responses</h4>
+<h5 id="200-8" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-9" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-16" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-16" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-16" class="status" data-status="4xx">404</h5>
+<h5 id="409-4" class="status" data-status="4xx">409</h5>
+<h5 id="410-16" class="status" data-status="4xx">410</h5>
+<h5 id="422" class="status" data-status="4xx">422</h5>
+<h3 id="patch-v1installationsintegrationconfigurationid" class="operation" data-method="patch"><code>PATCH</code> /v1/installations/{integrationConfigurationId}</h3>
+<p>Operation ID: <code>update-installation</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-17">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-10">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>billingPlan</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.cost</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.details</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.details[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.details[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.effectiveDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.highlightedDetails</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.highlightedDetails[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.highlightedDetails[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.paymentMethodRequired</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.type</code></td>
+<td><code>enum: prepayment, subscription</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>externalId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification</code></td>
+<td><code>object or string</code></td>
+<td>No</td>
+<td>A notification to display to your customer. Send <code>null</code> to clear the current notification.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: ready, pending, onboarding, suspended, resumed, uninstalled, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-17">Responses</h4>
+<h5 id="204-2" class="status" data-status="2xx">204</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-10" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-17" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-17" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-17" class="status" data-status="4xx">404</h5>
+<h5 id="410-17" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1installationsintegrationconfigurationidresourcesresourceidexperimentationitemsitemid" class="operation" data-method="delete"><code>DELETE</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}</h3>
+<p>Operation ID: <code>deleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-18">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>itemId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-18">Responses</h4>
+<h5 id="204-the-item-was-deleted" class="status" data-status="2xx">204: The item was deleted</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-7" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-18" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-18" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-18" class="status" data-status="4xx">404</h5>
+<h5 id="410-18" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v1installationsintegrationconfigurationidresourcesresourceid" class="operation" data-method="delete"><code>DELETE</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}</h3>
+<p>Operation ID: <code>delete-integration-resource</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-19">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-19">Responses</h4>
+<h5 id="204-3" class="status" data-status="2xx">204</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-8" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-19" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-19" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-19" class="status" data-status="4xx">404</h5>
+<h5 id="410-19" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="put-v1installationsintegrationconfigurationidproductsintegrationproductidorslugresourcesresourceidsecrets" class="operation" data-method="put"><code>PUT</code> /v1/installations/{integrationConfigurationId}/products/{integrationProductIdOrSlug}/resources/{resourceId}/secrets</h3>
+<p>Operation ID: <code>update-resource-secrets</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-20">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>integrationProductIdOrSlug</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-11">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>partial</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, will only update the provided secrets</td>
+</tr>
+<tr>
+<td><code>secrets</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides.development</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value used for development environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides.preview</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value used for preview environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides.production</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value used for production environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets[].prefix</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-20">Responses</h4>
+<h5 id="201-3" class="status" data-status="2xx">201</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-11" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-20" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-20" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-20" class="status" data-status="4xx">404</h5>
+<h5 id="409-5" class="status" data-status="4xx">409</h5>
+<h5 id="410-20" class="status" data-status="4xx">410</h5>
+<h5 id="422-1" class="status" data-status="4xx">422</h5>
+<h3 id="put-v1installationsintegrationconfigurationidresourcesresourceid" class="operation" data-method="put"><code>PUT</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}</h3>
+<p>Operation ID: <code>import-resource</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-21">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-12">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>billingPlan</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.cost</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.details</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.details[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.details[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.effectiveDate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.highlightedDetails</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.highlightedDetails[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.highlightedDetails[].value</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.paymentMethodRequired</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>billingPlan.type</code></td>
+<td><code>enum: prepayment, subscription</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>extras</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification.href</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification.level</code></td>
+<td><code>enum: info, warn, error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification.title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownership</code></td>
+<td><code>enum: owned, linked, sandbox</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>productId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides.development</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value used for development environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides.preview</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value used for preview environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides.production</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value used for production environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets[].prefix</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: ready, pending, onboarding, suspended, resumed, uninstalled, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-21">Responses</h4>
+<h5 id="200-9" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-12" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-21" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-21" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-21" class="status" data-status="4xx">404</h5>
+<h5 id="409-6" class="status" data-status="4xx">409</h5>
+<h5 id="410-21" class="status" data-status="4xx">410</h5>
+<h5 id="422-2" class="status" data-status="4xx">422</h5>
+<h3 id="put-v1installationsintegrationconfigurationidresourcesresourceidexperimentationglobal-config" class="operation" data-method="put"><code>PUT</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config</h3>
+<p>Operation ID: <code>replaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-22">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-13">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-22">Responses</h4>
+<h5 id="200-the-global-config-was-updated" class="status" data-status="2xx">200: The Global Config was updated</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>digest</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>purpose</code></td>
+<td><code>enum: experimentation, flags</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-13" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-22" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-22" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-22" class="status" data-status="4xx">404</h5>
+<h5 id="409-7" class="status" data-status="4xx">409</h5>
+<h5 id="410-22" class="status" data-status="4xx">410</h5>
+<h5 id="412" class="status" data-status="4xx">412</h5>
+<h3 id="put-v1installationsintegrationconfigurationidresourcesresourceidsecrets" class="operation" data-method="put"><code>PUT</code> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/secrets</h3>
+<p>Operation ID: <code>update-resource-secrets-by-id</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-23">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-14">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>partial</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, will only overwrite the provided secrets instead of replacing all secrets.</td>
+</tr>
+<tr>
+<td><code>secrets</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides.development</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value used for development environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides.preview</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value used for preview environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].environmentOverrides.production</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value used for production environment.</td>
+</tr>
+<tr>
+<td><code>secrets[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets[].prefix</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secrets[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-23">Responses</h4>
+<h5 id="201-4" class="status" data-status="2xx">201</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-14" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-23" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-23" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-23" class="status" data-status="4xx">404</h5>
+<h5 id="409-8" class="status" data-status="4xx">409</h5>
+<h5 id="410-23" class="status" data-status="4xx">410</h5>
+<h5 id="422-3" class="status" data-status="4xx">422</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

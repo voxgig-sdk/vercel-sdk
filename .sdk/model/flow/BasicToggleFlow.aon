@@ -1,0 +1,18 @@
+# BasicToggleFlow
+
+main: kit: flow: BasicToggleFlow:
+{
+  entity: "toggle",
+  kind: "basic",
+  name: "BasicToggleFlow",
+  step: [
+    {
+      input: {
+        ref: "toggle_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicToggleFlow"
+}

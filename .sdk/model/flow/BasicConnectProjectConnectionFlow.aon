@@ -1,0 +1,46 @@
+# BasicConnectProjectConnectionFlow
+
+main: kit: flow: BasicConnectProjectConnectionFlow:
+{
+  entity: "connect_project_connection",
+  kind: "basic",
+  name: "BasicConnectProjectConnectionFlow",
+  step: [
+    {
+      input: {
+        ref: "connect_project_connection_ref01"
+      }
+
+      match: {
+        connector_id: "connector01",
+        project_id: "project01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "connect_project_connection_ref01",
+        srcdatavar: "connect_project_connection_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        connector_id: "connector01",
+        id: "connect_project_connection01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-connect_project_connection_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicConnectProjectConnectionFlow"
+}

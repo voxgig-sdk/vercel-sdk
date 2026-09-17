@@ -1,0 +1,987 @@
+{
+  "existing": {
+    "flag": {
+      "FLAG00": {
+        "createdAt": 200,
+        "createdBy": "sc9",
+        "description": "sca",
+        "environments": {},
+        "id": "FLAG00",
+        "kind": "scd",
+        "maintainerIds": [],
+        "metadata": {},
+        "ownerId": "sd0",
+        "permanent": false,
+        "projectId": "sd2",
+        "revision": 211,
+        "seed": 212,
+        "slug": "sd5",
+        "state": "sd6",
+        "tags": [],
+        "typeName": "sd8",
+        "updatedAt": 217,
+        "updatedBy": "sda",
+        "variants": [],
+        "project_id": "PROJECT01"
+      },
+      "FLAG01": {
+        "createdAt": 400,
+        "createdBy": "s191",
+        "description": "s192",
+        "environments": {},
+        "id": "FLAG01",
+        "kind": "s195",
+        "maintainerIds": [],
+        "metadata": {},
+        "ownerId": "s198",
+        "permanent": false,
+        "projectId": "s19a",
+        "revision": 411,
+        "seed": 412,
+        "slug": "s19d",
+        "state": "s19e",
+        "tags": [],
+        "typeName": "s1a0",
+        "updatedAt": 417,
+        "updatedBy": "s1a2",
+        "variants": [],
+        "project_id": "PROJECT01"
+      },
+      "FLAG02": {
+        "createdAt": 600,
+        "createdBy": "s259",
+        "description": "s25a",
+        "environments": {},
+        "id": "FLAG02",
+        "kind": "s25d",
+        "maintainerIds": [],
+        "metadata": {},
+        "ownerId": "s260",
+        "permanent": false,
+        "projectId": "s262",
+        "revision": 611,
+        "seed": 612,
+        "slug": "s265",
+        "state": "s266",
+        "tags": [],
+        "typeName": "s268",
+        "updatedAt": 617,
+        "updatedBy": "s26a",
+        "variants": [],
+        "project_id": "PROJECT01"
+      }
+    }
+  },
+  "new": {
+    "flag": {
+      "flag_ref01": {
+        "createdAt": 800,
+        "createdBy": "s321",
+        "description": "s322",
+        "environments": {},
+        "kind": "s325",
+        "maintainerIds": [],
+        "metadata": {},
+        "ownerId": "s328",
+        "permanent": false,
+        "projectId": "s32a",
+        "revision": 811,
+        "seed": 812,
+        "slug": "s32d",
+        "state": "s32e",
+        "tags": [],
+        "typeName": "s330",
+        "updatedAt": 817,
+        "updatedBy": "s332",
+        "variants": []
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getFlag",
+        "parameters": [
+          {
+            "description": "The project id or name",
+            "in": "path",
+            "name": "projectIdOrName",
+            "required": true,
+            "schema": {
+              "description": "The project id or name",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The flag id or name",
+            "in": "path",
+            "name": "flagIdOrSlug",
+            "required": true,
+            "schema": {
+              "description": "The flag id or name",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Etag to match, can be used interchangeably with the `if-match` header",
+            "in": "query",
+            "name": "ifMatch",
+            "required": false,
+            "schema": {
+              "description": "Etag to match, can be used interchangeably with the `if-match` header",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to include metadata in the response",
+            "in": "query",
+            "name": "withMetadata",
+            "required": false,
+            "schema": {
+              "description": "Whether to include metadata in the response",
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "createdBy": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "environments": {
+                      "additionalProperties": {
+                        "properties": {
+                          "active": {
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "fallthrough": {
+                            "oneOf": [
+                              {
+                                "properties": {
+                                  "type": {
+                                    "enum": [
+                                      "variant"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "variantId": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "variantId"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "properties": {
+                                  "base": {
+                                    "properties": {
+                                      "attribute": {
+                                        "type": "string"
+                                      },
+                                      "kind": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "enum": [
+                                          "entity"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "attribute",
+                                      "kind",
+                                      "type"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "defaultVariantId": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "split"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "weights": {
+                                    "additionalProperties": {
+                                      "type": "number"
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "required": [
+                                  "base",
+                                  "defaultVariantId",
+                                  "type",
+                                  "weights"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "properties": {
+                                  "base": {
+                                    "properties": {
+                                      "attribute": {
+                                        "type": "string"
+                                      },
+                                      "kind": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "enum": [
+                                          "entity"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "attribute",
+                                      "kind",
+                                      "type"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "defaultVariantId": {
+                                    "type": "string"
+                                  },
+                                  "rollFromVariantId": {
+                                    "type": "string"
+                                  },
+                                  "rollToVariantId": {
+                                    "type": "string"
+                                  },
+                                  "slots": {
+                                    "items": {
+                                      "properties": {
+                                        "durationMs": {
+                                          "type": "number"
+                                        },
+                                        "promille": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "durationMs",
+                                        "promille"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "startTimestamp": {
+                                    "type": "number"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "rollout"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "base",
+                                  "defaultVariantId",
+                                  "rollFromVariantId",
+                                  "rollToVariantId",
+                                  "slots",
+                                  "startTimestamp",
+                                  "type"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "properties": {
+                                  "type": {
+                                    "enum": [
+                                      "experiment"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "pausedOutcome": {
+                            "properties": {
+                              "type": {
+                                "enum": [
+                                  "variant"
+                                ],
+                                "type": "string"
+                              },
+                              "variantId": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "variantId"
+                            ],
+                            "type": "object"
+                          },
+                          "reuse": {
+                            "properties": {
+                              "active": {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "environment": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "active",
+                              "environment"
+                            ],
+                            "type": "object"
+                          },
+                          "revision": {
+                            "type": "number"
+                          },
+                          "rules": {
+                            "items": {
+                              "properties": {
+                                "conditions": {
+                                  "items": {
+                                    "properties": {
+                                      "cmp": {
+                                        "enum": [
+                                          "!contains",
+                                          "!endsWith",
+                                          "!eq",
+                                          "!ex",
+                                          "!oneOf",
+                                          "!regex",
+                                          "!startsWith",
+                                          "after",
+                                          "before",
+                                          "contains",
+                                          "containsAllOf",
+                                          "containsAnyOf",
+                                          "containsNoneOf",
+                                          "endsWith",
+                                          "eq",
+                                          "ex",
+                                          "gt",
+                                          "gte",
+                                          "lt",
+                                          "lte",
+                                          "oneOf",
+                                          "regex",
+                                          "startsWith"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "cmpOptions": {
+                                        "properties": {
+                                          "ignoreCase": {
+                                            "enum": [
+                                              false,
+                                              true
+                                            ],
+                                            "type": "boolean"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "lhs": {
+                                        "oneOf": [
+                                          {
+                                            "properties": {
+                                              "type": {
+                                                "enum": [
+                                                  "segment"
+                                                ],
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "type"
+                                            ],
+                                            "type": "object"
+                                          },
+                                          {
+                                            "properties": {
+                                              "attribute": {
+                                                "type": "string"
+                                              },
+                                              "kind": {
+                                                "type": "string"
+                                              },
+                                              "type": {
+                                                "enum": [
+                                                  "entity"
+                                                ],
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "attribute",
+                                              "kind",
+                                              "type"
+                                            ],
+                                            "type": "object"
+                                          }
+                                        ]
+                                      },
+                                      "rhs": {
+                                        "oneOf": [
+                                          {
+                                            "type": "string"
+                                          },
+                                          {
+                                            "type": "number"
+                                          },
+                                          {
+                                            "properties": {
+                                              "items": {
+                                                "items": {
+                                                  "oneOf": [
+                                                    {
+                                                      "properties": {
+                                                        "label": {
+                                                          "type": "string"
+                                                        },
+                                                        "note": {
+                                                          "type": "string"
+                                                        },
+                                                        "value": {
+                                                          "type": "number"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "value"
+                                                      ],
+                                                      "type": "object"
+                                                    },
+                                                    {
+                                                      "properties": {
+                                                        "label": {
+                                                          "type": "string"
+                                                        },
+                                                        "note": {
+                                                          "type": "string"
+                                                        },
+                                                        "value": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "value"
+                                                      ],
+                                                      "type": "object"
+                                                    }
+                                                  ]
+                                                },
+                                                "type": "array"
+                                              },
+                                              "type": {
+                                                "enum": [
+                                                  "list",
+                                                  "list/inline"
+                                                ],
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "items",
+                                              "type"
+                                            ],
+                                            "type": "object"
+                                          },
+                                          {
+                                            "properties": {
+                                              "flags": {
+                                                "type": "string"
+                                              },
+                                              "pattern": {
+                                                "type": "string"
+                                              },
+                                              "type": {
+                                                "enum": [
+                                                  "regex"
+                                                ],
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "flags",
+                                              "pattern",
+                                              "type"
+                                            ],
+                                            "type": "object"
+                                          },
+                                          {
+                                            "enum": [
+                                              false,
+                                              true
+                                            ],
+                                            "type": "boolean"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "cmp",
+                                      "lhs"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "outcome": {
+                                  "oneOf": [
+                                    {
+                                      "properties": {
+                                        "type": {
+                                          "enum": [
+                                            "variant"
+                                          ],
+                                          "type": "string"
+                                        },
+                                        "variantId": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "variantId"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    {
+                                      "properties": {
+                                        "base": {
+                                          "properties": {
+                                            "attribute": {
+                                              "type": "string"
+                                            },
+                                            "kind": {
+                                              "type": "string"
+                                            },
+                                            "type": {
+                                              "enum": [
+                                                "entity"
+                                              ],
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "attribute",
+                                            "kind",
+                                            "type"
+                                          ],
+                                          "type": "object"
+                                        },
+                                        "defaultVariantId": {
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "enum": [
+                                            "split"
+                                          ],
+                                          "type": "string"
+                                        },
+                                        "weights": {
+                                          "additionalProperties": {
+                                            "type": "number"
+                                          },
+                                          "type": "object"
+                                        }
+                                      },
+                                      "required": [
+                                        "base",
+                                        "defaultVariantId",
+                                        "type",
+                                        "weights"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    {
+                                      "properties": {
+                                        "base": {
+                                          "properties": {
+                                            "attribute": {
+                                              "type": "string"
+                                            },
+                                            "kind": {
+                                              "type": "string"
+                                            },
+                                            "type": {
+                                              "enum": [
+                                                "entity"
+                                              ],
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "attribute",
+                                            "kind",
+                                            "type"
+                                          ],
+                                          "type": "object"
+                                        },
+                                        "defaultVariantId": {
+                                          "type": "string"
+                                        },
+                                        "rollFromVariantId": {
+                                          "type": "string"
+                                        },
+                                        "rollToVariantId": {
+                                          "type": "string"
+                                        },
+                                        "slots": {
+                                          "items": {
+                                            "properties": {
+                                              "durationMs": {
+                                                "type": "number"
+                                              },
+                                              "promille": {
+                                                "type": "number"
+                                              }
+                                            },
+                                            "required": [
+                                              "durationMs",
+                                              "promille"
+                                            ],
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "startTimestamp": {
+                                          "type": "number"
+                                        },
+                                        "type": {
+                                          "enum": [
+                                            "rollout"
+                                          ],
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "base",
+                                        "defaultVariantId",
+                                        "rollFromVariantId",
+                                        "rollToVariantId",
+                                        "slots",
+                                        "startTimestamp",
+                                        "type"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    {
+                                      "properties": {
+                                        "type": {
+                                          "enum": [
+                                            "experiment"
+                                          ],
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "type"
+                                      ],
+                                      "type": "object"
+                                    }
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "conditions",
+                                "id",
+                                "outcome"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "targets": {
+                            "additionalProperties": {
+                              "additionalProperties": {
+                                "additionalProperties": {
+                                  "items": {
+                                    "properties": {
+                                      "note": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "type": "object"
+                              },
+                              "type": "object"
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "active",
+                          "fallthrough",
+                          "pausedOutcome",
+                          "rules"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "enum": [
+                        "boolean",
+                        "json",
+                        "number",
+                        "string"
+                      ],
+                      "type": "string"
+                    },
+                    "maintainerIds": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "properties": {
+                        "creator": {
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "permanent": {
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "projectId": {
+                      "type": "string"
+                    },
+                    "revision": {
+                      "type": "number"
+                    },
+                    "seed": {
+                      "type": "number"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "enum": [
+                        "active",
+                        "archived"
+                      ],
+                      "type": "string"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "typeName": {
+                      "enum": [
+                        "flag"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    },
+                    "updatedBy": {
+                      "type": "string"
+                    },
+                    "variants": {
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "nullable": true,
+                            "oneOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              {
+                                "items": {},
+                                "type": "array"
+                              },
+                              {
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "createdBy",
+                    "environments",
+                    "id",
+                    "kind",
+                    "ownerId",
+                    "projectId",
+                    "revision",
+                    "seed",
+                    "slug",
+                    "state",
+                    "typeName",
+                    "updatedAt",
+                    "variants"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "304": {
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

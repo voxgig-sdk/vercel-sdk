@@ -1,0 +1,1174 @@
+{
+  "existing": {
+    "connect": {
+      "CONNECT00": {
+        "additionalParams": {},
+        "audience": [],
+        "authorizationDetails": [],
+        "authorizationId": "s12f",
+        "claims": {},
+        "connector": {},
+        "deviceCode": true,
+        "displayName": "s133",
+        "expiresAt": 308,
+        "expiresInMs": 309,
+        "externalSubject": "s136",
+        "id": "CONNECT00",
+        "installationId": "s138",
+        "metadata": {},
+        "name": "s13a",
+        "prompt": "s13b",
+        "resources": [],
+        "returnUrl": "s13d",
+        "scopes": [],
+        "service": "s13f",
+        "serviceName": "s140",
+        "subject": "s141",
+        "tenantId": "s142",
+        "token": "s143",
+        "tokenGroupId": "s144",
+        "tokenId": "s145",
+        "type": "s146",
+        "uid": "s147",
+        "validityBufferMs": 328,
+        "webhook": "s149",
+        "connector_id": "CONNECTOR01",
+        "project_id": "PROJECT01"
+      },
+      "CONNECT01": {
+        "additionalParams": {},
+        "audience": [],
+        "authorizationDetails": [],
+        "authorizationId": "s25b",
+        "claims": {},
+        "connector": {},
+        "deviceCode": true,
+        "displayName": "s25f",
+        "expiresAt": 608,
+        "expiresInMs": 609,
+        "externalSubject": "s262",
+        "id": "CONNECT01",
+        "installationId": "s264",
+        "metadata": {},
+        "name": "s266",
+        "prompt": "s267",
+        "resources": [],
+        "returnUrl": "s269",
+        "scopes": [],
+        "service": "s26b",
+        "serviceName": "s26c",
+        "subject": "s26d",
+        "tenantId": "s26e",
+        "token": "s26f",
+        "tokenGroupId": "s270",
+        "tokenId": "s271",
+        "type": "s272",
+        "uid": "s273",
+        "validityBufferMs": 628,
+        "webhook": "s275",
+        "connector_id": "CONNECTOR01",
+        "project_id": "PROJECT01"
+      },
+      "CONNECT02": {
+        "additionalParams": {},
+        "audience": [],
+        "authorizationDetails": [],
+        "authorizationId": "s387",
+        "claims": {},
+        "connector": {},
+        "deviceCode": true,
+        "displayName": "s38b",
+        "expiresAt": 908,
+        "expiresInMs": 909,
+        "externalSubject": "s38e",
+        "id": "CONNECT02",
+        "installationId": "s390",
+        "metadata": {},
+        "name": "s392",
+        "prompt": "s393",
+        "resources": [],
+        "returnUrl": "s395",
+        "scopes": [],
+        "service": "s397",
+        "serviceName": "s398",
+        "subject": "s399",
+        "tenantId": "s39a",
+        "token": "s39b",
+        "tokenGroupId": "s39c",
+        "tokenId": "s39d",
+        "type": "s39e",
+        "uid": "s39f",
+        "validityBufferMs": 928,
+        "webhook": "s3a1",
+        "connector_id": "CONNECTOR01",
+        "project_id": "PROJECT01"
+      }
+    }
+  },
+  "new": {
+    "connect": {
+      "connect_ref01": {
+        "additionalParams": {},
+        "audience": [],
+        "authorizationDetails": [],
+        "authorizationId": "s4b3",
+        "claims": {},
+        "connector": {},
+        "deviceCode": true,
+        "displayName": "s4b7",
+        "expiresAt": 1208,
+        "expiresInMs": 1209,
+        "externalSubject": "s4ba",
+        "installationId": "s4bc",
+        "metadata": {},
+        "name": "s4be",
+        "prompt": "s4bf",
+        "resources": [],
+        "returnUrl": "s4c1",
+        "scopes": [],
+        "service": "s4c3",
+        "serviceName": "s4c4",
+        "subject": "s4c5",
+        "tenantId": "s4c6",
+        "token": "s4c7",
+        "tokenGroupId": "s4c8",
+        "tokenId": "s4c9",
+        "type": "s4ca",
+        "uid": "s4cb",
+        "validityBufferMs": 1228,
+        "webhook": "s4cd"
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/connect/authorize/{connector}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createConnectorAuthorizationRequest",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "connector",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "additionalParams": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "type": "object"
+                  },
+                  "audience": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "authorizationDetails": {
+                    "items": {
+                      "additionalProperties": true,
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "deviceCode": {
+                    "type": "boolean"
+                  },
+                  "expiresInMs": {
+                    "type": "number"
+                  },
+                  "installationId": {
+                    "type": "string"
+                  },
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "resources": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "returnUrl": {
+                    "type": "string"
+                  },
+                  "scopes": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "subject": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "app"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "type:app",
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": true,
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "issuer": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "user"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "type:user",
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": true,
+                        "properties": {
+                          "additionalClaims": {
+                            "additionalProperties": true,
+                            "type": "object"
+                          },
+                          "aud": {
+                            "type": "string"
+                          },
+                          "iss": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "jwt-bearer"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "type:jwt-bearer",
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": false,
+                        "properties": {
+                          "token": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "token"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "token"
+                        ],
+                        "title": "type:token",
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": true,
+                        "not": {
+                          "properties": {
+                            "type": {
+                              "enum": [
+                                "token"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type"
+                          ]
+                        },
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "type:other",
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "validityBufferMs": {
+                    "type": "number"
+                  },
+                  "webhook": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "connector": {
+                      "properties": {
+                        "displayName": {
+                          "description": "Provider-facing display name when the connector type exposes one, falling back to the stored connector name.",
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "Client id (e.g. `scl_…`).",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The connector's own name: the operator-given client name, falling back to the client type's name for legacy rows without one.",
+                          "type": "string"
+                        },
+                        "service": {
+                          "description": "Resolved service id when known (e.g. `salesforce`), following the `stored.service ?? typeDef.service ?? stored.type` convention.",
+                          "type": "string"
+                        },
+                        "serviceName": {
+                          "description": "Curated display name of the resolved service (e.g. \"Salesforce\"), present when the service is a known service. Suited for end-user surfaces like \"Sign in with {serviceName}\".",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "Client type (e.g. `oauth`, `salesforce`).",
+                          "type": "string"
+                        },
+                        "uid": {
+                          "description": "Client uid (e.g. `salesforce/my-org`).",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "displayName",
+                        "id",
+                        "name",
+                        "type",
+                        "uid"
+                      ],
+                      "type": "object"
+                    },
+                    "deviceCode": {
+                      "type": "string"
+                    },
+                    "expiresAt": {
+                      "type": "number"
+                    },
+                    "request": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "verifier": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "connector",
+                    "expiresAt",
+                    "request",
+                    "url",
+                    "verifier"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/connect/token/{connector}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getConnectorToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "connector",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "audience": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "authorizationDetails": {
+                    "items": {
+                      "additionalProperties": true,
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "installationId": {
+                    "type": "string"
+                  },
+                  "resources": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "scopes": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "subject": {
+                    "anyOf": [
+                      {
+                        "additionalProperties": true,
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "app"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "type:app",
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": true,
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "issuer": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "user"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "type:user",
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": true,
+                        "properties": {
+                          "additionalClaims": {
+                            "additionalProperties": true,
+                            "type": "object"
+                          },
+                          "aud": {
+                            "type": "string"
+                          },
+                          "iss": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "jwt-bearer"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "type:jwt-bearer",
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": false,
+                        "properties": {
+                          "token": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "token"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "token"
+                        ],
+                        "title": "type:token",
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": true,
+                        "not": {
+                          "properties": {
+                            "type": {
+                              "enum": [
+                                "token"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type"
+                          ]
+                        },
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "type:other",
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "validityBufferMs": {
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "authorizationId": {
+                      "description": "Stable id correlating all tokens (including refreshes) back to the original authorization.",
+                      "type": "string"
+                    },
+                    "claims": {
+                      "additionalProperties": true,
+                      "description": "Claims extracted from the provider's tokens per the connector's `ForwardedClaims` allow-list. Currently sourced from the OIDC id_token only.",
+                      "type": "object"
+                    },
+                    "connector": {
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "uid": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "type",
+                        "uid"
+                      ],
+                      "type": "object"
+                    },
+                    "expiresAt": {
+                      "type": "number"
+                    },
+                    "externalSubject": {
+                      "type": "string"
+                    },
+                    "installationId": {
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "additionalProperties": true,
+                      "description": "Driver-specific metadata (e.g., botUserId for Slack).",
+                      "type": "object"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "tenantId": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
+                    },
+                    "tokenGroupId": {
+                      "description": "Stable id that groups all tokens with the same parameters across refreshes.",
+                      "type": "string"
+                    },
+                    "tokenId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "connector",
+                    "expiresAt",
+                    "token",
+                    "tokenId"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "422": {
+            "description": ""
+          },
+          "429": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/connect/connectors/{connector}/projects/{projectId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteConnectorProjectConnection",
+        "parameters": [
+          {
+            "description": "Stable connector ID or URL-encoded team-scoped UID. Examples: `scl_abc123` or `slack%2Fmy-bot`.",
+            "in": "path",
+            "name": "connector",
+            "required": true,
+            "schema": {
+              "description": "Stable connector ID or URL-encoded team-scoped UID. Examples: `scl_abc123` or `slack%2Fmy-bot`.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Vercel project ID.",
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "description": "Vercel project ID.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": "The connector was disconnected from the project."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "error": {
+                      "additionalProperties": true,
+                      "description": "Error details.",
+                      "properties": {
+                        "code": {
+                          "description": "Stable machine-readable error code.",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Human-readable error message.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The requested resource was not found."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The requested resource is no longer available."
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/connect/connectors/{connector}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteConnector",
+        "parameters": [
+          {
+            "description": "Stable connector ID or URL-encoded team-scoped UID. Examples: `scl_abc123` or `slack%2Fmy-bot`.",
+            "in": "path",
+            "name": "connector",
+            "required": true,
+            "schema": {
+              "description": "Stable connector ID or URL-encoded team-scoped UID. Examples: `scl_abc123` or `slack%2Fmy-bot`.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": "The connector, its project connections, and its installation records were deleted."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "error": {
+                      "additionalProperties": true,
+                      "description": "Error details.",
+                      "properties": {
+                        "code": {
+                          "description": "Stable machine-readable error code.",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Human-readable error message.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The requested resource was not found."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The request conflicts with the current resource state."
+          },
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The requested resource is no longer available."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The request cannot be completed in the current state."
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Error response returned by a Connect API operation.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A dependency returned an invalid or unsuccessful response."
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

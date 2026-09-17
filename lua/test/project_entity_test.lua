@@ -38,6 +38,7 @@ describe("ProjectEntity", function()
     local project_ref01_ent = client:Project(nil)
     local project_ref01_data = helpers.to_map(vs.getprop(
       vs.getpath(setup.data, "new.project"), "project_ref01"))
+    project_ref01_data["project_id"] = setup.idmap["project01"]
 
     local project_ref01_data_result, err = project_ref01_ent:create(project_ref01_data, nil)
     assert.is_nil(err)
@@ -101,7 +102,7 @@ function project_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "project01", "project02", "project03" },
+    { "project01", "project02", "project03", "transfer_request01", "transfer_request02", "transfer_request03", "rollback01", "rollback02", "rollback03", "promote01", "promote02", "promote03", "domain01", "domain02", "domain03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

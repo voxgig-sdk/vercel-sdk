@@ -1,0 +1,457 @@
+# Entity: connect
+
+main: kit: entity: connect: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "additionalParams"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "audience"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "authorizationDetails"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "authorizationId"
+      req: false
+      short: "Stable id correlating all tokens (including refreshes) back to the original authorization."
+      type: "`$STRING`"
+    }
+    {
+      name: "claims"
+      req: false
+      short: "Claims extracted from the provider's tokens per the connector's `ForwardedClaims` allow-list."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "connector"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "deviceCode"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "displayName"
+      req: true
+      short: "Provider-facing display name when the connector type exposes one, falling back to the stored connector name."
+      type: "`$STRING`"
+    }
+    {
+      name: "expiresAt"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "expiresInMs"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "externalSubject"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      short: "Client id (e.g."
+      type: "`$STRING`"
+    }
+    {
+      name: "installationId"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "metadata"
+      req: false
+      short: "Driver-specific metadata (e.g., botUserId for Slack)."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      short: "The connector's own name: the operator-given client name, falling back to the client type's name for legacy rows without one."
+      type: "`$STRING`"
+    }
+    {
+      name: "prompt"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "resources"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "returnUrl"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "scopes"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "service"
+      req: false
+      short: "Resolved service id when known (e.g."
+      type: "`$STRING`"
+    }
+    {
+      name: "serviceName"
+      req: false
+      short: "Curated display name of the resolved service (e.g."
+      type: "`$STRING`"
+    }
+    {
+      name: "subject"
+      req: false
+      type: "`$ANY`"
+      union: {
+        branches: 5
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "tenantId"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "token"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "tokenGroupId"
+      req: false
+      short: "Stable id that groups all tokens with the same parameters across refreshes."
+      type: "`$STRING`"
+    }
+    {
+      name: "tokenId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: true
+      short: "Client type (e.g."
+      type: "`$STRING`"
+    }
+    {
+      name: "uid"
+      req: true
+      short: "Client uid (e.g."
+      type: "`$STRING`"
+    }
+    {
+      name: "validityBufferMs"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "webhook"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "connect"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "connector"
+                orig: "connector"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/connect/authorize/{connector}"
+            json: "{\"operationId\":\"createConnectorAuthorizationRequest\",\"parameters\":[{\"in\":\"path\",\"name\":\"connector\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"additionalParams\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"audience\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"authorizationDetails\":{\"items\":{\"additionalProperties\":true,\"properties\":{\"type\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deviceCode\":{\"type\":\"boolean\"},\"expiresInMs\":{\"type\":\"number\"},\"installationId\":{\"type\":\"string\"},\"prompt\":{\"type\":\"string\"},\"resources\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"returnUrl\":{\"type\":\"string\"},\"scopes\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"subject\":{\"anyOf\":[{\"additionalProperties\":true,\"properties\":{\"type\":{\"enum\":[\"app\"],\"type\":\"string\"}},\"required\":[\"type\"],\"title\":\"type:app\",\"type\":\"object\"},{\"additionalProperties\":true,\"properties\":{\"id\":{\"type\":\"string\"},\"issuer\":{\"type\":\"string\"},\"type\":{\"enum\":[\"user\"],\"type\":\"string\"}},\"required\":[\"type\"],\"title\":\"type:user\",\"type\":\"object\"},{\"additionalProperties\":true,\"properties\":{\"additionalClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"aud\":{\"type\":\"string\"},\"iss\":{\"type\":\"string\"},\"sub\":{\"type\":\"string\"},\"type\":{\"enum\":[\"jwt-bearer\"],\"type\":\"string\"}},\"required\":[\"type\"],\"title\":\"type:jwt-bearer\",\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"token\":{\"type\":\"string\"},\"type\":{\"enum\":[\"token\"],\"type\":\"string\"}},\"required\":[\"type\",\"token\"],\"title\":\"type:token\",\"type\":\"object\"},{\"additionalProperties\":true,\"not\":{\"properties\":{\"type\":{\"enum\":[\"token\"],\"type\":\"string\"}},\"required\":[\"type\"]},\"properties\":{\"type\":{\"type\":\"string\"}},\"required\":[\"type\"],\"title\":\"type:other\",\"type\":\"object\"}]},\"validityBufferMs\":{\"type\":\"number\"},\"webhook\":{\"type\":\"string\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"connector\":{\"properties\":{\"displayName\":{\"description\":\"Provider-facing display name when the connector type exposes one, falling back to the stored connector name.\",\"type\":\"string\"},\"id\":{\"description\":\"Client id (e.g. `scl_…`).\",\"type\":\"string\"},\"name\":{\"description\":\"The connector's own name: the operator-given client name, falling back to the client type's name for legacy rows without one.\",\"type\":\"string\"},\"service\":{\"description\":\"Resolved service id when known (e.g. `salesforce`), following the `stored.service ?? typeDef.service ?? stored.type` convention.\",\"type\":\"string\"},\"serviceName\":{\"description\":\"Curated display name of the resolved service (e.g. \\\"Salesforce\\\"), present when the service is a known service. Suited for end-user surfaces like \\\"Sign in with {serviceName}\\\".\",\"type\":\"string\"},\"type\":{\"description\":\"Client type (e.g. `oauth`, `salesforce`).\",\"type\":\"string\"},\"uid\":{\"description\":\"Client uid (e.g. `salesforce/my-org`).\",\"type\":\"string\"}},\"required\":[\"displayName\",\"id\",\"name\",\"type\",\"uid\"],\"type\":\"object\"},\"deviceCode\":{\"type\":\"string\"},\"expiresAt\":{\"type\":\"number\"},\"request\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"verifier\":{\"type\":\"string\"}},\"required\":[\"connector\",\"expiresAt\",\"request\",\"url\",\"verifier\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/connect/authorize/{connector}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "connect"
+            }
+            {
+              lit: "authorize"
+            }
+            {
+              var: "connector"
+            }
+          ]
+          select: {
+            exist: [
+              "connector"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.connector`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "connector"
+                orig: "connector"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/connect/token/{connector}"
+            json: "{\"operationId\":\"getConnectorToken\",\"parameters\":[{\"in\":\"path\",\"name\":\"connector\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"audience\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"authorizationDetails\":{\"items\":{\"additionalProperties\":true,\"properties\":{\"type\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"installationId\":{\"type\":\"string\"},\"resources\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"scopes\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"subject\":{\"anyOf\":[{\"additionalProperties\":true,\"properties\":{\"type\":{\"enum\":[\"app\"],\"type\":\"string\"}},\"required\":[\"type\"],\"title\":\"type:app\",\"type\":\"object\"},{\"additionalProperties\":true,\"properties\":{\"id\":{\"type\":\"string\"},\"issuer\":{\"type\":\"string\"},\"type\":{\"enum\":[\"user\"],\"type\":\"string\"}},\"required\":[\"type\"],\"title\":\"type:user\",\"type\":\"object\"},{\"additionalProperties\":true,\"properties\":{\"additionalClaims\":{\"additionalProperties\":true,\"type\":\"object\"},\"aud\":{\"type\":\"string\"},\"iss\":{\"type\":\"string\"},\"sub\":{\"type\":\"string\"},\"type\":{\"enum\":[\"jwt-bearer\"],\"type\":\"string\"}},\"required\":[\"type\"],\"title\":\"type:jwt-bearer\",\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"token\":{\"type\":\"string\"},\"type\":{\"enum\":[\"token\"],\"type\":\"string\"}},\"required\":[\"type\",\"token\"],\"title\":\"type:token\",\"type\":\"object\"},{\"additionalProperties\":true,\"not\":{\"properties\":{\"type\":{\"enum\":[\"token\"],\"type\":\"string\"}},\"required\":[\"type\"]},\"properties\":{\"type\":{\"type\":\"string\"}},\"required\":[\"type\"],\"title\":\"type:other\",\"type\":\"object\"}]},\"validityBufferMs\":{\"type\":\"number\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"authorizationId\":{\"description\":\"Stable id correlating all tokens (including refreshes) back to the original authorization.\",\"type\":\"string\"},\"claims\":{\"additionalProperties\":true,\"description\":\"Claims extracted from the provider's tokens per the connector's `ForwardedClaims` allow-list. Currently sourced from the OIDC id_token only.\",\"type\":\"object\"},\"connector\":{\"properties\":{\"id\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"uid\":{\"type\":\"string\"}},\"required\":[\"id\",\"type\",\"uid\"],\"type\":\"object\"},\"expiresAt\":{\"type\":\"number\"},\"externalSubject\":{\"type\":\"string\"},\"installationId\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":true,\"description\":\"Driver-specific metadata (e.g., botUserId for Slack).\",\"type\":\"object\"},\"name\":{\"type\":\"string\"},\"tenantId\":{\"type\":\"string\"},\"token\":{\"type\":\"string\"},\"tokenGroupId\":{\"description\":\"Stable id that groups all tokens with the same parameters across refreshes.\",\"type\":\"string\"},\"tokenId\":{\"type\":\"string\"}},\"required\":[\"connector\",\"expiresAt\",\"token\",\"tokenId\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"422\":{\"description\":\"\"},\"429\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/connect/token/{connector}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "connect"
+            }
+            {
+              lit: "token"
+            }
+            {
+              var: "connector"
+            }
+          ]
+          select: {
+            exist: [
+              "connector"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "connector_id"
+                orig: "connector"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/connect/connectors/{connector}/projects/{projectId}"
+            json: "{\"operationId\":\"deleteConnectorProjectConnection\",\"parameters\":[{\"description\":\"Stable connector ID or URL-encoded team-scoped UID. Examples: `scl_abc123` or `slack%2Fmy-bot`.\",\"in\":\"path\",\"name\":\"connector\",\"required\":true,\"schema\":{\"description\":\"Stable connector ID or URL-encoded team-scoped UID. Examples: `scl_abc123` or `slack%2Fmy-bot`.\",\"type\":\"string\"}},{\"description\":\"Vercel project ID.\",\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Vercel project ID.\",\"type\":\"string\"}},{\"description\":\"The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"description\":\"The connector was disconnected from the project.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"error\":{\"additionalProperties\":true,\"description\":\"Error details.\",\"properties\":{\"code\":{\"description\":\"Stable machine-readable error code.\",\"type\":\"string\"},\"message\":{\"description\":\"Human-readable error message.\",\"type\":\"string\"}},\"required\":[\"code\",\"message\"],\"type\":\"object\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"The request is not authorized.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"The requested resource was not found.\"},\"410\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"The requested resource is no longer available.\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/connect/connectors/{connector}/projects/{projectId}"
+          rename: {
+            param: {
+              connector: "connector_id"
+              projectId: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "connect"
+            }
+            {
+              lit: "connectors"
+            }
+            {
+              var: "connector_id"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+          ]
+          select: {
+            exist: [
+              "connector_id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "connector"
+                orig: "connector"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/connect/connectors/{connector}"
+            json: "{\"operationId\":\"deleteConnector\",\"parameters\":[{\"description\":\"Stable connector ID or URL-encoded team-scoped UID. Examples: `scl_abc123` or `slack%2Fmy-bot`.\",\"in\":\"path\",\"name\":\"connector\",\"required\":true,\"schema\":{\"description\":\"Stable connector ID or URL-encoded team-scoped UID. Examples: `scl_abc123` or `slack%2Fmy-bot`.\",\"type\":\"string\"}},{\"description\":\"The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"description\":\"The connector, its project connections, and its installation records were deleted.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"error\":{\"additionalProperties\":true,\"description\":\"Error details.\",\"properties\":{\"code\":{\"description\":\"Stable machine-readable error code.\",\"type\":\"string\"},\"message\":{\"description\":\"Human-readable error message.\",\"type\":\"string\"}},\"required\":[\"code\",\"message\"],\"type\":\"object\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"The request is not authorized.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"The requested resource was not found.\"},\"409\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"The request conflicts with the current resource state.\"},\"410\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"The requested resource is no longer available.\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"The request cannot be completed in the current state.\"},\"502\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"description\":\"Error response returned by a Connect API operation.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"type\":\"object\"}}},\"description\":\"A dependency returned an invalid or unsuccessful response.\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/connect/connectors/{connector}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "connect"
+            }
+            {
+              lit: "connectors"
+            }
+            {
+              var: "connector"
+            }
+          ]
+          select: {
+            exist: [
+              "connector"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "authorize"
+      ]
+      [
+        "connector"
+      ]
+      [
+        "token"
+      ]
+      [
+        "connector"
+        "project"
+      ]
+    ]
+  }
+
+
+
+}

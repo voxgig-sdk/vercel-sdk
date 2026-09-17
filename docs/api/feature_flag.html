@@ -1,0 +1,3037 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>FeatureFlag | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a aria-current="page" href="../api/feature_flag.html">FeatureFlag</a><div class="nav-sections"><a class="nav-section" href="#get-v2teamsteamidfeature-flagsflags">GET /v2/teams/{teamId}/feature-flags/flags</a>
+<a class="nav-section" href="#get-v2projectsprojectidornamefeature-flagsflags">GET /v2/projects/{projectIdOrName}/feature-flags/flags</a>
+<a class="nav-section" href="#get-v1teamsteamidfeature-flagsflags">GET /v1/teams/{teamId}/feature-flags/flags</a>
+<a class="nav-section" href="#get-v1projectsprojectidornamefeature-flagsflags">GET /v1/projects/{projectIdOrName}/feature-flags/flags</a>
+<a class="nav-section" href="#get-v1projectsprojectidornamefeature-flagsflagsflagidorslugversions">GET /v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}/versions</a>
+<a class="nav-section" href="#get-v1projectsprojectidornamefeature-flagssegments">GET /v1/projects/{projectIdOrName}/feature-flags/segments</a>
+<a class="nav-section" href="#get-v1deploymentsdeploymentidfeature-flags">GET /v1/deployments/{deploymentId}/feature-flags</a>
+<a class="nav-section" href="#get-v1projectsprojectidornamefeature-flagssdk-keys">GET /v1/projects/{projectIdOrName}/feature-flags/sdk-keys</a>
+<a class="nav-section" href="#get-v1projectsprojectidornamefeature-flagssettings">GET /v1/projects/{projectIdOrName}/feature-flags/settings</a>
+<a class="nav-section" href="#get-v1teamsteamidfeature-flagssettings">GET /v1/teams/{teamId}/feature-flags/settings</a>
+<a class="nav-section" href="#patch-v1projectsprojectidornamefeature-flagsflagsflagidorslug">PATCH /v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}</a>
+<a class="nav-section" href="#patch-v1projectsprojectidornamefeature-flagssegmentssegmentidorslug">PATCH /v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}</a>
+<a class="nav-section" href="#patch-v1projectsprojectidornamefeature-flagssettings">PATCH /v1/projects/{projectIdOrName}/feature-flags/settings</a>
+<a class="nav-section" href="#delete-v1projectsprojectidornamefeature-flagsflagsflagidorslug">DELETE /v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}</a>
+<a class="nav-section" href="#delete-v1projectsprojectidornamefeature-flagssegmentssegmentidorslug">DELETE /v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}</a>
+<a class="nav-section" href="#delete-v1projectsprojectidornamefeature-flagssdk-keyshashkey">DELETE /v1/projects/{projectIdOrName}/feature-flags/sdk-keys/{hashKey}</a>
+<a class="nav-section" href="#put-v1projectsprojectidornamefeature-flagsflags">PUT /v1/projects/{projectIdOrName}/feature-flags/flags</a>
+<a class="nav-section" href="#put-v1projectsprojectidornamefeature-flagssegments">PUT /v1/projects/{projectIdOrName}/feature-flags/segments</a></div>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="featureflag">FeatureFlag</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2teamsteamidfeature-flagsflags"><code>/v2/teams/{teamId}/feature-flags/flags</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2projectsprojectidornamefeature-flagsflags"><code>/v2/projects/{projectIdOrName}/feature-flags/flags</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1teamsteamidfeature-flagsflags"><code>/v1/teams/{teamId}/feature-flags/flags</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsprojectidornamefeature-flagsflags"><code>/v1/projects/{projectIdOrName}/feature-flags/flags</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsprojectidornamefeature-flagsflagsflagidorslugversions"><code>/v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}/versions</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsprojectidornamefeature-flagssegments"><code>/v1/projects/{projectIdOrName}/feature-flags/segments</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1deploymentsdeploymentidfeature-flags"><code>/v1/deployments/{deploymentId}/feature-flags</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsprojectidornamefeature-flagssdk-keys"><code>/v1/projects/{projectIdOrName}/feature-flags/sdk-keys</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsprojectidornamefeature-flagssettings"><code>/v1/projects/{projectIdOrName}/feature-flags/settings</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1teamsteamidfeature-flagssettings"><code>/v1/teams/{teamId}/feature-flags/settings</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1projectsprojectidornamefeature-flagsflagsflagidorslug"><code>/v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}</code></a></td>
+<td><code>patch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1projectsprojectidornamefeature-flagssegmentssegmentidorslug"><code>/v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}</code></a></td>
+<td><code>patch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1projectsprojectidornamefeature-flagssettings"><code>/v1/projects/{projectIdOrName}/feature-flags/settings</code></a></td>
+<td><code>patch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1projectsprojectidornamefeature-flagsflagsflagidorslug"><code>/v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1projectsprojectidornamefeature-flagssegmentssegmentidorslug"><code>/v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1projectsprojectidornamefeature-flagssdk-keyshashkey"><code>/v1/projects/{projectIdOrName}/feature-flags/sdk-keys/{hashKey}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1projectsprojectidornamefeature-flagsflags"><code>/v1/projects/{projectIdOrName}/feature-flags/flags</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1projectsprojectidornamefeature-flagssegments"><code>/v1/projects/{projectIdOrName}/feature-flags/segments</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>changedEnvironments</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The user who created this patch</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The data of the segment</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description of the flag</td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The configuration for the flag in different environments</td>
+</tr>
+<tr>
+<td><code>flagId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>flags</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>hint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The kind of flag</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>maintainerIds</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The user ids of the maintainers of the flag</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Additional message for this version</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>operations</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>permanent</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether this flag is marked as permanent, indicating it should not be removed</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>revision</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A random seed to prevent split points in different flags from having the same targets</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique (per project) key for the flag, composed of letters, numbers, dashes, and underscores</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Tags for categorizing the flag</td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>variants</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>The variants of the flag</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-v2teamsteamidfeature-flagsflags" class="operation" data-method="get"><code>GET</code> /v2/teams/{teamId}/feature-flags/flags</h3>
+<p>Operation ID: <code>listTeamFlagsV2</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>state</code> | <code>query</code> | <code>enum: active, archived</code> | No | The state of the flags to retrieve. Defaults to <code>active</code>. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | Maximum number of flags to return. |
+| <code>cursor</code> | <code>query</code> | <code>string</code> | No | Pagination cursor to continue from. |
+| <code>search</code> | <code>query</code> | <code>string</code> | No | Search flags by their slug or description. Case-insensitive. |
+| <code>kind</code> | <code>query</code> | <code>enum: boolean, string, number, json</code> | No | The kind of flags to retrieve. |
+| <code>tags</code> | <code>query</code> | <code>array of string</code> | No | Filter flags by tag. Repeat the parameter for multiple tags (all must match). |
+| <code>createdBy</code> | <code>query</code> | <code>string</code> | No | Filter flags by the id of the entity that created them (a user or team id). |
+| <code>maintainerIds</code> | <code>query</code> | <code>array of string</code> | No | Filter flags by maintainer user id. Repeat the parameter for multiple maintainers (any may match). |
+| <code>includeMarketplaceFlags</code> | <code>query</code> | <code>boolean</code> | No | Whether to include Marketplace experimentation items in the paginated response. Defaults to false. |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h3 id="get-v2projectsprojectidornamefeature-flagsflags" class="operation" data-method="get"><code>GET</code> /v2/projects/{projectIdOrName}/feature-flags/flags</h3>
+<p>Operation ID: <code>listFlagsV2</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>state</code> | <code>query</code> | <code>enum: active, archived</code> | No | The state of the flags to retrieve. Defaults to <code>active</code>. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | Maximum number of flags to return. |
+| <code>cursor</code> | <code>query</code> | <code>string</code> | No | Pagination cursor to continue from. |
+| <code>search</code> | <code>query</code> | <code>string</code> | No | Search flags by their slug or description. Case-insensitive. |
+| <code>tags</code> | <code>query</code> | <code>array of string</code> | No | Filter flags by tag. Repeat the parameter for multiple tags (all must match). |
+| <code>createdBy</code> | <code>query</code> | <code>string</code> | No | Filter flags by the id of the entity that created them (a user or team id). |
+| <code>maintainerIds</code> | <code>query</code> | <code>array of string</code> | No | Filter flags by maintainer user id. Repeat the parameter for multiple maintainers (any may match). |
+| <code>includeMarketplaceFlags</code> | <code>query</code> | <code>boolean</code> | No | Whether to include Marketplace experimentation items in the paginated response. Defaults to false. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1teamsteamidfeature-flagsflags" class="operation" data-method="get"><code>GET</code> /v1/teams/{teamId}/feature-flags/flags</h3>
+<p>Operation ID: <code>listTeamFlags</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>state</code> | <code>query</code> | <code>enum: active, archived</code> | No | The state of the flags to retrieve. Defaults to <code>active</code>. |
+| <code>withMetadata</code> | <code>query</code> | <code>boolean</code> | No | Deprecated. Whether to include creator metadata in each flag in the response. Resolve creator identity client-side (for example via the team members endpoint) instead; this parameter will be removed in a future release. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | Maximum number of flags to return. |
+| <code>cursor</code> | <code>query</code> | <code>string</code> | No | Pagination cursor to continue from. |
+| <code>search</code> | <code>query</code> | <code>string</code> | No | Search flags by their slug or description. Case-insensitive. |
+| <code>kind</code> | <code>query</code> | <code>enum: boolean, string, number, json</code> | No | The kind of flags to retrieve. |
+| <code>tags</code> | <code>query</code> | <code>array of string</code> | No | Filter flags by tag. Repeat the parameter for multiple tags (all must match). |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].environments</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].kind</code></td>
+<td><code>enum: boolean, json, number, string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].maintainerIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata.creator</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata.creator.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata.creator.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].permanent</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].revision</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].seed</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].state</code></td>
+<td><code>enum: active, archived</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].typeName</code></td>
+<td><code>enum: flag</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].updatedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants[].label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants[].value</code></td>
+<td><code>string or number or object or array of any or enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1projectsprojectidornamefeature-flagsflags" class="operation" data-method="get"><code>GET</code> /v1/projects/{projectIdOrName}/feature-flags/flags</h3>
+<p>Operation ID: <code>listFlags</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>state</code> | <code>query</code> | <code>enum: active, archived</code> | No | The state of the flags to retrieve. Defaults to <code>active</code>. |
+| <code>withMetadata</code> | <code>query</code> | <code>boolean</code> | No | Deprecated. Whether to include creator metadata in each flag in the response. Resolve creator identity client-side (for example via the team members endpoint) instead; this parameter will be removed in a future release. Use <code>GET /v1/projects/:id/feature-flags/flags/:flagIdOrSlug?withMetadata=true</code> for single-flag lookups that need creator metadata. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | Maximum number of flags to return. When not set, all flags are returned. |
+| <code>cursor</code> | <code>query</code> | <code>string</code> | No | Pagination cursor to continue from. |
+| <code>search</code> | <code>query</code> | <code>string</code> | No | Search flags by their slug or description. Case-insensitive. |
+| <code>tags</code> | <code>query</code> | <code>array of string</code> | No | Filter flags by tag. Repeat the parameter for multiple tags (all must match). |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].environments</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].kind</code></td>
+<td><code>enum: boolean, json, number, string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].maintainerIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata.creator</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata.creator.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata.creator.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].permanent</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].revision</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].seed</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].state</code></td>
+<td><code>enum: active, archived</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].typeName</code></td>
+<td><code>enum: flag</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].updatedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants[].label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].variants[].value</code></td>
+<td><code>string or number or object or array of any or enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-1" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1projectsprojectidornamefeature-flagsflagsflagidorslugversions" class="operation" data-method="get"><code>GET</code> /v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}/versions</h3>
+<p>Operation ID: <code>listFlagVersions</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>flagIdOrSlug</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No |  |
+| <code>cursor</code> | <code>query</code> | <code>string</code> | No | Pagination cursor |
+| <code>environment</code> | <code>query</code> | <code>string</code> | No | Environment to filter by |
+| <code>withMetadata</code> | <code>query</code> | <code>boolean</code> | No | Whether to include metadata |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].changedEnvironments</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].createdBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.environments</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.maintainerIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.permanent</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.seed</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.state</code></td>
+<td><code>enum: active, archived</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.variants</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.variants[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.variants[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.variants[].label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].data.variants[].value</code></td>
+<td><code>string or number or object or array of any or enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].flagId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].metadata.creator</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].metadata.creator.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].metadata.creator.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].revision</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="304" class="status" data-status="3xx">304</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-2" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1projectsprojectidornamefeature-flagssegments" class="operation" data-method="get"><code>GET</code> /v1/projects/{projectIdOrName}/feature-flags/segments</h3>
+<p>Operation ID: <code>listFlagSegments</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>withMetadata</code> | <code>query</code> | <code>boolean</code> | No | Whether to include metadata |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-5" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].createdBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.exclude</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.include</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.rules</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.rules[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.rules[].conditions[].cmp</code></td>
+<td><code>enum: !contains, !endsWith, !eq, !ex, !oneOf, !regex, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.rules[].conditions[].cmpOptions</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.rules[].conditions[].lhs</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.rules[].conditions[].rhs</code></td>
+<td><code>string or number or object or object or enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.rules[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].data.rules[].outcome</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].hint</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata.creator</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata.creator.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].metadata.creator.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].typeName</code></td>
+<td><code>enum: segment</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].usedByFlags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].usedBySegments</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-3" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1deploymentsdeploymentidfeature-flags" class="operation" data-method="get"><code>GET</code> /v1/deployments/{deploymentId}/feature-flags</h3>
+<p>Operation ID: <code>getDeploymentFeatureFlags</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>deploymentId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-6" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flags</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status.deploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status.flagCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The number of flag definitions returned by the flags discovery endpoint.</td>
+</tr>
+<tr>
+<td><code>status.projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status.responseStatus</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The HTTP status code from the flags discovery endpoint.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-6" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-4" class="status" data-status="4xx">404</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1projectsprojectidornamefeature-flagssdk-keys" class="operation" data-method="get"><code>GET</code> /v1/projects/{projectIdOrName}/feature-flags/sdk-keys</h3>
+<p>Operation ID: <code>getSdkKeys</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-7" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].deletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].environment</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].hashKey</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].partialKeyValue</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Partially-masked representation of the SDK key value, safe to display in UIs. The value is the <code>vf_&amp;lt;type&amp;gt;_</code> prefix followed by the first 3 characters of the secret portion and a fixed 8-character <code>*</code> mask (for example <code>vf_server_abc********</code>).</td>
+</tr>
+<tr>
+<td><code>data[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].type</code></td>
+<td><code>enum: client, mobile, server</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-7" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-4" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-5" class="status" data-status="4xx">404</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1projectsprojectidornamefeature-flagssettings" class="operation" data-method="get"><code>GET</code> /v1/projects/{projectIdOrName}/feature-flags/settings</h3>
+<p>Operation ID: <code>getFlagSettings</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-8" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].kind</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.activeFlagCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.archivedFlagCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.configUpdatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.packRevision</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.packSizeInBytes</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.segmentCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>enum: settings</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-8" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-8" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-5" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-8" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-6" class="status" data-status="4xx">404</h5>
+<h5 id="410-8" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1teamsteamidfeature-flagssettings" class="operation" data-method="get"><code>GET</code> /v1/teams/{teamId}/feature-flags/settings</h3>
+<p>Operation ID: <code>listTeamFlagSettings</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | Maximum number of settings to return. |
+| <code>cursor</code> | <code>query</code> | <code>string</code> | No | Pagination cursor to continue from. |
+| <code>teamId</code> | <code>path</code> | <code>string</code> | Yes | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-9" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-9" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-9" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-9" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-9" class="status" data-status="4xx">410</h5>
+<h2 id="patch">patch</h2>
+<h3 id="patch-v1projectsprojectidornamefeature-flagsflagsflagidorslug" class="operation" data-method="patch"><code>PATCH</code> /v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}</h3>
+<p>Operation ID: <code>updateFlag</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>flagIdOrSlug</code> | <code>path</code> | <code>string</code> | Yes | The flag id or name |
+| <code>ifMatch</code> | <code>query</code> | <code>string</code> | No | Etag to match, can be used interchangeably with the <code>if-match</code> header |
+| <code>withMetadata</code> | <code>query</code> | <code>boolean</code> | No | Whether to include metadata in the response |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The user who created this patch</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description of the flag</td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The configuration for the flag in different environments</td>
+</tr>
+<tr>
+<td><code>maintainerIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The user ids of the maintainers of the flag</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Additional message for this version</td>
+</tr>
+<tr>
+<td><code>permanent</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether this flag is marked as permanent, indicating it should not be removed</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>A random seed to prevent split points in different flags from having the same targets</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>enum: active, archived</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Tags for categorizing the flag</td>
+</tr>
+<tr>
+<td><code>variants</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The variants of the flag</td>
+</tr>
+<tr>
+<td><code>variants[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description of the variant</td>
+</tr>
+<tr>
+<td><code>variants[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The id of the variant</td>
+</tr>
+<tr>
+<td><code>variants[].label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A label for the variant</td>
+</tr>
+<tr>
+<td><code>variants[].value</code></td>
+<td><code>string or number or boolean or object or array of any or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-10" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="304-1" class="status" data-status="3xx">304</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-10" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-6" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-10" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-7" class="status" data-status="4xx">404</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410-10" class="status" data-status="4xx">410</h5>
+<h3 id="patch-v1projectsprojectidornamefeature-flagssegmentssegmentidorslug" class="operation" data-method="patch"><code>PATCH</code> /v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}</h3>
+<p>Operation ID: <code>updateFlagSegment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>segmentIdOrSlug</code> | <code>path</code> | <code>string</code> | Yes | The segment slug |
+| <code>withMetadata</code> | <code>query</code> | <code>boolean</code> | No | Whether to include metadata |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The data of the segment</td>
+</tr>
+<tr>
+<td><code>data.exclude</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.include</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].cmp</code></td>
+<td><code>enum: eq, !eq, oneOf, !oneOf, containsAllOf, containsAnyOf, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].cmpOptions</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].cmpOptions.ignoreCase</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].lhs</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].rhs</code></td>
+<td><code>object or object or string or number or boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].outcome</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>hint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>operations</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>operations[].action</code></td>
+<td><code>enum: add, remove</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>operations[].attribute</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>operations[].entity</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>operations[].field</code></td>
+<td><code>enum: include, exclude</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>operations[].value</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>operations[].value.note</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>operations[].value.value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-11" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-11" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-7" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-11" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-8" class="status" data-status="4xx">404</h5>
+<h5 id="409-1" class="status" data-status="4xx">409</h5>
+<h5 id="410-11" class="status" data-status="4xx">410</h5>
+<h3 id="patch-v1projectsprojectidornamefeature-flagssettings" class="operation" data-method="patch"><code>PATCH</code> /v1/projects/{projectIdOrName}/feature-flags/settings</h3>
+<p>Operation ID: <code>updateFlagSettings</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].kind</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The environments to sync</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-12" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].kind</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.activeFlagCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.archivedFlagCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.configUpdatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.packRevision</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.packSizeInBytes</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.segmentCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>enum: settings</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="201" class="status" data-status="2xx">201</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].key</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].labels[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].attributes[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].kind</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities[].label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.activeFlagCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.archivedFlagCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.configUpdatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.packRevision</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.packSizeInBytes</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata.segmentCount</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>enum: settings</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-12" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-8" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-12" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-9" class="status" data-status="4xx">404</h5>
+<h5 id="409-2" class="status" data-status="4xx">409</h5>
+<h5 id="410-12" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1projectsprojectidornamefeature-flagsflagsflagidorslug" class="operation" data-method="delete"><code>DELETE</code> /v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}</h3>
+<p>Operation ID: <code>deleteFlag</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-13">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>flagIdOrSlug</code> | <code>path</code> | <code>string</code> | Yes | The flag id or name |
+| <code>ifMatch</code> | <code>query</code> | <code>string</code> | No | Etag to match, can be used interchangeably with the <code>if-match</code> header |
+| <code>withMetadata</code> | <code>query</code> | <code>boolean</code> | No | Whether to include metadata in the response |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-13">Responses</h4>
+<h5 id="204" class="status" data-status="2xx">204</h5>
+<h5 id="304-2" class="status" data-status="3xx">304</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-10" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-13" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-9" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-13" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-10" class="status" data-status="4xx">404</h5>
+<h5 id="409-3" class="status" data-status="4xx">409</h5>
+<h5 id="410-13" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v1projectsprojectidornamefeature-flagssegmentssegmentidorslug" class="operation" data-method="delete"><code>DELETE</code> /v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}</h3>
+<p>Operation ID: <code>deleteFlagSegment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-14">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>segmentIdOrSlug</code> | <code>path</code> | <code>string</code> | Yes | The segment slug |
+| <code>withMetadata</code> | <code>query</code> | <code>boolean</code> | No | Whether to include metadata |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-14">Responses</h4>
+<h5 id="204-1" class="status" data-status="2xx">204</h5>
+<h5 id="304-3" class="status" data-status="3xx">304</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-11" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-14" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-10" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-14" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-11" class="status" data-status="4xx">404</h5>
+<h5 id="409-4" class="status" data-status="4xx">409</h5>
+<h5 id="410-14" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v1projectsprojectidornamefeature-flagssdk-keyshashkey" class="operation" data-method="delete"><code>DELETE</code> /v1/projects/{projectIdOrName}/feature-flags/sdk-keys/{hashKey}</h3>
+<p>Operation ID: <code>deleteSdkKey</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-15">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>hashKey</code> | <code>path</code> | <code>string</code> | Yes | The SDK key hash key to delete |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-15">Responses</h4>
+<h5 id="204-2" class="status" data-status="2xx">204</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-12" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-15" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-11" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-15" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-12" class="status" data-status="4xx">404</h5>
+<h5 id="409-5" class="status" data-status="4xx">409</h5>
+<h5 id="410-15" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="put-v1projectsprojectidornamefeature-flagsflags" class="operation" data-method="put"><code>PUT</code> /v1/projects/{projectIdOrName}/feature-flags/flags</h3>
+<p>Operation ID: <code>createFlag</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-16">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description of the flag</td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The configuration for the flag in different environments</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>enum: boolean, string, number, json</code></td>
+<td>Yes</td>
+<td>The kind of flag</td>
+</tr>
+<tr>
+<td><code>maintainerIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The user ids of the maintainers of the flag</td>
+</tr>
+<tr>
+<td><code>permanent</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether this flag is marked as permanent, indicating it should not be removed</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>A random seed to prevent split points in different flags from having the same targets</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique (per project) key for the flag, composed of letters, numbers, dashes, and underscores</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>enum: active, archived</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Tags for categorizing the flag</td>
+</tr>
+<tr>
+<td><code>variants</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The variants of the flag</td>
+</tr>
+<tr>
+<td><code>variants[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description of the variant</td>
+</tr>
+<tr>
+<td><code>variants[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The id of the variant</td>
+</tr>
+<tr>
+<td><code>variants[].label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A label for the variant</td>
+</tr>
+<tr>
+<td><code>variants[].value</code></td>
+<td><code>string or number or boolean or object or array of any or string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-16">Responses</h4>
+<h5 id="201-1" class="status" data-status="2xx">201</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>enum: boolean, json, number, string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>maintainerIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>permanent</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>revision</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>enum: active, archived</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>enum: flag</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>variants</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>variants[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>variants[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>variants[].label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>variants[].value</code></td>
+<td><code>string or number or object or array of any or enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-16" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-12" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-16" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-13" class="status" data-status="4xx">404</h5>
+<h5 id="409-6" class="status" data-status="4xx">409</h5>
+<h5 id="410-16" class="status" data-status="4xx">410</h5>
+<h3 id="put-v1projectsprojectidornamefeature-flagssegments" class="operation" data-method="put"><code>PUT</code> /v1/projects/{projectIdOrName}/feature-flags/segments</h3>
+<p>Operation ID: <code>createFlagSegment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-17">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectIdOrName</code> | <code>path</code> | <code>string</code> | Yes | The project id or name |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-4">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The entity who created the segment</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The data of the segment</td>
+</tr>
+<tr>
+<td><code>data.exclude</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.include</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].cmp</code></td>
+<td><code>enum: eq, !eq, oneOf, !oneOf, containsAllOf, containsAnyOf, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].cmpOptions</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].cmpOptions.ignoreCase</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].lhs</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].rhs</code></td>
+<td><code>object or object or string or number or boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].outcome</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>hint</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-17">Responses</h4>
+<h5 id="201-2" class="status" data-status="2xx">201</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.exclude</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.include</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].cmp</code></td>
+<td><code>enum: !contains, !endsWith, !eq, !ex, !oneOf, !regex, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].cmpOptions</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].cmpOptions.ignoreCase</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].lhs</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].conditions[].rhs</code></td>
+<td><code>string or number or object or object or enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data.rules[].outcome</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>hint</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>enum: segment</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>usedByFlags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>usedBySegments</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-17" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-13" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-17" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-14" class="status" data-status="4xx">404</h5>
+<h5 id="409-7" class="status" data-status="4xx">409</h5>
+<h5 id="410-17" class="status" data-status="4xx">410</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

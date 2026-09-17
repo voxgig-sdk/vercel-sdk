@@ -1,0 +1,28 @@
+# BasicApiAiGatewayFlow
+
+main: kit: flow: BasicApiAiGatewayFlow:
+{
+  entity: "api_ai_gateway",
+  kind: "basic",
+  name: "BasicApiAiGatewayFlow",
+  step: [
+    {
+      input: {
+        ref: "api_ai_gateway_ref01",
+        srcdatavar: "api_ai_gateway_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-api_ai_gateway_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicApiAiGatewayFlow"
+}

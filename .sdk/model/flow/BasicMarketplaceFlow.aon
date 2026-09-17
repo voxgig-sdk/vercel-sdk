@@ -1,0 +1,119 @@
+# BasicMarketplaceFlow
+
+main: kit: flow: BasicMarketplaceFlow:
+{
+  entity: "marketplace",
+  kind: "basic",
+  name: "BasicMarketplaceFlow",
+  step: [
+    {
+      input: {
+        ref: "marketplace_ref01"
+      }
+
+      match: {
+        installation_id: "installation01",
+        product_id: "product01",
+        resource_id: "resource01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        installation_id: "installation01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "marketplace_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      data: {
+        installation_id: "installation01"
+      }
+
+      input: {
+        ref: "marketplace_ref01",
+        srcdatavar: "marketplace_ref01_data",
+        suffix: "_up0",
+        textfield: "access_token"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-marketplace_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "marketplace_ref01",
+        srcdatavar: "marketplace_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "marketplace01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-marketplace_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "marketplace_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "marketplace01",
+        installation_id: "installation01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        installation_id: "installation01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "marketplace_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMarketplaceFlow"
+}

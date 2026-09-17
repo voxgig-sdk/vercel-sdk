@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Query | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a aria-current="page" href="../api/query.html">Query</a><div class="nav-sections"><a class="nav-section" href="#post-v2observabilityquery">POST /v2/observability/query</a></div>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="query">Query</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v2observabilityquery"><code>/v2/observability/query</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aggregation</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Aggregation function to apply.</td>
+</tr>
+<tr>
+<td><code>bucketTimezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>IANA timezone (for example</td>
+</tr>
+<tr>
+<td><code>endTime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>End timestamp</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Filter to apply to the query.</td>
+</tr>
+<tr>
+<td><code>granularity</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Time bucket size</td>
+</tr>
+<tr>
+<td><code>groupBy</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Dimensions to group results by.</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Maximum number of results</td>
+</tr>
+<tr>
+<td><code>metric</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Metric id</td>
+</tr>
+<tr>
+<td><code>orderBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Rollup column to order grouped results by.</td>
+</tr>
+<tr>
+<td><code>orderDirection</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Direction to order grouped results by.</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Owner or project scope for the query</td>
+</tr>
+<tr>
+<td><code>startTime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Start timestamp</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v2observabilityquery" class="operation" data-method="post"><code>POST</code> /v2/observability/query</h3>
+<p>Operation ID: <code>createObservabilityQuery</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aggregation</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Aggregation function to apply. Some aggregations require a dimension: use &lt;agg&gt;/&lt;dimension&gt;, for example unique/visitor_id.</td>
+</tr>
+<tr>
+<td><code>bucketTimezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>IANA timezone (for example Europe/Paris) used only to align calendar buckets (1d/1mo) to that zone's day/month boundaries. startTime/endTime and all output timestamps are always UTC. No effect on sub-day granularities.</td>
+</tr>
+<tr>
+<td><code>endTime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>End timestamp</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Filter to apply to the query. JSON dimensions support nested refs, for example event_data/checkout_step eq 'payment'. Nested keys containing characters that OData cannot parse as an identifier, such as '-', spaces, quotes, or '/', must be wrapped in single quotes (escape embedded single quotes by doubling them), for example flags/'enable-comments-view' eq true or event_data/'some property''s/value' eq true.</td>
+</tr>
+<tr>
+<td><code>granularity</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Time bucket size</td>
+</tr>
+<tr>
+<td><code>groupBy</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Dimensions to group results by. JSON dimensions support nested refs, for example event_data/checkout_step. Nested keys containing characters that OData cannot parse as an identifier, such as '-', spaces, quotes, or '/', must be wrapped in single quotes (escape embedded single quotes by doubling them), for example flags/'enable-comments-view' or event_data/'some property''s/value'.</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Maximum number of results</td>
+</tr>
+<tr>
+<td><code>metric</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Metric id</td>
+</tr>
+<tr>
+<td><code>orderBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Rollup column to order grouped results by. Use the generated rollup key for the requested metric and aggregation. Defaults to the query engine count rollup.</td>
+</tr>
+<tr>
+<td><code>orderDirection</code></td>
+<td><code>enum: asc, desc</code></td>
+<td>No</td>
+<td>Direction to order grouped results by. Defaults to desc.</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Owner or project scope for the query</td>
+</tr>
+<tr>
+<td><code>startTime</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Start timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="408" class="status" data-status="4xx">408</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h5 id="413" class="status" data-status="4xx">413</h5>
+<h5 id="422" class="status" data-status="4xx">422</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h5 id="503" class="status" data-status="5xx">503</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

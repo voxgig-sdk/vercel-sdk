@@ -1,0 +1,59 @@
+# BasicConnectConnectorFlow
+
+main: kit: flow: BasicConnectConnectorFlow:
+{
+  entity: "connect_connector",
+  kind: "basic",
+  name: "BasicConnectConnectorFlow",
+  step: [
+    {
+      input: {
+        ref: "connect_connector_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "connect_connector_ref01",
+        srcdatavar: "connect_connector_ref01_data",
+        suffix: "_up0",
+        textfield: "accentColor"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-connect_connector_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "connect_connector_ref01",
+        srcdatavar: "connect_connector_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "connect_connector01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-connect_connector_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicConnectConnectorFlow"
+}

@@ -6,7 +6,75 @@
 <div class="site-notice" role="note"></div>
 <div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
 <details><summary>API</summary><a href="../api/index.html">API overview</a>
-<a href="../api/project.html">Project</a></details>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
 <details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
 <a href="../guides/first-call.html">Make your first API call</a>
 <a href="../guides/errors.html">Handle errors</a>
@@ -42,8 +110,280 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../api/project.html">Project</a></td>
+<td><a href="../api/access_group.html">AccessGroup</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/ai_gateway.html">AiGateway</a></td>
+<td><code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/ai_gateway_rule.html">AiGatewayRule</a></td>
+<td><code>create</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a></td>
+<td><code>create</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/alias.html">Alias</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/api_ai_gateway.html">ApiAiGateway</a></td>
+<td><code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/api_key.html">ApiKey</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/artifact.html">Artifact</a></td>
 <td><code>create</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/authentication.html">Authentication</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/billing.html">Billing</a></td>
+<td><code>create</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/bulk_redirect.html">BulkRedirect</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/cert.html">Cert</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/check.html">Check</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/checks_v2.html">ChecksV2</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/connect.html">Connect</a></td>
+<td><code>create</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/connect_connector.html">ConnectConnector</a></td>
+<td><code>create</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/connect_connector_list.html">ConnectConnectorList</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/connect_project_connection.html">ConnectProjectConnection</a></td>
+<td><code>create</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/deployment.html">Deployment</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/dns.html">Dns</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain.html">Domain</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/domains_registrar.html">DomainsRegistrar</a></td>
+<td><code>create</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/drain.html">Drain</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/edge_cache.html">EdgeCache</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/env.html">Env</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/environment.html">Environment</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/feature_flag.html">FeatureFlag</a></td>
+<td><code>list</code>, <code>load</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/file.html">File</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/flag.html">Flag</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a></td>
+<td><code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/global_config.html">GlobalConfig</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/global_config_item.html">GlobalConfigItem</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/global_config_token.html">GlobalConfigToken</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/integration.html">Integration</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/kms.html">Kms</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/list_event_type.html">ListEventType</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/log.html">Log</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/log_drain.html">LogDrain</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/marketplace.html">Marketplace</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/microfrontend.html">Microfrontend</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/network.html">Network</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/networking.html">Networking</a></td>
+<td><code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/observability.html">Observability</a></td>
+<td><code>list</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/project.html">Project</a></td>
+<td><code>create</code>, <code>load</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/project_member.html">ProjectMember</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/project_route.html">ProjectRoute</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/query.html">Query</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/record.html">Record</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/rolling_release.html">RollingRelease</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/sandbox.html">Sandbox</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/schema.html">Schema</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/security.html">Security</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/segment.html">Segment</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/storage.html">Storage</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/team.html">Team</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/tld_name.html">TldName</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/toggle.html">Toggle</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/user.html">User</a></td>
+<td><code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/vcr.html">Vcr</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/vcr_image_list.html">VcrImageList</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/vcr_repository_list.html">VcrRepositoryList</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/web_analytics.html">WebAnalytics</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/webhook.html">Webhook</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code></td>
 </tr>
 </tbody>
 </table>
@@ -76,7 +416,75 @@ $client = new VercelSDK([&quot;apikey&quot; =&gt; getenv(&quot;VERCEL_APIKEY&quo
     &quot;content-type&quot;: &quot;application/json&quot;
   },
   &quot;entity&quot;: {
-    &quot;project&quot;: {}
+    &quot;access_group&quot;: {},
+    &quot;ai_gateway&quot;: {},
+    &quot;ai_gateway_rule&quot;: {},
+    &quot;ai_gateway_rule_list&quot;: {},
+    &quot;ai_gateway_virtual_model_config&quot;: {},
+    &quot;ai_gateway_virtual_model_config_list&quot;: {},
+    &quot;alias&quot;: {},
+    &quot;api_ai_gateway&quot;: {},
+    &quot;api_key&quot;: {},
+    &quot;artifact&quot;: {},
+    &quot;authentication&quot;: {},
+    &quot;billing&quot;: {},
+    &quot;bulk_redirect&quot;: {},
+    &quot;cert&quot;: {},
+    &quot;check&quot;: {},
+    &quot;checks_v2&quot;: {},
+    &quot;connect&quot;: {},
+    &quot;connect_connector&quot;: {},
+    &quot;connect_connector_list&quot;: {},
+    &quot;connect_connector_project_connection_list&quot;: {},
+    &quot;connect_project_connection&quot;: {},
+    &quot;connect_project_connector_connection_list&quot;: {},
+    &quot;deployment&quot;: {},
+    &quot;dns&quot;: {},
+    &quot;domain&quot;: {},
+    &quot;domains_registrar&quot;: {},
+    &quot;drain&quot;: {},
+    &quot;edge_cache&quot;: {},
+    &quot;env&quot;: {},
+    &quot;environment&quot;: {},
+    &quot;feature_flag&quot;: {},
+    &quot;file&quot;: {},
+    &quot;flag&quot;: {},
+    &quot;flags_sdk_key_with_secret&quot;: {},
+    &quot;global_config&quot;: {},
+    &quot;global_config_item&quot;: {},
+    &quot;global_config_token&quot;: {},
+    &quot;integration&quot;: {},
+    &quot;kms&quot;: {},
+    &quot;list_event_type&quot;: {},
+    &quot;log&quot;: {},
+    &quot;log_drain&quot;: {},
+    &quot;marketplace&quot;: {},
+    &quot;microfrontend&quot;: {},
+    &quot;network&quot;: {},
+    &quot;networking&quot;: {},
+    &quot;observability&quot;: {},
+    &quot;private_link_endpoint&quot;: {},
+    &quot;project&quot;: {},
+    &quot;project_member&quot;: {},
+    &quot;project_route&quot;: {},
+    &quot;query&quot;: {},
+    &quot;record&quot;: {},
+    &quot;rolling_release&quot;: {},
+    &quot;sandbox&quot;: {},
+    &quot;schema&quot;: {},
+    &quot;security&quot;: {},
+    &quot;segment&quot;: {},
+    &quot;storage&quot;: {},
+    &quot;team&quot;: {},
+    &quot;tld_name&quot;: {},
+    &quot;toggle&quot;: {},
+    &quot;user&quot;: {},
+    &quot;vcr&quot;: {},
+    &quot;vcr_image_list&quot;: {},
+    &quot;vcr_repository_list&quot;: {},
+    &quot;vcr_repository_permission_list&quot;: {},
+    &quot;web_analytics&quot;: {},
+    &quot;webhook&quot;: {}
   }
 }
 </code></pre>

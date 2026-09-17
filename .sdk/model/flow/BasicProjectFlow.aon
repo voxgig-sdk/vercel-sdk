@@ -11,6 +11,10 @@ main: kit: flow: BasicProjectFlow:
         ref: "project_ref01"
       }
 
+      match: {
+        project_id: "project01"
+      }
+
       op: "create"
     }
 

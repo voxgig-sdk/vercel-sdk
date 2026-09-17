@@ -1,0 +1,32 @@
+# BasicRecordFlow
+
+main: kit: flow: BasicRecordFlow:
+{
+  entity: "record",
+  kind: "basic",
+  name: "BasicRecordFlow",
+  step: [
+    {
+      input: {
+        ref: "record_ref01",
+        srcdatavar: "record_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "record01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-record_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRecordFlow"
+}

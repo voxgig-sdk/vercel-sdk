@@ -1,0 +1,344 @@
+{
+  "existing": {
+    "networking": {
+      "NETWORKING00": {
+        "builds": true,
+        "regions": [],
+        "endpoint_id": "ENDPOINT01",
+        "id_or_name": "ID_OR_NAME01",
+        "id": "NETWORKING00"
+      },
+      "NETWORKING01": {
+        "builds": true,
+        "regions": [],
+        "endpoint_id": "ENDPOINT01",
+        "id_or_name": "ID_OR_NAME01",
+        "id": "NETWORKING01"
+      },
+      "NETWORKING02": {
+        "builds": true,
+        "regions": [],
+        "endpoint_id": "ENDPOINT01",
+        "id_or_name": "ID_OR_NAME01",
+        "id": "NETWORKING02"
+      }
+    }
+  },
+  "new": {
+    "networking": {
+      "networking_ref01": {
+        "builds": true,
+        "regions": []
+      }
+    }
+  },
+  "requests": {
+    "DELETE /v1/networking/privatelink/endpoints/{endpointId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deletePrivateLinkEndpoint",
+        "parameters": [
+          {
+            "description": "The project ID the PrivateLink endpoint belongs to.",
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "description": "The project ID the PrivateLink endpoint belongs to.",
+              "example": "prj_a1b2c3d4e5f6g7h8",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the PrivateLink endpoint.",
+            "in": "path",
+            "name": "endpointId",
+            "required": true,
+            "schema": {
+              "description": "The unique identifier of the PrivateLink endpoint.",
+              "example": "ple_a1b2c3d4e5f6g7h8",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true
+                }
+              }
+            },
+            "description": "The PrivateLink endpoint was deleted."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/projects/{idOrName}/shared-connect-links": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateStaticIps",
+        "parameters": [
+          {
+            "description": "The unique project identifier or the project name",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "The unique project identifier or the project name",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "builds"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "regions"
+                    ]
+                  }
+                ],
+                "properties": {
+                  "builds": {
+                    "description": "Whether to use Static IPs for builds.",
+                    "type": "boolean"
+                  },
+                  "regions": {
+                    "items": {
+                      "description": "The region in which to enable Static IPs.",
+                      "example": "iad1",
+                      "maxLength": 4,
+                      "type": "string"
+                    },
+                    "maxItems": 3,
+                    "minItems": 0,
+                    "type": "array",
+                    "uniqueItems": true
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "aws": {
+                        "properties": {
+                          "securityGroupId": {
+                            "type": "string"
+                          },
+                          "subnetIds": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "required": [
+                          "subnetIds"
+                        ],
+                        "type": "object"
+                      },
+                      "buildsEnabled": {
+                        "enum": [
+                          false,
+                          true
+                        ],
+                        "type": "boolean"
+                      },
+                      "connectConfigurationId": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "number"
+                      },
+                      "dc": {
+                        "type": "string"
+                      },
+                      "envId": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "enum": [
+                              "preview",
+                              "production"
+                            ],
+                            "type": "string"
+                          }
+                        ]
+                      },
+                      "passive": {
+                        "enum": [
+                          false,
+                          true
+                        ],
+                        "type": "boolean"
+                      },
+                      "updatedAt": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "buildsEnabled",
+                      "connectConfigurationId",
+                      "createdAt",
+                      "envId",
+                      "passive",
+                      "updatedAt"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": ""
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

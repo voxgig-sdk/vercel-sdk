@@ -1,0 +1,303 @@
+# Entity: ai_gateway_virtual_model_config_list
+
+main: kit: entity: ai_gateway_virtual_model_config_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allowFallbackFromFast"
+      req: false
+      short: "Allow fallback from fast to standard providers on failure."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "baseUrl"
+      req: false
+      short: "For kind=relay: URL the gateway forwards requests to as a transparent proxy."
+      type: "`$STRING`"
+    }
+    {
+      name: "byokCredentialIds"
+      req: false
+      short: "BYOK credential IDs allowed for this VMC."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "caching"
+      req: false
+      short: "Use caching if available."
+      type: "`$STRING`"
+    }
+    {
+      name: "createdAt"
+      req: true
+      short: "Creation timestamp (epoch ms)."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "createdBy"
+      req: false
+      short: "User or app id that created this VMC."
+      type: "`$STRING`"
+    }
+    {
+      name: "deleted"
+      req: true
+      short: "Whether this VMC is soft-deleted."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Optional description for UI."
+      type: "`$STRING`"
+    }
+    {
+      name: "disallowPromptTraining"
+      req: false
+      short: "Only use providers that will not train on your prompts."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "displayName"
+      req: false
+      short: "Human-readable name for UI."
+      type: "`$STRING`"
+    }
+    {
+      name: "has"
+      req: false
+      short: "Limit providers to those with these features."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "hipaaCompliant"
+      req: false
+      short: "Only use HIPAA-compliant providers."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "inferenceRegion"
+      req: false
+      short: "Region pinned on the VMC for system-credential routing (alias/router only)."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "instanceId"
+      req: false
+      short: "The concrete model-provider instance this VMC resolves to."
+      type: "`$STRING`"
+    }
+    {
+      name: "kind"
+      req: true
+      short: "VMC kind: alias, relay, or router."
+      type: "`$STRING`"
+    }
+    {
+      name: "modelSlug"
+      req: false
+      short: "Canonical model slug this VMC maps to (e.g."
+      type: "`$STRING`"
+    }
+    {
+      name: "models"
+      req: false
+      short: "For kind=router: ordered candidates, model slugs or router references."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "observabilityTags"
+      req: false
+      short: "Observability tags attached to requests through this VMC."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "ownerId"
+      req: true
+      short: "Team (owner) that owns this VMC."
+      type: "`$STRING`"
+    }
+    {
+      name: "providerOnly"
+      req: false
+      short: "Restrict routing to only these providers."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "providerOptions"
+      req: false
+      short: "Arbitrary per-provider AI SDK options, keyed by gateway provider slug."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "providerOrder"
+      req: false
+      short: "Ordered list of providers to try as fallbacks on failure."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "providerTimeouts"
+      req: false
+      short: "Per-request provider timeouts in ms, keyed by provider slug for BYOK credentials."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "requires"
+      req: false
+      short: "For kind=router: capability tags a candidate must have."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "selector"
+      req: false
+      short: "For kind=router: how to order candidates."
+      type: "`$STRING`"
+    }
+    {
+      name: "serviceTier"
+      req: false
+      short: "Service tier for providers that support it."
+      type: "`$STRING`"
+    }
+    {
+      name: "sort"
+      req: false
+      short: "Rank eligible providers by an attribute."
+      type: "`$STRING`"
+    }
+    {
+      name: "speed"
+      req: false
+      short: "Only use fastest providers with short timeouts."
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: true
+      short: "UI lifecycle status: draft, active, or archived."
+      type: "`$STRING`"
+    }
+    {
+      name: "updatedAt"
+      req: true
+      short: "Last update timestamp (epoch ms)."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "updatedBy"
+      req: false
+      short: "User or app id that last updated this VMC."
+      type: "`$STRING`"
+    }
+    {
+      name: "virtualModelSlug"
+      req: true
+      short: "Client-facing alias used as the model slug in Gateway calls."
+      type: "`$STRING`"
+    }
+    {
+      name: "visibility"
+      req: false
+      short: "Visibility in listings: public, internal, or stealth."
+      type: "`$STRING`"
+    }
+    {
+      name: "zeroDataRetention"
+      req: false
+      short: "Only use providers with zero data retention."
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "ai_gateway_virtual_model_config_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "cursor"
+                orig: "cursor"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "owner_id"
+                orig: "owner_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/ai-gateway/virtual-model-configs/list"
+            json: "{\"operationId\":\"listAiGatewayVirtualModelConfigs\",\"parameters\":[{\"in\":\"query\",\"name\":\"ownerId\",\"schema\":{\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"minimum\":1,\"type\":\"integer\"}},{\"in\":\"query\",\"name\":\"cursor\",\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cursor\":{\"description\":\"Cursor for the next page, or null when no more pages remain.\",\"nullable\":true,\"type\":\"string\"},\"virtualModelConfigs\":{\"description\":\"The page of VMCs.\",\"items\":{\"description\":\"Public response shape for virtual model configs. Used so OpenAPI generation can avoid ElectroDB's recursive EntityItem types.\",\"properties\":{\"allowFallbackFromFast\":{\"description\":\"Allow fallback from fast to standard providers on failure.\",\"enum\":[false,true],\"type\":\"boolean\"},\"baseUrl\":{\"description\":\"For kind=relay: URL the gateway forwards requests to as a transparent proxy.\",\"type\":\"string\"},\"byokCredentialIds\":{\"description\":\"BYOK credential IDs allowed for this VMC.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"caching\":{\"description\":\"Use caching if available.\",\"enum\":[\"auto\"],\"type\":\"string\"},\"createdAt\":{\"description\":\"Creation timestamp (epoch ms).\",\"type\":\"number\"},\"createdBy\":{\"description\":\"User or app id that created this VMC.\",\"type\":\"string\"},\"deleted\":{\"description\":\"Whether this VMC is soft-deleted.\",\"enum\":[false,true],\"type\":\"boolean\"},\"description\":{\"description\":\"Optional description for UI.\",\"type\":\"string\"},\"disallowPromptTraining\":{\"description\":\"Only use providers that will not train on your prompts.\",\"enum\":[false,true],\"type\":\"boolean\"},\"displayName\":{\"description\":\"Human-readable name for UI.\",\"type\":\"string\"},\"has\":{\"description\":\"Limit providers to those with these features.\",\"items\":{\"description\":\"Limit providers to those with these features.\",\"enum\":[\"implicit-caching\",\"vision\"],\"type\":\"string\"},\"type\":\"array\"},\"hipaaCompliant\":{\"description\":\"Only use HIPAA-compliant providers.\",\"enum\":[false,true],\"type\":\"boolean\"},\"inferenceRegion\":{\"description\":\"Region pinned on the VMC for system-credential routing (alias/router only).\",\"properties\":{\"geoRegion\":{\"description\":\"Geo zone (e.g. \\\"us\\\", \\\"eu\\\").\",\"type\":\"string\"},\"providerRegion\":{\"description\":\"Provider-specific region identifier.\",\"type\":\"string\"},\"providers\":{\"additionalProperties\":{\"description\":\"Per-provider region overrides keyed by provider slug.\",\"nullable\":true,\"properties\":{\"geoRegion\":{\"description\":\"Geo zone (e.g. \\\"us\\\", \\\"eu\\\").\",\"type\":\"string\"},\"providerRegion\":{\"description\":\"Provider-specific region identifier.\",\"type\":\"string\"},\"scope\":{\"description\":\"Pin scope: `specific` (one provider region), `zone` (geo zone), or `global`.\",\"enum\":[\"global\",\"specific\",\"zone\"],\"type\":\"string\"}},\"type\":\"object\"},\"description\":\"Per-provider region overrides keyed by provider slug.\",\"type\":\"object\"},\"scope\":{\"description\":\"Pin scope: `specific` (one provider region), `zone` (geo zone), or `global`.\",\"enum\":[\"global\",\"specific\",\"zone\"],\"type\":\"string\"}},\"type\":\"object\"},\"instanceId\":{\"description\":\"The concrete model-provider instance this VMC resolves to.\",\"type\":\"string\"},\"kind\":{\"description\":\"VMC kind: alias, relay, or router.\",\"type\":\"string\"},\"modelSlug\":{\"description\":\"Canonical model slug this VMC maps to (e.g. \\\"creator/model\\\"). Not used by kind=router.\",\"type\":\"string\"},\"models\":{\"description\":\"For kind=router: ordered candidates, model slugs or router references. Otherwise: fallback models.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"observabilityTags\":{\"description\":\"Observability tags attached to requests through this VMC.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"ownerId\":{\"description\":\"Team (owner) that owns this VMC.\",\"type\":\"string\"},\"providerOnly\":{\"description\":\"Restrict routing to only these providers.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"providerOptions\":{\"additionalProperties\":{\"additionalProperties\":true,\"description\":\"Arbitrary per-provider AI SDK options, keyed by gateway provider slug.\",\"type\":\"object\"},\"description\":\"Arbitrary per-provider AI SDK options, keyed by gateway provider slug.\",\"type\":\"object\"},\"providerOrder\":{\"description\":\"Ordered list of providers to try as fallbacks on failure.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"providerTimeouts\":{\"description\":\"Per-request provider timeouts in ms, keyed by provider slug for BYOK credentials.\",\"properties\":{\"byok\":{\"additionalProperties\":{\"type\":\"number\"},\"type\":\"object\"}},\"type\":\"object\"},\"requires\":{\"description\":\"For kind=router: capability tags a candidate must have.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"selector\":{\"description\":\"For kind=router: how to order candidates.\",\"enum\":[\"cost\",\"priority\",\"tps\",\"ttft\"],\"type\":\"string\"},\"serviceTier\":{\"description\":\"Service tier for providers that support it.\",\"enum\":[\"fast\",\"flex\",\"priority\"],\"type\":\"string\"},\"sort\":{\"description\":\"Rank eligible providers by an attribute.\",\"enum\":[\"cost\",\"latency\",\"price\",\"throughput\",\"tps\",\"ttft\"],\"type\":\"string\"},\"speed\":{\"description\":\"Only use fastest providers with short timeouts.\",\"enum\":[\"fast\"],\"type\":\"string\"},\"status\":{\"description\":\"UI lifecycle status: draft, active, or archived.\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Last update timestamp (epoch ms).\",\"type\":\"number\"},\"updatedBy\":{\"description\":\"User or app id that last updated this VMC.\",\"type\":\"string\"},\"virtualModelSlug\":{\"description\":\"Client-facing alias used as the model slug in Gateway calls.\",\"type\":\"string\"},\"visibility\":{\"description\":\"Visibility in listings: public, internal, or stealth.\",\"type\":\"string\"},\"zeroDataRetention\":{\"description\":\"Only use providers with zero data retention.\",\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"createdAt\",\"deleted\",\"kind\",\"ownerId\",\"status\",\"updatedAt\",\"virtualModelSlug\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"cursor\",\"virtualModelConfigs\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/ai-gateway/virtual-model-configs/list"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ai-gateway"
+            }
+            {
+              lit: "virtual-model-configs"
+            }
+            {
+              lit: "list"
+            }
+          ]
+          select: {
+            exist: [
+              "cursor"
+              "limit"
+              "owner_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.virtualModelConfigs`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

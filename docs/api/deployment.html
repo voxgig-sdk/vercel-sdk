@@ -1,0 +1,3177 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Deployment | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a aria-current="page" href="../api/deployment.html">Deployment</a><div class="nav-sections"><a class="nav-section" href="#post-v2files">POST /v2/files</a>
+<a class="nav-section" href="#post-v13deployments">POST /v13/deployments</a>
+<a class="nav-section" href="#get-v7deployments">GET /v7/deployments</a>
+<a class="nav-section" href="#get-v3deploymentsidorurlevents">GET /v3/deployments/{idOrUrl}/events</a>
+<a class="nav-section" href="#get-v8deploymentsidfilesfileid">GET /v8/deployments/{id}/files/{fileId}</a>
+<a class="nav-section" href="#get-v13deploymentsidorurl">GET /v13/deployments/{idOrUrl}</a>
+<a class="nav-section" href="#delete-v13deploymentsid">DELETE /v13/deployments/{id}</a>
+<a class="nav-section" href="#patch-v1deploymentsdeploymentidintegrationsintegrationconfigurationidresourcesresourceidactionsaction">PATCH /v1/deployments/{deploymentId}/integrations/{integrationConfigurationId}/resources/{resourceId}/actions/{action}</a>
+<a class="nav-section" href="#patch-v12deploymentsidcancel">PATCH /v12/deployments/{id}/cancel</a></div>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="deployment">Deployment</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v2files"><code>/v2/files</code></a></td>
+<td><code>create</code></td>
+<td>File already uploaded File successfully uploaded</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v13deployments"><code>/v13/deployments</code></a></td>
+<td><code>create</code></td>
+<td>Returns the newly created deployment object. Poll <code>readyState</code> to track build progress. See https://vercel.com/docs/deployments/deployment-states for possible states. Returns the reduced deployment view for anonymous (<code>vcn_</code>) callers. Pool-team details are withheld</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v7deployments"><code>/v7/deployments</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v3deploymentsidorurlevents"><code>/v3/deployments/{idOrUrl}/events</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v8deploymentsidfilesfileid"><code>/v8/deployments/{id}/files/{fileId}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v13deploymentsidorurl"><code>/v13/deployments/{idOrUrl}</code></a></td>
+<td><code>load</code></td>
+<td>Returns a reduced view of the deployment with public information only. Private fields are omitted when the requester is not the deployment owner. Returns the deployment object for the authenticated owner, including private fields such as environment variables, build log URLs, and internal metadata. Returns the reduced deployment view for anonymous (<code>vcn_</code>) callers. Pool-team details are withheld</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v13deploymentsid"><code>/v13/deployments/{id}</code></a></td>
+<td><code>remove</code></td>
+<td>The deployment was successfully deleted</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1deploymentsdeploymentidintegrationsintegrationconfigurationidresourcesresourceidactionsaction"><code>/v1/deployments/{deploymentId}/integrations/{integrationConfigurationId}/resources/{resourceId}/actions/{action}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v12deploymentsidcancel"><code>/v12/deployments/{id}/cancel</code></a></td>
+<td><code>update</code></td>
+<td>Returns the updated deployment object with <code>readyState</code> set to <code>CANCELED</code>. The build has been stopped and this action is irreversible</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aliasAssigned</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliasError</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>An error object in case aliasing of the deployment failed.</td>
+</tr>
+<tr>
+<td><code>attribution</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Commit attribution metadata</td>
+</tr>
+<tr>
+<td><code>buildMachine</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Selects a custom build machine for this deployment without changing project settings.</td>
+</tr>
+<tr>
+<td><code>buildingAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp of when the deployment started building at.</td>
+</tr>
+<tr>
+<td><code>checks</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Detailed information about v2 deployment checks.</td>
+</tr>
+<tr>
+<td><code>checksConclusion</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Conclusion for checks</td>
+</tr>
+<tr>
+<td><code>checksState</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>State of all registered checks</td>
+</tr>
+<tr>
+<td><code>connectBuildsEnabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>The flag saying if Secure Compute network is used for builds</td>
+</tr>
+<tr>
+<td><code>connectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of Secure Compute network used for this deployment</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when the deployment got created.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Metadata information of the deployment creator.</td>
+</tr>
+<tr>
+<td><code>customEnvironment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The custom environment used for this deployment, if any</td>
+</tr>
+<tr>
+<td><code>customEnvironmentSlugOrId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The slug or ID of a custom environment to deploy to, overriding the default target environment.</td>
+</tr>
+<tr>
+<td><code>defaultRoute</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The default route that should be used for screenshots and links if configured with microfrontends.</td>
+</tr>
+<tr>
+<td><code>deleted</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp of when the deployment got deleted.</td>
+</tr>
+<tr>
+<td><code>deploymentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of an existing deployment to redeploy.</td>
+</tr>
+<tr>
+<td><code>errorCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Error code when the deployment is in an error state.</td>
+</tr>
+<tr>
+<td><code>errorMessage</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Error message when the deployment is in an canceled or error state.</td>
+</tr>
+<tr>
+<td><code>expiration</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The expiration configured by the project retention policy</td>
+</tr>
+<tr>
+<td><code>files</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The files to include in the deployment.</td>
+</tr>
+<tr>
+<td><code>gitAccessToken</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Available only to Vercel platform accounts.</td>
+</tr>
+<tr>
+<td><code>gitMetadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Populates initial git metadata for different git providers.</td>
+</tr>
+<tr>
+<td><code>gitSource</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td>Defines the Git Repository source to be deployed.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>inspectorUrl</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel URL to inspect the deployment.</td>
+</tr>
+<tr>
+<td><code>isRollbackCandidate</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Deployment can be used for instant rollback</td>
+</tr>
+<tr>
+<td><code>manualProvisioning</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the deployment's metadata.</td>
+</tr>
+<tr>
+<td><code>monorepoManager</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The monorepo manager that is being used for this deployment.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the project name used in the deployment URL</td>
+</tr>
+<tr>
+<td><code>oomReport</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Indicates if the deployment encountered an out-of-memory error.</td>
+</tr>
+<tr>
+<td><code>outcomes</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>passiveConnectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of Secure Compute network used for this deployment's passive functions</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Metadata about the source platform that triggered the deployment.</td>
+</tr>
+<tr>
+<td><code>prebuilt</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The target project identifier in which the deployment will be created.</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The project ID of the deployment</td>
+</tr>
+<tr>
+<td><code>projectSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Project settings that will be applied to the deployment.</td>
+</tr>
+<tr>
+<td><code>proposedExpiration</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The expiration proposed to replace the existing expiration</td>
+</tr>
+<tr>
+<td><code>ready</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp of when the deployment got ready.</td>
+</tr>
+<tr>
+<td><code>readyState</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>readySubstate</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Substate of deployment when readyState is 'READY' Tracks whether or not deployment has seen production traffic: - STAGED: never seen production traffic - ROLLING: in the process of gradually transitioning production traffic - PROMOTED: has…</td>
+</tr>
+<tr>
+<td><code>seatBlock</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>NSNB Blocked metadata</td>
+</tr>
+<tr>
+<td><code>softDeletedByRetention</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Optional flag to indicate if the deployment was soft deleted by retention policy.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The source of the deployment.</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>In which state is the deployment.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>statusText</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>statusUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Either not defined, <code>staging</code>, <code>production</code>, or a custom environment identifier.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type of the deployment.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the deployment.</td>
+</tr>
+<tr>
+<td><code>undeleted</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp of when the deployment was undeleted.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The URL of the deployment.</td>
+</tr>
+<tr>
+<td><code>withLatestCommit</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When <code>true</code> and <code>deploymentId</code> is passed in, the sha from the previous deployment's <code>gitSource</code> is removed forcing the latest commit to be used.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v2files" class="operation" data-method="post"><code>POST</code> /v2/files</h3>
+<p>Operation ID: <code>uploadFile</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Content-Length</code> | <code>header</code> | <code>number</code> | No | The file size in bytes |
+| <code>x-vercel-digest</code> | <code>header</code> | <code>string</code> | No | The file SHA1 used to check the integrity |
+| <code>x-now-digest</code> | <code>header</code> | <code>string</code> | No | The file SHA1 used to check the integrity |
+| <code>x-now-size</code> | <code>header</code> | <code>number</code> | No | The file size as an alternative to <code>Content-Length</code> |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/octet-stream</code></p>
+<p>The request body is <code>string (binary)</code>.</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-file-already-uploaded-file-successfully-uploaded" class="status" data-status="2xx">200: File already uploaded File successfully uploaded</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-headers-is-invalid-digest-is-not-valid-file-size-is-not-valid" class="status" data-status="4xx">400: One of the provided values in the headers is invalid Digest is not valid File size is not valid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h5 id="426" class="status" data-status="4xx">426</h5>
+<h3 id="post-v13deployments" class="operation" data-method="post"><code>POST</code> /v13/deployments</h3>
+<p>Operation ID: <code>createDeployment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>forceNew</code> | <code>query</code> | <code>enum: 0, 1</code> | No | Forces a new deployment even if there is a previous similar deployment. Set to <code>1</code> to bypass deployment deduplication and always trigger a fresh build. |
+| <code>skipAutoDetectionConfirmation</code> | <code>query</code> | <code>enum: 0, 1</code> | No | Set to <code>1</code> to skip framework auto-detection and proceed without confirmation. By default, if Vercel detects a framework that differs from the project setting, the API returns a <code>400</code> asking you to confirm. Use this to suppress that check in automated pipelines. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>buildMachine</code></td>
+<td><code>enum: turbo</code></td>
+<td>No</td>
+<td>Selects a custom build machine for this deployment without changing project settings.</td>
+</tr>
+<tr>
+<td><code>customEnvironmentSlugOrId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The slug or ID of a custom environment to deploy to, overriding the default target environment. When omitted, the deployment targets the environment inferred from the branch (production or preview).</td>
+</tr>
+<tr>
+<td><code>deploymentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of an existing deployment to redeploy. All project settings and environment variables are inherited from the original unless explicitly overridden in this request. The redeployment gets a new ID, URL, and build.</td>
+</tr>
+<tr>
+<td><code>files</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td>The files to include in the deployment. Each entry is either an inlined file (with <code>data</code> and <code>encoding</code>) or a reference to a previously uploaded file (with <code>sha</code> and <code>size</code>). Required for non-git deployments. Cannot be used together with <code>gitSource</code>.</td>
+</tr>
+<tr>
+<td><code>gitAccessToken</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Available only to Vercel platform accounts. A read-only GitHub access token scoped to the requested repository. Use a token with a lifetime of 24 hours or less that remains valid until source retrieval completes.</td>
+</tr>
+<tr>
+<td><code>gitMetadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Populates initial git metadata for different git providers.</td>
+</tr>
+<tr>
+<td><code>gitMetadata.ci</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>True if process.env.CI was set when deploying</td>
+</tr>
+<tr>
+<td><code>gitMetadata.ciGitProviderUsername</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The username used for the Git Provider (for example GitHub) if their CI (for example GitHub Actions) was used, if available</td>
+</tr>
+<tr>
+<td><code>gitMetadata.ciGitRepoVisibility</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The visibility of the Git repository if their CI (for example GitHub Actions) was used, if available</td>
+</tr>
+<tr>
+<td><code>gitMetadata.ciType</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of CI system used</td>
+</tr>
+<tr>
+<td><code>gitMetadata.commitAuthorEmail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The email of the author of the commit</td>
+</tr>
+<tr>
+<td><code>gitMetadata.commitAuthorName</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the author of the commit</td>
+</tr>
+<tr>
+<td><code>gitMetadata.commitMessage</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The commit message</td>
+</tr>
+<tr>
+<td><code>gitMetadata.commitRef</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The branch on which the commit was made</td>
+</tr>
+<tr>
+<td><code>gitMetadata.commitSha</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The hash of the commit</td>
+</tr>
+<tr>
+<td><code>gitMetadata.dirty</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether or not there have been modifications to the working tree since the latest commit</td>
+</tr>
+<tr>
+<td><code>gitMetadata.remoteUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The git repository's remote origin url</td>
+</tr>
+<tr>
+<td><code>gitMetadata.rootDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Path of the deployed directory relative to the detected git repository root. Empty string when deploying from the repository root.</td>
+</tr>
+<tr>
+<td><code>gitSource</code></td>
+<td><code>object or object or object or object or object or object or object or object or object</code></td>
+<td>No</td>
+<td>Defines the Git Repository source to be deployed. This property can not be used in combination with <code>files</code>.</td>
+</tr>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the deployment's metadata. Multiple key-value pairs can be attached to a deployment. For deployments created with a Cursor Origin <code>gitSource</code>, Vercel automatically adds <code>cursorOriginDeployment</code>, <code>cursorOriginCommitSha</code>, <code>cursorOriginCommitRef</code>, <code>cursorOriginCommitMessage</code>, <code>cursorOriginCommitAuthorName</code>, <code>cursorOriginCommitAuthorEmail</code> when available, <code>cursorOriginOwner</code>, <code>cursorOriginRepo</code>, <code>cursorOriginRepoId</code>, and <code>cursorOriginPrId</code> for pull request deployments.</td>
+</tr>
+<tr>
+<td><code>monorepoManager</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The monorepo manager that is being used for this deployment. When <code>null</code> is used no monorepo manager is selected</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the project name used in the deployment URL</td>
+</tr>
+<tr>
+<td><code>project</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The target project identifier in which the deployment will be created. When defined, this parameter overrides name</td>
+</tr>
+<tr>
+<td><code>projectSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Project settings that will be applied to the deployment. It is required for the first deployment of a project and will be saved for any following deployments</td>
+</tr>
+<tr>
+<td><code>projectSettings.buildCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The build command for this project. When <code>null</code> is used this value will be automatically detected</td>
+</tr>
+<tr>
+<td><code>projectSettings.commandForIgnoringBuildStep</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.devCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The dev command for this project. When <code>null</code> is used this value will be automatically detected</td>
+</tr>
+<tr>
+<td><code>projectSettings.framework</code></td>
+<td><code>enum: null, services, container, blitzjs, nextjs, gatsby, ...</code></td>
+<td>No</td>
+<td>The framework that is being used for this project. When <code>null</code> is used no framework is selected</td>
+</tr>
+<tr>
+<td><code>projectSettings.installCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The install command for this project. When <code>null</code> is used this value will be automatically detected</td>
+</tr>
+<tr>
+<td><code>projectSettings.nodeVersion</code></td>
+<td><code>enum: 24.x, 22.x, 20.x, 18.x, 16.x, 14.x, ...</code></td>
+<td>No</td>
+<td>Override the Node.js version that should be used for this deployment</td>
+</tr>
+<tr>
+<td><code>projectSettings.outputDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The output directory of the project. When <code>null</code> is used this value will be automatically detected</td>
+</tr>
+<tr>
+<td><code>projectSettings.rootDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of a directory or relative path to the source code of your project. When <code>null</code> is used it will default to the project root</td>
+</tr>
+<tr>
+<td><code>projectSettings.serverlessFunctionRegion</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The region to deploy Serverless Functions in this project</td>
+</tr>
+<tr>
+<td><code>projectSettings.skipGitConnectDuringLink</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Opts-out of the message prompting a CLI user to connect a Git repository in <code>vercel link</code>.</td>
+</tr>
+<tr>
+<td><code>projectSettings.sourceFilesOutsideRootDirectory</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates if there are source files outside of the root directory, typically used for monorepos</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Either not defined, <code>staging</code>, <code>production</code>, or a custom environment identifier. If <code>staging</code>, a staging alias in the format <code>&amp;lt;project&amp;gt;-&amp;lt;team&amp;gt;.vercel.app</code> will be assigned. If <code>production</code>, any aliases defined in <code>alias</code> will be assigned. If omitted, the target will be <code>preview</code>.</td>
+</tr>
+<tr>
+<td><code>withLatestCommit</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When <code>true</code> and <code>deploymentId</code> is passed in, the sha from the previous deployment's <code>gitSource</code> is removed forcing the latest commit to be used.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-the-newly-created-deployment-object-poll-readystate-to-track-build-progress-see-httpsvercelcomdocsdeploymentsdeployment-states-for-possible-states-returns-the-reduced-deployment-view-for-anonymous-vcn_-callers-pool-team-details-are-withheld" class="status" data-status="2xx">200: Returns the newly created deployment object. Poll <code>readyState</code> to track build progress. See https://vercel.com/docs/deployments/deployment-states for possible states. Returns the reduced deployment view for anonymous (<code>vcn_</code>) callers. Pool-team details are withheld</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-pro-customers-are-allowed-to-deploy-serverless-functions-to-up-to-promaxregions-regions-or-if-the-project-was-created-before-the-limit-was-introduced-deploying-to-serverless-functions-to-multiple-regions-requires-a-plan-update" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated Pro customers are allowed to deploy Serverless Functions to up to <code>proMaxRegions</code> regions, or if the project was created before the limit was introduced. Deploying to Serverless Functions to multiple regions requires a plan update</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="409-the-deployment-project-is-being-transferred" class="status" data-status="4xx">409: The deployment project is being transferred</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h5 id="426-1" class="status" data-status="4xx">426</h5>
+<h5 id="429" class="status" data-status="4xx">429</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h5 id="503" class="status" data-status="5xx">503</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v7deployments" class="operation" data-method="get"><code>GET</code> /v7/deployments</h3>
+<p>Operation ID: <code>getDeployments</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>app</code> | <code>query</code> | <code>string</code> | No | Name of the deployment. |
+| <code>from</code> | <code>query</code> | <code>number</code> | No | Gets the deployment created after this Date timestamp. (default: current time) |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No | Maximum number of deployments to list from a request. |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | No | Filter deployments from the given ID or name. |
+| <code>projectIds</code> | <code>query</code> | <code>array of string</code> | No | Filter deployments from the given project IDs. Cannot be used when projectId is specified. |
+| <code>target</code> | <code>query</code> | <code>string</code> | No | Filter deployments based on the environment. |
+| <code>to</code> | <code>query</code> | <code>number</code> | No | Gets the deployment created before this Date timestamp. (default: current time) |
+| <code>users</code> | <code>query</code> | <code>string</code> | No | Filter out deployments based on users who have created the deployment. |
+| <code>since</code> | <code>query</code> | <code>number</code> | No | Get Deployments created after this JavaScript timestamp. |
+| <code>until</code> | <code>query</code> | <code>number</code> | No | Get Deployments created before this JavaScript timestamp. |
+| <code>state</code> | <code>query</code> | <code>string</code> | No | Filter deployments based on their state (<code>BUILDING</code>, <code>ERROR</code>, <code>INITIALIZING</code>, <code>QUEUED</code>, <code>READY</code>, <code>CANCELED</code>, <code>BLOCKED</code>) |
+| <code>rollbackCandidate</code> | <code>query</code> | <code>boolean</code> | No | Filter deployments based on their rollback candidacy |
+| <code>branch</code> | <code>query</code> | <code>string</code> | No | Filter deployments based on the branch name |
+| <code>sha</code> | <code>query</code> | <code>string</code> | No | Filter deployments based on the SHA |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deployments</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].aliasAssigned</code></td>
+<td><code>number or enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].aliasError</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An error object in case aliasing of the deployment failed.</td>
+</tr>
+<tr>
+<td><code>deployments[].aliasError.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].aliasError.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].attribution</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Commit attribution metadata</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.commitMeta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Commit metadata from the git commit author</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.commitMeta.email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Email from git commit author</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.commitMeta.isVerified</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the commit was signed/verified (GitHub only, others return undefined)</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.commitMeta.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Name from git commit author</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.gitUser</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Git provider user associated with the commit author email (only set if resolved)</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.gitUser.id</code></td>
+<td><code>string or number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.gitUser.login</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Git provider username/login</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.gitUser.provider</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The git provider (github, gitlab, bitbucket)</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.gitUser.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>User type</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.vercelUser</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Vercel user linked to the git provider account (only set if resolved)</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.vercelUser.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel user ID</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.vercelUser.teamRoles</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Team roles at time of deployment</td>
+</tr>
+<tr>
+<td><code>deployments[].attribution.vercelUser.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel username</td>
+</tr>
+<tr>
+<td><code>deployments[].buildingAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp of when the deployment started building at.</td>
+</tr>
+<tr>
+<td><code>deployments[].checks</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Detailed information about v2 deployment checks. Includes information about blocked workflows in the deployment lifecycle.</td>
+</tr>
+<tr>
+<td><code>deployments[].checks.deployment-alias</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Detailed information about v2 deployment checks. Includes information about blocked workflows in the deployment lifecycle.</td>
+</tr>
+<tr>
+<td><code>deployments[].checks.deployment-alias.completedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].checks.deployment-alias.startedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].checks.deployment-alias.state</code></td>
+<td><code>enum: failed, pending, succeeded</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].checksConclusion</code></td>
+<td><code>enum: canceled, failed, skipped, succeeded</code></td>
+<td>No</td>
+<td>Conclusion for checks</td>
+</tr>
+<tr>
+<td><code>deployments[].checksState</code></td>
+<td><code>enum: completed, registered, running</code></td>
+<td>No</td>
+<td>State of all registered checks</td>
+</tr>
+<tr>
+<td><code>deployments[].connectBuildsEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>The flag saying if Secure Compute network is used for builds</td>
+</tr>
+<tr>
+<td><code>deployments[].connectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of Secure Compute network used for this deployment</td>
+</tr>
+<tr>
+<td><code>deployments[].created</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp of when the deployment got created.</td>
+</tr>
+<tr>
+<td><code>deployments[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Metadata information of the deployment creator.</td>
+</tr>
+<tr>
+<td><code>deployments[].creator.email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The email address of the user.</td>
+</tr>
+<tr>
+<td><code>deployments[].creator.githubLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The GitHub login of the user.</td>
+</tr>
+<tr>
+<td><code>deployments[].creator.gitlabLogin</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The GitLab login of the user.</td>
+</tr>
+<tr>
+<td><code>deployments[].creator.type</code></td>
+<td><code>enum: app, integration, system, user</code></td>
+<td>No</td>
+<td>Principal type of the deployment creator. Defaults to <code>&amp;quot;user&amp;quot;</code> if absent (legacy deployments created before principal attribution was recorded).</td>
+</tr>
+<tr>
+<td><code>deployments[].creator.uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable creator id across principal types. This may be a user ID, an app ID, an integration configuration ID, or <code>system</code>.</td>
+</tr>
+<tr>
+<td><code>deployments[].creator.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The username of the user.</td>
+</tr>
+<tr>
+<td><code>deployments[].customEnvironment</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The custom environment used for this deployment, if any</td>
+</tr>
+<tr>
+<td><code>deployments[].customEnvironment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].customEnvironment.slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].defaultRoute</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The default route that should be used for screenshots and links if configured with microfrontends.</td>
+</tr>
+<tr>
+<td><code>deployments[].deleted</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp of when the deployment got deleted.</td>
+</tr>
+<tr>
+<td><code>deployments[].errorCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Error code when the deployment is in an error state.</td>
+</tr>
+<tr>
+<td><code>deployments[].errorMessage</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Error message when the deployment is in an canceled or error state.</td>
+</tr>
+<tr>
+<td><code>deployments[].expiration</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The expiration configured by the project retention policy</td>
+</tr>
+<tr>
+<td><code>deployments[].inspectorUrl</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel URL to inspect the deployment.</td>
+</tr>
+<tr>
+<td><code>deployments[].isRollbackCandidate</code></td>
+<td><code>enum: false, true, null</code></td>
+<td>No</td>
+<td>Deployment can be used for instant rollback</td>
+</tr>
+<tr>
+<td><code>deployments[].manualProvisioning</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].manualProvisioning.completedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp when manual provisioning completed</td>
+</tr>
+<tr>
+<td><code>deployments[].manualProvisioning.state</code></td>
+<td><code>enum: COMPLETE, PENDING, TIMEOUT</code></td>
+<td>Yes</td>
+<td>Current provisioning state</td>
+</tr>
+<tr>
+<td><code>deployments[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Metadata information from the Git provider.</td>
+</tr>
+<tr>
+<td><code>deployments[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the deployment.</td>
+</tr>
+<tr>
+<td><code>deployments[].oomReport</code></td>
+<td><code>enum: out-of-memory</code></td>
+<td>No</td>
+<td>Indicates if the deployment encountered an out-of-memory error.</td>
+</tr>
+<tr>
+<td><code>deployments[].passiveConnectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of Secure Compute network used for this deployment's passive functions</td>
+</tr>
+<tr>
+<td><code>deployments[].platform</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Metadata about the source platform that triggered the deployment.</td>
+</tr>
+<tr>
+<td><code>deployments[].platform.creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The user on the external platform who triggered the deployment.</td>
+</tr>
+<tr>
+<td><code>deployments[].platform.creator.avatar</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>URL of the platform user's avatar image.</td>
+</tr>
+<tr>
+<td><code>deployments[].platform.creator.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Display name of the platform user.</td>
+</tr>
+<tr>
+<td><code>deployments[].platform.meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Arbitrary key-value metadata provided by the platform.</td>
+</tr>
+<tr>
+<td><code>deployments[].platform.origin</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Reference back to the entity on the platform that initiated the deployment.</td>
+</tr>
+<tr>
+<td><code>deployments[].platform.origin.type</code></td>
+<td><code>enum: id, url</code></td>
+<td>Yes</td>
+<td>Whether the value is an opaque identifier or a URL.</td>
+</tr>
+<tr>
+<td><code>deployments[].platform.origin.value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The identifier or URL pointing to the originating entity.</td>
+</tr>
+<tr>
+<td><code>deployments[].platform.source</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The external platform that created the deployment (for example its display name).</td>
+</tr>
+<tr>
+<td><code>deployments[].platform.source.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Display name of the platform.</td>
+</tr>
+<tr>
+<td><code>deployments[].prebuilt</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The project ID of the deployment</td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The project settings which was used for this deployment</td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.buildCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.commandForIgnoringBuildStep</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.customerSupportCodeVisibility</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.devCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.framework</code></td>
+<td><code>enum: actix-web, angular, ash, astro, axum, blitzjs, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.gitComments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Since June '23</td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.gitComments.onCommit</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the Vercel bot should comment on commits</td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.gitComments.onPullRequest</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the Vercel bot should comment on PRs</td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.gitForkProtection</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.gitLFS</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.installCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.nodeVersion</code></td>
+<td><code>enum: 10.x, 12.x, 14.x, 16.x, 18.x, 20.x, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.outputDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.rootDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.skipGitConnectDuringLink</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.sourceFilesOutsideRootDirectory</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.speedInsights</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.speedInsights.canceledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.speedInsights.dataReceivedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>When the first free (not Speed Insights Plus) production data point was observed, in ms. Set once by subscriber-analytics-events; projects that already had data before this field shipped get it backfilled on their next batch, so it reads &quot;first free data point observed&quot;, not necessarily &quot;first ever&quot;.</td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.speedInsights.disabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.speedInsights.enabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.speedInsights.hasData</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.speedInsights.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.speedInsights.paidAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.webAnalytics</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.webAnalytics.canceledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.webAnalytics.disabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.webAnalytics.enabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.webAnalytics.hasData</code></td>
+<td><code>enum: true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].projectSettings.webAnalytics.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].proposedExpiration</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The expiration proposed to replace the existing expiration</td>
+</tr>
+<tr>
+<td><code>deployments[].ready</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp of when the deployment got ready.</td>
+</tr>
+<tr>
+<td><code>deployments[].readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, DELETED, ERROR, INITIALIZING, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].readySubstate</code></td>
+<td><code>enum: PROMOTED, ROLLING, STAGED</code></td>
+<td>No</td>
+<td>Substate of deployment when readyState is 'READY' Tracks whether or not deployment has seen production traffic: - STAGED: never seen production traffic - ROLLING: in the process of gradually transitioning production traffic - PROMOTED: has seen production traffic</td>
+</tr>
+<tr>
+<td><code>deployments[].seatBlock</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>NSNB Blocked metadata</td>
+</tr>
+<tr>
+<td><code>deployments[].seatBlock.blockCode</code></td>
+<td><code>enum: COMMIT_AUTHOR_REQUIRED, TEAM_ACCESS_REQUIRED</code></td>
+<td>Yes</td>
+<td>The NSNB decision code for the seat block. TODO: We should consolidate block types.</td>
+</tr>
+<tr>
+<td><code>deployments[].seatBlock.gitProvider</code></td>
+<td><code>enum: bitbucket, github, gitlab</code></td>
+<td>No</td>
+<td>The git provider type associated with gitUserId.</td>
+</tr>
+<tr>
+<td><code>deployments[].seatBlock.gitUserId</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deployments[].seatBlock.isVerified</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Determines if the user was verified during the block. In the git integration case, the commit sender was the author.</td>
+</tr>
+<tr>
+<td><code>deployments[].seatBlock.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blocked vercel user ID.</td>
+</tr>
+<tr>
+<td><code>deployments[].softDeletedByRetention</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Optional flag to indicate if the deployment was soft deleted by retention policy.</td>
+</tr>
+<tr>
+<td><code>deployments[].source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>The source of the deployment.</td>
+</tr>
+<tr>
+<td><code>deployments[].state</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, DELETED, ERROR, INITIALIZING, ...</code></td>
+<td>No</td>
+<td>In which state is the deployment.</td>
+</tr>
+<tr>
+<td><code>deployments[].target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>On which environment has the deployment been deployed to.</td>
+</tr>
+<tr>
+<td><code>deployments[].type</code></td>
+<td><code>enum: LAMBDAS</code></td>
+<td>Yes</td>
+<td>The type of the deployment.</td>
+</tr>
+<tr>
+<td><code>deployments[].uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the deployment.</td>
+</tr>
+<tr>
+<td><code>deployments[].undeleted</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp of when the deployment was undeleted.</td>
+</tr>
+<tr>
+<td><code>deployments[].url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The URL of the deployment.</td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.</td>
+</tr>
+<tr>
+<td><code>pagination.count</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Amount of items in the current page.</td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the next page.</td>
+</tr>
+<tr>
+<td><code>pagination.prev</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the previous page.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h5 id="422" class="status" data-status="4xx">422</h5>
+<h3 id="get-v3deploymentsidorurlevents" class="operation" data-method="get"><code>GET</code> /v3/deployments/{idOrUrl}/events</h3>
+<p>Operation ID: <code>getDeploymentEvents</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrUrl</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier or hostname of the deployment. |
+| <code>direction</code> | <code>query</code> | <code>enum: backward, forward</code> | No | Order of the returned events based on the timestamp. |
+| <code>follow</code> | <code>query</code> | <code>enum: 0, 1</code> | No | When enabled, this endpoint will return live events as they happen. |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No | Maximum number of events to return. Provide <code>-1</code> to return all available logs. |
+| <code>name</code> | <code>query</code> | <code>string</code> | No | Deployment build ID. |
+| <code>since</code> | <code>query</code> | <code>number</code> | No | Timestamp for when build logs should be pulled from. |
+| <code>until</code> | <code>query</code> | <code>number</code> | No | Timestamp for when the build logs should be pulled up until. |
+| <code>statusCode</code> | <code>query</code> | <code>number or string</code> | No | HTTP status code range to filter events by. |
+| <code>delimiter</code> | <code>query</code> | <code>enum: 0, 1</code> | No |  |
+| <code>builds</code> | <code>query</code> | <code>enum: 0, 1</code> | No |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>array of object or object or object or object or object</code>.</p>
+<p><code>application/stream+json</code></p>
+<p>The response is <code>object or object or object or object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h5 id="500-1" class="status" data-status="5xx">500</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v8deploymentsidfilesfileid" class="operation" data-method="get"><code>GET</code> /v8/deployments/{id}/files/{fileId}</h3>
+<p>Operation ID: <code>getDeploymentFileContents</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The unique deployment identifier |
+| <code>fileId</code> | <code>path</code> | <code>string</code> | Yes | The unique file identifier |
+| <code>path</code> | <code>query</code> | <code>string</code> | No | Path to the file to fetch (only for Git deployments) |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-file-not-found-deployment-not-found" class="status" data-status="4xx">404: File not found Deployment not found</h5>
+<h5 id="410-invalid-api-version" class="status" data-status="4xx">410: Invalid API version</h5>
+<h3 id="get-v13deploymentsidorurl" class="operation" data-method="get"><code>GET</code> /v13/deployments/{idOrUrl}</h3>
+<p>Operation ID: <code>getDeployment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrUrl</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier or hostname of the deployment. |
+| <code>withGitRepoInfo</code> | <code>query</code> | <code>string</code> | No | When <code>true</code>, the response includes the <code>gitSource</code> object with the commit SHA, branch name, and connected repository metadata. Defaults to <code>false</code>. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-returns-a-reduced-view-of-the-deployment-with-public-information-only-private-fields-are-omitted-when-the-requester-is-not-the-deployment-owner-returns-the-deployment-object-for-the-authenticated-owner-including-private-fields-such-as-environment-variables-build-log-urls-and-internal-metadata-returns-the-reduced-deployment-view-for-anonymous-vcn_-callers-pool-team-details-are-withheld" class="status" data-status="2xx">200: Returns a reduced view of the deployment with public information only. Private fields are omitted when the requester is not the deployment owner. Returns the deployment object for the authenticated owner, including private fields such as environment variables, build log URLs, and internal metadata. Returns the reduced deployment view for anonymous (<code>vcn_</code>) callers. Pool-team details are withheld</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-deployment-was-not-found" class="status" data-status="4xx">404: The deployment was not found</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h5 id="429-1" class="status" data-status="4xx">429</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v13deploymentsid" class="operation" data-method="delete"><code>DELETE</code> /v13/deployments/{id}</h3>
+<p>Operation ID: <code>deleteDeployment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the deployment to be deleted |
+| <code>url</code> | <code>query</code> | <code>string</code> | No | A Deployment or Alias URL. In case it is passed, the ID will be ignored |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-the-deployment-was-successfully-deleted" class="status" data-status="2xx">200: The deployment was successfully deleted</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>state</code></td>
+<td><code>enum: DELETED</code></td>
+<td>Yes</td>
+<td>A constant with the final state of the deployment.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The removed deployment ID.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-the-deployment-was-not-found-1" class="status" data-status="4xx">404: The deployment was not found</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="patch-v1deploymentsdeploymentidintegrationsintegrationconfigurationidresourcesresourceidactionsaction" class="operation" data-method="patch"><code>PATCH</code> /v1/deployments/{deploymentId}/integrations/{integrationConfigurationId}/resources/{resourceId}/actions/{action}</h3>
+<p>Operation ID: <code>update-integration-deployment-action</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>deploymentId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>integrationConfigurationId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>resourceId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>action</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>outcomes</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: running, succeeded, failed</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>statusText</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>statusUrl</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-7">Responses</h4>
+<h5 id="202" class="status" data-status="2xx">202</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h3 id="patch-v12deploymentsidcancel" class="operation" data-method="patch"><code>PATCH</code> /v12/deployments/{id}/cancel</h3>
+<p>Operation ID: <code>cancelDeployment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier of the deployment. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-returns-the-updated-deployment-object-with-readystate-set-to-canceled-the-build-has-been-stopped-and-this-action-is-irreversible" class="status" data-status="2xx">200: Returns the updated deployment object with <code>readyState</code> set to <code>CANCELED</code>. The build has been stopped and this action is irreversible</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alias</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of all the aliases (default aliases, staging aliases and production aliases) that were assigned upon deployment creation</td>
+</tr>
+<tr>
+<td><code>aliasAssigned</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>A boolean that will be true when the aliases from the alias property were assigned successfully</td>
+</tr>
+<tr>
+<td><code>aliasAssignedAt</code></td>
+<td><code>number or enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliasError</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object that will contain a <code>code</code> and a <code>message</code> when the aliasing fails, otherwise the value will be <code>null</code></td>
+</tr>
+<tr>
+<td><code>aliasError.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliasError.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliasFinal</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliasWarning</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliasWarning.action</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliasWarning.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliasWarning.link</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>aliasWarning.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>alwaysRefuseToBuild</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>atproto</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>attribution</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Attribution metadata for the deployment, linking commit author to git and Vercel users. Only populated when the <code>enable-deployment-attribution</code> flag is enabled.</td>
+</tr>
+<tr>
+<td><code>attribution.commitMeta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Commit metadata from the git commit author</td>
+</tr>
+<tr>
+<td><code>attribution.commitMeta.email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Email from git commit author</td>
+</tr>
+<tr>
+<td><code>attribution.commitMeta.isVerified</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the commit was signed/verified (GitHub only, others return undefined)</td>
+</tr>
+<tr>
+<td><code>attribution.commitMeta.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Name from git commit author</td>
+</tr>
+<tr>
+<td><code>attribution.gitUser</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Git provider user associated with the commit author email (only set if resolved)</td>
+</tr>
+<tr>
+<td><code>attribution.gitUser.id</code></td>
+<td><code>string or number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>attribution.gitUser.login</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Git provider username/login</td>
+</tr>
+<tr>
+<td><code>attribution.gitUser.provider</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The git provider (github, gitlab, bitbucket)</td>
+</tr>
+<tr>
+<td><code>attribution.gitUser.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>User type</td>
+</tr>
+<tr>
+<td><code>attribution.vercelUser</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Vercel user linked to the git provider account (only set if resolved)</td>
+</tr>
+<tr>
+<td><code>attribution.vercelUser.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel user ID</td>
+</tr>
+<tr>
+<td><code>attribution.vercelUser.teamRoles</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Team roles at time of deployment</td>
+</tr>
+<tr>
+<td><code>attribution.vercelUser.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel username</td>
+</tr>
+<tr>
+<td><code>autoAssignCustomDomains</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>applies to custom domains only, defaults to <code>true</code></td>
+</tr>
+<tr>
+<td><code>automaticAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bootedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>build.env</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>buildArtifactUrls</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>buildContainerFinishedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Since April 2025 it necessary for On-Demand Concurrency Minutes calculation</td>
+</tr>
+<tr>
+<td><code>buildErrorAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>buildSkipped</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>buildingAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>builds</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>builds[].config</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>builds[].src</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>builds[].use</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>canceledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>checks</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>checks.deployment-alias</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Condensed check data. Retrieve individual check and check run data using api-checks v2 routes.</td>
+</tr>
+<tr>
+<td><code>checks.deployment-alias.completedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>checks.deployment-alias.startedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>checks.deployment-alias.state</code></td>
+<td><code>enum: failed, pending, succeeded</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>checksConclusion</code></td>
+<td><code>enum: canceled, failed, skipped, succeeded</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>checksState</code></td>
+<td><code>enum: completed, registered, running</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Since February 2025 the configuration must include snapshot data at the time of deployment creation to capture properties for the /deployments/:id/config endpoint utilized for displaying Deployment Configuration on the frontend This is optional because older deployments may not have this data captured</td>
+</tr>
+<tr>
+<td><code>config.functionMemoryType</code></td>
+<td><code>enum: performance, performance_xl, standard, standard_legacy</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config.functionTimeout</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config.functionType</code></td>
+<td><code>enum: fluid, standard</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config.isUsingActiveCPU</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config.resourceConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Build resource configuration snapshot for this deployment.</td>
+</tr>
+<tr>
+<td><code>config.resourceConfig.buildMachine</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config.resourceConfig.buildMachine.purchaseType</code></td>
+<td><code>enum: basic, enhanced, standard, turbo, null</code></td>
+<td>No</td>
+<td>Machine type that was used for the build.</td>
+</tr>
+<tr>
+<td><code>config.resourceConfig.buildQueue</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Build resource configuration snapshot for this deployment.</td>
+</tr>
+<tr>
+<td><code>config.resourceConfig.buildQueue.configuration</code></td>
+<td><code>enum: SKIP_NAMESPACE_QUEUE, WAIT_FOR_NAMESPACE_QUEUE</code></td>
+<td>No</td>
+<td>Build resource configuration snapshot for this deployment.</td>
+</tr>
+<tr>
+<td><code>config.resourceConfig.elasticConcurrency</code></td>
+<td><code>enum: PROJECT_SETTING, SKIP_QUEUE, TEAM_SETTING</code></td>
+<td>No</td>
+<td>When elastic concurrency is used for this deployment, a value is set. The value tells the reason where the setting was coming from. - TEAM_SETTING: Inherited from team settings - PROJECT_SETTING: Inherited from project settings - SKIP_QUEUE: Manually triggered by user to skip the queues</td>
+</tr>
+<tr>
+<td><code>config.secureComputeFallbackRegion</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config.secureComputePrimaryRegion</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>config.version</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>connectBuildsEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>connectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A number containing the date when the deployment was created in milliseconds</td>
+</tr>
+<tr>
+<td><code>createdIn</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Information about the deployment creator</td>
+</tr>
+<tr>
+<td><code>creator.avatar</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The avatar of the user that created the deployment</td>
+</tr>
+<tr>
+<td><code>creator.type</code></td>
+<td><code>enum: app, integration, system, user</code></td>
+<td>No</td>
+<td>Principal type of the deployment creator.</td>
+</tr>
+<tr>
+<td><code>creator.uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable creator id across principal types (user id, app id, integration configuration id, or <code>system</code>).</td>
+</tr>
+<tr>
+<td><code>creator.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The username of the user that created the deployment</td>
+</tr>
+<tr>
+<td><code>crons</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crons[].path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crons[].schedule</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>customEnvironment</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>defaultRoute</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Computed field that is only available for deployments with a microfrontend configuration.</td>
+</tr>
+<tr>
+<td><code>deletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>A number containing the date when the deployment was deleted at milliseconds</td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errorCode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errorLink</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errorMessage</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errorStep</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>flags</code></td>
+<td><code>object or array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>functions</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gitRepo</code></td>
+<td><code>object or object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gitSource</code></td>
+<td><code>object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string holding the unique ID of the deployment</td>
+</tr>
+<tr>
+<td><code>images</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.contentDispositionType</code></td>
+<td><code>enum: attachment, inline</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.contentSecurityPolicy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.dangerouslyAllowSVG</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.domains</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.formats</code></td>
+<td><code>array of enum: image/avif, image/webp</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.localPatterns</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.localPatterns[].pathname</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Can be literal or wildcard. Single <code>*</code> matches a single path segment. Double <code>**</code> matches any number of path segments.</td>
+</tr>
+<tr>
+<td><code>images.localPatterns[].search</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Can be literal query string such as <code>?v=1</code> or empty string meaning no query string.</td>
+</tr>
+<tr>
+<td><code>images.minimumCacheTTL</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.qualities</code></td>
+<td><code>array of number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.remotePatterns</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>images.remotePatterns[].hostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Can be literal or wildcard. Single <code>*</code> matches a single subdomain. Double <code>**</code> matches any number of subdomains.</td>
+</tr>
+<tr>
+<td><code>images.remotePatterns[].pathname</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Can be literal or wildcard. Single <code>*</code> matches a single path segment. Double <code>**</code> matches any number of path segments.</td>
+</tr>
+<tr>
+<td><code>images.remotePatterns[].port</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Can be literal port such as <code>8080</code> or empty string meaning no port.</td>
+</tr>
+<tr>
+<td><code>images.remotePatterns[].protocol</code></td>
+<td><code>enum: http, https</code></td>
+<td>No</td>
+<td>Must be <code>http</code> or <code>https</code>.</td>
+</tr>
+<tr>
+<td><code>images.remotePatterns[].search</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Can be literal query string such as <code>?v=1</code> or empty string meaning no query string.</td>
+</tr>
+<tr>
+<td><code>images.sizes</code></td>
+<td><code>array of number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>initReadyAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>inspectorUrl</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrations</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrations.claimedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrations.completedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrations.skippedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrations.skippedBy</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrations.startedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrations.status</code></td>
+<td><code>enum: error, pending, ready, skipped, timeout</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isFirstBranchDeployment</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isInConcurrentBuildsQueue</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isInSystemBuildsQueue</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isInstantStatic</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether this deployment completed through the instant static fast path.</td>
+</tr>
+<tr>
+<td><code>lambdas</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lambdas[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lambdas[].entrypoint</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lambdas[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lambdas[].output</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lambdas[].output[].functionName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lambdas[].output[].path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lambdas[].readyState</code></td>
+<td><code>enum: BUILDING, ERROR, INITIALIZING, READY</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lambdas[].readyStateAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>manualProvisioning</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Present when deployment was created with manual provisioning enabled, either explicitly or via the experimental BYOC git flow. The deployment stays in INITIALIZING until /continue is called.</td>
+</tr>
+<tr>
+<td><code>manualProvisioning.completedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp when manual provisioning completed</td>
+</tr>
+<tr>
+<td><code>manualProvisioning.state</code></td>
+<td><code>enum: COMPLETE, PENDING, TIMEOUT</code></td>
+<td>Yes</td>
+<td>Current provisioning state</td>
+</tr>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>microfrontends</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>monorepoManager</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the project associated with the deployment at the time that the deployment was created</td>
+</tr>
+<tr>
+<td><code>nodeVersion</code></td>
+<td><code>enum: 10.x, 12.x, 14.x, 16.x, 18.x, 20.x, ...</code></td>
+<td>No</td>
+<td>If set it overrides the <code>projectSettings.nodeVersion</code> for this deployment.</td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.aud</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.custom_environment_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.environment</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.iss</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.mfe_group_ids</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.owner</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.owner_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.plan</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.project</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.project_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.scope</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oidcTokenClaims.sub</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oomReport</code></td>
+<td><code>enum: out-of-memory</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>originCacheRegion</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>passiveConnectConfigurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Since November 2023 this field defines a Secure Compute network that will only be used to deploy passive lambdas to (as in passiveRegions)</td>
+</tr>
+<tr>
+<td><code>passiveRegions</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Since November 2023 this field defines a set of regions that we will deploy the lambda to passively Lambdas will be deployed to these regions but only invoked if all of the primary <code>regions</code> are marked as out of service</td>
+</tr>
+<tr>
+<td><code>plan</code></td>
+<td><code>enum: enterprise, hobby, pro</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Metadata about the source platform that triggered the deployment. Allows us to map a deployment back to a platform (for example the chat that created it)</td>
+</tr>
+<tr>
+<td><code>platform.creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The user on the external platform who triggered the deployment.</td>
+</tr>
+<tr>
+<td><code>platform.creator.avatar</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>URL of the platform user's avatar image.</td>
+</tr>
+<tr>
+<td><code>platform.creator.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Display name of the platform user.</td>
+</tr>
+<tr>
+<td><code>platform.meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Arbitrary key-value metadata provided by the platform.</td>
+</tr>
+<tr>
+<td><code>platform.origin</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Reference back to the entity on the platform that initiated the deployment.</td>
+</tr>
+<tr>
+<td><code>platform.origin.type</code></td>
+<td><code>enum: id, url</code></td>
+<td>Yes</td>
+<td>Whether the value is an opaque identifier or a URL.</td>
+</tr>
+<tr>
+<td><code>platform.origin.value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The identifier or URL pointing to the originating entity.</td>
+</tr>
+<tr>
+<td><code>platform.source</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The external platform that created the deployment (for example its display name).</td>
+</tr>
+<tr>
+<td><code>platform.source.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Display name of the platform.</td>
+</tr>
+<tr>
+<td><code>prebuilt</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>previewCommentsEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether or not preview comments are enabled for the deployment</td>
+</tr>
+<tr>
+<td><code>project</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The public project information associated with the deployment.</td>
+</tr>
+<tr>
+<td><code>project.framework</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.buildCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.commandForIgnoringBuildStep</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.devCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.framework</code></td>
+<td><code>enum: actix-web, angular, ash, astro, axum, blitzjs, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.installCommand</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.nodeVersion</code></td>
+<td><code>enum: 10.x, 12.x, 14.x, 16.x, 18.x, 20.x, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.outputDirectory</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.speedInsights</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.speedInsights.canceledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.speedInsights.dataReceivedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>When the first free (not Speed Insights Plus) production data point was observed, in ms. Set once by subscriber-analytics-events; projects that already had data before this field shipped get it backfilled on their next batch, so it reads &quot;first free data point observed&quot;, not necessarily &quot;first ever&quot;.</td>
+</tr>
+<tr>
+<td><code>projectSettings.speedInsights.disabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.speedInsights.enabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.speedInsights.hasData</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.speedInsights.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.speedInsights.paidAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.webAnalytics</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.webAnalytics.canceledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.webAnalytics.disabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.webAnalytics.enabledAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.webAnalytics.hasData</code></td>
+<td><code>enum: true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectSettings.webAnalytics.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>public</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>A boolean representing if the deployment is public or not. By default this is <code>false</code></td>
+</tr>
+<tr>
+<td><code>ready</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td>The state of the deployment depending on the process of deploying, or if it is ready or in an error state</td>
+</tr>
+<tr>
+<td><code>readyStateReason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>readySubstate</code></td>
+<td><code>enum: PROMOTED, ROLLING, STAGED</code></td>
+<td>No</td>
+<td>Substate of deployment when readyState is 'READY' Tracks whether or not deployment has seen production traffic: - STAGED: never seen production traffic - ROLLING: in the process of having production traffic gradually transitioned. - PROMOTED: has seen production traffic</td>
+</tr>
+<tr>
+<td><code>regions</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>The regions the deployment exists in</td>
+</tr>
+<tr>
+<td><code>resourceConfig</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Build machine configuration recorded for this deployment's build. See {@link DeploymentBuildMachine}. Distinct from the team/user <code>resourceConfig.buildMachine</code>, which only carries <code>default</code>.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine.cores</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Number of cores the build machine ran with. Set at dispatch time once the build lands on a hive.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine.defaultPurchaseType</code></td>
+<td><code>enum: basic, enhanced, standard</code></td>
+<td>No</td>
+<td>The default plan type for the build machine, what the customer is <em>paying</em> for on their plan. For most customers, this is standard, but some customers have an entitlement for enhanced builds.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine.machineSelectionType</code></td>
+<td><code>enum: elastic, fixed</code></td>
+<td>No</td>
+<td>Whether the build ran on a fixed or elastic machine. Used to drive billing for the build.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine.memory</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Memory, in MiB, the build machine ran with. Set at dispatch time once the build lands on a hive.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine.purchaseType</code></td>
+<td><code>enum: basic, enhanced, standard, turbo</code></td>
+<td>No</td>
+<td>Machine type which was purchased/selected for this build. <code>basic</code> is the 2vCPU tier, recorded on the deployment so the build pipeline can detect a basic build without consulting the project.</td>
+</tr>
+<tr>
+<td><code>resourceConfig.buildMachine.selectionSource</code></td>
+<td><code>enum: deployment-override, elastic-algorithm, plan-default, project-setting, team-entitlement, team-setting</code></td>
+<td>No</td>
+<td>The setting which selected the build machine when the deployment was created. Frozen here so later project or team changes do not rewrite its history.</td>
+</tr>
+<tr>
+<td><code>routes</code></td>
+<td><code>array of object or object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>seatBlock</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>NSNB Blocked metadata</td>
+</tr>
+<tr>
+<td><code>seatBlock.blockCode</code></td>
+<td><code>enum: COMMIT_AUTHOR_REQUIRED, TEAM_ACCESS_REQUIRED</code></td>
+<td>Yes</td>
+<td>The NSNB decision code for the seat block. TODO: We should consolidate block types.</td>
+</tr>
+<tr>
+<td><code>seatBlock.gitProvider</code></td>
+<td><code>enum: bitbucket, github, gitlab</code></td>
+<td>No</td>
+<td>The git provider type associated with gitUserId.</td>
+</tr>
+<tr>
+<td><code>seatBlock.gitUserId</code></td>
+<td><code>string or number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>seatBlock.isVerified</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Determines if the user was verified during the block. In the git integration case, the commit sender was the author.</td>
+</tr>
+<tr>
+<td><code>seatBlock.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blocked vercel user ID.</td>
+</tr>
+<tr>
+<td><code>services</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td>Services detected during build from vercel.json experimentalServices or auto-detected from project structure. Used to inject service URLs as environment variables at runtime.</td>
+</tr>
+<tr>
+<td><code>softDeletedByRetention</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>flag to indicate if the deployment was deleted by retention policy</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>Where was the deployment created from. Best-effort guess for metrics only, not authoritative; do not gate behavior on it.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>If defined, either <code>staging</code> if a staging alias in the format <code>&amp;lt;project&amp;gt;.&amp;lt;team&amp;gt;.now.sh</code> was assigned upon creation, or <code>production</code> if the aliases from <code>alias</code> were assigned. <code>null</code> value indicates the &quot;preview&quot; deployment.</td>
+</tr>
+<tr>
+<td><code>team</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The team that owns the deployment if any</td>
+</tr>
+<tr>
+<td><code>team.avatar</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>team.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>team.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>team.slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ttyBuildLogs</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: LAMBDAS</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>undeletedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>A number containing the date when the deployment was undeleted at milliseconds</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the unique URL of the deployment</td>
+</tr>
+<tr>
+<td><code>userAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of domains that were provided by the user when creating the Deployment.</td>
+</tr>
+<tr>
+<td><code>userConfiguredDeploymentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Since January 2025 User-configured deployment ID for skew protection with pre-built deployments. This is set when users configure a custom deploymentId in their next.config.js file. This allows Next.js to use skew protection even when deployments are pre-built outside of Vercel's build system.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>enum: 2</code></td>
+<td>Yes</td>
+<td>The platform version that was used to create the deployment.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-8" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

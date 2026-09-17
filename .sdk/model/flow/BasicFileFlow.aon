@@ -1,0 +1,26 @@
+# BasicFileFlow
+
+main: kit: flow: BasicFileFlow:
+{
+  entity: "file",
+  kind: "basic",
+  name: "BasicFileFlow",
+  step: [
+    {
+      match: {
+        deployment_id: "deployment01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "file_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicFileFlow"
+}

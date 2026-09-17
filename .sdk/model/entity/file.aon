@@ -1,0 +1,134 @@
+# Entity: file
+
+main: kit: entity: file: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "children"
+      req: false
+      short: "The list of children files of the directory (only valid for the `directory` type)"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "contentType"
+      req: false
+      short: "The content-type of the file (only valid for the `file` type)"
+      type: "`$STRING`"
+    }
+    {
+      name: "mode"
+      req: true
+      short: "The file \"mode\" indicating file type and permissions."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: true
+      short: "The name of the file tree entry"
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: true
+      short: "String indicating the type of file tree entry."
+      type: "`$STRING`"
+    }
+    {
+      name: "uid"
+      req: false
+      short: "The unique identifier of the file (only valid for the `file` type)"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "file"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deployment_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v6/deployments/{id}/files"
+            json: "{\"operationId\":\"listDeploymentFiles\",\"parameters\":[{\"description\":\"The unique deployment identifier\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"description\":\"The unique deployment identifier\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"description\":\"A deployment file tree entry\",\"properties\":{\"children\":{\"description\":\"The list of children files of the directory (only valid for the `directory` type)\",\"items\":{\"description\":\"A deployment file tree entry\",\"properties\":\"[Circular *paths./v6/deployments/{id}/files.get.responses.200.content.application/json.schema.items.properties]\",\"required\":[\"mode\",\"name\",\"type\"],\"type\":\"object\"},\"type\":\"array\"},\"contentType\":{\"description\":\"The content-type of the file (only valid for the `file` type)\",\"example\":\"application/json\",\"type\":\"string\"},\"mode\":{\"description\":\"The file \\\"mode\\\" indicating file type and permissions.\",\"type\":\"number\"},\"name\":{\"description\":\"The name of the file tree entry\",\"example\":\"my-file.json\",\"type\":\"string\"},\"type\":{\"description\":\"String indicating the type of file tree entry.\",\"enum\":[\"directory\",\"file\",\"invalid\",\"lambda\",\"middleware\",\"symlink\"],\"example\":\"file\",\"type\":\"string\"},\"uid\":{\"description\":\"The unique identifier of the file (only valid for the `file` type)\",\"example\":\"2d4aad419917f15b1146e9e03ddc9bb31747e4d0\",\"type\":\"string\"}},\"required\":{\"$ref\":\"#/responses/200/content/application~1json/schema/items/properties/children/items/required\"},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Retrieved the file tree successfully\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"File tree not found\\nDeployment not found\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v6/deployments/{id}/files"
+          rename: {
+            param: {
+              id: "deployment_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v6"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "files"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "deployment"
+      ]
+    ]
+  }
+
+
+
+}

@@ -1,0 +1,2060 @@
+# Entity: vcr
+
+main: kit: entity: vcr: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "arch"
+      req: false
+      short: "CPU architecture the manifest targets."
+      type: "`$STRING`"
+    }
+    {
+      name: "createdAt"
+      req: true
+      short: "ISO 8601 timestamp of when the image was created."
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      short: "Internal identifier of the image."
+      type: "`$STRING`"
+    }
+    {
+      name: "imageId"
+      req: true
+      short: "Internal identifier of the image the tag points at."
+      type: "`$STRING`"
+    }
+    {
+      name: "kind"
+      req: true
+      short: "Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation."
+      type: "`$STRING`"
+    }
+    {
+      name: "layers"
+      req: true
+      type: "`$ARRAY`"
+      union: {
+        branches: 4
+        count: 1
+        depth: 1
+      }
+    }
+    {
+      name: "manifestDigest"
+      req: true
+      short: "SHA-256 digest of the image manifest."
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      short: "Name of the repository."
+      type: "`$STRING`"
+    }
+    {
+      name: "platform"
+      req: false
+      short: "Operating system the manifest targets."
+      type: "`$STRING`"
+    }
+    {
+      name: "projectId"
+      req: true
+      short: "Identifier of the project the repository belongs to."
+      type: "`$STRING`"
+    }
+    {
+      name: "public"
+      req: true
+      short: "Whether the repository is public."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "pushedBy"
+      req: false
+      short: "Identifier of the actor that pushed the image."
+      type: "`$STRING`"
+    }
+    {
+      name: "repositoryId"
+      req: true
+      short: "Identifier of the repository the image belongs to."
+      type: "`$STRING`"
+    }
+    {
+      name: "sizeInBytes"
+      req: true
+      short: "Total size in bytes of the image's resources (manifest, config and layer blobs) stored by the registry."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "status"
+      req: true
+      short: "VHS-readiness status, or `null` for a multi-platform index."
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: true
+      short: "The tag name."
+      type: "`$STRING`"
+    }
+    {
+      name: "tags"
+      req: true
+      short: "Tags pointing at this image's manifest."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "teamId"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      short: "Identifier of the team that is granted access to the repository."
+      type: "`$STRING`"
+    }
+    {
+      name: "teamSlug"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      short: "Slug of the team that is granted access to the repository."
+      type: "`$STRING`"
+    }
+    {
+      name: "updatedAt"
+      req: true
+      short: "ISO 8601 timestamp of when the tag was last updated."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "vcr"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "from"
+                orig: "from"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "mount"
+                orig: "mount"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/"
+            json: "{\"operationId\":\"createByTeamSlugByProjectSlugByRepositoryNameBlobsUploads\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Digest of the blob to mount from another repository.\",\"in\":\"query\",\"name\":\"mount\",\"required\":false,\"schema\":{\"description\":\"Digest of the blob to mount from another repository.\",\"maxLength\":255,\"pattern\":\"^[A-Za-z0-9_+.-]+:[A-Fa-f0-9]+$\",\"type\":\"string\"}},{\"description\":\"Source repository to mount the blob from.\",\"in\":\"query\",\"name\":\"from\",\"required\":false,\"schema\":{\"description\":\"Source repository to mount the blob from.\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?\\\\\\\\/[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?\\\\\\\\/[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"202\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "blobs"
+            }
+            {
+              lit: "uploads"
+            }
+          ]
+          select: {
+            exist: [
+              "from"
+              "mount"
+              "project_slug"
+              "repository_name"
+              "team_slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id_or_name"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/vcr/repository/{idOrName}/permissions"
+            json: "{\"operationId\":\"addRepositoryPermission\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"teamId\":{\"description\":\"ID of a team that is granted access to a repository.\",\"example\":\"team_LLHUOMOoDlqOp8wPE4kFo9pE\",\"maxLength\":64,\"pattern\":\"^team_[a-zA-Z0-9]+$\",\"type\":\"string\"},\"teamSlug\":{\"description\":\"Slug of a team that is granted access to a repository.\",\"example\":\"my-team\",\"maxLength\":64,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"permission\":{\"description\":\"A team's access grant to a Vercel Container Registry repository.\",\"properties\":{\"createdAt\":{\"description\":\"ISO 8601 timestamp of when the permission was created.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"},\"repositoryId\":{\"description\":\"Identifier of the repository the permission grants access to.\",\"example\":\"repo_a1b2c3d4e5f6\",\"type\":\"string\"},\"teamId\":{\"description\":\"Identifier of the team that is granted access to the repository.\",\"example\":\"team_a1b2c3d4e5f6\",\"type\":\"string\"},\"teamSlug\":{\"description\":\"Slug of the team that is granted access to the repository.\",\"example\":\"my-team\",\"type\":\"string\"}},\"required\":[\"createdAt\",\"repositoryId\",\"teamId\",\"teamSlug\"],\"type\":\"object\"}},\"required\":[\"permission\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/vcr/repository/{idOrName}/permissions"
+          rename: {
+            param: {
+              idOrName: "id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+            {
+              var: "id_or_name"
+            }
+            {
+              lit: "permissions"
+            }
+          ]
+          select: {
+            exist: [
+              "id_or_name"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              teamId: "`reqdata.team_id`"
+              teamSlug: "`reqdata.team_slug`"
+            }
+            res: "`body.permission`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v1/vcr/repository"
+            json: "{\"operationId\":\"createRepository\",\"parameters\":[{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"name\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"},\"projectId\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},\"required\":[\"projectId\",\"name\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"repository\":{\"description\":\"A Vercel Container Registry repository.\",\"properties\":{\"createdAt\":{\"description\":\"ISO 8601 timestamp of when the repository was created.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier of the repository.\",\"example\":\"repo_a1b2c3d4e5f6\",\"type\":\"string\"},\"name\":{\"description\":\"Name of the repository.\",\"example\":\"my-app\",\"type\":\"string\"},\"projectId\":{\"description\":\"Identifier of the project the repository belongs to.\",\"example\":\"prj_a1b2c3d4e5f6\",\"type\":\"string\"},\"public\":{\"description\":\"Whether the repository is public. Images in public repositories can be pulled by anyone. Defaults to `false` (private).\",\"enum\":[false,true],\"example\":false,\"type\":\"boolean\"},\"updatedAt\":{\"description\":\"ISO 8601 timestamp of when the repository was last updated.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"}},\"required\":[\"createdAt\",\"id\",\"name\",\"projectId\",\"public\",\"updatedAt\"],\"type\":\"object\"}},\"required\":[\"repository\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/vcr/repository"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+          ]
+          select: {
+            "$action": "repository"
+            exist: [
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              name: "`reqdata.name`"
+              projectId: "`reqdata.project_id`"
+            }
+            res: "`body.repository`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id_or_name"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "cursor"
+                orig: "cursor"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "updatedAt"
+                kind: "query"
+                name: "sort_by"
+                orig: "sort_by"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "desc"
+                kind: "query"
+                name: "sort_order"
+                orig: "sort_order"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/vcr/repository/{idOrName}/tags"
+            json: "{\"operationId\":\"listRepositoryTags\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"in\":\"query\",\"name\":\"cursor\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Field to sort the non-pinned tags by.\",\"in\":\"query\",\"name\":\"sortBy\",\"required\":false,\"schema\":{\"default\":\"updatedAt\",\"description\":\"Field to sort the non-pinned tags by.\",\"enum\":[\"updatedAt\",\"tag\"],\"type\":\"string\"}},{\"description\":\"Sort direction. Defaults to desc.\",\"in\":\"query\",\"name\":\"sortOrder\",\"required\":false,\"schema\":{\"default\":\"desc\",\"description\":\"Sort direction. Defaults to desc.\",\"enum\":[\"asc\",\"desc\"],\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"nextCursor\":{\"type\":\"string\"},\"tags\":{\"items\":{\"properties\":{\"arch\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"imageId\":{\"type\":\"string\"},\"kind\":{\"enum\":[\"attestation\",\"index\",\"manifest\"],\"type\":\"string\"},\"manifestDigest\":{\"type\":\"string\"},\"platform\":{\"type\":\"string\"},\"pushedBy\":{\"type\":\"string\"},\"sizeInBytes\":{\"type\":\"number\"},\"status\":{\"enum\":[\"preparing\",\"ready\",\"unoptimized\",null],\"nullable\":true,\"type\":\"string\"},\"tag\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"imageId\",\"kind\",\"manifestDigest\",\"sizeInBytes\",\"status\",\"tag\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"tags\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/vcr/repository/{idOrName}/tags"
+          rename: {
+            param: {
+              idOrName: "id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+            {
+              var: "id_or_name"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          select: {
+            exist: [
+              "cursor"
+              "id_or_name"
+              "limit"
+              "project_id"
+              "slug"
+              "sort_by"
+              "sort_order"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.tags`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "last"
+                orig: "last"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "n"
+                orig: "n"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/{teamSlug}/{projectSlug}/{repositoryName}/tags/list"
+            json: "{\"operationId\":\"getByTeamSlugByProjectSlugByRepositoryNameTagsList\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"n\",\"required\":false,\"schema\":{\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Opaque pagination cursor returned by a previous list response.\",\"in\":\"query\",\"name\":\"last\",\"required\":false,\"schema\":{\"description\":\"Opaque pagination cursor returned by a previous list response.\",\"maxLength\":1024,\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"name\":{\"type\":\"string\"},\"tags\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"name\",\"tags\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/tags/list"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "tags"
+            }
+            {
+              lit: "list"
+            }
+          ]
+          select: {
+            exist: [
+              "last"
+              "n"
+              "project_slug"
+              "repository_name"
+              "team_slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.tags`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "image_id_or_digest"
+                orig: "image_id_or_digest"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "repository_id"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/vcr/repository/{idOrName}/images/{imageIdOrDigest}"
+            json: "{\"operationId\":\"getRepositoryImage\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"description\":\"The internal image id (`image_...`) or the image manifest digest (`sha256:...`).\",\"in\":\"path\",\"name\":\"imageIdOrDigest\",\"required\":true,\"schema\":{\"description\":\"The internal image id (`image_...`) or the image manifest digest (`sha256:...`).\",\"maxLength\":255,\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"image\":{\"description\":\"A single image with its tags, status and resolved Dockerfile layer history.\",\"properties\":{\"arch\":{\"description\":\"CPU architecture the manifest targets. Only present for single-platform manifests.\",\"example\":\"amd64\",\"type\":\"string\"},\"createdAt\":{\"description\":\"ISO 8601 timestamp of when the image was created.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"},\"id\":{\"description\":\"Internal identifier of the image.\",\"example\":\"img_a1b2c3d4e5f6\",\"type\":\"string\"},\"kind\":{\"description\":\"Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation.\",\"enum\":[\"attestation\",\"index\",\"manifest\"],\"type\":\"string\"},\"layers\":{\"items\":{\"oneOf\":[{\"properties\":{\"baseImage\":{\"nullable\":true,\"type\":\"string\"},\"collapsedDigests\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"collapsedLayerCount\":{\"type\":\"number\"},\"createdBy\":{\"nullable\":true,\"type\":\"string\"},\"digest\":{\"nullable\":true,\"type\":\"string\"},\"operation\":{\"description\":\"Docker/OCI build instruction associated with an image layer.\",\"enum\":[\"ADD\",\"ARG\",\"CMD\",\"COPY\",\"ENTRYPOINT\",\"ENV\",\"EXPOSE\",\"FROM\",\"HEALTHCHECK\",\"LABEL\",\"ONBUILD\",\"RUN\",\"SHELL\",\"STOPSIGNAL\",\"UNKNOWN\",\"USER\",\"VOLUME\",\"WORKDIR\"],\"type\":\"string\"},\"sizeBytes\":{\"nullable\":true,\"type\":\"number\"},\"type\":{\"enum\":[\"FROM\"],\"type\":\"string\"}},\"required\":[\"baseImage\",\"collapsedDigests\",\"collapsedLayerCount\",\"createdBy\",\"digest\",\"operation\",\"sizeBytes\",\"type\"],\"type\":\"object\"},{\"properties\":{\"command\":{\"nullable\":true,\"type\":\"string\"},\"createdBy\":{\"nullable\":true,\"type\":\"string\"},\"digest\":{\"nullable\":true,\"type\":\"string\"},\"operation\":{\"description\":\"Docker/OCI build instruction associated with an image layer.\",\"enum\":[\"ADD\",\"ARG\",\"CMD\",\"COPY\",\"ENTRYPOINT\",\"ENV\",\"EXPOSE\",\"FROM\",\"HEALTHCHECK\",\"LABEL\",\"ONBUILD\",\"RUN\",\"SHELL\",\"STOPSIGNAL\",\"UNKNOWN\",\"USER\",\"VOLUME\",\"WORKDIR\"],\"type\":\"string\"},\"sizeBytes\":{\"nullable\":true,\"type\":\"number\"},\"type\":{\"enum\":[\"RUN\"],\"type\":\"string\"}},\"required\":[\"command\",\"createdBy\",\"digest\",\"operation\",\"sizeBytes\",\"type\"],\"type\":\"object\"},{\"properties\":{\"createdBy\":{\"nullable\":true,\"type\":\"string\"},\"digest\":{\"nullable\":true,\"type\":\"string\"},\"env\":{\"nullable\":true,\"type\":\"string\"},\"operation\":{\"description\":\"Docker/OCI build instruction associated with an image layer.\",\"enum\":[\"ADD\",\"ARG\",\"CMD\",\"COPY\",\"ENTRYPOINT\",\"ENV\",\"EXPOSE\",\"FROM\",\"HEALTHCHECK\",\"LABEL\",\"ONBUILD\",\"RUN\",\"SHELL\",\"STOPSIGNAL\",\"UNKNOWN\",\"USER\",\"VOLUME\",\"WORKDIR\"],\"type\":\"string\"},\"sizeBytes\":{\"nullable\":true,\"type\":\"number\"},\"type\":{\"enum\":[\"ENV\"],\"type\":\"string\"}},\"required\":[\"createdBy\",\"digest\",\"env\",\"operation\",\"sizeBytes\",\"type\"],\"type\":\"object\"},{\"properties\":{\"createdBy\":{\"nullable\":true,\"type\":\"string\"},\"digest\":{\"nullable\":true,\"type\":\"string\"},\"operation\":{\"description\":\"Docker/OCI build instruction associated with an image layer.\",\"enum\":[\"ADD\",\"ARG\",\"CMD\",\"COPY\",\"ENTRYPOINT\",\"ENV\",\"EXPOSE\",\"FROM\",\"HEALTHCHECK\",\"LABEL\",\"ONBUILD\",\"RUN\",\"SHELL\",\"STOPSIGNAL\",\"UNKNOWN\",\"USER\",\"VOLUME\",\"WORKDIR\"],\"type\":\"string\"},\"sizeBytes\":{\"nullable\":true,\"type\":\"number\"},\"type\":{\"enum\":[\"ADD\",\"ARG\",\"CMD\",\"COPY\",\"ENTRYPOINT\",\"EXPOSE\",\"HEALTHCHECK\",\"LABEL\",\"ONBUILD\",\"SHELL\",\"STOPSIGNAL\",\"UNKNOWN\",\"USER\",\"VOLUME\",\"WORKDIR\"],\"type\":\"string\"},\"value\":{\"nullable\":true,\"type\":\"string\"}},\"required\":[\"createdBy\",\"digest\",\"operation\",\"sizeBytes\",\"type\",\"value\"],\"type\":\"object\"}]},\"type\":\"array\"},\"manifestDigest\":{\"description\":\"SHA-256 digest of the image manifest.\",\"example\":\"sha256:2c4e8f3a1b9d0e5c7a6f4b2d8e1c9a0b3d5f7e9c1a2b4d6f8e0c2a4b6d8f0e2c\",\"type\":\"string\"},\"platform\":{\"description\":\"Operating system the manifest targets. Only present for single-platform manifests.\",\"example\":\"linux\",\"type\":\"string\"},\"pushedBy\":{\"description\":\"Identifier of the actor that pushed the image.\",\"type\":\"string\"},\"repositoryId\":{\"description\":\"Identifier of the repository the image belongs to.\",\"example\":\"repo_a1b2c3d4e5f6\",\"type\":\"string\"},\"sizeInBytes\":{\"description\":\"Total size in bytes of the image's resources (manifest, config and layer blobs) stored by the registry.\",\"type\":\"number\"},\"status\":{\"description\":\"VHS-readiness status, or `null` for a multi-platform index.\",\"enum\":[\"preparing\",\"ready\",\"unoptimized\",null],\"nullable\":true,\"type\":\"string\"},\"tags\":{\"description\":\"Tags pointing at this image's manifest.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"createdAt\",\"id\",\"kind\",\"layers\",\"manifestDigest\",\"repositoryId\",\"sizeInBytes\",\"status\",\"tags\"],\"type\":\"object\"}},\"required\":[\"image\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/vcr/repository/{idOrName}/images/{imageIdOrDigest}"
+          rename: {
+            param: {
+              idOrName: "repository_id"
+              imageIdOrDigest: "image_id_or_digest"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+            {
+              var: "repository_id"
+            }
+            {
+              lit: "images"
+            }
+            {
+              var: "image_id_or_digest"
+            }
+          ]
+          select: {
+            exist: [
+              "image_id_or_digest"
+              "project_id"
+              "repository_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.image`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "repository_id"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "tag"
+                orig: "tag"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/vcr/repository/{idOrName}/tags/{tag}"
+            json: "{\"operationId\":\"getRepositoryTag\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"tag\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"tag\":{\"description\":\"A tag pointing at an image in a Vercel Container Registry repository, enriched with the backing image's metadata and VHS-readiness status.\",\"properties\":{\"arch\":{\"description\":\"CPU architecture the manifest targets. Only present for single-platform manifests.\",\"example\":\"amd64\",\"type\":\"string\"},\"createdAt\":{\"description\":\"ISO 8601 timestamp of when the tag was created.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"},\"imageId\":{\"description\":\"Internal identifier of the image the tag points at.\",\"example\":\"img_a1b2c3d4e5f6\",\"type\":\"string\"},\"kind\":{\"description\":\"Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation.\",\"enum\":[\"attestation\",\"index\",\"manifest\"],\"type\":\"string\"},\"manifestDigest\":{\"description\":\"SHA-256 digest of the image manifest the tag points at.\",\"example\":\"sha256:2c4e8f3a1b9d0e5c7a6f4b2d8e1c9a0b3d5f7e9c1a2b4d6f8e0c2a4b6d8f0e2c\",\"type\":\"string\"},\"platform\":{\"description\":\"Operating system the manifest targets. Only present for single-platform manifests.\",\"example\":\"linux\",\"type\":\"string\"},\"pushedBy\":{\"description\":\"Identifier of the actor that pushed the image.\",\"type\":\"string\"},\"sizeInBytes\":{\"description\":\"Total size in bytes of the image's resources (manifest, config and layer blobs) stored by the registry.\",\"type\":\"number\"},\"status\":{\"description\":\"VHS-readiness status, or `null` for a multi-platform index.\",\"enum\":[\"preparing\",\"ready\",\"unoptimized\",null],\"nullable\":true,\"type\":\"string\"},\"tag\":{\"description\":\"The tag name.\",\"example\":\"latest\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"ISO 8601 timestamp of when the tag was last updated.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"}},\"required\":[\"createdAt\",\"imageId\",\"kind\",\"manifestDigest\",\"sizeInBytes\",\"status\",\"tag\",\"updatedAt\"],\"type\":\"object\"}},\"required\":[\"tag\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/vcr/repository/{idOrName}/tags/{tag}"
+          rename: {
+            param: {
+              idOrName: "repository_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+            {
+              var: "repository_id"
+            }
+            {
+              lit: "tags"
+            }
+            {
+              var: "tag"
+            }
+          ]
+          select: {
+            exist: [
+              "project_id"
+              "repository_id"
+              "slug"
+              "tag"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.tag`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                kind: "param"
+                name: "digest"
+                orig: "digest"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}"
+            json: "{\"operationId\":\"getByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Content-addressable digest (algorithm:hex).\",\"in\":\"path\",\"name\":\"digest\",\"required\":true,\"schema\":{\"description\":\"Content-addressable digest (algorithm:hex).\",\"example\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"maxLength\":255,\"pattern\":\"^[A-Za-z0-9_+.-]+:[A-Fa-f0-9]+$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"416\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "blobs"
+            }
+            {
+              var: "digest"
+            }
+          ]
+          select: {
+            exist: [
+              "digest"
+              "project_slug"
+              "repository_name"
+              "team_slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id_or_name"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/vcr/repository/{idOrName}"
+            json: "{\"operationId\":\"getRepository\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"repository\":{\"description\":\"A Vercel Container Registry repository.\",\"properties\":{\"createdAt\":{\"description\":\"ISO 8601 timestamp of when the repository was created.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier of the repository.\",\"example\":\"repo_a1b2c3d4e5f6\",\"type\":\"string\"},\"name\":{\"description\":\"Name of the repository.\",\"example\":\"my-app\",\"type\":\"string\"},\"projectId\":{\"description\":\"Identifier of the project the repository belongs to.\",\"example\":\"prj_a1b2c3d4e5f6\",\"type\":\"string\"},\"public\":{\"description\":\"Whether the repository is public. Images in public repositories can be pulled by anyone. Defaults to `false` (private).\",\"enum\":[false,true],\"example\":false,\"type\":\"boolean\"},\"updatedAt\":{\"description\":\"ISO 8601 timestamp of when the repository was last updated.\",\"example\":\"2026-06-30T10:00:00.000Z\",\"type\":\"string\"}},\"required\":[\"createdAt\",\"id\",\"name\",\"projectId\",\"public\",\"updatedAt\"],\"type\":\"object\"}},\"required\":[\"repository\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/vcr/repository/{idOrName}"
+          rename: {
+            param: {
+              idOrName: "id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+            {
+              var: "id_or_name"
+            }
+          ]
+          select: {
+            exist: [
+              "id_or_name"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.repository`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "latest"
+                kind: "param"
+                name: "reference"
+                orig: "reference"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}"
+            json: "{\"operationId\":\"getByTeamSlugByProjectSlugByRepositoryNameManifestsByReference\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Manifest reference: a tag or digest.\",\"in\":\"path\",\"name\":\"reference\",\"required\":true,\"schema\":{\"description\":\"Manifest reference: a tag or digest.\",\"example\":\"latest\",\"maxLength\":255,\"pattern\":\"^(?:[a-zA-Z0-9_][a-zA-Z0-9._-]{0,127}|[A-Za-z0-9_+.-]+:[A-Fa-f0-9]+)$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "manifests"
+            }
+            {
+              var: "reference"
+            }
+          ]
+          select: {
+            exist: [
+              "project_slug"
+              "reference"
+              "repository_name"
+              "team_slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "0123456789abcdef0123456789abcdef01234567"
+                kind: "param"
+                name: "uuid"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}"
+            json: "{\"operationId\":\"getByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Blob upload session identifier.\",\"in\":\"path\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"description\":\"Blob upload session identifier.\",\"example\":\"0123456789abcdef0123456789abcdef01234567\",\"maxLength\":40,\"pattern\":\"^[a-f0-9]{40}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "blobs"
+            }
+            {
+              lit: "uploads"
+            }
+            {
+              var: "uuid"
+            }
+          ]
+          select: {
+            exist: [
+              "project_slug"
+              "repository_name"
+              "team_slug"
+              "uuid"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          contract: {
+            id: "GET /v2/"
+            json: "{\"operationId\":\"getRoot\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v2/"
+          segments: [
+            {
+              lit: "v2"
+            }
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    patch: {
+      name: "patch"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "0123456789abcdef0123456789abcdef01234567"
+                kind: "param"
+                name: "uuid"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}"
+            json: "{\"operationId\":\"updateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Blob upload session identifier.\",\"in\":\"path\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"description\":\"Blob upload session identifier.\",\"example\":\"0123456789abcdef0123456789abcdef01234567\",\"maxLength\":40,\"pattern\":\"^[a-f0-9]{40}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"202\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"413\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "blobs"
+            }
+            {
+              lit: "uploads"
+            }
+            {
+              var: "uuid"
+            }
+          ]
+          select: {
+            exist: [
+              "project_slug"
+              "repository_name"
+              "team_slug"
+              "uuid"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "image_id"
+                orig: "image_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "repository_id"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/vcr/repository/{idOrName}/images/{imageId}"
+            json: "{\"operationId\":\"deleteRepositoryImage\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"imageId\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"202\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/vcr/repository/{idOrName}/images/{imageId}"
+          rename: {
+            param: {
+              idOrName: "repository_id"
+              imageId: "image_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+            {
+              var: "repository_id"
+            }
+            {
+              lit: "images"
+            }
+            {
+              var: "image_id"
+            }
+          ]
+          select: {
+            exist: [
+              "image_id"
+              "project_id"
+              "repository_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                kind: "param"
+                name: "digest"
+                orig: "digest"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}"
+            json: "{\"operationId\":\"deleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Content-addressable digest (algorithm:hex).\",\"in\":\"path\",\"name\":\"digest\",\"required\":true,\"schema\":{\"description\":\"Content-addressable digest (algorithm:hex).\",\"example\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"maxLength\":255,\"pattern\":\"^[A-Za-z0-9_+.-]+:[A-Fa-f0-9]+$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"405\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "blobs"
+            }
+            {
+              var: "digest"
+            }
+          ]
+          select: {
+            exist: [
+              "digest"
+              "project_slug"
+              "repository_name"
+              "team_slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id_or_name"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/vcr/repository/{idOrName}"
+            json: "{\"operationId\":\"deleteRepository\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"202\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/vcr/repository/{idOrName}"
+          rename: {
+            param: {
+              idOrName: "id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+            {
+              var: "id_or_name"
+            }
+          ]
+          select: {
+            exist: [
+              "id_or_name"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id_or_name"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/vcr/repository/{idOrName}/permissions"
+            json: "{\"operationId\":\"removeRepositoryPermission\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":false,\"properties\":{\"teamId\":{\"description\":\"ID of a team that is granted access to a repository.\",\"example\":\"team_LLHUOMOoDlqOp8wPE4kFo9pE\",\"maxLength\":64,\"pattern\":\"^team_[a-zA-Z0-9]+$\",\"type\":\"string\"},\"teamSlug\":{\"description\":\"Slug of a team that is granted access to a repository.\",\"example\":\"my-team\",\"maxLength\":64,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},\"type\":\"object\"}}}},\"responses\":{\"204\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/vcr/repository/{idOrName}/permissions"
+          rename: {
+            param: {
+              idOrName: "id_or_name"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+            {
+              var: "id_or_name"
+            }
+            {
+              lit: "permissions"
+            }
+          ]
+          select: {
+            exist: [
+              "id_or_name"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: {
+              teamId: "`reqdata.team_id`"
+              teamSlug: "`reqdata.team_slug`"
+            }
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "repository_id"
+                orig: "id_or_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/vcr/repository/{idOrName}/permissions/all"
+            json: "{\"operationId\":\"clearRepositoryPermissions\",\"parameters\":[{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"in\":\"query\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"description\":\"Project ID or name (slug) within the authenticated team. IDs take precedence over names. Missing or empty values return HTTP 400.\",\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"idOrName\",\"required\":true,\"schema\":{\"maxLength\":255,\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/vcr/repository/{idOrName}/permissions/all"
+          rename: {
+            param: {
+              idOrName: "repository_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "vcr"
+            }
+            {
+              lit: "repository"
+            }
+            {
+              var: "repository_id"
+            }
+            {
+              lit: "permissions"
+            }
+            {
+              lit: "all"
+            }
+          ]
+          select: {
+            exist: [
+              "project_id"
+              "repository_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                kind: "param"
+                name: "reference"
+                orig: "reference"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}"
+            json: "{\"operationId\":\"deleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReference\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Content-addressable digest (algorithm:hex).\",\"in\":\"path\",\"name\":\"reference\",\"required\":true,\"schema\":{\"description\":\"Content-addressable digest (algorithm:hex).\",\"example\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"maxLength\":255,\"pattern\":\"^[A-Za-z0-9_+.-]+:[A-Fa-f0-9]+$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"202\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "manifests"
+            }
+            {
+              var: "reference"
+            }
+          ]
+          select: {
+            exist: [
+              "project_slug"
+              "reference"
+              "repository_name"
+              "team_slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "0123456789abcdef0123456789abcdef01234567"
+                kind: "param"
+                name: "uuid"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}"
+            json: "{\"operationId\":\"deleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Blob upload session identifier.\",\"in\":\"path\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"description\":\"Blob upload session identifier.\",\"example\":\"0123456789abcdef0123456789abcdef01234567\",\"maxLength\":40,\"pattern\":\"^[a-f0-9]{40}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "blobs"
+            }
+            {
+              lit: "uploads"
+            }
+            {
+              var: "uuid"
+            }
+          ]
+          select: {
+            exist: [
+              "project_slug"
+              "repository_name"
+              "team_slug"
+              "uuid"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "0123456789abcdef0123456789abcdef01234567"
+                kind: "param"
+                name: "uuid"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                kind: "query"
+                name: "digest"
+                orig: "digest"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}"
+            json: "{\"operationId\":\"replaceByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Blob upload session identifier.\",\"in\":\"path\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"description\":\"Blob upload session identifier.\",\"example\":\"0123456789abcdef0123456789abcdef01234567\",\"maxLength\":40,\"pattern\":\"^[a-f0-9]{40}$\",\"type\":\"string\"}},{\"description\":\"Content-addressable digest (algorithm:hex).\",\"in\":\"query\",\"name\":\"digest\",\"required\":true,\"schema\":{\"description\":\"Content-addressable digest (algorithm:hex).\",\"example\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"maxLength\":255,\"pattern\":\"^[A-Za-z0-9_+.-]+:[A-Fa-f0-9]+$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"413\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "blobs"
+            }
+            {
+              lit: "uploads"
+            }
+            {
+              var: "uuid"
+            }
+          ]
+          select: {
+            exist: [
+              "digest"
+              "project_slug"
+              "repository_name"
+              "team_slug"
+              "uuid"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "project-slug"
+                kind: "param"
+                name: "project_slug"
+                orig: "project_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "latest"
+                kind: "param"
+                name: "reference"
+                orig: "reference"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "nginx"
+                kind: "param"
+                name: "repository_name"
+                orig: "repository_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "team-slug"
+                kind: "param"
+                name: "team_slug"
+                orig: "team_slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}"
+            json: "{\"operationId\":\"replaceByTeamSlugByProjectSlugByRepositoryNameManifestsByReference\",\"parameters\":[{\"description\":\"Single Docker repository team slug component.\",\"in\":\"path\",\"name\":\"teamSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository team slug component.\",\"example\":\"team-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository project slug component.\",\"in\":\"path\",\"name\":\"projectSlug\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository project slug component.\",\"example\":\"project-slug\",\"maxLength\":255,\"pattern\":\"^[a-z0-9](?:[a-z0-9-]{0,46}[a-z0-9])?$\",\"type\":\"string\"}},{\"description\":\"Single Docker repository name component.\",\"in\":\"path\",\"name\":\"repositoryName\",\"required\":true,\"schema\":{\"description\":\"Single Docker repository name component.\",\"example\":\"nginx\",\"maxLength\":255,\"pattern\":\"^[a-z0-9]+(?:(?:\\\\\\\\.|_|__|-+)[a-z0-9]+)*$\",\"type\":\"string\"}},{\"description\":\"Manifest reference: a tag or digest.\",\"in\":\"path\",\"name\":\"reference\",\"required\":true,\"schema\":{\"description\":\"Manifest reference: a tag or digest.\",\"example\":\"latest\",\"maxLength\":255,\"pattern\":\"^(?:[a-zA-Z0-9_][a-zA-Z0-9._-]{0,127}|[A-Za-z0-9_+.-]+:[A-Fa-f0-9]+)$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"nullable\":true}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"413\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}"
+          rename: {
+            param: {
+              projectSlug: "project_slug"
+              repositoryName: "repository_name"
+              teamSlug: "team_slug"
+            }
+          }
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              var: "team_slug"
+            }
+            {
+              var: "project_slug"
+            }
+            {
+              var: "repository_name"
+            }
+            {
+              lit: "manifests"
+            }
+            {
+              var: "reference"
+            }
+          ]
+          select: {
+            exist: [
+              "project_slug"
+              "reference"
+              "repository_name"
+              "team_slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "repository"
+      ]
+      [
+        "v2"
+      ]
+      [
+        "repository"
+        "image"
+      ]
+      [
+        "repository"
+        "tag"
+      ]
+      [
+        "v2"
+        "upload"
+      ]
+      [
+        "v2"
+        "blob"
+      ]
+      [
+        "v2"
+        "manifest"
+      ]
+    ]
+  }
+
+
+
+}

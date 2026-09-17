@@ -1,0 +1,140 @@
+# Entity: ai_gateway_rule_list
+
+main: kit: entity: ai_gateway_rule_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "action"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "createdAt"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "createdBy"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "deleted"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "enabled"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "match"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "ownerId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "ruleId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "updatedAt"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "updatedBy"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "ai_gateway_rule_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "include_disabled"
+                orig: "include_disabled"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/ai-gateway/rules"
+            json: "{\"operationId\":\"listAiGatewayRules\",\"parameters\":[{\"in\":\"query\",\"name\":\"includeDisabled\",\"schema\":{\"enum\":[\"true\",\"false\"],\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"rules\":{\"items\":{\"description\":\"Public response shape for AI Gateway routing rules. Used so OpenAPI generation can avoid ElectroDB's recursive EntityItem types.\",\"properties\":{\"action\":{\"properties\":{\"reason\":{\"type\":\"string\"},\"rewriteModel\":{\"type\":\"string\"}},\"type\":\"object\"},\"createdAt\":{\"type\":\"number\"},\"createdBy\":{\"type\":\"string\"},\"deleted\":{\"enum\":[false,true],\"type\":\"boolean\"},\"description\":{\"type\":\"string\"},\"enabled\":{\"enum\":[false,true],\"type\":\"boolean\"},\"match\":{\"properties\":{\"model\":{\"type\":\"string\"}},\"type\":\"object\"},\"ownerId\":{\"type\":\"string\"},\"ruleId\":{\"type\":\"string\"},\"type\":{\"enum\":[\"deny\",\"rewrite\"],\"type\":\"string\"},\"updatedAt\":{\"type\":\"number\"},\"updatedBy\":{\"type\":\"string\"}},\"required\":[\"createdAt\",\"enabled\",\"ownerId\",\"ruleId\",\"type\",\"updatedAt\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"rules\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/ai-gateway/rules"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ai-gateway"
+            }
+            {
+              lit: "rules"
+            }
+          ]
+          select: {
+            exist: [
+              "include_disabled"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.rules`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

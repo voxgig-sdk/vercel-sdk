@@ -1,0 +1,86 @@
+# BasicChecksV2Flow
+
+main: kit: flow: BasicChecksV2Flow:
+{
+  entity: "checks_v2",
+  kind: "basic",
+  name: "BasicChecksV2Flow",
+  step: [
+    {
+      input: {
+        ref: "checks_v2_ref01"
+      }
+
+      match: {
+        check_id: "check01",
+        deployment_id: "deployment01",
+        project_id: "project01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        deployment_id: "deployment01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "checks_v2_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      data: {
+        deployment_id: "deployment01"
+      }
+
+      input: {
+        ref: "checks_v2_ref01",
+        srcdatavar: "checks_v2_ref01_data",
+        suffix: "_up0",
+        textfield: "checkId"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-checks_v2_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "checks_v2_ref01",
+        srcdatavar: "checks_v2_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        deployment_id: "deployment01",
+        id: "checks_v201"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-checks_v2_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicChecksV2Flow"
+}

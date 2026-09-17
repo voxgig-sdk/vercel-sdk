@@ -1,0 +1,1791 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>RollingRelease | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a aria-current="page" href="../api/rolling_release.html">RollingRelease</a><div class="nav-sections"><a class="nav-section" href="#post-v1projectsidornamerolling-releaseapprove-stage">POST /v1/projects/{idOrName}/rolling-release/approve-stage</a>
+<a class="nav-section" href="#post-v1projectsidornamerolling-releasecomplete">POST /v1/projects/{idOrName}/rolling-release/complete</a>
+<a class="nav-section" href="#post-v1projectsidornamerolling-releasestart">POST /v1/projects/{idOrName}/rolling-release/start</a>
+<a class="nav-section" href="#get-v1projectsidornamerolling-release">GET /v1/projects/{idOrName}/rolling-release</a>
+<a class="nav-section" href="#get-v1projectsidornamerolling-releasebilling">GET /v1/projects/{idOrName}/rolling-release/billing</a>
+<a class="nav-section" href="#get-v1projectsidornamerolling-releaseconfig">GET /v1/projects/{idOrName}/rolling-release/config</a>
+<a class="nav-section" href="#delete-v1projectsidornamerolling-releaseconfig">DELETE /v1/projects/{idOrName}/rolling-release/config</a>
+<a class="nav-section" href="#patch-v1projectsidornamerolling-releaseconfig">PATCH /v1/projects/{idOrName}/rolling-release/config</a></div>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="rollingrelease">RollingRelease</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1projectsidornamerolling-releaseapprove-stage"><code>/v1/projects/{idOrName}/rolling-release/approve-stage</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1projectsidornamerolling-releasecomplete"><code>/v1/projects/{idOrName}/rolling-release/complete</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1projectsidornamerolling-releasestart"><code>/v1/projects/{idOrName}/rolling-release/start</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsidornamerolling-release"><code>/v1/projects/{idOrName}/rolling-release</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsidornamerolling-releasebilling"><code>/v1/projects/{idOrName}/rolling-release/billing</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1projectsidornamerolling-releaseconfig"><code>/v1/projects/{idOrName}/rolling-release/config</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1projectsidornamerolling-releaseconfig"><code>/v1/projects/{idOrName}/rolling-release/config</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1projectsidornamerolling-releaseconfig"><code>/v1/projects/{idOrName}/rolling-release/config</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>activeStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The currently active stage, null if the rollout is aborted</td>
+</tr>
+<tr>
+<td><code>advancementType</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The advancement type of the rolling release</td>
+</tr>
+<tr>
+<td><code>canaryDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The canary deployment being rolled out</td>
+</tr>
+<tr>
+<td><code>currentCanaryPercentage</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>When set (for example while {@link substate} is <code>PAUSED</code>), the canary traffic percentage persisted on the rollout document, use for dashboard display when linear shift is active.</td>
+</tr>
+<tr>
+<td><code>currentDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The current deployment receiving production traffic</td>
+</tr>
+<tr>
+<td><code>nextStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The next stage to be activated, null if not in ACTIVE state</td>
+</tr>
+<tr>
+<td><code>queuedDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of a deployment queued for the next rolling release</td>
+</tr>
+<tr>
+<td><code>stages</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>All stages configured for this rolling release</td>
+</tr>
+<tr>
+<td><code>startedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release started</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The current state of the rolling release</td>
+</tr>
+<tr>
+<td><code>substate</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>When set to <code>PAUSED</code>, the rollout is frozen at the current percentage until continued.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release was last updated</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1projectsidornamerolling-releaseapprove-stage" class="operation" data-method="post"><code>POST</code> /v1/projects/{idOrName}/rolling-release/approve-stage</h3>
+<p>Operation ID: <code>approveRollingReleaseStage</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | Project ID or project name (URL-encoded) |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>canaryDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The id of the canary deployment to approve for the next stage</td>
+</tr>
+<tr>
+<td><code>nextStageIndex</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The index of the stage to transition to</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rollingRelease</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Rolling release information including configuration and document details, or null if no rolling release exists</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The currently active stage, null if the rollout is aborted</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.advancementType</code></td>
+<td><code>enum: automatic, manual-approval</code></td>
+<td>Yes</td>
+<td>The advancement type of the rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The canary deployment being rolled out</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A number containing the date when the deployment was created in milliseconds</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string holding the unique ID of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the project associated with the deployment at the time that the deployment was created</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td>The state of the deployment depending on the process of deploying, or if it is ready or in an error state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.readyStateAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>Where was the deployment created from. Best-effort guess for metrics only, not authoritative; do not gate behavior on it.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>If defined, either <code>staging</code> if a staging alias in the format <code>&amp;lt;project&amp;gt;.&amp;lt;team&amp;gt;.now.sh</code> was assigned upon creation, or <code>production</code> if the aliases from <code>alias</code> were assigned. <code>null</code> value indicates the &quot;preview&quot; deployment.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the unique URL of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentCanaryPercentage</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>When set (for example while {@link substate} is <code>PAUSED</code>), the canary traffic percentage persisted on the rollout document, use for dashboard display when linear shift is active.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The current deployment receiving production traffic</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A number containing the date when the deployment was created in milliseconds</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string holding the unique ID of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the project associated with the deployment at the time that the deployment was created</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td>The state of the deployment depending on the process of deploying, or if it is ready or in an error state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.readyStateAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>Where was the deployment created from. Best-effort guess for metrics only, not authoritative; do not gate behavior on it.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>If defined, either <code>staging</code> if a staging alias in the format <code>&amp;lt;project&amp;gt;.&amp;lt;team&amp;gt;.now.sh</code> was assigned upon creation, or <code>production</code> if the aliases from <code>alias</code> were assigned. <code>null</code> value indicates the &quot;preview&quot; deployment.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the unique URL of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The next stage to be activated, null if not in ACTIVE state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.queuedDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of a deployment queued for the next rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>All stages configured for this rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.startedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release started</td>
+</tr>
+<tr>
+<td><code>rollingRelease.state</code></td>
+<td><code>enum: ABORTED, ACTIVE, COMPLETE</code></td>
+<td>Yes</td>
+<td>The current state of the rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.substate</code></td>
+<td><code>enum: PAUSED, null</code></td>
+<td>Yes</td>
+<td>When set to <code>PAUSED</code>, the rollout is frozen at the current percentage until continued.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release was last updated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h3 id="post-v1projectsidornamerolling-releasecomplete" class="operation" data-method="post"><code>POST</code> /v1/projects/{idOrName}/rolling-release/complete</h3>
+<p>Operation ID: <code>completeRollingRelease</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | Project ID or project name (URL-encoded) |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>canaryDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the canary deployment to complete</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rollingRelease</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Rolling release information including configuration and document details, or null if no rolling release exists</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The currently active stage, null if the rollout is aborted</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.advancementType</code></td>
+<td><code>enum: automatic, manual-approval</code></td>
+<td>Yes</td>
+<td>The advancement type of the rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The canary deployment being rolled out</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A number containing the date when the deployment was created in milliseconds</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string holding the unique ID of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the project associated with the deployment at the time that the deployment was created</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td>The state of the deployment depending on the process of deploying, or if it is ready or in an error state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.readyStateAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>Where was the deployment created from. Best-effort guess for metrics only, not authoritative; do not gate behavior on it.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>If defined, either <code>staging</code> if a staging alias in the format <code>&amp;lt;project&amp;gt;.&amp;lt;team&amp;gt;.now.sh</code> was assigned upon creation, or <code>production</code> if the aliases from <code>alias</code> were assigned. <code>null</code> value indicates the &quot;preview&quot; deployment.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the unique URL of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentCanaryPercentage</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>When set (for example while {@link substate} is <code>PAUSED</code>), the canary traffic percentage persisted on the rollout document, use for dashboard display when linear shift is active.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The current deployment receiving production traffic</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A number containing the date when the deployment was created in milliseconds</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string holding the unique ID of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the project associated with the deployment at the time that the deployment was created</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td>The state of the deployment depending on the process of deploying, or if it is ready or in an error state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.readyStateAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>Where was the deployment created from. Best-effort guess for metrics only, not authoritative; do not gate behavior on it.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>If defined, either <code>staging</code> if a staging alias in the format <code>&amp;lt;project&amp;gt;.&amp;lt;team&amp;gt;.now.sh</code> was assigned upon creation, or <code>production</code> if the aliases from <code>alias</code> were assigned. <code>null</code> value indicates the &quot;preview&quot; deployment.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the unique URL of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The next stage to be activated, null if not in ACTIVE state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.queuedDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of a deployment queued for the next rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>All stages configured for this rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.startedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release started</td>
+</tr>
+<tr>
+<td><code>rollingRelease.state</code></td>
+<td><code>enum: ABORTED, ACTIVE, COMPLETE</code></td>
+<td>Yes</td>
+<td>The current state of the rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.substate</code></td>
+<td><code>enum: PAUSED, null</code></td>
+<td>Yes</td>
+<td>When set to <code>PAUSED</code>, the rollout is frozen at the current percentage until continued.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release was last updated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1projectsidornamerolling-releasestart" class="operation" data-method="post"><code>POST</code> /v1/projects/{idOrName}/rolling-release/start</h3>
+<p>Operation ID: <code>startRollingRelease</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | Project ID or project name (URL-encoded) |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>canaryDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of the canary deployment to start the rolling release for</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rollingRelease</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Rolling release information including configuration and document details, or null if no rolling release exists</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The currently active stage, null if the rollout is aborted</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.advancementType</code></td>
+<td><code>enum: automatic, manual-approval</code></td>
+<td>Yes</td>
+<td>The advancement type of the rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The canary deployment being rolled out</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A number containing the date when the deployment was created in milliseconds</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string holding the unique ID of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the project associated with the deployment at the time that the deployment was created</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td>The state of the deployment depending on the process of deploying, or if it is ready or in an error state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.readyStateAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>Where was the deployment created from. Best-effort guess for metrics only, not authoritative; do not gate behavior on it.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>If defined, either <code>staging</code> if a staging alias in the format <code>&amp;lt;project&amp;gt;.&amp;lt;team&amp;gt;.now.sh</code> was assigned upon creation, or <code>production</code> if the aliases from <code>alias</code> were assigned. <code>null</code> value indicates the &quot;preview&quot; deployment.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the unique URL of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentCanaryPercentage</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>When set (for example while {@link substate} is <code>PAUSED</code>), the canary traffic percentage persisted on the rollout document, use for dashboard display when linear shift is active.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The current deployment receiving production traffic</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A number containing the date when the deployment was created in milliseconds</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string holding the unique ID of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the project associated with the deployment at the time that the deployment was created</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td>The state of the deployment depending on the process of deploying, or if it is ready or in an error state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.readyStateAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>Where was the deployment created from. Best-effort guess for metrics only, not authoritative; do not gate behavior on it.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>If defined, either <code>staging</code> if a staging alias in the format <code>&amp;lt;project&amp;gt;.&amp;lt;team&amp;gt;.now.sh</code> was assigned upon creation, or <code>production</code> if the aliases from <code>alias</code> were assigned. <code>null</code> value indicates the &quot;preview&quot; deployment.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the unique URL of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The next stage to be activated, null if not in ACTIVE state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.queuedDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of a deployment queued for the next rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>All stages configured for this rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.startedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release started</td>
+</tr>
+<tr>
+<td><code>rollingRelease.state</code></td>
+<td><code>enum: ABORTED, ACTIVE, COMPLETE</code></td>
+<td>Yes</td>
+<td>The current state of the rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.substate</code></td>
+<td><code>enum: PAUSED, null</code></td>
+<td>Yes</td>
+<td>When set to <code>PAUSED</code>, the rollout is frozen at the current percentage until continued.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release was last updated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h5 id="422" class="status" data-status="4xx">422</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1projectsidornamerolling-release" class="operation" data-method="get"><code>GET</code> /v1/projects/{idOrName}/rolling-release</h3>
+<p>Operation ID: <code>getRollingRelease</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | Project ID or project name (URL-encoded) |
+| <code>state</code> | <code>query</code> | <code>enum: ACTIVE, COMPLETE, ABORTED</code> | No | Filter by rolling release state |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rollingRelease</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Rolling release information including configuration and document details, or null if no rolling release exists</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The currently active stage, null if the rollout is aborted</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.activeStage.targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.advancementType</code></td>
+<td><code>enum: automatic, manual-approval</code></td>
+<td>Yes</td>
+<td>The advancement type of the rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The canary deployment being rolled out</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A number containing the date when the deployment was created in milliseconds</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string holding the unique ID of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the project associated with the deployment at the time that the deployment was created</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td>The state of the deployment depending on the process of deploying, or if it is ready or in an error state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.readyStateAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>Where was the deployment created from. Best-effort guess for metrics only, not authoritative; do not gate behavior on it.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>If defined, either <code>staging</code> if a staging alias in the format <code>&amp;lt;project&amp;gt;.&amp;lt;team&amp;gt;.now.sh</code> was assigned upon creation, or <code>production</code> if the aliases from <code>alias</code> were assigned. <code>null</code> value indicates the &quot;preview&quot; deployment.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryDeployment.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the unique URL of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentCanaryPercentage</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>When set (for example while {@link substate} is <code>PAUSED</code>), the canary traffic percentage persisted on the rollout document, use for dashboard display when linear shift is active.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The current deployment receiving production traffic</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A number containing the date when the deployment was created in milliseconds</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string holding the unique ID of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the project associated with the deployment at the time that the deployment was created</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.readyState</code></td>
+<td><code>enum: BLOCKED, BUILDING, CANCELED, ERROR, INITIALIZING, QUEUED, ...</code></td>
+<td>Yes</td>
+<td>The state of the deployment depending on the process of deploying, or if it is ready or in an error state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.readyStateAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.source</code></td>
+<td><code>enum: api-trigger-git-deploy, cli, clone/repo, drop, git, git-deploy-hook, ...</code></td>
+<td>No</td>
+<td>Where was the deployment created from. Best-effort guess for metrics only, not authoritative; do not gate behavior on it.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.target</code></td>
+<td><code>enum: production, staging, null</code></td>
+<td>No</td>
+<td>If defined, either <code>staging</code> if a staging alias in the format <code>&amp;lt;project&amp;gt;.&amp;lt;team&amp;gt;.now.sh</code> was assigned upon creation, or <code>production</code> if the aliases from <code>alias</code> were assigned. <code>null</code> value indicates the &quot;preview&quot; deployment.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.currentDeployment.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string with the unique URL of the deployment</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The next stage to be activated, null if not in ACTIVE state</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.nextStage.targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.queuedDeploymentId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The ID of a deployment queued for the next rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>All stages configured for this rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].duration</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Duration in seconds for automatic advancement, null for manual stages or the final stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].index</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The zero-based index of the stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].isFinalStage</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage is the final stage (targetPercentage === 100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.startedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release started</td>
+</tr>
+<tr>
+<td><code>rollingRelease.state</code></td>
+<td><code>enum: ABORTED, ACTIVE, COMPLETE</code></td>
+<td>Yes</td>
+<td>The current state of the rolling release</td>
+</tr>
+<tr>
+<td><code>rollingRelease.substate</code></td>
+<td><code>enum: PAUSED, null</code></td>
+<td>Yes</td>
+<td>When set to <code>PAUSED</code>, the rollout is frozen at the current percentage until continued.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Unix timestamp in milliseconds when the rolling release was last updated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1projectsidornamerolling-releasebilling" class="operation" data-method="get"><code>GET</code> /v1/projects/{idOrName}/rolling-release/billing</h3>
+<p>Operation ID: <code>getRollingReleaseBillingStatus</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | Project ID or project name (URL-encoded) |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-4" class="status" data-status="4xx">404</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1projectsidornamerolling-releaseconfig" class="operation" data-method="get"><code>GET</code> /v1/projects/{idOrName}/rolling-release/config</h3>
+<p>Operation ID: <code>getRollingReleaseConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | Project ID or project name (URL-encoded) |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-5" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rollingRelease</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Project-level rolling release configuration that defines how deployments should be gradually rolled out</td>
+</tr>
+<tr>
+<td><code>rollingRelease.canaryResponseHeader</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the request served by a canary deployment should return a header indicating a canary was served. Defaults to <code>false</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Automated gating configuration. Omitted (the default) means no gating is configured, which is equivalent to <code>enabled: false</code>.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.action</code></td>
+<td><code>enum: pause, rollback</code></td>
+<td>Yes</td>
+<td>What to do when the gate trips: pause the rollout, or roll it back.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.checks</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>The checks to evaluate. An empty array means nothing is evaluated.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.checks[].excludePaths</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Request paths to ignore entirely, dropped from both the numerator (errors) and the denominator (total requests). Matched exactly against the request path with any query string removed; no prefix or glob matching. Defaults to <code>[]</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.checks[].excludeStatusCodes</code></td>
+<td><code>array of number</code></td>
+<td>No</td>
+<td>Response status codes to ignore entirely, dropped from both the numerator (errors) and the denominator (total requests). Defaults to <code>[]</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.checks[].ingestWatermarkSeconds</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Seconds of ingest lag to allow for: the query's upper bound is <code>now() - this value</code>, so the check never reads a window that is still filling. Defaults to <code>30</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.checks[].minSampleSize</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Minimum number of requests required in the window before the check can fail. Below this, the check is inconclusive rather than failing, so low-traffic stages don't gate on noise. Defaults to <code>100</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.checks[].type</code></td>
+<td><code>enum: error-rate-5xx</code></td>
+<td>Yes</td>
+<td>The metric this check evaluates.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.dryRun</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>When true, a tripped gate is only reported, {@link action} is not taken.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether automated gating is enabled for this project's rollouts.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.failureThreshold</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>How many failing evaluations within {@link windowSize} trip the gate. Defaults to <code>3</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.gate.windowSize</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>How many of the most recent evaluations {@link failureThreshold} is counted against. Defaults to <code>5</code> when omitted.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array of all the stages required during a deployment release. Each stage defines a target percentage and advancement rules. The final stage must always have targetPercentage: 100.</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].duration</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Duration in minutes for automatic advancement to the next stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].linearShift</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether to linearly shift traffic over the duration of this stage</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].requireApproval</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether or not this stage requires manual approval to proceed</td>
+</tr>
+<tr>
+<td><code>rollingRelease.stages[].targetPercentage</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>The percentage of traffic to serve to the canary deployment (0-100)</td>
+</tr>
+<tr>
+<td><code>rollingRelease.target</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The environment that the release targets, currently only supports production. Adding in case we want to configure with alias groups or custom environments.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-5" class="status" data-status="4xx">404</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1projectsidornamerolling-releaseconfig" class="operation" data-method="delete"><code>DELETE</code> /v1/projects/{idOrName}/rolling-release/config</h3>
+<p>Operation ID: <code>deleteRollingReleaseConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | Project ID or project name (URL-encoded) |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-6" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rollingRelease</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-6" class="status" data-status="4xx">404</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="patch-v1projectsidornamerolling-releaseconfig" class="operation" data-method="patch"><code>PATCH</code> /v1/projects/{idOrName}/rolling-release/config</h3>
+<p>Operation ID: <code>updateRollingReleaseConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | Project ID or project name (URL-encoded) |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-7" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-7" class="status" data-status="4xx">404</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

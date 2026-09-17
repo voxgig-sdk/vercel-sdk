@@ -1,0 +1,22 @@
+# BasicTldNameFlow
+
+main: kit: flow: BasicTldNameFlow:
+{
+  entity: "tld_name",
+  kind: "basic",
+  name: "BasicTldNameFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "tld_name_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTldNameFlow"
+}

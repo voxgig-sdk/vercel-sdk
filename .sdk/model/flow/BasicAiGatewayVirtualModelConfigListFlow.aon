@@ -1,0 +1,22 @@
+# BasicAiGatewayVirtualModelConfigListFlow
+
+main: kit: flow: BasicAiGatewayVirtualModelConfigListFlow:
+{
+  entity: "ai_gateway_virtual_model_config_list",
+  kind: "basic",
+  name: "BasicAiGatewayVirtualModelConfigListFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ai_gateway_virtual_model_config_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAiGatewayVirtualModelConfigListFlow"
+}

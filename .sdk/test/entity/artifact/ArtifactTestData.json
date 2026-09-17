@@ -1,0 +1,821 @@
+{
+  "existing": {
+    "artifact": {
+      "ARTIFACT00": {
+        "hashes": [],
+        "id": "ARTIFACT00"
+      },
+      "ARTIFACT01": {
+        "hashes": [],
+        "id": "ARTIFACT01"
+      },
+      "ARTIFACT02": {
+        "hashes": [],
+        "id": "ARTIFACT02"
+      }
+    }
+  },
+  "new": {
+    "artifact": {
+      "artifact_ref01": {
+        "hashes": []
+      }
+    }
+  },
+  "requests": {
+    "POST /v8/artifacts/events": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "recordEvents",
+        "parameters": [
+          {
+            "description": "The continuous integration or delivery environment where this artifact is downloaded.",
+            "in": "header",
+            "name": "x-artifact-client-ci",
+            "schema": {
+              "description": "The continuous integration or delivery environment where this artifact is downloaded.",
+              "example": "VERCEL",
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "description": "1 if the client is an interactive shell. Otherwise 0",
+            "in": "header",
+            "name": "x-artifact-client-interactive",
+            "schema": {
+              "description": "1 if the client is an interactive shell. Otherwise 0",
+              "example": 0,
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "duration": {
+                      "description": "The time taken to generate the artifact. This should be sent as a body parameter on `HIT` events.",
+                      "example": 400,
+                      "type": "number"
+                    },
+                    "event": {
+                      "description": "One of `HIT` or `MISS`. `HIT` specifies that a cached artifact for `hash` was found in the cache. `MISS` specifies that a cached artifact with `hash` was not found.",
+                      "enum": [
+                        "HIT",
+                        "MISS"
+                      ],
+                      "type": "string"
+                    },
+                    "hash": {
+                      "description": "The artifact hash",
+                      "example": "12HKQaOmR5t5Uy6vdcQsNIiZgHGB",
+                      "type": "string"
+                    },
+                    "sessionId": {
+                      "description": "A UUID (universally unique identifer) for the session that generated this event.",
+                      "type": "string"
+                    },
+                    "source": {
+                      "description": "One of `LOCAL` or `REMOTE`. `LOCAL` specifies that the cache event was from the user's filesystem cache. `REMOTE` specifies that the cache event is from a remote cache.",
+                      "enum": [
+                        "LOCAL",
+                        "REMOTE"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "sessionId",
+                    "source",
+                    "hash",
+                    "event"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success. Event recorded."
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the headers is invalid"
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "The customer has reached their spend cap limit and has been paused. An owner can disable the cap or raise the limit in settings.\nThe Remote Caching usage limit has been reached for this account for this billing cycle.\nRemote Caching has been disabled for this team or user. An owner can enable it in the billing settings.\nYou do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v8/artifacts": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "artifactQuery",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "hashes": {
+                    "description": "artifact hashes",
+                    "example": [
+                      "12HKQaOmR5t5Uy6vdcQsNIiZgHGB",
+                      "34HKQaOmR5t5Uy6vasdasdasdasd"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "hashes"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "nullable": true,
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "dirtyHash": {
+                            "type": "string"
+                          },
+                          "sha": {
+                            "type": "string"
+                          },
+                          "size": {
+                            "type": "number"
+                          },
+                          "tag": {
+                            "type": "string"
+                          },
+                          "taskDurationMs": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "size",
+                          "taskDurationMs"
+                        ],
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "error": {
+                            "properties": {
+                              "message": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "error"
+                        ],
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "The customer has reached their spend cap limit and has been paused. An owner can disable the cap or raise the limit in settings.\nThe Remote Caching usage limit has been reached for this account for this billing cycle.\nRemote Caching has been disabled for this team or user. An owner can enable it in the billing settings.\nYou do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v8/artifacts/{hash}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "downloadArtifact",
+        "parameters": [
+          {
+            "description": "The continuous integration or delivery environment where this artifact is downloaded.",
+            "in": "header",
+            "name": "x-artifact-client-ci",
+            "schema": {
+              "description": "The continuous integration or delivery environment where this artifact is downloaded.",
+              "example": "VERCEL",
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "description": "1 if the client is an interactive shell. Otherwise 0",
+            "in": "header",
+            "name": "x-artifact-client-interactive",
+            "schema": {
+              "description": "1 if the client is an interactive shell. Otherwise 0",
+              "example": 0,
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The artifact hash",
+            "in": "path",
+            "name": "hash",
+            "required": true,
+            "schema": {
+              "description": "The artifact hash",
+              "example": "12HKQaOmR5t5Uy6vdcQsNIiZgHGB",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An octet stream response that will be piped to the response stream.",
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "The artifact was found and is downloaded as a stream. Content-Length should be verified."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid.\nOne of the provided values in the headers is invalid"
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "The customer has reached their spend cap limit and has been paused. An owner can disable the cap or raise the limit in settings.\nThe Remote Caching usage limit has been reached for this account for this billing cycle.\nRemote Caching has been disabled for this team or user. An owner can enable it in the billing settings.\nYou do not have permission to access this resource."
+          },
+          "404": {
+            "description": "The artifact was not found"
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v8/artifacts/status": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "status",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "disabled",
+                            "enabled",
+                            "over_limit",
+                            "paused"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": ""
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v8/artifacts": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteAllArtifacts",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "deletedCount": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "deletedCount"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success. All cache artifacts for the account were deleted."
+          },
+          "400": {
+            "description": ""
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PUT /v8/artifacts/{hash}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "uploadArtifact",
+        "parameters": [
+          {
+            "description": "The artifact size in bytes",
+            "in": "header",
+            "name": "Content-Length",
+            "required": true,
+            "schema": {
+              "description": "The artifact size in bytes",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The time taken to generate the uploaded artifact in milliseconds.",
+            "in": "header",
+            "name": "x-artifact-duration",
+            "required": false,
+            "schema": {
+              "description": "The time taken to generate the uploaded artifact in milliseconds.",
+              "example": 400,
+              "type": "number"
+            }
+          },
+          {
+            "description": "The continuous integration or delivery environment where this artifact was generated.",
+            "in": "header",
+            "name": "x-artifact-client-ci",
+            "required": false,
+            "schema": {
+              "description": "The continuous integration or delivery environment where this artifact was generated.",
+              "example": "VERCEL",
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "description": "1 if the client is an interactive shell. Otherwise 0",
+            "in": "header",
+            "name": "x-artifact-client-interactive",
+            "required": false,
+            "schema": {
+              "description": "1 if the client is an interactive shell. Otherwise 0",
+              "example": 0,
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The base64 encoded tag for this artifact. The value is sent back to clients when the artifact is downloaded as the header `x-artifact-tag`",
+            "in": "header",
+            "name": "x-artifact-tag",
+            "required": false,
+            "schema": {
+              "description": "The base64 encoded tag for this artifact. The value is sent back to clients when the artifact is downloaded as the header `x-artifact-tag`",
+              "example": "Tc0BmHvJYMIYJ62/zx87YqO0Flxk+5Ovip25NY825CQ=",
+              "maxLength": 600,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The SHA of the source control revision that generated this artifact.",
+            "in": "header",
+            "name": "x-artifact-sha",
+            "required": false,
+            "schema": {
+              "description": "The SHA of the source control revision that generated this artifact.",
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "description": "A hash representing uncommitted changes in the working directory when this artifact was generated.",
+            "in": "header",
+            "name": "x-artifact-dirty-hash",
+            "required": false,
+            "schema": {
+              "description": "A hash representing uncommitted changes in the working directory when this artifact was generated.",
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The artifact hash",
+            "in": "path",
+            "name": "hash",
+            "required": true,
+            "schema": {
+              "description": "The artifact hash",
+              "example": "12HKQaOmR5t5Uy6vdcQsNIiZgHGB",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "format": "binary",
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "urls": {
+                      "description": "Array of URLs where the artifact was updated",
+                      "example": [
+                        "https://api.vercel.com/v2/now/artifact/12HKQaOmR5t5Uy6vdcQsNIiZgHGB"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "urls"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "File successfully uploaded"
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid.\nOne of the provided values in the headers is invalid\nFile size is not valid"
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "The customer has reached their spend cap limit and has been paused. An owner can disable the cap or raise the limit in settings.\nThe Remote Caching usage limit has been reached for this account for this billing cycle.\nRemote Caching has been disabled for this team or user. An owner can enable it in the billing settings.\nYou do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

@@ -1,0 +1,2371 @@
+{
+  "existing": {
+    "global_config": {
+      "GLOBAL_CONFIG00": {
+        "createdAt": 150,
+        "createdBy": "s97",
+        "deletedAt": 152,
+        "digest": "s99",
+        "id": "GLOBAL_CONFIG00",
+        "itemCount": 155,
+        "items": {},
+        "ownerId": "s9d",
+        "purpose": "s9e",
+        "schema": {},
+        "sizeInBytes": 160,
+        "slug": "sa1",
+        "syncedToDynamoAt": 162,
+        "transfer": {},
+        "updatedAt": 164,
+        "backup_id": "BACKUP01",
+        "edge_config_backup_version_id": "EDGE_CONFIG_BACKUP_VERSION01"
+      },
+      "GLOBAL_CONFIG01": {
+        "createdAt": 300,
+        "createdBy": "s12d",
+        "deletedAt": 302,
+        "digest": "s12f",
+        "id": "GLOBAL_CONFIG01",
+        "itemCount": 305,
+        "items": {},
+        "ownerId": "s133",
+        "purpose": "s134",
+        "schema": {},
+        "sizeInBytes": 310,
+        "slug": "s137",
+        "syncedToDynamoAt": 312,
+        "transfer": {},
+        "updatedAt": 314,
+        "backup_id": "BACKUP01",
+        "edge_config_backup_version_id": "EDGE_CONFIG_BACKUP_VERSION01"
+      },
+      "GLOBAL_CONFIG02": {
+        "createdAt": 450,
+        "createdBy": "s1c3",
+        "deletedAt": 452,
+        "digest": "s1c5",
+        "id": "GLOBAL_CONFIG02",
+        "itemCount": 455,
+        "items": {},
+        "ownerId": "s1c9",
+        "purpose": "s1ca",
+        "schema": {},
+        "sizeInBytes": 460,
+        "slug": "s1cd",
+        "syncedToDynamoAt": 462,
+        "transfer": {},
+        "updatedAt": 464,
+        "backup_id": "BACKUP01",
+        "edge_config_backup_version_id": "EDGE_CONFIG_BACKUP_VERSION01"
+      }
+    }
+  },
+  "new": {
+    "global_config": {
+      "global_config_ref01": {
+        "createdAt": 600,
+        "createdBy": "s259",
+        "deletedAt": 602,
+        "digest": "s25b",
+        "itemCount": 605,
+        "items": {},
+        "ownerId": "s25f",
+        "purpose": "s260",
+        "schema": {},
+        "sizeInBytes": 610,
+        "slug": "s263",
+        "syncedToDynamoAt": 612,
+        "transfer": {},
+        "updatedAt": 614
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/global-config/{edgeConfigId}/backups/{edgeConfigBackupVersionId}/restore": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "restoreEdgeConfigBackup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "pattern": "^ecfg_",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "edgeConfigBackupVersionId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "digest": {
+                      "type": "string"
+                    },
+                    "previousDigest": {
+                      "type": "string"
+                    },
+                    "restoredFrom": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "ok"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "digest",
+                    "previousDigest",
+                    "restoredFrom",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "412": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/global-config/{edgeConfigId}/schema": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "patchEdgeConfigSchema",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "dryRun",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "definition": {}
+                },
+                "required": [
+                  "definition"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The JSON schema uploaded by the user",
+                  "nullable": true,
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/global-config/{edgeConfigId}/token": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createEdgeConfigToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "pattern": "^ecfg_",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "label": {
+                    "maxLength": 52,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "label"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "token"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/global-config": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createEdgeConfig",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "items": {
+                    "additionalProperties": {},
+                    "type": "object"
+                  },
+                  "slug": {
+                    "maxLength": 64,
+                    "pattern": "^[\\w-]+$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "slug"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A Global Config",
+                  "properties": {
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "createdBy": {
+                      "description": "The ID of the user who created the Global Config, optional because it is not always set.",
+                      "type": "string"
+                    },
+                    "deletedAt": {
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "digest": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "itemCount": {
+                      "type": "number"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "purpose": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "projectId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "flags"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "projectId",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "resourceId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "experimentation"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "resourceId",
+                            "type"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "schema": {
+                      "type": "object"
+                    },
+                    "sizeInBytes": {
+                      "type": "number"
+                    },
+                    "slug": {
+                      "description": "Name for the Global Config Names are not unique. Must start with an alphabetic character and can contain only alphanumeric characters and underscores).",
+                      "type": "string"
+                    },
+                    "syncedToDynamoAt": {
+                      "description": "Timestamp of when the Global Config was synced to DynamoDB initially. It is only set when syncing the entire Global Config, not when updating.",
+                      "type": "number"
+                    },
+                    "transfer": {
+                      "description": "Keeps track of the current state of the Global Config while it gets transferred.",
+                      "properties": {
+                        "doneAt": {
+                          "nullable": true,
+                          "type": "number"
+                        },
+                        "fromAccountId": {
+                          "type": "string"
+                        },
+                        "startedAt": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "doneAt",
+                        "fromAccountId",
+                        "startedAt"
+                      ],
+                      "type": "object"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "digest",
+                    "id",
+                    "itemCount",
+                    "ownerId",
+                    "sizeInBytes",
+                    "slug",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/global-config/{edgeConfigId}/backups": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getEdgeConfigBackups",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "next",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "maximum": 50,
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "metadata",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "backups": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "lastModified": {
+                            "type": "number"
+                          },
+                          "metadata": {
+                            "properties": {
+                              "itemsBytes": {
+                                "type": "number"
+                              },
+                              "itemsCount": {
+                                "type": "number"
+                              },
+                              "updatedAt": {
+                                "type": "string"
+                              },
+                              "updatedBy": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "lastModified"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pagination": {
+                      "properties": {
+                        "hasNext": {
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "type": "boolean"
+                        },
+                        "next": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "hasNext"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "backups",
+                    "pagination"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/global-config/{edgeConfigId}/backups/{edgeConfigBackupVersionId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getEdgeConfigBackup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "edgeConfigBackupVersionId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "description": "The object the API responds with when requesting a Global Config backup",
+                      "properties": {
+                        "backup": {
+                          "properties": {
+                            "digest": {
+                              "type": "string"
+                            },
+                            "items": {
+                              "additionalProperties": {
+                                "properties": {
+                                  "createdAt": {
+                                    "type": "number"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "updatedAt": {
+                                    "type": "number"
+                                  },
+                                  "value": {
+                                    "nullable": true,
+                                    "oneOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "additionalProperties": {
+                                          "nullable": true,
+                                          "oneOf": "[Circular *paths./v1/global-config/{edgeConfigId}/items.get.responses.200.content.application/json.schema.items.properties.value.oneOf]"
+                                        },
+                                        "type": "object"
+                                      },
+                                      {
+                                        "items": {
+                                          "nullable": true,
+                                          "oneOf": "[Circular *paths./v1/global-config/{edgeConfigId}/items.get.responses.200.content.application/json.schema.items.properties.value.oneOf]"
+                                        },
+                                        "type": "array"
+                                      },
+                                      {
+                                        "enum": [
+                                          false,
+                                          true
+                                        ],
+                                        "type": "boolean"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "createdAt",
+                                  "updatedAt",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "object"
+                            },
+                            "slug": {
+                              "description": "Name for the Global Config Names are not unique. Must start with an alphabetic character and can contain only alphanumeric characters and underscores).",
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "digest",
+                            "items",
+                            "slug",
+                            "updatedAt"
+                          ],
+                          "type": "object"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "lastModified": {
+                          "type": "number"
+                        },
+                        "metadata": {
+                          "properties": {
+                            "itemsBytes": {
+                              "type": "number"
+                            },
+                            "itemsCount": {
+                              "type": "number"
+                            },
+                            "updatedAt": {
+                              "type": "string"
+                            },
+                            "updatedBy": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "user": {
+                          "properties": {
+                            "avatar": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "username": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "id",
+                            "username"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "backup",
+                        "id",
+                        "lastModified",
+                        "metadata"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "backup": {
+                          "properties": {
+                            "digest": {
+                              "type": "string"
+                            },
+                            "items": {
+                              "additionalProperties": {
+                                "properties": {
+                                  "createdAt": {
+                                    "type": "number"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "updatedAt": {
+                                    "type": "number"
+                                  },
+                                  "value": {
+                                    "nullable": true,
+                                    "oneOf": {
+                                      "$ref": "#/responses/200/content/application~1json/schema/oneOf/0/properties/backup/properties/items/additionalProperties/properties/value/oneOf"
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "createdAt",
+                                  "updatedAt",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "object"
+                            },
+                            "slug": {
+                              "description": "Name for the Global Config Names are not unique. Must start with an alphabetic character and can contain only alphanumeric characters and underscores).",
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "digest",
+                            "items",
+                            "slug",
+                            "updatedAt"
+                          ],
+                          "type": "object"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "lastModified": {
+                          "type": "number"
+                        },
+                        "metadata": {
+                          "properties": {
+                            "itemsBytes": {
+                              "type": "number"
+                            },
+                            "itemsCount": {
+                              "type": "number"
+                            },
+                            "updatedAt": {
+                              "type": "string"
+                            },
+                            "updatedBy": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "user": {
+                          "properties": {
+                            "avatar": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "username": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "id",
+                            "username"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "backup",
+                        "id",
+                        "lastModified",
+                        "metadata",
+                        "user"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/global-config/{edgeConfigId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getEdgeConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The Global Config.",
+                  "properties": {
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "createdBy": {
+                      "description": "The ID of the user who created the Global Config, optional because it is not always set.",
+                      "type": "string"
+                    },
+                    "deletedAt": {
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "digest": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "itemCount": {
+                      "type": "number"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "purpose": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "projectId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "flags"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "projectId",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "resourceId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "experimentation"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "resourceId",
+                            "type"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "schema": {
+                      "type": "object"
+                    },
+                    "sizeInBytes": {
+                      "type": "number"
+                    },
+                    "slug": {
+                      "description": "Name for the Global Config Names are not unique. Must start with an alphabetic character and can contain only alphanumeric characters and underscores).",
+                      "type": "string"
+                    },
+                    "syncedToDynamoAt": {
+                      "description": "Timestamp of when the Global Config was synced to DynamoDB initially. It is only set when syncing the entire Global Config, not when updating.",
+                      "type": "number"
+                    },
+                    "transfer": {
+                      "description": "Keeps track of the current state of the Global Config while it gets transferred.",
+                      "properties": {
+                        "doneAt": {
+                          "nullable": true,
+                          "type": "number"
+                        },
+                        "fromAccountId": {
+                          "type": "string"
+                        },
+                        "startedAt": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "doneAt",
+                        "fromAccountId",
+                        "startedAt"
+                      ],
+                      "type": "object"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "digest",
+                    "id",
+                    "itemCount",
+                    "ownerId",
+                    "sizeInBytes",
+                    "slug",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The Global Config."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/global-config/{edgeConfigId}/schema": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getEdgeConfigSchema",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The Global Config.",
+                  "nullable": true,
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The Global Config."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/global-config": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getEdgeConfigs",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "List of all global configs.",
+                  "properties": {
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "createdBy": {
+                      "description": "The ID of the user who created the Global Config, optional because it is not always set.",
+                      "type": "string"
+                    },
+                    "deletedAt": {
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "digest": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "itemCount": {
+                      "type": "number"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "purpose": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "projectId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "flags"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "projectId",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "resourceId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "experimentation"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "resourceId",
+                            "type"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "schema": {
+                      "type": "object"
+                    },
+                    "sizeInBytes": {
+                      "type": "number"
+                    },
+                    "slug": {
+                      "description": "Name for the Global Config Names are not unique. Must start with an alphabetic character and can contain only alphanumeric characters and underscores).",
+                      "type": "string"
+                    },
+                    "syncedToDynamoAt": {
+                      "description": "Timestamp of when the Global Config was synced to DynamoDB initially. It is only set when syncing the entire Global Config, not when updating.",
+                      "type": "number"
+                    },
+                    "transfer": {
+                      "description": "Keeps track of the current state of the Global Config while it gets transferred.",
+                      "properties": {
+                        "doneAt": {
+                          "nullable": true,
+                          "type": "number"
+                        },
+                        "fromAccountId": {
+                          "type": "string"
+                        },
+                        "startedAt": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "doneAt",
+                        "fromAccountId",
+                        "startedAt"
+                      ],
+                      "type": "object"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "digest",
+                    "id",
+                    "itemCount",
+                    "ownerId",
+                    "sizeInBytes",
+                    "slug",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "List of all global configs."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/global-config/{edgeConfigId}/items": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "patchEdgeConfigItems",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "pattern": "^ecfg_",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "items": {
+                    "items": {
+                      "oneOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "properties": {
+                                "operation": {}
+                              },
+                              "required": [
+                                "operation",
+                                "key",
+                                "value"
+                              ]
+                            },
+                            {
+                              "properties": {
+                                "operation": {
+                                  "enum": [
+                                    "update",
+                                    "upsert"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "operation",
+                                "key",
+                                "value"
+                              ]
+                            },
+                            {
+                              "properties": {
+                                "operation": {
+                                  "enum": [
+                                    "update",
+                                    "upsert"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "operation",
+                                "key",
+                                "description"
+                              ]
+                            },
+                            {
+                              "not": {
+                                "required": [
+                                  "value",
+                                  "description"
+                                ]
+                              },
+                              "properties": {
+                                "operation": {}
+                              },
+                              "required": [
+                                "operation",
+                                "key"
+                              ]
+                            }
+                          ],
+                          "properties": {
+                            "description": {
+                              "oneOf": [
+                                {
+                                  "maxLength": 512,
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "key": {
+                              "maxLength": 256,
+                              "pattern": "^[\\w-]+$",
+                              "type": "string"
+                            },
+                            "operation": {
+                              "enum": [
+                                "create",
+                                "update",
+                                "upsert",
+                                "delete"
+                              ]
+                            },
+                            "value": {}
+                          },
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "items"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "412": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/global-config/{edgeConfigId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteEdgeConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/global-config/{edgeConfigId}/schema": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteEdgeConfigSchema",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/global-config/{edgeConfigId}/tokens": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteEdgeConfigTokens",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "pattern": "^ecfg_",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "anyOf": [
+                  {
+                    "required": [
+                      "tokens"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "ids"
+                    ]
+                  }
+                ],
+                "properties": {
+                  "ids": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "tokens": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PUT /v1/global-config/{edgeConfigId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateEdgeConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "slug": {
+                    "maxLength": 64,
+                    "pattern": "^[\\w-]+$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "slug"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A Global Config",
+                  "properties": {
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "createdBy": {
+                      "description": "The ID of the user who created the Global Config, optional because it is not always set.",
+                      "type": "string"
+                    },
+                    "deletedAt": {
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "digest": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "itemCount": {
+                      "type": "number"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "purpose": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "projectId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "flags"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "projectId",
+                            "type"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "resourceId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "experimentation"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "resourceId",
+                            "type"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "schema": {
+                      "type": "object"
+                    },
+                    "sizeInBytes": {
+                      "type": "number"
+                    },
+                    "slug": {
+                      "description": "Name for the Global Config Names are not unique. Must start with an alphabetic character and can contain only alphanumeric characters and underscores).",
+                      "type": "string"
+                    },
+                    "syncedToDynamoAt": {
+                      "description": "Timestamp of when the Global Config was synced to DynamoDB initially. It is only set when syncing the entire Global Config, not when updating.",
+                      "type": "number"
+                    },
+                    "transfer": {
+                      "description": "Keeps track of the current state of the Global Config while it gets transferred.",
+                      "properties": {
+                        "doneAt": {
+                          "nullable": true,
+                          "type": "number"
+                        },
+                        "fromAccountId": {
+                          "type": "string"
+                        },
+                        "startedAt": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "doneAt",
+                        "fromAccountId",
+                        "startedAt"
+                      ],
+                      "type": "object"
+                    },
+                    "updatedAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "digest",
+                    "id",
+                    "itemCount",
+                    "ownerId",
+                    "sizeInBytes",
+                    "slug",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

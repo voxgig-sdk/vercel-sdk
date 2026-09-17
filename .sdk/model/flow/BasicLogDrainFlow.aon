@@ -1,0 +1,81 @@
+# BasicLogDrainFlow
+
+main: kit: flow: BasicLogDrainFlow:
+{
+  entity: "log_drain",
+  kind: "basic",
+  name: "BasicLogDrainFlow",
+  step: [
+    {
+      input: {
+        ref: "log_drain_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "log_drain_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "log_drain_ref01",
+        srcdatavar: "log_drain_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "log_drain01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-log_drain_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "log_drain_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "log_drain01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "log_drain_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLogDrainFlow"
+}

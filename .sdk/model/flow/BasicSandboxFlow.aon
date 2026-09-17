@@ -1,0 +1,112 @@
+# BasicSandboxFlow
+
+main: kit: flow: BasicSandboxFlow:
+{
+  entity: "sandbox",
+  kind: "basic",
+  name: "BasicSandboxFlow",
+  step: [
+    {
+      input: {
+        ref: "sandbox_ref01"
+      }
+
+      match: {
+        session_id: "session01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        session_id: "session01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "sandbox_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "sandbox_ref01",
+        srcdatavar: "sandbox_ref01_data",
+        suffix: "_up0",
+        textfield: "command"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-sandbox_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "sandbox_ref01",
+        srcdatavar: "sandbox_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "sandbox01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-sandbox_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "sandbox_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "sandbox01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        session_id: "session01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "sandbox_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSandboxFlow"
+}

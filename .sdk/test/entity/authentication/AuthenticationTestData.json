@@ -1,0 +1,1262 @@
+{
+  "existing": {
+    "authentication": {
+      "AUTHENTICATION00": {
+        "activeAt": 140,
+        "createdAt": 141,
+        "expiresAt": 142,
+        "id": "AUTHENTICATION00",
+        "leakedAt": 144,
+        "leakedUrl": "s91",
+        "name": "s92",
+        "origin": "s93",
+        "prefix": "s94",
+        "projectId": "s95",
+        "revokedAt": 150,
+        "scopes": [],
+        "suffix": "s98",
+        "type": "s99",
+        "token_id": "TOKEN01"
+      },
+      "AUTHENTICATION01": {
+        "activeAt": 280,
+        "createdAt": 281,
+        "expiresAt": 282,
+        "id": "AUTHENTICATION01",
+        "leakedAt": 284,
+        "leakedUrl": "s11d",
+        "name": "s11e",
+        "origin": "s11f",
+        "prefix": "s120",
+        "projectId": "s121",
+        "revokedAt": 290,
+        "scopes": [],
+        "suffix": "s124",
+        "type": "s125",
+        "token_id": "TOKEN01"
+      },
+      "AUTHENTICATION02": {
+        "activeAt": 420,
+        "createdAt": 421,
+        "expiresAt": 422,
+        "id": "AUTHENTICATION02",
+        "leakedAt": 424,
+        "leakedUrl": "s1a9",
+        "name": "s1aa",
+        "origin": "s1ab",
+        "prefix": "s1ac",
+        "projectId": "s1ad",
+        "revokedAt": 430,
+        "scopes": [],
+        "suffix": "s1b0",
+        "type": "s1b1",
+        "token_id": "TOKEN01"
+      }
+    }
+  },
+  "new": {
+    "authentication": {
+      "authentication_ref01": {
+        "activeAt": 560,
+        "createdAt": 561,
+        "expiresAt": 562,
+        "leakedAt": 564,
+        "leakedUrl": "s235",
+        "name": "s236",
+        "origin": "s237",
+        "prefix": "s238",
+        "projectId": "s239",
+        "revokedAt": 570,
+        "scopes": [],
+        "suffix": "s23c",
+        "type": "s23d"
+      }
+    }
+  },
+  "requests": {
+    "POST /v3/user/tokens": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createAuthToken",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "expiresAt": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "description": "The ID of the project to scope this token to",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Successful response.",
+                  "properties": {
+                    "bearerToken": {
+                      "description": "The authentication token's actual value. This token is only provided in this response, and can never be retrieved again in the future. Be sure to save it somewhere safe!",
+                      "example": "uRKJSTt0L4RaSkiMj41QTkxM",
+                      "type": "string"
+                    },
+                    "token": {
+                      "description": "Authentication token metadata.",
+                      "properties": {
+                        "activeAt": {
+                          "description": "Timestamp (in milliseconds) of when the token was most recently used.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "createdAt": {
+                          "description": "Timestamp (in milliseconds) of when the token was created.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "expiresAt": {
+                          "description": "Timestamp (in milliseconds) of when the token expires.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "id": {
+                          "description": "The unique identifier of the token.",
+                          "example": "5d9f2ebd38ddca62e5d51e9c1704c72530bdc8bfdd41e782a6687c48399e8391",
+                          "type": "string"
+                        },
+                        "leakedAt": {
+                          "description": "Timestamp (in milliseconds) of when the token was marked as leaked.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "leakedUrl": {
+                          "description": "URL where the token was discovered as leaked.",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The human-readable name of the token.",
+                          "type": "string"
+                        },
+                        "origin": {
+                          "description": "The origin of how the token was created.",
+                          "example": "github",
+                          "type": "string"
+                        },
+                        "prefix": {
+                          "description": "The token's prefix, for identification purposes.",
+                          "example": "vcp_",
+                          "type": "string"
+                        },
+                        "revokedAt": {
+                          "description": "Timestamp (in milliseconds) of when the token was revoked.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "scopes": {
+                          "description": "The access scopes granted to the token.",
+                          "items": {
+                            "oneOf": [
+                              {
+                                "description": "The access scopes granted to the token.",
+                                "properties": {
+                                  "createdAt": {
+                                    "type": "number"
+                                  },
+                                  "expiresAt": {
+                                    "type": "number"
+                                  },
+                                  "origin": {
+                                    "enum": [
+                                      "app",
+                                      "apple",
+                                      "bitbucket",
+                                      "chatgpt",
+                                      "email",
+                                      "emu",
+                                      "github",
+                                      "github-webhook",
+                                      "gitlab",
+                                      "google",
+                                      "invite",
+                                      "manual",
+                                      "otp",
+                                      "passkey",
+                                      "saml",
+                                      "sms",
+                                      "token-exchange-oidc"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "sudo": {
+                                    "properties": {
+                                      "expiresAt": {
+                                        "type": "number"
+                                      },
+                                      "origin": {
+                                        "description": "Possible step-up auth origins",
+                                        "enum": [
+                                          "email-otp",
+                                          "otp",
+                                          "recovery-code",
+                                          "totp",
+                                          "webauthn"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "verifiedAt": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "expiresAt",
+                                      "origin"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "user"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "createdAt",
+                                  "type"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "description": "The access scopes granted to the token.",
+                                "properties": {
+                                  "createdAt": {
+                                    "type": "number"
+                                  },
+                                  "expiresAt": {
+                                    "type": "number"
+                                  },
+                                  "origin": {
+                                    "enum": [
+                                      "app",
+                                      "apple",
+                                      "bitbucket",
+                                      "chatgpt",
+                                      "email",
+                                      "emu",
+                                      "github",
+                                      "github-webhook",
+                                      "gitlab",
+                                      "google",
+                                      "invite",
+                                      "manual",
+                                      "otp",
+                                      "passkey",
+                                      "saml",
+                                      "sms",
+                                      "token-exchange-oidc"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "teamId": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "team"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "createdAt",
+                                  "teamId",
+                                  "type"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "type": "array"
+                        },
+                        "suffix": {
+                          "description": "The last few characters of the token, for identification purposes.",
+                          "example": "abc123",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "The type of the token.",
+                          "example": "oauth2-token",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "activeAt",
+                        "createdAt",
+                        "id",
+                        "name",
+                        "type"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "bearerToken",
+                    "token"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/integrations/sso/token": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "exchange-sso-token",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "client_id": {
+                        "description": "The integration client id",
+                        "type": "string"
+                      },
+                      "client_secret": {
+                        "description": "The integration client secret",
+                        "type": "string"
+                      },
+                      "code": {
+                        "description": "The sensitive code received from Vercel",
+                        "type": "string"
+                      },
+                      "grant_type": {
+                        "description": "The grant type, when using x-www-form-urlencoded content type",
+                        "enum": [
+                          "authorization_code"
+                        ],
+                        "type": "string"
+                      },
+                      "redirect_uri": {
+                        "description": "The integration redirect URI",
+                        "type": "string"
+                      },
+                      "state": {
+                        "description": "The state received from the initialization request",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "code",
+                      "client_id",
+                      "client_secret",
+                      "grant_type"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "client_id": {
+                        "description": "The integration client id",
+                        "type": "string"
+                      },
+                      "client_secret": {
+                        "description": "The integration client secret",
+                        "type": "string"
+                      },
+                      "grant_type": {
+                        "description": "The grant type, when using x-www-form-urlencoded content type",
+                        "enum": [
+                          "refresh_token"
+                        ],
+                        "type": "string"
+                      },
+                      "refresh_token": {
+                        "description": "The refresh token received from previous token exchange",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "refresh_token",
+                      "client_id",
+                      "client_secret",
+                      "grant_type"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "access_token": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "expires_in": {
+                          "type": "number"
+                        },
+                        "id_token": {
+                          "type": "string"
+                        },
+                        "refresh_token": {
+                          "type": "string"
+                        },
+                        "token_type": {
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "access_token",
+                        "id_token",
+                        "token_type"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "access_token": {
+                          "type": "string"
+                        },
+                        "expires_in": {
+                          "type": "number"
+                        },
+                        "id_token": {
+                          "type": "string"
+                        },
+                        "refresh_token": {
+                          "type": "string"
+                        },
+                        "token_type": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "access_token",
+                        "expires_in",
+                        "id_token",
+                        "refresh_token",
+                        "token_type"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "403": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v5/user/tokens/{tokenId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAuthToken",
+        "parameters": [
+          {
+            "description": "The identifier of the token to retrieve. The special value \"current\" may be supplied, which returns the metadata for the token that the current HTTP request is authenticated with.",
+            "in": "path",
+            "name": "tokenId",
+            "required": true,
+            "schema": {
+              "description": "The identifier of the token to retrieve. The special value \"current\" may be supplied, which returns the metadata for the token that the current HTTP request is authenticated with.",
+              "example": "5d9f2ebd38ddca62e5d51e9c1704c72530bdc8bfdd41e782a6687c48399e8391",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Successful response.",
+                  "properties": {
+                    "token": {
+                      "description": "Authentication token metadata.",
+                      "properties": {
+                        "activeAt": {
+                          "description": "Timestamp (in milliseconds) of when the token was most recently used.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "createdAt": {
+                          "description": "Timestamp (in milliseconds) of when the token was created.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "expiresAt": {
+                          "description": "Timestamp (in milliseconds) of when the token expires.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "id": {
+                          "description": "The unique identifier of the token.",
+                          "example": "5d9f2ebd38ddca62e5d51e9c1704c72530bdc8bfdd41e782a6687c48399e8391",
+                          "type": "string"
+                        },
+                        "leakedAt": {
+                          "description": "Timestamp (in milliseconds) of when the token was marked as leaked.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "leakedUrl": {
+                          "description": "URL where the token was discovered as leaked.",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The human-readable name of the token.",
+                          "type": "string"
+                        },
+                        "origin": {
+                          "description": "The origin of how the token was created.",
+                          "example": "github",
+                          "type": "string"
+                        },
+                        "prefix": {
+                          "description": "The token's prefix, for identification purposes.",
+                          "example": "vcp_",
+                          "type": "string"
+                        },
+                        "revokedAt": {
+                          "description": "Timestamp (in milliseconds) of when the token was revoked.",
+                          "example": 1632816536002,
+                          "type": "number"
+                        },
+                        "scopes": {
+                          "description": "The access scopes granted to the token.",
+                          "items": {
+                            "oneOf": [
+                              {
+                                "description": "The access scopes granted to the token.",
+                                "properties": {
+                                  "createdAt": {
+                                    "type": "number"
+                                  },
+                                  "expiresAt": {
+                                    "type": "number"
+                                  },
+                                  "origin": {
+                                    "enum": [
+                                      "app",
+                                      "apple",
+                                      "bitbucket",
+                                      "chatgpt",
+                                      "email",
+                                      "emu",
+                                      "github",
+                                      "github-webhook",
+                                      "gitlab",
+                                      "google",
+                                      "invite",
+                                      "manual",
+                                      "otp",
+                                      "passkey",
+                                      "saml",
+                                      "sms",
+                                      "token-exchange-oidc"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "sudo": {
+                                    "properties": {
+                                      "expiresAt": {
+                                        "type": "number"
+                                      },
+                                      "origin": {
+                                        "description": "Possible step-up auth origins",
+                                        "enum": [
+                                          "email-otp",
+                                          "otp",
+                                          "recovery-code",
+                                          "totp",
+                                          "webauthn"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "verifiedAt": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "expiresAt",
+                                      "origin"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "user"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "createdAt",
+                                  "type"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "description": "The access scopes granted to the token.",
+                                "properties": {
+                                  "createdAt": {
+                                    "type": "number"
+                                  },
+                                  "expiresAt": {
+                                    "type": "number"
+                                  },
+                                  "origin": {
+                                    "enum": [
+                                      "app",
+                                      "apple",
+                                      "bitbucket",
+                                      "chatgpt",
+                                      "email",
+                                      "emu",
+                                      "github",
+                                      "github-webhook",
+                                      "gitlab",
+                                      "google",
+                                      "invite",
+                                      "manual",
+                                      "otp",
+                                      "passkey",
+                                      "saml",
+                                      "sms",
+                                      "token-exchange-oidc"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "teamId": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "team"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "createdAt",
+                                  "teamId",
+                                  "type"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "type": "array"
+                        },
+                        "suffix": {
+                          "description": "The last few characters of the token, for identification purposes.",
+                          "example": "abc123",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "The type of the token.",
+                          "example": "oauth2-token",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "activeAt",
+                        "createdAt",
+                        "id",
+                        "name",
+                        "type"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "token"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": "Token not found with the requested `tokenId`."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v6/user/tokens": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listAuthTokens",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "pagination": {
+                          "properties": {
+                            "count": {
+                              "type": "number"
+                            },
+                            "next": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "prev": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "count",
+                            "next",
+                            "prev"
+                          ],
+                          "type": "object"
+                        },
+                        "tokens": {
+                          "items": {
+                            "description": "Authentication token metadata.",
+                            "properties": {
+                              "activeAt": {
+                                "description": "Timestamp (in milliseconds) of when the token was most recently used.",
+                                "example": 1632816536002,
+                                "type": "number"
+                              },
+                              "createdAt": {
+                                "description": "Timestamp (in milliseconds) of when the token was created.",
+                                "example": 1632816536002,
+                                "type": "number"
+                              },
+                              "expiresAt": {
+                                "description": "Timestamp (in milliseconds) of when the token expires.",
+                                "example": 1632816536002,
+                                "type": "number"
+                              },
+                              "id": {
+                                "description": "The unique identifier of the token.",
+                                "example": "5d9f2ebd38ddca62e5d51e9c1704c72530bdc8bfdd41e782a6687c48399e8391",
+                                "type": "string"
+                              },
+                              "leakedAt": {
+                                "description": "Timestamp (in milliseconds) of when the token was marked as leaked.",
+                                "example": 1632816536002,
+                                "type": "number"
+                              },
+                              "leakedUrl": {
+                                "description": "URL where the token was discovered as leaked.",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "The human-readable name of the token.",
+                                "type": "string"
+                              },
+                              "origin": {
+                                "description": "The origin of how the token was created.",
+                                "example": "github",
+                                "type": "string"
+                              },
+                              "prefix": {
+                                "description": "The token's prefix, for identification purposes.",
+                                "example": "vcp_",
+                                "type": "string"
+                              },
+                              "revokedAt": {
+                                "description": "Timestamp (in milliseconds) of when the token was revoked.",
+                                "example": 1632816536002,
+                                "type": "number"
+                              },
+                              "scopes": {
+                                "description": "The access scopes granted to the token.",
+                                "items": {
+                                  "oneOf": [
+                                    {
+                                      "description": "The access scopes granted to the token.",
+                                      "properties": {
+                                        "createdAt": {
+                                          "type": "number"
+                                        },
+                                        "expiresAt": {
+                                          "type": "number"
+                                        },
+                                        "origin": {
+                                          "enum": [
+                                            "app",
+                                            "apple",
+                                            "bitbucket",
+                                            "chatgpt",
+                                            "email",
+                                            "emu",
+                                            "github",
+                                            "github-webhook",
+                                            "gitlab",
+                                            "google",
+                                            "invite",
+                                            "manual",
+                                            "otp",
+                                            "passkey",
+                                            "saml",
+                                            "sms",
+                                            "token-exchange-oidc"
+                                          ],
+                                          "type": "string"
+                                        },
+                                        "sudo": {
+                                          "properties": {
+                                            "expiresAt": {
+                                              "type": "number"
+                                            },
+                                            "origin": {
+                                              "description": "Possible step-up auth origins",
+                                              "enum": [
+                                                "email-otp",
+                                                "otp",
+                                                "recovery-code",
+                                                "totp",
+                                                "webauthn"
+                                              ],
+                                              "type": "string"
+                                            },
+                                            "verifiedAt": {
+                                              "type": "number"
+                                            }
+                                          },
+                                          "required": [
+                                            "expiresAt",
+                                            "origin"
+                                          ],
+                                          "type": "object"
+                                        },
+                                        "type": {
+                                          "enum": [
+                                            "user"
+                                          ],
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "createdAt",
+                                        "type"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    {
+                                      "description": "The access scopes granted to the token.",
+                                      "properties": {
+                                        "createdAt": {
+                                          "type": "number"
+                                        },
+                                        "expiresAt": {
+                                          "type": "number"
+                                        },
+                                        "origin": {
+                                          "enum": [
+                                            "app",
+                                            "apple",
+                                            "bitbucket",
+                                            "chatgpt",
+                                            "email",
+                                            "emu",
+                                            "github",
+                                            "github-webhook",
+                                            "gitlab",
+                                            "google",
+                                            "invite",
+                                            "manual",
+                                            "otp",
+                                            "passkey",
+                                            "saml",
+                                            "sms",
+                                            "token-exchange-oidc"
+                                          ],
+                                          "type": "string"
+                                        },
+                                        "teamId": {
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "enum": [
+                                            "team"
+                                          ],
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "createdAt",
+                                        "teamId",
+                                        "type"
+                                      ],
+                                      "type": "object"
+                                    }
+                                  ]
+                                },
+                                "type": "array"
+                              },
+                              "suffix": {
+                                "description": "The last few characters of the token, for identification purposes.",
+                                "example": "abc123",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "The type of the token.",
+                                "example": "oauth2-token",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "activeAt",
+                              "createdAt",
+                              "id",
+                              "name",
+                              "type"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "pagination",
+                        "tokens"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "pagination": {
+                          "description": "This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.",
+                          "properties": {
+                            "count": {
+                              "description": "Amount of items in the current page.",
+                              "example": 20,
+                              "type": "number"
+                            },
+                            "next": {
+                              "description": "Timestamp that must be used to request the next page.",
+                              "example": 1540095775951,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "prev": {
+                              "description": "Timestamp that must be used to request the previous page.",
+                              "example": 1540095775951,
+                              "nullable": true,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "count",
+                            "next",
+                            "prev"
+                          ],
+                          "type": "object"
+                        },
+                        "tokens": {
+                          "items": {
+                            "description": "Authentication token metadata.",
+                            "properties": {
+                              "$ref": "#/responses/200/content/application~1json/schema/oneOf/0/properties/tokens/items/properties"
+                            },
+                            "required": {
+                              "$ref": "#/responses/200/content/application~1json/schema/oneOf/0/properties/tokens/items/required"
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "pagination",
+                        "tokens"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": ""
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v3/user/tokens/{tokenId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteAuthToken",
+        "parameters": [
+          {
+            "description": "The identifier of the token to invalidate. The special value \"current\" may be supplied, which invalidates the token that the HTTP request was authenticated with.",
+            "in": "path",
+            "name": "tokenId",
+            "required": true,
+            "schema": {
+              "description": "The identifier of the token to invalidate. The special value \"current\" may be supplied, which invalidates the token that the HTTP request was authenticated with.",
+              "example": "5d9f2ebd38ddca62e5d51e9c1704c72530bdc8bfdd41e782a6687c48399e8391",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Authentication token successfully deleted.",
+                  "properties": {
+                    "tokenId": {
+                      "description": "The unique identifier of the token that was deleted.",
+                      "example": "5d9f2ebd38ddca62e5d51e9c1704c72530bdc8bfdd41e782a6687c48399e8391",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "tokenId"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Authentication token successfully deleted."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": "Token not found with the requested `tokenId`."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

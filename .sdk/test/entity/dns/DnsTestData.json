@@ -1,0 +1,1400 @@
+{
+  "existing": {
+    "dns": {
+      "DNS00": {
+        "comment": "s82",
+        "createdAt": 131,
+        "creator": "s84",
+        "domain": "s85",
+        "https": {},
+        "id": "DNS00",
+        "mxPriority": 136,
+        "name": "s89",
+        "recordType": "s8a",
+        "srv": {},
+        "ttl": 140,
+        "type": "s8d",
+        "value": "s8e",
+        "domain_id": "DOMAIN01",
+        "record_id": "RECORD01"
+      },
+      "DNS01": {
+        "comment": "s104",
+        "createdAt": 261,
+        "creator": "s106",
+        "domain": "s107",
+        "https": {},
+        "id": "DNS01",
+        "mxPriority": 266,
+        "name": "s10b",
+        "recordType": "s10c",
+        "srv": {},
+        "ttl": 270,
+        "type": "s10f",
+        "value": "s110",
+        "domain_id": "DOMAIN01",
+        "record_id": "RECORD01"
+      },
+      "DNS02": {
+        "comment": "s186",
+        "createdAt": 391,
+        "creator": "s188",
+        "domain": "s189",
+        "https": {},
+        "id": "DNS02",
+        "mxPriority": 396,
+        "name": "s18d",
+        "recordType": "s18e",
+        "srv": {},
+        "ttl": 400,
+        "type": "s191",
+        "value": "s192",
+        "domain_id": "DOMAIN01",
+        "record_id": "RECORD01"
+      }
+    }
+  },
+  "new": {
+    "dns": {
+      "dns_ref01": {
+        "comment": "s208",
+        "createdAt": 521,
+        "creator": "s20a",
+        "domain": "s20b",
+        "https": {},
+        "mxPriority": 526,
+        "name": "s20f",
+        "recordType": "s210",
+        "srv": {},
+        "ttl": 530,
+        "type": "s213",
+        "value": "s214"
+      }
+    }
+  },
+  "requests": {
+    "POST /v2/domains/{domain}/records": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createRecord",
+        "parameters": [
+          {
+            "description": "The domain used to create the DNS record.",
+            "in": "path",
+            "name": "domain",
+            "required": true,
+            "schema": {
+              "description": "The domain used to create the DNS record.",
+              "example": "example.com",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "A subdomain name or an empty string for the root domain.",
+                        "example": "subdomain",
+                        "type": "string"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `A`.",
+                        "enum": [
+                          "A"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "The record value must be a valid IPv4 address.",
+                        "example": "192.0.2.42",
+                        "format": "ipv4",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "A subdomain name or an empty string for the root domain.",
+                        "example": "subdomain",
+                        "type": "string"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `AAAA`.",
+                        "enum": [
+                          "AAAA"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "An AAAA record pointing to an IPv6 address.",
+                        "example": "2001:DB8::42",
+                        "format": "ipv6",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "A subdomain name or an empty string for the root domain.",
+                        "example": "subdomain",
+                        "type": "string"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `ALIAS`.",
+                        "enum": [
+                          "ALIAS"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "An ALIAS virtual record pointing to a hostname resolved to an A record on server side.",
+                        "example": "cname.vercel-dns.com",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "A subdomain name or an empty string for the root domain.",
+                        "example": "subdomain",
+                        "type": "string"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `CAA`.",
+                        "enum": [
+                          "CAA"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "A CAA record to specify which Certificate Authorities (CAs) are allowed to issue certificates for the domain.",
+                        "example": "0 issue \"letsencrypt.org\"",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "A subdomain name or an empty string for the root domain.",
+                        "example": "subdomain",
+                        "type": "string"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `CNAME`.",
+                        "enum": [
+                          "CNAME"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "A CNAME record mapping to another domain name.",
+                        "example": "cname.vercel-dns.com",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "mxPriority": {
+                        "example": 10,
+                        "maximum": 65535,
+                        "minimum": 0,
+                        "type": "number"
+                      },
+                      "name": {
+                        "description": "A subdomain name or an empty string for the root domain.",
+                        "example": "subdomain",
+                        "type": "string"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `MX`.",
+                        "enum": [
+                          "MX"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "An MX record specifying the mail server responsible for accepting messages on behalf of the domain name.",
+                        "example": "10 mail.example.com.",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value",
+                      "name",
+                      "mxPriority"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "srv": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "port": {
+                            "anyOf": [
+                              {
+                                "example": 5000,
+                                "maximum": 65535,
+                                "minimum": 0,
+                                "type": "number"
+                              }
+                            ],
+                            "nullable": true
+                          },
+                          "priority": {
+                            "anyOf": [
+                              {
+                                "example": 10,
+                                "maximum": 65535,
+                                "minimum": 0,
+                                "type": "number"
+                              }
+                            ],
+                            "nullable": true
+                          },
+                          "target": {
+                            "example": "host.example.com",
+                            "type": "string"
+                          },
+                          "weight": {
+                            "anyOf": [
+                              {
+                                "example": 10,
+                                "maximum": 65535,
+                                "minimum": 0,
+                                "type": "number"
+                              }
+                            ],
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "weight",
+                          "port",
+                          "priority",
+                          "target"
+                        ],
+                        "type": "object"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `SRV`.",
+                        "enum": [
+                          "SRV"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "name",
+                      "srv"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `TXT`.",
+                        "enum": [
+                          "TXT"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "A TXT record containing arbitrary text.",
+                        "example": "hello",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "A subdomain name.",
+                        "example": "subdomain",
+                        "type": "string"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `NS`.",
+                        "enum": [
+                          "NS"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "An NS domain value.",
+                        "example": "ns1.example.com",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comment": {
+                        "description": "A comment to add context on what this DNS record is for",
+                        "example": "used to verify ownership of domain",
+                        "maxLength": 500,
+                        "type": "string"
+                      },
+                      "https": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "params": {
+                            "example": "alpn=h2,h3",
+                            "type": "string"
+                          },
+                          "priority": {
+                            "anyOf": [
+                              {
+                                "example": 10,
+                                "maximum": 65535,
+                                "minimum": 0,
+                                "type": "number"
+                              }
+                            ],
+                            "nullable": true
+                          },
+                          "target": {
+                            "example": "host.example.com",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "priority",
+                          "target"
+                        ],
+                        "type": "object"
+                      },
+                      "ttl": {
+                        "description": "The TTL value. Must be a number between 60 and 2147483647. Default value is 60.",
+                        "example": 60,
+                        "maximum": 2147483647,
+                        "minimum": 60,
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Must be of type `HTTPS`.",
+                        "enum": [
+                          "HTTPS"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "name",
+                      "https"
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "properties": {
+                  "type": {
+                    "description": "The type of record, it could be one of the valid DNS records.",
+                    "enum": [
+                      "A",
+                      "AAAA",
+                      "ALIAS",
+                      "CAA",
+                      "CNAME",
+                      "HTTPS",
+                      "MX",
+                      "SRV",
+                      "TXT",
+                      "NS"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "uid": {
+                          "type": "string"
+                        },
+                        "updated": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "updated"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "uid": {
+                          "description": "The id of the newly created DNS record",
+                          "example": "rec_V0fra8eEgQwEpFhYG2vTzC3K",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "uid"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response showing the uid of the newly created DNS record."
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v5/domains/{domain}/records": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRecords",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "domain",
+            "required": true,
+            "schema": {
+              "example": "example.com",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of records to list from a request.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "description": "Maximum number of records to list from a request.",
+              "example": 20,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Get records created after this JavaScript timestamp.",
+            "in": "query",
+            "name": "since",
+            "required": false,
+            "schema": {
+              "description": "Get records created after this JavaScript timestamp.",
+              "example": 1609499532000,
+              "type": "string"
+            }
+          },
+          {
+            "description": "Get records created before this JavaScript timestamp.",
+            "in": "query",
+            "name": "until",
+            "required": false,
+            "schema": {
+              "description": "Get records created before this JavaScript timestamp.",
+              "example": 1612264332000,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "properties": {
+                        "records": {
+                          "items": {
+                            "properties": {
+                              "comment": {
+                                "type": "string"
+                              },
+                              "created": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "createdAt": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "creator": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "mxPriority": {
+                                "type": "number"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "priority": {
+                                "type": "number"
+                              },
+                              "slug": {
+                                "type": "string"
+                              },
+                              "ttl": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "enum": [
+                                  "A",
+                                  "AAAA",
+                                  "ALIAS",
+                                  "CAA",
+                                  "CNAME",
+                                  "HTTPS",
+                                  "MX",
+                                  "NS",
+                                  "SRV",
+                                  "TXT"
+                                ],
+                                "type": "string"
+                              },
+                              "updated": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "updatedAt": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "created",
+                              "createdAt",
+                              "creator",
+                              "id",
+                              "name",
+                              "slug",
+                              "type",
+                              "updated",
+                              "updatedAt",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "records"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "description": "Successful response retrieving a list of paginated DNS records.",
+                      "properties": {
+                        "pagination": {
+                          "description": "This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.",
+                          "properties": {
+                            "count": {
+                              "description": "Amount of items in the current page.",
+                              "example": 20,
+                              "type": "number"
+                            },
+                            "next": {
+                              "description": "Timestamp that must be used to request the next page.",
+                              "example": 1540095775951,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "prev": {
+                              "description": "Timestamp that must be used to request the previous page.",
+                              "example": 1540095775951,
+                              "nullable": true,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "count",
+                            "next",
+                            "prev"
+                          ],
+                          "type": "object"
+                        },
+                        "records": {
+                          "items": {
+                            "properties": {
+                              "comment": {
+                                "type": "string"
+                              },
+                              "created": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "createdAt": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "creator": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "mxPriority": {
+                                "type": "number"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "priority": {
+                                "type": "number"
+                              },
+                              "slug": {
+                                "type": "string"
+                              },
+                              "ttl": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "enum": [
+                                  "A",
+                                  "AAAA",
+                                  "ALIAS",
+                                  "CAA",
+                                  "CNAME",
+                                  "HTTPS",
+                                  "MX",
+                                  "NS",
+                                  "SRV",
+                                  "TXT"
+                                ],
+                                "type": "string"
+                              },
+                              "updated": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "updatedAt": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "created",
+                              "createdAt",
+                              "creator",
+                              "id",
+                              "name",
+                              "slug",
+                              "type",
+                              "updated",
+                              "updatedAt",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "pagination",
+                        "records"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response retrieving a list of paginated DNS records."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v2/domains/{domain}/records/{recordId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "removeRecord",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "domain",
+            "required": true,
+            "schema": {
+              "example": "example.com",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "recordId",
+            "required": true,
+            "schema": {
+              "example": "rec_V0fra8eEgQwEpFhYG2vTzC3K",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response by removing the specified DNS record."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/domains/records/{recordId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateRecord",
+        "parameters": [
+          {
+            "description": "The id of the DNS record",
+            "in": "path",
+            "name": "recordId",
+            "required": true,
+            "schema": {
+              "description": "The id of the DNS record",
+              "example": "rec_2qn7pzrx89yxy34vezpd31y9",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "comment": {
+                    "description": "A comment to add context on what this DNS record is for",
+                    "example": "used to verify ownership of domain",
+                    "maxLength": 500,
+                    "type": "string"
+                  },
+                  "https": {
+                    "additionalProperties": false,
+                    "nullable": true,
+                    "properties": {
+                      "params": {
+                        "description": "",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "priority": {
+                        "description": "",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "target": {
+                        "description": "",
+                        "example": "example2.com.",
+                        "maxLength": 255,
+                        "nullable": true,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "priority",
+                      "target"
+                    ],
+                    "type": "object"
+                  },
+                  "mxPriority": {
+                    "description": "The MX priority value of the DNS record",
+                    "nullable": true,
+                    "type": "integer"
+                  },
+                  "name": {
+                    "description": "The name of the DNS record",
+                    "example": "example-1",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "srv": {
+                    "additionalProperties": false,
+                    "nullable": true,
+                    "properties": {
+                      "port": {
+                        "description": "",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "priority": {
+                        "description": "",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "target": {
+                        "description": "",
+                        "example": "example2.com.",
+                        "maxLength": 255,
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "weight": {
+                        "description": "",
+                        "nullable": true,
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "target",
+                      "weight",
+                      "port",
+                      "priority"
+                    ],
+                    "type": "object"
+                  },
+                  "ttl": {
+                    "description": "The Time to live (TTL) value of the DNS record",
+                    "example": "60",
+                    "maximum": 2147483647,
+                    "minimum": 60,
+                    "nullable": true,
+                    "type": "integer"
+                  },
+                  "type": {
+                    "description": "The type of the DNS record",
+                    "enum": [
+                      "A",
+                      "AAAA",
+                      "ALIAS",
+                      "CAA",
+                      "CNAME",
+                      "HTTPS",
+                      "MX",
+                      "SRV",
+                      "TXT",
+                      "NS",
+                      null
+                    ],
+                    "example": "A",
+                    "maxLength": 255,
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "The value of the DNS record",
+                    "example": "google.com",
+                    "nullable": true,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "comment": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "creator": {
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "recordType": {
+                      "enum": [
+                        "A",
+                        "AAAA",
+                        "ALIAS",
+                        "CAA",
+                        "CNAME",
+                        "HTTPS",
+                        "MX",
+                        "NS",
+                        "SRV",
+                        "TXT"
+                      ],
+                      "type": "string"
+                    },
+                    "ttl": {
+                      "type": "number"
+                    },
+                    "type": {
+                      "enum": [
+                        "record",
+                        "record-sys"
+                      ],
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "creator",
+                    "domain",
+                    "id",
+                    "name",
+                    "recordType",
+                    "type",
+                    "value"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

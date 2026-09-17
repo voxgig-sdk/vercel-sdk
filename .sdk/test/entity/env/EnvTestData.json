@@ -1,0 +1,1707 @@
+{
+  "existing": {
+    "env": {
+      "ENV00": {
+        "applyToAllCustomEnvironments": true,
+        "comment": "sf1",
+        "created": "sf2",
+        "createdAt": 243,
+        "createdBy": "sf4",
+        "customEnvironmentIds": [],
+        "decrypted": true,
+        "deletedAt": 247,
+        "deletedBy": "sf8",
+        "evs": [],
+        "failed": [],
+        "id": "ENV00",
+        "key": "sfc",
+        "lastEditedByDisplayName": "sfd",
+        "ownerId": "sfe",
+        "projectId": [],
+        "securityIssues": [],
+        "target": [],
+        "type": "s102",
+        "updated": [],
+        "updatedAt": 260,
+        "updatedBy": "s105",
+        "updates": {},
+        "value": "s107"
+      },
+      "ENV01": {
+        "applyToAllCustomEnvironments": true,
+        "comment": "s1e1",
+        "created": "s1e2",
+        "createdAt": 483,
+        "createdBy": "s1e4",
+        "customEnvironmentIds": [],
+        "decrypted": true,
+        "deletedAt": 487,
+        "deletedBy": "s1e8",
+        "evs": [],
+        "failed": [],
+        "id": "ENV01",
+        "key": "s1ec",
+        "lastEditedByDisplayName": "s1ed",
+        "ownerId": "s1ee",
+        "projectId": [],
+        "securityIssues": [],
+        "target": [],
+        "type": "s1f2",
+        "updated": [],
+        "updatedAt": 500,
+        "updatedBy": "s1f5",
+        "updates": {},
+        "value": "s1f7"
+      },
+      "ENV02": {
+        "applyToAllCustomEnvironments": true,
+        "comment": "s2d1",
+        "created": "s2d2",
+        "createdAt": 723,
+        "createdBy": "s2d4",
+        "customEnvironmentIds": [],
+        "decrypted": true,
+        "deletedAt": 727,
+        "deletedBy": "s2d8",
+        "evs": [],
+        "failed": [],
+        "id": "ENV02",
+        "key": "s2dc",
+        "lastEditedByDisplayName": "s2dd",
+        "ownerId": "s2de",
+        "projectId": [],
+        "securityIssues": [],
+        "target": [],
+        "type": "s2e2",
+        "updated": [],
+        "updatedAt": 740,
+        "updatedBy": "s2e5",
+        "updates": {},
+        "value": "s2e7"
+      }
+    }
+  },
+  "new": {
+    "env": {
+      "env_ref01": {
+        "applyToAllCustomEnvironments": true,
+        "comment": "s3c1",
+        "created": "s3c2",
+        "createdAt": 963,
+        "createdBy": "s3c4",
+        "customEnvironmentIds": [],
+        "decrypted": true,
+        "deletedAt": 967,
+        "deletedBy": "s3c8",
+        "evs": [],
+        "failed": [],
+        "key": "s3cc",
+        "lastEditedByDisplayName": "s3cd",
+        "ownerId": "s3ce",
+        "projectId": [],
+        "securityIssues": [],
+        "target": [],
+        "type": "s3d2",
+        "updated": [],
+        "updatedAt": 980,
+        "updatedBy": "s3d5",
+        "updates": {},
+        "value": "s3d7"
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/env": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createSharedEnvVariable",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "target"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "applyToAllCustomEnvironments"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "customEnvironmentIds"
+                    ]
+                  }
+                ],
+                "properties": {
+                  "evs": {
+                    "items": {
+                      "properties": {
+                        "comment": {
+                          "description": "A comment to add context on what this Shared Environment Variable is for",
+                          "example": "database connection string for production",
+                          "maxLength": 500,
+                          "type": "string"
+                        },
+                        "key": {
+                          "description": "The name of the Shared Environment Variable",
+                          "example": "API_URL",
+                          "type": "string"
+                        },
+                        "value": {
+                          "description": "The value of the Shared Environment Variable",
+                          "example": "https://api.vercel.com",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "key",
+                        "value"
+                      ],
+                      "type": "object"
+                    },
+                    "maximum": 50,
+                    "minimum": 1,
+                    "type": "array"
+                  },
+                  "projectId": {
+                    "deprecated": true,
+                    "description": "Associate a Shared Environment Variable to projects.",
+                    "example": [
+                      "prj_2WjyKQmM8ZnGcJsPWMrHRHrE",
+                      "prj_2WjyKQmM8ZnGcJsPWMrHRCRV"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "target": {
+                    "description": "The target environment of the Shared Environment Variable",
+                    "example": [
+                      "production",
+                      "preview"
+                    ],
+                    "items": {
+                      "enum": [
+                        "production",
+                        "preview",
+                        "development"
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "type": {
+                    "description": "The type of environment variable",
+                    "enum": [
+                      "encrypted",
+                      "sensitive"
+                    ],
+                    "example": "encrypted",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "evs"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "created": {
+                      "items": {
+                        "properties": {
+                          "applyToAllCustomEnvironments": {
+                            "description": "whether or not this env varible applies to custom environments",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "comment": {
+                            "description": "A user provided comment that describes what this Shared Env Var is for.",
+                            "type": "string"
+                          },
+                          "created": {
+                            "description": "The date when the Shared Env Var was created.",
+                            "example": "2021-02-10T13:11:49.180Z",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "description": "Timestamp for when the Shared Env Var was created.",
+                            "example": 1609492210000,
+                            "type": "number"
+                          },
+                          "createdBy": {
+                            "description": "The unique identifier of the user who created the Shared Env Var.",
+                            "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "customEnvironmentIds": {
+                            "description": "The custom environment IDs that this Shared Env Var is scoped to.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "decrypted": {
+                            "description": "whether or not this env variable is decrypted",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "deletedAt": {
+                            "description": "Timestamp for when the Shared Env Var was (soft) deleted.",
+                            "example": 1609492210000,
+                            "type": "number"
+                          },
+                          "deletedBy": {
+                            "description": "The unique identifier of the user who deleted the Shared Env Var.",
+                            "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The unique identifier of the Shared Env Var.",
+                            "example": "env_XCG7t7AIHuO2SBA8667zNUiM",
+                            "type": "string"
+                          },
+                          "key": {
+                            "description": "The name of the Shared Env Var.",
+                            "example": "my-api-key",
+                            "type": "string"
+                          },
+                          "lastEditedByDisplayName": {
+                            "description": "The last editor full name or username.",
+                            "type": "string"
+                          },
+                          "ownerId": {
+                            "description": "The unique identifier of the owner (team) the Shared Env Var was created for.",
+                            "example": "team_LLHUOMOoDlqOp8wPE4kFo9pE",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "description": "The unique identifiers of the projects which the Shared Env Var is linked to.",
+                            "example": [
+                              "prj_2WjyKQmM8ZnGcJsPWMrHRHrE",
+                              "prj_2WjyKQmM8ZnGcJsPWMrasEFg"
+                            ],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "target": {
+                            "description": "environments this env variable targets",
+                            "example": "production",
+                            "items": {
+                              "description": "environments this env variable targets",
+                              "enum": [
+                                "development",
+                                "preview",
+                                "production"
+                              ],
+                              "example": "production",
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "type": {
+                            "description": "The type of this cosmos doc instance, if blank, assume secret.",
+                            "enum": [
+                              "encrypted",
+                              "plain",
+                              "sensitive",
+                              "system"
+                            ],
+                            "example": "encrypted",
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "description": "Timestamp for when the Shared Env Var was last updated.",
+                            "example": 1609492210000,
+                            "type": "number"
+                          },
+                          "updatedBy": {
+                            "description": "The unique identifier of the user who last updated the Shared Env Var.",
+                            "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "value": {
+                            "description": "The value of the Shared Env Var.",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "failed": {
+                      "items": {
+                        "properties": {
+                          "error": {
+                            "properties": {
+                              "action": {
+                                "type": "string"
+                              },
+                              "code": {
+                                "type": "string"
+                              },
+                              "envVarId": {
+                                "type": "string"
+                              },
+                              "envVarKey": {
+                                "type": "string"
+                              },
+                              "gitBranch": {
+                                "type": "string"
+                              },
+                              "key": {
+                                "type": "string"
+                              },
+                              "link": {
+                                "type": "string"
+                              },
+                              "message": {
+                                "type": "string"
+                              },
+                              "project": {
+                                "type": "string"
+                              },
+                              "target": {
+                                "oneOf": [
+                                  {
+                                    "items": {
+                                      "enum": [
+                                        "development",
+                                        "development",
+                                        "preview",
+                                        "preview",
+                                        "production"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  {
+                                    "enum": [
+                                      "development",
+                                      "development",
+                                      "preview",
+                                      "preview",
+                                      "production"
+                                    ],
+                                    "type": "string"
+                                  }
+                                ]
+                              },
+                              "value": {
+                                "oneOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "items": {
+                                      "enum": [
+                                        "development",
+                                        "development",
+                                        "preview",
+                                        "preview",
+                                        "production"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "error"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "created",
+                    "failed"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/env": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listSharedEnvVariable",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter SharedEnvVariables that belong to a project",
+            "in": "query",
+            "name": "projectId",
+            "schema": {
+              "description": "Filter SharedEnvVariables that belong to a project",
+              "example": "prj_2WjyKQmM8ZnGcJsPWMrHRHrE",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter SharedEnvVariables based on comma separated ids",
+            "in": "query",
+            "name": "ids",
+            "schema": {
+              "description": "Filter SharedEnvVariables based on comma separated ids",
+              "example": "env_2WjyKQmM8ZnGcJsPWMrHRHrE,env_2WjyKQmM8ZnGcJsPWMrHRCRV",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter SharedEnvVariables based on comma separated ids",
+            "in": "query",
+            "name": "exclude_ids",
+            "schema": {
+              "description": "Filter SharedEnvVariables based on comma separated ids",
+              "example": "env_2WjyKQmM8ZnGcJsPWMrHRHrE,env_2WjyKQmM8ZnGcJsPWMrHRCRV",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter SharedEnvVariables based on comma separated ids",
+            "in": "query",
+            "name": "exclude-ids",
+            "schema": {
+              "description": "Filter SharedEnvVariables based on comma separated ids",
+              "example": "env_2WjyKQmM8ZnGcJsPWMrHRHrE,env_2WjyKQmM8ZnGcJsPWMrHRCRV",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter SharedEnvVariables that belong to a project",
+            "in": "query",
+            "name": "exclude_projectId",
+            "schema": {
+              "description": "Filter SharedEnvVariables that belong to a project",
+              "example": "prj_2WjyKQmM8ZnGcJsPWMrHRHrE",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter SharedEnvVariables that belong to a project",
+            "in": "query",
+            "name": "exclude-projectId",
+            "schema": {
+              "description": "Filter SharedEnvVariables that belong to a project",
+              "example": "prj_2WjyKQmM8ZnGcJsPWMrHRHrE",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "applyToAllCustomEnvironments": {
+                            "description": "whether or not this env varible applies to custom environments",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "comment": {
+                            "description": "A user provided comment that describes what this Shared Env Var is for.",
+                            "type": "string"
+                          },
+                          "created": {
+                            "description": "The date when the Shared Env Var was created.",
+                            "example": "2021-02-10T13:11:49.180Z",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "description": "Timestamp for when the Shared Env Var was created.",
+                            "example": 1609492210000,
+                            "type": "number"
+                          },
+                          "createdBy": {
+                            "description": "The unique identifier of the user who created the Shared Env Var.",
+                            "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "customEnvironmentIds": {
+                            "description": "The custom environment IDs that this Shared Env Var is scoped to.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "decrypted": {
+                            "description": "whether or not this env variable is decrypted",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "deletedAt": {
+                            "description": "Timestamp for when the Shared Env Var was (soft) deleted.",
+                            "example": 1609492210000,
+                            "type": "number"
+                          },
+                          "deletedBy": {
+                            "description": "The unique identifier of the user who deleted the Shared Env Var.",
+                            "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The unique identifier of the Shared Env Var.",
+                            "example": "env_XCG7t7AIHuO2SBA8667zNUiM",
+                            "type": "string"
+                          },
+                          "key": {
+                            "description": "The name of the Shared Env Var.",
+                            "example": "my-api-key",
+                            "type": "string"
+                          },
+                          "lastEditedByDisplayName": {
+                            "description": "The last editor full name or username.",
+                            "type": "string"
+                          },
+                          "ownerId": {
+                            "description": "The unique identifier of the owner (team) the Shared Env Var was created for.",
+                            "example": "team_LLHUOMOoDlqOp8wPE4kFo9pE",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "description": "The unique identifiers of the projects which the Shared Env Var is linked to.",
+                            "example": [
+                              "prj_2WjyKQmM8ZnGcJsPWMrHRHrE",
+                              "prj_2WjyKQmM8ZnGcJsPWMrasEFg"
+                            ],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "securityIssues": {
+                            "items": {
+                              "enum": [
+                                "flags-secret-needs-split",
+                                "readable-secret"
+                              ],
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "target": {
+                            "description": "environments this env variable targets",
+                            "example": "production",
+                            "items": {
+                              "description": "environments this env variable targets",
+                              "enum": [
+                                "development",
+                                "preview",
+                                "production"
+                              ],
+                              "example": "production",
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "type": {
+                            "description": "The type of this cosmos doc instance, if blank, assume secret.",
+                            "enum": [
+                              "encrypted",
+                              "plain",
+                              "sensitive",
+                              "system"
+                            ],
+                            "example": "encrypted",
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "description": "Timestamp for when the Shared Env Var was last updated.",
+                            "example": 1609492210000,
+                            "type": "number"
+                          },
+                          "updatedBy": {
+                            "description": "The unique identifier of the user who last updated the Shared Env Var.",
+                            "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "value": {
+                            "description": "The value of the Shared Env Var.",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "created",
+                          "decrypted",
+                          "id",
+                          "key",
+                          "securityIssues"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pagination": {
+                      "description": "This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.",
+                      "properties": {
+                        "count": {
+                          "description": "Amount of items in the current page.",
+                          "example": 20,
+                          "type": "number"
+                        },
+                        "next": {
+                          "description": "Timestamp that must be used to request the next page.",
+                          "example": 1540095775951,
+                          "nullable": true,
+                          "type": "number"
+                        },
+                        "prev": {
+                          "description": "Timestamp that must be used to request the previous page.",
+                          "example": 1540095775951,
+                          "nullable": true,
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "count",
+                        "next",
+                        "prev"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "pagination"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/env/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSharedEnvVar",
+        "parameters": [
+          {
+            "description": "The unique ID for the Shared Environment Variable to get the decrypted value.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "description": "The unique ID for the Shared Environment Variable to get the decrypted value.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "applyToAllCustomEnvironments": {
+                      "description": "whether or not this env varible applies to custom environments",
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "comment": {
+                      "description": "A user provided comment that describes what this Shared Env Var is for.",
+                      "type": "string"
+                    },
+                    "created": {
+                      "description": "The date when the Shared Env Var was created.",
+                      "example": "2021-02-10T13:11:49.180Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "description": "Timestamp for when the Shared Env Var was created.",
+                      "example": 1609492210000,
+                      "type": "number"
+                    },
+                    "createdBy": {
+                      "description": "The unique identifier of the user who created the Shared Env Var.",
+                      "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "customEnvironmentIds": {
+                      "description": "The custom environment IDs that this Shared Env Var is scoped to.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "decrypted": {
+                      "description": "whether or not this env variable is decrypted",
+                      "enum": [
+                        false,
+                        true
+                      ],
+                      "type": "boolean"
+                    },
+                    "deletedAt": {
+                      "description": "Timestamp for when the Shared Env Var was (soft) deleted.",
+                      "example": 1609492210000,
+                      "type": "number"
+                    },
+                    "deletedBy": {
+                      "description": "The unique identifier of the user who deleted the Shared Env Var.",
+                      "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier of the Shared Env Var.",
+                      "example": "env_XCG7t7AIHuO2SBA8667zNUiM",
+                      "type": "string"
+                    },
+                    "key": {
+                      "description": "The name of the Shared Env Var.",
+                      "example": "my-api-key",
+                      "type": "string"
+                    },
+                    "lastEditedByDisplayName": {
+                      "description": "The last editor full name or username.",
+                      "type": "string"
+                    },
+                    "ownerId": {
+                      "description": "The unique identifier of the owner (team) the Shared Env Var was created for.",
+                      "example": "team_LLHUOMOoDlqOp8wPE4kFo9pE",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "The unique identifiers of the projects which the Shared Env Var is linked to.",
+                      "example": [
+                        "prj_2WjyKQmM8ZnGcJsPWMrHRHrE",
+                        "prj_2WjyKQmM8ZnGcJsPWMrasEFg"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "target": {
+                      "description": "environments this env variable targets",
+                      "example": "production",
+                      "items": {
+                        "description": "environments this env variable targets",
+                        "enum": [
+                          "development",
+                          "preview",
+                          "production"
+                        ],
+                        "example": "production",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "The type of this cosmos doc instance, if blank, assume secret.",
+                      "enum": [
+                        "encrypted",
+                        "plain",
+                        "sensitive",
+                        "system"
+                      ],
+                      "example": "encrypted",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "Timestamp for when the Shared Env Var was last updated.",
+                      "example": 1609492210000,
+                      "type": "number"
+                    },
+                    "updatedBy": {
+                      "description": "The unique identifier of the user who last updated the Shared Env Var.",
+                      "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "value": {
+                      "description": "The value of the Shared Env Var.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/env": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteSharedEnvVariable",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "ids": {
+                    "description": "IDs of the Shared Environment Variables to delete",
+                    "example": [
+                      "env_abc123",
+                      "env_abc124"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "maximum": 50,
+                    "minimum": 1,
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "ids"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "deleted": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "failed": {
+                      "items": {
+                        "properties": {
+                          "error": {
+                            "properties": {
+                              "action": {
+                                "type": "string"
+                              },
+                              "code": {
+                                "type": "string"
+                              },
+                              "envVarId": {
+                                "type": "string"
+                              },
+                              "envVarKey": {
+                                "type": "string"
+                              },
+                              "gitBranch": {
+                                "type": "string"
+                              },
+                              "key": {
+                                "type": "string"
+                              },
+                              "link": {
+                                "type": "string"
+                              },
+                              "message": {
+                                "type": "string"
+                              },
+                              "project": {
+                                "type": "string"
+                              },
+                              "target": {
+                                "oneOf": [
+                                  {
+                                    "items": {
+                                      "enum": [
+                                        "development",
+                                        "development",
+                                        "preview",
+                                        "preview",
+                                        "production"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  {
+                                    "enum": [
+                                      "development",
+                                      "development",
+                                      "preview",
+                                      "preview",
+                                      "production"
+                                    ],
+                                    "type": "string"
+                                  }
+                                ]
+                              },
+                              "value": {
+                                "oneOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "items": {
+                                      "enum": [
+                                        "development",
+                                        "development",
+                                        "preview",
+                                        "preview",
+                                        "production"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "error"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "deleted",
+                    "failed"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/env": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateSharedEnvVariable",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "updates": {
+                    "additionalProperties": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "comment": {
+                          "description": "A comment to add context on what this Shared Environment Variable is for",
+                          "example": "database connection string for production",
+                          "maxLength": 500,
+                          "type": "string"
+                        },
+                        "key": {
+                          "description": "The name of the Shared Environment Variable",
+                          "example": "API_URL",
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "Associate a Shared Environment Variable to projects.",
+                          "example": [
+                            "prj_2WjyKQmM8ZnGcJsPWMrHRHrE",
+                            "prj_2WjyKQmM8ZnGcJsPWMrHRCRV"
+                          ],
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "projectIdUpdates": {
+                          "additionalProperties": false,
+                          "description": "Incrementally update project linking without specifying the full list",
+                          "properties": {
+                            "link": {
+                              "description": "Project IDs to add to this environment variable",
+                              "example": [
+                                "prj_2WjyKQmM8ZnGcJsPWMrHRHrE"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "unlink": {
+                              "description": "Project IDs to remove from this environment variable",
+                              "example": [
+                                "prj_2WjyKQmM8ZnGcJsPWMrHRCRV"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "target": {
+                          "description": "The target environment of the Shared Environment Variable",
+                          "example": [
+                            "production",
+                            "preview"
+                          ],
+                          "items": {
+                            "enum": [
+                              "production",
+                              "preview",
+                              "development"
+                            ]
+                          },
+                          "type": "array"
+                        },
+                        "type": {
+                          "description": "The new type of the Shared Environment Variable",
+                          "enum": [
+                            "encrypted",
+                            "sensitive"
+                          ],
+                          "example": "encrypted",
+                          "type": "string"
+                        },
+                        "value": {
+                          "description": "The value of the Shared Environment Variable",
+                          "example": "https://api.vercel.com",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "description": "An object where each key is an environment variable ID (not the key name) and the value is the update to apply",
+                    "example": {
+                      "env_2WjyKQmM8ZnGcJsPWMrHRHrE": {
+                        "key": "API_URL",
+                        "projectIdUpdates": {
+                          "link": [
+                            "prj_2WjyKQmM8ZnGcJsPWMrHRHrE"
+                          ]
+                        },
+                        "target": [
+                          "production",
+                          "preview"
+                        ],
+                        "value": "https://api.vercel.com"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "updates"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "failed": {
+                      "items": {
+                        "properties": {
+                          "error": {
+                            "properties": {
+                              "action": {
+                                "type": "string"
+                              },
+                              "code": {
+                                "type": "string"
+                              },
+                              "envVarId": {
+                                "type": "string"
+                              },
+                              "envVarKey": {
+                                "type": "string"
+                              },
+                              "gitBranch": {
+                                "type": "string"
+                              },
+                              "key": {
+                                "type": "string"
+                              },
+                              "link": {
+                                "type": "string"
+                              },
+                              "message": {
+                                "type": "string"
+                              },
+                              "project": {
+                                "type": "string"
+                              },
+                              "target": {
+                                "oneOf": [
+                                  {
+                                    "items": {
+                                      "enum": [
+                                        "development",
+                                        "development",
+                                        "preview",
+                                        "preview",
+                                        "production"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  {
+                                    "enum": [
+                                      "development",
+                                      "development",
+                                      "preview",
+                                      "preview",
+                                      "production"
+                                    ],
+                                    "type": "string"
+                                  }
+                                ]
+                              },
+                              "value": {
+                                "oneOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "items": {
+                                      "enum": [
+                                        "development",
+                                        "development",
+                                        "preview",
+                                        "preview",
+                                        "production"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "error"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "updated": {
+                      "items": {
+                        "properties": {
+                          "applyToAllCustomEnvironments": {
+                            "description": "whether or not this env varible applies to custom environments",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "comment": {
+                            "description": "A user provided comment that describes what this Shared Env Var is for.",
+                            "type": "string"
+                          },
+                          "created": {
+                            "description": "The date when the Shared Env Var was created.",
+                            "example": "2021-02-10T13:11:49.180Z",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "description": "Timestamp for when the Shared Env Var was created.",
+                            "example": 1609492210000,
+                            "type": "number"
+                          },
+                          "createdBy": {
+                            "description": "The unique identifier of the user who created the Shared Env Var.",
+                            "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "customEnvironmentIds": {
+                            "description": "The custom environment IDs that this Shared Env Var is scoped to.",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "decrypted": {
+                            "description": "whether or not this env variable is decrypted",
+                            "enum": [
+                              false,
+                              true
+                            ],
+                            "type": "boolean"
+                          },
+                          "deletedAt": {
+                            "description": "Timestamp for when the Shared Env Var was (soft) deleted.",
+                            "example": 1609492210000,
+                            "type": "number"
+                          },
+                          "deletedBy": {
+                            "description": "The unique identifier of the user who deleted the Shared Env Var.",
+                            "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The unique identifier of the Shared Env Var.",
+                            "example": "env_XCG7t7AIHuO2SBA8667zNUiM",
+                            "type": "string"
+                          },
+                          "key": {
+                            "description": "The name of the Shared Env Var.",
+                            "example": "my-api-key",
+                            "type": "string"
+                          },
+                          "lastEditedByDisplayName": {
+                            "description": "The last editor full name or username.",
+                            "type": "string"
+                          },
+                          "ownerId": {
+                            "description": "The unique identifier of the owner (team) the Shared Env Var was created for.",
+                            "example": "team_LLHUOMOoDlqOp8wPE4kFo9pE",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "description": "The unique identifiers of the projects which the Shared Env Var is linked to.",
+                            "example": [
+                              "prj_2WjyKQmM8ZnGcJsPWMrHRHrE",
+                              "prj_2WjyKQmM8ZnGcJsPWMrasEFg"
+                            ],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "target": {
+                            "description": "environments this env variable targets",
+                            "example": "production",
+                            "items": {
+                              "description": "environments this env variable targets",
+                              "enum": [
+                                "development",
+                                "preview",
+                                "production"
+                              ],
+                              "example": "production",
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "type": {
+                            "description": "The type of this cosmos doc instance, if blank, assume secret.",
+                            "enum": [
+                              "encrypted",
+                              "plain",
+                              "sensitive",
+                              "system"
+                            ],
+                            "example": "encrypted",
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "description": "Timestamp for when the Shared Env Var was last updated.",
+                            "example": 1609492210000,
+                            "type": "number"
+                          },
+                          "updatedBy": {
+                            "description": "The unique identifier of the user who last updated the Shared Env Var.",
+                            "example": "2qDDuGFTWXBLDNnqZfWPDp1A",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "value": {
+                            "description": "The value of the Shared Env Var.",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "failed",
+                    "updated"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "402": {
+            "description": "The account is missing a payment so payment method must be updated"
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LogDrain | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a aria-current="page" href="../api/log_drain.html">LogDrain</a><div class="nav-sections"><a class="nav-section" href="#post-v1log-drains">POST /v1/log-drains</a>
+<a class="nav-section" href="#post-v2integrationslog-drains">POST /v2/integrations/log-drains</a>
+<a class="nav-section" href="#get-v2integrationslog-drains">GET /v2/integrations/log-drains</a>
+<a class="nav-section" href="#get-v1log-drains">GET /v1/log-drains</a>
+<a class="nav-section" href="#get-v1log-drainsid">GET /v1/log-drains/{id}</a>
+<a class="nav-section" href="#delete-v1integrationslog-drainsid">DELETE /v1/integrations/log-drains/{id}</a>
+<a class="nav-section" href="#delete-v1log-drainsid">DELETE /v1/log-drains/{id}</a></div>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="logdrain">LogDrain</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1log-drains"><code>/v1/log-drains</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v2integrationslog-drains"><code>/v2/integrations/log-drains</code></a></td>
+<td><code>create</code></td>
+<td>The log drain was successfully created</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v2integrationslog-drains"><code>/v2/integrations/log-drains</code></a></td>
+<td><code>list</code></td>
+<td>A list of log drains</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1log-drains"><code>/v1/log-drains</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1log-drainsid"><code>/v1/log-drains/{id}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1integrationslog-drainsid"><code>/v1/integrations/log-drains/{id}</code></a></td>
+<td><code>remove</code></td>
+<td>The log drain was successfully deleted</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1log-drainsid"><code>/v1/log-drains/{id}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The branch regexp of log drain</td>
+</tr>
+<tr>
+<td><code>clientId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The oauth2 client application id that created this log drain</td>
+</tr>
+<tr>
+<td><code>configurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The client configuration this log drain was created with</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A timestamp that tells you when the log drain was created</td>
+</tr>
+<tr>
+<td><code>createdFrom</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Whether the log drain was created by an integration or by a user</td>
+</tr>
+<tr>
+<td><code>deliveryFormat</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td>The delivery log format</td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The environment of log drain</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Headers to be sent together with the request</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the log drain.</td>
+</tr>
+<tr>
+<td><code>integrationConfigurationUri</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrationIcon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrationWebsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The custom name of this log drain.</td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The identifier of the team or user whose events will trigger the log drain</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectIds</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The identifier of the projects this log drain is associated with</td>
+</tr>
+<tr>
+<td><code>projectsMetadata</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>samplingRate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The sampling rate for this log drain.</td>
+</tr>
+<tr>
+<td><code>secret</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Custom secret of log drain</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>The sources from which logs are currently being delivered to this log drain.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The log drain url</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1log-drains" class="operation" data-method="post"><code>POST</code> /v1/log-drains</h3>
+<p>Operation ID: <code>createConfigurableLogDrain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deliveryFormat</code></td>
+<td><code>enum: json, ndjson</code></td>
+<td>Yes</td>
+<td>The delivery log format</td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of enum: preview, production</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Headers to be sent together with the request</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The custom name of this log drain.</td>
+</tr>
+<tr>
+<td><code>projectIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>samplingRate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The sampling rate for this log drain. It should be a percentage rate between 0 and 100. With max 2 decimal points</td>
+</tr>
+<tr>
+<td><code>secret</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Custom secret of log drain</td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td><code>array of enum: static, lambda, build, edge, external, firewall</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string (uri)</code></td>
+<td>Yes</td>
+<td>The log drain url</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h3 id="post-v2integrationslog-drains" class="operation" data-method="post"><code>POST</code> /v2/integrations/log-drains</h3>
+<p>Operation ID: <code>createLogDrain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deliveryFormat</code></td>
+<td><code>enum: json, ndjson</code></td>
+<td>No</td>
+<td>The delivery log format</td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of enum: preview, production</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Headers to be sent together with the request</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the log drain</td>
+</tr>
+<tr>
+<td><code>projectIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>secret</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A secret to sign log drain notification headers so a consumer can verify their authenticity</td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td><code>array of enum: static, lambda, build, edge, external, firewall</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string (uri)</code></td>
+<td>Yes</td>
+<td>The url where you will receive logs. The protocol must be <code>https://</code> or <code>http://</code> when type is <code>json</code> and <code>ndjson</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-the-log-drain-was-successfully-created" class="status" data-status="2xx">200: The log drain was successfully created</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The branch regexp of log drain</td>
+</tr>
+<tr>
+<td><code>clientId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The oauth2 client application id that created this log drain</td>
+</tr>
+<tr>
+<td><code>configurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The client configuration this log drain was created with</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A timestamp that tells you when the log drain was created</td>
+</tr>
+<tr>
+<td><code>createdFrom</code></td>
+<td><code>enum: integration, self-served</code></td>
+<td>No</td>
+<td>Whether the log drain was created by an integration or by a user</td>
+</tr>
+<tr>
+<td><code>deliveryFormat</code></td>
+<td><code>enum: json, ndjson, protobuf</code></td>
+<td>No</td>
+<td>The delivery log format</td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of enum: preview, production</code></td>
+<td>No</td>
+<td>The environment of log drain</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The headers to send with the request</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the log drain. Always prefixed with <code>ld_</code></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the log drain</td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The identifier of the team or user whose events will trigger the log drain</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The identifier of the projects this log drain is associated with</td>
+</tr>
+<tr>
+<td><code>samplingRate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The sampling rate of log drain</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td><code>array of enum: build, edge, external, firewall, lambda, redirect, ...</code></td>
+<td>No</td>
+<td>The sources from which logs are currently being delivered to this log drain.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The URL to call when logs are generated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-the-provided-token-is-not-from-an-oauth2-client" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. The provided token is not from an OAuth2 Client</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v2integrationslog-drains" class="operation" data-method="get"><code>GET</code> /v2/integrations/log-drains</h3>
+<p>Operation ID: <code>getIntegrationLogDrains</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-a-list-of-log-drains" class="status" data-status="2xx">200: A list of log drains</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The branch regexp of log drain</td>
+</tr>
+<tr>
+<td><code>[].clientId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The oauth2 client application id that created this log drain</td>
+</tr>
+<tr>
+<td><code>[].configurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The client configuration this log drain was created with</td>
+</tr>
+<tr>
+<td><code>[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>A timestamp that tells you when the log drain was created</td>
+</tr>
+<tr>
+<td><code>[].createdFrom</code></td>
+<td><code>enum: integration, self-served</code></td>
+<td>No</td>
+<td>Whether the log drain was created by an integration or by a user</td>
+</tr>
+<tr>
+<td><code>[].deliveryFormat</code></td>
+<td><code>enum: json, ndjson, protobuf</code></td>
+<td>No</td>
+<td>The delivery log format</td>
+</tr>
+<tr>
+<td><code>[].environments</code></td>
+<td><code>array of enum: preview, production</code></td>
+<td>No</td>
+<td>The environment of log drain</td>
+</tr>
+<tr>
+<td><code>[].headers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The headers to send with the request</td>
+</tr>
+<tr>
+<td><code>[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the log drain. Always prefixed with <code>ld_</code></td>
+</tr>
+<tr>
+<td><code>[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the log drain</td>
+</tr>
+<tr>
+<td><code>[].ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The identifier of the team or user whose events will trigger the log drain</td>
+</tr>
+<tr>
+<td><code>[].projectId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].projectIds</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The identifier of the projects this log drain is associated with</td>
+</tr>
+<tr>
+<td><code>[].samplingRate</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The sampling rate of log drain</td>
+</tr>
+<tr>
+<td><code>[].source</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].sources</code></td>
+<td><code>array of enum: build, edge, external, firewall, lambda, redirect, ...</code></td>
+<td>No</td>
+<td>The sources from which logs are currently being delivered to this log drain.</td>
+</tr>
+<tr>
+<td><code>[].url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The URL to call when logs are generated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400" class="status" data-status="4xx">400</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1log-drains" class="operation" data-method="get"><code>GET</code> /v1/log-drains</h3>
+<p>Operation ID: <code>getAllLogDrains</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>projectIdOrName</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>includeMetadata</code> | <code>query</code> | <code>boolean</code> | No |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>array of object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1log-drainsid" class="operation" data-method="get"><code>GET</code> /v1/log-drains/{id}</h3>
+<p>Operation ID: <code>getConfigurableLogDrain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clientId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>configurationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>createdFrom</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrationConfigurationUri</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrationIcon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>integrationWebsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectsMetadata</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectsMetadata[].framework</code></td>
+<td><code>enum: actix-web, angular, ash, astro, axum, blitzjs, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectsMetadata[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectsMetadata[].latestDeployment</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectsMetadata[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1integrationslog-drainsid" class="operation" data-method="delete"><code>DELETE</code> /v1/integrations/log-drains/{id}</h3>
+<p>Operation ID: <code>deleteIntegrationLogDrain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | ID of the log drain to be deleted |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="204-the-log-drain-was-successfully-deleted" class="status" data-status="2xx">204: The log drain was successfully deleted</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h3 id="delete-v1log-drainsid" class="operation" data-method="delete"><code>DELETE</code> /v1/log-drains/{id}</h3>
+<p>Operation ID: <code>deleteConfigurableLogDrain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="204" class="status" data-status="2xx">204</h5>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

@@ -1,0 +1,3191 @@
+{
+  "existing": {
+    "rolling_release": {
+      "ROLLING_RELEASE00": {
+        "activeStage": {},
+        "advancementType": "s79",
+        "canaryDeployment": {},
+        "currentCanaryPercentage": 123,
+        "currentDeployment": {},
+        "nextStage": {},
+        "queuedDeploymentId": "s7e",
+        "stages": [],
+        "startedAt": 128,
+        "state": "s81",
+        "substate": "s82",
+        "updatedAt": 131,
+        "project_id": "PROJECT01",
+        "id_or_name": "ID_OR_NAME01",
+        "id": "ROLLING_RELEASE00"
+      },
+      "ROLLING_RELEASE01": {
+        "activeStage": {},
+        "advancementType": "sf1",
+        "canaryDeployment": {},
+        "currentCanaryPercentage": 243,
+        "currentDeployment": {},
+        "nextStage": {},
+        "queuedDeploymentId": "sf6",
+        "stages": [],
+        "startedAt": 248,
+        "state": "sf9",
+        "substate": "sfa",
+        "updatedAt": 251,
+        "project_id": "PROJECT01",
+        "id_or_name": "ID_OR_NAME01",
+        "id": "ROLLING_RELEASE01"
+      },
+      "ROLLING_RELEASE02": {
+        "activeStage": {},
+        "advancementType": "s169",
+        "canaryDeployment": {},
+        "currentCanaryPercentage": 363,
+        "currentDeployment": {},
+        "nextStage": {},
+        "queuedDeploymentId": "s16e",
+        "stages": [],
+        "startedAt": 368,
+        "state": "s171",
+        "substate": "s172",
+        "updatedAt": 371,
+        "project_id": "PROJECT01",
+        "id_or_name": "ID_OR_NAME01",
+        "id": "ROLLING_RELEASE02"
+      }
+    }
+  },
+  "new": {
+    "rolling_release": {
+      "rolling_release_ref01": {
+        "activeStage": {},
+        "advancementType": "s1e1",
+        "canaryDeployment": {},
+        "currentCanaryPercentage": 483,
+        "currentDeployment": {},
+        "nextStage": {},
+        "queuedDeploymentId": "s1e6",
+        "stages": [],
+        "startedAt": 488,
+        "state": "s1e9",
+        "substate": "s1ea",
+        "updatedAt": 491
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/projects/{idOrName}/rolling-release/approve-stage": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "approveRollingReleaseStage",
+        "parameters": [
+          {
+            "description": "Project ID or project name (URL-encoded)",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "Project ID or project name (URL-encoded)",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "canaryDeploymentId": {
+                    "description": "The id of the canary deployment to approve for the next stage",
+                    "type": "string"
+                  },
+                  "nextStageIndex": {
+                    "description": "The index of the stage to transition to",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "nextStageIndex",
+                  "canaryDeploymentId"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The response format for rolling release endpoints that return rolling release information",
+                  "properties": {
+                    "rollingRelease": {
+                      "description": "Rolling release information including configuration and document details, or null if no rolling release exists",
+                      "nullable": true,
+                      "properties": {
+                        "activeStage": {
+                          "description": "The currently active stage, null if the rollout is aborted",
+                          "example": {
+                            "duration": null,
+                            "index": 1,
+                            "isFinalStage": false,
+                            "requireApproval": true,
+                            "targetPercentage": 25
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "duration": {
+                              "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                              "example": null,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "index": {
+                              "description": "The zero-based index of the stage",
+                              "example": 0,
+                              "type": "number"
+                            },
+                            "isFinalStage": {
+                              "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "linearShift": {
+                              "description": "Whether to linearly shift traffic over the duration of this stage",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "requireApproval": {
+                              "description": "Whether or not this stage requires manual approval to proceed",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "targetPercentage": {
+                              "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                              "example": 25,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "duration",
+                            "index",
+                            "isFinalStage",
+                            "requireApproval",
+                            "targetPercentage"
+                          ],
+                          "type": "object"
+                        },
+                        "advancementType": {
+                          "description": "The advancement type of the rolling release",
+                          "enum": [
+                            "automatic",
+                            "manual-approval"
+                          ],
+                          "example": "manual-approval",
+                          "type": "string"
+                        },
+                        "canaryDeployment": {
+                          "description": "The canary deployment being rolled out",
+                          "example": {
+                            "createdAt": 1716210100000,
+                            "id": "dpl_def456",
+                            "name": "my-shop@9c7e2f4",
+                            "readyState": "READY",
+                            "readyStateAt": 1716210400000,
+                            "source": "git",
+                            "target": "production",
+                            "url": "9c7e2f4-my-shop.vercel.app"
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "createdAt": {
+                              "description": "A number containing the date when the deployment was created in milliseconds",
+                              "example": 1540257589405,
+                              "type": "number"
+                            },
+                            "id": {
+                              "description": "A string holding the unique ID of the deployment",
+                              "example": "dpl_89qyp1cskzkLrVicDaZoDbjyHuDJ",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the project associated with the deployment at the time that the deployment was created",
+                              "example": "my-project",
+                              "type": "string"
+                            },
+                            "readyState": {
+                              "description": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+                              "enum": [
+                                "BLOCKED",
+                                "BUILDING",
+                                "CANCELED",
+                                "ERROR",
+                                "INITIALIZING",
+                                "QUEUED",
+                                "READY"
+                              ],
+                              "example": "READY",
+                              "type": "string"
+                            },
+                            "readyStateAt": {
+                              "type": "number"
+                            },
+                            "source": {
+                              "description": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it.",
+                              "enum": [
+                                "api-trigger-git-deploy",
+                                "cli",
+                                "clone/repo",
+                                "drop",
+                                "git",
+                                "git-deploy-hook",
+                                "import",
+                                "import/repo",
+                                "redeploy",
+                                "v0-web"
+                              ],
+                              "example": "cli",
+                              "type": "string"
+                            },
+                            "target": {
+                              "description": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+                              "enum": [
+                                "production",
+                                "staging",
+                                null
+                              ],
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "A string with the unique URL of the deployment",
+                              "example": "my-instant-deployment-3ij3cxz9qr.now.sh",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "createdAt",
+                            "id",
+                            "name",
+                            "readyState",
+                            "url"
+                          ],
+                          "type": "object"
+                        },
+                        "currentCanaryPercentage": {
+                          "description": "When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active.",
+                          "type": "number"
+                        },
+                        "currentDeployment": {
+                          "description": "The current deployment receiving production traffic",
+                          "example": {
+                            "createdAt": 1716206500000,
+                            "id": "dpl_abc123",
+                            "name": "my-shop@main",
+                            "readyState": "READY",
+                            "readyStateAt": 1716206800000,
+                            "source": "git",
+                            "target": "production",
+                            "url": "my-shop.vercel.app"
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "createdAt": {
+                              "description": "A number containing the date when the deployment was created in milliseconds",
+                              "example": 1540257589405,
+                              "type": "number"
+                            },
+                            "id": {
+                              "description": "A string holding the unique ID of the deployment",
+                              "example": "dpl_89qyp1cskzkLrVicDaZoDbjyHuDJ",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the project associated with the deployment at the time that the deployment was created",
+                              "example": "my-project",
+                              "type": "string"
+                            },
+                            "readyState": {
+                              "description": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+                              "enum": [
+                                "BLOCKED",
+                                "BUILDING",
+                                "CANCELED",
+                                "ERROR",
+                                "INITIALIZING",
+                                "QUEUED",
+                                "READY"
+                              ],
+                              "example": "READY",
+                              "type": "string"
+                            },
+                            "readyStateAt": {
+                              "type": "number"
+                            },
+                            "source": {
+                              "description": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it.",
+                              "enum": [
+                                "api-trigger-git-deploy",
+                                "cli",
+                                "clone/repo",
+                                "drop",
+                                "git",
+                                "git-deploy-hook",
+                                "import",
+                                "import/repo",
+                                "redeploy",
+                                "v0-web"
+                              ],
+                              "example": "cli",
+                              "type": "string"
+                            },
+                            "target": {
+                              "description": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+                              "enum": [
+                                "production",
+                                "staging",
+                                null
+                              ],
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "A string with the unique URL of the deployment",
+                              "example": "my-instant-deployment-3ij3cxz9qr.now.sh",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "createdAt",
+                            "id",
+                            "name",
+                            "readyState",
+                            "url"
+                          ],
+                          "type": "object"
+                        },
+                        "nextStage": {
+                          "description": "The next stage to be activated, null if not in ACTIVE state",
+                          "example": {
+                            "duration": null,
+                            "index": 2,
+                            "isFinalStage": false,
+                            "requireApproval": true,
+                            "targetPercentage": 60
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "duration": {
+                              "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                              "example": null,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "index": {
+                              "description": "The zero-based index of the stage",
+                              "example": 0,
+                              "type": "number"
+                            },
+                            "isFinalStage": {
+                              "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "linearShift": {
+                              "description": "Whether to linearly shift traffic over the duration of this stage",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "requireApproval": {
+                              "description": "Whether or not this stage requires manual approval to proceed",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "targetPercentage": {
+                              "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                              "example": 25,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "duration",
+                            "index",
+                            "isFinalStage",
+                            "requireApproval",
+                            "targetPercentage"
+                          ],
+                          "type": "object"
+                        },
+                        "queuedDeploymentId": {
+                          "description": "The ID of a deployment queued for the next rolling release",
+                          "example": "dpl_ghi789",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "stages": {
+                          "description": "All stages configured for this rolling release",
+                          "example": [
+                            {
+                              "duration": null,
+                              "index": 0,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 5
+                            },
+                            {
+                              "duration": null,
+                              "index": 1,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 25
+                            },
+                            {
+                              "duration": null,
+                              "index": 2,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 60
+                            },
+                            {
+                              "duration": null,
+                              "index": 3,
+                              "isFinalStage": true,
+                              "requireApproval": false,
+                              "targetPercentage": 100
+                            }
+                          ],
+                          "items": {
+                            "description": "All stages configured for this rolling release",
+                            "example": [
+                              {
+                                "duration": null,
+                                "index": 0,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 5
+                              },
+                              {
+                                "duration": null,
+                                "index": 1,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 25
+                              },
+                              {
+                                "duration": null,
+                                "index": 2,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 60
+                              },
+                              {
+                                "duration": null,
+                                "index": 3,
+                                "isFinalStage": true,
+                                "requireApproval": false,
+                                "targetPercentage": 100
+                              }
+                            ],
+                            "properties": {
+                              "duration": {
+                                "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                                "example": null,
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "index": {
+                                "description": "The zero-based index of the stage",
+                                "example": 0,
+                                "type": "number"
+                              },
+                              "isFinalStage": {
+                                "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "linearShift": {
+                                "description": "Whether to linearly shift traffic over the duration of this stage",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "requireApproval": {
+                                "description": "Whether or not this stage requires manual approval to proceed",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "targetPercentage": {
+                                "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                                "example": 25,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "duration",
+                              "index",
+                              "isFinalStage",
+                              "requireApproval",
+                              "targetPercentage"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "startedAt": {
+                          "description": "Unix timestamp in milliseconds when the rolling release started",
+                          "example": 1716210500000,
+                          "type": "number"
+                        },
+                        "state": {
+                          "description": "The current state of the rolling release",
+                          "enum": [
+                            "ABORTED",
+                            "ACTIVE",
+                            "COMPLETE"
+                          ],
+                          "example": "ACTIVE",
+                          "type": "string"
+                        },
+                        "substate": {
+                          "description": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued.",
+                          "enum": [
+                            "PAUSED",
+                            null
+                          ],
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "description": "Unix timestamp in milliseconds when the rolling release was last updated",
+                          "example": 1716210600000,
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "activeStage",
+                        "advancementType",
+                        "canaryDeployment",
+                        "currentDeployment",
+                        "nextStage",
+                        "queuedDeploymentId",
+                        "stages",
+                        "startedAt",
+                        "state",
+                        "substate",
+                        "updatedAt"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "rollingRelease"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/projects/{idOrName}/rolling-release/complete": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "completeRollingRelease",
+        "parameters": [
+          {
+            "description": "Project ID or project name (URL-encoded)",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "Project ID or project name (URL-encoded)",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "canaryDeploymentId": {
+                    "description": "The ID of the canary deployment to complete",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "canaryDeploymentId"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The response format for rolling release endpoints that return rolling release information",
+                  "properties": {
+                    "rollingRelease": {
+                      "description": "Rolling release information including configuration and document details, or null if no rolling release exists",
+                      "nullable": true,
+                      "properties": {
+                        "activeStage": {
+                          "description": "The currently active stage, null if the rollout is aborted",
+                          "example": {
+                            "duration": null,
+                            "index": 1,
+                            "isFinalStage": false,
+                            "requireApproval": true,
+                            "targetPercentage": 25
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "duration": {
+                              "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                              "example": null,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "index": {
+                              "description": "The zero-based index of the stage",
+                              "example": 0,
+                              "type": "number"
+                            },
+                            "isFinalStage": {
+                              "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "linearShift": {
+                              "description": "Whether to linearly shift traffic over the duration of this stage",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "requireApproval": {
+                              "description": "Whether or not this stage requires manual approval to proceed",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "targetPercentage": {
+                              "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                              "example": 25,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "duration",
+                            "index",
+                            "isFinalStage",
+                            "requireApproval",
+                            "targetPercentage"
+                          ],
+                          "type": "object"
+                        },
+                        "advancementType": {
+                          "description": "The advancement type of the rolling release",
+                          "enum": [
+                            "automatic",
+                            "manual-approval"
+                          ],
+                          "example": "manual-approval",
+                          "type": "string"
+                        },
+                        "canaryDeployment": {
+                          "description": "The canary deployment being rolled out",
+                          "example": {
+                            "createdAt": 1716210100000,
+                            "id": "dpl_def456",
+                            "name": "my-shop@9c7e2f4",
+                            "readyState": "READY",
+                            "readyStateAt": 1716210400000,
+                            "source": "git",
+                            "target": "production",
+                            "url": "9c7e2f4-my-shop.vercel.app"
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "createdAt": {
+                              "description": "A number containing the date when the deployment was created in milliseconds",
+                              "example": 1540257589405,
+                              "type": "number"
+                            },
+                            "id": {
+                              "description": "A string holding the unique ID of the deployment",
+                              "example": "dpl_89qyp1cskzkLrVicDaZoDbjyHuDJ",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the project associated with the deployment at the time that the deployment was created",
+                              "example": "my-project",
+                              "type": "string"
+                            },
+                            "readyState": {
+                              "description": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+                              "enum": [
+                                "BLOCKED",
+                                "BUILDING",
+                                "CANCELED",
+                                "ERROR",
+                                "INITIALIZING",
+                                "QUEUED",
+                                "READY"
+                              ],
+                              "example": "READY",
+                              "type": "string"
+                            },
+                            "readyStateAt": {
+                              "type": "number"
+                            },
+                            "source": {
+                              "description": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it.",
+                              "enum": [
+                                "api-trigger-git-deploy",
+                                "cli",
+                                "clone/repo",
+                                "drop",
+                                "git",
+                                "git-deploy-hook",
+                                "import",
+                                "import/repo",
+                                "redeploy",
+                                "v0-web"
+                              ],
+                              "example": "cli",
+                              "type": "string"
+                            },
+                            "target": {
+                              "description": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+                              "enum": [
+                                "production",
+                                "staging",
+                                null
+                              ],
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "A string with the unique URL of the deployment",
+                              "example": "my-instant-deployment-3ij3cxz9qr.now.sh",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "createdAt",
+                            "id",
+                            "name",
+                            "readyState",
+                            "url"
+                          ],
+                          "type": "object"
+                        },
+                        "currentCanaryPercentage": {
+                          "description": "When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active.",
+                          "type": "number"
+                        },
+                        "currentDeployment": {
+                          "description": "The current deployment receiving production traffic",
+                          "example": {
+                            "createdAt": 1716206500000,
+                            "id": "dpl_abc123",
+                            "name": "my-shop@main",
+                            "readyState": "READY",
+                            "readyStateAt": 1716206800000,
+                            "source": "git",
+                            "target": "production",
+                            "url": "my-shop.vercel.app"
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "createdAt": {
+                              "description": "A number containing the date when the deployment was created in milliseconds",
+                              "example": 1540257589405,
+                              "type": "number"
+                            },
+                            "id": {
+                              "description": "A string holding the unique ID of the deployment",
+                              "example": "dpl_89qyp1cskzkLrVicDaZoDbjyHuDJ",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the project associated with the deployment at the time that the deployment was created",
+                              "example": "my-project",
+                              "type": "string"
+                            },
+                            "readyState": {
+                              "description": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+                              "enum": [
+                                "BLOCKED",
+                                "BUILDING",
+                                "CANCELED",
+                                "ERROR",
+                                "INITIALIZING",
+                                "QUEUED",
+                                "READY"
+                              ],
+                              "example": "READY",
+                              "type": "string"
+                            },
+                            "readyStateAt": {
+                              "type": "number"
+                            },
+                            "source": {
+                              "description": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it.",
+                              "enum": [
+                                "api-trigger-git-deploy",
+                                "cli",
+                                "clone/repo",
+                                "drop",
+                                "git",
+                                "git-deploy-hook",
+                                "import",
+                                "import/repo",
+                                "redeploy",
+                                "v0-web"
+                              ],
+                              "example": "cli",
+                              "type": "string"
+                            },
+                            "target": {
+                              "description": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+                              "enum": [
+                                "production",
+                                "staging",
+                                null
+                              ],
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "A string with the unique URL of the deployment",
+                              "example": "my-instant-deployment-3ij3cxz9qr.now.sh",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "createdAt",
+                            "id",
+                            "name",
+                            "readyState",
+                            "url"
+                          ],
+                          "type": "object"
+                        },
+                        "nextStage": {
+                          "description": "The next stage to be activated, null if not in ACTIVE state",
+                          "example": {
+                            "duration": null,
+                            "index": 2,
+                            "isFinalStage": false,
+                            "requireApproval": true,
+                            "targetPercentage": 60
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "duration": {
+                              "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                              "example": null,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "index": {
+                              "description": "The zero-based index of the stage",
+                              "example": 0,
+                              "type": "number"
+                            },
+                            "isFinalStage": {
+                              "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "linearShift": {
+                              "description": "Whether to linearly shift traffic over the duration of this stage",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "requireApproval": {
+                              "description": "Whether or not this stage requires manual approval to proceed",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "targetPercentage": {
+                              "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                              "example": 25,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "duration",
+                            "index",
+                            "isFinalStage",
+                            "requireApproval",
+                            "targetPercentage"
+                          ],
+                          "type": "object"
+                        },
+                        "queuedDeploymentId": {
+                          "description": "The ID of a deployment queued for the next rolling release",
+                          "example": "dpl_ghi789",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "stages": {
+                          "description": "All stages configured for this rolling release",
+                          "example": [
+                            {
+                              "duration": null,
+                              "index": 0,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 5
+                            },
+                            {
+                              "duration": null,
+                              "index": 1,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 25
+                            },
+                            {
+                              "duration": null,
+                              "index": 2,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 60
+                            },
+                            {
+                              "duration": null,
+                              "index": 3,
+                              "isFinalStage": true,
+                              "requireApproval": false,
+                              "targetPercentage": 100
+                            }
+                          ],
+                          "items": {
+                            "description": "All stages configured for this rolling release",
+                            "example": [
+                              {
+                                "duration": null,
+                                "index": 0,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 5
+                              },
+                              {
+                                "duration": null,
+                                "index": 1,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 25
+                              },
+                              {
+                                "duration": null,
+                                "index": 2,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 60
+                              },
+                              {
+                                "duration": null,
+                                "index": 3,
+                                "isFinalStage": true,
+                                "requireApproval": false,
+                                "targetPercentage": 100
+                              }
+                            ],
+                            "properties": {
+                              "duration": {
+                                "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                                "example": null,
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "index": {
+                                "description": "The zero-based index of the stage",
+                                "example": 0,
+                                "type": "number"
+                              },
+                              "isFinalStage": {
+                                "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "linearShift": {
+                                "description": "Whether to linearly shift traffic over the duration of this stage",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "requireApproval": {
+                                "description": "Whether or not this stage requires manual approval to proceed",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "targetPercentage": {
+                                "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                                "example": 25,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "duration",
+                              "index",
+                              "isFinalStage",
+                              "requireApproval",
+                              "targetPercentage"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "startedAt": {
+                          "description": "Unix timestamp in milliseconds when the rolling release started",
+                          "example": 1716210500000,
+                          "type": "number"
+                        },
+                        "state": {
+                          "description": "The current state of the rolling release",
+                          "enum": [
+                            "ABORTED",
+                            "ACTIVE",
+                            "COMPLETE"
+                          ],
+                          "example": "ACTIVE",
+                          "type": "string"
+                        },
+                        "substate": {
+                          "description": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued.",
+                          "enum": [
+                            "PAUSED",
+                            null
+                          ],
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "description": "Unix timestamp in milliseconds when the rolling release was last updated",
+                          "example": 1716210600000,
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "activeStage",
+                        "advancementType",
+                        "canaryDeployment",
+                        "currentDeployment",
+                        "nextStage",
+                        "queuedDeploymentId",
+                        "stages",
+                        "startedAt",
+                        "state",
+                        "substate",
+                        "updatedAt"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "rollingRelease"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/projects/{idOrName}/rolling-release/start": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "startRollingRelease",
+        "parameters": [
+          {
+            "description": "Project ID or project name (URL-encoded)",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "Project ID or project name (URL-encoded)",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "canaryDeploymentId": {
+                    "description": "The ID of the canary deployment to start the rolling release for",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "canaryDeploymentId"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The response format for rolling release endpoints that return rolling release information",
+                  "properties": {
+                    "rollingRelease": {
+                      "description": "Rolling release information including configuration and document details, or null if no rolling release exists",
+                      "nullable": true,
+                      "properties": {
+                        "activeStage": {
+                          "description": "The currently active stage, null if the rollout is aborted",
+                          "example": {
+                            "duration": null,
+                            "index": 1,
+                            "isFinalStage": false,
+                            "requireApproval": true,
+                            "targetPercentage": 25
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "duration": {
+                              "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                              "example": null,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "index": {
+                              "description": "The zero-based index of the stage",
+                              "example": 0,
+                              "type": "number"
+                            },
+                            "isFinalStage": {
+                              "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "linearShift": {
+                              "description": "Whether to linearly shift traffic over the duration of this stage",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "requireApproval": {
+                              "description": "Whether or not this stage requires manual approval to proceed",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "targetPercentage": {
+                              "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                              "example": 25,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "duration",
+                            "index",
+                            "isFinalStage",
+                            "requireApproval",
+                            "targetPercentage"
+                          ],
+                          "type": "object"
+                        },
+                        "advancementType": {
+                          "description": "The advancement type of the rolling release",
+                          "enum": [
+                            "automatic",
+                            "manual-approval"
+                          ],
+                          "example": "manual-approval",
+                          "type": "string"
+                        },
+                        "canaryDeployment": {
+                          "description": "The canary deployment being rolled out",
+                          "example": {
+                            "createdAt": 1716210100000,
+                            "id": "dpl_def456",
+                            "name": "my-shop@9c7e2f4",
+                            "readyState": "READY",
+                            "readyStateAt": 1716210400000,
+                            "source": "git",
+                            "target": "production",
+                            "url": "9c7e2f4-my-shop.vercel.app"
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "createdAt": {
+                              "description": "A number containing the date when the deployment was created in milliseconds",
+                              "example": 1540257589405,
+                              "type": "number"
+                            },
+                            "id": {
+                              "description": "A string holding the unique ID of the deployment",
+                              "example": "dpl_89qyp1cskzkLrVicDaZoDbjyHuDJ",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the project associated with the deployment at the time that the deployment was created",
+                              "example": "my-project",
+                              "type": "string"
+                            },
+                            "readyState": {
+                              "description": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+                              "enum": [
+                                "BLOCKED",
+                                "BUILDING",
+                                "CANCELED",
+                                "ERROR",
+                                "INITIALIZING",
+                                "QUEUED",
+                                "READY"
+                              ],
+                              "example": "READY",
+                              "type": "string"
+                            },
+                            "readyStateAt": {
+                              "type": "number"
+                            },
+                            "source": {
+                              "description": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it.",
+                              "enum": [
+                                "api-trigger-git-deploy",
+                                "cli",
+                                "clone/repo",
+                                "drop",
+                                "git",
+                                "git-deploy-hook",
+                                "import",
+                                "import/repo",
+                                "redeploy",
+                                "v0-web"
+                              ],
+                              "example": "cli",
+                              "type": "string"
+                            },
+                            "target": {
+                              "description": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+                              "enum": [
+                                "production",
+                                "staging",
+                                null
+                              ],
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "A string with the unique URL of the deployment",
+                              "example": "my-instant-deployment-3ij3cxz9qr.now.sh",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "createdAt",
+                            "id",
+                            "name",
+                            "readyState",
+                            "url"
+                          ],
+                          "type": "object"
+                        },
+                        "currentCanaryPercentage": {
+                          "description": "When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active.",
+                          "type": "number"
+                        },
+                        "currentDeployment": {
+                          "description": "The current deployment receiving production traffic",
+                          "example": {
+                            "createdAt": 1716206500000,
+                            "id": "dpl_abc123",
+                            "name": "my-shop@main",
+                            "readyState": "READY",
+                            "readyStateAt": 1716206800000,
+                            "source": "git",
+                            "target": "production",
+                            "url": "my-shop.vercel.app"
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "createdAt": {
+                              "description": "A number containing the date when the deployment was created in milliseconds",
+                              "example": 1540257589405,
+                              "type": "number"
+                            },
+                            "id": {
+                              "description": "A string holding the unique ID of the deployment",
+                              "example": "dpl_89qyp1cskzkLrVicDaZoDbjyHuDJ",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the project associated with the deployment at the time that the deployment was created",
+                              "example": "my-project",
+                              "type": "string"
+                            },
+                            "readyState": {
+                              "description": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+                              "enum": [
+                                "BLOCKED",
+                                "BUILDING",
+                                "CANCELED",
+                                "ERROR",
+                                "INITIALIZING",
+                                "QUEUED",
+                                "READY"
+                              ],
+                              "example": "READY",
+                              "type": "string"
+                            },
+                            "readyStateAt": {
+                              "type": "number"
+                            },
+                            "source": {
+                              "description": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it.",
+                              "enum": [
+                                "api-trigger-git-deploy",
+                                "cli",
+                                "clone/repo",
+                                "drop",
+                                "git",
+                                "git-deploy-hook",
+                                "import",
+                                "import/repo",
+                                "redeploy",
+                                "v0-web"
+                              ],
+                              "example": "cli",
+                              "type": "string"
+                            },
+                            "target": {
+                              "description": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+                              "enum": [
+                                "production",
+                                "staging",
+                                null
+                              ],
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "A string with the unique URL of the deployment",
+                              "example": "my-instant-deployment-3ij3cxz9qr.now.sh",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "createdAt",
+                            "id",
+                            "name",
+                            "readyState",
+                            "url"
+                          ],
+                          "type": "object"
+                        },
+                        "nextStage": {
+                          "description": "The next stage to be activated, null if not in ACTIVE state",
+                          "example": {
+                            "duration": null,
+                            "index": 2,
+                            "isFinalStage": false,
+                            "requireApproval": true,
+                            "targetPercentage": 60
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "duration": {
+                              "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                              "example": null,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "index": {
+                              "description": "The zero-based index of the stage",
+                              "example": 0,
+                              "type": "number"
+                            },
+                            "isFinalStage": {
+                              "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "linearShift": {
+                              "description": "Whether to linearly shift traffic over the duration of this stage",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "requireApproval": {
+                              "description": "Whether or not this stage requires manual approval to proceed",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "targetPercentage": {
+                              "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                              "example": 25,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "duration",
+                            "index",
+                            "isFinalStage",
+                            "requireApproval",
+                            "targetPercentage"
+                          ],
+                          "type": "object"
+                        },
+                        "queuedDeploymentId": {
+                          "description": "The ID of a deployment queued for the next rolling release",
+                          "example": "dpl_ghi789",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "stages": {
+                          "description": "All stages configured for this rolling release",
+                          "example": [
+                            {
+                              "duration": null,
+                              "index": 0,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 5
+                            },
+                            {
+                              "duration": null,
+                              "index": 1,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 25
+                            },
+                            {
+                              "duration": null,
+                              "index": 2,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 60
+                            },
+                            {
+                              "duration": null,
+                              "index": 3,
+                              "isFinalStage": true,
+                              "requireApproval": false,
+                              "targetPercentage": 100
+                            }
+                          ],
+                          "items": {
+                            "description": "All stages configured for this rolling release",
+                            "example": [
+                              {
+                                "duration": null,
+                                "index": 0,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 5
+                              },
+                              {
+                                "duration": null,
+                                "index": 1,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 25
+                              },
+                              {
+                                "duration": null,
+                                "index": 2,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 60
+                              },
+                              {
+                                "duration": null,
+                                "index": 3,
+                                "isFinalStage": true,
+                                "requireApproval": false,
+                                "targetPercentage": 100
+                              }
+                            ],
+                            "properties": {
+                              "duration": {
+                                "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                                "example": null,
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "index": {
+                                "description": "The zero-based index of the stage",
+                                "example": 0,
+                                "type": "number"
+                              },
+                              "isFinalStage": {
+                                "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "linearShift": {
+                                "description": "Whether to linearly shift traffic over the duration of this stage",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "requireApproval": {
+                                "description": "Whether or not this stage requires manual approval to proceed",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "targetPercentage": {
+                                "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                                "example": 25,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "duration",
+                              "index",
+                              "isFinalStage",
+                              "requireApproval",
+                              "targetPercentage"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "startedAt": {
+                          "description": "Unix timestamp in milliseconds when the rolling release started",
+                          "example": 1716210500000,
+                          "type": "number"
+                        },
+                        "state": {
+                          "description": "The current state of the rolling release",
+                          "enum": [
+                            "ABORTED",
+                            "ACTIVE",
+                            "COMPLETE"
+                          ],
+                          "example": "ACTIVE",
+                          "type": "string"
+                        },
+                        "substate": {
+                          "description": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued.",
+                          "enum": [
+                            "PAUSED",
+                            null
+                          ],
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "description": "Unix timestamp in milliseconds when the rolling release was last updated",
+                          "example": 1716210600000,
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "activeStage",
+                        "advancementType",
+                        "canaryDeployment",
+                        "currentDeployment",
+                        "nextStage",
+                        "queuedDeploymentId",
+                        "stages",
+                        "startedAt",
+                        "state",
+                        "substate",
+                        "updatedAt"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "rollingRelease"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          },
+          "422": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/projects/{idOrName}/rolling-release": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRollingRelease",
+        "parameters": [
+          {
+            "description": "Project ID or project name (URL-encoded)",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "Project ID or project name (URL-encoded)",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by rolling release state",
+            "in": "query",
+            "name": "state",
+            "required": false,
+            "schema": {
+              "description": "Filter by rolling release state",
+              "enum": [
+                "ACTIVE",
+                "COMPLETE",
+                "ABORTED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The response format for rolling release endpoints that return rolling release information",
+                  "properties": {
+                    "rollingRelease": {
+                      "description": "Rolling release information including configuration and document details, or null if no rolling release exists",
+                      "nullable": true,
+                      "properties": {
+                        "activeStage": {
+                          "description": "The currently active stage, null if the rollout is aborted",
+                          "example": {
+                            "duration": null,
+                            "index": 1,
+                            "isFinalStage": false,
+                            "requireApproval": true,
+                            "targetPercentage": 25
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "duration": {
+                              "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                              "example": null,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "index": {
+                              "description": "The zero-based index of the stage",
+                              "example": 0,
+                              "type": "number"
+                            },
+                            "isFinalStage": {
+                              "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "linearShift": {
+                              "description": "Whether to linearly shift traffic over the duration of this stage",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "requireApproval": {
+                              "description": "Whether or not this stage requires manual approval to proceed",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "targetPercentage": {
+                              "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                              "example": 25,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "duration",
+                            "index",
+                            "isFinalStage",
+                            "requireApproval",
+                            "targetPercentage"
+                          ],
+                          "type": "object"
+                        },
+                        "advancementType": {
+                          "description": "The advancement type of the rolling release",
+                          "enum": [
+                            "automatic",
+                            "manual-approval"
+                          ],
+                          "example": "manual-approval",
+                          "type": "string"
+                        },
+                        "canaryDeployment": {
+                          "description": "The canary deployment being rolled out",
+                          "example": {
+                            "createdAt": 1716210100000,
+                            "id": "dpl_def456",
+                            "name": "my-shop@9c7e2f4",
+                            "readyState": "READY",
+                            "readyStateAt": 1716210400000,
+                            "source": "git",
+                            "target": "production",
+                            "url": "9c7e2f4-my-shop.vercel.app"
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "createdAt": {
+                              "description": "A number containing the date when the deployment was created in milliseconds",
+                              "example": 1540257589405,
+                              "type": "number"
+                            },
+                            "id": {
+                              "description": "A string holding the unique ID of the deployment",
+                              "example": "dpl_89qyp1cskzkLrVicDaZoDbjyHuDJ",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the project associated with the deployment at the time that the deployment was created",
+                              "example": "my-project",
+                              "type": "string"
+                            },
+                            "readyState": {
+                              "description": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+                              "enum": [
+                                "BLOCKED",
+                                "BUILDING",
+                                "CANCELED",
+                                "ERROR",
+                                "INITIALIZING",
+                                "QUEUED",
+                                "READY"
+                              ],
+                              "example": "READY",
+                              "type": "string"
+                            },
+                            "readyStateAt": {
+                              "type": "number"
+                            },
+                            "source": {
+                              "description": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it.",
+                              "enum": [
+                                "api-trigger-git-deploy",
+                                "cli",
+                                "clone/repo",
+                                "drop",
+                                "git",
+                                "git-deploy-hook",
+                                "import",
+                                "import/repo",
+                                "redeploy",
+                                "v0-web"
+                              ],
+                              "example": "cli",
+                              "type": "string"
+                            },
+                            "target": {
+                              "description": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+                              "enum": [
+                                "production",
+                                "staging",
+                                null
+                              ],
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "A string with the unique URL of the deployment",
+                              "example": "my-instant-deployment-3ij3cxz9qr.now.sh",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "createdAt",
+                            "id",
+                            "name",
+                            "readyState",
+                            "url"
+                          ],
+                          "type": "object"
+                        },
+                        "currentCanaryPercentage": {
+                          "description": "When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active.",
+                          "type": "number"
+                        },
+                        "currentDeployment": {
+                          "description": "The current deployment receiving production traffic",
+                          "example": {
+                            "createdAt": 1716206500000,
+                            "id": "dpl_abc123",
+                            "name": "my-shop@main",
+                            "readyState": "READY",
+                            "readyStateAt": 1716206800000,
+                            "source": "git",
+                            "target": "production",
+                            "url": "my-shop.vercel.app"
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "createdAt": {
+                              "description": "A number containing the date when the deployment was created in milliseconds",
+                              "example": 1540257589405,
+                              "type": "number"
+                            },
+                            "id": {
+                              "description": "A string holding the unique ID of the deployment",
+                              "example": "dpl_89qyp1cskzkLrVicDaZoDbjyHuDJ",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the project associated with the deployment at the time that the deployment was created",
+                              "example": "my-project",
+                              "type": "string"
+                            },
+                            "readyState": {
+                              "description": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+                              "enum": [
+                                "BLOCKED",
+                                "BUILDING",
+                                "CANCELED",
+                                "ERROR",
+                                "INITIALIZING",
+                                "QUEUED",
+                                "READY"
+                              ],
+                              "example": "READY",
+                              "type": "string"
+                            },
+                            "readyStateAt": {
+                              "type": "number"
+                            },
+                            "source": {
+                              "description": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it.",
+                              "enum": [
+                                "api-trigger-git-deploy",
+                                "cli",
+                                "clone/repo",
+                                "drop",
+                                "git",
+                                "git-deploy-hook",
+                                "import",
+                                "import/repo",
+                                "redeploy",
+                                "v0-web"
+                              ],
+                              "example": "cli",
+                              "type": "string"
+                            },
+                            "target": {
+                              "description": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+                              "enum": [
+                                "production",
+                                "staging",
+                                null
+                              ],
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "A string with the unique URL of the deployment",
+                              "example": "my-instant-deployment-3ij3cxz9qr.now.sh",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "createdAt",
+                            "id",
+                            "name",
+                            "readyState",
+                            "url"
+                          ],
+                          "type": "object"
+                        },
+                        "nextStage": {
+                          "description": "The next stage to be activated, null if not in ACTIVE state",
+                          "example": {
+                            "duration": null,
+                            "index": 2,
+                            "isFinalStage": false,
+                            "requireApproval": true,
+                            "targetPercentage": 60
+                          },
+                          "nullable": true,
+                          "properties": {
+                            "duration": {
+                              "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                              "example": null,
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "index": {
+                              "description": "The zero-based index of the stage",
+                              "example": 0,
+                              "type": "number"
+                            },
+                            "isFinalStage": {
+                              "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "linearShift": {
+                              "description": "Whether to linearly shift traffic over the duration of this stage",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "requireApproval": {
+                              "description": "Whether or not this stage requires manual approval to proceed",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "targetPercentage": {
+                              "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                              "example": 25,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "duration",
+                            "index",
+                            "isFinalStage",
+                            "requireApproval",
+                            "targetPercentage"
+                          ],
+                          "type": "object"
+                        },
+                        "queuedDeploymentId": {
+                          "description": "The ID of a deployment queued for the next rolling release",
+                          "example": "dpl_ghi789",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "stages": {
+                          "description": "All stages configured for this rolling release",
+                          "example": [
+                            {
+                              "duration": null,
+                              "index": 0,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 5
+                            },
+                            {
+                              "duration": null,
+                              "index": 1,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 25
+                            },
+                            {
+                              "duration": null,
+                              "index": 2,
+                              "isFinalStage": false,
+                              "requireApproval": true,
+                              "targetPercentage": 60
+                            },
+                            {
+                              "duration": null,
+                              "index": 3,
+                              "isFinalStage": true,
+                              "requireApproval": false,
+                              "targetPercentage": 100
+                            }
+                          ],
+                          "items": {
+                            "description": "All stages configured for this rolling release",
+                            "example": [
+                              {
+                                "duration": null,
+                                "index": 0,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 5
+                              },
+                              {
+                                "duration": null,
+                                "index": 1,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 25
+                              },
+                              {
+                                "duration": null,
+                                "index": 2,
+                                "isFinalStage": false,
+                                "requireApproval": true,
+                                "targetPercentage": 60
+                              },
+                              {
+                                "duration": null,
+                                "index": 3,
+                                "isFinalStage": true,
+                                "requireApproval": false,
+                                "targetPercentage": 100
+                              }
+                            ],
+                            "properties": {
+                              "duration": {
+                                "description": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+                                "example": null,
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "index": {
+                                "description": "The zero-based index of the stage",
+                                "example": 0,
+                                "type": "number"
+                              },
+                              "isFinalStage": {
+                                "description": "Whether or not this stage is the final stage (targetPercentage === 100)",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "linearShift": {
+                                "description": "Whether to linearly shift traffic over the duration of this stage",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "requireApproval": {
+                                "description": "Whether or not this stage requires manual approval to proceed",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "type": "boolean"
+                              },
+                              "targetPercentage": {
+                                "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                                "example": 25,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "duration",
+                              "index",
+                              "isFinalStage",
+                              "requireApproval",
+                              "targetPercentage"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "startedAt": {
+                          "description": "Unix timestamp in milliseconds when the rolling release started",
+                          "example": 1716210500000,
+                          "type": "number"
+                        },
+                        "state": {
+                          "description": "The current state of the rolling release",
+                          "enum": [
+                            "ABORTED",
+                            "ACTIVE",
+                            "COMPLETE"
+                          ],
+                          "example": "ACTIVE",
+                          "type": "string"
+                        },
+                        "substate": {
+                          "description": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued.",
+                          "enum": [
+                            "PAUSED",
+                            null
+                          ],
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "description": "Unix timestamp in milliseconds when the rolling release was last updated",
+                          "example": 1716210600000,
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "activeStage",
+                        "advancementType",
+                        "canaryDeployment",
+                        "currentDeployment",
+                        "nextStage",
+                        "queuedDeploymentId",
+                        "stages",
+                        "startedAt",
+                        "state",
+                        "substate",
+                        "updatedAt"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "rollingRelease"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/projects/{idOrName}/rolling-release/billing": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRollingReleaseBillingStatus",
+        "parameters": [
+          {
+            "description": "Project ID or project name (URL-encoded)",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "Project ID or project name (URL-encoded)",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "availableSlots": {
+                          "enum": [
+                            0
+                          ],
+                          "type": "number"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "enum": [
+                            "plan_not_supported"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "availableSlots",
+                        "message",
+                        "reason"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "availableSlots": {
+                          "enum": [
+                            "unlimited"
+                          ],
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "enum": [
+                            "unlimited_slots"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "availableSlots",
+                        "message",
+                        "reason"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "availableSlots": {
+                          "enum": [
+                            0
+                          ],
+                          "type": "number"
+                        },
+                        "enabledProjects": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "enum": [
+                            "no_available_slots"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "availableSlots",
+                        "enabledProjects",
+                        "message",
+                        "reason"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "availableSlots": {
+                          "type": "number"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "enum": [
+                            "available_slots"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "availableSlots",
+                        "message",
+                        "reason"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/projects/{idOrName}/rolling-release/config": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRollingReleaseConfig",
+        "parameters": [
+          {
+            "description": "Project ID or project name (URL-encoded)",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "Project ID or project name (URL-encoded)",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "rollingRelease": {
+                      "description": "Project-level rolling release configuration that defines how deployments should be gradually rolled out",
+                      "nullable": true,
+                      "properties": {
+                        "canaryResponseHeader": {
+                          "description": "Whether the request served by a canary deployment should return a header indicating a canary was served. Defaults to `false` when omitted.",
+                          "enum": [
+                            false,
+                            true
+                          ],
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "gate": {
+                          "description": "Automated gating configuration. Omitted (the default) means no gating is configured, which is equivalent to `enabled: false`.",
+                          "properties": {
+                            "action": {
+                              "description": "What to do when the gate trips: pause the rollout, or roll it back.",
+                              "enum": [
+                                "pause",
+                                "rollback"
+                              ],
+                              "type": "string"
+                            },
+                            "checks": {
+                              "description": "The checks to evaluate. An empty array means nothing is evaluated.",
+                              "items": {
+                                "description": "The checks to evaluate. An empty array means nothing is evaluated.",
+                                "properties": {
+                                  "excludePaths": {
+                                    "description": "Request paths to ignore entirely — dropped from both the numerator (errors) and the denominator (total requests). Matched exactly against the request path with any query string removed; no prefix or glob matching. Defaults to `[]` when omitted.",
+                                    "example": [
+                                      "/api/health"
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "excludeStatusCodes": {
+                                    "description": "Response status codes to ignore entirely — dropped from both the numerator (errors) and the denominator (total requests). Defaults to `[]` when omitted.",
+                                    "example": [
+                                      503
+                                    ],
+                                    "items": {
+                                      "type": "number"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "ingestWatermarkSeconds": {
+                                    "description": "Seconds of ingest lag to allow for: the query's upper bound is `now() - this value`, so the check never reads a window that is still filling. Defaults to `30` when omitted.",
+                                    "example": 30,
+                                    "type": "number"
+                                  },
+                                  "minSampleSize": {
+                                    "description": "Minimum number of requests required in the window before the check can fail. Below this, the check is inconclusive rather than failing, so low-traffic stages don't gate on noise. Defaults to `100` when omitted.",
+                                    "example": 100,
+                                    "type": "number"
+                                  },
+                                  "type": {
+                                    "description": "The metric this check evaluates.",
+                                    "enum": [
+                                      "error-rate-5xx"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "dryRun": {
+                              "description": "When true, a tripped gate is only reported — {@link action} is not taken.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "enabled": {
+                              "description": "Whether automated gating is enabled for this project's rollouts.",
+                              "enum": [
+                                false,
+                                true
+                              ],
+                              "type": "boolean"
+                            },
+                            "failureThreshold": {
+                              "description": "How many failing evaluations within {@link windowSize} trip the gate. Defaults to `3` when omitted.",
+                              "example": 3,
+                              "type": "number"
+                            },
+                            "windowSize": {
+                              "description": "How many of the most recent evaluations {@link failureThreshold} is counted against. Defaults to `5` when omitted.",
+                              "example": 5,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "action",
+                            "checks",
+                            "dryRun",
+                            "enabled"
+                          ],
+                          "type": "object"
+                        },
+                        "stages": {
+                          "description": "An array of all the stages required during a deployment release. Each stage defines a target percentage and advancement rules. The final stage must always have targetPercentage: 100.",
+                          "items": {
+                            "description": "An array of all the stages required during a deployment release. Each stage defines a target percentage and advancement rules. The final stage must always have targetPercentage: 100.",
+                            "properties": {
+                              "duration": {
+                                "description": "Duration in minutes for automatic advancement to the next stage",
+                                "example": 600,
+                                "type": "number"
+                              },
+                              "linearShift": {
+                                "description": "Whether to linearly shift traffic over the duration of this stage",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "requireApproval": {
+                                "description": "Whether or not this stage requires manual approval to proceed",
+                                "enum": [
+                                  false,
+                                  true
+                                ],
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "targetPercentage": {
+                                "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                                "example": 25,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "targetPercentage"
+                            ],
+                            "type": "object"
+                          },
+                          "nullable": true,
+                          "type": "array"
+                        },
+                        "target": {
+                          "description": "The environment that the release targets, currently only supports production. Adding in case we want to configure with alias groups or custom environments.",
+                          "example": "production",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "target"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "rollingRelease"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/projects/{idOrName}/rolling-release/config": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteRollingReleaseConfig",
+        "parameters": [
+          {
+            "description": "Project ID or project name (URL-encoded)",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "Project ID or project name (URL-encoded)",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "rollingRelease": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "rollingRelease"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/projects/{idOrName}/rolling-release/config": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateRollingReleaseConfig",
+        "parameters": [
+          {
+            "description": "Project ID or project name (URL-encoded)",
+            "in": "path",
+            "name": "idOrName",
+            "required": true,
+            "schema": {
+              "description": "Project ID or project name (URL-encoded)",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "rollingRelease": {
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "rollingRelease"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "rollingRelease": {
+                          "nullable": true,
+                          "properties": {
+                            "stages": {
+                              "items": {
+                                "description": "A stage object configured for a rolling release once a new deployment is triggered the first stage will be read in the proxy for first time visitors, and if a RNG < targetPercentage then it will serve the new deployment. Upon approval the next stage will be read, etc.",
+                                "properties": {
+                                  "duration": {
+                                    "description": "Duration in minutes for automatic advancement to the next stage",
+                                    "example": 600,
+                                    "type": "number"
+                                  },
+                                  "linearShift": {
+                                    "description": "Whether to linearly shift traffic over the duration of this stage",
+                                    "enum": [
+                                      false,
+                                      true
+                                    ],
+                                    "example": false,
+                                    "type": "boolean"
+                                  },
+                                  "requireApproval": {
+                                    "description": "Whether or not this stage requires manual approval to proceed",
+                                    "enum": [
+                                      false,
+                                      true
+                                    ],
+                                    "example": false,
+                                    "type": "boolean"
+                                  },
+                                  "targetPercentage": {
+                                    "description": "The percentage of traffic to serve to the canary deployment (0-100)",
+                                    "example": 25,
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "targetPercentage"
+                                ],
+                                "type": "object"
+                              },
+                              "nullable": true,
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "rollingRelease"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

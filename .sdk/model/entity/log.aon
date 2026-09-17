@@ -1,0 +1,111 @@
+# Entity: log
+
+main: kit: entity: log: {
+
+  alias: field: {}
+
+  name: "log"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deployment_id"
+                orig: "deployment_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "project_id"
+                orig: "project_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/projects/{projectId}/deployments/{deploymentId}/runtime-logs"
+            json: "{\"operationId\":\"getRuntimeLogs\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/stream+json\":{\"schema\":{\"properties\":{\"domain\":{\"type\":\"string\"},\"level\":{\"enum\":[\"debug\",\"error\",\"fatal\",\"info\",\"trace\",\"warning\"],\"type\":\"string\"},\"message\":{\"type\":\"string\"},\"messageTruncated\":{\"enum\":[false,true],\"type\":\"boolean\"},\"requestMethod\":{\"type\":\"string\"},\"requestPath\":{\"type\":\"string\"},\"responseStatusCode\":{\"type\":\"number\"},\"rowId\":{\"type\":\"string\"},\"source\":{\"enum\":[\"delimiter\",\"edge-function\",\"edge-middleware\",\"request\",\"serverless\"],\"type\":\"string\"},\"timestampInMs\":{\"type\":\"number\"}},\"required\":[\"domain\",\"level\",\"message\",\"messageTruncated\",\"requestMethod\",\"requestPath\",\"responseStatusCode\",\"rowId\",\"source\",\"timestampInMs\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/projects/{projectId}/deployments/{deploymentId}/runtime-logs"
+          rename: {
+            param: {
+              deploymentId: "deployment_id"
+              projectId: "project_id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "deployments"
+            }
+            {
+              var: "deployment_id"
+            }
+            {
+              lit: "runtime-logs"
+            }
+          ]
+          select: {
+            exist: [
+              "deployment_id"
+              "project_id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "project"
+        "deployment"
+      ]
+    ]
+  }
+
+
+
+}

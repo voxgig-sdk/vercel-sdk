@@ -1,0 +1,18 @@
+# BasicEdgeCacheFlow
+
+main: kit: flow: BasicEdgeCacheFlow:
+{
+  entity: "edge_cache",
+  kind: "basic",
+  name: "BasicEdgeCacheFlow",
+  step: [
+    {
+      input: {
+        ref: "edge_cache_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicEdgeCacheFlow"
+}

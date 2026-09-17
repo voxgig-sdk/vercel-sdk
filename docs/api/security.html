@@ -1,0 +1,5131 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Security | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a aria-current="page" href="../api/security.html">Security</a><div class="nav-sections"><a class="nav-section" href="#post-v1securityfirewallbypass">POST /v1/security/firewall/bypass</a>
+<a class="nav-section" href="#post-v1securityfirewallconfiggenerate-rule">POST /v1/security/firewall/config/generate-rule</a>
+<a class="nav-section" href="#post-v1securityattack-mode">POST /v1/security/attack-mode</a>
+<a class="nav-section" href="#post-v1securityfirewallconfigconfigversionactivate">POST /v1/security/firewall/config/{configVersion}/activate</a>
+<a class="nav-section" href="#get-v1securityfirewallbypass">GET /v1/security/firewall/bypass</a>
+<a class="nav-section" href="#get-v1securityfirewallevents">GET /v1/security/firewall/events</a>
+<a class="nav-section" href="#get-v1securityfirewallconfig">GET /v1/security/firewall/config</a>
+<a class="nav-section" href="#get-v1securityfirewallconfigconfigversion">GET /v1/security/firewall/config/{configVersion}</a>
+<a class="nav-section" href="#get-v1securityfirewallattack-status">GET /v1/security/firewall/attack-status</a>
+<a class="nav-section" href="#patch-v1securityfirewallconfig">PATCH /v1/security/firewall/config</a>
+<a class="nav-section" href="#delete-v1securityfirewallbypass">DELETE /v1/security/firewall/bypass</a>
+<a class="nav-section" href="#delete-v1securityfirewallconfigconfigversion">DELETE /v1/security/firewall/config/{configVersion}</a>
+<a class="nav-section" href="#put-v1securityfirewallconfig">PUT /v1/security/firewall/config</a></div>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="security">Security</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1securityfirewallbypass"><code>/v1/security/firewall/bypass</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1securityfirewallconfiggenerate-rule"><code>/v1/security/firewall/config/generate-rule</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1securityattack-mode"><code>/v1/security/attack-mode</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1securityfirewallconfigconfigversionactivate"><code>/v1/security/firewall/config/{configVersion}/activate</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1securityfirewallbypass"><code>/v1/security/firewall/bypass</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1securityfirewallevents"><code>/v1/security/firewall/events</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1securityfirewallconfig"><code>/v1/security/firewall/config</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1securityfirewallconfigconfigversion"><code>/v1/security/firewall/config/{configVersion}</code></a></td>
+<td><code>load</code></td>
+<td>If the firewall configuration includes a <a href="https://vercel.com/docs/security/vercel-waf/managed-rulesets">custom managed ruleset</a>, it will include a <code>crs</code> item that has the following values: sd: Scanner Detection ma: Multipart Attack lfi: Local File Inclusion Attack rfi: Remote File Inclusion Attack rce: Remote Execution Attack php: PHP Attack gen: Generic Attack xss: XSS Attack sqli: SQL Injection Attack sf: Session Fixation Attack java: Java Attack</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1securityfirewallattack-status"><code>/v1/security/firewall/attack-status</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1securityfirewallconfig"><code>/v1/security/firewall/config</code></a></td>
+<td><code>patch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1securityfirewallbypass"><code>/v1/security/firewall/bypass</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1securityfirewallconfigconfigversion"><code>/v1/security/firewall/config/{configVersion}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1securityfirewallconfig"><code>/v1/security/firewall/config</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Action</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ActorId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>CreatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>DeletedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ExpiresAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>IsProjectRule</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Note</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>OwnerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ProjectId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>UpdatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>UpdatedAtHour</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>action_type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>allSources</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>botIdEnabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>changes</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditionGroup</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>count</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Custom Ruleset</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>endTime</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>firewallEnabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isActive</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>logHeaders</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>note</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectKey</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectScope</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If the specified bypass will apply to all domains for a project.</td>
+</tr>
+<tr>
+<td><code>public_ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ruleId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ruleName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rulesets</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sourceIp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>startTime</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ttl</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Time to live in milliseconds</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1securityfirewallbypass" class="operation" data-method="post"><code>POST</code> /v1/security/firewall/bypass</h3>
+<p>Operation ID: <code>addBypassIp</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allSources</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>note</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectScope</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If the specified bypass will apply to all domains for a project.</td>
+</tr>
+<tr>
+<td><code>sourceIp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ttl</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Time to live in milliseconds</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h3 id="post-v1securityfirewallconfiggenerate-rule" class="operation" data-method="post"><code>POST</code> /v1/security/firewall/config/generate-rule</h3>
+<p>Operation ID: <code>generateFirewallRule</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.action</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.actionDuration</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.rateLimit</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.rateLimit.action</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.rateLimit.algo</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.rateLimit.keys</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.rateLimit.limit</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.rateLimit.window</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.redirect</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.redirect.location</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.action.mitigate.redirect.permanent</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.conditionGroup</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.conditionGroup[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.conditionGroup[].conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.conditionGroup[].conditions[].neg</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.conditionGroup[].conditions[].op</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.conditionGroup[].conditions[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.conditionGroup[].conditions[].value</code></td>
+<td><code>string or number or array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rule.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="408" class="status" data-status="4xx">408</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h5 id="500-1" class="status" data-status="5xx">500</h5>
+<h3 id="post-v1securityattack-mode" class="operation" data-method="post"><code>POST</code> /v1/security/attack-mode</h3>
+<p>Operation ID: <code>updateAttackChallengeMode</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object</code>.</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attackModeEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>attackModeUpdatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h3 id="post-v1securityfirewallconfigconfigversionactivate" class="operation" data-method="post"><code>POST</code> /v1/security/firewall/config/{configVersion}/activate</h3>
+<p>Operation ID: <code>createSecurityFirewallConfigByConfigVersionActivate</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>configVersion</code> | <code>path</code> | <code>string</code> | Yes | The deployed configVersion for the firewall configuration |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>botIdEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>changes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].neg</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].op</code></td>
+<td><code>enum: eq, ex, gt, gte, inc, list, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].type</code></td>
+<td><code>enum: bot_category, bot_name, bot_protection, bot_status, cookie, domain_environment, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].value</code></td>
+<td><code>string or number or array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.gen</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.gen.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.gen.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.java</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.java.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.java.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.lfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.lfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.lfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.ma</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.ma.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.ma.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.php</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.php.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.php.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rce</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rce.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rce.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sd</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sd.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sd.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sf</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sf.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sf.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sqli</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sqli.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sqli.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.xss</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.xss.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.xss.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>firewallEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].action</code></td>
+<td><code>enum: bypass, challenge, deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].hostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].notes</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>logHeaders</code></td>
+<td><code>array of string or enum: *</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectKey</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rulesets</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400" class="status" data-status="4xx">400</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-1" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h5 id="500-2" class="status" data-status="5xx">500</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v1securityfirewallbypass" class="operation" data-method="get"><code>GET</code> /v1/security/firewall/bypass</h3>
+<p>Operation ID: <code>getBypassIp</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes |  |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No |  |
+| <code>sourceIp</code> | <code>query</code> | <code>string</code> | No | Filter by source IP |
+| <code>domain</code> | <code>query</code> | <code>string</code> | No | Filter by domain |
+| <code>projectScope</code> | <code>query</code> | <code>boolean</code> | No | Filter by project scoped rules |
+| <code>offset</code> | <code>query</code> | <code>string</code> | No | Used for pagination. Retrieves results after the provided id |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.Id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pagination.OwnerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].Action</code></td>
+<td><code>enum: block, bypass</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].ActorId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].CreatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].DeletedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].Domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].ExpiresAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].Id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].Ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].IsProjectRule</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].Note</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].OwnerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].ProjectId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].UpdatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result[].UpdatedAtHour</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-2" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-4" class="status" data-status="4xx">404</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h5 id="500-3" class="status" data-status="5xx">500</h5>
+<h3 id="get-v1securityfirewallevents" class="operation" data-method="get"><code>GET</code> /v1/security/firewall/events</h3>
+<p>Operation ID: <code>getSecurityFirewallEvents</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes |  |
+| <code>startTimestamp</code> | <code>query</code> | <code>number</code> | No |  |
+| <code>endTimestamp</code> | <code>query</code> | <code>number</code> | No |  |
+| <code>hosts</code> | <code>query</code> | <code>string</code> | No |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-5" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>actions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].action</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].action_type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].count</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].endTime</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].host</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].isActive</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].public_ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].ruleId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].ruleName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>actions[].startTime</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-5" class="status" data-status="4xx">404</h5>
+<h5 id="408-1" class="status" data-status="4xx">408</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h5 id="500-4" class="status" data-status="5xx">500</h5>
+<h3 id="get-v1securityfirewallconfig" class="operation" data-method="get"><code>GET</code> /v1/security/firewall/config</h3>
+<p>Operation ID: <code>getSecurityFirewallConfig</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-6" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.botIdEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.changes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].neg</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].op</code></td>
+<td><code>enum: eq, ex, gt, gte, inc, list, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].type</code></td>
+<td><code>enum: bot_category, bot_name, bot_protection, bot_status, cookie, domain_environment, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].value</code></td>
+<td><code>string or number or array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.gen</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.gen.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.gen.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.java</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.java.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.java.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.lfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.lfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.lfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.ma</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.ma.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.ma.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.php</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.php.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.php.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rce</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rce.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rce.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sd</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sd.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sd.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sf</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sf.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sf.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sqli</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sqli.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sqli.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.xss</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.xss.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.xss.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.firewallEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].action</code></td>
+<td><code>enum: bypass, challenge, deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].hostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].notes</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.logHeaders</code></td>
+<td><code>array of string or enum: *</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.projectKey</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.rules</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.rulesets</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.version</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.botIdEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.changes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].conditionGroup</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].conditionGroup[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].conditionGroup[].conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].conditionGroup[].conditions[].neg</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].conditionGroup[].conditions[].op</code></td>
+<td><code>enum: eq, ex, gt, gte, inc, list, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].conditionGroup[].conditions[].type</code></td>
+<td><code>enum: bot_category, bot_name, bot_protection, bot_status, cookie, domain_environment, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].conditionGroup[].conditions[].value</code></td>
+<td><code>string or number or array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.conditions[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.gen</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.gen.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.gen.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.java</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.java.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.java.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.lfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.lfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.lfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.ma</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.ma.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.ma.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.php</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.php.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.php.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.rce</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.rce.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.rce.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.rfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.rfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.rfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.sd</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.sd.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.sd.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.sf</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.sf.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.sf.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.sqli</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.sqli.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.sqli.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.xss</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.xss.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.crs.xss.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.firewallEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.ips</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.ips[].action</code></td>
+<td><code>enum: bypass, challenge, deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.ips[].hostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.ips[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.ips[].ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.ips[].notes</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.logHeaders</code></td>
+<td><code>array of string or enum: *</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.ai_bots</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.ai_bots.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.ai_bots.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.ai_bots.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.ai_bots.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.ai_bots.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.bot_protection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.bot_protection.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.bot_protection.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.bot_protection.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.bot_protection.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.bot_protection.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.owasp</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.owasp.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.owasp.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.owasp.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.owasp.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.owasp.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.traffic_sources</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.traffic_sources.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.traffic_sources.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.traffic_sources.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.traffic_sources.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.traffic_sources.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.vercel_ruleset</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.vercel_ruleset.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.vercel_ruleset.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.vercel_ruleset.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.vercel_ruleset.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.managedRules.vercel_ruleset.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.projectKey</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.rules</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.rulesets</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draft.version</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].botIdEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].changes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].conditionGroup</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].conditionGroup[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].conditionGroup[].conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].conditionGroup[].conditions[].neg</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].conditionGroup[].conditions[].op</code></td>
+<td><code>enum: eq, ex, gt, gte, inc, list, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].conditionGroup[].conditions[].type</code></td>
+<td><code>enum: bot_category, bot_name, bot_protection, bot_status, cookie, domain_environment, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].conditionGroup[].conditions[].value</code></td>
+<td><code>string or number or array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].conditions[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.gen</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.gen.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.gen.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.java</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.java.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.java.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.lfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.lfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.lfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.ma</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.ma.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.ma.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.php</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.php.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.php.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.rce</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.rce.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.rce.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.rfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.rfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.rfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.sd</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.sd.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.sd.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.sf</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.sf.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.sf.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.sqli</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.sqli.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.sqli.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.xss</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.xss.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].crs.xss.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].firewallEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].ips</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].ips[].action</code></td>
+<td><code>enum: bypass, challenge, deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].ips[].hostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].ips[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].ips[].ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].ips[].notes</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].logHeaders</code></td>
+<td><code>array of string or enum: *</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.ai_bots</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.ai_bots.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.ai_bots.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.ai_bots.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.ai_bots.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.ai_bots.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.bot_protection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.bot_protection.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.bot_protection.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.bot_protection.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.bot_protection.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.bot_protection.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.owasp</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.owasp.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.owasp.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.owasp.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.owasp.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.owasp.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.traffic_sources</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.traffic_sources.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.traffic_sources.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.traffic_sources.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.traffic_sources.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.traffic_sources.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.vercel_ruleset</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.vercel_ruleset.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.vercel_ruleset.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.vercel_ruleset.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.vercel_ruleset.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].managedRules.vercel_ruleset.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].projectKey</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].rules</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].rulesets</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>versions[].version</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-1" class="status" data-status="4xx">400</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-6" class="status" data-status="4xx">404</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1securityfirewallconfigconfigversion" class="operation" data-method="get"><code>GET</code> /v1/security/firewall/config/{configVersion}</h3>
+<p>Operation ID: <code>getFirewallConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |
+| <code>configVersion</code> | <code>path</code> | <code>string</code> | Yes | The deployed configVersion for the firewall configuration |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-if-the-firewall-configuration-includes-a-custom-managed-rulesethttpsvercelcomdocssecurityvercel-wafmanaged-rulesets-it-will-include-a-crs-item-that-has-the-following-values-sd-scanner-detection-ma-multipart-attack-lfi-local-file-inclusion-attack-rfi-remote-file-inclusion-attack-rce-remote-execution-attack-php-php-attack-gen-generic-attack-xss-xss-attack-sqli-sql-injection-attack-sf-session-fixation-attack-java-java-attack" class="status" data-status="2xx">200: If the firewall configuration includes a <a href="https://vercel.com/docs/security/vercel-waf/managed-rulesets">custom managed ruleset</a>, it will include a <code>crs</code> item that has the following values: sd: Scanner Detection ma: Multipart Attack lfi: Local File Inclusion Attack rfi: Remote File Inclusion Attack rce: Remote Execution Attack php: PHP Attack gen: Generic Attack xss: XSS Attack sqli: SQL Injection Attack sf: Session Fixation Attack java: Java Attack</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>botIdEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>changes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].neg</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].op</code></td>
+<td><code>enum: eq, ex, gt, gte, inc, list, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].type</code></td>
+<td><code>enum: bot_category, bot_name, bot_protection, bot_status, cookie, domain_environment, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].conditionGroup[].conditions[].value</code></td>
+<td><code>string or number or array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conditions[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Custom Ruleset</td>
+</tr>
+<tr>
+<td><code>crs.gen</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Generic Attack - Provide broad protection from various undefined or novel attack vectors.</td>
+</tr>
+<tr>
+<td><code>crs.gen.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.gen.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.java</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Java Attack - Mitigate risks of exploitation targeting Java-based applications or components.</td>
+</tr>
+<tr>
+<td><code>crs.java.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.java.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.lfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Local File Inclusion Attack - Prevent unauthorized access to local files through web applications.</td>
+</tr>
+<tr>
+<td><code>crs.lfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.lfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.ma</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Multipart Attack - Block attempts to bypass security controls using multipart/form-data encoding.</td>
+</tr>
+<tr>
+<td><code>crs.ma.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.ma.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.php</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>PHP Attack - Safeguard against vulnerability exploits in PHP-based applications.</td>
+</tr>
+<tr>
+<td><code>crs.php.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.php.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rce</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Remote Execution Attack - Prevent unauthorized execution of remote scripts or commands.</td>
+</tr>
+<tr>
+<td><code>crs.rce.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rce.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Remote File Inclusion Attack - Prohibit unauthorized upload or execution of remote files.</td>
+</tr>
+<tr>
+<td><code>crs.rfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sd</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Scanner Detection - Detect and prevent reconnaissance activities from network scanning tools.</td>
+</tr>
+<tr>
+<td><code>crs.sd.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sd.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sf</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Session Fixation Attack - Prevent unauthorized takeover of user sessions by enforcing unique session IDs.</td>
+</tr>
+<tr>
+<td><code>crs.sf.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sf.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sqli</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>SQL Injection Attack - Prohibit unauthorized use of SQL commands to manipulate databases.</td>
+</tr>
+<tr>
+<td><code>crs.sqli.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sqli.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.xss</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>XSS Attack - Prevent injection of malicious scripts into trusted webpages.</td>
+</tr>
+<tr>
+<td><code>crs.xss.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.xss.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>firewallEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].action</code></td>
+<td><code>enum: bypass, challenge, deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].hostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].notes</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>logHeaders</code></td>
+<td><code>array of string or enum: *</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.ai_bots.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.bot_protection.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.owasp.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.traffic_sources.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules.vercel_ruleset.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectKey</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rulesets</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-7" class="status" data-status="4xx">404</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+<h3 id="get-v1securityfirewallattack-status" class="operation" data-method="get"><code>GET</code> /v1/security/firewall/attack-status</h3>
+<p>Operation ID: <code>getActiveAttackStatus</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes |  |
+| <code>since</code> | <code>query</code> | <code>number</code> | No |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-7" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-8" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-8" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-8" class="status" data-status="4xx">404</h5>
+<h5 id="410-8" class="status" data-status="4xx">410</h5>
+<h2 id="patch">patch</h2>
+<h3 id="patch-v1securityfirewallconfig" class="operation" data-method="patch"><code>PATCH</code> /v1/security/firewall/config</h3>
+<p>Operation ID: <code>updateFirewallConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object or object</code>.</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-8" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-9" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-3" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-9" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-9" class="status" data-status="4xx">404</h5>
+<h5 id="410-9" class="status" data-status="4xx">410</h5>
+<h5 id="500-5" class="status" data-status="5xx">500</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1securityfirewallbypass" class="operation" data-method="delete"><code>DELETE</code> /v1/security/firewall/bypass</h3>
+<p>Operation ID: <code>removeBypassIp</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allSources</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>note</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectScope</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sourceIp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-9" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ok</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-10" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-4" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-10" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-10" class="status" data-status="4xx">404</h5>
+<h5 id="410-10" class="status" data-status="4xx">410</h5>
+<h5 id="500-6" class="status" data-status="5xx">500</h5>
+<h3 id="delete-v1securityfirewallconfigconfigversion" class="operation" data-method="delete"><code>DELETE</code> /v1/security/firewall/config/{configVersion}</h3>
+<p>Operation ID: <code>deleteSecurityFirewallConfigByConfigVersion</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>configVersion</code> | <code>path</code> | <code>string</code> | Yes | The deployed configVersion for the firewall configuration |</p>
+<h4 id="responses-11">Responses</h4>
+<h5 id="204" class="status" data-status="2xx">204</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>enum: </code>.</p>
+<h5 id="400-2" class="status" data-status="4xx">400</h5>
+<h5 id="401-the-request-is-not-authorized-11" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-11" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-11" class="status" data-status="4xx">404</h5>
+<h5 id="410-11" class="status" data-status="4xx">410</h5>
+<h5 id="500-7" class="status" data-status="5xx">500</h5>
+<h2 id="update">update</h2>
+<h3 id="put-v1securityfirewallconfig" class="operation" data-method="put"><code>PUT</code> /v1/security/firewall/config</h3>
+<p>Operation ID: <code>putFirewallConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>projectId</code> | <code>query</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-4">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>botIdEnabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Custom Ruleset</td>
+</tr>
+<tr>
+<td><code>crs.gen</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Generic Attack - Provide broad protection from various undefined or novel attack vectors.</td>
+</tr>
+<tr>
+<td><code>crs.gen.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.gen.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.java</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Java Attack - Mitigate risks of exploitation targeting Java-based applications or components.</td>
+</tr>
+<tr>
+<td><code>crs.java.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.java.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.lfi</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Local File Inclusion Attack - Prevent unauthorized access to local files through web applications.</td>
+</tr>
+<tr>
+<td><code>crs.lfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.lfi.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.ma</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Multipart Attack - Block attempts to bypass security controls using multipart/form-data encoding.</td>
+</tr>
+<tr>
+<td><code>crs.ma.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.ma.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.php</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>PHP Attack - Safeguard against vulnerability exploits in PHP-based applications.</td>
+</tr>
+<tr>
+<td><code>crs.php.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.php.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rce</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Remote Execution Attack - Prevent unauthorized execution of remote scripts or commands.</td>
+</tr>
+<tr>
+<td><code>crs.rce.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rce.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rfi</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Remote File Inclusion Attack - Prohibit unauthorized upload or execution of remote files.</td>
+</tr>
+<tr>
+<td><code>crs.rfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.rfi.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sd</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Scanner Detection - Detect and prevent reconnaissance activities from network scanning tools.</td>
+</tr>
+<tr>
+<td><code>crs.sd.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sd.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sf</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Session Fixation Attack - Prevent unauthorized takeover of user sessions by enforcing unique session IDs.</td>
+</tr>
+<tr>
+<td><code>crs.sf.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sf.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sqli</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>SQL Injection Attack - Prohibit unauthorized use of SQL commands to manipulate databases.</td>
+</tr>
+<tr>
+<td><code>crs.sqli.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.sqli.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.xss</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>XSS Attack - Prevent injection of malicious scripts into trusted webpages.</td>
+</tr>
+<tr>
+<td><code>crs.xss.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>crs.xss.active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>firewallEnabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].action</code></td>
+<td><code>enum: deny, challenge, log, bypass</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].hostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips[].notes</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>logHeaders</code></td>
+<td><code>string or array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>managedRules</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].action</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].action.mitigate</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].action.mitigate.action</code></td>
+<td><code>enum: log, challenge, deny, bypass, rate_limit, redirect</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].action.mitigate.actionDuration</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].action.mitigate.bypassSystem</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].action.mitigate.logHeaders</code></td>
+<td><code>string or array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].action.mitigate.rateLimit</code></td>
+<td><code>object or any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].action.mitigate.redirect</code></td>
+<td><code>object or any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].active</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].conditionGroup</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].conditionGroup[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].conditionGroup[].conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].conditionGroup[].conditions[].neg</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].conditionGroup[].conditions[].op</code></td>
+<td><code>enum: re, eq, neq, ex, nex, inc, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].conditionGroup[].conditions[].type</code></td>
+<td><code>enum: host, path, method, header, query, cookie, ...</code></td>
+<td>Yes</td>
+<td><a href="https://vercel.com/docs/security/vercel-waf/rule-configuration#parameters">Parameter</a> from the incoming traffic.</td>
+</tr>
+<tr>
+<td><code>rules[].conditionGroup[].conditions[].value</code></td>
+<td><code>string or array of string or number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].valid</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rules[].validationErrors</code></td>
+<td><code>array of string or string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rulesets</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-10" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.botIdEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.changes</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].key</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].neg</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].op</code></td>
+<td><code>enum: eq, ex, gt, gte, inc, list, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].type</code></td>
+<td><code>enum: bot_category, bot_name, bot_protection, bot_status, cookie, domain_environment, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].conditionGroup[].conditions[].value</code></td>
+<td><code>string or number or array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.conditions[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Custom Ruleset</td>
+</tr>
+<tr>
+<td><code>active.crs.gen</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Generic Attack - Provide broad protection from various undefined or novel attack vectors.</td>
+</tr>
+<tr>
+<td><code>active.crs.gen.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.gen.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.java</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Java Attack - Mitigate risks of exploitation targeting Java-based applications or components.</td>
+</tr>
+<tr>
+<td><code>active.crs.java.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.java.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.lfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Local File Inclusion Attack - Prevent unauthorized access to local files through web applications.</td>
+</tr>
+<tr>
+<td><code>active.crs.lfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.lfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.ma</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Multipart Attack - Block attempts to bypass security controls using multipart/form-data encoding.</td>
+</tr>
+<tr>
+<td><code>active.crs.ma.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.ma.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.php</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>PHP Attack - Safeguard against vulnerability exploits in PHP-based applications.</td>
+</tr>
+<tr>
+<td><code>active.crs.php.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.php.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rce</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Remote Execution Attack - Prevent unauthorized execution of remote scripts or commands.</td>
+</tr>
+<tr>
+<td><code>active.crs.rce.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rce.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rfi</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Remote File Inclusion Attack - Prohibit unauthorized upload or execution of remote files.</td>
+</tr>
+<tr>
+<td><code>active.crs.rfi.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.rfi.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sd</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Scanner Detection - Detect and prevent reconnaissance activities from network scanning tools.</td>
+</tr>
+<tr>
+<td><code>active.crs.sd.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sd.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sf</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Session Fixation Attack - Prevent unauthorized takeover of user sessions by enforcing unique session IDs.</td>
+</tr>
+<tr>
+<td><code>active.crs.sf.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sf.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sqli</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>SQL Injection Attack - Prohibit unauthorized use of SQL commands to manipulate databases.</td>
+</tr>
+<tr>
+<td><code>active.crs.sqli.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.sqli.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.xss</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>XSS Attack - Prevent injection of malicious scripts into trusted webpages.</td>
+</tr>
+<tr>
+<td><code>active.crs.xss.action</code></td>
+<td><code>enum: deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.crs.xss.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.firewallEnabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].action</code></td>
+<td><code>enum: bypass, challenge, deny, log</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].hostname</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].ip</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ips[].notes</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.logHeaders</code></td>
+<td><code>array of string or enum: *</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.ai_bots.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.bot_protection.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.owasp.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.traffic_sources.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.action</code></td>
+<td><code>enum: challenge, deny, log</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.active</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.updatedAt</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.userId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.managedRules.vercel_ruleset.username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.ownerId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.projectKey</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.rules</code></td>
+<td><code>array of object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.rulesets</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.updatedAt</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>active.version</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-12" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-5" class="status" data-status="4xx">402</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-12" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-12" class="status" data-status="4xx">404</h5>
+<h5 id="410-12" class="status" data-status="4xx">410</h5>
+<h5 id="500-8" class="status" data-status="5xx">500</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

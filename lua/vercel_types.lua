@@ -6,11 +6,2575 @@
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
 
----@class Project
+---@class AccessGroup
+---@field accessGroupId string
+---@field createdAt string
+---@field entitlements? table
+---@field id? string
+---@field isDsyncManaged boolean
+---@field membersCount number
+---@field membersToAdd? table
+---@field membersToRemove? table
+---@field name string
+---@field projectId string
+---@field projects? table
+---@field projectsCount number
+---@field role string
+---@field teamId string
+---@field teamPermissions? table
+---@field teamRoles? table
+---@field updatedAt string
+
+---@class AccessGroupLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class AccessGroupListMatch
+---@field id_or_name string
+---@field limit? number
+---@field next? string
+---@field search? string
+---@field slug? string
+---@field team_id? string
+
+---@class AccessGroupCreateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field accessGroupId string
+---@field createdAt string
+---@field entitlements? table
+---@field isDsyncManaged boolean
+---@field membersCount number
+---@field membersToAdd? table
+---@field membersToRemove? table
+---@field name string
+---@field projectId string
+---@field projects? table
+---@field projectsCount number
+---@field role string
+---@field teamId string
+---@field teamPermissions? table
+---@field teamRoles? table
+---@field updatedAt string
+
+---@class AccessGroupUpdateData
+---@field access_group_id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field accessGroupId? string
+---@field createdAt? string
+---@field entitlements? table
+---@field id? string
+---@field isDsyncManaged? boolean
+---@field membersCount? number
+---@field membersToAdd? table
+---@field membersToRemove? table
+---@field name? string
+---@field projectId? string
+---@field projects? table
+---@field projectsCount? number
+---@field role? string
+---@field teamId? string
+---@field teamPermissions? table
+---@field teamRoles? table
+---@field updatedAt? string
+
+---@class AccessGroupRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class AiGateway
+
+---@class AiGatewayRemoveMatch
+---@field rule_id string
+---@field slug? string
+---@field team_id? string
+
+---@class AiGatewayRule
+---@field action? table
+---@field createdAt number
+---@field createdBy? string
+---@field deleted? boolean
+---@field description? string
+---@field enabled boolean
+---@field match? table
+---@field ownerId string
+---@field ruleId string
+---@field type string
+---@field updatedAt number
+---@field updatedBy? string
+
+---@class AiGatewayRuleCreateData
+---@field slug? string
+---@field team_id? string
+---@field action? table
+---@field createdAt number
+---@field createdBy? string
+---@field deleted? boolean
+---@field description? string
+---@field enabled boolean
+---@field match? table
+---@field ownerId string
+---@field ruleId string
+---@field type string
+---@field updatedAt number
+---@field updatedBy? string
+
+---@class AiGatewayRuleUpdateData
+---@field slug? string
+---@field team_id? string
+---@field action? table
+---@field createdAt? number
+---@field createdBy? string
+---@field deleted? boolean
+---@field description? string
+---@field enabled? boolean
+---@field match? table
+---@field ownerId? string
+---@field ruleId? string
+---@field type? string
+---@field updatedAt? number
+---@field updatedBy? string
+
+---@class AiGatewayRuleList
+---@field action? table
+---@field createdAt number
+---@field createdBy? string
+---@field deleted? boolean
+---@field description? string
+---@field enabled boolean
+---@field match? table
+---@field ownerId string
+---@field ruleId string
+---@field type string
+---@field updatedAt number
+---@field updatedBy? string
+
+---@class AiGatewayRuleListListMatch
+---@field include_disabled? string
+---@field slug? string
+---@field team_id? string
+
+---@class AiGatewayVirtualModelConfig
+---@field allowFallbackFromFast? boolean
+---@field baseUrl? string
+---@field byokCredentialIds? table
+---@field caching? string
+---@field createdAt number
+---@field createdBy? string
+---@field deleted boolean
+---@field description? string
+---@field disallowPromptTraining? boolean
+---@field displayName? string
+---@field has? table
+---@field hipaaCompliant? boolean
+---@field id? string
+---@field inferenceRegion? table
+---@field instanceId? string
+---@field kind string
+---@field modelSlug? string
+---@field models? table
+---@field observabilityTags? table
+---@field ownerId string
+---@field providerOnly? table
+---@field providerOptions? table
+---@field providerOrder? table
+---@field providerTimeouts? table
+---@field requires? table
+---@field selector? string
+---@field serviceTier? string
+---@field sort? string
+---@field speed? string
+---@field status string
+---@field updatedAt number
+---@field updatedBy? string
+---@field virtualModelSlug string
+---@field visibility? string
+---@field zeroDataRetention? boolean
+
+---@class AiGatewayVirtualModelConfigLoadMatch
+---@field id string
+---@field owner_id? string
+---@field slug? string
+---@field team_id? string
+
+---@class AiGatewayVirtualModelConfigCreateData
+---@field slug? string
+---@field team_id? string
+---@field allowFallbackFromFast? boolean
+---@field baseUrl? string
+---@field byokCredentialIds? table
+---@field caching? string
+---@field createdAt number
+---@field createdBy? string
+---@field deleted boolean
+---@field description? string
+---@field disallowPromptTraining? boolean
+---@field displayName? string
+---@field has? table
+---@field hipaaCompliant? boolean
+---@field id? string
+---@field inferenceRegion? table
+---@field instanceId? string
+---@field kind string
+---@field modelSlug? string
+---@field models? table
+---@field observabilityTags? table
+---@field ownerId string
+---@field providerOnly? table
+---@field providerOptions? table
+---@field providerOrder? table
+---@field providerTimeouts? table
+---@field requires? table
+---@field selector? string
+---@field serviceTier? string
+---@field sort? string
+---@field speed? string
+---@field status string
+---@field updatedAt number
+---@field updatedBy? string
+---@field virtualModelSlug string
+---@field visibility? string
+---@field zeroDataRetention? boolean
+
+---@class AiGatewayVirtualModelConfigUpdateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field allowFallbackFromFast? boolean
+---@field baseUrl? string
+---@field byokCredentialIds? table
+---@field caching? string
+---@field createdAt? number
+---@field createdBy? string
+---@field deleted? boolean
+---@field description? string
+---@field disallowPromptTraining? boolean
+---@field displayName? string
+---@field has? table
+---@field hipaaCompliant? boolean
+---@field inferenceRegion? table
+---@field instanceId? string
+---@field kind? string
+---@field modelSlug? string
+---@field models? table
+---@field observabilityTags? table
+---@field ownerId? string
+---@field providerOnly? table
+---@field providerOptions? table
+---@field providerOrder? table
+---@field providerTimeouts? table
+---@field requires? table
+---@field selector? string
+---@field serviceTier? string
+---@field sort? string
+---@field speed? string
+---@field status? string
+---@field updatedAt? number
+---@field updatedBy? string
+---@field virtualModelSlug? string
+---@field visibility? string
+---@field zeroDataRetention? boolean
+
+---@class AiGatewayVirtualModelConfigList
+---@field allowFallbackFromFast? boolean
+---@field baseUrl? string
+---@field byokCredentialIds? table
+---@field caching? string
+---@field createdAt number
+---@field createdBy? string
+---@field deleted boolean
+---@field description? string
+---@field disallowPromptTraining? boolean
+---@field displayName? string
+---@field has? table
+---@field hipaaCompliant? boolean
+---@field inferenceRegion? table
+---@field instanceId? string
+---@field kind string
+---@field modelSlug? string
+---@field models? table
+---@field observabilityTags? table
+---@field ownerId string
+---@field providerOnly? table
+---@field providerOptions? table
+---@field providerOrder? table
+---@field providerTimeouts? table
+---@field requires? table
+---@field selector? string
+---@field serviceTier? string
+---@field sort? string
+---@field speed? string
+---@field status string
+---@field updatedAt number
+---@field updatedBy? string
+---@field virtualModelSlug string
+---@field visibility? string
+---@field zeroDataRetention? boolean
+
+---@class AiGatewayVirtualModelConfigListListMatch
+---@field cursor? string
+---@field limit? number
+---@field owner_id? string
+---@field slug? string
+---@field team_id? string
+
+---@class Alias
+---@field alias string
+---@field created string
+---@field createdAt? number
+---@field creator table
+---@field deletedAt? number
+---@field deployment table
+---@field deploymentId string
+---@field id? string
+---@field microfrontends table
+---@field oldDeploymentId? string
+---@field projectId string
+---@field protectionBypass? table
+---@field redirect? string
+---@field redirectStatusCode? number
+---@field uid string
+---@field updatedAt? number
+
+---@class AliasLoadMatch
+---@field id string
+---@field from? number
+---@field project_id? string
+---@field since? number
+---@field slug? string
+---@field team_id? string
+---@field until? number
+
+---@class AliasListMatch
+---@field domain? any
+---@field from? number
+---@field limit? number
+---@field project_id? string
+---@field rollback_deployment_id? string
+---@field since? number
+---@field slug? string
+---@field team_id? string
+---@field until? number
+
+---@class AliasCreateData
+---@field deployment_id string
+---@field slug? string
+---@field team_id? string
+---@field alias string
+---@field created string
+---@field createdAt? number
+---@field creator table
+---@field deletedAt? number
+---@field deployment table
+---@field deploymentId string
+---@field id? string
+---@field microfrontends table
+---@field oldDeploymentId? string
+---@field projectId string
+---@field protectionBypass? table
+---@field redirect? string
+---@field redirectStatusCode? number
+---@field uid string
+---@field updatedAt? number
+
+---@class AliasUpdateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field alias? string
+---@field created? string
+---@field createdAt? number
+---@field creator? table
+---@field deletedAt? number
+---@field deployment? table
+---@field deploymentId? string
+---@field microfrontends? table
+---@field oldDeploymentId? string
+---@field projectId? string
+---@field protectionBypass? table
+---@field redirect? string
+---@field redirectStatusCode? number
+---@field uid? string
+---@field updatedAt? number
+
+---@class AliasRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class ApiAiGateway
+
+---@class ApiAiGatewayLoadMatch
+---@field cursor? string
+---@field limit? number
+---@field owner_id? string
+---@field slug? string
+---@field team_id? string
+---@field virtual_model_slug? string
+
+---@class ApiAiGatewayRemoveMatch
+---@field vmc_slug string
+---@field acting_ip? string
+---@field acting_user_agent? string
+---@field owner_id? string
+---@field slug? string
+---@field team_id? string
+---@field updated_by? string
+
+---@class ApiKey
+---@field activeAt number
+---@field aiGatewayQuota table
+---@field createdAt number
+---@field createdBy string
+---@field createdByAppId string
+---@field expiresAt number
+---@field id string
+---@field leakedAt number
+---@field leakedUrl string
+---@field metadata? table
+---@field name string
+---@field partialKey string
+---@field projectId string
+---@field purpose string
+---@field quota table
+---@field teamId string
+
+---@class ApiKeyCreateData
+---@field activeAt number
+---@field aiGatewayQuota table
+---@field createdAt number
+---@field createdBy string
+---@field createdByAppId string
+---@field expiresAt number
+---@field id string
+---@field leakedAt number
+---@field leakedUrl string
+---@field metadata? table
+---@field name string
+---@field partialKey string
+---@field projectId string
+---@field purpose string
+---@field quota table
+---@field teamId string
+
+---@class Artifact
+---@field hashes table
+---@field id? string
+
+---@class ArtifactLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class ArtifactCreateData
+---@field slug? string
+---@field team_id? string
+---@field hashes table
+---@field id? string
+
+---@class ArtifactUpdateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field hashes? table
+
+---@class ArtifactRemoveMatch
+---@field slug? string
+---@field team_id? string
+
+---@class Authentication
+---@field activeAt number
+---@field createdAt number
+---@field expiresAt? number
+---@field id string
+---@field leakedAt? number
+---@field leakedUrl? string
+---@field name string
+---@field origin? string
+---@field prefix? string
+---@field projectId? string
+---@field revokedAt? number
+---@field scopes? table
+---@field suffix? string
+---@field type string
+
+---@class AuthenticationLoadMatch
+---@field token_id string
+
+---@class AuthenticationCreateData
+---@field slug? string
+---@field team_id? string
+---@field activeAt number
+---@field createdAt number
+---@field expiresAt? number
+---@field id string
+---@field leakedAt? number
+---@field leakedUrl? string
+---@field name string
+---@field origin? string
+---@field prefix? string
+---@field projectId? string
+---@field revokedAt? number
+---@field scopes? table
+---@field suffix? string
+---@field type string
+
+---@class AuthenticationRemoveMatch
+---@field token_id string
+
+---@class Billing
+
+---@class BillingLoadMatch
+---@field from string
+---@field slug? string
+---@field team_id? string
+---@field to string
+
+---@class BillingCreateData
+---@field slug? string
+---@field source? string
+---@field team_id? string
+
+---@class BulkRedirect
+---@field alias? string
+---@field createdBy string
+---@field id string
+---@field isLive? boolean
+---@field isStaging? boolean
+---@field key string
+---@field lastModified number
+---@field name? string
+---@field overwrite? boolean
+---@field projectId string
+---@field redirect table
+---@field redirectCount? number
+---@field redirects? table
+---@field restore? boolean
+---@field teamId string
+
+---@class BulkRedirectLoadMatch
+---@field diff? any
+---@field page? number
+---@field per_page? number
+---@field project_id string
+---@field q? string
+---@field slug? string
+---@field sort_by? string
+---@field sort_order? string
+---@field team_id? string
+---@field version_id? string
+
+---@class BulkRedirectListMatch
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class BulkRedirectCreateData
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field alias? string
+---@field createdBy string
+---@field id string
+---@field isLive? boolean
+---@field isStaging? boolean
+---@field key string
+---@field lastModified number
+---@field name? string
+---@field overwrite? boolean
+---@field projectId string
+---@field redirect table
+---@field redirectCount? number
+---@field redirects? table
+---@field restore? boolean
+---@field teamId string
+
+---@class BulkRedirectUpdateData
+---@field slug? string
+---@field team_id? string
+---@field alias? string
+---@field createdBy? string
+---@field id? string
+---@field isLive? boolean
+---@field isStaging? boolean
+---@field key? string
+---@field lastModified? number
+---@field name? string
+---@field overwrite? boolean
+---@field projectId? string
+---@field redirect? table
+---@field redirectCount? number
+---@field redirects? table
+---@field restore? boolean
+---@field teamId? string
+
+---@class BulkRedirectRemoveMatch
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class Cert
+---@field autoRenew boolean
+---@field ca string
+---@field cert string
+---@field cns table
+---@field createdAt number
+---@field expiresAt number
+---@field id string
+---@field key string
+---@field skipValidation? boolean
+
+---@class CertLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class CertListMatch
+---@field slug? string
+---@field team_id? string
+
+---@class CertCreateData
+---@field slug? string
+---@field team_id? string
+---@field autoRenew boolean
+---@field ca string
+---@field cert string
+---@field cns table
+---@field createdAt number
+---@field expiresAt number
+---@field id string
+---@field key string
+---@field skipValidation? boolean
+
+---@class CertUpdateData
+---@field slug? string
+---@field team_id? string
+---@field autoRenew? boolean
+---@field ca? string
+---@field cert? string
+---@field cns? table
+---@field createdAt? number
+---@field expiresAt? number
+---@field id? string
+---@field key? string
+---@field skipValidation? boolean
+
+---@class CertRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class Check
+---@field blocking boolean
+---@field blocks string
+---@field completedAt? number
+---@field conclusion? any
+---@field createdAt number
+---@field deletedAt? number
+---@field detailsUrl? string
+---@field externalId? string
+---@field id string
+---@field integrationId string
+---@field isRerequestable boolean
+---@field metrics table
+---@field name string
+---@field output? table
+---@field ownerId string
+---@field path? string
+---@field projectId string
+---@field requires string
+---@field rerequestable? boolean
+---@field source any
+---@field sourceIntegrationConfigurationId? string
+---@field sourceKind string
+---@field startedAt? number
+---@field status? any
+---@field targets table
+---@field timeout number
+---@field updatedAt number
+
+---@class CheckLoadMatch
+---@field deployment_id? string
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field project_id? string
+
+---@class CheckListMatch
+---@field project_id_or_name string
+---@field block? string
+---@field slug? string
+---@field team_id? string
+
+---@class CheckCreateData
+---@field deployment_id string
+---@field slug? string
+---@field team_id? string
+---@field blocking boolean
+---@field blocks string
+---@field completedAt? number
+---@field conclusion? any
+---@field createdAt number
+---@field deletedAt? number
+---@field detailsUrl? string
+---@field externalId? string
+---@field id string
+---@field integrationId string
+---@field isRerequestable boolean
+---@field metrics table
+---@field name string
+---@field output? table
+---@field ownerId string
+---@field path? string
+---@field projectId string
+---@field requires string
+---@field rerequestable? boolean
+---@field source any
+---@field sourceIntegrationConfigurationId? string
+---@field sourceKind string
+---@field startedAt? number
+---@field status? any
+---@field targets table
+---@field timeout number
+---@field updatedAt number
+
+---@class CheckUpdateData
+---@field deployment_id? string
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field project_id? string
+---@field blocking? boolean
+---@field blocks? string
+---@field completedAt? number
+---@field conclusion? any
+---@field createdAt? number
+---@field deletedAt? number
+---@field detailsUrl? string
+---@field externalId? string
+---@field integrationId? string
+---@field isRerequestable? boolean
+---@field metrics? table
+---@field name? string
+---@field output? table
+---@field ownerId? string
+---@field path? string
+---@field projectId? string
+---@field requires? string
+---@field rerequestable? boolean
+---@field source? any
+---@field sourceIntegrationConfigurationId? string
+---@field sourceKind? string
+---@field startedAt? number
+---@field status? any
+---@field targets? table
+---@field timeout? number
+---@field updatedAt? number
+
+---@class CheckRemoveMatch
+---@field id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class ChecksV2
+---@field checkId string
+---@field completedAt? number
+---@field conclusion? string
+---@field conclusionText? string
+---@field externalId? string
+---@field externalUrl? string
+---@field output? table
+---@field runs table
+---@field status? string
+
+---@class ChecksV2LoadMatch
+---@field check_run_id string
+---@field deployment_id string
+---@field slug? string
+---@field team_id? string
+
+---@class ChecksV2ListMatch
+---@field deployment_id string
+---@field slug? string
+---@field team_id? string
+
+---@class ChecksV2CreateData
+---@field deployment_id string
+---@field slug? string
+---@field team_id? string
+---@field checkId string
+---@field completedAt? number
+---@field conclusion? string
+---@field conclusionText? string
+---@field externalId? string
+---@field externalUrl? string
+---@field output? table
+---@field runs table
+---@field status? string
+
+---@class ChecksV2UpdateData
+---@field check_run_id string
+---@field deployment_id string
+---@field slug? string
+---@field team_id? string
+---@field checkId? string
+---@field completedAt? number
+---@field conclusion? string
+---@field conclusionText? string
+---@field externalId? string
+---@field externalUrl? string
+---@field output? table
+---@field runs? table
+---@field status? string
+
+---@class Connect
+---@field additionalParams? table
+---@field audience? table
+---@field authorizationDetails? table
+---@field authorizationId? string
+---@field claims? table
+---@field connector table
+---@field deviceCode? boolean
+---@field displayName string
+---@field expiresAt number
+---@field expiresInMs? number
+---@field externalSubject? string
+---@field id string
+---@field installationId? string
+---@field metadata? table
+---@field name string
+---@field prompt? string
+---@field resources? table
+---@field returnUrl? string
+---@field scopes? table
+---@field service? string
+---@field serviceName? string
+---@field subject? any
+---@field tenantId? string
+---@field token string
+---@field tokenGroupId? string
+---@field tokenId string
+---@field type string
+---@field uid string
+---@field validityBufferMs? number
+---@field webhook? string
+
+---@class ConnectCreateData
+---@field connector string
+---@field additionalParams? table
+---@field audience? table
+---@field authorizationDetails? table
+---@field authorizationId? string
+---@field claims? table
+---@field deviceCode? boolean
+---@field displayName string
+---@field expiresAt number
+---@field expiresInMs? number
+---@field externalSubject? string
+---@field id string
+---@field installationId? string
+---@field metadata? table
+---@field name string
+---@field prompt? string
+---@field resources? table
+---@field returnUrl? string
+---@field scopes? table
+---@field service? string
+---@field serviceName? string
+---@field subject? any
+---@field tenantId? string
+---@field token string
+---@field tokenGroupId? string
+---@field tokenId string
+---@field type string
+---@field uid string
+---@field validityBufferMs? number
+---@field webhook? string
+
+---@class ConnectRemoveMatch
+---@field connector string
+---@field slug? string
+---@field team_id? string
+
+---@class ConnectConnector
+---@field accentColor? string
+---@field appTokens table
+---@field backgroundColor? string
+---@field clientUrl? string
+---@field connectionMethod? string
+---@field connector table
+---@field createdAt number
+---@field createdBy? any
+---@field creationMode? string
+---@field data any
+---@field defaultInstallationId? string
+---@field destinations table
+---@field devsite? string
+---@field displayName string
+---@field docsite? string
+---@field environments? table
+---@field events? table
+---@field icon? string
+---@field id string
+---@field knownStale? boolean
+---@field managed? table
+---@field name string
+---@field params? table
+---@field projectId? string
+---@field reconsentNeeded table
+---@field redirectUri? string
+---@field reinstallAt? number
+---@field reinstallNeeded? boolean
+---@field service string
+---@field serviceSync table
+---@field supportedSubjectTypes table
+---@field supportsIcon any
+---@field supportsInstallation boolean
+---@field supportsRevocation boolean
+---@field supportsTriggers boolean
+---@field target? string
+---@field triggerDestination? any
+---@field triggerDestinations? table
+---@field triggers table
+---@field type string
+---@field typeIcon? string
+---@field typeName string
+---@field uid string
+---@field updatedAt number
+---@field updatedBy? any
+---@field userTokens table
+---@field website? string
+
+---@class ConnectConnectorLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class ConnectConnectorCreateData
+---@field slug? string
+---@field team_id? string
+---@field accentColor? string
+---@field appTokens table
+---@field backgroundColor? string
+---@field clientUrl? string
+---@field connectionMethod? string
+---@field connector table
+---@field createdAt number
+---@field createdBy? any
+---@field creationMode? string
+---@field data any
+---@field defaultInstallationId? string
+---@field destinations table
+---@field devsite? string
+---@field displayName string
+---@field docsite? string
+---@field environments? table
+---@field events? table
+---@field icon? string
+---@field id string
+---@field knownStale? boolean
+---@field managed? table
+---@field name string
+---@field params? table
+---@field projectId? string
+---@field reconsentNeeded table
+---@field redirectUri? string
+---@field reinstallAt? number
+---@field reinstallNeeded? boolean
+---@field service string
+---@field serviceSync table
+---@field supportedSubjectTypes table
+---@field supportsIcon any
+---@field supportsInstallation boolean
+---@field supportsRevocation boolean
+---@field supportsTriggers boolean
+---@field target? string
+---@field triggerDestination? any
+---@field triggerDestinations? table
+---@field triggers table
+---@field type string
+---@field typeIcon? string
+---@field typeName string
+---@field uid string
+---@field updatedAt number
+---@field updatedBy? any
+---@field userTokens table
+---@field website? string
+
+---@class ConnectConnectorUpdateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field accentColor? string
+---@field appTokens? table
+---@field backgroundColor? string
+---@field clientUrl? string
+---@field connectionMethod? string
+---@field connector? table
+---@field createdAt? number
+---@field createdBy? any
+---@field creationMode? string
+---@field data? any
+---@field defaultInstallationId? string
+---@field destinations? table
+---@field devsite? string
+---@field displayName? string
+---@field docsite? string
+---@field environments? table
+---@field events? table
+---@field icon? string
+---@field knownStale? boolean
+---@field managed? table
+---@field name? string
+---@field params? table
+---@field projectId? string
+---@field reconsentNeeded? table
+---@field redirectUri? string
+---@field reinstallAt? number
+---@field reinstallNeeded? boolean
+---@field service? string
+---@field serviceSync? table
+---@field supportedSubjectTypes? table
+---@field supportsIcon? any
+---@field supportsInstallation? boolean
+---@field supportsRevocation? boolean
+---@field supportsTriggers? boolean
+---@field target? string
+---@field triggerDestination? any
+---@field triggerDestinations? table
+---@field triggers? table
+---@field type? string
+---@field typeIcon? string
+---@field typeName? string
+---@field uid? string
+---@field updatedAt? number
+---@field updatedBy? any
+---@field userTokens? table
+---@field website? string
+
+---@class ConnectConnectorList
+---@field accentColor? string
+---@field appTokens table
+---@field backgroundColor? string
+---@field clientUrl? string
+---@field connectionMethod? string
+---@field createdAt number
+---@field createdBy? any
+---@field creationMode? string
+---@field defaultInstallationId? string
+---@field devsite? string
+---@field displayName string
+---@field docsite? string
+---@field events? table
+---@field icon? string
+---@field id string
+---@field knownStale? boolean
+---@field managed? table
+---@field name string
+---@field redirectUri? string
+---@field reinstallAt? number
+---@field service string
+---@field supportedSubjectTypes table
+---@field supportsIcon any
+---@field supportsInstallation boolean
+---@field supportsRevocation boolean
+---@field supportsTriggers boolean
+---@field target? string
+---@field triggerDestinations? table
+---@field triggers table
+---@field type string
+---@field typeIcon? string
+---@field typeName string
+---@field uid string
+---@field updatedAt number
+---@field updatedBy? any
+---@field userTokens table
+---@field website? string
+
+---@class ConnectConnectorListListMatch
+---@field cursor? string
+---@field limit? number
+---@field project_id? string
+---@field search? string
+---@field service? string
+---@field slug? string
+---@field sort? string
+---@field team_id? string
+---@field type? string
+
+---@class ConnectConnectorProjectConnectionList
+---@field connectorId string
+---@field createdAt number
+---@field enabledEnvironments table
+---@field project table
+---@field updatedAt number
+
+---@class ConnectConnectorProjectConnectionListListMatch
+---@field connector_id string
+---@field cursor? string
+---@field limit? number
+---@field slug? string
+---@field team_id? string
+
+---@class ConnectProjectConnection
+---@field connectorId string
+---@field createdAt number
+---@field enabledEnvironments table
+---@field environments table
+---@field project table
+---@field updatedAt number
+
+---@class ConnectProjectConnectionLoadMatch
+---@field connector_id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class ConnectProjectConnectionCreateData
+---@field connector_id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field connectorId string
+---@field createdAt number
+---@field enabledEnvironments table
+---@field environments table
+---@field project table
+---@field updatedAt number
+
+---@class ConnectProjectConnectorConnectionList
+---@field connectorId string
+---@field createdAt number
+---@field enabledEnvironments table
+---@field project table
+---@field updatedAt number
+
+---@class ConnectProjectConnectorConnectionListListMatch
+---@field project_id string
+---@field cursor? string
+---@field limit? number
+---@field slug? string
+---@field team_id? string
+
+---@class Deployment
+---@field aliasAssigned? any
+---@field aliasError table
+---@field attribution? table
+---@field buildMachine? string
+---@field buildingAt? number
+---@field checks table
+---@field checksConclusion? string
+---@field checksState? string
+---@field connectBuildsEnabled? boolean
+---@field connectConfigurationId? string
+---@field created number
+---@field createdAt number
+---@field creator table
+---@field customEnvironment table
+---@field customEnvironmentSlugOrId? string
+---@field defaultRoute? string
+---@field deleted? number
+---@field deploymentId? string
+---@field errorCode? string
+---@field errorMessage? string
+---@field expiration? number
+---@field files? table
+---@field gitAccessToken? string
+---@field gitMetadata? table
+---@field gitSource? any
+---@field id? string
+---@field inspectorUrl string
+---@field isRollbackCandidate? boolean
+---@field manualProvisioning table
+---@field meta? table
+---@field monorepoManager? string
+---@field name string
+---@field oomReport? string
+---@field outcomes? table
+---@field passiveConnectConfigurationId? string
+---@field platform table
+---@field prebuilt? boolean
+---@field project? string
+---@field projectId string
+---@field projectSettings? table
+---@field proposedExpiration? number
+---@field ready? number
+---@field readyState string
+---@field readySubstate? string
+---@field seatBlock table
+---@field softDeletedByRetention? boolean
+---@field source? string
+---@field state? string
+---@field status? string
+---@field statusText? string
+---@field statusUrl? string
+---@field target? string
+---@field type string
+---@field uid string
+---@field undeleted? number
+---@field url string
+---@field withLatestCommit? boolean
+
+---@class DeploymentLoadMatch
+---@field file_id? string
+---@field id string
+---@field path? string
+---@field slug? string
+---@field team_id? string
+---@field with_git_repo_info? string
+
+---@class DeploymentListMatch
+---@field app? string
+---@field branch? string
+---@field from? number
+---@field limit? number
+---@field project_id? string
+---@field rollback_candidate? boolean
+---@field sha? string
+---@field since? number
+---@field slug? string
+---@field state? string
+---@field target? string
+---@field team_id? string
+---@field to? number
+---@field until? number
+---@field user? string
+
+---@class DeploymentCreateData
+---@field slug? string
+---@field team_id? string
+---@field aliasAssigned? any
+---@field aliasError table
+---@field attribution? table
+---@field buildMachine? string
+---@field buildingAt? number
+---@field checks table
+---@field checksConclusion? string
+---@field checksState? string
+---@field connectBuildsEnabled? boolean
+---@field connectConfigurationId? string
+---@field created number
+---@field createdAt number
+---@field creator table
+---@field customEnvironment table
+---@field customEnvironmentSlugOrId? string
+---@field defaultRoute? string
+---@field deleted? number
+---@field deploymentId? string
+---@field errorCode? string
+---@field errorMessage? string
+---@field expiration? number
+---@field files? table
+---@field gitAccessToken? string
+---@field gitMetadata? table
+---@field gitSource? any
+---@field id? string
+---@field inspectorUrl string
+---@field isRollbackCandidate? boolean
+---@field manualProvisioning table
+---@field meta? table
+---@field monorepoManager? string
+---@field name string
+---@field oomReport? string
+---@field outcomes? table
+---@field passiveConnectConfigurationId? string
+---@field platform table
+---@field prebuilt? boolean
+---@field project? string
+---@field projectId string
+---@field projectSettings? table
+---@field proposedExpiration? number
+---@field ready? number
+---@field readyState string
+---@field readySubstate? string
+---@field seatBlock table
+---@field softDeletedByRetention? boolean
+---@field source? string
+---@field state? string
+---@field status? string
+---@field statusText? string
+---@field statusUrl? string
+---@field target? string
+---@field type string
+---@field uid string
+---@field undeleted? number
+---@field url string
+---@field withLatestCommit? boolean
+
+---@class DeploymentUpdateData
+---@field action string
+---@field id string
+---@field integration_id string
+---@field resource_id string
+---@field aliasAssigned? any
+---@field aliasError? table
+---@field attribution? table
+---@field buildMachine? string
+---@field buildingAt? number
+---@field checks? table
+---@field checksConclusion? string
+---@field checksState? string
+---@field connectBuildsEnabled? boolean
+---@field connectConfigurationId? string
+---@field created? number
+---@field createdAt? number
+---@field creator? table
+---@field customEnvironment? table
+---@field customEnvironmentSlugOrId? string
+---@field defaultRoute? string
+---@field deleted? number
+---@field deploymentId? string
+---@field errorCode? string
+---@field errorMessage? string
+---@field expiration? number
+---@field files? table
+---@field gitAccessToken? string
+---@field gitMetadata? table
+---@field gitSource? any
+---@field inspectorUrl? string
+---@field isRollbackCandidate? boolean
+---@field manualProvisioning? table
+---@field meta? table
+---@field monorepoManager? string
+---@field name? string
+---@field oomReport? string
+---@field outcomes? table
+---@field passiveConnectConfigurationId? string
+---@field platform? table
+---@field prebuilt? boolean
+---@field project? string
+---@field projectId? string
+---@field projectSettings? table
+---@field proposedExpiration? number
+---@field ready? number
+---@field readyState? string
+---@field readySubstate? string
+---@field seatBlock? table
+---@field softDeletedByRetention? boolean
+---@field source? string
+---@field state? string
+---@field status? string
+---@field statusText? string
+---@field statusUrl? string
+---@field target? string
+---@field type? string
+---@field uid? string
+---@field undeleted? number
+---@field url? string
+---@field withLatestCommit? boolean
+
+---@class DeploymentRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field url? string
+
+---@class Dns
+---@field comment? string
+---@field createdAt? number
+---@field creator string
+---@field domain string
+---@field https table
+---@field id string
+---@field mxPriority? number
+---@field name string
+---@field recordType string
+---@field srv table
+---@field ttl? number
+---@field type string
+---@field value string
+
+---@class DnsLoadMatch
+---@field domain_id string
+---@field limit? string
+---@field since? string
+---@field slug? string
+---@field team_id? string
+---@field until? string
+
+---@class DnsCreateData
+---@field domain_id string
+---@field slug? string
+---@field team_id? string
+---@field comment? string
+---@field createdAt? number
+---@field creator string
+---@field domain string
+---@field https table
+---@field id string
+---@field mxPriority? number
+---@field name string
+---@field recordType string
+---@field srv table
+---@field ttl? number
+---@field type string
+---@field value string
+
+---@class DnsUpdateData
+---@field record_id string
+---@field slug? string
+---@field team_id? string
+---@field comment? string
+---@field createdAt? number
+---@field creator? string
+---@field domain? string
+---@field https? table
+---@field id? string
+---@field mxPriority? number
+---@field name? string
+---@field recordType? string
+---@field srv? table
+---@field ttl? number
+---@field type? string
+---@field value? string
+
+---@class DnsRemoveMatch
+---@field domain_id string
+---@field record_id string
+---@field slug? string
+---@field team_id? string
+
+---@class Domain
+---@field boughtAt number
+---@field createdAt number
+---@field creator table
+---@field customNameservers? table
+---@field echMode string
+---@field expiresAt number
+---@field id string
+---@field intendedNameservers table
+---@field method? string
+---@field name string
+---@field nameservers table
+---@field renew? boolean
+---@field serviceType string
+---@field suffix boolean
+---@field teamId string
+---@field transferStartedAt? number
+---@field transferredAt? number
+---@field userId string
+---@field verified boolean
+
+---@class DomainLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class DomainListMatch
+---@field limit? number
+---@field since? number
+---@field slug? string
+---@field team_id? string
+---@field until? number
+
+---@class DomainCreateData
+---@field slug? string
+---@field team_id? string
+---@field boughtAt number
+---@field createdAt number
+---@field creator table
+---@field customNameservers? table
+---@field echMode string
+---@field expiresAt number
+---@field id string
+---@field intendedNameservers table
+---@field method? string
+---@field name string
+---@field nameservers table
+---@field renew? boolean
+---@field serviceType string
+---@field suffix boolean
+---@field teamId string
+---@field transferStartedAt? number
+---@field transferredAt? number
+---@field userId string
+---@field verified boolean
+
+---@class DomainUpdateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field boughtAt? number
+---@field createdAt? number
+---@field creator? table
+---@field customNameservers? table
+---@field echMode? string
+---@field expiresAt? number
+---@field intendedNameservers? table
+---@field method? string
+---@field name? string
+---@field nameservers? table
+---@field renew? boolean
+---@field serviceType? string
+---@field suffix? boolean
+---@field teamId? string
+---@field transferStartedAt? number
+---@field transferredAt? number
+---@field userId? string
+---@field verified? boolean
+
+---@class DomainRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class DomainsRegistrar
+---@field authCode string
+---@field autoRenew boolean
+---@field available boolean
+---@field contactInformation table
+---@field domains table
+---@field error? any
+---@field expectedPrice number
+---@field languageCode? string
+---@field nameservers table
+---@field orderId string
+---@field purchasePrice any
+---@field renewalPrice any
+---@field results table
+---@field status string
+---@field transferPrice any
+---@field years number
+
+---@class DomainsRegistrarLoadMatch
+---@field order_id string
+---@field team_id? string
+
+---@class DomainsRegistrarCreateData
+---@field team_id? string
+---@field authCode string
+---@field autoRenew boolean
+---@field available boolean
+---@field contactInformation table
+---@field domains table
+---@field error? any
+---@field expectedPrice number
+---@field languageCode? string
+---@field nameservers table
+---@field orderId string
+---@field purchasePrice any
+---@field renewalPrice any
+---@field results table
+---@field status string
+---@field transferPrice any
+---@field years number
+
+---@class DomainsRegistrarUpdateData
+---@field domain_id string
+---@field team_id? string
+---@field authCode? string
+---@field autoRenew? boolean
+---@field available? boolean
+---@field contactInformation? table
+---@field domains? table
+---@field error? any
+---@field expectedPrice? number
+---@field languageCode? string
+---@field nameservers? table
+---@field orderId? string
+---@field purchasePrice? any
+---@field renewalPrice? any
+---@field results? table
+---@field status? string
+---@field transferPrice? any
+---@field years? number
+
+---@class Drain
+---@field delivery? table
+---@field drains any
+---@field filter table
+---@field id? string
+---@field name string
+---@field projectIds? table
+---@field projects string
+---@field sampling? table
+---@field schemas table
+---@field source? table
+---@field status? string
+---@field transforms? table
+
+---@class DrainLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class DrainCreateData
+---@field slug? string
+---@field team_id? string
+---@field delivery? table
+---@field drains any
+---@field filter table
+---@field id? string
+---@field name string
+---@field projectIds? table
+---@field projects string
+---@field sampling? table
+---@field schemas table
+---@field source? table
+---@field status? string
+---@field transforms? table
+
+---@class DrainUpdateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field delivery? table
+---@field drains? any
+---@field filter? table
+---@field name? string
+---@field projectIds? table
+---@field projects? string
+---@field sampling? table
+---@field schemas? table
+---@field source? table
+---@field status? string
+---@field transforms? table
+
+---@class DrainRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class EdgeCache
+
+---@class EdgeCacheCreateData
+---@field project_id_or_name string
+---@field slug? string
+---@field team_id? string
+
+---@class Env
+---@field applyToAllCustomEnvironments? boolean
+---@field comment? string
+---@field created? string
+---@field createdAt? number
+---@field createdBy? string
+---@field customEnvironmentIds? table
+---@field decrypted? boolean
+---@field deletedAt? number
+---@field deletedBy? string
+---@field evs table
+---@field failed table
+---@field id? string
+---@field key? string
+---@field lastEditedByDisplayName? string
+---@field ownerId? string
+---@field projectId? table
+---@field securityIssues table
+---@field target? table
+---@field type? string
+---@field updated table
+---@field updatedAt? number
+---@field updatedBy? string
+---@field updates table
+---@field value? string
+
+---@class EnvLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class EnvListMatch
+---@field exclude_id? string
+---@field exclude_project_id? string
+---@field ids? string
+---@field project_id? string
+---@field search? string
+---@field slug? string
+---@field team_id? string
+
+---@class EnvCreateData
+---@field slug? string
+---@field team_id? string
+---@field applyToAllCustomEnvironments? boolean
+---@field comment? string
+---@field created? string
+---@field createdAt? number
+---@field createdBy? string
+---@field customEnvironmentIds? table
+---@field decrypted? boolean
+---@field deletedAt? number
+---@field deletedBy? string
+---@field evs table
+---@field failed table
+---@field id? string
+---@field key? string
+---@field lastEditedByDisplayName? string
+---@field ownerId? string
+---@field projectId? table
+---@field securityIssues table
+---@field target? table
+---@field type? string
+---@field updated table
+---@field updatedAt? number
+---@field updatedBy? string
+---@field updates table
+---@field value? string
+
+---@class EnvUpdateData
+---@field slug? string
+---@field team_id? string
+---@field applyToAllCustomEnvironments? boolean
+---@field comment? string
+---@field created? string
+---@field createdAt? number
+---@field createdBy? string
+---@field customEnvironmentIds? table
+---@field decrypted? boolean
+---@field deletedAt? number
+---@field deletedBy? string
+---@field evs? table
+---@field failed? table
+---@field id? string
+---@field key? string
+---@field lastEditedByDisplayName? string
+---@field ownerId? string
+---@field projectId? table
+---@field securityIssues? table
+---@field target? table
+---@field type? string
+---@field updated? table
+---@field updatedAt? number
+---@field updatedBy? string
+---@field updates? table
+---@field value? string
+
+---@class EnvRemoveMatch
+---@field slug? string
+---@field team_id? string
+
+---@class Environment
+---@field branchMatcher table
+---@field copyEnvVarsFrom? string
+---@field createdAt number
+---@field currentDeploymentAliases? table
+---@field description? string
+---@field domains? table
+---@field id string
+---@field slug string
+---@field type string
+---@field updatedAt number
+
+---@class EnvironmentLoadMatch
+---@field environment_slug_or_id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class EnvironmentListMatch
+---@field id_or_name string
+---@field git_branch? string
+---@field slug? string
+---@field team_id? string
+
+---@class EnvironmentCreateData
+---@field id_or_name string
+---@field slug? string
+---@field team_id? string
+---@field branchMatcher table
+---@field copyEnvVarsFrom? string
+---@field createdAt number
+---@field currentDeploymentAliases? table
+---@field description? string
+---@field domains? table
+---@field id string
+---@field type string
+---@field updatedAt number
+
+---@class EnvironmentUpdateData
+---@field env_id? string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field environment_slug_or_id? string
+---@field branchMatcher? table
+---@field copyEnvVarsFrom? string
+---@field createdAt? number
+---@field currentDeploymentAliases? table
+---@field description? string
+---@field domains? table
+---@field id? string
+---@field type? string
+---@field updatedAt? number
+
+---@class EnvironmentRemoveMatch
+---@field environment_slug_or_id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class FeatureFlag
+---@field changedEnvironments table
+---@field createdAt number
+---@field createdBy string
+---@field data? table
+---@field description? string
+---@field environments table
+---@field flagId string
+---@field flags table
+---@field hint? string
+---@field id string
+---@field kind string
+---@field label? string
+---@field maintainerIds? table
+---@field message? string
+---@field metadata? table
+---@field operations? table
+---@field ownerId string
+---@field pagination table
+---@field permanent? boolean
+---@field projectId string
+---@field revision number
+---@field seed number
+---@field slug string
+---@field state string
+---@field status table
+---@field tags? table
+---@field typeName string
+---@field updatedAt number
+---@field updatedBy? string
+---@field variants table
+
+---@class FeatureFlagLoadMatch
+---@field team_id string
+---@field cursor? string
+---@field limit? number
+---@field slug? string
+
+---@class FeatureFlagListMatch
+---@field deployment_id string
+---@field slug? string
+---@field team_id? string
+
+---@class FeatureFlagUpdateData
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field changedEnvironments? table
+---@field createdAt? number
+---@field createdBy? string
+---@field data? table
+---@field description? string
+---@field environments? table
+---@field flagId? string
+---@field flags? table
+---@field hint? string
+---@field id? string
+---@field kind? string
+---@field label? string
+---@field maintainerIds? table
+---@field message? string
+---@field metadata? table
+---@field operations? table
+---@field ownerId? string
+---@field pagination? table
+---@field permanent? boolean
+---@field projectId? string
+---@field revision? number
+---@field seed? number
+---@field state? string
+---@field status? table
+---@field tags? table
+---@field typeName? string
+---@field updatedAt? number
+---@field updatedBy? string
+---@field variants? table
+
+---@class FeatureFlagRemoveMatch
+---@field id? string
+---@field project_id string
+---@field if_match? string
+---@field slug? string
+---@field team_id? string
+---@field with_metadata? boolean
+---@field segment_id_or_slug? string
+---@field hash_key? string
+
+---@class File
+---@field children? table
+---@field contentType? string
+---@field mode number
+---@field name string
+---@field type string
+---@field uid? string
+
+---@class FileListMatch
+---@field deployment_id string
+---@field slug? string
+---@field team_id? string
+
+---@class Flag
+---@field createdAt number
+---@field createdBy string
+---@field description? string
+---@field environments table
+---@field id string
+---@field kind string
+---@field maintainerIds? table
+---@field metadata? table
+---@field ownerId string
+---@field permanent? boolean
+---@field projectId string
+---@field revision number
+---@field seed number
+---@field slug string
+---@field state string
+---@field tags? table
+---@field typeName string
+---@field updatedAt number
+---@field updatedBy? string
+---@field variants table
+
+---@class FlagLoadMatch
+---@field id string
+---@field project_id string
+---@field if_match? string
+---@field slug? string
+---@field team_id? string
+---@field with_metadata? boolean
+
+---@class FlagsSdkKeyWithSecret
+---@field createdAt number
+---@field createdBy string
+---@field deletedAt? number
+---@field environment string
+---@field hashKey string
+---@field keyValue string
+---@field label? string
+---@field partialKeyValue string
+---@field projectId string
+---@field sdkKeyType string
+---@field tokenValue? string
+---@field type string
+---@field updatedAt number
+
+---@class FlagsSdkKeyWithSecretUpdateData
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field createdAt? number
+---@field createdBy? string
+---@field deletedAt? number
+---@field environment? string
+---@field hashKey? string
+---@field keyValue? string
+---@field label? string
+---@field partialKeyValue? string
+---@field projectId? string
+---@field sdkKeyType? string
+---@field tokenValue? string
+---@field type? string
+---@field updatedAt? number
+
+---@class GlobalConfig
+---@field createdAt number
+---@field createdBy? string
+---@field deletedAt? number
+---@field digest string
+---@field id string
+---@field itemCount number
+---@field items? table
+---@field ownerId string
+---@field purpose? any
+---@field schema? table
+---@field sizeInBytes number
+---@field slug string
+---@field syncedToDynamoAt? number
+---@field transfer table
+---@field updatedAt number
+
+---@class GlobalConfigLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class GlobalConfigListMatch
+---@field id string
+---@field limit? number
+---@field metadata? string
+---@field next? string
+---@field slug? string
+---@field team_id? string
+
+---@class GlobalConfigCreateData
+---@field slug? string
+---@field team_id? string
+---@field createdAt number
+---@field createdBy? string
+---@field deletedAt? number
+---@field digest string
+---@field id string
+---@field itemCount number
+---@field items? table
+---@field ownerId string
+---@field purpose? any
+---@field schema? table
+---@field sizeInBytes number
+---@field syncedToDynamoAt? number
+---@field transfer table
+---@field updatedAt number
+
+---@class GlobalConfigUpdateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field createdAt? number
+---@field createdBy? string
+---@field deletedAt? number
+---@field digest? string
+---@field itemCount? number
+---@field items? table
+---@field ownerId? string
+---@field purpose? any
+---@field schema? table
+---@field sizeInBytes? number
+---@field syncedToDynamoAt? number
+---@field transfer? table
+---@field updatedAt? number
+
+---@class GlobalConfigRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class GlobalConfigItem
+---@field createdAt number
+---@field description? string
+---@field edgeConfigId string
+---@field id? string
+---@field key string
+---@field updatedAt number
+---@field value any
+
+---@class GlobalConfigItemLoadMatch
+---@field global_config_id string
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class GlobalConfigItemListMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class GlobalConfigToken
+---@field createdAt number
+---@field edgeConfigId string
+---@field id string
+---@field label string
+---@field partialToken string
+---@field token? string
+
+---@class GlobalConfigTokenLoadMatch
+---@field global_config_id? string
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class Integration
+---@field cost? string
+---@field description string
+---@field details? table
+---@field disabled? boolean
+---@field effectiveDate? string
+---@field envVarEnvironments? table
+---@field highlightedDetails? table
+---@field id string
+---@field initialCharge? string
+---@field makeEnvVarsSensitive? boolean
+---@field maximumAmount? string
+---@field maximumAmountAutoPurchasePerPeriod? string
+---@field metadataSchema table
+---@field minimumAmount? string
+---@field name string
+---@field paymentMethodRequired boolean
+---@field preauthorizationAmount? number
+---@field primaryProtocol? string
+---@field projectId string
+---@field protocols table
+---@field quote? table
+---@field scope string
+---@field slug string
+---@field type string
+
+---@class IntegrationLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class IntegrationListMatch
+---@field configuration_id string
+---@field slug? string
+---@field team_id? string
+
+---@class IntegrationCreateData
+---@field installation_id string
+---@field resource_id string
+---@field slug? string
+---@field team_id? string
+---@field cost? string
+---@field description string
+---@field details? table
+---@field disabled? boolean
+---@field effectiveDate? string
+---@field envVarEnvironments? table
+---@field highlightedDetails? table
+---@field id string
+---@field initialCharge? string
+---@field makeEnvVarsSensitive? boolean
+---@field maximumAmount? string
+---@field maximumAmountAutoPurchasePerPeriod? string
+---@field metadataSchema table
+---@field minimumAmount? string
+---@field name string
+---@field paymentMethodRequired boolean
+---@field preauthorizationAmount? number
+---@field primaryProtocol? string
+---@field projectId string
+---@field protocols table
+---@field quote? table
+---@field scope string
+---@field type string
+
+---@class IntegrationRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class Kms
+---@field activation? string
+---@field alg? string
+---@field algorithm string
+---@field claims? table
+---@field claimsSchema? table
+---@field createdAt string
+---@field environments table
+---@field headers? table
+---@field id string
+---@field importKey? string
+---@field importKeyId? string
+---@field keyId string
+---@field key_ops? table
+---@field kid? string
+---@field kind string
+---@field kty? string
+---@field managedBy? string
+---@field message string
+---@field name string
+---@field origin string
+---@field ownerId string
+---@field policies table
+---@field projectId string
+---@field revokePreviousAfterHours? number
+---@field revokePreviousAt? any
+---@field signature string
+---@field signingKeys table
+---@field token string
+---@field tokenClaims? table
+---@field ttl? number
+---@field updatedAt string
+---@field use? string
+---@field x5c? table
+---@field x5tS256? string
+
+---@class KmsLoadMatch
+---@field issuer_id string
+---@field slug? string
+---@field team_id? string
+
+---@class KmsListMatch
+---@field limit? number
+---@field next? string
+---@field slug? string
+---@field team_id? string
+
+---@class KmsCreateData
+---@field issuer_id string
+---@field key_id? string
+---@field slug? string
+---@field team_id? string
+---@field activation? string
+---@field alg? string
+---@field algorithm string
+---@field claims? table
+---@field claimsSchema? table
+---@field createdAt string
+---@field environments table
+---@field headers? table
+---@field id string
+---@field importKey? string
+---@field importKeyId? string
+---@field keyId string
+---@field key_ops? table
+---@field kid? string
+---@field kind string
+---@field kty? string
+---@field managedBy? string
+---@field message string
+---@field name string
+---@field origin string
+---@field ownerId string
+---@field policies table
+---@field projectId string
+---@field revokePreviousAfterHours? number
+---@field revokePreviousAt? any
+---@field signature string
+---@field signingKeys table
+---@field token string
+---@field tokenClaims? table
+---@field ttl? number
+---@field updatedAt string
+---@field use? string
+---@field x5c? table
+---@field x5tS256? string
+
+---@class KmsUpdateData
+---@field issuer_id string
+---@field kind? string
+---@field policy_key? string
+---@field slug? string
+---@field team_id? string
+---@field activation? string
+---@field alg? string
+---@field algorithm? string
+---@field claims? table
+---@field claimsSchema? table
+---@field createdAt? string
+---@field environments? table
+---@field headers? table
+---@field id? string
+---@field importKey? string
+---@field importKeyId? string
+---@field keyId? string
+---@field key_ops? table
+---@field kid? string
+---@field kty? string
+---@field managedBy? string
+---@field message? string
+---@field name? string
+---@field origin? string
+---@field ownerId? string
+---@field policies? table
+---@field projectId? string
+---@field revokePreviousAfterHours? number
+---@field revokePreviousAt? any
+---@field signature? string
+---@field signingKeys? table
+---@field token? string
+---@field tokenClaims? table
+---@field ttl? number
+---@field updatedAt? string
+---@field use? string
+---@field x5c? table
+---@field x5tS256? string
+
+---@class KmsRemoveMatch
+---@field issuer_id string
+---@field kind? string
+---@field policy_key? string
+---@field slug? string
+---@field team_id? string
+
+---@class ListEventType
+---@field categories table
+---@field types table
+
+---@class ListEventTypeListMatch
+---@field slug? string
+---@field team_id? string
+
+---@class Log
+
+---@class LogLoadMatch
+---@field deployment_id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class LogDrain
+---@field branch? string
+---@field clientId? string
+---@field configurationId? string
+---@field createdAt number
+---@field createdFrom string
+---@field deliveryFormat any
+---@field environments? table
+---@field headers? table
+---@field id string
+---@field integrationConfigurationUri? string
+---@field integrationIcon? string
+---@field integrationWebsite? string
+---@field name? string
+---@field ownerId string
+---@field projectId? string
+---@field projectIds? table
+---@field projectsMetadata? table
+---@field samplingRate? number
+---@field secret? string
+---@field source any
+---@field sources table
+---@field url string
+
+---@class LogDrainLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class LogDrainListMatch
+---@field slug? string
+---@field team_id? string
+
+---@class LogDrainCreateData
+---@field slug? string
+---@field team_id? string
+---@field branch? string
+---@field clientId? string
+---@field configurationId? string
+---@field createdAt number
+---@field createdFrom string
+---@field deliveryFormat any
+---@field environments? table
+---@field headers? table
+---@field id string
+---@field integrationConfigurationUri? string
+---@field integrationIcon? string
+---@field integrationWebsite? string
+---@field name? string
+---@field ownerId string
+---@field projectId? string
+---@field projectIds? table
+---@field projectsMetadata? table
+---@field samplingRate? number
+---@field secret? string
+---@field source any
+---@field sources table
+---@field url string
+
+---@class LogDrainRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class Marketplace
+---@field access_token string
+---@field already_revoked boolean
+---@field balances table
+---@field billing any
+---@field billingPlan table
+---@field billingPlanId? string
+---@field category? string
+---@field client_id? string
+---@field client_secret string
+---@field created string
+---@field createdAt? number
+---@field data table
+---@field description? string
+---@field discounts? table
+---@field email string
+---@field eod string
+---@field event any
+---@field expires_in number
+---@field externalId? string
+---@field extras? table
+---@field final? boolean
+---@field globalUserId? string
+---@field id string
+---@field internalId string
+---@field invoiceDate string
+---@field invoiceId string
+---@field invoiceNumber? string
+---@field isArchived? boolean
+---@field items table
+---@field memo? string
+---@field metadata? table
+---@field name string
+---@field notification table
+---@field origin string
+---@field ownership? string
+---@field paidAt? string
+---@field partial? boolean
+---@field partnerId string
+---@field period table
+---@field productId string
+---@field protocolSettings? table
+---@field refundReason? string
+---@field refundTotal? string
+---@field refundedAt? string
+---@field revoked boolean
+---@field role string
+---@field scope string
+---@field secrets table
+---@field slug string
+---@field state string
+---@field status? string
+---@field test? boolean
+---@field timestamp string
+---@field token string
+---@field token_type string
+---@field total string
+---@field updated string
+---@field updatedAt? number
+---@field usage table
+---@field userEmail? string
+---@field validationErrors? table
+
+---@class MarketplaceLoadMatch
+---@field installation_id string
+---@field invoice_id? string
+---@field member_id? string
+---@field resource_id? string
+
+---@class MarketplaceListMatch
+---@field installation_id string
+
+---@class MarketplaceCreateData
+---@field installation_id string
+---@field invoice_id? string
+---@field resource_id? string
+---@field access_token string
+---@field already_revoked boolean
+---@field balances table
+---@field billing any
+---@field billingPlan table
+---@field billingPlanId? string
+---@field category? string
+---@field client_id? string
+---@field client_secret string
+---@field created string
+---@field createdAt? number
+---@field data table
+---@field description? string
+---@field discounts? table
+---@field email string
+---@field eod string
+---@field event any
+---@field expires_in number
+---@field externalId? string
+---@field extras? table
+---@field final? boolean
+---@field globalUserId? string
+---@field id string
+---@field internalId string
+---@field invoiceDate string
+---@field invoiceId string
+---@field invoiceNumber? string
+---@field isArchived? boolean
+---@field items table
+---@field memo? string
+---@field metadata? table
+---@field name string
+---@field notification table
+---@field origin string
+---@field ownership? string
+---@field paidAt? string
+---@field partial? boolean
+---@field partnerId string
+---@field period table
+---@field productId string
+---@field protocolSettings? table
+---@field refundReason? string
+---@field refundTotal? string
+---@field refundedAt? string
+---@field revoked boolean
+---@field role string
+---@field scope string
+---@field secrets table
+---@field slug string
+---@field state string
+---@field status? string
+---@field test? boolean
+---@field timestamp string
+---@field token string
+---@field token_type string
+---@field total string
+---@field updated string
+---@field updatedAt? number
+---@field usage table
+---@field userEmail? string
+---@field validationErrors? table
+
+---@class MarketplaceUpdateData
+---@field installation_id string
+---@field product_id? string
+---@field resource_id string
+---@field access_token? string
+---@field already_revoked? boolean
+---@field balances? table
+---@field billing? any
+---@field billingPlan? table
+---@field billingPlanId? string
+---@field category? string
+---@field client_id? string
+---@field client_secret? string
+---@field created? string
+---@field createdAt? number
+---@field data? table
+---@field description? string
+---@field discounts? table
+---@field email? string
+---@field eod? string
+---@field event? any
+---@field expires_in? number
+---@field externalId? string
+---@field extras? table
+---@field final? boolean
+---@field globalUserId? string
+---@field id? string
+---@field internalId? string
+---@field invoiceDate? string
+---@field invoiceId? string
+---@field invoiceNumber? string
+---@field isArchived? boolean
+---@field items? table
+---@field memo? string
+---@field metadata? table
+---@field name? string
+---@field notification? table
+---@field origin? string
+---@field ownership? string
+---@field paidAt? string
+---@field partial? boolean
+---@field partnerId? string
+---@field period? table
+---@field productId? string
+---@field protocolSettings? table
+---@field refundReason? string
+---@field refundTotal? string
+---@field refundedAt? string
+---@field revoked? boolean
+---@field role? string
+---@field scope? string
+---@field secrets? table
+---@field slug? string
+---@field state? string
+---@field status? string
+---@field test? boolean
+---@field timestamp? string
+---@field token? string
+---@field token_type? string
+---@field total? string
+---@field updated? string
+---@field updatedAt? number
+---@field usage? table
+---@field userEmail? string
+---@field validationErrors? table
+
+---@class MarketplaceRemoveMatch
+---@field installation_id string
+---@field item_id? string
+---@field resource_id string
+
+---@class Microfrontend
 ---@field abuse table
 ---@field accountId string
 ---@field alias table
 ---@field analytics table
+---@field applications table
 ---@field appliedCve55182Migration? boolean
 ---@field autoAssignCustomDomains? boolean
 ---@field autoAssignCustomDomainsUpdatedBy? string
@@ -40,7 +2604,6 @@
 ---@field enablePreviewFeedback? boolean
 ---@field enableProductionFeedback? boolean
 ---@field env? table
----@field environmentVariables? table
 ---@field expiration? any
 ---@field features? table
 ---@field framework? string
@@ -48,12 +2611,10 @@
 ---@field gitForkProtection? boolean
 ---@field gitLFS? boolean
 ---@field gitProviderOptions table
----@field gitRepository table
 ---@field hasActiveBranches? boolean
 ---@field hasDeployments? boolean
 ---@field id string
 ---@field installCommand? string
----@field integrations? table
 ---@field internalRoutes? table
 ---@field ipBuckets? table
 ---@field jobs? table
@@ -66,6 +2627,7 @@
 ---@field name string
 ---@field nodeVersion string
 ---@field oidcTokenConfig? table
+---@field options? table
 ---@field optionsAllowlist table
 ---@field outputDirectory? string
 ---@field passiveConnectConfigurationId? string
@@ -73,20 +2635,17 @@
 ---@field passwordProtection? table
 ---@field paused? boolean
 ---@field permissions? table
----@field previewDeploymentSuffix? string
----@field previewDeploymentsDisabled? boolean
 ---@field productionDeploymentsFastLane? boolean
 ---@field protectedSourcemaps? boolean
 ---@field protectionBypass? table
 ---@field protectionConfig? table
----@field publicSource? boolean
 ---@field resourceConfig table
 ---@field rollbackDescription table
 ---@field rollingRelease table
 ---@field rootDirectory? string
 ---@field sandbox? table
+---@field schema? string
 ---@field security? table
----@field serverlessFunctionRegion? string
 ---@field serverlessFunctionZeroConfigFailover? boolean
 ---@field services? table
 ---@field skewProtectionAllowedDomains? table
@@ -110,6 +2669,434 @@
 ---@field usageStatus table
 ---@field v0? boolean
 ---@field v0Created? boolean
+---@field version? string
+---@field webAnalytics table
+
+---@class MicrofrontendLoadMatch
+---@field project_id_or_name string
+---@field slug? string
+---@field team_id? string
+
+---@class MicrofrontendListMatch
+---@field group_id string
+---@field slug? string
+---@field team_id? string
+
+---@class MicrofrontendCreateData
+---@field slug? string
+---@field team_id? string
+---@field abuse table
+---@field accountId string
+---@field alias table
+---@field analytics table
+---@field applications table
+---@field appliedCve55182Migration? boolean
+---@field autoAssignCustomDomains? boolean
+---@field autoAssignCustomDomainsUpdatedBy? string
+---@field autoExposeSystemEnvs? boolean
+---@field avatar? string
+---@field blobs? table
+---@field buildCommand? string
+---@field commandForIgnoringBuildStep? string
+---@field concurrencyBucketName? string
+---@field connectBuildsEnabled? boolean
+---@field connectConfigurationId? string
+---@field connectConfigurations? table
+---@field createdAt? number
+---@field creator? any
+---@field crons table
+---@field customEnvironments? table
+---@field customerSupportCodeVisibility? boolean
+---@field dataCache table
+---@field defaultResourceConfig table
+---@field deploymentExpiration table
+---@field deploymentPolicy? table
+---@field devCommand? string
+---@field directoryListing boolean
+---@field dismissedToasts? table
+---@field enableAffectedProjectsDeployments? boolean
+---@field enableExternalRewriteCaching? boolean
+---@field enablePreviewFeedback? boolean
+---@field enableProductionFeedback? boolean
+---@field env? table
+---@field expiration? any
+---@field features? table
+---@field framework? string
+---@field gitComments table
+---@field gitForkProtection? boolean
+---@field gitLFS? boolean
+---@field gitProviderOptions table
+---@field hasActiveBranches? boolean
+---@field hasDeployments? boolean
+---@field id string
+---@field installCommand? string
+---@field internalRoutes? table
+---@field ipBuckets? table
+---@field jobs? table
+---@field lastAliasRequest table
+---@field lastRollbackTarget? table
+---@field latestDeployments? table
+---@field link? string
+---@field live? boolean
+---@field microfrontends? any
+---@field name string
+---@field nodeVersion string
+---@field oidcTokenConfig? table
+---@field options? table
+---@field optionsAllowlist table
+---@field outputDirectory? string
+---@field passiveConnectConfigurationId? string
+---@field passport table
+---@field passwordProtection? table
+---@field paused? boolean
+---@field permissions? table
+---@field productionDeploymentsFastLane? boolean
+---@field protectedSourcemaps? boolean
+---@field protectionBypass? table
+---@field protectionConfig? table
+---@field resourceConfig table
+---@field rollbackDescription table
+---@field rollingRelease table
+---@field rootDirectory? string
+---@field sandbox? table
+---@field schema? string
+---@field security? table
+---@field serverlessFunctionZeroConfigFailover? boolean
+---@field services? table
+---@field skewProtectionAllowedDomains? table
+---@field skewProtectionBoundaryAt? number
+---@field skewProtectionMaxAge? number
+---@field skipGitConnectDuringLink? boolean
+---@field sourceFilesOutsideRootDirectory? boolean
+---@field speedInsights table
+---@field ssoProtection table
+---@field staticIps table
+---@field targets? table
+---@field tier? string
+---@field tracing? table
+---@field transferCompletedAt? number
+---@field transferStartedAt? number
+---@field transferToAccountId? string
+---@field transferredFromAccountId? string
+---@field trustedIps? any
+---@field trustedSources? table
+---@field updatedAt? number
+---@field usageStatus table
+---@field v0? boolean
+---@field v0Created? boolean
+---@field version? string
+---@field webAnalytics table
+
+---@class Network
+---@field awsAccountId string
+---@field awsAvailabilityZoneIds? table
+---@field awsRegion string
+---@field cidr string
+---@field createdAt number
+---@field egressIpAddresses? table
+---@field hostedZones table
+---@field id string
+---@field name string
+---@field peeringConnections table
+---@field projects table
+---@field region? string
+---@field status string
+---@field teamId string
+---@field vpcId? string
+
+---@class NetworkLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class NetworkListMatch
+---@field include_hosted_zone? boolean
+---@field include_peering_connection? boolean
+---@field include_project? boolean
+---@field search? string
+---@field slug? string
+---@field team_id? string
+
+---@class NetworkCreateData
+---@field slug? string
+---@field team_id? string
+---@field awsAccountId string
+---@field awsAvailabilityZoneIds? table
+---@field awsRegion string
+---@field cidr string
+---@field createdAt number
+---@field egressIpAddresses? table
+---@field hostedZones table
+---@field id string
+---@field name string
+---@field peeringConnections table
+---@field projects table
+---@field region? string
+---@field status string
+---@field teamId string
+---@field vpcId? string
+
+---@class NetworkUpdateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field awsAccountId? string
+---@field awsAvailabilityZoneIds? table
+---@field awsRegion? string
+---@field cidr? string
+---@field createdAt? number
+---@field egressIpAddresses? table
+---@field hostedZones? table
+---@field name? string
+---@field peeringConnections? table
+---@field projects? table
+---@field region? string
+---@field status? string
+---@field teamId? string
+---@field vpcId? string
+
+---@class NetworkRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class Networking
+---@field builds? boolean
+---@field regions? table
+
+---@class NetworkingUpdateData
+---@field id_or_name string
+---@field slug? string
+---@field team_id? string
+---@field builds? boolean
+---@field regions? table
+
+---@class NetworkingRemoveMatch
+---@field endpoint_id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class Observability
+---@field disabled boolean
+---@field disabledAt? number
+---@field id string
+---@field name? string
+
+---@class ObservabilityListMatch
+---@field slug? string
+---@field team_id? string
+
+---@class ObservabilityUpdateData
+---@field project_id_or_name string
+---@field slug? string
+---@field team_id? string
+---@field disabled? boolean
+---@field disabledAt? number
+---@field id? string
+---@field name? string
+
+---@class PrivateLinkEndpoint
+---@field awsDnsEntries? table
+---@field awsServiceName string
+---@field createdAt number
+---@field enablePrivateDns? boolean
+---@field endpointId string
+---@field id? string
+---@field name string
+---@field privateDnsNames? table
+---@field projectId string
+---@field status string
+---@field statusMessage? string
+---@field teamId string
+---@field updatedAt number
+---@field vercelRegion string
+---@field vpcEndpointId? string
+
+---@class PrivateLinkEndpointLoadMatch
+---@field id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class PrivateLinkEndpointListMatch
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class PrivateLinkEndpointCreateData
+---@field slug? string
+---@field team_id? string
+---@field awsDnsEntries? table
+---@field awsServiceName string
+---@field createdAt number
+---@field enablePrivateDns? boolean
+---@field endpointId string
+---@field id? string
+---@field name string
+---@field privateDnsNames? table
+---@field projectId string
+---@field status string
+---@field statusMessage? string
+---@field teamId string
+---@field updatedAt number
+---@field vercelRegion string
+---@field vpcEndpointId? string
+
+---@class PrivateLinkEndpointUpdateData
+---@field id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field awsDnsEntries? table
+---@field awsServiceName? string
+---@field createdAt? number
+---@field enablePrivateDns? boolean
+---@field endpointId? string
+---@field name? string
+---@field privateDnsNames? table
+---@field projectId? string
+---@field status? string
+---@field statusMessage? string
+---@field teamId? string
+---@field updatedAt? number
+---@field vercelRegion? string
+---@field vpcEndpointId? string
+
+---@class Project
+---@field abuse table
+---@field acceptedPolicies? table
+---@field accountId string
+---@field alias table
+---@field analytics table
+---@field apexName string
+---@field appliedCve55182Migration? boolean
+---@field autoAssignCustomDomains? boolean
+---@field autoAssignCustomDomainsUpdatedBy? string
+---@field autoExposeSystemEnvs? boolean
+---@field avatar? string
+---@field blobs? table
+---@field buildCommand? string
+---@field commandForIgnoringBuildStep? string
+---@field comment? string
+---@field concurrencyBucketName? string
+---@field configurationId? string
+---@field connectBuildsEnabled? boolean
+---@field connectConfigurationId? string
+---@field connectConfigurations? table
+---@field contentHint? any
+---@field createdAt? number
+---@field createdBy? string
+---@field creator? any
+---@field crons table
+---@field customEnvironmentId? string
+---@field customEnvironmentIds? table
+---@field customEnvironments? table
+---@field customerSupportCodeVisibility? boolean
+---@field dataCache table
+---@field decrypted? boolean
+---@field defaultResourceConfig table
+---@field deploymentExpiration table
+---@field deploymentPolicy? table
+---@field devCommand? string
+---@field directoryListing boolean
+---@field dismissedToasts? table
+---@field edgeConfigId? string
+---@field edgeConfigTokenId? string
+---@field enableAffectedProjectsDeployments? boolean
+---@field enableExternalRewriteCaching? boolean
+---@field enablePreviewFeedback? boolean
+---@field enableProductionFeedback? boolean
+---@field env? table
+---@field environmentVariables? table
+---@field expiration? any
+---@field features? table
+---@field framework? string
+---@field gitBranch? string
+---@field gitComments table
+---@field gitForkProtection? boolean
+---@field gitLFS? boolean
+---@field gitProviderOptions table
+---@field gitRepository table
+---@field hasActiveBranches? boolean
+---@field hasDeployments? boolean
+---@field hostname string
+---@field id string
+---@field installCommand? string
+---@field integrations? table
+---@field internalContentHint table
+---@field internalRoutes? table
+---@field ipBuckets? table
+---@field jobs? table
+---@field key string
+---@field lastAliasRequest table
+---@field lastRollbackTarget? table
+---@field latestDeployments? table
+---@field legacyValue? string
+---@field link? string
+---@field live? boolean
+---@field microfrontends? any
+---@field name string
+---@field newProjectName? string
+---@field nodeVersion string
+---@field oidcTokenConfig? table
+---@field optionsAllowlist table
+---@field outputDirectory? string
+---@field paidFeatures? table
+---@field passiveConnectConfigurationId? string
+---@field passport table
+---@field passwordProtection? table
+---@field paused? boolean
+---@field permissions? table
+---@field previewDeploymentSuffix? string
+---@field previewDeploymentsDisabled? boolean
+---@field productionDeploymentsFastLane? boolean
+---@field projectId string
+---@field protectedSourcemaps? boolean
+---@field protectionBypass? table
+---@field protectionConfig? table
+---@field publicSource? boolean
+---@field redirect? string
+---@field redirectStatusCode? number
+---@field resourceConfig table
+---@field rollbackDescription table
+---@field rollingRelease table
+---@field rootDirectory? string
+---@field sandbox? table
+---@field security? table
+---@field serverlessFunctionRegion? string
+---@field serverlessFunctionZeroConfigFailover? boolean
+---@field services? table
+---@field skewProtectionAllowedDomains? table
+---@field skewProtectionBoundaryAt? number
+---@field skewProtectionMaxAge? number
+---@field skipGitConnectDuringLink? boolean
+---@field sourceFilesOutsideRootDirectory? boolean
+---@field speedInsights table
+---@field ssoProtection table
+---@field staticIps table
+---@field sunsetSecretId? string
+---@field target? any
+---@field targets? table
+---@field tier? string
+---@field token string
+---@field tracing? table
+---@field transferCompletedAt? number
+---@field transferStartedAt? number
+---@field transferToAccountId? string
+---@field transferredFromAccountId? string
+---@field trustedIps? any
+---@field trustedSources? table
+---@field type string
+---@field updatedAt? number
+---@field updatedBy? string
+---@field usageStatus table
+---@field v0? boolean
+---@field v0Created? boolean
+---@field value string
+---@field verification? table
+---@field verified boolean
+---@field visibility? string
 ---@field webAnalytics table
 
 ---@class ProjectLoadMatch
@@ -118,12 +3105,17 @@
 ---@field team_id? string
 
 ---@class ProjectCreateData
+---@field deployment_id string
+---@field id string
+---@field description? string
 ---@field slug? string
 ---@field team_id? string
 ---@field abuse table
+---@field acceptedPolicies? table
 ---@field accountId string
 ---@field alias table
 ---@field analytics table
+---@field apexName string
 ---@field appliedCve55182Migration? boolean
 ---@field autoAssignCustomDomains? boolean
 ---@field autoAssignCustomDomainsUpdatedBy? string
@@ -132,22 +3124,31 @@
 ---@field blobs? table
 ---@field buildCommand? string
 ---@field commandForIgnoringBuildStep? string
+---@field comment? string
 ---@field concurrencyBucketName? string
+---@field configurationId? string
 ---@field connectBuildsEnabled? boolean
 ---@field connectConfigurationId? string
 ---@field connectConfigurations? table
+---@field contentHint? any
 ---@field createdAt? number
+---@field createdBy? string
 ---@field creator? any
 ---@field crons table
+---@field customEnvironmentId? string
+---@field customEnvironmentIds? table
 ---@field customEnvironments? table
 ---@field customerSupportCodeVisibility? boolean
 ---@field dataCache table
+---@field decrypted? boolean
 ---@field defaultResourceConfig table
 ---@field deploymentExpiration table
 ---@field deploymentPolicy? table
 ---@field devCommand? string
 ---@field directoryListing boolean
 ---@field dismissedToasts? table
+---@field edgeConfigId? string
+---@field edgeConfigTokenId? string
 ---@field enableAffectedProjectsDeployments? boolean
 ---@field enableExternalRewriteCaching? boolean
 ---@field enablePreviewFeedback? boolean
@@ -157,6 +3158,7 @@
 ---@field expiration? any
 ---@field features? table
 ---@field framework? string
+---@field gitBranch? string
 ---@field gitComments table
 ---@field gitForkProtection? boolean
 ---@field gitLFS? boolean
@@ -164,23 +3166,28 @@
 ---@field gitRepository table
 ---@field hasActiveBranches? boolean
 ---@field hasDeployments? boolean
----@field id string
+---@field hostname string
 ---@field installCommand? string
 ---@field integrations? table
+---@field internalContentHint table
 ---@field internalRoutes? table
 ---@field ipBuckets? table
 ---@field jobs? table
+---@field key string
 ---@field lastAliasRequest table
 ---@field lastRollbackTarget? table
 ---@field latestDeployments? table
+---@field legacyValue? string
 ---@field link? string
 ---@field live? boolean
 ---@field microfrontends? any
 ---@field name string
+---@field newProjectName? string
 ---@field nodeVersion string
 ---@field oidcTokenConfig? table
 ---@field optionsAllowlist table
 ---@field outputDirectory? string
+---@field paidFeatures? table
 ---@field passiveConnectConfigurationId? string
 ---@field passport table
 ---@field passwordProtection? table
@@ -189,10 +3196,13 @@
 ---@field previewDeploymentSuffix? string
 ---@field previewDeploymentsDisabled? boolean
 ---@field productionDeploymentsFastLane? boolean
+---@field projectId string
 ---@field protectedSourcemaps? boolean
 ---@field protectionBypass? table
 ---@field protectionConfig? table
 ---@field publicSource? boolean
+---@field redirect? string
+---@field redirectStatusCode? number
 ---@field resourceConfig table
 ---@field rollbackDescription table
 ---@field rollingRelease table
@@ -210,8 +3220,11 @@
 ---@field speedInsights table
 ---@field ssoProtection table
 ---@field staticIps table
+---@field sunsetSecretId? string
+---@field target? any
 ---@field targets? table
 ---@field tier? string
+---@field token string
 ---@field tracing? table
 ---@field transferCompletedAt? number
 ---@field transferStartedAt? number
@@ -219,20 +3232,28 @@
 ---@field transferredFromAccountId? string
 ---@field trustedIps? any
 ---@field trustedSources? table
+---@field type string
 ---@field updatedAt? number
+---@field updatedBy? string
 ---@field usageStatus table
 ---@field v0? boolean
 ---@field v0Created? boolean
+---@field value string
+---@field verification? table
+---@field verified boolean
+---@field visibility? string
 ---@field webAnalytics table
 
 ---@class ProjectUpdateData
----@field id string
+---@field code string
 ---@field slug? string
 ---@field team_id? string
 ---@field abuse? table
+---@field acceptedPolicies? table
 ---@field accountId? string
 ---@field alias? table
 ---@field analytics? table
+---@field apexName? string
 ---@field appliedCve55182Migration? boolean
 ---@field autoAssignCustomDomains? boolean
 ---@field autoAssignCustomDomainsUpdatedBy? string
@@ -241,22 +3262,31 @@
 ---@field blobs? table
 ---@field buildCommand? string
 ---@field commandForIgnoringBuildStep? string
+---@field comment? string
 ---@field concurrencyBucketName? string
+---@field configurationId? string
 ---@field connectBuildsEnabled? boolean
 ---@field connectConfigurationId? string
 ---@field connectConfigurations? table
+---@field contentHint? any
 ---@field createdAt? number
+---@field createdBy? string
 ---@field creator? any
 ---@field crons? table
+---@field customEnvironmentId? string
+---@field customEnvironmentIds? table
 ---@field customEnvironments? table
 ---@field customerSupportCodeVisibility? boolean
 ---@field dataCache? table
+---@field decrypted? boolean
 ---@field defaultResourceConfig? table
 ---@field deploymentExpiration? table
 ---@field deploymentPolicy? table
 ---@field devCommand? string
 ---@field directoryListing? boolean
 ---@field dismissedToasts? table
+---@field edgeConfigId? string
+---@field edgeConfigTokenId? string
 ---@field enableAffectedProjectsDeployments? boolean
 ---@field enableExternalRewriteCaching? boolean
 ---@field enablePreviewFeedback? boolean
@@ -266,6 +3296,7 @@
 ---@field expiration? any
 ---@field features? table
 ---@field framework? string
+---@field gitBranch? string
 ---@field gitComments? table
 ---@field gitForkProtection? boolean
 ---@field gitLFS? boolean
@@ -273,22 +3304,29 @@
 ---@field gitRepository? table
 ---@field hasActiveBranches? boolean
 ---@field hasDeployments? boolean
+---@field hostname? string
+---@field id? string
 ---@field installCommand? string
 ---@field integrations? table
+---@field internalContentHint? table
 ---@field internalRoutes? table
 ---@field ipBuckets? table
 ---@field jobs? table
+---@field key? string
 ---@field lastAliasRequest? table
 ---@field lastRollbackTarget? table
 ---@field latestDeployments? table
+---@field legacyValue? string
 ---@field link? string
 ---@field live? boolean
 ---@field microfrontends? any
 ---@field name? string
+---@field newProjectName? string
 ---@field nodeVersion? string
 ---@field oidcTokenConfig? table
 ---@field optionsAllowlist? table
 ---@field outputDirectory? string
+---@field paidFeatures? table
 ---@field passiveConnectConfigurationId? string
 ---@field passport? table
 ---@field passwordProtection? table
@@ -297,10 +3335,13 @@
 ---@field previewDeploymentSuffix? string
 ---@field previewDeploymentsDisabled? boolean
 ---@field productionDeploymentsFastLane? boolean
+---@field projectId? string
 ---@field protectedSourcemaps? boolean
 ---@field protectionBypass? table
 ---@field protectionConfig? table
 ---@field publicSource? boolean
+---@field redirect? string
+---@field redirectStatusCode? number
 ---@field resourceConfig? table
 ---@field rollbackDescription? table
 ---@field rollingRelease? table
@@ -318,8 +3359,11 @@
 ---@field speedInsights? table
 ---@field ssoProtection? table
 ---@field staticIps? table
+---@field sunsetSecretId? string
+---@field target? any
 ---@field targets? table
 ---@field tier? string
+---@field token? string
 ---@field tracing? table
 ---@field transferCompletedAt? number
 ---@field transferStartedAt? number
@@ -327,13 +3371,1213 @@
 ---@field transferredFromAccountId? string
 ---@field trustedIps? any
 ---@field trustedSources? table
+---@field type? string
 ---@field updatedAt? number
+---@field updatedBy? string
 ---@field usageStatus? table
 ---@field v0? boolean
 ---@field v0Created? boolean
+---@field value? string
+---@field verification? table
+---@field verified? boolean
+---@field visibility? string
 ---@field webAnalytics? table
 
 ---@class ProjectRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class ProjectMember
+---@field email? string
+---@field id string
+---@field role string
+---@field uid? string
+---@field username? string
+
+---@class ProjectMemberLoadMatch
+---@field id_or_name string
+---@field limit? number
+---@field search? string
+---@field since? number
+---@field slug? string
+---@field team_id? string
+---@field until? number
+
+---@class ProjectMemberCreateData
+---@field id_or_name string
+---@field slug? string
+---@field team_id? string
+---@field email? string
+---@field id string
+---@field role string
+---@field uid? string
+---@field username? string
+
+---@class ProjectMemberRemoveMatch
+---@field id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class ProjectRoute
+---@field action string
+---@field actions table
+---@field alias? string
+---@field conditions? table
+---@field createdBy string
+---@field currentRoute table
+---@field description string
+---@field id string
+---@field isLive? boolean
+---@field isStaging? boolean
+---@field lastModified number
+---@field name string
+---@field overwrite? boolean
+---@field pathCondition table
+---@field position? table
+---@field prompt string
+---@field restore? boolean
+---@field route table
+---@field routes? table
+---@field ruleCount? number
+---@field s3Key string
+---@field version table
+
+---@class ProjectRouteLoadMatch
+---@field id string
+---@field diff? any
+---@field filter? string
+---@field q? string
+---@field slug? string
+---@field team_id? string
+---@field version_id? string
+
+---@class ProjectRouteListMatch
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class ProjectRouteCreateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field action string
+---@field actions table
+---@field alias? string
+---@field conditions? table
+---@field createdBy string
+---@field currentRoute table
+---@field description string
+---@field isLive? boolean
+---@field isStaging? boolean
+---@field lastModified number
+---@field name string
+---@field overwrite? boolean
+---@field pathCondition table
+---@field position? table
+---@field prompt string
+---@field restore? boolean
+---@field route table
+---@field routes? table
+---@field ruleCount? number
+---@field s3Key string
+---@field version table
+
+---@class ProjectRouteUpdateData
+---@field id string
+---@field slug? string
+---@field team_id? string
+---@field action? string
+---@field actions? table
+---@field alias? string
+---@field conditions? table
+---@field createdBy? string
+---@field currentRoute? table
+---@field description? string
+---@field isLive? boolean
+---@field isStaging? boolean
+---@field lastModified? number
+---@field name? string
+---@field overwrite? boolean
+---@field pathCondition? table
+---@field position? table
+---@field prompt? string
+---@field restore? boolean
+---@field route? table
+---@field routes? table
+---@field ruleCount? number
+---@field s3Key? string
+---@field version? table
+
+---@class ProjectRouteRemoveMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class Query
+---@field aggregation? string
+---@field bucketTimezone? string
+---@field endTime? string
+---@field filter? string
+---@field granularity? table
+---@field groupBy? table
+---@field limit? number
+---@field metric string
+---@field orderBy? string
+---@field orderDirection? string
+---@field scope table
+---@field startTime? string
+
+---@class QueryCreateData
+---@field aggregation? string
+---@field bucketTimezone? string
+---@field endTime? string
+---@field filter? string
+---@field granularity? table
+---@field groupBy? table
+---@field limit? number
+---@field metric string
+---@field orderBy? string
+---@field orderDirection? string
+---@field scope table
+---@field startTime? string
+
+---@class Record
+---@field comment? string
+---@field createdAt? number
+---@field creator string
+---@field domain string
+---@field id string
+---@field name string
+---@field recordType string
+---@field ttl? number
+---@field type string
+---@field value string
+
+---@class RecordLoadMatch
+---@field id string
+
+---@class RollingRelease
+---@field activeStage table
+---@field advancementType string
+---@field canaryDeployment table
+---@field currentCanaryPercentage? number
+---@field currentDeployment table
+---@field nextStage table
+---@field queuedDeploymentId string
+---@field stages table
+---@field startedAt number
+---@field state string
+---@field substate string
+---@field updatedAt number
+
+---@class RollingReleaseLoadMatch
+---@field id_or_name string
+---@field slug? string
+---@field state? string
+---@field team_id? string
+
+---@class RollingReleaseCreateData
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field activeStage table
+---@field advancementType string
+---@field canaryDeployment table
+---@field currentCanaryPercentage? number
+---@field currentDeployment table
+---@field nextStage table
+---@field queuedDeploymentId string
+---@field stages table
+---@field startedAt number
+---@field state string
+---@field substate string
+---@field updatedAt number
+
+---@class RollingReleaseUpdateData
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field activeStage? table
+---@field advancementType? string
+---@field canaryDeployment? table
+---@field currentCanaryPercentage? number
+---@field currentDeployment? table
+---@field nextStage? table
+---@field queuedDeploymentId? string
+---@field stages? table
+---@field startedAt? number
+---@field state? string
+---@field substate? string
+---@field updatedAt? number
+
+---@class RollingReleaseRemoveMatch
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class Sandbox
+---@field args table
+---@field command string
+---@field createdAt number
+---@field creationMethod? string
+---@field currentSandboxName? string
+---@field currentSessionId? string
+---@field currentSnapshotId? string
+---@field cwd string
+---@field durationMs? number
+---@field env? table
+---@field exitCode number
+---@field expiration? any
+---@field expiresAt? number
+---@field failoverRegions? table
+---@field id string
+---@field image? string
+---@field keepLastSnapshots table
+---@field lastUsedAt number
+---@field logs? boolean
+---@field maxSizeBytes number
+---@field memory? number
+---@field mounts? table
+---@field name string
+---@field networkId? string
+---@field networkPolicy? any
+---@field parentId? string
+---@field path string
+---@field persistent? boolean
+---@field ports? table
+---@field projectId string
+---@field recursive? boolean
+---@field region? string
+---@field regions? table
+---@field resources? table
+---@field resumed boolean
+---@field routes table
+---@field runtime? string
+---@field sandbox table
+---@field session table
+---@field sessionId string
+---@field sizeBytes number
+---@field snapshotExpiration? any
+---@field source? any
+---@field sourceSessionId string
+---@field startedAt number
+---@field status string
+---@field statusUpdatedAt number
+---@field sudo? boolean
+---@field tags? table
+---@field timeout? number
+---@field totalActiveCpuDurationMs? number
+---@field totalDurationMs? number
+---@field totalEgressBytes? number
+---@field totalIngressBytes? number
+---@field updatedAt number
+---@field vcpus? number
+---@field wait? boolean
+
+---@class SandboxLoadMatch
+---@field id string
+---@field project_id? string
+---@field resume? boolean
+---@field slug? string
+---@field team_id? string
+
+---@class SandboxListMatch
+---@field cursor? string
+---@field limit? number
+---@field name_prefix? string
+---@field project? string
+---@field slug? string
+---@field sort_by? string
+---@field sort_order? string
+---@field status? string
+---@field tag? any
+---@field team_id? string
+
+---@class SandboxCreateData
+---@field name string
+---@field slug? string
+---@field team_id? string
+---@field args table
+---@field command string
+---@field createdAt number
+---@field creationMethod? string
+---@field currentSandboxName? string
+---@field currentSessionId? string
+---@field currentSnapshotId? string
+---@field cwd string
+---@field durationMs? number
+---@field env? table
+---@field exitCode number
+---@field expiration? any
+---@field expiresAt? number
+---@field failoverRegions? table
+---@field id string
+---@field image? string
+---@field keepLastSnapshots table
+---@field lastUsedAt number
+---@field logs? boolean
+---@field maxSizeBytes number
+---@field memory? number
+---@field mounts? table
+---@field networkId? string
+---@field networkPolicy? any
+---@field parentId? string
+---@field path string
+---@field persistent? boolean
+---@field ports? table
+---@field projectId string
+---@field recursive? boolean
+---@field region? string
+---@field regions? table
+---@field resources? table
+---@field resumed boolean
+---@field routes table
+---@field runtime? string
+---@field sandbox table
+---@field session table
+---@field sessionId string
+---@field sizeBytes number
+---@field snapshotExpiration? any
+---@field source? any
+---@field sourceSessionId string
+---@field startedAt number
+---@field status string
+---@field statusUpdatedAt number
+---@field sudo? boolean
+---@field tags? table
+---@field timeout? number
+---@field totalActiveCpuDurationMs? number
+---@field totalDurationMs? number
+---@field totalEgressBytes? number
+---@field totalIngressBytes? number
+---@field updatedAt number
+---@field vcpus? number
+---@field wait? boolean
+
+---@class SandboxUpdateData
+---@field id string
+---@field project_id? string
+---@field resume? boolean
+---@field slug? string
+---@field team_id? string
+---@field args? table
+---@field command? string
+---@field createdAt? number
+---@field creationMethod? string
+---@field currentSandboxName? string
+---@field currentSessionId? string
+---@field currentSnapshotId? string
+---@field cwd? string
+---@field durationMs? number
+---@field env? table
+---@field exitCode? number
+---@field expiration? any
+---@field expiresAt? number
+---@field failoverRegions? table
+---@field image? string
+---@field keepLastSnapshots? table
+---@field lastUsedAt? number
+---@field logs? boolean
+---@field maxSizeBytes? number
+---@field memory? number
+---@field mounts? table
+---@field name? string
+---@field networkId? string
+---@field networkPolicy? any
+---@field parentId? string
+---@field path? string
+---@field persistent? boolean
+---@field ports? table
+---@field projectId? string
+---@field recursive? boolean
+---@field region? string
+---@field regions? table
+---@field resources? table
+---@field resumed? boolean
+---@field routes? table
+---@field runtime? string
+---@field sandbox? table
+---@field session? table
+---@field sessionId? string
+---@field sizeBytes? number
+---@field snapshotExpiration? any
+---@field source? any
+---@field sourceSessionId? string
+---@field startedAt? number
+---@field status? string
+---@field statusUpdatedAt? number
+---@field sudo? boolean
+---@field tags? table
+---@field timeout? number
+---@field totalActiveCpuDurationMs? number
+---@field totalDurationMs? number
+---@field totalEgressBytes? number
+---@field totalIngressBytes? number
+---@field updatedAt? number
+---@field vcpus? number
+---@field wait? boolean
+
+---@class SandboxRemoveMatch
+---@field id string
+---@field delete_orphan_snapshot? boolean
+---@field project_id? string
+---@field slug? string
+---@field team_id? string
+
+---@class Schema
+---@field aggregations table
+---@field defaultAggregation string
+---@field description string
+---@field dimensions table
+---@field id string
+---@field unit string
+
+---@class SchemaLoadMatch
+---@field id string
+
+---@class SchemaListMatch
+---@field aggregations? table
+---@field defaultAggregation? string
+---@field description? string
+---@field dimensions? table
+---@field id? string
+---@field unit? string
+
+---@class Security
+---@field Action? string
+---@field ActorId? string
+---@field CreatedAt string
+---@field DeletedAt? string
+---@field Domain string
+---@field ExpiresAt? number
+---@field Id string
+---@field Ip string
+---@field IsProjectRule? boolean
+---@field Note? string
+---@field OwnerId string
+---@field ProjectId? string
+---@field UpdatedAt string
+---@field UpdatedAtHour string
+---@field action table
+---@field action_type string
+---@field active boolean
+---@field allSources? boolean
+---@field botIdEnabled? boolean
+---@field changes table
+---@field conditionGroup table
+---@field conditions? table
+---@field count number
+---@field crs table
+---@field description? string
+---@field domain? string
+---@field endTime string
+---@field firewallEnabled boolean
+---@field host string
+---@field id string
+---@field ips table
+---@field isActive boolean
+---@field logHeaders? any
+---@field managedRules? table
+---@field name string
+---@field note? string
+---@field ownerId string
+---@field projectKey string
+---@field projectScope? boolean
+---@field public_ip string
+---@field ruleId string
+---@field ruleName string
+---@field rules table
+---@field rulesets? any
+---@field sourceIp? string
+---@field startTime string
+---@field ttl? number
+---@field updatedAt string
+---@field version number
+
+---@class SecurityLoadMatch
+---@field config_version? string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field since? number
+
+---@class SecurityListMatch
+---@field domain? string
+---@field limit? number
+---@field offset? string
+---@field project_id string
+---@field project_scope? boolean
+---@field slug? string
+---@field source_ip? string
+---@field team_id? string
+
+---@class SecurityCreateData
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field Action? string
+---@field ActorId? string
+---@field CreatedAt string
+---@field DeletedAt? string
+---@field Domain string
+---@field ExpiresAt? number
+---@field Id string
+---@field Ip string
+---@field IsProjectRule? boolean
+---@field Note? string
+---@field OwnerId string
+---@field ProjectId? string
+---@field UpdatedAt string
+---@field UpdatedAtHour string
+---@field action table
+---@field action_type string
+---@field active boolean
+---@field allSources? boolean
+---@field botIdEnabled? boolean
+---@field changes table
+---@field conditionGroup table
+---@field conditions? table
+---@field count number
+---@field crs table
+---@field description? string
+---@field domain? string
+---@field endTime string
+---@field firewallEnabled boolean
+---@field host string
+---@field id string
+---@field ips table
+---@field isActive boolean
+---@field logHeaders? any
+---@field managedRules? table
+---@field name string
+---@field note? string
+---@field ownerId string
+---@field projectKey string
+---@field projectScope? boolean
+---@field public_ip string
+---@field ruleId string
+---@field ruleName string
+---@field rules table
+---@field rulesets? any
+---@field sourceIp? string
+---@field startTime string
+---@field ttl? number
+---@field updatedAt string
+---@field version number
+
+---@class SecurityUpdateData
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field Action? string
+---@field ActorId? string
+---@field CreatedAt? string
+---@field DeletedAt? string
+---@field Domain? string
+---@field ExpiresAt? number
+---@field Id? string
+---@field Ip? string
+---@field IsProjectRule? boolean
+---@field Note? string
+---@field OwnerId? string
+---@field ProjectId? string
+---@field UpdatedAt? string
+---@field UpdatedAtHour? string
+---@field action? table
+---@field action_type? string
+---@field active? boolean
+---@field allSources? boolean
+---@field botIdEnabled? boolean
+---@field changes? table
+---@field conditionGroup? table
+---@field conditions? table
+---@field count? number
+---@field crs? table
+---@field description? string
+---@field domain? string
+---@field endTime? string
+---@field firewallEnabled? boolean
+---@field host? string
+---@field id? string
+---@field ips? table
+---@field isActive? boolean
+---@field logHeaders? any
+---@field managedRules? table
+---@field name? string
+---@field note? string
+---@field ownerId? string
+---@field projectKey? string
+---@field projectScope? boolean
+---@field public_ip? string
+---@field ruleId? string
+---@field ruleName? string
+---@field rules? table
+---@field rulesets? any
+---@field sourceIp? string
+---@field startTime? string
+---@field ttl? number
+---@field updatedAt? string
+---@field version? number
+
+---@class SecurityRemoveMatch
+---@field config_version string
+
+---@class Segment
+---@field createdAt number
+---@field createdBy? string
+---@field data table
+---@field description? string
+---@field hint string
+---@field id string
+---@field label string
+---@field metadata? table
+---@field projectId string
+---@field slug string
+---@field typeName string
+---@field updatedAt number
+---@field usedByFlags? table
+---@field usedBySegments? table
+
+---@class SegmentLoadMatch
+---@field id string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field with_metadata? boolean
+
+---@class Storage
+---@field access? string
+---@field count number
+---@field id? string
+---@field isTokenExpired boolean
+---@field kind? string
+---@field name string
+---@field projectFilter? table
+---@field projectId? string
+---@field projectsMetadata table
+---@field region string
+---@field size number
+---@field status string
+---@field totalConnectedProjects? number
+---@field usageQuotaExceeded boolean
+
+---@class StorageLoadMatch
+---@field id string
+---@field include_guide? boolean
+---@field skip_metadata? boolean
+
+---@class StorageCreateData
+---@field access? string
+---@field count number
+---@field id? string
+---@field isTokenExpired boolean
+---@field kind? string
+---@field name string
+---@field projectFilter? table
+---@field projectId? string
+---@field projectsMetadata table
+---@field region string
+---@field size number
+---@field status string
+---@field totalConnectedProjects? number
+---@field usageQuotaExceeded boolean
+
+---@class StorageRemoveMatch
+---@field id string
+
+---@class Team
+---@field accessRequestedAt number
+---@field apiKeysInvalidatedAt? number
+---@field appTokensInvalidatedAt? number
+---@field attribution? table
+---@field avatar string
+---@field billing table
+---@field bitbucket table
+---@field confirmed boolean
+---@field connect? table
+---@field createdAt number
+---@field creatorId string
+---@field defaultDeploymentProtection? table
+---@field defaultExpirationSettings? table
+---@field defaultPassport table
+---@field defaultProjectJobs? table
+---@field defaultRoles? table
+---@field deploymentPolicy? table
+---@field description string
+---@field disableHardAutoBlocks? any
+---@field disableRepositoryDispatchEvents? boolean
+---@field disjunctiveProductionSecretPolicy? string
+---@field dpAccessRequestsMode? string
+---@field emailDomain? string
+---@field enablePolyrepoBranchRouting? boolean
+---@field enablePreviewFeedback? string
+---@field enableProductionFeedback? string
+---@field fallbackEnvironment? string
+---@field github table
+---@field gitlab table
+---@field hideIpAddresses? boolean
+---@field hideIpAddressesInLogDrains? boolean
+---@field id string
+---@field integrationTokensInvalidatedAt? number
+---@field inviteCode? string
+---@field ipBuckets? table
+---@field joinedFrom table
+---@field membership table
+---@field name string
+---@field nsnbConfig table
+---@field orgRootTeamId? string
+---@field pagination table
+---@field parentId? string
+---@field personalAccessTokensInvalidatedAt? number
+---@field platform? boolean
+---@field previewDeploymentSuffix? string
+---@field projects? table
+---@field regenerateInviteCode? boolean
+---@field remoteCaching? table
+---@field requireVerifiedCommits? boolean
+---@field resourceConfig? table
+---@field role? string
+---@field saml table
+---@field sensitiveEnvironmentVariablePolicy? string
+---@field slug string
+---@field stagingPrefix string
+---@field strictConnectors table
+---@field strictDeploymentProtectionSettings table
+---@field strictPasswordProtectionSettings table
+---@field strictShareableLinks table
+---@field teamName string
+---@field teamPermissions? table
+---@field teamSlug string
+---@field teams table
+---@field updatedAt number
+
+---@class TeamLoadMatch
+---@field id string
+---@field slug? string
+---@field user_id? string
+
+---@class TeamListMatch
+---@field limit? number
+---@field since? number
+---@field until? number
+
+---@class TeamCreateData
+---@field accessRequestedAt number
+---@field apiKeysInvalidatedAt? number
+---@field appTokensInvalidatedAt? number
+---@field attribution? table
+---@field avatar string
+---@field billing table
+---@field bitbucket table
+---@field confirmed boolean
+---@field connect? table
+---@field createdAt number
+---@field creatorId string
+---@field defaultDeploymentProtection? table
+---@field defaultExpirationSettings? table
+---@field defaultPassport table
+---@field defaultProjectJobs? table
+---@field defaultRoles? table
+---@field deploymentPolicy? table
+---@field description string
+---@field disableHardAutoBlocks? any
+---@field disableRepositoryDispatchEvents? boolean
+---@field disjunctiveProductionSecretPolicy? string
+---@field dpAccessRequestsMode? string
+---@field emailDomain? string
+---@field enablePolyrepoBranchRouting? boolean
+---@field enablePreviewFeedback? string
+---@field enableProductionFeedback? string
+---@field fallbackEnvironment? string
+---@field github table
+---@field gitlab table
+---@field hideIpAddresses? boolean
+---@field hideIpAddressesInLogDrains? boolean
+---@field id string
+---@field integrationTokensInvalidatedAt? number
+---@field inviteCode? string
+---@field ipBuckets? table
+---@field joinedFrom table
+---@field membership table
+---@field name string
+---@field nsnbConfig table
+---@field orgRootTeamId? string
+---@field pagination table
+---@field parentId? string
+---@field personalAccessTokensInvalidatedAt? number
+---@field platform? boolean
+---@field previewDeploymentSuffix? string
+---@field projects? table
+---@field regenerateInviteCode? boolean
+---@field remoteCaching? table
+---@field requireVerifiedCommits? boolean
+---@field resourceConfig? table
+---@field role? string
+---@field saml table
+---@field sensitiveEnvironmentVariablePolicy? string
+---@field slug string
+---@field stagingPrefix string
+---@field strictConnectors table
+---@field strictDeploymentProtectionSettings table
+---@field strictPasswordProtectionSettings table
+---@field strictShareableLinks table
+---@field teamName string
+---@field teamPermissions? table
+---@field teamSlug string
+---@field teams table
+---@field updatedAt number
+
+---@class TeamUpdateData
+---@field group_id? string
+---@field id string
+---@field slug? string
+---@field uid? string
+---@field accessRequestedAt? number
+---@field apiKeysInvalidatedAt? number
+---@field appTokensInvalidatedAt? number
+---@field attribution? table
+---@field avatar? string
+---@field billing? table
+---@field bitbucket? table
+---@field confirmed? boolean
+---@field connect? table
+---@field createdAt? number
+---@field creatorId? string
+---@field defaultDeploymentProtection? table
+---@field defaultExpirationSettings? table
+---@field defaultPassport? table
+---@field defaultProjectJobs? table
+---@field defaultRoles? table
+---@field deploymentPolicy? table
+---@field description? string
+---@field disableHardAutoBlocks? any
+---@field disableRepositoryDispatchEvents? boolean
+---@field disjunctiveProductionSecretPolicy? string
+---@field dpAccessRequestsMode? string
+---@field emailDomain? string
+---@field enablePolyrepoBranchRouting? boolean
+---@field enablePreviewFeedback? string
+---@field enableProductionFeedback? string
+---@field fallbackEnvironment? string
+---@field github? table
+---@field gitlab? table
+---@field hideIpAddresses? boolean
+---@field hideIpAddressesInLogDrains? boolean
+---@field integrationTokensInvalidatedAt? number
+---@field inviteCode? string
+---@field ipBuckets? table
+---@field joinedFrom? table
+---@field membership? table
+---@field name? string
+---@field nsnbConfig? table
+---@field orgRootTeamId? string
+---@field pagination? table
+---@field parentId? string
+---@field personalAccessTokensInvalidatedAt? number
+---@field platform? boolean
+---@field previewDeploymentSuffix? string
+---@field projects? table
+---@field regenerateInviteCode? boolean
+---@field remoteCaching? table
+---@field requireVerifiedCommits? boolean
+---@field resourceConfig? table
+---@field role? string
+---@field saml? table
+---@field sensitiveEnvironmentVariablePolicy? string
+---@field stagingPrefix? string
+---@field strictConnectors? table
+---@field strictDeploymentProtectionSettings? table
+---@field strictPasswordProtectionSettings? table
+---@field strictShareableLinks? table
+---@field teamName? string
+---@field teamPermissions? table
+---@field teamSlug? string
+---@field teams? table
+---@field updatedAt? number
+
+---@class TeamRemoveMatch
+---@field group_id? string
+---@field id string
+---@field slug? string
+---@field new_default_team_id? string
+---@field uid? string
+---@field invite_id? string
+
+---@class TldName
+
+---@class TldNameListMatch
+---@field team_id? string
+
+---@class Toggle
+---@field value boolean
+
+---@class ToggleCreateData
+---@field project_id string
+---@field value boolean
+
+---@class User
+---@field categories? table
+---@field createdAt number
+---@field entities table
+---@field id string
+---@field payload? any
+---@field principal? any
+---@field principalId string
+---@field requestId? string
+---@field sessionId? string
+---@field text string
+---@field tokenId? string
+---@field type? string
+---@field user table
+---@field userId? string
+---@field via? table
+---@field viaIds? table
+
+---@class UserLoadMatch
+---@field categories? table
+---@field createdAt? number
+---@field entities? table
+---@field id string
+---@field payload? any
+---@field principal? any
+---@field principalId? string
+---@field requestId? string
+---@field sessionId? string
+---@field text? string
+---@field tokenId? string
+---@field type? string
+---@field user? table
+---@field userId? string
+---@field via? table
+---@field viaIds? table
+
+---@class UserListMatch
+---@field entity_id? string
+---@field limit? number
+---@field principal_id? string
+---@field project_id? string
+---@field since? string
+---@field slug? string
+---@field team_id? string
+---@field type? string
+---@field until? string
+---@field user_id? string
+---@field with_payload? string
+
+---@class UserRemoveMatch
+---@field categories? table
+---@field createdAt? number
+---@field entities? table
+---@field id string
+---@field payload? any
+---@field principal? any
+---@field principalId? string
+---@field requestId? string
+---@field sessionId? string
+---@field text? string
+---@field tokenId? string
+---@field type? string
+---@field user? table
+---@field userId? string
+---@field via? table
+---@field viaIds? table
+
+---@class Vcr
+---@field arch? string
+---@field createdAt string
+---@field id string
+---@field imageId string
+---@field kind string
+---@field layers table
+---@field manifestDigest string
+---@field name string
+---@field platform? string
+---@field projectId string
+---@field public boolean
+---@field pushedBy? string
+---@field repositoryId string
+---@field sizeInBytes number
+---@field status string
+---@field tag string
+---@field tags table
+---@field teamId string
+---@field teamSlug string
+---@field updatedAt string
+
+---@class VcrLoadMatch
+---@field id_or_name string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class VcrListMatch
+---@field id_or_name string
+---@field cursor? string
+---@field limit? number
+---@field project_id string
+---@field slug? string
+---@field sort_by? string
+---@field sort_order? string
+---@field team_id? string
+
+---@class VcrCreateData
+---@field id_or_name string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field arch? string
+---@field createdAt string
+---@field id string
+---@field imageId string
+---@field kind string
+---@field layers table
+---@field manifestDigest string
+---@field name string
+---@field platform? string
+---@field projectId string
+---@field public boolean
+---@field pushedBy? string
+---@field repositoryId string
+---@field sizeInBytes number
+---@field status string
+---@field tag string
+---@field tags table
+---@field teamId string
+---@field teamSlug string
+---@field updatedAt string
+
+---@class VcrUpdateData
+---@field project_slug string
+---@field repository_name string
+---@field team_slug string
+---@field uuid? string
+---@field digest? string
+---@field reference? string
+---@field arch? string
+---@field createdAt? string
+---@field id? string
+---@field imageId? string
+---@field kind? string
+---@field layers? table
+---@field manifestDigest? string
+---@field name? string
+---@field platform? string
+---@field projectId? string
+---@field public? boolean
+---@field pushedBy? string
+---@field repositoryId? string
+---@field sizeInBytes? number
+---@field status? string
+---@field tag? string
+---@field tags? table
+---@field teamId? string
+---@field teamSlug? string
+---@field updatedAt? string
+
+---@class VcrRemoveMatch
+---@field id_or_name string
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class VcrImageList
+---@field arch? string
+---@field createdAt string
+---@field id string
+---@field kind string
+---@field manifestDigest string
+---@field platform? string
+---@field pushedBy? string
+---@field repositoryId string
+---@field sizeInBytes number
+---@field status string
+---@field tags table
+
+---@class VcrImageListListMatch
+---@field id_or_name string
+---@field cursor? string
+---@field limit? number
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+---@field untagged? boolean
+
+---@class VcrRepositoryList
+---@field createdAt string
+---@field id string
+---@field name string
+---@field projectId string
+---@field public boolean
+---@field updatedAt string
+
+---@class VcrRepositoryListListMatch
+---@field cursor? string
+---@field limit? number
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class VcrRepositoryPermissionList
+---@field createdAt string
+---@field repositoryId string
+---@field teamId string
+---@field teamSlug string
+
+---@class VcrRepositoryPermissionListListMatch
+---@field id_or_name string
+---@field cursor? string
+---@field limit? number
+---@field project_id string
+---@field slug? string
+---@field team_id? string
+
+---@class WebAnalytics
+---@field data any
+---@field query table
+---@field version number
+
+---@class WebAnalyticsLoadMatch
+---@field by? table
+---@field filter? string
+---@field limit? number
+---@field project_id string
+---@field since? any
+---@field slug? string
+---@field team_id? string
+---@field until? any
+
+---@class Webhook
+---@field alertRuleIds? table
+---@field createdAt number
+---@field events table
+---@field id string
+---@field ownerId string
+---@field projectIds? table
+---@field secret string
+---@field updatedAt number
+---@field url string
+
+---@class WebhookLoadMatch
+---@field id string
+---@field slug? string
+---@field team_id? string
+
+---@class WebhookCreateData
+---@field slug? string
+---@field team_id? string
+---@field alertRuleIds? table
+---@field createdAt number
+---@field events table
+---@field id string
+---@field ownerId string
+---@field projectIds? table
+---@field secret string
+---@field updatedAt number
+---@field url string
+
+---@class WebhookRemoveMatch
 ---@field id string
 ---@field slug? string
 ---@field team_id? string

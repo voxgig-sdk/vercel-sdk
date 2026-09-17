@@ -1,0 +1,855 @@
+# Entity: domain
+
+main: kit: entity: domain: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "boughtAt"
+      req: true
+      short: "If it was purchased through Vercel, the timestamp in milliseconds when it was purchased."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "createdAt"
+      req: true
+      short: "Timestamp in milliseconds when the domain was created in the registry."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "creator"
+      req: true
+      short: "An object containing information of the domain creator, including the user's id, username, and email."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "customNameservers"
+      req: false
+      short: "A list of custom nameservers for the domain to point to."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "echMode"
+      req: true
+      short: "Whether the domain is enrolled in Encrypted Client Hello."
+      type: "`$STRING`"
+    }
+    {
+      name: "expiresAt"
+      req: true
+      short: "Timestamp in milliseconds at which the domain is set to expire."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "id"
+      req: true
+      short: "The unique identifier of the domain."
+      type: "`$STRING`"
+    }
+    {
+      name: "intendedNameservers"
+      req: true
+      short: "A list of the intended nameservers for the domain to point to Vercel DNS."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "method"
+      req: false
+      short: "The domain operation to perform."
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      short: "The domain name."
+      type: "`$STRING`"
+    }
+    {
+      name: "nameservers"
+      req: true
+      short: "A list of the current nameservers of the domain."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "renew"
+      req: false
+      short: "Indicates whether the domain is set to automatically renew."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "serviceType"
+      req: true
+      short: "The type of service the domain is handled by."
+      type: "`$STRING`"
+    }
+    {
+      name: "suffix"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "teamId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "transferStartedAt"
+      req: false
+      short: "If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "transferredAt"
+      req: false
+      short: "Timestamp in milliseconds at which the domain was successfully transferred into Vercel."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "userId"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "verified"
+      req: true
+      short: "If the domain has the ownership verified."
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "domain"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "example.com"
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v9/domains/{domain}/claim"
+            json: "{\"operationId\":\"claimDomainOwnership\",\"parameters\":[{\"description\":\"The domain name to claim ownership of\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"description\":\"The domain name to claim ownership of\",\"example\":\"example.com\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"domain\":{\"properties\":{\"boughtAt\":{\"description\":\"If it was purchased through Vercel, the timestamp in milliseconds when it was purchased.\",\"example\":1613602938882,\"nullable\":true,\"type\":\"number\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds when the domain was created in the registry.\",\"example\":1613602938882,\"type\":\"number\"},\"creator\":{\"description\":\"An object containing information of the domain creator, including the user's id, username, and email.\",\"example\":{\"email\":\"demo@example.com\",\"id\":\"ZspSRT4ljIEEmMHgoDwKWDei\",\"username\":\"vercel_user\"},\"properties\":{\"customerId\":{\"nullable\":true,\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"isDomainReseller\":{\"enum\":[false,true],\"type\":\"boolean\"},\"username\":{\"type\":\"string\"}},\"required\":[\"email\",\"id\",\"username\"],\"type\":\"object\"},\"customNameservers\":{\"description\":\"A list of custom nameservers for the domain to point to. Only applies to domains purchased with Vercel.\",\"example\":[\"ns1.nameserver.net\",\"ns2.nameserver.net\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"echMode\":{\"description\":\"Whether the domain is enrolled in Encrypted Client Hello. `auto` leaves the decision to Vercel, `enabled` always enrolls, and `disabled` never enrolls and opts out of automatic enrollment.\",\"enum\":[\"auto\",\"disabled\",\"enabled\"],\"example\":\"auto\",\"type\":\"string\"},\"expiresAt\":{\"description\":\"Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel.\",\"nullable\":true,\"type\":\"number\"},\"id\":{\"description\":\"The unique identifier of the domain.\",\"example\":\"EmTbe5CEJyTk2yVAHBUWy4A3sRusca3GCwRjTC1bpeVnt1\",\"type\":\"string\"},\"intendedNameservers\":{\"description\":\"A list of the intended nameservers for the domain to point to Vercel DNS.\",\"example\":[\"ns1.vercel-dns.com\",\"ns2.vercel-dns.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"The domain name.\",\"example\":\"example.com\",\"type\":\"string\"},\"nameservers\":{\"description\":\"A list of the current nameservers of the domain.\",\"example\":[\"ns1.nameserver.net\",\"ns2.nameserver.net\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"renew\":{\"description\":\"Indicates whether the domain is set to automatically renew.\",\"enum\":[false,true],\"example\":true,\"type\":\"boolean\"},\"serviceType\":{\"description\":\"The type of service the domain is handled by. `external` if the DNS is externally handled, `zeit.world` if handled with Vercel, or `na` if the service is not available.\",\"enum\":[\"external\",\"na\",\"zeit.world\"],\"example\":\"zeit.world\",\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"transferStartedAt\":{\"description\":\"If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated.\",\"example\":1613602938882,\"type\":\"number\"},\"transferredAt\":{\"description\":\"Timestamp in milliseconds at which the domain was successfully transferred into Vercel. `null` if the transfer is still processing or was never transferred in.\",\"example\":1613602938882,\"nullable\":true,\"type\":\"number\"},\"userId\":{\"type\":\"string\"},\"verified\":{\"description\":\"If the domain has the ownership verified.\",\"enum\":[false,true],\"example\":true,\"type\":\"boolean\"}},\"required\":[\"boughtAt\",\"createdAt\",\"creator\",\"echMode\",\"expiresAt\",\"id\",\"intendedNameservers\",\"name\",\"nameservers\",\"serviceType\",\"teamId\",\"userId\",\"verified\"],\"type\":\"object\"}},\"required\":[\"domain\"],\"type\":\"object\"}}},\"description\":\"Domain ownership successfully claimed.\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v9/domains/{domain}/claim"
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v9"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "claim"
+            }
+          ]
+          select: {
+            "$action": "claim"
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.domain`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /v7/domains"
+            json: "{\"operationId\":\"createOrTransferDomain\",\"parameters\":[{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"additionalProperties\":false,\"description\":\"add\",\"properties\":{\"cdnEnabled\":{\"description\":\"Whether the domain has the Vercel CDN enabled or not.\",\"example\":true,\"type\":\"boolean\"},\"method\":{\"description\":\"The domain operation to perform.\",\"example\":\"add\",\"type\":\"string\"},\"name\":{\"description\":\"The domain name you want to add.\",\"example\":\"example.com\",\"type\":\"string\"},\"zone\":{\"description\":\"Whether to create a DNS zone on Vercel. Set `true` if using Vercel nameservers.\",\"type\":\"boolean\"}},\"required\":[\"name\"],\"type\":\"object\"},{\"additionalProperties\":false,\"description\":\"move-in\",\"properties\":{\"method\":{\"description\":\"The domain operation to perform.\",\"example\":\"move-in\",\"type\":\"string\"},\"name\":{\"description\":\"The domain name you want to add.\",\"example\":\"example.com\",\"type\":\"string\"},\"token\":{\"description\":\"The move-in token from Move Requested email.\",\"example\":\"fdhfr820ad#@FAdlj$$\",\"type\":\"string\"}},\"required\":[\"method\",\"name\"],\"type\":\"object\"}],\"properties\":{\"method\":{\"description\":\"The domain operation to perform. It can be either `add` or `move-in`.\",\"example\":\"add\",\"type\":\"string\"}}}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"domain\":{\"properties\":{\"boughtAt\":{\"description\":\"If it was purchased through Vercel, the timestamp in milliseconds when it was purchased.\",\"example\":1613602938882,\"nullable\":true,\"type\":\"number\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds when the domain was created in the registry.\",\"example\":1613602938882,\"type\":\"number\"},\"creator\":{\"description\":\"An object containing information of the domain creator, including the user's id, username, and email.\",\"example\":{\"email\":\"demo@example.com\",\"id\":\"ZspSRT4ljIEEmMHgoDwKWDei\",\"username\":\"vercel_user\"},\"properties\":{\"customerId\":{\"nullable\":true,\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"isDomainReseller\":{\"enum\":[false,true],\"type\":\"boolean\"},\"username\":{\"type\":\"string\"}},\"required\":[\"email\",\"id\",\"username\"],\"type\":\"object\"},\"customNameservers\":{\"description\":\"A list of custom nameservers for the domain to point to. Only applies to domains purchased with Vercel.\",\"example\":[\"ns1.nameserver.net\",\"ns2.nameserver.net\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"echMode\":{\"description\":\"Whether the domain is enrolled in Encrypted Client Hello. `auto` leaves the decision to Vercel, `enabled` always enrolls, and `disabled` never enrolls and opts out of automatic enrollment.\",\"enum\":[\"auto\",\"disabled\",\"enabled\"],\"example\":\"auto\",\"type\":\"string\"},\"expiresAt\":{\"description\":\"Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel.\",\"nullable\":true,\"type\":\"number\"},\"id\":{\"description\":\"The unique identifier of the domain.\",\"example\":\"EmTbe5CEJyTk2yVAHBUWy4A3sRusca3GCwRjTC1bpeVnt1\",\"type\":\"string\"},\"intendedNameservers\":{\"description\":\"A list of the intended nameservers for the domain to point to Vercel DNS.\",\"example\":[\"ns1.vercel-dns.com\",\"ns2.vercel-dns.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"The domain name.\",\"example\":\"example.com\",\"type\":\"string\"},\"nameservers\":{\"description\":\"A list of the current nameservers of the domain.\",\"example\":[\"ns1.nameserver.net\",\"ns2.nameserver.net\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"renew\":{\"description\":\"Indicates whether the domain is set to automatically renew.\",\"enum\":[false,true],\"example\":true,\"type\":\"boolean\"},\"serviceType\":{\"description\":\"The type of service the domain is handled by. `external` if the DNS is externally handled, `zeit.world` if handled with Vercel, or `na` if the service is not available.\",\"enum\":[\"external\",\"na\",\"zeit.world\"],\"example\":\"zeit.world\",\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"transferStartedAt\":{\"description\":\"If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated.\",\"example\":1613602938882,\"type\":\"number\"},\"transferredAt\":{\"description\":\"Timestamp in milliseconds at which the domain was successfully transferred into Vercel. `null` if the transfer is still processing or was never transferred in.\",\"example\":1613602938882,\"nullable\":true,\"type\":\"number\"},\"userId\":{\"type\":\"string\"},\"verified\":{\"description\":\"If the domain has the ownership verified.\",\"enum\":[false,true],\"example\":true,\"type\":\"boolean\"}},\"required\":[\"boughtAt\",\"createdAt\",\"creator\",\"echMode\",\"expiresAt\",\"id\",\"intendedNameservers\",\"name\",\"nameservers\",\"serviceType\",\"teamId\",\"userId\",\"verified\"],\"type\":\"object\"}},\"required\":[\"domain\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"402\":{\"description\":\"The account is missing a payment so payment method must be updated\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"The domain is not allowed to be used\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v7/domains"
+          segments: [
+            {
+              lit: "v7"
+            }
+            {
+              lit: "domains"
+            }
+          ]
+          select: {
+            exist: [
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.domain`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "example.com"
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: 1609499532000
+                kind: "query"
+                name: "since"
+                orig: "since"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1612264332000
+                kind: "query"
+                name: "until"
+                orig: "until"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/domains/{domain}/project-domains"
+            json: "{\"operationId\":\"getDomainProjectDomains\",\"parameters\":[{\"description\":\"The apex domain name.\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"description\":\"The apex domain name.\",\"example\":\"example.com\",\"type\":\"string\"}},{\"description\":\"Maximum number of project domains to list from a request.\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"description\":\"Maximum number of project domains to list from a request.\",\"example\":20,\"type\":\"number\"}},{\"description\":\"Get project domains created after this JavaScript timestamp.\",\"in\":\"query\",\"name\":\"since\",\"required\":false,\"schema\":{\"description\":\"Get project domains created after this JavaScript timestamp.\",\"example\":1609499532000,\"type\":\"number\"}},{\"description\":\"Get project domains created before this JavaScript timestamp.\",\"in\":\"query\",\"name\":\"until\",\"required\":false,\"schema\":{\"description\":\"Get project domains created before this JavaScript timestamp.\",\"example\":1612264332000,\"type\":\"number\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"pagination\":{\"description\":\"This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.\",\"properties\":{\"count\":{\"description\":\"Amount of items in the current page.\",\"example\":20,\"type\":\"number\"},\"next\":{\"description\":\"Timestamp that must be used to request the next page.\",\"example\":1540095775951,\"nullable\":true,\"type\":\"number\"},\"prev\":{\"description\":\"Timestamp that must be used to request the previous page.\",\"example\":1540095775951,\"nullable\":true,\"type\":\"number\"}},\"required\":[\"count\",\"next\",\"prev\"],\"type\":\"object\"},\"projectDomains\":{\"items\":{\"properties\":{\"apexName\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"number\"},\"customEnvironmentId\":{\"nullable\":true,\"type\":\"string\"},\"gitBranch\":{\"nullable\":true,\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"projectId\":{\"type\":\"string\"},\"redirect\":{\"nullable\":true,\"type\":\"string\"},\"redirectStatusCode\":{\"enum\":[301,302,307,308,null],\"nullable\":true,\"type\":\"number\"},\"updatedAt\":{\"type\":\"number\"},\"verification\":{\"description\":\"A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.\",\"items\":{\"description\":\"A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`.\",\"properties\":{\"domain\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"domain\",\"reason\",\"type\",\"value\"],\"type\":\"object\"},\"type\":\"array\"},\"verified\":{\"description\":\"`true` if the domain is verified for use with the project. If `false` it will not be used as an alias on this project until the challenge in `verification` is completed.\",\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"apexName\",\"name\",\"projectId\",\"verified\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"pagination\",\"projectDomains\"],\"type\":\"object\"}}},\"description\":\"Successful response retrieving project domains for an apex domain.\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/domains/{domain}/project-domains"
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "project-domains"
+            }
+          ]
+          select: {
+            "$action": "project_domain"
+            exist: [
+              "id"
+              "limit"
+              "since"
+              "slug"
+              "team_id"
+              "until"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "example.com"
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "project_id_or_name"
+                orig: "project_id_or_name"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "strict"
+                orig: "strict"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v6/domains/{domain}/config"
+            json: "{\"operationId\":\"getDomainConfig\",\"parameters\":[{\"description\":\"The name of the domain.\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"description\":\"The name of the domain.\",\"example\":\"example.com\",\"type\":\"string\"}},{\"description\":\"The project id or name that will be associated with the domain. Use this when the domain is not yet associated with a project.\",\"in\":\"query\",\"name\":\"projectIdOrName\",\"required\":false,\"schema\":{\"description\":\"The project id or name that will be associated with the domain. Use this when the domain is not yet associated with a project.\",\"type\":\"string\"}},{\"description\":\"When true, the response will only include the nameservers assigned directly to the specified domain. When false and there are no nameservers assigned directly to the specified domain, the response will include the nameservers of the domain's parent zone.\",\"in\":\"query\",\"name\":\"strict\",\"required\":false,\"schema\":{\"description\":\"When true, the response will only include the nameservers assigned directly to the specified domain. When false and there are no nameservers assigned directly to the specified domain, the response will include the nameservers of the domain's parent zone.\",\"enum\":[\"true\",\"false\"]}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"acceptedChallenges\":{\"description\":\"Which challenge types the domain can use for issuing certs.\",\"items\":{\"description\":\"Which challenge types the domain can use for issuing certs.\",\"enum\":[\"dns-01\",\"http-01\"],\"type\":\"string\"},\"type\":\"array\"},\"configuredBy\":{\"description\":\"How we see the domain's configuration. - `CNAME`: Domain has a CNAME pointing to Vercel. - `A`: Domain's A record is resolving to Vercel. - `http`: Domain is resolving to Vercel but may be behind a Proxy. - `dns-01`: Domain is not resolving to Vercel but dns-01 challenge is enabled. - `null`: Domain is not resolving to Vercel.\",\"enum\":[\"A\",\"CNAME\",\"dns-01\",\"http\",null],\"nullable\":true,\"type\":\"string\"},\"misconfigured\":{\"description\":\"Whether or not the domain is configured AND we can automatically generate a TLS certificate.\",\"enum\":[false,true],\"type\":\"boolean\"},\"recommendedCNAME\":{\"description\":\"Recommended CNAMEs for the domain. rank=1 is the preferred value to use.\",\"items\":{\"description\":\"Recommended CNAMEs for the domain. rank=1 is the preferred value to use.\",\"properties\":{\"rank\":{\"type\":\"number\"},\"value\":{\"type\":\"string\"}},\"required\":[\"rank\",\"value\"],\"type\":\"object\"},\"type\":\"array\"},\"recommendedIPv4\":{\"description\":\"Recommended IPv4s for the domain. rank=1 is the preferred value(s) to use. Only using 1 ip value is acceptable.\",\"items\":{\"description\":\"Recommended IPv4s for the domain. rank=1 is the preferred value(s) to use. Only using 1 ip value is acceptable.\",\"properties\":{\"rank\":{\"type\":\"number\"},\"value\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"rank\",\"value\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"acceptedChallenges\",\"configuredBy\",\"misconfigured\",\"recommendedCNAME\",\"recommendedIPv4\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v6/domains/{domain}/config"
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v6"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "config"
+            }
+          ]
+          select: {
+            "$action": "config"
+            exist: [
+              "id"
+              "project_id_or_name"
+              "slug"
+              "strict"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: 1609499532000
+                kind: "query"
+                name: "since"
+                orig: "since"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1612264332000
+                kind: "query"
+                name: "until"
+                orig: "until"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v5/domains"
+            json: "{\"operationId\":\"getDomains\",\"parameters\":[{\"description\":\"Maximum number of domains to list from a request.\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"description\":\"Maximum number of domains to list from a request.\",\"example\":20,\"type\":\"number\"}},{\"description\":\"Get domains created after this JavaScript timestamp.\",\"in\":\"query\",\"name\":\"since\",\"schema\":{\"description\":\"Get domains created after this JavaScript timestamp.\",\"example\":1609499532000,\"type\":\"number\"}},{\"description\":\"Get domains created before this JavaScript timestamp.\",\"in\":\"query\",\"name\":\"until\",\"schema\":{\"description\":\"Get domains created before this JavaScript timestamp.\",\"example\":1612264332000,\"type\":\"number\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"domains\":{\"items\":{\"properties\":{\"boughtAt\":{\"description\":\"If it was purchased through Vercel, the timestamp in milliseconds when it was purchased.\",\"example\":1613602938882,\"nullable\":true,\"type\":\"number\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds when the domain was created in the registry.\",\"example\":1613602938882,\"type\":\"number\"},\"creator\":{\"description\":\"An object containing information of the domain creator, including the user's id, username, and email.\",\"example\":{\"email\":\"demo@example.com\",\"id\":\"ZspSRT4ljIEEmMHgoDwKWDei\",\"username\":\"vercel_user\"},\"properties\":{\"customerId\":{\"nullable\":true,\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"isDomainReseller\":{\"enum\":[false,true],\"type\":\"boolean\"},\"username\":{\"type\":\"string\"}},\"required\":[\"email\",\"id\",\"username\"],\"type\":\"object\"},\"customNameservers\":{\"description\":\"A list of custom nameservers for the domain to point to. Only applies to domains purchased with Vercel.\",\"example\":[\"ns1.nameserver.net\",\"ns2.nameserver.net\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"echMode\":{\"description\":\"Whether the domain is enrolled in Encrypted Client Hello. `auto` leaves the decision to Vercel, `enabled` always enrolls, and `disabled` never enrolls and opts out of automatic enrollment.\",\"enum\":[\"auto\",\"disabled\",\"enabled\"],\"example\":\"auto\",\"type\":\"string\"},\"expiresAt\":{\"description\":\"Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel.\",\"nullable\":true,\"type\":\"number\"},\"id\":{\"description\":\"The unique identifier of the domain.\",\"example\":\"EmTbe5CEJyTk2yVAHBUWy4A3sRusca3GCwRjTC1bpeVnt1\",\"type\":\"string\"},\"intendedNameservers\":{\"description\":\"A list of the intended nameservers for the domain to point to Vercel DNS.\",\"example\":[\"ns1.vercel-dns.com\",\"ns2.vercel-dns.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"The domain name.\",\"example\":\"example.com\",\"type\":\"string\"},\"nameservers\":{\"description\":\"A list of the current nameservers of the domain.\",\"example\":[\"ns1.nameserver.net\",\"ns2.nameserver.net\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"renew\":{\"description\":\"Indicates whether the domain is set to automatically renew.\",\"enum\":[false,true],\"example\":true,\"type\":\"boolean\"},\"serviceType\":{\"description\":\"The type of service the domain is handled by. `external` if the DNS is externally handled, `zeit.world` if handled with Vercel, or `na` if the service is not available.\",\"enum\":[\"external\",\"na\",\"zeit.world\"],\"example\":\"zeit.world\",\"type\":\"string\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"transferStartedAt\":{\"description\":\"If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated.\",\"example\":1613602938882,\"type\":\"number\"},\"transferredAt\":{\"description\":\"Timestamp in milliseconds at which the domain was successfully transferred into Vercel. `null` if the transfer is still processing or was never transferred in.\",\"example\":1613602938882,\"nullable\":true,\"type\":\"number\"},\"userId\":{\"type\":\"string\"},\"verified\":{\"description\":\"If the domain has the ownership verified.\",\"enum\":[false,true],\"example\":true,\"type\":\"boolean\"}},\"required\":[\"boughtAt\",\"createdAt\",\"creator\",\"echMode\",\"expiresAt\",\"id\",\"intendedNameservers\",\"name\",\"nameservers\",\"serviceType\",\"teamId\",\"userId\",\"verified\"],\"type\":\"object\"},\"type\":\"array\"},\"pagination\":{\"description\":\"This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.\",\"properties\":{\"count\":{\"description\":\"Amount of items in the current page.\",\"example\":20,\"type\":\"number\"},\"next\":{\"description\":\"Timestamp that must be used to request the next page.\",\"example\":1540095775951,\"nullable\":true,\"type\":\"number\"},\"prev\":{\"description\":\"Timestamp that must be used to request the previous page.\",\"example\":1540095775951,\"nullable\":true,\"type\":\"number\"}},\"required\":[\"count\",\"next\",\"prev\"],\"type\":\"object\"}},\"required\":[\"domains\",\"pagination\"],\"type\":\"object\"}}},\"description\":\"Successful response retrieving a list of domains.\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v5/domains"
+          segments: [
+            {
+              lit: "v5"
+            }
+            {
+              lit: "domains"
+            }
+          ]
+          select: {
+            exist: [
+              "limit"
+              "since"
+              "slug"
+              "team_id"
+              "until"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "example.com"
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v5/domains/{domain}"
+            json: "{\"operationId\":\"getDomain\",\"parameters\":[{\"description\":\"The name of the domain.\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"description\":\"The name of the domain.\",\"example\":\"example.com\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"domain\":{\"properties\":{\"boughtAt\":{\"description\":\"If it was purchased through Vercel, the timestamp in milliseconds when it was purchased.\",\"example\":1613602938882,\"nullable\":true,\"type\":\"number\"},\"createdAt\":{\"description\":\"Timestamp in milliseconds when the domain was created in the registry.\",\"example\":1613602938882,\"type\":\"number\"},\"creator\":{\"description\":\"An object containing information of the domain creator, including the user's id, username, and email.\",\"example\":{\"email\":\"demo@example.com\",\"id\":\"ZspSRT4ljIEEmMHgoDwKWDei\",\"username\":\"vercel_user\"},\"properties\":{\"customerId\":{\"nullable\":true,\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"isDomainReseller\":{\"enum\":[false,true],\"type\":\"boolean\"},\"username\":{\"type\":\"string\"}},\"required\":[\"email\",\"id\",\"username\"],\"type\":\"object\"},\"customNameservers\":{\"description\":\"A list of custom nameservers for the domain to point to. Only applies to domains purchased with Vercel.\",\"example\":[\"ns1.nameserver.net\",\"ns2.nameserver.net\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"echMode\":{\"description\":\"Whether the domain is enrolled in Encrypted Client Hello. `auto` leaves the decision to Vercel, `enabled` always enrolls, and `disabled` never enrolls and opts out of automatic enrollment.\",\"enum\":[\"auto\",\"disabled\",\"enabled\"],\"example\":\"auto\",\"type\":\"string\"},\"expiresAt\":{\"description\":\"Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel.\",\"nullable\":true,\"type\":\"number\"},\"id\":{\"description\":\"The unique identifier of the domain.\",\"example\":\"EmTbe5CEJyTk2yVAHBUWy4A3sRusca3GCwRjTC1bpeVnt1\",\"type\":\"string\"},\"intendedNameservers\":{\"description\":\"A list of the intended nameservers for the domain to point to Vercel DNS.\",\"example\":[\"ns1.vercel-dns.com\",\"ns2.vercel-dns.com\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"The domain name.\",\"example\":\"example.com\",\"type\":\"string\"},\"nameservers\":{\"description\":\"A list of the current nameservers of the domain.\",\"example\":[\"ns1.nameserver.net\",\"ns2.nameserver.net\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"renew\":{\"description\":\"Indicates whether the domain is set to automatically renew.\",\"enum\":[false,true],\"example\":true,\"type\":\"boolean\"},\"serviceType\":{\"description\":\"The type of service the domain is handled by. `external` if the DNS is externally handled, `zeit.world` if handled with Vercel, or `na` if the service is not available.\",\"enum\":[\"external\",\"na\",\"zeit.world\"],\"example\":\"zeit.world\",\"type\":\"string\"},\"suffix\":{\"enum\":[false,true],\"type\":\"boolean\"},\"teamId\":{\"nullable\":true,\"type\":\"string\"},\"transferStartedAt\":{\"description\":\"If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated.\",\"example\":1613602938882,\"type\":\"number\"},\"transferredAt\":{\"description\":\"Timestamp in milliseconds at which the domain was successfully transferred into Vercel. `null` if the transfer is still processing or was never transferred in.\",\"example\":1613602938882,\"nullable\":true,\"type\":\"number\"},\"userId\":{\"type\":\"string\"},\"verified\":{\"description\":\"If the domain has the ownership verified.\",\"enum\":[false,true],\"example\":true,\"type\":\"boolean\"}},\"required\":[\"boughtAt\",\"createdAt\",\"creator\",\"echMode\",\"expiresAt\",\"id\",\"intendedNameservers\",\"name\",\"nameservers\",\"serviceType\",\"suffix\",\"teamId\",\"userId\",\"verified\"],\"type\":\"object\"}},\"required\":[\"domain\"],\"type\":\"object\"}}},\"description\":\"Successful response retrieving an information for a specific domains.\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v5/domains/{domain}"
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v5"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.domain`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "example.com"
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v9/domains/{domain}/verification"
+            json: "{\"operationId\":\"getDomainVerificationRecord\",\"parameters\":[{\"description\":\"The domain name to get the verification record for\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"description\":\"The domain name to get the verification record for\",\"example\":\"example.com\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"txtRecord\":{\"type\":\"string\"},\"verificationDomain\":{\"type\":\"string\"}},\"required\":[\"txtRecord\",\"verificationDomain\"],\"type\":\"object\"}}},\"description\":\"Returns the TXT record needed to verify domain ownership.\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v9/domains/{domain}/verification"
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v9"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "verification"
+            }
+          ]
+          select: {
+            "$action": "verification"
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "example.com"
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v6/domains/{domain}"
+            json: "{\"operationId\":\"deleteDomain\",\"parameters\":[{\"description\":\"The name of the domain.\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"description\":\"The name of the domain.\",\"example\":\"example.com\",\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"uid\":{\"type\":\"string\"}},\"required\":[\"uid\"],\"type\":\"object\"}}},\"description\":\"Successful response removing a domain.\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v6/domains/{domain}"
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v6"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "my-team-url-slug"
+                kind: "query"
+                name: "slug"
+                orig: "slug"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "team_1a2b3c4d5e6f7g8h9i0j1k2l"
+                kind: "query"
+                name: "team_id"
+                orig: "team_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PATCH /v3/domains/{domain}"
+            json: "{\"operationId\":\"patchDomain\",\"parameters\":[{\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"additionalProperties\":false,\"description\":\"update\",\"properties\":{\"customNameservers\":{\"deprecated\":true,\"description\":\"This field is deprecated. Please use PATCH /v1/registrar/domains/{domainName}/nameservers instead.\",\"items\":{\"type\":\"string\"},\"maxItems\":4,\"minItems\":0,\"type\":\"array\",\"uniqueItems\":true},\"echMode\":{\"description\":\"Encrypted Client Hello enrollment. 'auto' leaves it to Vercel, 'disabled' never enrolls and opts out of automatic enrollment.\",\"enum\":[\"auto\",\"disabled\"],\"type\":\"string\"},\"op\":{\"example\":\"update\",\"type\":\"string\"},\"renew\":{\"deprecated\":true,\"description\":\"This field is deprecated. Please use PATCH /v1/registrar/domains/{domainName}/auto-renew instead.\",\"type\":\"boolean\"},\"zone\":{\"description\":\"Specifies whether this is a DNS zone that intends to use Vercel's nameservers.\",\"type\":\"boolean\"}},\"type\":\"object\"},{\"additionalProperties\":false,\"description\":\"move-out\",\"properties\":{\"destination\":{\"description\":\"User or team to move domain to\",\"type\":\"string\"},\"op\":{\"example\":\"move-out\",\"type\":\"string\"}},\"type\":\"object\"}]}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"moved\":{\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"moved\"],\"type\":\"object\"},{\"properties\":{\"moved\":{\"enum\":[false,true],\"type\":\"boolean\"},\"token\":{\"type\":\"string\"}},\"required\":[\"moved\",\"token\"],\"type\":\"object\"},{\"properties\":{\"customNameservers\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"echMode\":{\"enum\":[\"auto\",\"disabled\",\"enabled\"],\"type\":\"string\"},\"renew\":{\"enum\":[false,true],\"type\":\"boolean\"},\"zone\":{\"enum\":[false,true],\"type\":\"boolean\"}},\"required\":[\"echMode\"],\"type\":\"object\"}]}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request body is invalid.\\nOne of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"500\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PATCH"
+          orig: "/v3/domains/{domain}"
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "v3"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "slug"
+              "team_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "example.com"
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /domains/{domain}/records"
+            json: "{\"operationId\":\"replaceDomainsByDomainRecords\",\"parameters\":[{\"description\":\"The domain name\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"description\":\"The domain name\",\"example\":\"example.com\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"recordIds\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"recordIds\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"404\":{\"description\":\"\"},\"409\":{\"description\":\"\"},\"410\":{\"description\":\"\"},\"415\":{\"description\":\"\"}},\"security\":[],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/domains/{domain}/records"
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "records"
+            }
+          ]
+          select: {
+            "$action": "record"
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

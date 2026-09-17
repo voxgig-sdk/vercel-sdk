@@ -1,0 +1,49 @@
+# BasicGlobalConfigItemFlow
+
+main: kit: flow: BasicGlobalConfigItemFlow:
+{
+  entity: "global_config_item",
+  kind: "basic",
+  name: "BasicGlobalConfigItemFlow",
+  step: [
+    {
+      match: {
+        edge_config_id: "edge_config01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "global_config_item_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "global_config_item_ref01",
+        srcdatavar: "global_config_item_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        global_config_id: "global_config01",
+        id: "global_config_item01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-global_config_item_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGlobalConfigItemFlow"
+}

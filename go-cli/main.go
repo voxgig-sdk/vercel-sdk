@@ -20,7 +20,7 @@ import (
 const prompt = "vercel"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "project"
+const entitiesHelp = "access_group ai_gateway ai_gateway_rule ai_gateway_rule_list ai_gateway_virtual_model_config ai_gateway_virtual_model_config_list alias api_ai_gateway api_key artifact authentication billing bulk_redirect cert check checks_v2 connect connect_connector connect_connector_list connect_connector_project_connection_list connect_project_connection connect_project_connector_connection_list deployment dns domain domains_registrar drain edge_cache env environment feature_flag file flag flags_sdk_key_with_secret global_config global_config_item global_config_token integration kms list_event_type log log_drain marketplace microfrontend network networking observability private_link_endpoint project project_member project_route query record rolling_release sandbox schema security segment storage team tld_name toggle user vcr vcr_image_list vcr_repository_list vcr_repository_permission_list web_analytics webhook"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

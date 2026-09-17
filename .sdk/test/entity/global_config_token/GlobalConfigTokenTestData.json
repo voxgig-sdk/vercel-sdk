@@ -1,0 +1,286 @@
+{
+  "existing": {
+    "global_config_token": {
+      "GLOBAL_CONFIG_TOKEN00": {
+        "createdAt": 60,
+        "edgeConfigId": "s3d",
+        "id": "GLOBAL_CONFIG_TOKEN00",
+        "label": "s3f",
+        "partialToken": "s40",
+        "token": "s41",
+        "global_config_id": "GLOBAL_CONFIG01"
+      },
+      "GLOBAL_CONFIG_TOKEN01": {
+        "createdAt": 120,
+        "edgeConfigId": "s79",
+        "id": "GLOBAL_CONFIG_TOKEN01",
+        "label": "s7b",
+        "partialToken": "s7c",
+        "token": "s7d",
+        "global_config_id": "GLOBAL_CONFIG01"
+      },
+      "GLOBAL_CONFIG_TOKEN02": {
+        "createdAt": 180,
+        "edgeConfigId": "sb5",
+        "id": "GLOBAL_CONFIG_TOKEN02",
+        "label": "sb7",
+        "partialToken": "sb8",
+        "token": "sb9",
+        "global_config_id": "GLOBAL_CONFIG01"
+      }
+    }
+  },
+  "new": {
+    "global_config_token": {
+      "global_config_token_ref01": {
+        "createdAt": 240,
+        "edgeConfigId": "sf1",
+        "label": "sf3",
+        "partialToken": "sf4",
+        "token": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/global-config/{edgeConfigId}/token/{token}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getEdgeConfigToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The Global Config.",
+                  "properties": {
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "edgeConfigId": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "This is not the token itself, but rather an id to identify the token by",
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "partialToken": {
+                      "description": "A partially-masked representation of the token, safe to display in UIs. The format is the first 3 characters of the token followed by a fixed 8-character `*` mask (e.g. `550e8400-e29b-41d4-a716-446655440000` → `550********`). The mask length is intentionally fixed (not proportional to the original token length) to avoid leaking the token length. Prefer this field for display/reference in UIs and logs. The full, plaintext token is only disclosed once at creation time via `POST /v1/edge-config/:edgeConfigId/token`; use `id` to reference a token in subsequent calls (e.g. when deleting).",
+                      "type": "string"
+                    },
+                    "token": {
+                      "description": "Deprecated: the full, plaintext token. - Returned once by `POST /v1/edge-config/:edgeConfigId/token` (create). - Still returned by `GET /v1/edge-config/:edgeConfigId/token/:token` (detail) for backwards compatibility, but scheduled for removal. - **Not** returned by `GET /v1/edge-config/:edgeConfigId/tokens` (list); use `partialToken` for display and `id` to reference tokens. Do not rely on this field being present on read operations. Prefer `partialToken` for display and `id` for references.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "edgeConfigId",
+                    "id",
+                    "label",
+                    "partialToken"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The Global Config."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/global-config/{edgeConfigId}/tokens": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getEdgeConfigTokens",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "edgeConfigId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The Global Config.",
+                  "properties": {
+                    "createdAt": {
+                      "type": "number"
+                    },
+                    "edgeConfigId": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "This is not the token itself, but rather an id to identify the token by",
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "partialToken": {
+                      "description": "A partially-masked representation of the token, safe to display in UIs. The format is the first 3 characters of the token followed by a fixed 8-character `*` mask (e.g. `550e8400-e29b-41d4-a716-446655440000` → `550********`). The mask length is intentionally fixed (not proportional to the original token length) to avoid leaking the token length. Prefer this field for display/reference in UIs and logs. The full, plaintext token is only disclosed once at creation time via `POST /v1/edge-config/:edgeConfigId/token`; use `id` to reference a token in subsequent calls (e.g. when deleting).",
+                      "type": "string"
+                    },
+                    "token": {
+                      "description": "Deprecated: the full, plaintext token. - Returned once by `POST /v1/edge-config/:edgeConfigId/token` (create). - Still returned by `GET /v1/edge-config/:edgeConfigId/token/:token` (detail) for backwards compatibility, but scheduled for removal. - **Not** returned by `GET /v1/edge-config/:edgeConfigId/tokens` (list); use `partialToken` for display and `id` to reference tokens. Do not rely on this field being present on read operations. Prefer `partialToken` for display and `id` for references.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "edgeConfigId",
+                    "id",
+                    "label",
+                    "partialToken"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The Global Config."
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

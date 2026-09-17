@@ -1,0 +1,2757 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ConnectConnector | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a aria-current="page" href="../api/connect_connector.html">ConnectConnector</a><div class="nav-sections"><a class="nav-section" href="#post-v1connectconnectors">POST /v1/connect/connectors</a>
+<a class="nav-section" href="#get-v1connectconnectorsconnector">GET /v1/connect/connectors/{connector}</a>
+<a class="nav-section" href="#patch-v1connectconnectorsconnectortrigger-destinations">PATCH /v1/connect/connectors/{connector}/trigger-destinations</a>
+<a class="nav-section" href="#patch-v2connectconnectorsconnector">PATCH /v2/connect/connectors/{connector}</a></div>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="connectconnector">ConnectConnector</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1connectconnectors"><code>/v1/connect/connectors</code></a></td>
+<td><code>create</code></td>
+<td>The connector was created</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1connectconnectorsconnector"><code>/v1/connect/connectors/{connector}</code></a></td>
+<td><code>load</code></td>
+<td>The connector</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1connectconnectorsconnectortrigger-destinations"><code>/v1/connect/connectors/{connector}/trigger-destinations</code></a></td>
+<td><code>update</code></td>
+<td>The connector with its replaced trigger destinations</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v2connectconnectorsconnector"><code>/v2/connect/connectors/{connector}</code></a></td>
+<td><code>update</code></td>
+<td>The updated connector and any required service-side follow-up signals</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accentColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex accent color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>appTokens</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>App-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>backgroundColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex background color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>clientUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Provider-side URL for viewing or managing the resource represented by the connector.</td>
+</tr>
+<tr>
+<td><code>connectionMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The connection method this connector was created from, when the create request named one.</td>
+</tr>
+<tr>
+<td><code>connector</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Updated connector.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Creation time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td>Principal that created the connector.</td>
+</tr>
+<tr>
+<td><code>creationMode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>How the connector row was originally created.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td>Provider configuration for the selected connector type or connection method.</td>
+</tr>
+<tr>
+<td><code>defaultInstallationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Installation used when a token request does not specify an installation.</td>
+</tr>
+<tr>
+<td><code>destinations</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Complete replacement set of trigger destinations.</td>
+</tr>
+<tr>
+<td><code>devsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer website for the connected service.</td>
+</tr>
+<tr>
+<td><code>displayName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable connector name.</td>
+</tr>
+<tr>
+<td><code>docsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer documentation for the connected service.</td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Environments for the project connection.</td>
+</tr>
+<tr>
+<td><code>events</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Known events this connector subscribes to (for example</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Connector branding icon.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable <code>scl_</code> connector ID.</td>
+</tr>
+<tr>
+<td><code>knownStale</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the connector is known to have been edited since the app package it publishes to the provider was last built, so that package no longer matches it.</td>
+</tr>
+<tr>
+<td><code>managed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Managed connector metadata exposed without leaking the manager connector or installation identifiers.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Connector name within the owning team.</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Values for the selected connection method's template fields.</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Project to connect during creation.</td>
+</tr>
+<tr>
+<td><code>reconsentNeeded</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Present when affected users must authorize the connector's new permissions.</td>
+</tr>
+<tr>
+<td><code>redirectUri</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Redirect URI registered with the third-party service for this connector, if any.</td>
+</tr>
+<tr>
+<td><code>reinstallAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Time when this connector started requiring reinstallation because an installation-affecting app-token grant changed.</td>
+</tr>
+<tr>
+<td><code>reinstallNeeded</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When true, prompt a team owner or administrator to reinstall the connector before relying on the change.</td>
+</tr>
+<tr>
+<td><code>service</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Best-effort identifier of the third-party service this connector represents, independent of <code>type</code>.</td>
+</tr>
+<tr>
+<td><code>serviceSync</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Result of synchronizing the change with the external service.</td>
+</tr>
+<tr>
+<td><code>supportedSubjectTypes</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Token subject types supported by the connector.</td>
+</tr>
+<tr>
+<td><code>supportsIcon</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td>Whether the connector icon can propagate to the provider.</td>
+</tr>
+<tr>
+<td><code>supportsInstallation</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether the connector supports an installation flow.</td>
+</tr>
+<tr>
+<td><code>supportsRevocation</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether Connect can revoke tokens for this connector.</td>
+</tr>
+<tr>
+<td><code>supportsTriggers</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether this connector type supports trigger webhooks.</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Which of the service's products/surfaces this connector points at.</td>
+</tr>
+<tr>
+<td><code>triggerDestination</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td>Initial trigger destination.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Destinations that incoming triggers should be forwarded to.</td>
+</tr>
+<tr>
+<td><code>triggers</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Incoming trigger configuration for the connector.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Connector implementation type.</td>
+</tr>
+<tr>
+<td><code>typeIcon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Icon identifier supplied by the connector type.</td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable name of the connector type.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Team-scoped UID.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Last update time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>updatedBy</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td>Principal that most recently updated the connector.</td>
+</tr>
+<tr>
+<td><code>userTokens</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>User-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>website</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Public website for the connected service.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1connectconnectors" class="operation" data-method="post"><code>POST</code> /v1/connect/connectors</h3>
+<p>Operation ID: <code>createConnector</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accentColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Branding accent color (6-digit hex, for example</td>
+</tr>
+<tr>
+<td><code>backgroundColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Branding background color (6-digit hex, for example</td>
+</tr>
+<tr>
+<td><code>connectionMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Connection method slug of the service. Use it with service to select preset configuration.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object or object or object or object or object or object or object or object or object or object or object or object</code></td>
+<td>Yes</td>
+<td>Provider configuration for the selected connector type or connection method.</td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of enum: development, preview, production or string</code></td>
+<td>No</td>
+<td>Environments for the project connection. Requires projectId. Use one or more built-in environment names or stable custom environment IDs that belong to the project. Duplicate values are accepted and removed.</td>
+</tr>
+<tr>
+<td><code>events</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Default trigger events for this connector.</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>SHA-1 digest of a PNG or JPEG icon that is at least 640 by 640 pixels. This field does not accept a URL or image bytes. First compute the digest and upload the raw image with <a href="https://vercel.com/docs/rest-api/deployments/upload-deployment-files">POST /v2/files</a>. Send <code>Content-Length</code> and the same 40-character digest in <code>x-vercel-digest</code>. Then set <code>icon</code> to that digest. <code>js import &amp;#123; createHash &amp;#125; from &amp;#39;node:crypto&amp;#39;; import &amp;#123; readFile &amp;#125; from &amp;#39;node:fs/promises&amp;#39;; const VERCEL_TOKEN = process.env.VERCEL_TOKEN; const connectorId = &amp;#39;scl_...&amp;#39;; const bytes = await readFile(&amp;#39;icon.png&amp;#39;); const digest = createHash(&amp;#39;sha1&amp;#39;).update(bytes).digest(&amp;#39;hex&amp;#39;); await fetch(&amp;#39;https://api.vercel.com/v2/files&amp;#39;, &amp;#123; method: &amp;#39;POST&amp;#39;, headers: &amp;#123; Authorization: `Bearer $&amp;#123;VERCEL_TOKEN&amp;#125;`, &amp;#39;Content-Type&amp;#39;: &amp;#39;application/octet-stream&amp;#39;, &amp;#39;Content-Length&amp;#39;: String(bytes.length), &amp;#39;x-vercel-digest&amp;#39;: digest, &amp;#125;, body: bytes, &amp;#125;); await fetch(`https://api.vercel.com/v2/connect/connectors/$&amp;#123;connectorId&amp;#125;`, &amp;#123; method: &amp;#39;PATCH&amp;#39;, headers: &amp;#123; Authorization: `Bearer $&amp;#123;VERCEL_TOKEN&amp;#125;`, &amp;#39;Content-Type&amp;#39;: &amp;#39;application/json&amp;#39;, &amp;#125;, body: JSON.stringify(&amp;#123; icon: digest &amp;#125;), &amp;#125;); </code></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Connector name. The value is trimmed and cannot contain control characters. If omitted or empty, the project name is used. A name or projectId is required. API key connectors require name.</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Values for the selected connection method's template fields. Requires connectionMethod.</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Project to connect during creation. If environments is omitted, the connection uses development, preview, and production.</td>
+</tr>
+<tr>
+<td><code>service</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Service slug or URL for which the connector is used. Required when connectionMethod is set. Service alone does not enable preset configuration.</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Which of the service's targets this connector is for. Requires &amp;quot;connectionMethod&amp;quot; and must be one that method serves. Optional.</td>
+</tr>
+<tr>
+<td><code>triggerDestination</code></td>
+<td><code>object or object or object</code></td>
+<td>No</td>
+<td>Initial trigger destination. Requires triggers to be enabled and a projectId here or at the top level. Connector responses expose the resulting set as triggerDestinations. Replace the complete set with PATCH /v1/connect/connectors/{connector}/trigger-destinations.</td>
+</tr>
+<tr>
+<td><code>triggers</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the triggers are enabled for this connector.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Connector implementation type for full configuration. Known types: api-key, discord, github, linear, linq, microsoft-entra, oauth, photon, salesforce, sendblue, slack, snowflake, snowflake-wif. Optional when service and connectionMethod select the type.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional team-scoped unique identifier for the connector. If omitted or empty, Connect generates a value.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="201-the-connector-was-created" class="status" data-status="2xx">201: The connector was created</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accentColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex accent color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>appTokens</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>App-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>appTokens.crossInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether one app token can be used across installations.</td>
+</tr>
+<tr>
+<td><code>appTokens.permissionsUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Link to the page on the service where this connector's app-level permissions are declared and granted, when the service has one and it differs from <code>clientUrl</code>.</td>
+</tr>
+<tr>
+<td><code>appTokens.requiresReinstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>True when changing app token grants requires reinstalling the app, so tokens cannot be partitioned independently by requester environment.</td>
+</tr>
+<tr>
+<td><code>appTokens.scopes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known allowed app-level scopes. For Slack this is the bot scope set configured on the app; for OAuth it is the connector's enabled <code>clientCredentials.scopes</code> configuration.</td>
+</tr>
+<tr>
+<td><code>appTokens.supportedAuthorizationDetails</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Supported OAuth authorization-detail type names.</td>
+</tr>
+<tr>
+<td><code>appTokens.supportsRefinement</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether callers can narrow app-token grants per request.</td>
+</tr>
+<tr>
+<td><code>appTokens.supportsResources</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether callers can request resource-specific app tokens.</td>
+</tr>
+<tr>
+<td><code>backgroundColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex background color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>clientUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Provider-side URL for viewing or managing the resource represented by the connector. The destination can be an app, account, phone line, or service instance, depending on the connector type.</td>
+</tr>
+<tr>
+<td><code>connectionMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The connection method this connector was created from, when the create request named one.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Creation time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td>Principal that created the connector.</td>
+</tr>
+<tr>
+<td><code>creationMode</code></td>
+<td><code>enum: managed, manual</code></td>
+<td>No</td>
+<td>How the connector row was originally created. New create paths stamp this explicitly; older rows may omit it.</td>
+</tr>
+<tr>
+<td><code>defaultInstallationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Installation used when a token request does not specify an installation.</td>
+</tr>
+<tr>
+<td><code>devsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer website for the connected service.</td>
+</tr>
+<tr>
+<td><code>displayName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable connector name.</td>
+</tr>
+<tr>
+<td><code>docsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer documentation for the connected service.</td>
+</tr>
+<tr>
+<td><code>events</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known events this connector subscribes to (for example Slack bot events, GitHub webhook events). Names are type-specific and validated by the managed-create flow when forwarded to the third-party service.</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Connector branding icon. SHA-1 hash that resolves to the uploaded icon through the Vercel avatar service. Consumers render this with <code>https://vercel.com/api/www/avatar/&amp;#123;icon&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable <code>scl_</code> connector ID. Use this value directly in <code>&amp;#123;connector&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>knownStale</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the connector is known to have been edited since the app package it publishes to the provider was last built, so that package no longer matches it. Absent when it was not computed, or when the connector type publishes no such package. Derived on every read rather than marked at edit time, so reverting an edit clears it. Only reported by connector types that publish a package a user has to re-publish by hand, Microsoft Teams today.</td>
+</tr>
+<tr>
+<td><code>managed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Managed connector metadata exposed without leaking the manager connector or installation identifiers.</td>
+</tr>
+<tr>
+<td><code>managed.sync</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether Vercel synchronizes provider-side configuration.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Connector name within the owning team.</td>
+</tr>
+<tr>
+<td><code>redirectUri</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Redirect URI registered with the third-party service for this connector, if any. Used by <code>startAuthorization</code>/<code>startInstallation</code> to replay the exact URI back to the provider's token endpoint. Absent on connectors created before this field was introduced; those callers fall back to the <code>https://connect.vercel.com/callback</code> default.</td>
+</tr>
+<tr>
+<td><code>reinstallAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Time when this connector started requiring reinstallation because an installation-affecting app-token grant changed.</td>
+</tr>
+<tr>
+<td><code>service</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Best-effort identifier of the third-party service this connector represents, independent of <code>type</code>. Examples: <code>&amp;#39;slack&amp;#39;</code>, <code>&amp;#39;mcp.linear.app&amp;#39;</code>, and <code>&amp;#39;auth.example.com&amp;#39;</code>. Always present in API responses.</td>
+</tr>
+<tr>
+<td><code>supportedSubjectTypes</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Token subject types supported by the connector.</td>
+</tr>
+<tr>
+<td><code>supportsIcon</code></td>
+<td><code>enum: false, maybe, true</code></td>
+<td>Yes</td>
+<td>Whether the connector icon can propagate to the provider.</td>
+</tr>
+<tr>
+<td><code>supportsInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the connector supports an installation flow.</td>
+</tr>
+<tr>
+<td><code>supportsRevocation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether Connect can revoke tokens for this connector.</td>
+</tr>
+<tr>
+<td><code>supportsTriggers</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether this connector type supports trigger webhooks. Derived from the type definition; indicates that <code>triggers</code> and <code>triggerDestinations</code> may be meaningful for this connector.</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Which of the service's products/surfaces this connector points at.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Destinations that incoming triggers should be forwarded to. Limited to 3 entries. Set the initial destination with <code>triggerDestination</code> during creation. Replace the complete set with <code>PATCH /v1/connect/connectors/&amp;#123;connector&amp;#125;/trigger-destinations</code>.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Git branch used to select a preview deployment.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Stable custom-environment ID to route this destination to. Mutually exclusive with <code>branch</code>; omitted destinations keep the legacy production behavior.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].path</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Route path that receives the forwarded trigger request.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel project that receives matching trigger requests.</td>
+</tr>
+<tr>
+<td><code>triggers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Incoming trigger configuration for the connector.</td>
+</tr>
+<tr>
+<td><code>triggers.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether incoming triggers are enabled for the connector.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: api-key, aws-alpha, custom, discord, github, linear, ...</code></td>
+<td>Yes</td>
+<td>Connector implementation type.</td>
+</tr>
+<tr>
+<td><code>typeIcon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Icon identifier supplied by the connector type.</td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable name of the connector type.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Team-scoped UID. URL-encode this value before using it in <code>&amp;#123;connector&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Last update time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>updatedBy</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td>Principal that most recently updated the connector.</td>
+</tr>
+<tr>
+<td><code>userTokens</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>User-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>userTokens.crossInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether one user token can be used across installations.</td>
+</tr>
+<tr>
+<td><code>userTokens.manualCredentialInput</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>User authorization is completed by the Connect consent screen submitting a credential instead of an OAuth redirect.</td>
+</tr>
+<tr>
+<td><code>userTokens.scopes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known allowed user-level scopes. For Slack this is the user scope set configured on the app; for OAuth it is the connector's enabled <code>userAuthorization.scopes</code> configuration.</td>
+</tr>
+<tr>
+<td><code>userTokens.supportedAuthorizationDetails</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Supported OAuth authorization-detail type names.</td>
+</tr>
+<tr>
+<td><code>userTokens.supportsRefinement</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether callers can narrow user-token grants per request.</td>
+</tr>
+<tr>
+<td><code>userTokens.supportsResources</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether callers can request resource-specific user tokens.</td>
+</tr>
+<tr>
+<td><code>website</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Public website for the connected service.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Error details.</td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable machine-readable error code.</td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable error message.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-requested-resource-was-not-found" class="status" data-status="4xx">404: The requested resource was not found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="409-the-request-conflicts-with-the-current-resource-state" class="status" data-status="4xx">409: The request conflicts with the current resource state</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="410-the-requested-resource-is-no-longer-available" class="status" data-status="4xx">410: The requested resource is no longer available</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="422-the-request-cannot-be-completed-in-the-current-state" class="status" data-status="4xx">422: The request cannot be completed in the current state</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-an-internal-error-occurred" class="status" data-status="5xx">500: An internal error occurred</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="502-a-dependency-returned-an-invalid-or-unsuccessful-response" class="status" data-status="5xx">502: A dependency returned an invalid or unsuccessful response</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-v1connectconnectorsconnector" class="operation" data-method="get"><code>GET</code> /v1/connect/connectors/{connector}</h3>
+<p>Operation ID: <code>getConnector</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>connector</code> | <code>path</code> | <code>string</code> | Yes | Stable connector ID or URL-encoded team-scoped UID. Examples: <code>scl_abc123</code> or <code>slack%2Fmy-bot</code>. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-the-connector" class="status" data-status="2xx">200: The connector</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accentColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex accent color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>appTokens</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>App-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>appTokens.crossInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether one app token can be used across installations.</td>
+</tr>
+<tr>
+<td><code>appTokens.permissionsUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Link to the page on the service where this connector's app-level permissions are declared and granted, when the service has one and it differs from <code>clientUrl</code>.</td>
+</tr>
+<tr>
+<td><code>appTokens.requiresReinstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>True when changing app token grants requires reinstalling the app, so tokens cannot be partitioned independently by requester environment.</td>
+</tr>
+<tr>
+<td><code>appTokens.scopes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known allowed app-level scopes. For Slack this is the bot scope set configured on the app; for OAuth it is the connector's enabled <code>clientCredentials.scopes</code> configuration.</td>
+</tr>
+<tr>
+<td><code>appTokens.supportedAuthorizationDetails</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Supported OAuth authorization-detail type names.</td>
+</tr>
+<tr>
+<td><code>appTokens.supportsRefinement</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether callers can narrow app-token grants per request.</td>
+</tr>
+<tr>
+<td><code>appTokens.supportsResources</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether callers can request resource-specific app tokens.</td>
+</tr>
+<tr>
+<td><code>backgroundColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex background color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>clientUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Provider-side URL for viewing or managing the resource represented by the connector. The destination can be an app, account, phone line, or service instance, depending on the connector type.</td>
+</tr>
+<tr>
+<td><code>connectionMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The connection method this connector was created from, when the create request named one.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Creation time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td>Principal that created the connector.</td>
+</tr>
+<tr>
+<td><code>creationMode</code></td>
+<td><code>enum: managed, manual</code></td>
+<td>No</td>
+<td>How the connector row was originally created. New create paths stamp this explicitly; older rows may omit it.</td>
+</tr>
+<tr>
+<td><code>defaultInstallationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Installation used when a token request does not specify an installation.</td>
+</tr>
+<tr>
+<td><code>devsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer website for the connected service.</td>
+</tr>
+<tr>
+<td><code>displayName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable connector name.</td>
+</tr>
+<tr>
+<td><code>docsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer documentation for the connected service.</td>
+</tr>
+<tr>
+<td><code>events</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known events this connector subscribes to (for example Slack bot events, GitHub webhook events). Names are type-specific and validated by the managed-create flow when forwarded to the third-party service.</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Connector branding icon. SHA-1 hash that resolves to the uploaded icon through the Vercel avatar service. Consumers render this with <code>https://vercel.com/api/www/avatar/&amp;#123;icon&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable <code>scl_</code> connector ID. Use this value directly in <code>&amp;#123;connector&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>knownStale</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the connector is known to have been edited since the app package it publishes to the provider was last built, so that package no longer matches it. Absent when it was not computed, or when the connector type publishes no such package. Derived on every read rather than marked at edit time, so reverting an edit clears it. Only reported by connector types that publish a package a user has to re-publish by hand, Microsoft Teams today.</td>
+</tr>
+<tr>
+<td><code>managed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Managed connector metadata exposed without leaking the manager connector or installation identifiers.</td>
+</tr>
+<tr>
+<td><code>managed.sync</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether Vercel synchronizes provider-side configuration.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Connector name within the owning team.</td>
+</tr>
+<tr>
+<td><code>redirectUri</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Redirect URI registered with the third-party service for this connector, if any. Used by <code>startAuthorization</code>/<code>startInstallation</code> to replay the exact URI back to the provider's token endpoint. Absent on connectors created before this field was introduced; those callers fall back to the <code>https://connect.vercel.com/callback</code> default.</td>
+</tr>
+<tr>
+<td><code>reinstallAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Time when this connector started requiring reinstallation because an installation-affecting app-token grant changed.</td>
+</tr>
+<tr>
+<td><code>service</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Best-effort identifier of the third-party service this connector represents, independent of <code>type</code>. Examples: <code>&amp;#39;slack&amp;#39;</code>, <code>&amp;#39;mcp.linear.app&amp;#39;</code>, and <code>&amp;#39;auth.example.com&amp;#39;</code>. Always present in API responses.</td>
+</tr>
+<tr>
+<td><code>supportedSubjectTypes</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Token subject types supported by the connector.</td>
+</tr>
+<tr>
+<td><code>supportsIcon</code></td>
+<td><code>enum: false, maybe, true</code></td>
+<td>Yes</td>
+<td>Whether the connector icon can propagate to the provider.</td>
+</tr>
+<tr>
+<td><code>supportsInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the connector supports an installation flow.</td>
+</tr>
+<tr>
+<td><code>supportsRevocation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether Connect can revoke tokens for this connector.</td>
+</tr>
+<tr>
+<td><code>supportsTriggers</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether this connector type supports trigger webhooks. Derived from the type definition; indicates that <code>triggers</code> and <code>triggerDestinations</code> may be meaningful for this connector.</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Which of the service's products/surfaces this connector points at.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Destinations that incoming triggers should be forwarded to. Limited to 3 entries. Set the initial destination with <code>triggerDestination</code> during creation. Replace the complete set with <code>PATCH /v1/connect/connectors/&amp;#123;connector&amp;#125;/trigger-destinations</code>.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Git branch used to select a preview deployment.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Stable custom-environment ID to route this destination to. Mutually exclusive with <code>branch</code>; omitted destinations keep the legacy production behavior.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].path</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Route path that receives the forwarded trigger request.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel project that receives matching trigger requests.</td>
+</tr>
+<tr>
+<td><code>triggers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Incoming trigger configuration for the connector.</td>
+</tr>
+<tr>
+<td><code>triggers.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether incoming triggers are enabled for the connector.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: api-key, aws-alpha, custom, discord, github, linear, ...</code></td>
+<td>Yes</td>
+<td>Connector implementation type.</td>
+</tr>
+<tr>
+<td><code>typeIcon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Icon identifier supplied by the connector type.</td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable name of the connector type.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Team-scoped UID. URL-encode this value before using it in <code>&amp;#123;connector&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Last update time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>updatedBy</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td>Principal that most recently updated the connector.</td>
+</tr>
+<tr>
+<td><code>userTokens</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>User-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>userTokens.crossInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether one user token can be used across installations.</td>
+</tr>
+<tr>
+<td><code>userTokens.manualCredentialInput</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>User authorization is completed by the Connect consent screen submitting a credential instead of an OAuth redirect.</td>
+</tr>
+<tr>
+<td><code>userTokens.scopes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known allowed user-level scopes. For Slack this is the user scope set configured on the app; for OAuth it is the connector's enabled <code>userAuthorization.scopes</code> configuration.</td>
+</tr>
+<tr>
+<td><code>userTokens.supportedAuthorizationDetails</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Supported OAuth authorization-detail type names.</td>
+</tr>
+<tr>
+<td><code>userTokens.supportsRefinement</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether callers can narrow user-token grants per request.</td>
+</tr>
+<tr>
+<td><code>userTokens.supportsResources</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether callers can request resource-specific user tokens.</td>
+</tr>
+<tr>
+<td><code>website</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Public website for the connected service.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Error details.</td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable machine-readable error code.</td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable error message.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-requested-resource-was-not-found-1" class="status" data-status="4xx">404: The requested resource was not found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="410-the-requested-resource-is-no-longer-available-1" class="status" data-status="4xx">410: The requested resource is no longer available</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="422-the-request-cannot-be-completed-in-the-current-state-1" class="status" data-status="4xx">422: The request cannot be completed in the current state</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="update">update</h2>
+<h3 id="patch-v1connectconnectorsconnectortrigger-destinations" class="operation" data-method="patch"><code>PATCH</code> /v1/connect/connectors/{connector}/trigger-destinations</h3>
+<p>Operation ID: <code>replaceConnectorTriggerDestinations</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>connector</code> | <code>path</code> | <code>string</code> | Yes | Stable connector ID or URL-encoded team-scoped UID. Examples: <code>scl_abc123</code> or <code>slack%2Fmy-bot</code>. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>destinations</code></td>
+<td><code>array of object or object or object</code></td>
+<td>Yes</td>
+<td>Complete replacement set of trigger destinations. An empty array removes all destinations. Connector get and list responses expose the saved set as triggerDestinations.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-the-connector-with-its-replaced-trigger-destinations" class="status" data-status="2xx">200: The connector with its replaced trigger destinations</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accentColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex accent color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>appTokens</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>App-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>appTokens.crossInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether one app token can be used across installations.</td>
+</tr>
+<tr>
+<td><code>appTokens.permissionsUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Link to the page on the service where this connector's app-level permissions are declared and granted, when the service has one and it differs from <code>clientUrl</code>.</td>
+</tr>
+<tr>
+<td><code>appTokens.requiresReinstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>True when changing app token grants requires reinstalling the app, so tokens cannot be partitioned independently by requester environment.</td>
+</tr>
+<tr>
+<td><code>appTokens.scopes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known allowed app-level scopes. For Slack this is the bot scope set configured on the app; for OAuth it is the connector's enabled <code>clientCredentials.scopes</code> configuration.</td>
+</tr>
+<tr>
+<td><code>appTokens.supportedAuthorizationDetails</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Supported OAuth authorization-detail type names.</td>
+</tr>
+<tr>
+<td><code>appTokens.supportsRefinement</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether callers can narrow app-token grants per request.</td>
+</tr>
+<tr>
+<td><code>appTokens.supportsResources</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether callers can request resource-specific app tokens.</td>
+</tr>
+<tr>
+<td><code>backgroundColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex background color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>clientUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Provider-side URL for viewing or managing the resource represented by the connector. The destination can be an app, account, phone line, or service instance, depending on the connector type.</td>
+</tr>
+<tr>
+<td><code>connectionMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The connection method this connector was created from, when the create request named one.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Creation time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>createdBy</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td>Principal that created the connector.</td>
+</tr>
+<tr>
+<td><code>creationMode</code></td>
+<td><code>enum: managed, manual</code></td>
+<td>No</td>
+<td>How the connector row was originally created. New create paths stamp this explicitly; older rows may omit it.</td>
+</tr>
+<tr>
+<td><code>defaultInstallationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Installation used when a token request does not specify an installation.</td>
+</tr>
+<tr>
+<td><code>devsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer website for the connected service.</td>
+</tr>
+<tr>
+<td><code>displayName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable connector name.</td>
+</tr>
+<tr>
+<td><code>docsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer documentation for the connected service.</td>
+</tr>
+<tr>
+<td><code>events</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known events this connector subscribes to (for example Slack bot events, GitHub webhook events). Names are type-specific and validated by the managed-create flow when forwarded to the third-party service.</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Connector branding icon. SHA-1 hash that resolves to the uploaded icon through the Vercel avatar service. Consumers render this with <code>https://vercel.com/api/www/avatar/&amp;#123;icon&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable <code>scl_</code> connector ID. Use this value directly in <code>&amp;#123;connector&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>knownStale</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the connector is known to have been edited since the app package it publishes to the provider was last built, so that package no longer matches it. Absent when it was not computed, or when the connector type publishes no such package. Derived on every read rather than marked at edit time, so reverting an edit clears it. Only reported by connector types that publish a package a user has to re-publish by hand, Microsoft Teams today.</td>
+</tr>
+<tr>
+<td><code>managed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Managed connector metadata exposed without leaking the manager connector or installation identifiers.</td>
+</tr>
+<tr>
+<td><code>managed.sync</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether Vercel synchronizes provider-side configuration.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Connector name within the owning team.</td>
+</tr>
+<tr>
+<td><code>redirectUri</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Redirect URI registered with the third-party service for this connector, if any. Used by <code>startAuthorization</code>/<code>startInstallation</code> to replay the exact URI back to the provider's token endpoint. Absent on connectors created before this field was introduced; those callers fall back to the <code>https://connect.vercel.com/callback</code> default.</td>
+</tr>
+<tr>
+<td><code>reinstallAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Time when this connector started requiring reinstallation because an installation-affecting app-token grant changed.</td>
+</tr>
+<tr>
+<td><code>service</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Best-effort identifier of the third-party service this connector represents, independent of <code>type</code>. Examples: <code>&amp;#39;slack&amp;#39;</code>, <code>&amp;#39;mcp.linear.app&amp;#39;</code>, and <code>&amp;#39;auth.example.com&amp;#39;</code>. Always present in API responses.</td>
+</tr>
+<tr>
+<td><code>supportedSubjectTypes</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Token subject types supported by the connector.</td>
+</tr>
+<tr>
+<td><code>supportsIcon</code></td>
+<td><code>enum: false, maybe, true</code></td>
+<td>Yes</td>
+<td>Whether the connector icon can propagate to the provider.</td>
+</tr>
+<tr>
+<td><code>supportsInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the connector supports an installation flow.</td>
+</tr>
+<tr>
+<td><code>supportsRevocation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether Connect can revoke tokens for this connector.</td>
+</tr>
+<tr>
+<td><code>supportsTriggers</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether this connector type supports trigger webhooks. Derived from the type definition; indicates that <code>triggers</code> and <code>triggerDestinations</code> may be meaningful for this connector.</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Which of the service's products/surfaces this connector points at.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Destinations that incoming triggers should be forwarded to. Limited to 3 entries. Set the initial destination with <code>triggerDestination</code> during creation. Replace the complete set with <code>PATCH /v1/connect/connectors/&amp;#123;connector&amp;#125;/trigger-destinations</code>.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Git branch used to select a preview deployment.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Stable custom-environment ID to route this destination to. Mutually exclusive with <code>branch</code>; omitted destinations keep the legacy production behavior.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].path</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Route path that receives the forwarded trigger request.</td>
+</tr>
+<tr>
+<td><code>triggerDestinations[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel project that receives matching trigger requests.</td>
+</tr>
+<tr>
+<td><code>triggers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Incoming trigger configuration for the connector.</td>
+</tr>
+<tr>
+<td><code>triggers.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether incoming triggers are enabled for the connector.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: api-key, aws-alpha, custom, discord, github, linear, ...</code></td>
+<td>Yes</td>
+<td>Connector implementation type.</td>
+</tr>
+<tr>
+<td><code>typeIcon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Icon identifier supplied by the connector type.</td>
+</tr>
+<tr>
+<td><code>typeName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable name of the connector type.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Team-scoped UID. URL-encode this value before using it in <code>&amp;#123;connector&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Last update time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>updatedBy</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td>Principal that most recently updated the connector.</td>
+</tr>
+<tr>
+<td><code>userTokens</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>User-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>userTokens.crossInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether one user token can be used across installations.</td>
+</tr>
+<tr>
+<td><code>userTokens.manualCredentialInput</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>User authorization is completed by the Connect consent screen submitting a credential instead of an OAuth redirect.</td>
+</tr>
+<tr>
+<td><code>userTokens.scopes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known allowed user-level scopes. For Slack this is the user scope set configured on the app; for OAuth it is the connector's enabled <code>userAuthorization.scopes</code> configuration.</td>
+</tr>
+<tr>
+<td><code>userTokens.supportedAuthorizationDetails</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Supported OAuth authorization-detail type names.</td>
+</tr>
+<tr>
+<td><code>userTokens.supportsRefinement</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether callers can narrow user-token grants per request.</td>
+</tr>
+<tr>
+<td><code>userTokens.supportsResources</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether callers can request resource-specific user tokens.</td>
+</tr>
+<tr>
+<td><code>website</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Public website for the connected service.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Error details.</td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable machine-readable error code.</td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable error message.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-requested-resource-was-not-found-2" class="status" data-status="4xx">404: The requested resource was not found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="410-the-requested-resource-is-no-longer-available-2" class="status" data-status="4xx">410: The requested resource is no longer available</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="422-the-request-cannot-be-completed-in-the-current-state-2" class="status" data-status="4xx">422: The request cannot be completed in the current state</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="patch-v2connectconnectorsconnector" class="operation" data-method="patch"><code>PATCH</code> /v2/connect/connectors/{connector}</h3>
+<p>Operation ID: <code>updateConnector</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>connector</code> | <code>path</code> | <code>string</code> | Yes | Stable connector ID or URL-encoded team-scoped UID. Examples: <code>scl_abc123</code> or <code>slack%2Fmy-bot</code>. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The team ID that scopes the request. Do not send it with slug. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The team slug that scopes the request. Do not send it with teamId. If both are omitted, Vercel uses the team associated with the token or the authenticated user's default team. The request returns 401 if no team can be selected. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accentColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>backgroundColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object or object or object or object or object or object or object or object or object or object or object or object</code></td>
+<td>No</td>
+<td>Provider configuration fields to update.</td>
+</tr>
+<tr>
+<td><code>events</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Default trigger events for this connector.</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>SHA-1 digest of a PNG or JPEG icon that is at least 640 by 640 pixels. This field does not accept a URL or image bytes. First compute the digest and upload the raw image with <a href="https://vercel.com/docs/rest-api/deployments/upload-deployment-files">POST /v2/files</a>. Send <code>Content-Length</code> and the same 40-character digest in <code>x-vercel-digest</code>. Then set <code>icon</code> to that digest. <code>js import &amp;#123; createHash &amp;#125; from &amp;#39;node:crypto&amp;#39;; import &amp;#123; readFile &amp;#125; from &amp;#39;node:fs/promises&amp;#39;; const VERCEL_TOKEN = process.env.VERCEL_TOKEN; const connectorId = &amp;#39;scl_...&amp;#39;; const bytes = await readFile(&amp;#39;icon.png&amp;#39;); const digest = createHash(&amp;#39;sha1&amp;#39;).update(bytes).digest(&amp;#39;hex&amp;#39;); await fetch(&amp;#39;https://api.vercel.com/v2/files&amp;#39;, &amp;#123; method: &amp;#39;POST&amp;#39;, headers: &amp;#123; Authorization: `Bearer $&amp;#123;VERCEL_TOKEN&amp;#125;`, &amp;#39;Content-Type&amp;#39;: &amp;#39;application/octet-stream&amp;#39;, &amp;#39;Content-Length&amp;#39;: String(bytes.length), &amp;#39;x-vercel-digest&amp;#39;: digest, &amp;#125;, body: bytes, &amp;#125;); await fetch(`https://api.vercel.com/v2/connect/connectors/$&amp;#123;connectorId&amp;#125;`, &amp;#123; method: &amp;#39;PATCH&amp;#39;, headers: &amp;#123; Authorization: `Bearer $&amp;#123;VERCEL_TOKEN&amp;#125;`, &amp;#39;Content-Type&amp;#39;: &amp;#39;application/json&amp;#39;, &amp;#125;, body: JSON.stringify(&amp;#123; icon: digest &amp;#125;), &amp;#125;); </code></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Display name for the connector. It is trimmed and cannot be empty or contain control characters.</td>
+</tr>
+<tr>
+<td><code>triggers</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the triggers are enabled for this connector.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Full team-scoped UID, such as <code>slack/my-bot</code>. It cannot contain whitespace, <code>%</code>, <code>#</code>, control characters, or Vercel-owned namespaces. Changing it breaks callers that use the old UID. The stable connector ID does not change.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-the-updated-connector-and-any-required-service-side-follow-up-signals" class="status" data-status="2xx">200: The updated connector and any required service-side follow-up signals</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>connector</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Updated connector.</td>
+</tr>
+<tr>
+<td><code>connector.accentColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex accent color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>connector.appTokens</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>App-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>connector.appTokens.crossInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether one app token can be used across installations.</td>
+</tr>
+<tr>
+<td><code>connector.appTokens.permissionsUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Link to the page on the service where this connector's app-level permissions are declared and granted, when the service has one and it differs from <code>clientUrl</code>.</td>
+</tr>
+<tr>
+<td><code>connector.appTokens.requiresReinstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>True when changing app token grants requires reinstalling the app, so tokens cannot be partitioned independently by requester environment.</td>
+</tr>
+<tr>
+<td><code>connector.appTokens.scopes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known allowed app-level scopes. For Slack this is the bot scope set configured on the app; for OAuth it is the connector's enabled <code>clientCredentials.scopes</code> configuration.</td>
+</tr>
+<tr>
+<td><code>connector.appTokens.supportedAuthorizationDetails</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Supported OAuth authorization-detail type names.</td>
+</tr>
+<tr>
+<td><code>connector.appTokens.supportsRefinement</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether callers can narrow app-token grants per request.</td>
+</tr>
+<tr>
+<td><code>connector.appTokens.supportsResources</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether callers can request resource-specific app tokens.</td>
+</tr>
+<tr>
+<td><code>connector.backgroundColor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hex background color (for example, <code>#000000</code>) for branding.</td>
+</tr>
+<tr>
+<td><code>connector.clientUrl</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Provider-side URL for viewing or managing the resource represented by the connector. The destination can be an app, account, phone line, or service instance, depending on the connector type.</td>
+</tr>
+<tr>
+<td><code>connector.connectionMethod</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The connection method this connector was created from, when the create request named one.</td>
+</tr>
+<tr>
+<td><code>connector.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Creation time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>connector.createdBy</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td>Principal that created the connector.</td>
+</tr>
+<tr>
+<td><code>connector.creationMode</code></td>
+<td><code>enum: managed, manual</code></td>
+<td>No</td>
+<td>How the connector row was originally created. New create paths stamp this explicitly; older rows may omit it.</td>
+</tr>
+<tr>
+<td><code>connector.defaultInstallationId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Installation used when a token request does not specify an installation.</td>
+</tr>
+<tr>
+<td><code>connector.devsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer website for the connected service.</td>
+</tr>
+<tr>
+<td><code>connector.displayName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable connector name.</td>
+</tr>
+<tr>
+<td><code>connector.docsite</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Developer documentation for the connected service.</td>
+</tr>
+<tr>
+<td><code>connector.events</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known events this connector subscribes to (for example Slack bot events, GitHub webhook events). Names are type-specific and validated by the managed-create flow when forwarded to the third-party service.</td>
+</tr>
+<tr>
+<td><code>connector.icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Connector branding icon. SHA-1 hash that resolves to the uploaded icon through the Vercel avatar service. Consumers render this with <code>https://vercel.com/api/www/avatar/&amp;#123;icon&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>connector.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable <code>scl_</code> connector ID. Use this value directly in <code>&amp;#123;connector&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>connector.knownStale</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether the connector is known to have been edited since the app package it publishes to the provider was last built, so that package no longer matches it. Absent when it was not computed, or when the connector type publishes no such package. Derived on every read rather than marked at edit time, so reverting an edit clears it. Only reported by connector types that publish a package a user has to re-publish by hand, Microsoft Teams today.</td>
+</tr>
+<tr>
+<td><code>connector.managed</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Managed connector metadata exposed without leaking the manager connector or installation identifiers.</td>
+</tr>
+<tr>
+<td><code>connector.managed.sync</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether Vercel synchronizes provider-side configuration.</td>
+</tr>
+<tr>
+<td><code>connector.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Connector name within the owning team.</td>
+</tr>
+<tr>
+<td><code>connector.redirectUri</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Redirect URI registered with the third-party service for this connector, if any. Used by <code>startAuthorization</code>/<code>startInstallation</code> to replay the exact URI back to the provider's token endpoint. Absent on connectors created before this field was introduced; those callers fall back to the <code>https://connect.vercel.com/callback</code> default.</td>
+</tr>
+<tr>
+<td><code>connector.reinstallAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Time when this connector started requiring reinstallation because an installation-affecting app-token grant changed.</td>
+</tr>
+<tr>
+<td><code>connector.service</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Best-effort identifier of the third-party service this connector represents, independent of <code>type</code>. Examples: <code>&amp;#39;slack&amp;#39;</code>, <code>&amp;#39;mcp.linear.app&amp;#39;</code>, and <code>&amp;#39;auth.example.com&amp;#39;</code>. Always present in API responses.</td>
+</tr>
+<tr>
+<td><code>connector.supportedSubjectTypes</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>Token subject types supported by the connector.</td>
+</tr>
+<tr>
+<td><code>connector.supportsIcon</code></td>
+<td><code>enum: false, maybe, true</code></td>
+<td>Yes</td>
+<td>Whether the connector icon can propagate to the provider.</td>
+</tr>
+<tr>
+<td><code>connector.supportsInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether the connector supports an installation flow.</td>
+</tr>
+<tr>
+<td><code>connector.supportsRevocation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether Connect can revoke tokens for this connector.</td>
+</tr>
+<tr>
+<td><code>connector.supportsTriggers</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether this connector type supports trigger webhooks. Derived from the type definition; indicates that <code>triggers</code> and <code>triggerDestinations</code> may be meaningful for this connector.</td>
+</tr>
+<tr>
+<td><code>connector.target</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Which of the service's products/surfaces this connector points at.</td>
+</tr>
+<tr>
+<td><code>connector.triggerDestinations</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Destinations that incoming triggers should be forwarded to. Limited to 3 entries. Set the initial destination with <code>triggerDestination</code> during creation. Replace the complete set with <code>PATCH /v1/connect/connectors/&amp;#123;connector&amp;#125;/trigger-destinations</code>.</td>
+</tr>
+<tr>
+<td><code>connector.triggerDestinations[].branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Git branch used to select a preview deployment.</td>
+</tr>
+<tr>
+<td><code>connector.triggerDestinations[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Stable custom-environment ID to route this destination to. Mutually exclusive with <code>branch</code>; omitted destinations keep the legacy production behavior.</td>
+</tr>
+<tr>
+<td><code>connector.triggerDestinations[].path</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Route path that receives the forwarded trigger request.</td>
+</tr>
+<tr>
+<td><code>connector.triggerDestinations[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Vercel project that receives matching trigger requests.</td>
+</tr>
+<tr>
+<td><code>connector.triggers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Incoming trigger configuration for the connector.</td>
+</tr>
+<tr>
+<td><code>connector.triggers.enabled</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether incoming triggers are enabled for the connector.</td>
+</tr>
+<tr>
+<td><code>connector.type</code></td>
+<td><code>enum: api-key, aws-alpha, custom, discord, github, linear, ...</code></td>
+<td>Yes</td>
+<td>Connector implementation type.</td>
+</tr>
+<tr>
+<td><code>connector.typeIcon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Icon identifier supplied by the connector type.</td>
+</tr>
+<tr>
+<td><code>connector.typeName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable name of the connector type.</td>
+</tr>
+<tr>
+<td><code>connector.uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Team-scoped UID. URL-encode this value before using it in <code>&amp;#123;connector&amp;#125;</code>.</td>
+</tr>
+<tr>
+<td><code>connector.updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Last update time in epoch milliseconds.</td>
+</tr>
+<tr>
+<td><code>connector.updatedBy</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td>Principal that most recently updated the connector.</td>
+</tr>
+<tr>
+<td><code>connector.userTokens</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>User-token capabilities and known grants for the connector.</td>
+</tr>
+<tr>
+<td><code>connector.userTokens.crossInstallation</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether one user token can be used across installations.</td>
+</tr>
+<tr>
+<td><code>connector.userTokens.manualCredentialInput</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>User authorization is completed by the Connect consent screen submitting a credential instead of an OAuth redirect.</td>
+</tr>
+<tr>
+<td><code>connector.userTokens.scopes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Known allowed user-level scopes. For Slack this is the user scope set configured on the app; for OAuth it is the connector's enabled <code>userAuthorization.scopes</code> configuration.</td>
+</tr>
+<tr>
+<td><code>connector.userTokens.supportedAuthorizationDetails</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Supported OAuth authorization-detail type names.</td>
+</tr>
+<tr>
+<td><code>connector.userTokens.supportsRefinement</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether callers can narrow user-token grants per request.</td>
+</tr>
+<tr>
+<td><code>connector.userTokens.supportsResources</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Whether callers can request resource-specific user tokens.</td>
+</tr>
+<tr>
+<td><code>connector.website</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Public website for the connected service.</td>
+</tr>
+<tr>
+<td><code>reconsentNeeded</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Present when affected users must authorize the connector's new permissions.</td>
+</tr>
+<tr>
+<td><code>reconsentNeeded.scope</code></td>
+<td><code>enum: user</code></td>
+<td>Yes</td>
+<td>The affected authorization scope. user means each affected user must authorize again.</td>
+</tr>
+<tr>
+<td><code>reinstallNeeded</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>When true, prompt a team owner or administrator to reinstall the connector before relying on the change.</td>
+</tr>
+<tr>
+<td><code>serviceSync</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Result of synchronizing the change with the external service.</td>
+</tr>
+<tr>
+<td><code>serviceSync.errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Provider synchronization errors. Present when serviceSync.status is required.</td>
+</tr>
+<tr>
+<td><code>serviceSync.errors[].fields</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Connector fields that caused the synchronization error.</td>
+</tr>
+<tr>
+<td><code>serviceSync.errors[].message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable provider synchronization error.</td>
+</tr>
+<tr>
+<td><code>serviceSync.errors[].vendor</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Provider-specific error details that are safe to expose.</td>
+</tr>
+<tr>
+<td><code>serviceSync.status</code></td>
+<td><code>enum: done, required</code></td>
+<td>Yes</td>
+<td>done means the external service was updated. required means the Vercel update was saved, but provider-side configuration still needs attention.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Error details.</td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Stable machine-readable error code.</td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Human-readable error message.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-requested-resource-was-not-found-3" class="status" data-status="4xx">404: The requested resource was not found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="409-the-request-conflicts-with-the-current-resource-state-1" class="status" data-status="4xx">409: The request conflicts with the current resource state</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="410-the-requested-resource-is-no-longer-available-3" class="status" data-status="4xx">410: The requested resource is no longer available</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="422-the-request-cannot-be-completed-in-the-current-state-3" class="status" data-status="4xx">422: The request cannot be completed in the current state</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="502-a-dependency-returned-an-invalid-or-unsuccessful-response-1" class="status" data-status="5xx">502: A dependency returned an invalid or unsuccessful response</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

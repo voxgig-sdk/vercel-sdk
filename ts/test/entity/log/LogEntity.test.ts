@@ -1,0 +1,159 @@
+
+
+import Path from 'node:path'
+import * as Fs from 'node:fs'
+
+import { test, describe, afterEach } from 'node:test'
+import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
+
+
+import { VercelSDK, BaseFeature, stdutil } from '../../..'
+
+import {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  loadEnvLocal,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+  maybeSkipControl,
+} from '../../utility'
+
+
+// AFTER the imports on purpose: TypeScript hoists `import` above any
+// statement in the emitted CommonJS, so a loader placed above them would
+// run only after every imported module had already been evaluated - and
+// anything reading process.env at module scope would miss these values.
+loadEnvLocal(__dirname + '/../../../.env.local')
+
+
+describe('LogEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when VERCEL_TEST_LIVE=TRUE.
+  afterEach(liveDelay('VERCEL_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = VercelSDK.test()
+    const ent = testsdk.Log()
+    assert(null != ent)
+  })
+
+
+  test('basic', async (t) => {
+
+    const live = 'TRUE' === process.env.VERCEL_TEST_LIVE
+    for (const op of ['load']) {
+      if (!live && maybeSkipControl(t, 'entityOp', 'log.' + op, live)) return
+    }
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"log","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"deployment_id","orig":"deployment_id","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"kind":"param","name":"project_id","orig":"project_id","reqd":true,"type":"`$STRING`","index$":1}],"query":[{"active":true,"example":"my-team-url-slug","kind":"query","name":"slug","orig":"slug","reqd":false,"type":"`$STRING`","index$":0},{"active":true,"example":"team_1a2b3c4d5e6f7g8h9i0j1k2l","kind":"query","name":"team_id","orig":"team_id","reqd":false,"type":"`$STRING`","index$":1}]},"contract":{"id":"GET /v1/projects/{projectId}/deployments/{deploymentId}/runtime-logs","json":"{\"operationId\":\"getRuntimeLogs\",\"parameters\":[{\"in\":\"path\",\"name\":\"projectId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"path\",\"name\":\"deploymentId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The Team identifier to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"teamId\",\"schema\":{\"example\":\"team_1a2b3c4d5e6f7g8h9i0j1k2l\",\"type\":\"string\"}},{\"description\":\"The Team slug to perform the request on behalf of.\",\"in\":\"query\",\"name\":\"slug\",\"schema\":{\"example\":\"my-team-url-slug\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/stream+json\":{\"schema\":{\"properties\":{\"domain\":{\"type\":\"string\"},\"level\":{\"enum\":[\"debug\",\"error\",\"fatal\",\"info\",\"trace\",\"warning\"],\"type\":\"string\"},\"message\":{\"type\":\"string\"},\"messageTruncated\":{\"enum\":[false,true],\"type\":\"boolean\"},\"requestMethod\":{\"type\":\"string\"},\"requestPath\":{\"type\":\"string\"},\"responseStatusCode\":{\"type\":\"number\"},\"rowId\":{\"type\":\"string\"},\"source\":{\"enum\":[\"delimiter\",\"edge-function\",\"edge-middleware\",\"request\",\"serverless\"],\"type\":\"string\"},\"timestampInMs\":{\"type\":\"number\"}},\"required\":[\"domain\",\"level\",\"message\",\"messageTruncated\",\"requestMethod\",\"requestPath\",\"responseStatusCode\",\"rowId\",\"source\",\"timestampInMs\"],\"type\":\"object\"}}},\"description\":\"\"},\"400\":{\"description\":\"One of the provided values in the request query is invalid.\"},\"401\":{\"description\":\"The request is not authorized.\"},\"403\":{\"description\":\"You do not have permission to access this resource.\"},\"410\":{\"description\":\"\"}},\"security\":[{\"bearerToken\":[]}],\"securitySchemes\":{\"bearerToken\":{\"description\":\"Default authentication mechanism\",\"scheme\":\"bearer\",\"type\":\"http\"},\"oauth2\":{\"flows\":{\"authorizationCode\":{\"authorizationUrl\":\"https://api.vercel.com/oauth/authorize\",\"scopes\":{},\"tokenUrl\":\"https://api.vercel.com/oauth/access_token\"}},\"type\":\"oauth2\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v1/projects/{projectId}/deployments/{deploymentId}/runtime-logs","rename":{"param":{"deploymentId":"deployment_id","projectId":"project_id"}},"segments":[{"lit":"v1"},{"lit":"projects"},{"var":"project_id"},{"lit":"deployments"},{"var":"deployment_id"},{"lit":"runtime-logs"}],"select":{"exist":["deployment_id","project_id","slug","team_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[["project","deployment"]]},"key$":"log","name__orig":"log","Name":"Log","name_":"log","name-":"log","NAME":"LOG","index$":40}, {"active":true,"entity":"log","key$":"BasicLogFlow","kind":"basic","name":"BasicLogFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"log_ref01","srcdatavar":"log_ref01_data","suffix":"_dt0"},"match":{"id":"log01","project_id":"project01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-log_ref01"}}],"index$":0}]}, 'Log')
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+    let log_ref01_data = Object.values(setup.data.existing.log)[0] as any
+
+    // LOAD: skipped — no entity id field and load requires path params.
+    // Entity-var is declared here so later flow steps still compile.
+    const log_ref01_ent = client.Log()
+
+
+  })
+})
+
+
+
+function basicSetup(extra?: any) {
+  // TODO: fix test def options
+  const options: any = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname, 
+      '../../../../.sdk/test/entity/log/LogTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = VercelSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['log01','log02','log03','project01','project02','project03','deployment01','deployment02','deployment03'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'VERCEL_TEST_LOG_ENTID': idmap,
+    'VERCEL_TEST_LIVE': 'FALSE',
+    'VERCEL_TEST_EXPLAIN': 'FALSE',
+    'VERCEL_APIKEY': '',
+  })
+
+  idmap = env['VERCEL_TEST_LOG_ENTID']
+
+  const live = 'TRUE' === env.VERCEL_TEST_LIVE
+
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['VERCEL_TEST_LOG_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new VercelSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+        apikey: env.VERCEL_APIKEY,
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.VERCEL_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  

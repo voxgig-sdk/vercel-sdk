@@ -1,0 +1,92 @@
+# BasicBulkRedirectFlow
+
+main: kit: flow: BasicBulkRedirectFlow:
+{
+  entity: "bulk_redirect",
+  kind: "basic",
+  name: "BasicBulkRedirectFlow",
+  step: [
+    {
+      input: {
+        ref: "bulk_redirect_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "bulk_redirect_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "bulk_redirect_ref01",
+        srcdatavar: "bulk_redirect_ref01_data",
+        suffix: "_up0",
+        textfield: "alias"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-bulk_redirect_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "bulk_redirect_ref01",
+        srcdatavar: "bulk_redirect_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-bulk_redirect_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "bulk_redirect_ref01",
+        suffix: "_rm0"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "bulk_redirect_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBulkRedirectFlow"
+}

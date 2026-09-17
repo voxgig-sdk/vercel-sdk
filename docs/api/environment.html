@@ -1,0 +1,1328 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Environment | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a aria-current="page" href="../api/environment.html">Environment</a><div class="nav-sections"><a class="nav-section" href="#post-v9projectsidornamecustom-environments">POST /v9/projects/{idOrName}/custom-environments</a>
+<a class="nav-section" href="#get-v9projectsidornamecustom-environments">GET /v9/projects/{idOrName}/custom-environments</a>
+<a class="nav-section" href="#get-v9projectsidornamecustom-environmentsenvironmentslugorid">GET /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}</a>
+<a class="nav-section" href="#delete-v9projectsidornamecustom-environmentsenvironmentslugorid">DELETE /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}</a>
+<a class="nav-section" href="#patch-v1envidunlinkprojectid">PATCH /v1/env/{id}/unlink/{projectId}</a>
+<a class="nav-section" href="#patch-v9projectsidornamecustom-environmentsenvironmentslugorid">PATCH /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}</a></div>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="environment">Environment</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v9projectsidornamecustom-environments"><code>/v9/projects/{idOrName}/custom-environments</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v9projectsidornamecustom-environments"><code>/v9/projects/{idOrName}/custom-environments</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v9projectsidornamecustom-environmentsenvironmentslugorid"><code>/v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}</code></a></td>
+<td><code>load</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v9projectsidornamecustom-environmentsenvironmentslugorid"><code>/v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}</code></a></td>
+<td><code>remove</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v1envidunlinkprojectid"><code>/v1/env/{id}/unlink/{projectId}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v9projectsidornamecustom-environmentsenvironmentslugorid"><code>/v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branchMatcher</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Configuration for matching git branches to this environment</td>
+</tr>
+<tr>
+<td><code>copyEnvVarsFrom</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Where to copy environment variables from.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was created</td>
+</tr>
+<tr>
+<td><code>currentDeploymentAliases</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>List of aliases for the current deployment</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional description of the environment's purpose</td>
+</tr>
+<tr>
+<td><code>domains</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>List of domains associated with this environment</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the custom environment (format: env_*)</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>URL-friendly name of the environment</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type of environment (production, preview, or development)</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was last updated</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v9projectsidornamecustom-environments" class="operation" data-method="post"><code>POST</code> /v9/projects/{idOrName}/custom-environments</h3>
+<p>Operation ID: <code>createCustomEnvironment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | The unique project identifier or the project name |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>How we want to determine a matching branch. This is optional.</td>
+</tr>
+<tr>
+<td><code>branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Git branch name or portion thereof.</td>
+</tr>
+<tr>
+<td><code>branchMatcher.type</code></td>
+<td><code>enum: equals, startsWith, endsWith</code></td>
+<td>Yes</td>
+<td>Type of matcher. One of &quot;equals&quot;, &quot;startsWith&quot;, or &quot;endsWith&quot;.</td>
+</tr>
+<tr>
+<td><code>copyEnvVarsFrom</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Where to copy environment variables from. This is optional.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Description of the custom environment. This is optional.</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The slug of the custom environment to create.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="201" class="status" data-status="2xx">201</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configuration for matching git branches to this environment</td>
+</tr>
+<tr>
+<td><code>branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The pattern to match against branch names</td>
+</tr>
+<tr>
+<td><code>branchMatcher.type</code></td>
+<td><code>enum: endsWith, equals, startsWith</code></td>
+<td>Yes</td>
+<td>The type of matching to perform</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was created</td>
+</tr>
+<tr>
+<td><code>currentDeploymentAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>List of aliases for the current deployment</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional description of the environment's purpose</td>
+</tr>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>List of domains associated with this environment</td>
+</tr>
+<tr>
+<td><code>domains[].apexName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].gitBranch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete <code>POST /projects/:idOrName/domains/:domain/verify</code> to verify the domain. Possible challenges: - If <code>verification.type = TXT</code> the <code>verification.domain</code> will be checked for a TXT record matching <code>verification.value</code>.</td>
+</tr>
+<tr>
+<td><code>domains[].verification[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].reason</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td><code>true</code> if the domain is verified for use with the project. If <code>false</code> it will not be used as an alias on this project until the challenge in <code>verification</code> is completed.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the custom environment (format: env_*)</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>URL-friendly name of the environment</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: development, preview, production</code></td>
+<td>Yes</td>
+<td>The type of environment (production, preview, or development)</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was last updated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v9projectsidornamecustom-environments" class="operation" data-method="get"><code>GET</code> /v9/projects/{idOrName}/custom-environments</h3>
+<p>Operation ID: <code>getProjectsByIdOrNameCustomEnvironments</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | The unique project identifier or the project name |
+| <code>gitBranch</code> | <code>query</code> | <code>string</code> | No | Fetch custom environments for a specific git branch |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accountLimit</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The maximum number of custom environments allowed either by the team's plan type or a custom override.</td>
+</tr>
+<tr>
+<td><code>accountLimit.total</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configuration for matching git branches to this environment</td>
+</tr>
+<tr>
+<td><code>environments[].branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The pattern to match against branch names</td>
+</tr>
+<tr>
+<td><code>environments[].branchMatcher.type</code></td>
+<td><code>enum: endsWith, equals, startsWith</code></td>
+<td>Yes</td>
+<td>The type of matching to perform</td>
+</tr>
+<tr>
+<td><code>environments[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was created</td>
+</tr>
+<tr>
+<td><code>environments[].currentDeploymentAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>List of aliases for the current deployment</td>
+</tr>
+<tr>
+<td><code>environments[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional description of the environment's purpose</td>
+</tr>
+<tr>
+<td><code>environments[].domains</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>List of domains associated with this environment</td>
+</tr>
+<tr>
+<td><code>environments[].domains[].apexName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].gitBranch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].verification</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete <code>POST /projects/:idOrName/domains/:domain/verify</code> to verify the domain. Possible challenges: - If <code>verification.type = TXT</code> the <code>verification.domain</code> will be checked for a TXT record matching <code>verification.value</code>.</td>
+</tr>
+<tr>
+<td><code>environments[].domains[].verification[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].verification[].reason</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].verification[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].verification[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>environments[].domains[].verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td><code>true</code> if the domain is verified for use with the project. If <code>false</code> it will not be used as an alias on this project until the challenge in <code>verification</code> is completed.</td>
+</tr>
+<tr>
+<td><code>environments[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the custom environment (format: env_*)</td>
+</tr>
+<tr>
+<td><code>environments[].slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>URL-friendly name of the environment</td>
+</tr>
+<tr>
+<td><code>environments[].type</code></td>
+<td><code>enum: development, preview, production</code></td>
+<td>Yes</td>
+<td>The type of environment (production, preview, or development)</td>
+</tr>
+<tr>
+<td><code>environments[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was last updated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v9projectsidornamecustom-environmentsenvironmentslugorid" class="operation" data-method="get"><code>GET</code> /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}</h3>
+<p>Operation ID: <code>getCustomEnvironment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | The unique project identifier or the project name |
+| <code>environmentSlugOrId</code> | <code>path</code> | <code>string</code> | Yes | The unique custom environment identifier within the project |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configuration for matching git branches to this environment</td>
+</tr>
+<tr>
+<td><code>branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The pattern to match against branch names</td>
+</tr>
+<tr>
+<td><code>branchMatcher.type</code></td>
+<td><code>enum: endsWith, equals, startsWith</code></td>
+<td>Yes</td>
+<td>The type of matching to perform</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was created</td>
+</tr>
+<tr>
+<td><code>currentDeploymentAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>List of aliases for the current deployment</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional description of the environment's purpose</td>
+</tr>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>List of domains associated with this environment</td>
+</tr>
+<tr>
+<td><code>domains[].apexName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].gitBranch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete <code>POST /projects/:idOrName/domains/:domain/verify</code> to verify the domain. Possible challenges: - If <code>verification.type = TXT</code> the <code>verification.domain</code> will be checked for a TXT record matching <code>verification.value</code>.</td>
+</tr>
+<tr>
+<td><code>domains[].verification[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].reason</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td><code>true</code> if the domain is verified for use with the project. If <code>false</code> it will not be used as an alias on this project until the challenge in <code>verification</code> is completed.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the custom environment (format: env_*)</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>URL-friendly name of the environment</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: development, preview, production</code></td>
+<td>Yes</td>
+<td>The type of environment (production, preview, or development)</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was last updated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v9projectsidornamecustom-environmentsenvironmentslugorid" class="operation" data-method="delete"><code>DELETE</code> /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}</h3>
+<p>Operation ID: <code>removeCustomEnvironment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | The unique project identifier or the project name |
+| <code>environmentSlugOrId</code> | <code>path</code> | <code>string</code> | Yes | The unique custom environment identifier within the project |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deleteUnassignedEnvironmentVariables</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Delete Environment Variables that are not assigned to any environments.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configuration for matching git branches to this environment</td>
+</tr>
+<tr>
+<td><code>branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The pattern to match against branch names</td>
+</tr>
+<tr>
+<td><code>branchMatcher.type</code></td>
+<td><code>enum: endsWith, equals, startsWith</code></td>
+<td>Yes</td>
+<td>The type of matching to perform</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was created</td>
+</tr>
+<tr>
+<td><code>currentDeploymentAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>List of aliases for the current deployment</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional description of the environment's purpose</td>
+</tr>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>List of domains associated with this environment</td>
+</tr>
+<tr>
+<td><code>domains[].apexName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].gitBranch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete <code>POST /projects/:idOrName/domains/:domain/verify</code> to verify the domain. Possible challenges: - If <code>verification.type = TXT</code> the <code>verification.domain</code> will be checked for a TXT record matching <code>verification.value</code>.</td>
+</tr>
+<tr>
+<td><code>domains[].verification[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].reason</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td><code>true</code> if the domain is verified for use with the project. If <code>false</code> it will not be used as an alias on this project until the challenge in <code>verification</code> is completed.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the custom environment (format: env_*)</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>URL-friendly name of the environment</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: development, preview, production</code></td>
+<td>Yes</td>
+<td>The type of environment (production, preview, or development)</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was last updated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="patch-v1envidunlinkprojectid" class="operation" data-method="patch"><code>PATCH</code> /v1/env/{id}/unlink/{projectId}</h3>
+<p>Operation ID: <code>unlinkSharedEnvVariable</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The unique ID for the Shared Environment Variable to unlink from the project. |
+| <code>projectId</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h3 id="patch-v9projectsidornamecustom-environmentsenvironmentslugorid" class="operation" data-method="patch"><code>PATCH</code> /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}</h3>
+<p>Operation ID: <code>updateCustomEnvironment</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>idOrName</code> | <code>path</code> | <code>string</code> | Yes | The unique project identifier or the project name |
+| <code>environmentSlugOrId</code> | <code>path</code> | <code>string</code> | Yes | The unique custom environment identifier within the project |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>How we want to determine a matching branch. This is optional.</td>
+</tr>
+<tr>
+<td><code>branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Git branch name or portion thereof.</td>
+</tr>
+<tr>
+<td><code>branchMatcher.type</code></td>
+<td><code>enum: equals, startsWith, endsWith</code></td>
+<td>Yes</td>
+<td>Type of matcher. One of &quot;equals&quot;, &quot;startsWith&quot;, or &quot;endsWith&quot;.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Description of the custom environment. This is optional.</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The slug of the custom environment.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-4" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branchMatcher</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configuration for matching git branches to this environment</td>
+</tr>
+<tr>
+<td><code>branchMatcher.pattern</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The pattern to match against branch names</td>
+</tr>
+<tr>
+<td><code>branchMatcher.type</code></td>
+<td><code>enum: endsWith, equals, startsWith</code></td>
+<td>Yes</td>
+<td>The type of matching to perform</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was created</td>
+</tr>
+<tr>
+<td><code>currentDeploymentAliases</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>List of aliases for the current deployment</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional description of the environment's purpose</td>
+</tr>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>List of domains associated with this environment</td>
+</tr>
+<tr>
+<td><code>domains[].apexName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].gitBranch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete <code>POST /projects/:idOrName/domains/:domain/verify</code> to verify the domain. Possible challenges: - If <code>verification.type = TXT</code> the <code>verification.domain</code> will be checked for a TXT record matching <code>verification.value</code>.</td>
+</tr>
+<tr>
+<td><code>domains[].verification[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].reason</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verification[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td><code>true</code> if the domain is verified for use with the project. If <code>false</code> it will not be used as an alias on this project until the challenge in <code>verification</code> is completed.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Unique identifier for the custom environment (format: env_*)</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>URL-friendly name of the environment</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: development, preview, production</code></td>
+<td>Yes</td>
+<td>The type of environment (production, preview, or development)</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp when the environment was last updated</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated-1" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h5 id="500-1" class="status" data-status="5xx">500</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

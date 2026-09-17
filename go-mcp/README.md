@@ -27,11 +27,11 @@ Tool-call arguments (what an agent sends):
 
 ```jsonc
 // vercel_list: first page of records
-{ "entity": "project" }
-{ "entity": "project", "query": { } }
+{ "entity": "access_group" }
+{ "entity": "access_group", "query": { } }
 
 // vercel_load: one record by id
-{ "entity": "project", "query": { "id": 1 } }
+{ "entity": "access_group", "query": { "id": 1 } }
 ```
 
 > The rest of this guide follows the [Diátaxis](https://diataxis.fr) framework:
@@ -60,8 +60,8 @@ Tool-call arguments (what an agent sends):
    ```
 
 4. **Restart Claude Code.** The `vercel_list` and `vercel_load` tools now appear
-   in new sessions. Ask the agent to *"list project using vercel"*
-   and it calls `vercel_list` with `{"entity":"project"}`.
+   in new sessions. Ask the agent to *"list access_group using vercel"*
+   and it calls `vercel_list` with `{"entity":"access_group"}`.
 
 ## How-to guides
 
@@ -92,7 +92,7 @@ Args: `entity` (required), `query` (optional filter map). Returns the first
 page of records as JSON:
 
 ```jsonc
-{ "entity": "project" }
+{ "entity": "access_group" }
 ```
 
 ### Call the `vercel_load` tool
@@ -101,7 +101,7 @@ Args: `entity` (required), `query` = `{"id":N}` (required). Returns the single
 record as JSON:
 
 ```jsonc
-{ "entity": "project", "query": { "id": 1 } }
+{ "entity": "access_group", "query": { "id": 1 } }
 ```
 
 ### Cross-compile release binaries
@@ -129,7 +129,7 @@ Both tools take the same argument object:
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `entity` | string | One of the 1 supported entities (see below). |
+| `entity` | string | One of the 69 supported entities (see below). |
 | `query` | object | Optional match map. `{"id":N}` for load; omit or `{}` for list. |
 
 JSON schemas are emitted by the SDK from the `Args` struct's `json` /
@@ -151,9 +151,9 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 ### Entities
 
-The 1 entity valid as the `entity` argument:
+The 69 entities valid as the `entity` argument:
 
-project
+access_group | ai_gateway | ai_gateway_rule | ai_gateway_rule_list | ai_gateway_virtual_model_config | ai_gateway_virtual_model_config_list | alias | api_ai_gateway | api_key | artifact | authentication | billing | bulk_redirect | cert | check | checks_v2 | connect | connect_connector | connect_connector_list | connect_connector_project_connection_list | connect_project_connection | connect_project_connector_connection_list | deployment | dns | domain | domains_registrar | drain | edge_cache | env | environment | feature_flag | file | flag | flags_sdk_key_with_secret | global_config | global_config_item | global_config_token | integration | kms | list_event_type | log | log_drain | marketplace | microfrontend | network | networking | observability | private_link_endpoint | project | project_member | project_route | query | record | rolling_release | sandbox | schema | security | segment | storage | team | tld_name | toggle | user | vcr | vcr_image_list | vcr_repository_list | vcr_repository_permission_list | web_analytics | webhook
 
 ### Smoke test via HTTP (raw JSON-RPC)
 
@@ -173,7 +173,7 @@ curl -sN -X POST http://localhost:18080 \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
   -H "Mcp-Session-Id: $SESSION" \
-  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"vercel_load","arguments":{"entity":"project","query":{"id":1}}}}'
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"vercel_load","arguments":{"entity":"access_group","query":{"id":1}}}}'
 ```
 
 ## Explanation

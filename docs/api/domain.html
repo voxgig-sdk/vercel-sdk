@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Domain | Vercel API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Vercel API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/vercel-sdk">voxgig-sdk/vercel-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Vercel API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_group.html">AccessGroup</a>
+<a href="../api/ai_gateway.html">AiGateway</a>
+<a href="../api/ai_gateway_rule.html">AiGatewayRule</a>
+<a href="../api/ai_gateway_rule_list.html">AiGatewayRuleList</a>
+<a href="../api/ai_gateway_virtual_model_config.html">AiGatewayVirtualModelConfig</a>
+<a href="../api/ai_gateway_virtual_model_config_list.html">AiGatewayVirtualModelConfigList</a>
+<a href="../api/alias.html">Alias</a>
+<a href="../api/api_ai_gateway.html">ApiAiGateway</a>
+<a href="../api/api_key.html">ApiKey</a>
+<a href="../api/artifact.html">Artifact</a>
+<a href="../api/authentication.html">Authentication</a>
+<a href="../api/billing.html">Billing</a>
+<a href="../api/bulk_redirect.html">BulkRedirect</a>
+<a href="../api/cert.html">Cert</a>
+<a href="../api/check.html">Check</a>
+<a href="../api/checks_v2.html">ChecksV2</a>
+<a href="../api/connect.html">Connect</a>
+<a href="../api/connect_connector.html">ConnectConnector</a>
+<a href="../api/connect_connector_list.html">ConnectConnectorList</a>
+<a href="../api/connect_connector_project_connection_list.html">ConnectConnectorProjectConnectionList</a>
+<a href="../api/connect_project_connection.html">ConnectProjectConnection</a>
+<a href="../api/connect_project_connector_connection_list.html">ConnectProjectConnectorConnectionList</a>
+<a href="../api/deployment.html">Deployment</a>
+<a href="../api/dns.html">Dns</a>
+<a aria-current="page" href="../api/domain.html">Domain</a><div class="nav-sections"><a class="nav-section" href="#post-v9domainsdomainclaim">POST /v9/domains/{domain}/claim</a>
+<a class="nav-section" href="#post-v7domains">POST /v7/domains</a>
+<a class="nav-section" href="#get-v1domainsdomainproject-domains">GET /v1/domains/{domain}/project-domains</a>
+<a class="nav-section" href="#get-v6domainsdomainconfig">GET /v6/domains/{domain}/config</a>
+<a class="nav-section" href="#get-v5domains">GET /v5/domains</a>
+<a class="nav-section" href="#get-v5domainsdomain">GET /v5/domains/{domain}</a>
+<a class="nav-section" href="#get-v9domainsdomainverification">GET /v9/domains/{domain}/verification</a>
+<a class="nav-section" href="#delete-v6domainsdomain">DELETE /v6/domains/{domain}</a>
+<a class="nav-section" href="#patch-v3domainsdomain">PATCH /v3/domains/{domain}</a>
+<a class="nav-section" href="#put-domainsdomainrecords">PUT /domains/{domain}/records</a></div>
+<a href="../api/domains_registrar.html">DomainsRegistrar</a>
+<a href="../api/drain.html">Drain</a>
+<a href="../api/edge_cache.html">EdgeCache</a>
+<a href="../api/env.html">Env</a>
+<a href="../api/environment.html">Environment</a>
+<a href="../api/feature_flag.html">FeatureFlag</a>
+<a href="../api/file.html">File</a>
+<a href="../api/flag.html">Flag</a>
+<a href="../api/flags_sdk_key_with_secret.html">FlagsSdkKeyWithSecret</a>
+<a href="../api/global_config.html">GlobalConfig</a>
+<a href="../api/global_config_item.html">GlobalConfigItem</a>
+<a href="../api/global_config_token.html">GlobalConfigToken</a>
+<a href="../api/integration.html">Integration</a>
+<a href="../api/kms.html">Kms</a>
+<a href="../api/list_event_type.html">ListEventType</a>
+<a href="../api/log.html">Log</a>
+<a href="../api/log_drain.html">LogDrain</a>
+<a href="../api/marketplace.html">Marketplace</a>
+<a href="../api/microfrontend.html">Microfrontend</a>
+<a href="../api/network.html">Network</a>
+<a href="../api/networking.html">Networking</a>
+<a href="../api/observability.html">Observability</a>
+<a href="../api/private_link_endpoint.html">PrivateLinkEndpoint</a>
+<a href="../api/project.html">Project</a>
+<a href="../api/project_member.html">ProjectMember</a>
+<a href="../api/project_route.html">ProjectRoute</a>
+<a href="../api/query.html">Query</a>
+<a href="../api/record.html">Record</a>
+<a href="../api/rolling_release.html">RollingRelease</a>
+<a href="../api/sandbox.html">Sandbox</a>
+<a href="../api/schema.html">Schema</a>
+<a href="../api/security.html">Security</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/storage.html">Storage</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/tld_name.html">TldName</a>
+<a href="../api/toggle.html">Toggle</a>
+<a href="../api/user.html">User</a>
+<a href="../api/vcr.html">Vcr</a>
+<a href="../api/vcr_image_list.html">VcrImageList</a>
+<a href="../api/vcr_repository_list.html">VcrRepositoryList</a>
+<a href="../api/vcr_repository_permission_list.html">VcrRepositoryPermissionList</a>
+<a href="../api/web_analytics.html">WebAnalytics</a>
+<a href="../api/webhook.html">Webhook</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="domain">Domain</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v9domainsdomainclaim"><code>/v9/domains/{domain}/claim</code></a></td>
+<td><code>create</code></td>
+<td>Domain ownership successfully claimed</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v7domains"><code>/v7/domains</code></a></td>
+<td><code>create</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1domainsdomainproject-domains"><code>/v1/domains/{domain}/project-domains</code></a></td>
+<td><code>list</code></td>
+<td>Successful response retrieving project domains for an apex domain</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v6domainsdomainconfig"><code>/v6/domains/{domain}/config</code></a></td>
+<td><code>list</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v5domains"><code>/v5/domains</code></a></td>
+<td><code>list</code></td>
+<td>Successful response retrieving a list of domains</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v5domainsdomain"><code>/v5/domains/{domain}</code></a></td>
+<td><code>load</code></td>
+<td>Successful response retrieving an information for a specific domains</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v9domainsdomainverification"><code>/v9/domains/{domain}/verification</code></a></td>
+<td><code>load</code></td>
+<td>Returns the TXT record needed to verify domain ownership</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v6domainsdomain"><code>/v6/domains/{domain}</code></a></td>
+<td><code>remove</code></td>
+<td>Successful response removing a domain</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-v3domainsdomain"><code>/v3/domains/{domain}</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-domainsdomainrecords"><code>/domains/{domain}/records</code></a></td>
+<td><code>update</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>boughtAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>If it was purchased through Vercel, the timestamp in milliseconds when it was purchased.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds when the domain was created in the registry.</td>
+</tr>
+<tr>
+<td><code>creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>An object containing information of the domain creator, including the user's id, username, and email.</td>
+</tr>
+<tr>
+<td><code>customNameservers</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>A list of custom nameservers for the domain to point to.</td>
+</tr>
+<tr>
+<td><code>echMode</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Whether the domain is enrolled in Encrypted Client Hello.</td>
+</tr>
+<tr>
+<td><code>expiresAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds at which the domain is set to expire.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the domain.</td>
+</tr>
+<tr>
+<td><code>intendedNameservers</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>A list of the intended nameservers for the domain to point to Vercel DNS.</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The domain operation to perform.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The domain name.</td>
+</tr>
+<tr>
+<td><code>nameservers</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>A list of the current nameservers of the domain.</td>
+</tr>
+<tr>
+<td><code>renew</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates whether the domain is set to automatically renew.</td>
+</tr>
+<tr>
+<td><code>serviceType</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type of service the domain is handled by.</td>
+</tr>
+<tr>
+<td><code>suffix</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>teamId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>transferStartedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated.</td>
+</tr>
+<tr>
+<td><code>transferredAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp in milliseconds at which the domain was successfully transferred into Vercel.</td>
+</tr>
+<tr>
+<td><code>userId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>verified</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>If the domain has the ownership verified.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v9domainsdomainclaim" class="operation" data-method="post"><code>POST</code> /v9/domains/{domain}/claim</h3>
+<p>Operation ID: <code>claimDomainOwnership</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes | The domain name to claim ownership of |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-domain-ownership-successfully-claimed" class="status" data-status="2xx">200: Domain ownership successfully claimed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.boughtAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>If it was purchased through Vercel, the timestamp in milliseconds when it was purchased.</td>
+</tr>
+<tr>
+<td><code>domain.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds when the domain was created in the registry.</td>
+</tr>
+<tr>
+<td><code>domain.creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>An object containing information of the domain creator, including the user's id, username, and email.</td>
+</tr>
+<tr>
+<td><code>domain.creator.customerId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.isDomainReseller</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.customNameservers</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of custom nameservers for the domain to point to. Only applies to domains purchased with Vercel.</td>
+</tr>
+<tr>
+<td><code>domain.echMode</code></td>
+<td><code>enum: auto, disabled, enabled</code></td>
+<td>Yes</td>
+<td>Whether the domain is enrolled in Encrypted Client Hello. <code>auto</code> leaves the decision to Vercel, <code>enabled</code> always enrolls, and <code>disabled</code> never enrolls and opts out of automatic enrollment.</td>
+</tr>
+<tr>
+<td><code>domain.expiresAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel.</td>
+</tr>
+<tr>
+<td><code>domain.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the domain.</td>
+</tr>
+<tr>
+<td><code>domain.intendedNameservers</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>A list of the intended nameservers for the domain to point to Vercel DNS.</td>
+</tr>
+<tr>
+<td><code>domain.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The domain name.</td>
+</tr>
+<tr>
+<td><code>domain.nameservers</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>A list of the current nameservers of the domain.</td>
+</tr>
+<tr>
+<td><code>domain.renew</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Indicates whether the domain is set to automatically renew.</td>
+</tr>
+<tr>
+<td><code>domain.serviceType</code></td>
+<td><code>enum: external, na, zeit.world</code></td>
+<td>Yes</td>
+<td>The type of service the domain is handled by. <code>external</code> if the DNS is externally handled, <code>zeit.world</code> if handled with Vercel, or <code>na</code> if the service is not available.</td>
+</tr>
+<tr>
+<td><code>domain.teamId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.transferStartedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated.</td>
+</tr>
+<tr>
+<td><code>domain.transferredAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp in milliseconds at which the domain was successfully transferred into Vercel. <code>null</code> if the transfer is still processing or was never transferred in.</td>
+</tr>
+<tr>
+<td><code>domain.userId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>If the domain has the ownership verified.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404" class="status" data-status="4xx">404</h5>
+<h5 id="410" class="status" data-status="4xx">410</h5>
+<h3 id="post-v7domains" class="operation" data-method="post"><code>POST</code> /v7/domains</h3>
+<p>Operation ID: <code>createOrTransferDomain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>method</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The domain operation to perform. It can be either <code>add</code> or <code>move-in</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.boughtAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>If it was purchased through Vercel, the timestamp in milliseconds when it was purchased.</td>
+</tr>
+<tr>
+<td><code>domain.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds when the domain was created in the registry.</td>
+</tr>
+<tr>
+<td><code>domain.creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>An object containing information of the domain creator, including the user's id, username, and email.</td>
+</tr>
+<tr>
+<td><code>domain.creator.customerId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.isDomainReseller</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.customNameservers</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of custom nameservers for the domain to point to. Only applies to domains purchased with Vercel.</td>
+</tr>
+<tr>
+<td><code>domain.echMode</code></td>
+<td><code>enum: auto, disabled, enabled</code></td>
+<td>Yes</td>
+<td>Whether the domain is enrolled in Encrypted Client Hello. <code>auto</code> leaves the decision to Vercel, <code>enabled</code> always enrolls, and <code>disabled</code> never enrolls and opts out of automatic enrollment.</td>
+</tr>
+<tr>
+<td><code>domain.expiresAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel.</td>
+</tr>
+<tr>
+<td><code>domain.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the domain.</td>
+</tr>
+<tr>
+<td><code>domain.intendedNameservers</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>A list of the intended nameservers for the domain to point to Vercel DNS.</td>
+</tr>
+<tr>
+<td><code>domain.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The domain name.</td>
+</tr>
+<tr>
+<td><code>domain.nameservers</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>A list of the current nameservers of the domain.</td>
+</tr>
+<tr>
+<td><code>domain.renew</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Indicates whether the domain is set to automatically renew.</td>
+</tr>
+<tr>
+<td><code>domain.serviceType</code></td>
+<td><code>enum: external, na, zeit.world</code></td>
+<td>Yes</td>
+<td>The type of service the domain is handled by. <code>external</code> if the DNS is externally handled, <code>zeit.world</code> if handled with Vercel, or <code>na</code> if the service is not available.</td>
+</tr>
+<tr>
+<td><code>domain.teamId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.transferStartedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated.</td>
+</tr>
+<tr>
+<td><code>domain.transferredAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp in milliseconds at which the domain was successfully transferred into Vercel. <code>null</code> if the transfer is still processing or was never transferred in.</td>
+</tr>
+<tr>
+<td><code>domain.userId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>If the domain has the ownership verified.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-1" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="402-the-account-is-missing-a-payment-so-payment-method-must-be-updated" class="status" data-status="4xx">402: The account is missing a payment so payment method must be updated</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-1" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-1" class="status" data-status="4xx">404</h5>
+<h5 id="409-the-domain-is-not-allowed-to-be-used" class="status" data-status="4xx">409: The domain is not allowed to be used</h5>
+<h5 id="410-1" class="status" data-status="4xx">410</h5>
+<h2 id="list">list</h2>
+<h3 id="get-v1domainsdomainproject-domains" class="operation" data-method="get"><code>GET</code> /v1/domains/{domain}/project-domains</h3>
+<p>Operation ID: <code>getDomainProjectDomains</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes | The apex domain name. |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No | Maximum number of project domains to list from a request. |
+| <code>since</code> | <code>query</code> | <code>number</code> | No | Get project domains created after this JavaScript timestamp. |
+| <code>until</code> | <code>query</code> | <code>number</code> | No | Get project domains created before this JavaScript timestamp. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-successful-response-retrieving-project-domains-for-an-apex-domain" class="status" data-status="2xx">200: Successful response retrieving project domains for an apex domain</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.</td>
+</tr>
+<tr>
+<td><code>pagination.count</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Amount of items in the current page.</td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the next page.</td>
+</tr>
+<tr>
+<td><code>pagination.prev</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the previous page.</td>
+</tr>
+<tr>
+<td><code>projectDomains</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].apexName</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].createdAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].customEnvironmentId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].gitBranch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].projectId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].redirect</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].redirectStatusCode</code></td>
+<td><code>enum: 301, 302, 307, 308, null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].updatedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].verification</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete <code>POST /projects/:idOrName/domains/:domain/verify</code> to verify the domain. Possible challenges: - If <code>verification.type = TXT</code> the <code>verification.domain</code> will be checked for a TXT record matching <code>verification.value</code>.</td>
+</tr>
+<tr>
+<td><code>projectDomains[].verification[].domain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].verification[].reason</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].verification[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].verification[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>projectDomains[].verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td><code>true</code> if the domain is verified for use with the project. If <code>false</code> it will not be used as an alias on this project until the challenge in <code>verification</code> is completed.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-1" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-2" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-2" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-2" class="status" data-status="4xx">404</h5>
+<h5 id="410-2" class="status" data-status="4xx">410</h5>
+<h3 id="get-v6domainsdomainconfig" class="operation" data-method="get"><code>GET</code> /v6/domains/{domain}/config</h3>
+<p>Operation ID: <code>getDomainConfig</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes | The name of the domain. |
+| <code>projectIdOrName</code> | <code>query</code> | <code>string</code> | No | The project id or name that will be associated with the domain. Use this when the domain is not yet associated with a project. |
+| <code>strict</code> | <code>query</code> | <code>enum: true, false</code> | No | When true, the response will only include the nameservers assigned directly to the specified domain. When false and there are no nameservers assigned directly to the specified domain, the response will include the nameservers of the domain's parent zone. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-1" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>acceptedChallenges</code></td>
+<td><code>array of enum: dns-01, http-01</code></td>
+<td>Yes</td>
+<td>Which challenge types the domain can use for issuing certs.</td>
+</tr>
+<tr>
+<td><code>configuredBy</code></td>
+<td><code>enum: A, CNAME, dns-01, http, null</code></td>
+<td>Yes</td>
+<td>How we see the domain's configuration. - <code>CNAME</code>: Domain has a CNAME pointing to Vercel. - <code>A</code>: Domain's A record is resolving to Vercel. - <code>http</code>: Domain is resolving to Vercel but may be behind a Proxy. - <code>dns-01</code>: Domain is not resolving to Vercel but dns-01 challenge is enabled. - <code>null</code>: Domain is not resolving to Vercel.</td>
+</tr>
+<tr>
+<td><code>misconfigured</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>Whether or not the domain is configured AND we can automatically generate a TLS certificate.</td>
+</tr>
+<tr>
+<td><code>recommendedCNAME</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>Recommended CNAMEs for the domain. rank=1 is the preferred value to use.</td>
+</tr>
+<tr>
+<td><code>recommendedCNAME[].rank</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>recommendedCNAME[].value</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>recommendedIPv4</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>Recommended IPv4s for the domain. rank=1 is the preferred value(s) to use. Only using 1 ip value is acceptable.</td>
+</tr>
+<tr>
+<td><code>recommendedIPv4[].rank</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>recommendedIPv4[].value</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-2" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-3" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-3" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="410-3" class="status" data-status="4xx">410</h5>
+<h3 id="get-v5domains" class="operation" data-method="get"><code>GET</code> /v5/domains</h3>
+<p>Operation ID: <code>getDomains</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>limit</code> | <code>query</code> | <code>number</code> | No | Maximum number of domains to list from a request. |
+| <code>since</code> | <code>query</code> | <code>number</code> | No | Get domains created after this JavaScript timestamp. |
+| <code>until</code> | <code>query</code> | <code>number</code> | No | Get domains created before this JavaScript timestamp. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-successful-response-retrieving-a-list-of-domains" class="status" data-status="2xx">200: Successful response retrieving a list of domains</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domains</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].boughtAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>If it was purchased through Vercel, the timestamp in milliseconds when it was purchased.</td>
+</tr>
+<tr>
+<td><code>domains[].createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds when the domain was created in the registry.</td>
+</tr>
+<tr>
+<td><code>domains[].creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>An object containing information of the domain creator, including the user's id, username, and email.</td>
+</tr>
+<tr>
+<td><code>domains[].creator.customerId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].creator.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].creator.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].creator.isDomainReseller</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].creator.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].customNameservers</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of custom nameservers for the domain to point to. Only applies to domains purchased with Vercel.</td>
+</tr>
+<tr>
+<td><code>domains[].echMode</code></td>
+<td><code>enum: auto, disabled, enabled</code></td>
+<td>Yes</td>
+<td>Whether the domain is enrolled in Encrypted Client Hello. <code>auto</code> leaves the decision to Vercel, <code>enabled</code> always enrolls, and <code>disabled</code> never enrolls and opts out of automatic enrollment.</td>
+</tr>
+<tr>
+<td><code>domains[].expiresAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel.</td>
+</tr>
+<tr>
+<td><code>domains[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the domain.</td>
+</tr>
+<tr>
+<td><code>domains[].intendedNameservers</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>A list of the intended nameservers for the domain to point to Vercel DNS.</td>
+</tr>
+<tr>
+<td><code>domains[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The domain name.</td>
+</tr>
+<tr>
+<td><code>domains[].nameservers</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>A list of the current nameservers of the domain.</td>
+</tr>
+<tr>
+<td><code>domains[].renew</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Indicates whether the domain is set to automatically renew.</td>
+</tr>
+<tr>
+<td><code>domains[].serviceType</code></td>
+<td><code>enum: external, na, zeit.world</code></td>
+<td>Yes</td>
+<td>The type of service the domain is handled by. <code>external</code> if the DNS is externally handled, <code>zeit.world</code> if handled with Vercel, or <code>na</code> if the service is not available.</td>
+</tr>
+<tr>
+<td><code>domains[].teamId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].transferStartedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated.</td>
+</tr>
+<tr>
+<td><code>domains[].transferredAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp in milliseconds at which the domain was successfully transferred into Vercel. <code>null</code> if the transfer is still processing or was never transferred in.</td>
+</tr>
+<tr>
+<td><code>domains[].userId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domains[].verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>If the domain has the ownership verified.</td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data.</td>
+</tr>
+<tr>
+<td><code>pagination.count</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Amount of items in the current page.</td>
+</tr>
+<tr>
+<td><code>pagination.next</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the next page.</td>
+</tr>
+<tr>
+<td><code>pagination.prev</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp that must be used to request the previous page.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-3" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-4" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-4" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="409" class="status" data-status="4xx">409</h5>
+<h5 id="410-4" class="status" data-status="4xx">410</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v5domainsdomain" class="operation" data-method="get"><code>GET</code> /v5/domains/{domain}</h3>
+<p>Operation ID: <code>getDomain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes | The name of the domain. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-successful-response-retrieving-an-information-for-a-specific-domains" class="status" data-status="2xx">200: Successful response retrieving an information for a specific domains</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.boughtAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>If it was purchased through Vercel, the timestamp in milliseconds when it was purchased.</td>
+</tr>
+<tr>
+<td><code>domain.createdAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds when the domain was created in the registry.</td>
+</tr>
+<tr>
+<td><code>domain.creator</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>An object containing information of the domain creator, including the user's id, username, and email.</td>
+</tr>
+<tr>
+<td><code>domain.creator.customerId</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.isDomainReseller</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.creator.username</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.customNameservers</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of custom nameservers for the domain to point to. Only applies to domains purchased with Vercel.</td>
+</tr>
+<tr>
+<td><code>domain.echMode</code></td>
+<td><code>enum: auto, disabled, enabled</code></td>
+<td>Yes</td>
+<td>Whether the domain is enrolled in Encrypted Client Hello. <code>auto</code> leaves the decision to Vercel, <code>enabled</code> always enrolls, and <code>disabled</code> never enrolls and opts out of automatic enrollment.</td>
+</tr>
+<tr>
+<td><code>domain.expiresAt</code></td>
+<td><code>number</code></td>
+<td>Yes</td>
+<td>Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel.</td>
+</tr>
+<tr>
+<td><code>domain.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The unique identifier of the domain.</td>
+</tr>
+<tr>
+<td><code>domain.intendedNameservers</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>A list of the intended nameservers for the domain to point to Vercel DNS.</td>
+</tr>
+<tr>
+<td><code>domain.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The domain name.</td>
+</tr>
+<tr>
+<td><code>domain.nameservers</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>A list of the current nameservers of the domain.</td>
+</tr>
+<tr>
+<td><code>domain.renew</code></td>
+<td><code>enum: false, true</code></td>
+<td>No</td>
+<td>Indicates whether the domain is set to automatically renew.</td>
+</tr>
+<tr>
+<td><code>domain.serviceType</code></td>
+<td><code>enum: external, na, zeit.world</code></td>
+<td>Yes</td>
+<td>The type of service the domain is handled by. <code>external</code> if the DNS is externally handled, <code>zeit.world</code> if handled with Vercel, or <code>na</code> if the service is not available.</td>
+</tr>
+<tr>
+<td><code>domain.suffix</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.teamId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.transferStartedAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>If transferred into Vercel, timestamp in milliseconds when the domain transfer was initiated.</td>
+</tr>
+<tr>
+<td><code>domain.transferredAt</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>Timestamp in milliseconds at which the domain was successfully transferred into Vercel. <code>null</code> if the transfer is still processing or was never transferred in.</td>
+</tr>
+<tr>
+<td><code>domain.userId</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.verified</code></td>
+<td><code>enum: false, true</code></td>
+<td>Yes</td>
+<td>If the domain has the ownership verified.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-4" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-5" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-5" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-3" class="status" data-status="4xx">404</h5>
+<h5 id="410-5" class="status" data-status="4xx">410</h5>
+<h3 id="get-v9domainsdomainverification" class="operation" data-method="get"><code>GET</code> /v9/domains/{domain}/verification</h3>
+<p>Operation ID: <code>getDomainVerificationRecord</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes | The domain name to get the verification record for |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-returns-the-txt-record-needed-to-verify-domain-ownership" class="status" data-status="2xx">200: Returns the TXT record needed to verify domain ownership</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>txtRecord</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>verificationDomain</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-5" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-6" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-6" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-4" class="status" data-status="4xx">404</h5>
+<h5 id="410-6" class="status" data-status="4xx">410</h5>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v6domainsdomain" class="operation" data-method="delete"><code>DELETE</code> /v6/domains/{domain}</h3>
+<p>Operation ID: <code>deleteDomain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes | The name of the domain. |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-successful-response-removing-a-domain" class="status" data-status="2xx">200: Successful response removing a domain</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uid</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-6" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-7" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-7" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-5" class="status" data-status="4xx">404</h5>
+<h5 id="409-1" class="status" data-status="4xx">409</h5>
+<h5 id="410-7" class="status" data-status="4xx">410</h5>
+<h2 id="update">update</h2>
+<h3 id="patch-v3domainsdomain" class="operation" data-method="patch"><code>PATCH</code> /v3/domains/{domain}</h3>
+<p>Operation ID: <code>patchDomain</code>.</p>
+<p>Authentication: bearer token (<code>bearerToken</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>teamId</code> | <code>query</code> | <code>string</code> | No | The Team identifier to perform the request on behalf of. |
+| <code>slug</code> | <code>query</code> | <code>string</code> | No | The Team slug to perform the request on behalf of. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object</code>.</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-2" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object or object</code>.</p>
+<h5 id="400-one-of-the-provided-values-in-the-request-body-is-invalid-one-of-the-provided-values-in-the-request-query-is-invalid" class="status" data-status="4xx">400: One of the provided values in the request body is invalid. One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-8" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-8" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-6" class="status" data-status="4xx">404</h5>
+<h5 id="409-2" class="status" data-status="4xx">409</h5>
+<h5 id="410-8" class="status" data-status="4xx">410</h5>
+<h5 id="500" class="status" data-status="5xx">500</h5>
+<h3 id="put-domainsdomainrecords" class="operation" data-method="put"><code>PUT</code> /domains/{domain}/records</h3>
+<p>Operation ID: <code>replaceDomainsByDomainRecords</code>.</p>
+<p>Authentication: not required.</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain</code> | <code>path</code> | <code>string</code> | Yes | The domain name |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-3" class="status" data-status="2xx">200</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>recordIds</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-one-of-the-provided-values-in-the-request-query-is-invalid-7" class="status" data-status="4xx">400: One of the provided values in the request query is invalid</h5>
+<h5 id="401-the-request-is-not-authorized-9" class="status" data-status="4xx">401: The request is not authorized</h5>
+<h5 id="403-you-do-not-have-permission-to-access-this-resource-9" class="status" data-status="4xx">403: You do not have permission to access this resource</h5>
+<h5 id="404-7" class="status" data-status="4xx">404</h5>
+<h5 id="409-3" class="status" data-status="4xx">409</h5>
+<h5 id="410-9" class="status" data-status="4xx">410</h5>
+<h5 id="415" class="status" data-status="4xx">415</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

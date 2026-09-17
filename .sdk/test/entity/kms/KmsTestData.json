@@ -1,0 +1,3200 @@
+{
+  "existing": {
+    "kms": {
+      "KMS00": {
+        "activation": "s154",
+        "alg": "s155",
+        "algorithm": "s156",
+        "claims": {},
+        "claimsSchema": {},
+        "createdAt": "s159",
+        "environments": [],
+        "headers": {},
+        "id": "KMS00",
+        "importKey": "s15d",
+        "importKeyId": "s15e",
+        "keyId": "s15f",
+        "key_ops": [],
+        "kid": "s161",
+        "kind": "s162",
+        "kty": "s163",
+        "managedBy": "s164",
+        "message": "s165",
+        "name": "s166",
+        "origin": "s167",
+        "ownerId": "s168",
+        "policies": [],
+        "projectId": "s16a",
+        "revokePreviousAfterHours": 363,
+        "revokePreviousAt": "s16c",
+        "signature": "s16d",
+        "signingKeys": [],
+        "token": "s16f",
+        "tokenClaims": {},
+        "ttl": 369,
+        "updatedAt": "s172",
+        "use": "s173",
+        "x5c": [],
+        "x5tS256": "s175",
+        "issuer_id": "ISSUER01",
+        "key_id": "KEY01",
+        "policy_key": "POLICY_KEY01"
+      },
+      "KMS01": {
+        "activation": "s2a8",
+        "alg": "s2a9",
+        "algorithm": "s2aa",
+        "claims": {},
+        "claimsSchema": {},
+        "createdAt": "s2ad",
+        "environments": [],
+        "headers": {},
+        "id": "KMS01",
+        "importKey": "s2b1",
+        "importKeyId": "s2b2",
+        "keyId": "s2b3",
+        "key_ops": [],
+        "kid": "s2b5",
+        "kind": "s2b6",
+        "kty": "s2b7",
+        "managedBy": "s2b8",
+        "message": "s2b9",
+        "name": "s2ba",
+        "origin": "s2bb",
+        "ownerId": "s2bc",
+        "policies": [],
+        "projectId": "s2be",
+        "revokePreviousAfterHours": 703,
+        "revokePreviousAt": "s2c0",
+        "signature": "s2c1",
+        "signingKeys": [],
+        "token": "s2c3",
+        "tokenClaims": {},
+        "ttl": 709,
+        "updatedAt": "s2c6",
+        "use": "s2c7",
+        "x5c": [],
+        "x5tS256": "s2c9",
+        "issuer_id": "ISSUER01",
+        "key_id": "KEY01",
+        "policy_key": "POLICY_KEY01"
+      },
+      "KMS02": {
+        "activation": "s3fc",
+        "alg": "s3fd",
+        "algorithm": "s3fe",
+        "claims": {},
+        "claimsSchema": {},
+        "createdAt": "s401",
+        "environments": [],
+        "headers": {},
+        "id": "KMS02",
+        "importKey": "s405",
+        "importKeyId": "s406",
+        "keyId": "s407",
+        "key_ops": [],
+        "kid": "s409",
+        "kind": "s40a",
+        "kty": "s40b",
+        "managedBy": "s40c",
+        "message": "s40d",
+        "name": "s40e",
+        "origin": "s40f",
+        "ownerId": "s410",
+        "policies": [],
+        "projectId": "s412",
+        "revokePreviousAfterHours": 1043,
+        "revokePreviousAt": "s414",
+        "signature": "s415",
+        "signingKeys": [],
+        "token": "s417",
+        "tokenClaims": {},
+        "ttl": 1049,
+        "updatedAt": "s41a",
+        "use": "s41b",
+        "x5c": [],
+        "x5tS256": "s41d",
+        "issuer_id": "ISSUER01",
+        "key_id": "KEY01",
+        "policy_key": "POLICY_KEY01"
+      }
+    }
+  },
+  "new": {
+    "kms": {
+      "kms_ref01": {
+        "activation": "s550",
+        "alg": "s551",
+        "algorithm": "s552",
+        "claims": {},
+        "claimsSchema": {},
+        "createdAt": "s555",
+        "environments": [],
+        "headers": {},
+        "importKey": "s559",
+        "importKeyId": "s55a",
+        "keyId": "s55b",
+        "key_ops": [],
+        "kid": "s55d",
+        "kind": "s55e",
+        "kty": "s55f",
+        "managedBy": "s560",
+        "message": "s561",
+        "name": "s562",
+        "origin": "s563",
+        "ownerId": "s564",
+        "policies": [],
+        "projectId": "s566",
+        "revokePreviousAfterHours": 1383,
+        "revokePreviousAt": "s568",
+        "signature": "s569",
+        "signingKeys": [],
+        "token": "s56b",
+        "tokenClaims": {},
+        "ttl": 1389,
+        "updatedAt": "s56e",
+        "use": "s56f",
+        "x5c": [],
+        "x5tS256": "s571"
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/kms/issuers/{issuerId}/keys/{keyId}/activate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "activateKmsSigningKey",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the pending signing key to activate.",
+            "in": "path",
+            "name": "keyId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the pending signing key to activate.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "revokePreviousAfterHours": {
+                    "description": "How many hours after activation the previously-active key should stop being used. Defaults to a 1 hour grace period so already-issued tokens keep verifying.",
+                    "minimum": 0,
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "activateAt": {
+                      "type": "string"
+                    },
+                    "activatedAt": {
+                      "description": "When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).",
+                      "type": "string"
+                    },
+                    "algorithm": {
+                      "type": "string"
+                    },
+                    "certificatePem": {
+                      "description": "The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "importKeyId": {
+                      "description": "The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.",
+                      "type": "string"
+                    },
+                    "issuerId": {
+                      "type": "string"
+                    },
+                    "keyId": {
+                      "description": "The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.",
+                      "type": "string"
+                    },
+                    "publicKey": {
+                      "properties": {
+                        "alg": {
+                          "type": "string"
+                        },
+                        "key_ops": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "kid": {
+                          "type": "string"
+                        },
+                        "kty": {
+                          "type": "string"
+                        },
+                        "use": {
+                          "type": "string"
+                        },
+                        "x5c": {
+                          "description": "The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "x5t#S256": {
+                          "description": "The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "publicKeyFingerprint": {
+                      "type": "string"
+                    },
+                    "publicKeyPem": {
+                      "description": "The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.",
+                      "type": "string"
+                    },
+                    "revokeAt": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "active",
+                        "pending",
+                        "revoking"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "algorithm",
+                    "createdAt",
+                    "issuerId",
+                    "keyId",
+                    "status",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/kms/issuers/{issuerId}/keys/{keyId}/revoke": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "revokeKmsSigningKey",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the signing key to revoke immediately. The key must already be scheduled for revocation.",
+            "in": "path",
+            "name": "keyId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the signing key to revoke immediately. The key must already be scheduled for revocation.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "algorithm": {
+                      "enum": [
+                        "ES256",
+                        "ES384",
+                        "ES512",
+                        "PS256",
+                        "PS384",
+                        "PS512",
+                        "RS256",
+                        "RS384",
+                        "RS512"
+                      ],
+                      "type": "string"
+                    },
+                    "claimsSchema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "managedBy": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "origin": {
+                      "enum": [
+                        "external",
+                        "vercel"
+                      ],
+                      "type": "string"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "policies": {
+                      "items": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "createdAt": {
+                                "type": "string"
+                              },
+                              "environments": {
+                                "description": "Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "project-grant"
+                                ],
+                                "type": "string"
+                              },
+                              "projectId": {
+                                "type": "string"
+                              },
+                              "teamId": {
+                                "type": "string"
+                              },
+                              "tokenClaims": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "updatedAt": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "createdAt",
+                              "environments",
+                              "kind",
+                              "projectId",
+                              "teamId",
+                              "updatedAt"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "clientId": {
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "connex-grant"
+                                ],
+                                "type": "string"
+                              },
+                              "tokenClaims": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "updatedAt": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "clientId",
+                              "createdAt",
+                              "kind",
+                              "updatedAt"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "signingKeys": {
+                      "items": {
+                        "properties": {
+                          "activateAt": {
+                            "type": "string"
+                          },
+                          "activatedAt": {
+                            "description": "When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).",
+                            "type": "string"
+                          },
+                          "algorithm": {
+                            "type": "string"
+                          },
+                          "certificatePem": {
+                            "description": "The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "importKeyId": {
+                            "description": "The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.",
+                            "type": "string"
+                          },
+                          "issuerId": {
+                            "type": "string"
+                          },
+                          "keyId": {
+                            "description": "The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.",
+                            "type": "string"
+                          },
+                          "publicKey": {
+                            "properties": {
+                              "alg": {
+                                "type": "string"
+                              },
+                              "key_ops": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "kid": {
+                                "type": "string"
+                              },
+                              "kty": {
+                                "type": "string"
+                              },
+                              "use": {
+                                "type": "string"
+                              },
+                              "x5c": {
+                                "description": "The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "x5t#S256": {
+                                "description": "The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "publicKeyFingerprint": {
+                            "type": "string"
+                          },
+                          "publicKeyPem": {
+                            "description": "The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.",
+                            "type": "string"
+                          },
+                          "revokeAt": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "active",
+                              "pending",
+                              "revoking"
+                            ],
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "algorithm",
+                          "createdAt",
+                          "issuerId",
+                          "keyId",
+                          "status",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "algorithm",
+                    "createdAt",
+                    "id",
+                    "name",
+                    "origin",
+                    "ownerId",
+                    "policies",
+                    "signingKeys",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/kms/issuers/{issuerId}/keys": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createKmsSigningKey",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "activation": {
+                    "description": "Whether the new key is activated automatically after its public key has propagated, or manually via the activate endpoint. Defaults to `automatic`.",
+                    "enum": [
+                      "automatic",
+                      "manual"
+                    ],
+                    "type": "string"
+                  },
+                  "importKey": {
+                    "description": "The PEM-encoded private key to use for the issuer.",
+                    "type": "string"
+                  },
+                  "importKeyId": {
+                    "description": "The key id to use as the imported key's JWT/JWKS `kid`. Only allowed when `importKey` is provided. Not required to be unique; the addressable key id is the server-minted `keyId` returned in the response.",
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9._-]+$",
+                    "type": "string"
+                  },
+                  "revokePreviousAfterHours": {
+                    "description": "For automatic activation, how many hours after activation the previous signing key should stop being used. Defaults to a 1 hour grace period so already-issued tokens keep verifying.",
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "revokePreviousAt": {
+                    "description": "Deprecated. The ISO date string or timestamp when the previous signing key should stop being used. Converted to a relative grace and applied at activation, not creation. Prefer revokePreviousAfterHours.",
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "activateAt": {
+                      "type": "string"
+                    },
+                    "activatedAt": {
+                      "description": "When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).",
+                      "type": "string"
+                    },
+                    "algorithm": {
+                      "type": "string"
+                    },
+                    "certificatePem": {
+                      "description": "The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "importKeyId": {
+                      "description": "The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.",
+                      "type": "string"
+                    },
+                    "issuerId": {
+                      "type": "string"
+                    },
+                    "keyId": {
+                      "description": "The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.",
+                      "type": "string"
+                    },
+                    "publicKey": {
+                      "properties": {
+                        "alg": {
+                          "type": "string"
+                        },
+                        "key_ops": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "kid": {
+                          "type": "string"
+                        },
+                        "kty": {
+                          "type": "string"
+                        },
+                        "use": {
+                          "type": "string"
+                        },
+                        "x5c": {
+                          "description": "The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "x5t#S256": {
+                          "description": "The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "publicKeyFingerprint": {
+                      "type": "string"
+                    },
+                    "publicKeyPem": {
+                      "description": "The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.",
+                      "type": "string"
+                    },
+                    "revokeAt": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "active",
+                        "pending",
+                        "revoking"
+                      ],
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "algorithm",
+                    "createdAt",
+                    "issuerId",
+                    "keyId",
+                    "status",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/kms/issuers/{issuerId}/policies": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createKmsIssuerPolicy",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "environments": {
+                    "description": "The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...).",
+                    "items": {
+                      "pattern": "^(?:production|preview|development|env_.+)$",
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array",
+                    "uniqueItems": true
+                  },
+                  "kind": {
+                    "enum": [
+                      "project-grant"
+                    ],
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "description": "The project ID for the project grant policy.",
+                    "type": "string"
+                  },
+                  "tokenClaims": {
+                    "additionalProperties": true,
+                    "description": "The claims that KMS should include in signed JWTs for this policy.",
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "projectId",
+                  "environments"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "environments": {
+                          "description": "Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "kind": {
+                          "enum": [
+                            "project-grant"
+                          ],
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "type": "string"
+                        },
+                        "teamId": {
+                          "type": "string"
+                        },
+                        "tokenClaims": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "createdAt",
+                        "environments",
+                        "kind",
+                        "projectId",
+                        "teamId",
+                        "updatedAt"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "clientId": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "enum": [
+                            "connex-grant"
+                          ],
+                          "type": "string"
+                        },
+                        "tokenClaims": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "clientId",
+                        "createdAt",
+                        "kind",
+                        "updatedAt"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/kms/issuers": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createKmsIssuer",
+        "parameters": [
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "algorithm": {
+                    "default": "RS512",
+                    "description": "The signing algorithm to use for the issuer.",
+                    "enum": [
+                      "RS256",
+                      "RS384",
+                      "RS512",
+                      "PS256",
+                      "PS384",
+                      "PS512",
+                      "ES256",
+                      "ES384",
+                      "ES512"
+                    ],
+                    "type": "string"
+                  },
+                  "claimsSchema": {
+                    "additionalProperties": true,
+                    "description": "A JSON Schema used to validate the resolved token claims when signing tokens for this issuer.",
+                    "type": "object"
+                  },
+                  "importKey": {
+                    "description": "The PEM-encoded private key to use for the issuer.",
+                    "type": "string"
+                  },
+                  "importKeyId": {
+                    "description": "The key id to use as the imported key's JWT/JWKS `kid`. Only allowed when `importKey` is provided. Not required to be unique; the addressable key id is the server-minted `keyId` returned in the response.",
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9._-]+$",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The name of the issuer.",
+                    "type": "string"
+                  },
+                  "policy": {
+                    "oneOf": [
+                      {
+                        "additionalProperties": false,
+                        "properties": {
+                          "environments": {
+                            "description": "The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...).",
+                            "items": {
+                              "pattern": "^(?:production|preview|development|env_.+)$",
+                              "type": "string"
+                            },
+                            "minItems": 1,
+                            "type": "array",
+                            "uniqueItems": true
+                          },
+                          "kind": {
+                            "enum": [
+                              "project-grant"
+                            ],
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "description": "The project ID for the project grant policy.",
+                            "type": "string"
+                          },
+                          "teamId": {
+                            "description": "The team ID for the project grant policy.",
+                            "type": "string"
+                          },
+                          "tokenClaims": {
+                            "additionalProperties": true,
+                            "description": "The claims that KMS should include in signed JWTs for this policy.",
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "teamId",
+                          "projectId",
+                          "environments"
+                        ],
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": false,
+                        "properties": {
+                          "clientId": {
+                            "description": "The Connex client ID for the Connex grant policy.",
+                            "type": "string"
+                          },
+                          "kind": {
+                            "enum": [
+                              "connex-grant"
+                            ],
+                            "type": "string"
+                          },
+                          "tokenClaims": {
+                            "additionalProperties": true,
+                            "description": "The claims that KMS should include in signed JWTs for this policy.",
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "clientId"
+                        ],
+                        "type": "object"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "algorithm": {
+                      "enum": [
+                        "ES256",
+                        "ES384",
+                        "ES512",
+                        "PS256",
+                        "PS384",
+                        "PS512",
+                        "RS256",
+                        "RS384",
+                        "RS512"
+                      ],
+                      "type": "string"
+                    },
+                    "claimsSchema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "managedBy": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "origin": {
+                      "enum": [
+                        "external",
+                        "vercel"
+                      ],
+                      "type": "string"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "policies": {
+                      "items": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "createdAt": {
+                                "type": "string"
+                              },
+                              "environments": {
+                                "description": "Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "project-grant"
+                                ],
+                                "type": "string"
+                              },
+                              "projectId": {
+                                "type": "string"
+                              },
+                              "teamId": {
+                                "type": "string"
+                              },
+                              "tokenClaims": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "updatedAt": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "createdAt",
+                              "environments",
+                              "kind",
+                              "projectId",
+                              "teamId",
+                              "updatedAt"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "clientId": {
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "connex-grant"
+                                ],
+                                "type": "string"
+                              },
+                              "tokenClaims": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "updatedAt": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "clientId",
+                              "createdAt",
+                              "kind",
+                              "updatedAt"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "signingKeys": {
+                      "items": {
+                        "properties": {
+                          "activateAt": {
+                            "type": "string"
+                          },
+                          "activatedAt": {
+                            "description": "When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).",
+                            "type": "string"
+                          },
+                          "algorithm": {
+                            "type": "string"
+                          },
+                          "certificatePem": {
+                            "description": "The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "importKeyId": {
+                            "description": "The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.",
+                            "type": "string"
+                          },
+                          "issuerId": {
+                            "type": "string"
+                          },
+                          "keyId": {
+                            "description": "The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.",
+                            "type": "string"
+                          },
+                          "publicKey": {
+                            "properties": {
+                              "alg": {
+                                "type": "string"
+                              },
+                              "key_ops": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "kid": {
+                                "type": "string"
+                              },
+                              "kty": {
+                                "type": "string"
+                              },
+                              "use": {
+                                "type": "string"
+                              },
+                              "x5c": {
+                                "description": "The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "x5t#S256": {
+                                "description": "The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "publicKeyFingerprint": {
+                            "type": "string"
+                          },
+                          "publicKeyPem": {
+                            "description": "The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.",
+                            "type": "string"
+                          },
+                          "revokeAt": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "active",
+                              "pending",
+                              "revoking"
+                            ],
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "algorithm",
+                          "createdAt",
+                          "issuerId",
+                          "keyId",
+                          "status",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "algorithm",
+                    "createdAt",
+                    "id",
+                    "name",
+                    "origin",
+                    "ownerId",
+                    "policies",
+                    "signingKeys",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/kms/issuers/{issuerId}/sign/message": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "signKmsMessage",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "message": {
+                    "description": "Base64-encoded message to be signed.",
+                    "maxLength": 44000,
+                    "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "message"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "algorithm": {
+                      "description": "Algorithm of the signing key.",
+                      "type": "string"
+                    },
+                    "keyId": {
+                      "description": "Key id of the signing key. Matches the JWKS `kid` so verifiers can select the key after rotation without trial-verifying every published key.",
+                      "type": "string"
+                    },
+                    "signature": {
+                      "description": "Standard-base64 encoding of the raw signature over the decoded message bytes.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "algorithm",
+                    "keyId",
+                    "signature"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "429": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /v1/kms/issuers/{issuerId}/sign/token": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "signKmsToken",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "claims": {
+                    "description": "The claims to include in the token.",
+                    "maxProperties": 128,
+                    "type": "object"
+                  },
+                  "headers": {
+                    "description": "Additional headers to include in the token.",
+                    "maxProperties": 64,
+                    "type": "object"
+                  },
+                  "ttl": {
+                    "default": 300,
+                    "description": "The time-to-live for the token, in seconds.",
+                    "nullable": true,
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "token"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "429": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/kms/issuers": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listKmsIssuers",
+        "parameters": [
+          {
+            "description": "Maximum number of issuers to return.",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "description": "Maximum number of issuers to return.",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Continuation cursor to retrieve the next page of results.",
+            "in": "query",
+            "name": "next",
+            "schema": {
+              "description": "Continuation cursor to retrieve the next page of results.",
+              "maxLength": 1024,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "issuers": {
+                      "items": {
+                        "properties": {
+                          "algorithm": {
+                            "enum": [
+                              "ES256",
+                              "ES384",
+                              "ES512",
+                              "PS256",
+                              "PS384",
+                              "PS512",
+                              "RS256",
+                              "RS384",
+                              "RS512"
+                            ],
+                            "type": "string"
+                          },
+                          "claimsSchema": {
+                            "additionalProperties": true,
+                            "type": "object"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "managedBy": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "origin": {
+                            "enum": [
+                              "external",
+                              "vercel"
+                            ],
+                            "type": "string"
+                          },
+                          "ownerId": {
+                            "type": "string"
+                          },
+                          "policies": {
+                            "items": {
+                              "oneOf": [
+                                {
+                                  "properties": {
+                                    "createdAt": {
+                                      "type": "string"
+                                    },
+                                    "environments": {
+                                      "description": "Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.",
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "kind": {
+                                      "enum": [
+                                        "project-grant"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "projectId": {
+                                      "type": "string"
+                                    },
+                                    "teamId": {
+                                      "type": "string"
+                                    },
+                                    "tokenClaims": {
+                                      "additionalProperties": true,
+                                      "type": "object"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "createdAt",
+                                    "environments",
+                                    "kind",
+                                    "projectId",
+                                    "teamId",
+                                    "updatedAt"
+                                  ],
+                                  "type": "object"
+                                },
+                                {
+                                  "properties": {
+                                    "clientId": {
+                                      "type": "string"
+                                    },
+                                    "createdAt": {
+                                      "type": "string"
+                                    },
+                                    "kind": {
+                                      "enum": [
+                                        "connex-grant"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "tokenClaims": {
+                                      "additionalProperties": true,
+                                      "type": "object"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "clientId",
+                                    "createdAt",
+                                    "kind",
+                                    "updatedAt"
+                                  ],
+                                  "type": "object"
+                                }
+                              ]
+                            },
+                            "type": "array"
+                          },
+                          "signingKeys": {
+                            "items": {
+                              "properties": {
+                                "activateAt": {
+                                  "type": "string"
+                                },
+                                "activatedAt": {
+                                  "description": "When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).",
+                                  "type": "string"
+                                },
+                                "algorithm": {
+                                  "type": "string"
+                                },
+                                "certificatePem": {
+                                  "description": "The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.",
+                                  "type": "string"
+                                },
+                                "createdAt": {
+                                  "type": "string"
+                                },
+                                "importKeyId": {
+                                  "description": "The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.",
+                                  "type": "string"
+                                },
+                                "issuerId": {
+                                  "type": "string"
+                                },
+                                "keyId": {
+                                  "description": "The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.",
+                                  "type": "string"
+                                },
+                                "publicKey": {
+                                  "properties": {
+                                    "alg": {
+                                      "type": "string"
+                                    },
+                                    "key_ops": {
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "kid": {
+                                      "type": "string"
+                                    },
+                                    "kty": {
+                                      "type": "string"
+                                    },
+                                    "use": {
+                                      "type": "string"
+                                    },
+                                    "x5c": {
+                                      "description": "The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.",
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "x5t#S256": {
+                                      "description": "The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "publicKeyFingerprint": {
+                                  "type": "string"
+                                },
+                                "publicKeyPem": {
+                                  "description": "The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.",
+                                  "type": "string"
+                                },
+                                "revokeAt": {
+                                  "type": "string"
+                                },
+                                "status": {
+                                  "enum": [
+                                    "active",
+                                    "pending",
+                                    "revoking"
+                                  ],
+                                  "type": "string"
+                                },
+                                "updatedAt": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "algorithm",
+                                "createdAt",
+                                "issuerId",
+                                "keyId",
+                                "status",
+                                "updatedAt"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "algorithm",
+                          "createdAt",
+                          "id",
+                          "name",
+                          "origin",
+                          "ownerId",
+                          "policies",
+                          "signingKeys",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pagination": {
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "next": {
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "count",
+                        "next"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "issuers",
+                    "pagination"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/kms/issuers/{issuerId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getKmsIssuer",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "algorithm": {
+                      "enum": [
+                        "ES256",
+                        "ES384",
+                        "ES512",
+                        "PS256",
+                        "PS384",
+                        "PS512",
+                        "RS256",
+                        "RS384",
+                        "RS512"
+                      ],
+                      "type": "string"
+                    },
+                    "claimsSchema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "managedBy": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "origin": {
+                      "enum": [
+                        "external",
+                        "vercel"
+                      ],
+                      "type": "string"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "policies": {
+                      "items": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "createdAt": {
+                                "type": "string"
+                              },
+                              "environments": {
+                                "description": "Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "project-grant"
+                                ],
+                                "type": "string"
+                              },
+                              "projectId": {
+                                "type": "string"
+                              },
+                              "teamId": {
+                                "type": "string"
+                              },
+                              "tokenClaims": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "updatedAt": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "createdAt",
+                              "environments",
+                              "kind",
+                              "projectId",
+                              "teamId",
+                              "updatedAt"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "clientId": {
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "connex-grant"
+                                ],
+                                "type": "string"
+                              },
+                              "tokenClaims": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "updatedAt": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "clientId",
+                              "createdAt",
+                              "kind",
+                              "updatedAt"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "signingKeys": {
+                      "items": {
+                        "properties": {
+                          "activateAt": {
+                            "type": "string"
+                          },
+                          "activatedAt": {
+                            "description": "When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).",
+                            "type": "string"
+                          },
+                          "algorithm": {
+                            "type": "string"
+                          },
+                          "certificatePem": {
+                            "description": "The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "importKeyId": {
+                            "description": "The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.",
+                            "type": "string"
+                          },
+                          "issuerId": {
+                            "type": "string"
+                          },
+                          "keyId": {
+                            "description": "The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.",
+                            "type": "string"
+                          },
+                          "publicKey": {
+                            "properties": {
+                              "alg": {
+                                "type": "string"
+                              },
+                              "key_ops": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "kid": {
+                                "type": "string"
+                              },
+                              "kty": {
+                                "type": "string"
+                              },
+                              "use": {
+                                "type": "string"
+                              },
+                              "x5c": {
+                                "description": "The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "x5t#S256": {
+                                "description": "The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "publicKeyFingerprint": {
+                            "type": "string"
+                          },
+                          "publicKeyPem": {
+                            "description": "The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.",
+                            "type": "string"
+                          },
+                          "revokeAt": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "active",
+                              "pending",
+                              "revoking"
+                            ],
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "algorithm",
+                          "createdAt",
+                          "issuerId",
+                          "keyId",
+                          "status",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "algorithm",
+                    "createdAt",
+                    "id",
+                    "name",
+                    "origin",
+                    "ownerId",
+                    "policies",
+                    "signingKeys",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteKmsIssuerPolicy",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The issuer policy kind.",
+            "in": "path",
+            "name": "kind",
+            "required": true,
+            "schema": {
+              "description": "The issuer policy kind.",
+              "enum": [
+                "project-grant",
+                "connex-grant"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The policy identifier.",
+            "in": "path",
+            "name": "policyKey",
+            "required": true,
+            "schema": {
+              "description": "The policy identifier.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/kms/issuers/{issuerId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteKmsIssuer",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/kms/issuers/{issuerId}/policies/{kind}/{policyKey}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateKmsIssuerPolicy",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The issuer policy kind.",
+            "in": "path",
+            "name": "kind",
+            "required": true,
+            "schema": {
+              "description": "The issuer policy kind.",
+              "enum": [
+                "project-grant"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The policy identifier.",
+            "in": "path",
+            "name": "policyKey",
+            "required": true,
+            "schema": {
+              "description": "The policy identifier.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "environments": {
+                    "description": "The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...).",
+                    "items": {
+                      "pattern": "^(?:production|preview|development|env_.+)$",
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array",
+                    "uniqueItems": true
+                  },
+                  "tokenClaims": {
+                    "additionalProperties": true,
+                    "description": "The claims that KMS should include in signed JWTs for this policy. Pass null to remove them.",
+                    "nullable": true,
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "environments": {
+                          "description": "Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "kind": {
+                          "enum": [
+                            "project-grant"
+                          ],
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "type": "string"
+                        },
+                        "teamId": {
+                          "type": "string"
+                        },
+                        "tokenClaims": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "createdAt",
+                        "environments",
+                        "kind",
+                        "projectId",
+                        "teamId",
+                        "updatedAt"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "clientId": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "enum": [
+                            "connex-grant"
+                          ],
+                          "type": "string"
+                        },
+                        "tokenClaims": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "clientId",
+                        "createdAt",
+                        "kind",
+                        "updatedAt"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PATCH /v1/kms/issuers/{issuerId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateKmsIssuer",
+        "parameters": [
+          {
+            "description": "The ID of the issuer.",
+            "in": "path",
+            "name": "issuerId",
+            "required": true,
+            "schema": {
+              "description": "The ID of the issuer.",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team identifier to perform the request on behalf of.",
+            "in": "query",
+            "name": "teamId",
+            "schema": {
+              "example": "team_1a2b3c4d5e6f7g8h9i0j1k2l",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Team slug to perform the request on behalf of.",
+            "in": "query",
+            "name": "slug",
+            "schema": {
+              "example": "my-team-url-slug",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "claimsSchema": {
+                    "additionalProperties": true,
+                    "description": "A JSON Schema used to validate the resolved token claims when signing tokens for this issuer. Pass null to remove it.",
+                    "nullable": true,
+                    "type": "object"
+                  },
+                  "name": {
+                    "description": "The name of the issuer.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "algorithm": {
+                      "enum": [
+                        "ES256",
+                        "ES384",
+                        "ES512",
+                        "PS256",
+                        "PS384",
+                        "PS512",
+                        "RS256",
+                        "RS384",
+                        "RS512"
+                      ],
+                      "type": "string"
+                    },
+                    "claimsSchema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "managedBy": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "origin": {
+                      "enum": [
+                        "external",
+                        "vercel"
+                      ],
+                      "type": "string"
+                    },
+                    "ownerId": {
+                      "type": "string"
+                    },
+                    "policies": {
+                      "items": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "createdAt": {
+                                "type": "string"
+                              },
+                              "environments": {
+                                "description": "Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "project-grant"
+                                ],
+                                "type": "string"
+                              },
+                              "projectId": {
+                                "type": "string"
+                              },
+                              "teamId": {
+                                "type": "string"
+                              },
+                              "tokenClaims": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "updatedAt": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "createdAt",
+                              "environments",
+                              "kind",
+                              "projectId",
+                              "teamId",
+                              "updatedAt"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "clientId": {
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "connex-grant"
+                                ],
+                                "type": "string"
+                              },
+                              "tokenClaims": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "updatedAt": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "clientId",
+                              "createdAt",
+                              "kind",
+                              "updatedAt"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "signingKeys": {
+                      "items": {
+                        "properties": {
+                          "activateAt": {
+                            "type": "string"
+                          },
+                          "activatedAt": {
+                            "description": "When the key became the active signer. Present for active and revoking keys (and absent for pending keys and rows predating this field).",
+                            "type": "string"
+                          },
+                          "algorithm": {
+                            "type": "string"
+                          },
+                          "certificatePem": {
+                            "description": "The stored X.509 certificate (from `publicKey.x5c[0]`) in PEM form, ready to render. Present only for keys created with a stored certificate; omitted for keys created before certificates were stored.",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "importKeyId": {
+                            "description": "The caller-supplied key id (imported keys only), used as the JWT/JWKS `kid`. Not unique across an issuer's keys; omitted for generated keys.",
+                            "type": "string"
+                          },
+                          "issuerId": {
+                            "type": "string"
+                          },
+                          "keyId": {
+                            "description": "The server-minted, unique record identifier. Use this to address the key on the activate / certificate endpoints.",
+                            "type": "string"
+                          },
+                          "publicKey": {
+                            "properties": {
+                              "alg": {
+                                "type": "string"
+                              },
+                              "key_ops": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "kid": {
+                                "type": "string"
+                              },
+                              "kty": {
+                                "type": "string"
+                              },
+                              "use": {
+                                "type": "string"
+                              },
+                              "x5c": {
+                                "description": "The X.509 certificate chain (RFC 7517 §4.7). Each entry is the base64 DER (not base64url) of a certificate. For keys minted with a stored certificate this holds the single self-signed cert as `[x5c]`.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "x5t#S256": {
+                                "description": "The base64url SHA-256 thumbprint of the DER certificate in `x5c[0]` (RFC 7517 §4.9).",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "publicKeyFingerprint": {
+                            "type": "string"
+                          },
+                          "publicKeyPem": {
+                            "description": "The public key in SPKI PEM form, ready to render. Present whenever the key has public key material. Derived from `publicKey`; the embedded certificate members (`x5c`/`x5t#S256`) do not affect it.",
+                            "type": "string"
+                          },
+                          "revokeAt": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "active",
+                              "pending",
+                              "revoking"
+                            ],
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "algorithm",
+                          "createdAt",
+                          "issuerId",
+                          "keyId",
+                          "status",
+                          "updatedAt"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "algorithm",
+                    "createdAt",
+                    "id",
+                    "name",
+                    "origin",
+                    "ownerId",
+                    "policies",
+                    "signingKeys",
+                    "updatedAt"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "One of the provided values in the request body is invalid.\nOne of the provided values in the request query is invalid."
+          },
+          "401": {
+            "description": "The request is not authorized."
+          },
+          "403": {
+            "description": "You do not have permission to access this resource."
+          },
+          "404": {
+            "description": ""
+          },
+          "410": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerToken": {
+            "description": "Default authentication mechanism",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "oauth2": {
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://api.vercel.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://api.vercel.com/oauth/access_token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}
